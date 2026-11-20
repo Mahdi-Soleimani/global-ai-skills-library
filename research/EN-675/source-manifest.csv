@@ -1,0 +1,13 @@
+﻿source_id,report_id,repo_full_name,repository_url,verification_status
+EN-675-SRC-0001,EN-675,anthropics/healthcare,https://github.com/anthropics/healthcare,not_yet_verified_live
+EN-675-SRC-0002,EN-675,anthropics/life-sciences,https://github.com/anthropics/life-sciences,not_yet_verified_live
+EN-675-SRC-0003,EN-675,anthropics/skills,https://github.com/anthropics/skills,not_yet_verified_live
+EN-675-SRC-0004,EN-675,cloudflare/skills,https://github.com/cloudflare/skills,not_yet_verified_live
+EN-675-SRC-0005,EN-675,github/awesome-copilot,https://github.com/github/awesome-copilot,not_yet_verified_live
+EN-675-SRC-0006,EN-675,huggingface/skills,https://github.com/huggingface/skills,not_yet_verified_live
+EN-675-SRC-0007,EN-675,microsoft/azure-skills,https://github.com/microsoft/azure-skills,not_yet_verified_live
+EN-675-SRC-0008,EN-675,n8n-io/skills,https://github.com/n8n-io/skills,not_yet_verified_live
+EN-675-SRC-0009,EN-675,openai/codex-security,https://github.com/openai/codex-security,not_yet_verified_live
+EN-675-SRC-0010,EN-675,openai/plugins,https://github.com/openai/plugins,not_yet_verified_live
+EN-675-SRC-0011,EN-675,openai/skills,https://github.com/openai/skills,not_yet_verified_live
+EN-675-SRC-0012,EN-675,vercel-labs/agent-skills,https://github.com/vercel-labs/agent-skills,not_yet_verified_live

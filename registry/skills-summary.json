@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.2.0",
+  "generated_at": "2026-11-20T09:25:17+00:00",
+  "record_count": 60,
+  "skill_candidate_count": 56,
+  "test_fixture_count": 4,
+  "valid_frontmatter": 60,
+  "invalid_or_incomplete_frontmatter": 0,
+  "content_duplicate_groups": 0,
+  "content_duplicate_records": 0,
+  "same_name_collision_groups": 0,
+  "security_manual_review": 10,
+  "security_manual_review_candidates": 9,
+  "security_manual_review_fixtures": 1,
+  "high_confidence_signals": 2,
+  "install_approved_records": 0,
+  "installed_records": 0,
+  "source_datasets_modified": false
+}

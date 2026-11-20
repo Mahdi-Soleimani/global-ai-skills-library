@@ -1,0 +1,31 @@
+# Private research originals and account-scoped provenance
+/private/
+/config/source-repositories.snapshot-*.json
+/research/_legacy-initial-mapping/
+
+# Third-party skill packages: never publish without license/redistribution review
+/catalog/
+/quarantine/
+/storage/
+
+# Detailed local security evidence and generated per-skill records
+/reports/
+/registry/skills.csv
+/registry/skills.json
+/registry/batch-verify*.json
+/registry/connector-verification.json
+/registry/source-verification.json
+/registry/source-verification.csv
+
+# Local runtime artifacts
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

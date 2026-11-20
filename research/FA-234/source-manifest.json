@@ -1,0 +1,53 @@
+{
+  "manifest_version": "0.2.0",
+  "report_id": "FA-234",
+  "dataset_role": "primary_independent_dataset",
+  "language": "Persian",
+  "source_file": "deep-research-report (1).md",
+  "source_sha256": "d25087595baa6c51f20fc202cbea3baca5ae10535a8d8231b6d6022ab4e5d79d",
+  "source_size_bytes": 12820,
+  "record_count_claimed": 234,
+  "record_count_semantics": "unique skills as stated in the Persian research report",
+  "database_artifacts_available": false,
+  "missing_artifacts": [
+    "GLOBAL_AI_SKILLS_DATABASE.csv",
+    "GLOBAL_AI_SKILLS_DATABASE.json",
+    "GLOBAL_AI_SKILLS_REGISTRY.xlsx"
+  ],
+  "reported_counts": {
+    "reported_official_count": 201,
+    "reported_individually_inspected_count": 18,
+    "reported_evidence_counts": {
+      "E1-E3": 7,
+      "E4": 196,
+      "E5": 31
+    }
+  },
+  "embedded_skill_record_rows": null,
+  "repositories": [
+    {
+      "source_id": "FA-234-SRC-0001",
+      "report_id": "FA-234",
+      "repo_full_name": "anthropics/skills",
+      "repository_url": "https://github.com/anthropics/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "FA-234-SRC-0002",
+      "report_id": "FA-234",
+      "repo_full_name": "openai/plugins",
+      "repository_url": "https://github.com/openai/plugins",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "FA-234-SRC-0003",
+      "report_id": "FA-234",
+      "repo_full_name": "openai/skills",
+      "repository_url": "https://github.com/openai/skills",
+      "verification_status": "not_yet_verified_live"
+    }
+  ],
+  "note": "Explicit repository references extracted from this exact report only. This is not a replacement for its full skill-record database.",
+  "local_archive_status": "sha256_verified",
+  "local_archive_verified_at": "2026-11-20T09:30:52+00:00"
+}

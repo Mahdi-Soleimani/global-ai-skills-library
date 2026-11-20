@@ -1,0 +1,249 @@
+{
+  "manifest_version": "0.2.0",
+  "report_id": "AUX-FA-438",
+  "dataset_role": "supplemental_independent_report_not_primary_dataset",
+  "language": "Persian",
+  "source_file": "Pasted text (2)(4).txt",
+  "source_sha256": "74110309cc4cccbda2706759b702366e34cb5a677b5d1c43107d1d049309e134",
+  "source_size_bytes": 151329,
+  "record_count_claimed": 438,
+  "record_count_semantics": null,
+  "database_artifacts_available": null,
+  "missing_artifacts": [],
+  "reported_counts": {
+    "reported_unique_skills": 438,
+    "reported_catalogued_skills": 2329,
+    "reported_sources": 109,
+    "reported_github_repositories": 88
+  },
+  "embedded_skill_record_rows": 40,
+  "repositories": [
+    {
+      "source_id": "AUX-FA-438-SRC-0001",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "ClickHouse/agent-skills",
+      "repository_url": "https://github.com/ClickHouse/agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0002",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "JuliusBrussee/caveman",
+      "repository_url": "https://github.com/JuliusBrussee/caveman",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0003",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "K-Dense-AI/scientific-agent-skills",
+      "repository_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0004",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "NVIDIA/skills",
+      "repository_url": "https://github.com/NVIDIA/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0005",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "alirezarezvani/claude-skills",
+      "repository_url": "https://github.com/alirezarezvani/claude-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0006",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "anthropics/skills",
+      "repository_url": "https://github.com/anthropics/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0007",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "atlassian/atlassian-mcp-server",
+      "repository_url": "https://github.com/atlassian/atlassian-mcp-server",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0008",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "cloudflare/security-audit-skill",
+      "repository_url": "https://github.com/cloudflare/security-audit-skill",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0009",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "cloudflare/skills",
+      "repository_url": "https://github.com/cloudflare/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0010",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "coreyhaines31/marketingskills",
+      "repository_url": "https://github.com/coreyhaines31/marketingskills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0011",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "czlonkowski/n8n-skills",
+      "repository_url": "https://github.com/czlonkowski/n8n-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0012",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "databricks/databricks-agent-skills",
+      "repository_url": "https://github.com/databricks/databricks-agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0013",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "getsentry/skills",
+      "repository_url": "https://github.com/getsentry/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0014",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "google/skills",
+      "repository_url": "https://github.com/google/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0015",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "huggingface/skills",
+      "repository_url": "https://github.com/huggingface/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0016",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "mattpocock/skills",
+      "repository_url": "https://github.com/mattpocock/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0017",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "microsoft/skills",
+      "repository_url": "https://github.com/microsoft/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0018",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "obra/superpowers",
+      "repository_url": "https://github.com/obra/superpowers",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0019",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "obsidianmd/obsidian-skills",
+      "repository_url": "https://github.com/obsidianmd/obsidian-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0020",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "openai/skills",
+      "repository_url": "https://github.com/openai/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0021",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "phuryn/pm-skills",
+      "repository_url": "https://github.com/phuryn/pm-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0022",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "prisma/orm",
+      "repository_url": "https://github.com/prisma/orm",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0023",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "redis/agent-skills",
+      "repository_url": "https://github.com/redis/agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0024",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "run-llama/llamaparse-agent-skills",
+      "repository_url": "https://github.com/run-llama/llamaparse-agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0025",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "salesforce/salesforce-skills",
+      "repository_url": "https://github.com/salesforce/salesforce-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0026",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "shadcn-ui/ui",
+      "repository_url": "https://github.com/shadcn-ui/ui",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0027",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "stripe/ai",
+      "repository_url": "https://github.com/stripe/ai",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0028",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "supabase/agent-skills",
+      "repository_url": "https://github.com/supabase/agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0029",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "trailofbits/skills",
+      "repository_url": "https://github.com/trailofbits/skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0030",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "vercel-labs/agent-browser",
+      "repository_url": "https://github.com/vercel-labs/agent-browser",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0031",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "vercel-labs/agent-skills",
+      "repository_url": "https://github.com/vercel-labs/agent-skills",
+      "verification_status": "not_yet_verified_live"
+    },
+    {
+      "source_id": "AUX-FA-438-SRC-0032",
+      "report_id": "AUX-FA-438",
+      "repo_full_name": "vercel-labs/skills",
+      "repository_url": "https://github.com/vercel-labs/skills",
+      "verification_status": "not_yet_verified_live"
+    }
+  ],
+  "note": "Explicit repository references extracted from this exact report only. This is not a replacement for its full skill-record database.",
+  "local_archive_status": "sha256_verified",
+  "local_archive_verified_at": "2026-11-20T09:30:52+00:00"
+}

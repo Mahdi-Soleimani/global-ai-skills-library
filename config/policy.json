@@ -1,0 +1,23 @@
+{
+  "policy_version": "0.1.0",
+  "auto_execute_downloaded_scripts": false,
+  "follow_symlinks": false,
+  "allow_download_from_public_repositories": true,
+  "download_requires_live_repository_verification": true,
+  "unknown_license": "local_review_only_no_public_redistribution",
+  "unknown_provenance": "review",
+  "blocked_labels": [
+    "BLOCKED",
+    "MALICIOUS",
+    "DO_NOT_INSTALL",
+    "CRITICAL"
+  ],
+  "max_file_size_bytes": 10485760,
+  "max_skill_size_bytes": 52428800,
+  "max_repository_download_bytes": 524288000,
+  "store_git_history": false,
+  "pin_to_commit_sha": true,
+  "hash_algorithm": "sha256",
+  "default_download_mode": "skill_folders_only",
+  "install_requires_security_approval": true
+}

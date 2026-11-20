@@ -1,0 +1,4 @@
+﻿source_id,report_id,repo_full_name,repository_url,verification_status
+FA-234-SRC-0001,FA-234,anthropics/skills,https://github.com/anthropics/skills,not_yet_verified_live
+FA-234-SRC-0002,FA-234,openai/plugins,https://github.com/openai/plugins,not_yet_verified_live
+FA-234-SRC-0003,FA-234,openai/skills,https://github.com/openai/skills,not_yet_verified_live

@@ -1,0 +1,393 @@
+{
+  "schema_version": "0.1.0",
+  "downloads": [
+    {
+      "repository": "cloudflare/security-audit-skill",
+      "commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "downloaded_at": "2026-11-19T21:35:55+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "skills/security-audit/SKILL.md",
+          "package_path": "catalog/cloudflare__security-audit-skill/security-audit@c1c8a8c14710",
+          "file_count": 20,
+          "bytes": 314670
+        }
+      ]
+    },
+    {
+      "repository": "openai/codex-security",
+      "commit_sha": "ec0d6c10b44723cae307ceab91d255083d9e8d32",
+      "downloaded_at": "2026-11-19T22:00:46+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "evals/check-skills/fixtures/editorial-guide/SKILL.md",
+          "package_path": "catalog/openai__codex-security/editorial-guide__01dd7047@ec0d6c10b447",
+          "file_count": 1,
+          "bytes": 316
+        },
+        {
+          "skill_path": "evals/check-skills/fixtures/status-summary/SKILL.md",
+          "package_path": "catalog/openai__codex-security/status-summary__e5aa6359@ec0d6c10b447",
+          "file_count": 3,
+          "bytes": 569
+        },
+        {
+          "skill_path": "evals/check-skills/fixtures/style-guide/SKILL.md",
+          "package_path": "catalog/openai__codex-security/style-guide__ed4b1d6c@ec0d6c10b447",
+          "file_count": 1,
+          "bytes": 329
+        },
+        {
+          "skill_path": "evals/check-skills/fixtures/word-list/SKILL.md",
+          "package_path": "catalog/openai__codex-security/word-list__acefac7d@ec0d6c10b447",
+          "file_count": 1,
+          "bytes": 306
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/assess-patch-risk/SKILL.md",
+          "package_path": "catalog/openai__codex-security/assess-patch-risk__0ab6a20d@ec0d6c10b447",
+          "file_count": 4,
+          "bytes": 14795
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/attack-path-analysis/SKILL.md",
+          "package_path": "catalog/openai__codex-security/attack-path-analysis__347923a4@ec0d6c10b447",
+          "file_count": 4,
+          "bytes": 9863
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/check-skills/SKILL.md",
+          "package_path": "catalog/openai__codex-security/check-skills__4b3501c6@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 6116
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/cloud-findings/SKILL.md",
+          "package_path": "catalog/openai__codex-security/cloud-findings__4d9bc264@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 10858
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/deep-security-scan/SKILL.md",
+          "package_path": "catalog/openai__codex-security/deep-security-scan__4ec5cd50@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 3319
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/define-security-policy/SKILL.md",
+          "package_path": "catalog/openai__codex-security/define-security-policy__906fbb1f@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 6192
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/finding-discovery/SKILL.md",
+          "package_path": "catalog/openai__codex-security/finding-discovery__d990e0d2@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 5296
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/fix-finding/SKILL.md",
+          "package_path": "catalog/openai__codex-security/fix-finding__193fde30@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 18686
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/propose-security-hardening/SKILL.md",
+          "package_path": "catalog/openai__codex-security/propose-security-hardening__54794ebd@ec0d6c10b447",
+          "file_count": 3,
+          "bytes": 9463
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/publish-findings/SKILL.md",
+          "package_path": "catalog/openai__codex-security/publish-findings__4c75a44b@ec0d6c10b447",
+          "file_count": 6,
+          "bytes": 40847
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/resolve-dependency-alert/SKILL.md",
+          "package_path": "catalog/openai__codex-security/resolve-dependency-alert__c27e496c@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 2798
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/security-diff-scan/SKILL.md",
+          "package_path": "catalog/openai__codex-security/security-diff-scan__90cd2bb5@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 5689
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/security-scan/SKILL.md",
+          "package_path": "catalog/openai__codex-security/security-scan__ac968a26@ec0d6c10b447",
+          "file_count": 8,
+          "bytes": 19596
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/threat-model-visualize/SKILL.md",
+          "package_path": "catalog/openai__codex-security/threat-model-visualize__206e0d05@ec0d6c10b447",
+          "file_count": 14,
+          "bytes": 241281
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/threat-model/SKILL.md",
+          "package_path": "catalog/openai__codex-security/threat-model__1f7b3200@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 3157
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/track-findings/SKILL.md",
+          "package_path": "catalog/openai__codex-security/track-findings__c13bc997@ec0d6c10b447",
+          "file_count": 4,
+          "bytes": 20185
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/triage-finding/SKILL.md",
+          "package_path": "catalog/openai__codex-security/triage-finding__b5146e44@ec0d6c10b447",
+          "file_count": 5,
+          "bytes": 30749
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/validation/SKILL.md",
+          "package_path": "catalog/openai__codex-security/validation__609cbf47@ec0d6c10b447",
+          "file_count": 3,
+          "bytes": 9210
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/verify-fix/SKILL.md",
+          "package_path": "catalog/openai__codex-security/verify-fix__494b3822@ec0d6c10b447",
+          "file_count": 2,
+          "bytes": 4428
+        },
+        {
+          "skill_path": "plugins/codex-security/skills/vulnerability-writeup/SKILL.md",
+          "package_path": "catalog/openai__codex-security/vulnerability-writeup__51f10b0e@ec0d6c10b447",
+          "file_count": 3,
+          "bytes": 10343
+        }
+      ]
+    },
+    {
+      "repository": "n8n-io/skills",
+      "commit_sha": "626f50fdf2934116eea2c5469339e03d2d524e83",
+      "downloaded_at": "2026-11-19T22:19:58+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "skills/n8n-agents-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-agents-official__58ca5788@626f50fdf293",
+          "file_count": 13,
+          "bytes": 56730
+        },
+        {
+          "skill_path": "skills/n8n-ai-nodes-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-ai-nodes-official__91e25de4@626f50fdf293",
+          "file_count": 12,
+          "bytes": 146002
+        },
+        {
+          "skill_path": "skills/n8n-binary-and-data-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-binary-and-data-official__e0e490b2@626f50fdf293",
+          "file_count": 5,
+          "bytes": 38347
+        },
+        {
+          "skill_path": "skills/n8n-code-nodes-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-code-nodes-official__f2ade32c@626f50fdf293",
+          "file_count": 4,
+          "bytes": 32752
+        },
+        {
+          "skill_path": "skills/n8n-credentials-and-security-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-credentials-and-security-official__7e0fc1f7@626f50fdf293",
+          "file_count": 5,
+          "bytes": 23208
+        },
+        {
+          "skill_path": "skills/n8n-data-tables-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-data-tables-official__80cc7348@626f50fdf293",
+          "file_count": 4,
+          "bytes": 33579
+        },
+        {
+          "skill_path": "skills/n8n-debugging-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-debugging-official__889b0430@626f50fdf293",
+          "file_count": 3,
+          "bytes": 22097
+        },
+        {
+          "skill_path": "skills/n8n-error-handling-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-error-handling-official__63470b18@626f50fdf293",
+          "file_count": 7,
+          "bytes": 61886
+        },
+        {
+          "skill_path": "skills/n8n-expressions-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-expressions-official__6bd49ef5@626f50fdf293",
+          "file_count": 1,
+          "bytes": 21281
+        },
+        {
+          "skill_path": "skills/n8n-extending-mcp-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-extending-mcp-official__37a53676@626f50fdf293",
+          "file_count": 1,
+          "bytes": 8719
+        },
+        {
+          "skill_path": "skills/n8n-loops-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-loops-official__9fa5570a@626f50fdf293",
+          "file_count": 3,
+          "bytes": 35544
+        },
+        {
+          "skill_path": "skills/n8n-node-configuration-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-node-configuration-official__8a02cebe@626f50fdf293",
+          "file_count": 9,
+          "bytes": 38109
+        },
+        {
+          "skill_path": "skills/n8n-subworkflows-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-subworkflows-official__baf6317e@626f50fdf293",
+          "file_count": 3,
+          "bytes": 36311
+        },
+        {
+          "skill_path": "skills/n8n-workflow-lifecycle-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/n8n-workflow-lifecycle-official__39d55b7d@626f50fdf293",
+          "file_count": 9,
+          "bytes": 102154
+        },
+        {
+          "skill_path": "skills/using-n8n-skills-official/SKILL.md",
+          "package_path": "catalog/n8n-io__skills/using-n8n-skills-official__5a333045@626f50fdf293",
+          "file_count": 1,
+          "bytes": 27614
+        }
+      ]
+    },
+    {
+      "repository": "anthropics/skills",
+      "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "downloaded_at": "2026-11-19T22:29:27+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "skills/academy-guide/SKILL.md",
+          "package_path": "catalog/anthropics__skills/academy-guide__50d306da@e4bb5d960d87",
+          "file_count": 2,
+          "bytes": 19100
+        },
+        {
+          "skill_path": "skills/algorithmic-art/SKILL.md",
+          "package_path": "catalog/anthropics__skills/algorithmic-art__d882cf8a@e4bb5d960d87",
+          "file_count": 4,
+          "bytes": 59784
+        },
+        {
+          "skill_path": "skills/brand-guidelines/SKILL.md",
+          "package_path": "catalog/anthropics__skills/brand-guidelines__447a6c05@e4bb5d960d87",
+          "file_count": 2,
+          "bytes": 13580
+        },
+        {
+          "skill_path": "skills/canvas-design/SKILL.md",
+          "package_path": "catalog/anthropics__skills/canvas-design__8075c07a@e4bb5d960d87",
+          "file_count": 83,
+          "bytes": 5554003
+        },
+        {
+          "skill_path": "skills/claude-api/SKILL.md",
+          "package_path": "catalog/anthropics__skills/claude-api__579407b7@e4bb5d960d87",
+          "file_count": 96,
+          "bytes": 2079868
+        },
+        {
+          "skill_path": "skills/discernment-nudge/SKILL.md",
+          "package_path": "catalog/anthropics__skills/discernment-nudge__934ef72f@e4bb5d960d87",
+          "file_count": 2,
+          "bytes": 21937
+        },
+        {
+          "skill_path": "skills/doc-coauthoring/SKILL.md",
+          "package_path": "catalog/anthropics__skills/doc-coauthoring__b53efec2@e4bb5d960d87",
+          "file_count": 1,
+          "bytes": 15815
+        },
+        {
+          "skill_path": "skills/docx/SKILL.md",
+          "package_path": "catalog/anthropics__skills/docx__117510b8@e4bb5d960d87",
+          "file_count": 61,
+          "bytes": 1166158
+        },
+        {
+          "skill_path": "skills/frontend-design/SKILL.md",
+          "package_path": "catalog/anthropics__skills/frontend-design__2fc98096@e4bb5d960d87",
+          "file_count": 2,
+          "bytes": 19564
+        },
+        {
+          "skill_path": "skills/internal-comms/SKILL.md",
+          "package_path": "catalog/anthropics__skills/internal-comms__9380ff3d@e4bb5d960d87",
+          "file_count": 6,
+          "bytes": 22393
+        },
+        {
+          "skill_path": "skills/mcp-builder/SKILL.md",
+          "package_path": "catalog/anthropics__skills/mcp-builder__ecd23bae@e4bb5d960d87",
+          "file_count": 11,
+          "bytes": 159159
+        },
+        {
+          "skill_path": "skills/pdf/SKILL.md",
+          "package_path": "catalog/anthropics__skills/pdf__ae08fda9@e4bb5d960d87",
+          "file_count": 12,
+          "bytes": 68603
+        },
+        {
+          "skill_path": "skills/pptx/SKILL.md",
+          "package_path": "catalog/anthropics__skills/pptx__5859ffce@e4bb5d960d87",
+          "file_count": 58,
+          "bytes": 1199661
+        },
+        {
+          "skill_path": "skills/skill-creator/SKILL.md",
+          "package_path": "catalog/anthropics__skills/skill-creator__be304257@e4bb5d960d87",
+          "file_count": 18,
+          "bytes": 224992
+        },
+        {
+          "skill_path": "skills/slack-gif-creator/SKILL.md",
+          "package_path": "catalog/anthropics__skills/slack-gif-creator__7da34493@e4bb5d960d87",
+          "file_count": 7,
+          "bytes": 43697
+        },
+        {
+          "skill_path": "skills/theme-factory/SKILL.md",
+          "package_path": "catalog/anthropics__skills/theme-factory__5c3ba317@e4bb5d960d87",
+          "file_count": 13,
+          "bytes": 144094
+        },
+        {
+          "skill_path": "skills/web-artifacts-builder/SKILL.md",
+          "package_path": "catalog/anthropics__skills/web-artifacts-builder__c8250044@e4bb5d960d87",
+          "file_count": 5,
+          "bytes": 45840
+        },
+        {
+          "skill_path": "skills/webapp-testing/SKILL.md",
+          "package_path": "catalog/anthropics__skills/webapp-testing__d006daf5@e4bb5d960d87",
+          "file_count": 6,
+          "bytes": 22394
+        },
+        {
+          "skill_path": "skills/xlsx/SKILL.md",
+          "package_path": "catalog/anthropics__skills/xlsx__f7e7ac6c@e4bb5d960d87",
+          "file_count": 53,
+          "bytes": 1164621
+        },
+        {
+          "skill_path": "template/SKILL.md",
+          "package_path": "catalog/anthropics__skills/template__f4d09caf@e4bb5d960d87",
+          "file_count": 1,
+          "bytes": 140
+        }
+      ]
+    }
+  ]
+}
