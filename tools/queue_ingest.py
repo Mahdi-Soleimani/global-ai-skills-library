@@ -206,8 +206,13 @@ def merge_manifest(root, plan, dest):
             "file_count":len(plan["files"]), "bytes":plan["bytes"]}
     existing = next((e for e in entry["skill_packages"] if e["skill_path"]==plan["skill_path"]),None)
     if existing is not None:
-        if existing != item:
-            raise ValueError("Existing manifest record differs")
+        if existing.get("package_path") != item["package_path"]:
+            raise ValueError("Existing manifest package path conflicts for the same immutable source identity")
+        # A later complete package plan may include upstream LICENSE/NOTICE files
+        # that an older pilot omitted. Refresh its measured inventory after the
+        # new package has passed full hash and directory validation.
+        existing.update(item)
+        write_json(path,manifest)
         return
     entry["skill_packages"].append(item)
     write_json(path,manifest)

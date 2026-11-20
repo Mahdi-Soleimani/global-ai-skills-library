@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
-from queue_ingest import make_plan, ingest, git_blob, package_location, validate_inventory, public_mirror_rejection
+from queue_ingest import make_plan, ingest, git_blob, package_location, validate_inventory, public_mirror_rejection, merge_manifest
 
 POLICY={"max_file_size_bytes":1000,"max_skill_size_bytes":2000}
 COMMIT="a"*40
@@ -143,6 +143,38 @@ class QueueIngestTests(unittest.TestCase):
         row,tree=fixture(); plan=make_plan(row,tree,POLICY)
         with self.assertRaises(ValueError): ingest(self.root,plan,lambda p,i:b"bad")
         self.assertFalse(package_location(self.root,plan).exists())
+
+    def test_manifest_refreshes_inventory_when_license_evidence_is_added(self):
+        row,tree=fixture()
+        plan=make_plan(row,tree,POLICY)
+        dest=package_location(self.root,plan)
+        manifest={"schema_version":"0.1.0","downloads":[{
+            "repository":row["repository"],"commit_sha":COMMIT,
+            "skill_packages":[{"skill_path":row["skill_path"],"package_path":str(dest.relative_to(self.root)),
+                              "file_count":1,"bytes":10}]
+        }]}
+        (self.root/"registry/download-manifest.json").write_text(json.dumps(manifest))
+        plan["files"].append({"path":"LICENSE","relative":"__upstream_licenses__/license",
+                              "size":5,"sha":git_blob(b"MIT!!")})
+        plan["bytes"]+=5
+        merge_manifest(self.root,plan,dest)
+        saved=json.loads((self.root/"registry/download-manifest.json").read_text())
+        item=saved["downloads"][0]["skill_packages"][0]
+        self.assertEqual(item["file_count"],3)
+        self.assertEqual(item["bytes"],plan["bytes"])
+
+    def test_manifest_rejects_different_package_path_for_same_identity(self):
+        row,tree=fixture()
+        plan=make_plan(row,tree,POLICY)
+        dest=package_location(self.root,plan)
+        manifest={"schema_version":"0.1.0","downloads":[{
+            "repository":row["repository"],"commit_sha":COMMIT,
+            "skill_packages":[{"skill_path":row["skill_path"],"package_path":"catalog/other",
+                              "file_count":1,"bytes":10}]
+        }]}
+        (self.root/"registry/download-manifest.json").write_text(json.dumps(manifest))
+        with self.assertRaises(ValueError):
+            merge_manifest(self.root,plan,dest)
 
     def test_existing_extra_file_is_rejected(self):
         row,tree=fixture(); plan=make_plan(row,tree,POLICY)

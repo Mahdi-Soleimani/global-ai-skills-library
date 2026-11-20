@@ -42,7 +42,7 @@
 | بسته‌های نیازمند بررسی دستی | ۱۰؛ شامل ۹ candidate و ۱ fixture |
 | High-confidence static signals | ۲؛ بررسی دستی باز |
 | تأیید نصب / نصب / اجرای کد | صفر / صفر / صفر |
-| تست پروژه | ۵۴ PASS |
+| تست پروژه | ۵۷ PASS |
 
 این اعداد به Snapshot محلی مورخ 2026-11-20 تعلق دارند؛ تعداد Skillهای یکتای جهانی را اثبات نمی‌کنند.
 
@@ -91,7 +91,7 @@
 
 ### فاز 4 — Source Discovery و Repository Expansion
 
-**وضعیت:** ۵۷ مخزن برای Refresh تنظیم شده‌اند (۵۵ مخزن canonical تاریخی + دو منبع جدید). Source Catalog عمومی شامل ۴٬۲۷۷ رکورد است: ۴٬۲۱۴ مسیر تاریخی و ۶۳ نسخه immutable از Pilot محلی. آخرین تلاش Refresh محلی فقط Microsoft را با ۲۱۵ مسیر تأیید کرد و ۹ هدف دیگر به خطای TLS خوردند؛ ۴۷ هدف باقیمانده در Runner گیت‌هاب به‌صورت کامل Refresh خواهند شد. مسیرهای قدیمی بدون Commit به‌صراحت Unpinned هستند. گزارش قبلی Batch: docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md.
+**وضعیت:** اولین اجرای واقعی GitHub Actions هر ۵۷ مخزن را با صفر خطای Repository تأیید کرد و ۴٬۴۷۸ مسیر SKILL.md مشاهده شد؛ ۴٬۴۰۵ مسیر در صف Package Planning قرار گرفتند. Source Catalog ثبت‌شده در main هنوز ۴٬۲۷۷ رکورد تاریخی/نسخه‌ای دارد؛ Snapshot جدید پس از موفقیت کامل مرحله Ingestion به main Commit خواهد شد. گزارش Batch اولیه: docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md.
 
 ادامه Checkpointهای مستقل: EN-675 (awesome-copilot، NVIDIA، Microsoft، Anthropic verticals)؛ FA-234 (Microsoft، skills.sh، SkillsMP، Database Vendors و منابع غیرانگلیسی)؛ SUP-750 (AWS HCLS، phuryn، NVIDIA H-Z، Adobe، Google DeepMind، Agriculture/Manufacturing/Logistics، Tencent/Japan)؛ SUP-438 (Databricks، Salesforce، NVIDIA، Microsoft SDKها، phuryn و حوزه‌های کم‌پوشش).
 
@@ -122,7 +122,7 @@
 
 ### فاز 7 — Attribution و GitHub Actions Automation
 
-**وضعیت:** پیاده‌سازی محلی تکمیل شده؛ نیازمند اولین اجرای موفق GitHub Actions برای تأیید end-to-end روی Runner.
+**وضعیت:** اولین اجرای GitHub Actions تست‌ها و Discovery را با موفقیت گذراند (۵۷/۵۷ Repository، صفر خطا، ۴٬۴۷۸ مسیر). مرحله Ingestion پس از دریافت هشت بسته در Runner موقت، به‌دلیل اختلاف Inventory در Manifest قدیمی متوقف شد. اصلاح Manifest انجام شده و اجرای بعدی برای تأیید end-to-end لازم است.
 
 - تمام مسیرهای تاریخی و نسخه‌های دانلودشده در Source Catalog با منبع، مسیر، مالک مخزن، مجوز، وضعیت Pin و وضعیت محتوا ثبت می‌شوند.
 - original_author فقط در صورت وجود شواهد ثبت می‌شود؛ repository_owner به‌عنوان نویسنده فردی فرض نمی‌شود.
@@ -132,7 +132,7 @@
 - Workflow روزانه تمام ۵۷ مخزن را Refresh می‌کند، Batch محدود دریافت می‌کند، Registry را به‌روزرسانی می‌کند و تغییرات را به main Commit/Push می‌کند. روشن بودن مک لازم نیست.
 - Runnerهای Actions موقت‌اند؛ فقط Source Catalog و Public Catalog در Git باقی می‌مانند. ذخیره‌سازی خصوصی دائمی خارج از دامنه این Workflow است.
 
-**معیار پذیرش:** یک اجرای واقعی Actions با Refresh موفق، حفظ رکوردهای تاریخی، افزودن حداقل یک بسته واجد شرایط یا ثبت شفاف صفر مورد واجد شرایط، و Commit خودکار به main.
+**معیار پذیرش:** اجرای مجدد Actions با Refresh موفق، حفظ رکوردهای تاریخی، افزودن بسته‌های واجد شرایط یا ثبت شفاف صفر مورد واجد شرایط، و Commit خودکار به main.
 
 
 ### فاز 8 — Registry و Search
