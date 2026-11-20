@@ -91,7 +91,7 @@
 
 ### فاز 4 — Source Discovery و Repository Expansion
 
-**وضعیت:** اولین اجرای واقعی GitHub Actions هر ۵۷ مخزن را با صفر خطای Repository تأیید کرد و ۴٬۴۷۸ مسیر SKILL.md مشاهده شد؛ ۴٬۴۰۵ مسیر در صف Package Planning قرار گرفتند. Source Catalog ثبت‌شده در main هنوز ۴٬۲۷۷ رکورد تاریخی/نسخه‌ای دارد؛ Snapshot جدید پس از موفقیت کامل مرحله Ingestion به main Commit خواهد شد. گزارش Batch اولیه: docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md.
+**وضعیت:** GitHub Actions هر ۵۷ مخزن را با صفر خطای Repository تأیید کرد، ۴٬۴۷۸ مسیر مشاهده و ۴٬۴۰۵ رکورد Source Queue تولید کرد. اجرای دوم ۹ بسته واجد شرایط (۱۱۹ فایل، ۶۶۴٬۴۶۶ بایت) را دانلود و در Runner به Public Catalog افزود؛ مرحله Commit به‌دلیل تلاش برای git-add دو فایل عمداً Ignored متوقف شد. آن دو فایل از فهرست Commit Workflow حذف شده‌اند؛ اجرای بعدی باید Source Catalog و ۹ بسته را روی main پایدار کند.
 
 ادامه Checkpointهای مستقل: EN-675 (awesome-copilot، NVIDIA، Microsoft، Anthropic verticals)؛ FA-234 (Microsoft، skills.sh، SkillsMP، Database Vendors و منابع غیرانگلیسی)؛ SUP-750 (AWS HCLS، phuryn، NVIDIA H-Z، Adobe، Google DeepMind، Agriculture/Manufacturing/Logistics، Tencent/Japan)؛ SUP-438 (Databricks، Salesforce، NVIDIA، Microsoft SDKها، phuryn و حوزه‌های کم‌پوشش).
 
@@ -122,7 +122,7 @@
 
 ### فاز 7 — Attribution و GitHub Actions Automation
 
-**وضعیت:** اولین اجرای GitHub Actions تست‌ها و Discovery را با موفقیت گذراند (۵۷/۵۷ Repository، صفر خطا، ۴٬۴۷۸ مسیر). مرحله Ingestion پس از دریافت هشت بسته در Runner موقت، به‌دلیل اختلاف Inventory در Manifest قدیمی متوقف شد. اصلاح Manifest انجام شده و اجرای بعدی برای تأیید end-to-end لازم است.
+**وضعیت:** تست‌ها و Discovery موفق‌اند؛ ۵۷/۵۷ مخزن و ۴٬۴۷۸ مسیر تأیید شده‌اند. پس از اصلاح Manifest، اجرای دوم ۹ بسته (۱۱۹ فایل، ۶۶۴٬۴۶۶ بایت) را دریافت و ۹ بسته را در Public Catalog Runner ساخت. Commit نهایی به‌دلیل git-add فایل‌های skills.json و skills.csv که عمداً در .gitignore هستند شکست خورد. Workflow اصلاح شد تا این فایل‌های local-only را Commit نکند. اجرای بعدی برای تأیید Commit نهایی لازم است.
 
 - تمام مسیرهای تاریخی و نسخه‌های دانلودشده در Source Catalog با منبع، مسیر، مالک مخزن، مجوز، وضعیت Pin و وضعیت محتوا ثبت می‌شوند.
 - original_author فقط در صورت وجود شواهد ثبت می‌شود؛ repository_owner به‌عنوان نویسنده فردی فرض نمی‌شود.

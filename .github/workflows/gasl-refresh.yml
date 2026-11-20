@@ -78,8 +78,6 @@ jobs:
           git add registry/source-catalog.csv
           git add registry/source-catalog-summary.json
           git add registry/public-catalog-summary.json
-          git add registry/skills.json
-          git add registry/skills.csv
           git add registry/skills-summary.json
           git add registry/content-duplicates.csv
           git add registry/name-collisions.csv
