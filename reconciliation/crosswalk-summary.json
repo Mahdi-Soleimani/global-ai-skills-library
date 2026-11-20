@@ -13,11 +13,11 @@
   "tree_ref_only_paths": 1513,
   "branch_only_paths": 2467,
   "truncated_tree_repositories": 0,
-  "downloaded_registry_records": 60,
+  "downloaded_registry_records": 63,
   "registry_records_not_in_path_snapshot": 0,
   "registry_records_same_recorded_commit": 1,
   "registry_records_different_recorded_commit": 0,
-  "registry_records_path_match_only": 59,
+  "registry_records_path_match_only": 62,
   "duplicate_candidate_groups": 0,
   "source_skill_record_matches": 0,
   "source_records_modified": false,
@@ -27,7 +27,7 @@
     "research/EN-675/source-manifest.json": "ceaa65e3b083a087bd96e1a25c27c9ef58725d85eee1b18850cac434a5f62043",
     "research/FA-234/source-manifest.json": "c3980bcf77b74593e6b97cb3aacca99111766d4aed88d62db116986cfc5df899",
     "registry/source-verification.json": "d29c7ec2aeb5812e3b5ffb91f08dc5631ef1333736e1443ffe5f74b3af1c5761",
-    "registry/skills.json": "364624a61adc34ed3a9b859781a8db44ab133f50dcff47ebb7f27f929bbe522e"
+    "registry/skills.json": "2c3d4da6c12ff82f869ee1295b9163f52f9d96633ddbee7c3590b74e7798d79f"
   },
   "limitations": [
     "Historical snapshot, not a fresh crawl.",

@@ -322,7 +322,9 @@ def collect(repo_name, execute=False, selected_paths=None, include_test_fixtures
     existing = next((x for x in manifest["downloads"]
                      if x.get("repository") == repo["repo_full_name"] and x.get("commit_sha") == commit_sha), None)
     if existing:
-        existing.update(entry)
+        previous = {x["skill_path"]: x for x in existing.get("skill_packages", [])}
+        previous.update({x["skill_path"]: x for x in downloaded})
+        existing["skill_packages"] = list(previous.values())
     else:
         manifest["downloads"].append(entry)
     save(manifest_path, manifest)

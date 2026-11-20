@@ -388,6 +388,45 @@
           "bytes": 140
         }
       ]
+    },
+    {
+      "repository": "microsoft/skills",
+      "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+      "downloaded_at": "2026-11-20T12:00:11+00:00",
+      "skill_packages": [
+        {
+          "skill_path": ".github/plugins/aks-skills/skills/aks-cost-optimization/SKILL.md",
+          "package_path": "catalog/microsoft__skills/aks-cost-optimization__0e5431ec@0d60658e34d0",
+          "file_count": 14,
+          "bytes": 45500
+        }
+      ]
+    },
+    {
+      "repository": "awslabs/hcls-agent-skills",
+      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
+      "downloaded_at": "2026-11-20T12:00:12+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "skills/aws-genai-ml-architect/SKILL.md",
+          "package_path": "catalog/awslabs__hcls-agent-skills/aws-genai-ml-architect__abc50fc5@a4826bd6793a",
+          "file_count": 2,
+          "bytes": 18472
+        }
+      ]
+    },
+    {
+      "repository": "phuryn/pm-skills",
+      "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
+      "downloaded_at": "2026-11-20T12:00:13+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "pm-ai-shipping/skills/code-review/SKILL.md",
+          "package_path": "catalog/phuryn__pm-skills/code-review__f0ef667a@9af7bfd0bc47",
+          "file_count": 1,
+          "bytes": 1120
+        }
+      ]
     }
   ]
 }

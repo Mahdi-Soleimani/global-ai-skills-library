@@ -10,11 +10,13 @@ A local-first, provenance-aware library for discovering, collecting, validating,
 - Local collection pilot: 60 packages, 623 files, 13,518,797 bytes across four repositories. The registry classifies these as 56 Skill candidates and four evaluation fixtures.
 - Security status: 10 packages require manual review (nine Skill candidates and one fixture); two high-confidence static signals remain in the review ledger.
 - No downloaded third-party code has been executed. No Skill is approved or installed.
-- Project tests: `python3 -m pytest -q` — 28 passed.
+- Project tests: `python3 -m pytest -q` — 36 passed.
 
 Counts from research reports are reported claims, not verified global-unique Skill totals. Repository `SKILL.md` path counts are not unique-skill counts.
 
 Additional discovery batch (2026-11-20): 10 verified repositories, 2,018 commit-pinned paths and 263 additional repository/path pairs versus the historical snapshot. No new package contents downloaded. See `reconciliation/discovery-summary.json`.
+
+Queue ingestion pilot (2026-11-20): 3 new packages (17 files; 65,092 bytes), 63 total catalog packages and 2,015 pending entries in the new queue. See `docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md`.
 
 ## Non-negotiable data and security rules
 
@@ -37,6 +39,7 @@ python3 tools/static_scan.py
 python3 tools/build_registry.py
 python3 tools/gasl.py reconcile  # requires local verification and skill registry snapshots
 python3 tools/discover.py --limit 5  # metadata only, resumes local discovery checkpoints
+python3 tools/queue_ingest.py --repo microsoft/skills --per-repo 1  # dry-run by default
 ```
 
 Python 3.9+; standard library only. Docker is not required. Collection needs network access to the GitHub API and raw file endpoints. The downloader is dry-run by default; `--execute` is required to download. Evaluation fixtures under `evals/.../fixtures/` are excluded unless `--include-test-fixtures` is supplied.

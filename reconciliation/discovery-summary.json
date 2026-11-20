@@ -8,8 +8,8 @@
   "explicit_fixture_paths": 0,
   "excluded_non_regular_paths": 0,
   "queue_records": 2018,
-  "pending_package_plan": 2018,
-  "existing_complete_metadata": 0,
+  "pending_package_plan": 2015,
+  "existing_complete_metadata": 3,
   "repositories": [
     {
       "repository": "microsoft/skills",
