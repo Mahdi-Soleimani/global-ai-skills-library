@@ -34,3 +34,6 @@ venv/
 /reconciliation/skill-path-crosswalk.csv
 /reconciliation/duplicate-candidates.json
 /reconciliation/downloaded-skill-crosswalk.csv
+
+# Pinned discovery observations and local download queue
+/registry/discovery/

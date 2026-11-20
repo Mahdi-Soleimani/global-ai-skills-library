@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "selection_note": "Bounded first expansion batch derived from the four independent research continuation notes; references indicate research leads, not recovered source skill records.",
+  "targets": [
+    {"repository": "microsoft/skills", "research_leads": ["EN-675", "FA-234", "AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Microsoft ecosystem and remaining SDK paths"},
+    {"repository": "NVIDIA/skills", "research_leads": ["EN-675", "AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Remaining product family paths"},
+    {"repository": "awslabs/hcls-agent-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Healthcare and clinical data paths"},
+    {"repository": "phuryn/pm-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Remaining product management plugin paths"},
+    {"repository": "adobe/skills", "research_leads": ["AUX-FA-750PLUS"], "reason": "Per-plugin skill folders"},
+    {"repository": "databricks/databricks-agent-skills", "research_leads": ["AUX-FA-438"], "reason": "Plugin inventory and metadata gap"},
+    {"repository": "salesforce/salesforce-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Sales plugin inventory"},
+    {"repository": "github/awesome-copilot", "research_leads": ["EN-675"], "reason": "Individual path enumeration and provenance"},
+    {"repository": "google-deepmind/science-skills", "research_leads": ["AUX-FA-750PLUS"], "reason": "New science skills source candidate"},
+    {"repository": "deanpeters/Product-Manager-Skills", "research_leads": ["AUX-FA-438"], "reason": "New product management source candidate"}
+  ]
+}

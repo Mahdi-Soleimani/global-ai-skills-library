@@ -40,7 +40,7 @@
 | بسته‌های نیازمند بررسی دستی | ۱۰؛ شامل ۹ candidate و ۱ fixture |
 | High-confidence static signals | ۲؛ بررسی دستی باز |
 | تأیید نصب / نصب / اجرای کد | صفر / صفر / صفر |
-| تست پروژه | ۲۲ PASS |
+| تست پروژه | ۲۸ PASS |
 
 این اعداد به Snapshot محلی مورخ 2026-11-20 تعلق دارند؛ تعداد Skillهای یکتای جهانی را اثبات نمی‌کنند.
 
@@ -88,6 +88,8 @@
 **معیار پذیرش:** هر Canonical Candidate به تمام Source Recordهای پشتیبان ارجاع دهد و هیچ داده اصلی حذف نشود.
 
 ### فاز 4 — Source Discovery و Repository Expansion
+
+**وضعیت:** Batch اول تکمیل شد؛ ۱۰ مخزن، ۲٬۰۱۸ مسیر با Commit/Tree/Blob SHA، ۲ مخزن جدید و ۲۶۳ مسیر افزوده نسبت به Snapshot قبلی. صف دریافت محلی ساخته شد؛ هنوز محتوای این بسته‌ها دریافت نشده است. کشف منابع تخصصی و غیرانگلیسی و استخراج محتوای فایل‌ها باز است. گزارش: `docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md`.
 
 ادامه Checkpointهای مستقل: EN-675 (awesome-copilot، NVIDIA، Microsoft، Anthropic verticals)؛ FA-234 (Microsoft، skills.sh، SkillsMP، Database Vendors و منابع غیرانگلیسی)؛ SUP-750 (AWS HCLS، phuryn، NVIDIA H-Z، Adobe، Google DeepMind، Agriculture/Manufacturing/Logistics، Tencent/Japan)؛ SUP-438 (Databricks، Salesforce، NVIDIA، Microsoft SDKها، phuryn و حوزه‌های کم‌پوشش).
 
