@@ -4,6 +4,14 @@ on:
   schedule:
     # Daily refresh; avoid the top of the hour when scheduled runners are busiest.
     - cron: "23 7 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/gasl-refresh.yml
+      - tools/**
+      - config/discovery-targets.json
+      - config/policy.json
   workflow_dispatch:
 
 permissions:

@@ -36,7 +36,7 @@ The allowlist is an automation gate, not a legal opinion. Repository-level licen
 
 ## GitHub Actions automation
 
-.github/workflows/gasl-refresh.yml runs daily and on manual dispatch:
+.github/workflows/gasl-refresh.yml runs daily, on manual dispatch, and when its workflow/code/source configuration changes:
 
 1. Runs the regression suite.
 2. Refreshes all configured source repositories through the GitHub API.
