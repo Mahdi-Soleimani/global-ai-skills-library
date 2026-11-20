@@ -76,13 +76,13 @@ Added .github/workflows/gasl-refresh.yml:
 | High-confidence static signals | 2 |
 | Publicly mirrored packages | 0 |
 | Install-approved / installed / executed | 0 / 0 / 0 |
-| Regression tests | 55 passed |
+| Regression tests | 57 passed |
 
 The four independent research report archives were re-hashed and remain byte-identical to their recorded SHA-256 values. No original research dataset was merged, rewritten, or reconstructed.
 
 ## Validation
 
-- 55/55 project tests passed.
+- 57/57 project tests passed.
 - Python compilation passed for discovery, queue ingestion, registry builder, source catalog builder, and public catalog builder.
 - GitHub Actions YAML parsed successfully; schedule, workflow_dispatch, contents:write, and refresh job were verified.
 - Static scan completed for all 63 local packages. All package file integrity checks passed. Heuristic scanner still reports ten packages for manual review and two high-confidence signals; no code was executed.
@@ -98,6 +98,14 @@ The four independent research report archives were re-hashed and remain byte-ide
 - Public content mirroring is not security approval, installation approval, or execution approval.
 - Private persistent storage and broader non-English/niche source research remain separate future work.
 
+## First live GitHub Actions run and follow-up
+
+- Workflow run 44745998519 passed the test and discovery steps. All 57 configured repositories were verified with zero repository errors; 4,478 SKILL.md paths were observed and 4,405 entries entered the package-planning queue.
+- The bounded plan contained nine packages, 119 files, and 664,466 bytes. Eight packages downloaded successfully in the ephemeral runner. The ninth hit a legacy Manifest conflict because the same immutable package had gained bundled upstream license/notice files since the earlier local pilot.
+- The run did not commit runner content because the ingestion step failed; all runner-local downloads were ephemeral and will be fetched again.
+- Fixed manifest merging: for the same repository/path/commit and deterministic package path, a newly hash-verified complete inventory now updates file_count and bytes. A different package path for the same immutable identity still fails closed. Two regression tests cover update and conflict behavior.
+- The fix was pushed in commit 2470b4b and triggered a second Actions run. Its result is pending.
+
 ## Acceptance
 
-Local implementation and regression acceptance passed. Phase 7 is implementation-complete locally but remains operationally pending until the first GitHub Actions run succeeds and pushes its generated source-index update to main.
+Local implementation and regression acceptance passed: 57 tests. Discovery automation has passed once end-to-end on GitHub Actions. Full ingestion, static scan, public mirroring, and automatic metadata commit remain pending the second Actions run.

@@ -11,7 +11,7 @@ A local-first, provenance-aware library for discovering, collecting, validating,
 - Security status: 10 packages require manual review (nine Skill candidates and one fixture); two high-confidence static signals remain in the review ledger.
 - No downloaded third-party code has been executed. No Skill is approved or installed.
 - The attributed source index currently contains 4,277 records: 4,214 historical repository/path references plus 63 immutable downloaded-package revisions. These are source records, not 4,277 globally unique skills.
-- Project tests: python3 -m pytest -q — 55 passed.
+- Project tests: python3 -m pytest -q — 57 passed.
 
 Counts from research reports are reported claims, not verified global-unique Skill totals. Repository `SKILL.md` path counts are not unique-skill counts.
 
