@@ -1,0 +1,43 @@
+{
+  "attribution_notice": "Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+  "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+  "execution_performed": false,
+  "files": [
+    {
+      "git_blob_sha": "45351af181a09e94c4309d587d618ca273fc0724",
+      "path": "SKILL.md",
+      "sha256": "d16e217a772a14541589d3b6affec758c3abe53d2cb7ced9ee2a6a65a9db0089",
+      "size_bytes": 26435
+    },
+    {
+      "git_blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "path": "__upstream_licenses__/c693279643-license",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "size_bytes": 11358
+    }
+  ],
+  "gasl_claims_exclusive_ownership": false,
+  "install_status": "not_approved",
+  "license_assessment": "repository-level license signal plus bundled applicable license/notice files; individual file exceptions are not independently adjudicated",
+  "license_evidence": [
+    {
+      "blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "package_path": "__upstream_licenses__/c693279643-license",
+      "source_path": "LICENSE"
+    }
+  ],
+  "license_name": "Apache License 2.0",
+  "license_spdx": "Apache-2.0",
+  "license_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/LICENSE",
+  "original_author": null,
+  "ownership": "third_party",
+  "package_id": "0d19881bc0b9faa9edaa1d6e",
+  "repository": "anthropics/claude-for-legal",
+  "repository_owner": "anthropics",
+  "repository_url": "https://github.com/anthropics/claude-for-legal",
+  "skill_md_blob_sha": "45351af181a09e94c4309d587d618ca273fc0724",
+  "skill_name": "aia-generation",
+  "source_skill_path": "ai-governance-legal/skills/aia-generation/SKILL.md",
+  "source_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/ai-governance-legal/skills/aia-generation/SKILL.md",
+  "tree_sha": "19d28f03edbc916e85ce68733993170952071b0d"
+}

@@ -1,0 +1,49 @@
+{
+  "attribution_notice": "Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+  "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+  "execution_performed": false,
+  "files": [
+    {
+      "git_blob_sha": "0fe5150a7bb6752d970762393fff9de12fd7f22e",
+      "path": "SKILL.md",
+      "sha256": "f6622b4641cc5da00187e957460a060533279129c20a5ada97f15e5668de3a75",
+      "size_bytes": 20299
+    },
+    {
+      "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "path": "__upstream_licenses__/c693279643-license",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "size_bytes": 11357
+    },
+    {
+      "git_blob_sha": "49d37afe5bfb423a76daf1c22ae887955227453a",
+      "path": "evals/evals.json",
+      "sha256": "caeb8c75615c6ae2d0304d5a6d3f6a5a831f586f7f24c494ca884fd3c231f56e",
+      "size_bytes": 2547
+    }
+  ],
+  "gasl_claims_exclusive_ownership": false,
+  "install_status": "not_approved",
+  "license_assessment": "repository-level license signal plus bundled applicable license/notice files; individual file exceptions are not independently adjudicated",
+  "license_evidence": [
+    {
+      "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "package_path": "__upstream_licenses__/c693279643-license",
+      "source_path": "LICENSE"
+    }
+  ],
+  "license_name": "Apache License 2.0",
+  "license_spdx": "Apache-2.0",
+  "license_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/LICENSE",
+  "original_author": null,
+  "ownership": "third_party",
+  "package_id": "6d267906c5406b6944f1909d",
+  "repository": "adobe/skills",
+  "repository_owner": "adobe",
+  "repository_url": "https://github.com/adobe/skills",
+  "skill_md_blob_sha": "0fe5150a7bb6752d970762393fff9de12fd7f22e",
+  "skill_name": "aa-conversion-funnel-analysis",
+  "source_skill_path": "plugins/adobe-analytics/skills/aa-conversion-funnel-analysis/SKILL.md",
+  "source_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/plugins/adobe-analytics/skills/aa-conversion-funnel-analysis/SKILL.md",
+  "tree_sha": "e8c9704b96d53f91dcebaf7f4f71dfea625f68e5"
+}

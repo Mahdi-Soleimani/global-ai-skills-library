@@ -1,18 +1,18 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-20T13:32:07+00:00",
+  "generated_at": "2026-11-20T13:48:41+00:00",
   "source_repository_count": 57,
-  "source_record_count": 4277,
-  "distinct_repository_path_count": 4214,
-  "immutable_revision_count": 63,
-  "commit_pinned_record_count": 63,
-  "legacy_unpinned_record_count": 4214,
-  "downloaded_record_count": 63,
+  "source_record_count": 4405,
+  "distinct_repository_path_count": 4405,
+  "immutable_revision_count": 4405,
+  "commit_pinned_record_count": 4405,
+  "legacy_unpinned_record_count": 0,
+  "downloaded_record_count": 9,
   "historical_package_metadata_only_count": 0,
-  "publicly_mirrored_record_count": 0,
+  "publicly_mirrored_record_count": 9,
   "license_assessment_counts": {
-    "no_license_identified": 2162,
-    "repository_license_metadata_only": 2115
+    "no_license_identified": 1119,
+    "repository_license_metadata_only": 3286
   },
   "third_party_attribution_preserved": true,
   "exclusive_ownership_claimed": false,

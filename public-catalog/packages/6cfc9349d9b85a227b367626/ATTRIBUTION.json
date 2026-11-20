@@ -1,0 +1,67 @@
+{
+  "attribution_notice": "Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+  "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+  "execution_performed": false,
+  "files": [
+    {
+      "git_blob_sha": "28c30f1bdbbaa8948acb027e6ce3ed7c8eaad402",
+      "path": "README.md",
+      "sha256": "06f8ae603d14de9c3ba493ebfc8d2b117cdf2c3a2602c32bb3000eedd73296b7",
+      "size_bytes": 997
+    },
+    {
+      "git_blob_sha": "b59f0ca2ca73427b43c6c262f7f4e25090a4e066",
+      "path": "SKILL.md",
+      "sha256": "8682a8b258adeefb79d3f0bb3590df10998adf52907deedf0ab2b6f7fc58b396",
+      "size_bytes": 3575
+    },
+    {
+      "git_blob_sha": "c3e30bcc287d6a1ebdb4ab29c10d344fd1053639",
+      "path": "__upstream_licenses__/c693279643-license",
+      "sha256": "a20126646f93d32a8989c3cf4772d59194f405034f7babe7daebeac22b8ab151",
+      "size_bytes": 1072
+    },
+    {
+      "git_blob_sha": "468d0b41ec46d9e03040093c68d8b361a6e117e8",
+      "path": "scripts/eval_scaffold.py",
+      "sha256": "6647fbfe4024549bef5c6c9a3fb795fd53719499d8da91d8759712231528014b",
+      "size_bytes": 3870
+    },
+    {
+      "git_blob_sha": "f1a20c424987366f17b533557466296c8a42cb40",
+      "path": "scripts/outcome_builder.py",
+      "sha256": "13582c5da99a19a59895bcf65105b256c1ce650d8b4ca5278dab744701f17341",
+      "size_bytes": 3735
+    },
+    {
+      "git_blob_sha": "7ae0f6934b05bba9bc93aedd591e384124f5bd06",
+      "path": "scripts/verdict_reader.py",
+      "sha256": "0e8d437f9e18910424803eab44f31737a331adaa89260d97777402ad6dbf8748",
+      "size_bytes": 4283
+    }
+  ],
+  "gasl_claims_exclusive_ownership": false,
+  "install_status": "not_approved",
+  "license_assessment": "repository-level license signal plus bundled applicable license/notice files; individual file exceptions are not independently adjudicated",
+  "license_evidence": [
+    {
+      "blob_sha": "c3e30bcc287d6a1ebdb4ab29c10d344fd1053639",
+      "package_path": "__upstream_licenses__/c693279643-license",
+      "source_path": "LICENSE"
+    }
+  ],
+  "license_name": "MIT License",
+  "license_spdx": "MIT",
+  "license_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/LICENSE",
+  "original_author": null,
+  "ownership": "third_party",
+  "package_id": "6cfc9349d9b85a227b367626",
+  "repository": "alirezarezvani/claude-skills",
+  "repository_owner": "alirezarezvani",
+  "repository_url": "https://github.com/alirezarezvani/claude-skills",
+  "skill_md_blob_sha": "b59f0ca2ca73427b43c6c262f7f4e25090a4e066",
+  "skill_name": "grade-iterate",
+  "source_skill_path": "agent-launcher/skills/grade-iterate/SKILL.md",
+  "source_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/agent-launcher/skills/grade-iterate/SKILL.md",
+  "tree_sha": "dab15dd701d6e0fc213dd63435a12199d8f33b04"
+}

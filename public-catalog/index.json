@@ -1,6 +1,241 @@
 {
-  "package_count": 0,
-  "packages": {},
+  "package_count": 9,
+  "packages": {
+    "0d19881bc0b9faa9edaa1d6e": {
+      "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "execution_performed": false,
+      "file_count": 2,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 37793,
+      "package_id": "0d19881bc0b9faa9edaa1d6e",
+      "package_path": "public-catalog/packages/0d19881bc0b9faa9edaa1d6e",
+      "repository": "anthropics/claude-for-legal",
+      "repository_owner": "anthropics",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "aia-generation",
+      "source_skill_path": "ai-governance-legal/skills/aia-generation/SKILL.md",
+      "source_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/ai-governance-legal/skills/aia-generation/SKILL.md"
+    },
+    "5f26c47f7fa1e7dd8301cbb3": {
+      "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "execution_performed": false,
+      "file_count": 2,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 22657,
+      "package_id": "5f26c47f7fa1e7dd8301cbb3",
+      "package_path": "public-catalog/packages/5f26c47f7fa1e7dd8301cbb3",
+      "repository": "anthropics/claude-for-legal",
+      "repository_owner": "anthropics",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "ai-inventory",
+      "source_skill_path": "ai-governance-legal/skills/ai-inventory/SKILL.md",
+      "source_url": "https://github.com/anthropics/claude-for-legal/blob/4a6c651889c97cc9140580363c73e0eb17379c2b/ai-governance-legal/skills/ai-inventory/SKILL.md"
+    },
+    "69ab4fe3a395f563255c857e": {
+      "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+      "execution_performed": false,
+      "file_count": 5,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "d193feabf7b02d4d9355e724451a8bdf2001e56a",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 76525,
+      "package_id": "69ab4fe3a395f563255c857e",
+      "package_path": "public-catalog/packages/69ab4fe3a395f563255c857e",
+      "repository": "atlassian/atlassian-mcp-server",
+      "repository_owner": "atlassian",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "assess-release",
+      "source_skill_path": "skills/assess-release/SKILL.md",
+      "source_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/skills/assess-release/SKILL.md"
+    },
+    "6cfc9349d9b85a227b367626": {
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "execution_performed": false,
+      "file_count": 6,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "c3e30bcc287d6a1ebdb4ab29c10d344fd1053639",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 17532,
+      "package_id": "6cfc9349d9b85a227b367626",
+      "package_path": "public-catalog/packages/6cfc9349d9b85a227b367626",
+      "repository": "alirezarezvani/claude-skills",
+      "repository_owner": "alirezarezvani",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "grade-iterate",
+      "source_skill_path": "agent-launcher/skills/grade-iterate/SKILL.md",
+      "source_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/agent-launcher/skills/grade-iterate/SKILL.md"
+    },
+    "6d267906c5406b6944f1909d": {
+      "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+      "execution_performed": false,
+      "file_count": 3,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 34203,
+      "package_id": "6d267906c5406b6944f1909d",
+      "package_path": "public-catalog/packages/6d267906c5406b6944f1909d",
+      "repository": "adobe/skills",
+      "repository_owner": "adobe",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "aa-conversion-funnel-analysis",
+      "source_skill_path": "plugins/adobe-analytics/skills/aa-conversion-funnel-analysis/SKILL.md",
+      "source_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/plugins/adobe-analytics/skills/aa-conversion-funnel-analysis/SKILL.md"
+    },
+    "857bbfa8ef60e062d64aadac": {
+      "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+      "execution_performed": false,
+      "file_count": 4,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 46549,
+      "package_id": "857bbfa8ef60e062d64aadac",
+      "package_path": "public-catalog/packages/857bbfa8ef60e062d64aadac",
+      "repository": "adobe/skills",
+      "repository_owner": "adobe",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "aa-executive-briefing",
+      "source_skill_path": "plugins/adobe-analytics/skills/aa-executive-briefing/SKILL.md",
+      "source_url": "https://github.com/adobe/skills/blob/04e80589cd60aedc22ea791afac5603d95eeae98/plugins/adobe-analytics/skills/aa-executive-briefing/SKILL.md"
+    },
+    "be3fe6cd2c035fbc7910129c": {
+      "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+      "execution_performed": false,
+      "file_count": 88,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "d193feabf7b02d4d9355e724451a8bdf2001e56a",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "Apache-2.0",
+      "license_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 381370,
+      "package_id": "be3fe6cd2c035fbc7910129c",
+      "package_path": "public-catalog/packages/be3fe6cd2c035fbc7910129c",
+      "repository": "atlassian/atlassian-mcp-server",
+      "repository_owner": "atlassian",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "atlassian-design",
+      "source_skill_path": "skills/atlassian-design/SKILL.md",
+      "source_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/skills/atlassian-design/SKILL.md"
+    },
+    "c2eb49af93b5af98934533c5": {
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "execution_performed": false,
+      "file_count": 6,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "c3e30bcc287d6a1ebdb4ab29c10d344fd1053639",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "MIT",
+      "license_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 28439,
+      "package_id": "c2eb49af93b5af98934533c5",
+      "package_path": "public-catalog/packages/c2eb49af93b5af98934533c5",
+      "repository": "alirezarezvani/claude-skills",
+      "repository_owner": "alirezarezvani",
+      "security_status": "manual_review_required",
+      "skill_name": "agent-launcher-orchestrator",
+      "source_skill_path": "agent-launcher/skills/agent-launcher-orchestrator/SKILL.md",
+      "source_url": "https://github.com/alirezarezvani/claude-skills/blob/f8593c4941210a621a6629ce1da9e07897976d5f/agent-launcher/skills/agent-launcher-orchestrator/SKILL.md"
+    },
+    "c6470a0d2e887a5e010990e0": {
+      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
+      "execution_performed": false,
+      "file_count": 3,
+      "gasl_claims_exclusive_ownership": false,
+      "install_status": "not_approved",
+      "license_evidence": [
+        {
+          "blob_sha": "9e9b4bed6a4eddf825aca8b275bd0b3adc4259ba",
+          "package_path": "__upstream_licenses__/c693279643-license",
+          "source_path": "LICENSE"
+        }
+      ],
+      "license_spdx": "MIT-0",
+      "license_url": "https://github.com/awslabs/hcls-agent-skills/blob/a4826bd6793a8522aab3f5f0410ef527b910cb7f/LICENSE",
+      "ownership": "third_party",
+      "package_bytes": 19398,
+      "package_id": "c6470a0d2e887a5e010990e0",
+      "package_path": "public-catalog/packages/c6470a0d2e887a5e010990e0",
+      "repository": "awslabs/hcls-agent-skills",
+      "repository_owner": "awslabs",
+      "security_status": "no_obvious_static_flags_not_approved",
+      "skill_name": "aws-genai-ml-architect",
+      "source_skill_path": "skills/aws-genai-ml-architect/SKILL.md",
+      "source_url": "https://github.com/awslabs/hcls-agent-skills/blob/a4826bd6793a8522aab3f5f0410ef527b910cb7f/skills/aws-genai-ml-architect/SKILL.md"
+    }
+  },
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-20T13:32:07+00:00"
+  "updated_at": "2026-11-20T13:48:41+00:00"
 }

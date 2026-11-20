@@ -1,0 +1,61 @@
+{
+  "attribution_notice": "Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+  "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+  "execution_performed": false,
+  "files": [
+    {
+      "git_blob_sha": "b76af426de0b13210b6b2403719689cc8e0cb294",
+      "path": "SKILL.md",
+      "sha256": "f3a9794e1fc9dc8dc6374ec712af8f1ac86133a863f501bc22a1b4622f5a1fd4",
+      "size_bytes": 47795
+    },
+    {
+      "git_blob_sha": "d193feabf7b02d4d9355e724451a8bdf2001e56a",
+      "path": "__upstream_licenses__/c693279643-license",
+      "sha256": "fff3bdc1d0125e492d7a2cb866c01a8ab587dee0405e77440ca524205a1f8c28",
+      "size_bytes": 11351
+    },
+    {
+      "git_blob_sha": "eb77080d6dbbf9a80fd773e4ba7888104b5b9fd3",
+      "path": "example.json",
+      "sha256": "0fdce9ea0d9aeda112d474d671babae57c3c5174c69acd647017bd9196656ea4",
+      "size_bytes": 10850
+    },
+    {
+      "git_blob_sha": "f2c057407840b73c4ac365c2a0f99e551e9f1e9d",
+      "path": "references/hand-built.md",
+      "sha256": "205473083e997bec575e0edd8e2f21124d8623d29389a28f8c33f0947dc43577",
+      "size_bytes": 1004
+    },
+    {
+      "git_blob_sha": "3cfdb047e7360daab2bb6a9851bdef0f0acc236e",
+      "path": "render.py",
+      "sha256": "757db68d1f0967f5e7783bea30720fbfc39383c86f13875427304cc139032935",
+      "size_bytes": 5525
+    }
+  ],
+  "gasl_claims_exclusive_ownership": false,
+  "install_status": "not_approved",
+  "license_assessment": "repository-level license signal plus bundled applicable license/notice files; individual file exceptions are not independently adjudicated",
+  "license_evidence": [
+    {
+      "blob_sha": "d193feabf7b02d4d9355e724451a8bdf2001e56a",
+      "package_path": "__upstream_licenses__/c693279643-license",
+      "source_path": "LICENSE"
+    }
+  ],
+  "license_name": "Apache License 2.0",
+  "license_spdx": "Apache-2.0",
+  "license_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/LICENSE",
+  "original_author": null,
+  "ownership": "third_party",
+  "package_id": "69ab4fe3a395f563255c857e",
+  "repository": "atlassian/atlassian-mcp-server",
+  "repository_owner": "atlassian",
+  "repository_url": "https://github.com/atlassian/atlassian-mcp-server",
+  "skill_md_blob_sha": "b76af426de0b13210b6b2403719689cc8e0cb294",
+  "skill_name": "assess-release",
+  "source_skill_path": "skills/assess-release/SKILL.md",
+  "source_url": "https://github.com/atlassian/atlassian-mcp-server/blob/352a02b05189e2a958a973867cc6eca365cb8fc3/skills/assess-release/SKILL.md",
+  "tree_sha": "891bebfb6e023e5e5a5160caeed7ac859abf215c"
+}

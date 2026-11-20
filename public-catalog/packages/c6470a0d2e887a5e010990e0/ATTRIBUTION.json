@@ -1,0 +1,49 @@
+{
+  "attribution_notice": "Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+  "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
+  "execution_performed": false,
+  "files": [
+    {
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": ".gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "git_blob_sha": "3898524bb789f736b71cc7b6fc83a271283b7db7",
+      "path": "SKILL.md",
+      "sha256": "c3ca76da04812212605d51f4509e780ca67e546dd3303212301979556125f4b5",
+      "size_bytes": 18472
+    },
+    {
+      "git_blob_sha": "9e9b4bed6a4eddf825aca8b275bd0b3adc4259ba",
+      "path": "__upstream_licenses__/c693279643-license",
+      "sha256": "d069bb5e20dcf87613e5d3fdd19c84c67e0c15a7c743a72ca0ddcfc33d4763d1",
+      "size_bytes": 926
+    }
+  ],
+  "gasl_claims_exclusive_ownership": false,
+  "install_status": "not_approved",
+  "license_assessment": "repository-level license signal plus bundled applicable license/notice files; individual file exceptions are not independently adjudicated",
+  "license_evidence": [
+    {
+      "blob_sha": "9e9b4bed6a4eddf825aca8b275bd0b3adc4259ba",
+      "package_path": "__upstream_licenses__/c693279643-license",
+      "source_path": "LICENSE"
+    }
+  ],
+  "license_name": "MIT No Attribution",
+  "license_spdx": "MIT-0",
+  "license_url": "https://github.com/awslabs/hcls-agent-skills/blob/a4826bd6793a8522aab3f5f0410ef527b910cb7f/LICENSE",
+  "original_author": null,
+  "ownership": "third_party",
+  "package_id": "c6470a0d2e887a5e010990e0",
+  "repository": "awslabs/hcls-agent-skills",
+  "repository_owner": "awslabs",
+  "repository_url": "https://github.com/awslabs/hcls-agent-skills",
+  "skill_md_blob_sha": "3898524bb789f736b71cc7b6fc83a271283b7db7",
+  "skill_name": "aws-genai-ml-architect",
+  "source_skill_path": "skills/aws-genai-ml-architect/SKILL.md",
+  "source_url": "https://github.com/awslabs/hcls-agent-skills/blob/a4826bd6793a8522aab3f5f0410ef527b910cb7f/skills/aws-genai-ml-architect/SKILL.md",
+  "tree_sha": "b296062d56067bf0897114f50f5d4b749255ec1b"
+}

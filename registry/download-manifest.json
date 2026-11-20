@@ -410,8 +410,8 @@
         {
           "skill_path": "skills/aws-genai-ml-architect/SKILL.md",
           "package_path": "catalog/awslabs__hcls-agent-skills/aws-genai-ml-architect__abc50fc5@a4826bd6793a",
-          "file_count": 2,
-          "bytes": 18472
+          "file_count": 3,
+          "bytes": 19398
         }
       ]
     },
@@ -425,6 +425,82 @@
           "package_path": "catalog/phuryn__pm-skills/code-review__f0ef667a@9af7bfd0bc47",
           "file_count": 1,
           "bytes": 1120
+        }
+      ]
+    },
+    {
+      "repository": "adobe/skills",
+      "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+      "downloaded_at": "2026-11-20T13:48:19+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "plugins/adobe-analytics/skills/aa-conversion-funnel-analysis/SKILL.md",
+          "package_path": "catalog/adobe__skills/aa-conversion-funnel-analysis__7bc0d2ca@04e80589cd60",
+          "file_count": 3,
+          "bytes": 34203
+        },
+        {
+          "skill_path": "plugins/adobe-analytics/skills/aa-executive-briefing/SKILL.md",
+          "package_path": "catalog/adobe__skills/aa-executive-briefing__9b3749fa@04e80589cd60",
+          "file_count": 4,
+          "bytes": 46549
+        }
+      ]
+    },
+    {
+      "repository": "alirezarezvani/claude-skills",
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "downloaded_at": "2026-11-20T13:48:21+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "agent-launcher/skills/agent-launcher-orchestrator/SKILL.md",
+          "package_path": "catalog/alirezarezvani__claude-skills/agent-launcher-orchestrator__ba290cc2@f8593c494121",
+          "file_count": 6,
+          "bytes": 28439
+        },
+        {
+          "skill_path": "agent-launcher/skills/grade-iterate/SKILL.md",
+          "package_path": "catalog/alirezarezvani__claude-skills/grade-iterate__790080e5@f8593c494121",
+          "file_count": 6,
+          "bytes": 17532
+        }
+      ]
+    },
+    {
+      "repository": "anthropics/claude-for-legal",
+      "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "downloaded_at": "2026-11-20T13:48:22+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "ai-governance-legal/skills/ai-inventory/SKILL.md",
+          "package_path": "catalog/anthropics__claude-for-legal/ai-inventory__b3943761@4a6c651889c9",
+          "file_count": 2,
+          "bytes": 22657
+        },
+        {
+          "skill_path": "ai-governance-legal/skills/aia-generation/SKILL.md",
+          "package_path": "catalog/anthropics__claude-for-legal/aia-generation__1583414c@4a6c651889c9",
+          "file_count": 2,
+          "bytes": 37793
+        }
+      ]
+    },
+    {
+      "repository": "atlassian/atlassian-mcp-server",
+      "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+      "downloaded_at": "2026-11-20T13:48:23+00:00",
+      "skill_packages": [
+        {
+          "skill_path": "skills/assess-release/SKILL.md",
+          "package_path": "catalog/atlassian__atlassian-mcp-server/assess-release__8e525c5f@352a02b05189",
+          "file_count": 5,
+          "bytes": 76525
+        },
+        {
+          "skill_path": "skills/atlassian-design/SKILL.md",
+          "package_path": "catalog/atlassian__atlassian-mcp-server/atlassian-design__a7ba0a3b@352a02b05189",
+          "file_count": 88,
+          "bytes": 381370
         }
       ]
     }
