@@ -73,9 +73,38 @@ def classify_package(meta):
     return "test_fixture" if is_test_fixture_path(path) else "skill_candidate"
 
 
+def merge_previous_registry_records(records, previous_records, root):
+    current_keys = {(str(x.get("repository") or "").casefold(), x.get("source_skill_path"), x.get("commit_sha"))
+                    for x in records}
+    merged = list(records)
+    for previous in previous_records:
+        key = (str(previous.get("repository") or "").casefold(),
+               previous.get("source_skill_path"), previous.get("commit_sha"))
+        if key in current_keys:
+            continue
+        item = dict(previous)
+        package_path = item.get("package_path")
+        package_present = bool(package_path and (root / package_path / "source.json").is_file())
+        item["package_content_present"] = package_present
+        item["historical_registry_record"] = True
+        if not package_present:
+            item["content_status"] = "historical_package_metadata_only_content_not_on_runner"
+        merged.append(item)
+        current_keys.add(key)
+    return merged
+
+
 def main():
-    verification = json.loads((REGISTRY / "source-verification.json").read_text(encoding="utf-8"))
-    repos = verification.get("repositories", {})
+    verification_path = REGISTRY / "source-verification.json"
+    if verification_path.exists():
+        verification = json.loads(verification_path.read_text(encoding="utf-8"))
+        repos = verification.get("repositories", {})
+    else:
+        # GitHub-hosted runners intentionally do not receive the local-only verification snapshot.
+        state_path = REGISTRY / "discovery-state.json"
+        state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+        repos = state.get("repositories", {})
+    previous_registry = json.loads((REGISTRY / "skills.json").read_text(encoding="utf-8")) if (REGISTRY / "skills.json").exists() else {"records": []}
     package_sources = sorted(CATALOG.glob("**/source.json"))
     records = []
     for source_path in package_sources:
@@ -111,9 +140,12 @@ def main():
             "tree_sha": meta.get("tree_sha"),
             "license_spdx": meta.get("license_spdx"),
             "source_reports": source_reports,
+            "research_leads": meta.get("research_leads", []),
             "source_link_scope": "repository_reference_only; no join to EN-675 or FA-234 skill rows",
             "package_path": str(package_dir.relative_to(ROOT)),
             "package_complete": meta.get("package_complete"),
+            "package_content_present": True,
+            "historical_registry_record": False,
             "package_file_count": len(meta.get("files", [])),
             "package_bytes": sum(x.get("size_bytes", 0) for x in meta.get("files", [])),
             "skill_md_sha256_raw": sha256_bytes(raw),
@@ -129,6 +161,8 @@ def main():
             "dataset_scope": "LIVE_CATALOG_PILOT_ONLY"
         }
         records.append(record)
+
+    records = merge_previous_registry_records(records, previous_registry.get("records", []), ROOT)
 
     by_hash = defaultdict(list)
     by_name = defaultdict(list)
@@ -155,7 +189,8 @@ def main():
     }
     (REGISTRY / "skills.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    fields = list(records[0].keys()) if records else ["skill_id", "skill_name", "repository"]
+    fields = (list(records[0].keys()) + sorted({key for item in records for key in item} - set(records[0].keys()))
+              if records else ["skill_id", "skill_name", "repository"])
     with (REGISTRY / "skills.csv").open("w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
@@ -202,6 +237,7 @@ def main():
         "schema_version": "0.2.0",
         "generated_at": now(),
         "record_count": len(records),
+        "historical_metadata_only_count": sum(x.get("historical_registry_record") and not x.get("package_content_present") for x in records),
         "skill_candidate_count": len(candidate_records),
         "test_fixture_count": len(fixture_records),
         "valid_frontmatter": sum(x["frontmatter_valid"] for x in records),

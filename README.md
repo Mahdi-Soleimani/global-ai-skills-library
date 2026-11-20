@@ -6,17 +6,20 @@ A local-first, provenance-aware library for discovering, collecting, validating,
 
 - Four independent research sources are maintained separately: `EN-675`, `FA-234`, `AUX-FA-750PLUS`, and `AUX-FA-438`. Their original report texts are archived locally and SHA-256 verified.
 - The original row-level CSV/JSON/XLSX databases for the primary EN-675 and FA-234 datasets remain unavailable. No missing records have been reconstructed.
-- The four source manifests contain 87 repository mentions and 56 distinct references; the current verification snapshot records 55 canonical GitHub repositories and 4,214 observed `SKILL.md` paths (not deduplicated).
-- Local collection pilot: 60 packages, 623 files, 13,518,797 bytes across four repositories. The registry classifies these as 56 Skill candidates and four evaluation fixtures.
+- The four source manifests contain 87 repository mentions and 56 historical repository references; the expanded source universe has 57 configured repositories (55 historical canonical repositories plus two new candidates) and 4,214 historical SKILL.md paths.
+- Local collection pilot: 63 packages, 640 files, 13,583,889 bytes across seven repositories. The registry classifies these as 59 Skill candidates and four evaluation fixtures.
 - Security status: 10 packages require manual review (nine Skill candidates and one fixture); two high-confidence static signals remain in the review ledger.
 - No downloaded third-party code has been executed. No Skill is approved or installed.
-- Project tests: `python3 -m pytest -q` — 36 passed.
+- The attributed source index currently contains 4,277 records: 4,214 historical repository/path references plus 63 immutable downloaded-package revisions. These are source records, not 4,277 globally unique skills.
+- Project tests: python3 -m pytest -q — 55 passed.
 
 Counts from research reports are reported claims, not verified global-unique Skill totals. Repository `SKILL.md` path counts are not unique-skill counts.
 
-Additional discovery batch (2026-11-20): 10 verified repositories, 2,018 commit-pinned paths and 263 additional repository/path pairs versus the historical snapshot. No new package contents downloaded. See `reconciliation/discovery-summary.json`.
+The latest local refresh attempt verified Microsoft (215 paths) but encountered TLS connection failures for the other nine targets. The historical index is retained; the GitHub Actions runner will refresh all 57 repositories using its GitHub token. See `reconciliation/discovery-summary.json`.
 
-Queue ingestion pilot (2026-11-20): 3 new packages (17 files; 65,092 bytes), 63 total catalog packages and 2,015 pending entries in the new queue. See `docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md`.
+Queue ingestion pilot (2026-11-20): 3 new packages (17 files; 65,092 bytes), 63 total local packages. See `docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md`.
+
+Attribution and automation: every discovered source path is indexed regardless of license. The daily GitHub Actions workflow commits the complete source index and only mirrors package content when the configured redistribution/license-evidence gate passes. See `ATTRIBUTION.md` and `docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md`.
 
 ## Non-negotiable data and security rules
 
@@ -24,7 +27,7 @@ Queue ingestion pilot (2026-11-20): 3 new packages (17 files; 65,092 bytes), 63 
 - Never delete, translate, normalize, or rewrite original source records. Preserve original report files byte-for-byte and verify their hashes.
 - Never infer missing CSV/JSON/XLSX rows from a research report or an embedded sample.
 - Download, static scan, manual review, install approval, installation, and execution are separate lifecycle states.
-- Pin source commits and verify SHA-256. Unknown license means local review only; no public redistribution.
+- Preserve third-party ownership, source links, publisher identity, license metadata, and immutable source pins. Unknown or non-allowlisted licenses remain in the source index; their content is not automatically mirrored publicly.
 - Downloaded Skill content is untrusted. Never execute it on the host. Dynamic checks require a separately enforced sandbox; otherwise record the blocker.
 - All implementation progress and phase evidence belong under `docs/reports/`.
 
@@ -35,11 +38,13 @@ python3 -m pytest -q
 python3 tools/gasl.py summary
 python3 tools/gasl.py verify --limit 3 --trees
 python3 tools/collector.py download --repo openai/codex-security  # dry-run by default
-python3 tools/static_scan.py
+python3 tools.gasl.py reconcile  # requires local verification and skill registry snapshots
+python3 tools.discover.py --limit 100 --refresh --retry-errors
+python3 tools.queue_ingest.py --repo microsoft/skills --per-repo 1 --public-redistributable-only --execute
+python3 tools.static_scan.py
 python3 tools/build_registry.py
-python3 tools/gasl.py reconcile  # requires local verification and skill registry snapshots
-python3 tools/discover.py --limit 5  # metadata only, resumes local discovery checkpoints
-python3 tools/queue_ingest.py --repo microsoft/skills --per-repo 1  # dry-run by default
+python3 tools/build_public_catalog.py
+python3 tools/build_source_catalog.py
 ```
 
 Python 3.9+; standard library only. Docker is not required. Collection needs network access to the GitHub API and raw file endpoints. The downloader is dry-run by default; `--execute` is required to download. Evaluation fixtures under `evals/.../fixtures/` are excluded unless `--include-test-fixtures` is supplied.
@@ -50,7 +55,9 @@ Python 3.9+; standard library only. Docker is not required. Collection needs net
 - `datasets/`: independent dataset status and recovery rules.
 - `research/`: four independent source manifests.
 - `reconciliation/`: repository crosswalk and historical path/registry reconciliation; no source-record merge. Detailed third-party path and duplicate evidence is local-only.
-- `registry/download-manifest.json`: pinned local collection provenance; no third-party Skill contents.
+- `registry/source-catalog.json/.csv`: complete attributed source index for every discovered skill path, including unknown/restricted license entries.
+- `registry/download-manifest.json`: pinned local collection provenance.
+- `public-catalog/`: tracked public copies of eligible packages, each with upstream attribution and license evidence.
 - `tools/`: source verifier, collector, static scanner, registry builder, and CLI.
 - `tests/`: project regression tests.
 - `docs/ROADMAP.md`: current authoritative roadmap.
@@ -59,6 +66,6 @@ Python 3.9+; standard library only. Docker is not required. Collection needs net
 
 ## Third-party content and licensing
 
-The public repository does not include downloaded third-party Skill packages or original Deep Research source reports. Those remain local-only until their redistribution rights are independently verified. Repository metadata and source links do not imply permission to republish Skill content.
+GASL does not claim authorship or exclusive ownership of collected skills. Every source record links to its upstream repository/path and preserves available license metadata. A repository public visibility or an attribution line alone does not grant redistribution rights. Unknown, proprietary, or non-allowlisted sources remain fully represented in the source index, while their content is not automatically copied into the public repository. Every mirrored package carries its own attribution and upstream license/notice evidence. See `ATTRIBUTION.md`.
 
 **Project license:** not selected yet. No open-source license is granted by this repository at this time.

@@ -69,31 +69,60 @@ def make_plan(row, tree, policy):
     nested = {e["path"].rsplit("/",1)[0] for e in entries
               if e["path"].startswith(folder + "/") and e["path"].endswith("/SKILL.md") and e["path"] != skill}
     result, blocked, seen, spelling = [], [], set(), {}
-    for e in entries:
+    def add_entry(e, relative):
         path = e["path"]
-        if not path.startswith(folder + "/") or any(path.startswith(n+"/") for n in nested):
-            continue
-        if e.get("type") == "tree":
-            continue
         safe_path(path)
-        rel = path[len(folder)+1:]
-        key = collision_key(rel)
+        key = collision_key(relative)
         if key in seen:
             raise ValueError("Case/Unicode collision in package")
         seen.add(key)
-        parts = rel.split("/")
-        for i in range(1,len(parts)+1):
+        parts = relative.split("/")
+        for i in range(1, len(parts) + 1):
             prefix = "/".join(parts[:i])
             folded = collision_key(prefix)
-            if folded in spelling and spelling[folded]!=prefix:
+            if folded in spelling and spelling[folded] != prefix:
                 raise ValueError("Case/Unicode directory collision")
             spelling[folded] = prefix
         if (e.get("type") != "blob" or e.get("mode") not in ORDINARY_MODES or
-            is_excluded_path(path) or any(p.casefold() in {"source.json", "source.json.tmp", ".gasl-download-checkpoint.json"} for p in rel.split("/")) or
+            is_excluded_path(path) or any(part.casefold() in {"source.json", "source.json.tmp", ".gasl-download-checkpoint.json"} for part in relative.split("/")) or
             not isinstance(e.get("size"), int) or e["size"] < 0 or e["size"] > policy["max_file_size_bytes"]):
             blocked.append(path)
+            return
+        result.append({"path": path, "relative": relative, "size": e["size"], "sha": require_sha(e.get("sha"))})
+
+    for e in entries:
+        path = e["path"]
+        if not path.startswith(folder + "/") or any(path.startswith(n + "/") for n in nested):
             continue
-        result.append({"path": path, "relative": rel, "size": e["size"], "sha": require_sha(e.get("sha"))})
+        if e.get("type") == "tree":
+            continue
+        add_entry(e, path[len(folder) + 1:])
+
+    # Preserve the closest applicable upstream LICENSE/COPYING/NOTICE files
+    # so the package can carry its original redistribution terms and notices.
+    ancestors = {""}
+    parts = folder.split("/")
+    ancestors.update("/".join(parts[:i]) for i in range(1, len(parts) + 1))
+    license_evidence = []
+    for e in entries:
+        path = e["path"]
+        basename = path.rsplit("/", 1)[-1].casefold()
+        parent = path.rsplit("/", 1)[0] if "/" in path else ""
+        is_license = (basename.startswith(("license", "licence", "copying", "notice")) or basename == "copyright")
+        in_package = path.startswith(folder + "/") and not any(path.startswith(n + "/") for n in nested)
+        if (not in_package and parent not in ancestors) or not is_license or e.get("type") == "tree":
+            continue
+        if in_package:
+            relative = path[len(folder) + 1:]
+            if not any(item["path"] == path for item in result):
+                add_entry(e, relative)
+        else:
+            tag = hashlib.sha256(path.encode("utf-8")).hexdigest()[:10]
+            relative = "__upstream_licenses__/" + tag + "-" + basename
+            add_entry(e, relative)
+        if e.get("type") == "blob" and e.get("mode") in ORDINARY_MODES and isinstance(e.get("size"), int):
+            if e["size"] <= policy["max_file_size_bytes"]:
+                license_evidence.append({"source_path": path, "package_path": relative, "blob_sha": require_sha(e.get("sha"))})
     main = [e for e in result if e["path"] == skill]
     if len(main) != 1 or main[0]["sha"] != row["skill_md_blob_sha"]:
         raise ValueError("SKILL.md missing or blob mismatch")
@@ -105,8 +134,19 @@ def make_plan(row, tree, policy):
     size = sum(e["size"] for e in result)
     if blocked or size > policy["max_skill_size_bytes"]:
         raise ValueError("Package has blocked entries or exceeds size cap: " + str(len(blocked)))
-    return {**row, "files": sorted(result,key=lambda e:e["path"]), "bytes": size,
-            "nested_skill_dirs_excluded": sorted(nested)}
+    license_evidence = sorted({(x["source_path"], x["package_path"], x["blob_sha"]): x
+                               for x in license_evidence}.values(), key=lambda x: x["source_path"])
+    return {**row, "files": sorted(result,key=lambda e:e["relative"]), "bytes": size,
+            "nested_skill_dirs_excluded": sorted(nested), "license_evidence": license_evidence}
+
+
+def public_mirror_rejection(row, plan, policy):
+    allowed = set(policy.get("public_mirror_spdx_allowlist", []))
+    if row.get("license_spdx") not in allowed:
+        return "License is not on the configured public-mirror allowlist; source catalog only"
+    if not plan.get("license_evidence"):
+        return "No applicable upstream LICENSE/COPYING/NOTICE file was bundled"
+    return None
 
 
 def fetch_tree(row):
@@ -210,15 +250,29 @@ def ingest(root, plan, fetch=fetch_blob):
     # A crash after metadata generation can be resumed, but only with full verification.
     source = no_symlink(root,stage/"source.json")
     validate_inventory(root,stage,plan,metadata=source.exists())
-    records = [{"source_path":e["path"],"local_path":str((dest/e["relative"]).relative_to(root)),
+    records = [{"source_path":e["path"],"package_relative_path":e["relative"],
+                "local_path":str((dest/e["relative"]).relative_to(root)),
                 "size_bytes":e["size"],"sha256":hashlib.sha256((stage/e["relative"]).read_bytes()).hexdigest(),
                 "git_blob_sha":e["sha"]} for e in plan["files"]]
-    meta = {"collector_version":"0.4.0-queue","package_type":"skill_candidate",
+    spdx = plan.get("license_spdx")
+    allowlist = set(read_json(root/"config/policy.json").get("public_mirror_spdx_allowlist", []))
+    has_license_evidence = bool(plan.get("license_evidence"))
+    license_status = ("license_evidence_bundled_pending_scan" if spdx in allowlist and has_license_evidence
+                      else "unknown_license_reference_only" if spdx in (None, "", "NOASSERTION", "NONE")
+                      else "license_evidence_missing_or_terms_unreviewed")
+    meta = {"collector_version":"0.5.0-attributed","package_type":"skill_candidate",
             "skill_name":dest.name.split("__")[0],"repository":plan["repository"],
-            "canonical_repository":plan["repository"],"repository_url":"https://github.com/"+plan["repository"],
+            "canonical_repository":plan["repository"],"repository_owner":plan.get("publisher_account") or plan["repository"].split("/")[0],
+            "repository_url":plan.get("repository_url") or "https://github.com/"+plan["repository"],
+            "source_url":plan.get("source_url") or "https://github.com/{}/blob/{}/{}".format(plan["repository"],plan["commit_sha"],quote(plan["skill_path"],safe="/")),
             "source_skill_path":plan["skill_path"],"commit_sha":plan["commit_sha"],"tree_sha":plan["tree_sha"],
-            "license_spdx":plan["license_spdx"],"license_status":"repository_metadata_only_review_required",
-            "research_leads":plan["research_leads"],"source_link_scope":"research_lead_only",
+            "skill_md_blob_sha":plan.get("skill_md_blob_sha"),
+            "license_spdx":spdx,"license_name":plan.get("license_name"),
+            "license_url":plan.get("license_url"),"license_evidence":plan.get("license_evidence",[]),
+            "license_status":license_status,
+            "ownership":"third_party","original_author":None,"gasl_claims_exclusive_ownership":False,
+            "attribution_notice":"Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
+            "research_leads":plan["research_leads"],"source_link_scope":"repository/path discovery reference; research leads do not establish individual authorship",
             "downloaded_at":now(),"execution_performed":False,"package_complete":True,
             "completeness_scope":"regular files in skill directory excluding nested skill folders; external dependencies unverified",
             "nested_skill_dirs_excluded":plan["nested_skill_dirs_excluded"],
@@ -234,22 +288,40 @@ def ingest(root, plan, fetch=fetch_blob):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--repo",action="append",required=True)
+    group = p.add_mutually_exclusive_group(required=True)
+    group.add_argument("--repo",action="append")
+    group.add_argument("--all-queued-repos",action="store_true")
     p.add_argument("--per-repo",type=int,default=1,choices=range(1,11))
     p.add_argument("--max-batch-bytes",type=int,default=5*1024*1024)
     p.add_argument("--max-files",type=int,default=30)
     p.add_argument("--execute",action="store_true")
     p.add_argument("--verify-existing",action="store_true",help="Select existing packages for integrity verification instead of advancing the queue")
+    p.add_argument("--public-redistributable-only",action="store_true",help="Only select packages with an allowlisted SPDX identifier and bundled upstream license/notice evidence")
     args = p.parse_args()
     if args.max_batch_bytes<1 or args.max_files<1:
         p.error("positive bounds required")
     policy = read_json(ROOT/"config/policy.json")
-    queue = read_json(ROOT/"registry/discovery/download-queue.json")
+    queue_path = ROOT/"registry/discovery/download-queue.json"
+    if not queue_path.exists():
+        queue_path = ROOT/"registry/download-queue.json"
+    queue = read_json(queue_path)
     planned, rejected, total, count = [], [], 0, 0
+    allowlist = set(policy.get("public_mirror_spdx_allowlist", []))
+    selected_repos = (list(dict.fromkeys(r["repository"].casefold() for r in queue
+                                           if r.get("discovery_status", "verified_metadata_only") != "stale_fallback"
+                                           and r.get("install_status") == "not_approved"
+                                           and r.get("status") == "pending_package_plan"
+                                           and (not args.public_redistributable_only or
+                                                (r.get("license_spdx") in allowlist and
+                                                 (r.get("license_evidence_paths") or r.get("license_evidence_path"))))))
+                      if args.all_queued_repos else list(dict.fromkeys(r.casefold() for r in args.repo)))
     with (ROOT/"registry/discovery/.ingest.lock").open("a") as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        for repo in dict.fromkeys(r.casefold() for r in args.repo):
-            rows = [r for r in queue if r["repository"].casefold()==repo and r["install_status"]=="not_approved"]
+        for repo in selected_repos:
+            rows = [r for r in queue if r["repository"].casefold()==repo
+                    and r["install_status"]=="not_approved"
+                    and r.get("status")=="pending_package_plan"
+                    and r.get("discovery_status", "verified_metadata_only") != "stale_fallback"]
             if not rows:
                 raise ValueError("Repository missing from queue: "+repo)
             tree = fetch_tree(rows[0])
@@ -259,7 +331,21 @@ def main():
                 if row["commit_sha"]!=rows[0]["commit_sha"]:
                     raise ValueError("Mixed queue revisions")
                 try:
+                    if args.public_redistributable_only:
+                        allowed = set(policy.get("public_mirror_spdx_allowlist", []))
+                        if row.get("license_spdx") not in allowed:
+                            rejected.append({"repository":row["repository"],"skill_path":row["skill_path"],
+                                             "reason":"License is not on the configured public-mirror allowlist; source catalog only"})
+                            continue
+                        if not (row.get("license_evidence_paths") or row.get("license_evidence_path")):
+                            rejected.append({"repository":row["repository"],"skill_path":row["skill_path"],
+                                             "reason":"No applicable upstream license/notice file identified"})
+                            continue
                     plan = make_plan(row,tree,policy)
+                    if args.public_redistributable_only:
+                        rejection = public_mirror_rejection(row, plan, policy)
+                        if rejection:
+                            raise ValueError(rejection)
                     dest = no_symlink(ROOT,package_location(ROOT,plan))
                     if dest.exists() and not args.verify_existing:
                         # Skip only after verifying the complete inventory against the pinned tree.
@@ -291,8 +377,12 @@ def main():
         print("PLAN",len(planned),"packages",count,"files",total,"bytes",flush=True)
         if not args.execute:
             return
-        if not planned or shutil.disk_usage(ROOT).free < total+1024*1024*1024:
-            raise SystemExit("No plan or insufficient free disk")
+        if not planned:
+            write_json(ROOT/"registry/discovery/ingest-results.json", [])
+            print("No new packages selected; queue is already satisfied or blocked.",flush=True)
+            return
+        if shutil.disk_usage(ROOT).free < total+1024*1024*1024:
+            raise SystemExit("Insufficient free disk")
         results = []
         for plan in planned:
             try:

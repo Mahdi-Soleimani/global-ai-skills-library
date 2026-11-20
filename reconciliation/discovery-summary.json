@@ -1,141 +1,76 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
+  "generated_at": "2026-11-20T12:43:58.388226+00:00",
+  "baseline_source": "tracked_discovery_state",
+  "baseline_repositories": 56,
   "targets": 10,
   "attempted_targets": 10,
-  "verified_targets": 10,
-  "errors": 0,
-  "observed_paths": 2018,
+  "processed_targets": 10,
+  "verified_targets": 1,
+  "errors": 9,
+  "observed_paths": 215,
   "explicit_fixture_paths": 0,
   "excluded_non_regular_paths": 0,
-  "queue_records": 2018,
-  "pending_package_plan": 2015,
-  "existing_complete_metadata": 3,
+  "downloaded_registry_records": 63,
+  "queue_records": 215,
+  "pending_package_plan": 214,
+  "existing_complete_metadata": 1,
   "repositories": [
     {
       "repository": "microsoft/skills",
       "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
       "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
-      "checked_at": "2026-11-20T11:53:42.349013+00:00",
+      "checked_at": "2026-11-20T12:43:54.989481+00:00",
       "prior_snapshot_present": true,
       "prior_paths": 215,
       "observed_paths": 215,
       "new_paths_vs_prior_snapshot": 0,
       "absent_paths_vs_prior_snapshot": 0,
       "license_spdx": "MIT"
-    },
+    }
+  ],
+  "failed_targets": [
     {
       "repository": "NVIDIA/skills",
-      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
-      "tree_sha": "db6c714fcfdab1cab4b537eb63e08be979dca2e2",
-      "checked_at": "2026-11-20T11:53:49.522209+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 473,
-      "observed_paths": 481,
-      "new_paths_vs_prior_snapshot": 8,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "Apache-2.0"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "awslabs/hcls-agent-skills",
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "tree_sha": "b296062d56067bf0897114f50f5d4b749255ec1b",
-      "checked_at": "2026-11-20T11:53:52.308255+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 43,
-      "observed_paths": 43,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "MIT-0"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "phuryn/pm-skills",
-      "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
-      "tree_sha": "b47f917213f9adbb1554a39834961ead25c2bff0",
-      "checked_at": "2026-11-20T11:53:54.947146+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 72,
-      "observed_paths": 72,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "MIT"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "adobe/skills",
-      "commit_sha": "ee89a2eac5fe872b60d498a4d346dde52e388f0a",
-      "tree_sha": "ab9cdf8706bf62450d98859b72f58016f078c800",
-      "checked_at": "2026-11-20T11:54:00.942067+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 201,
-      "observed_paths": 201,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "Apache-2.0"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "databricks/databricks-agent-skills",
-      "commit_sha": "5efd8435174798d1509d6b53e57a2918fc857b65",
-      "tree_sha": "fd18111c29929c5dc96db5c35bc7ece66900397c",
-      "checked_at": "2026-11-20T11:54:14.809622+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 229,
-      "observed_paths": 229,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "NOASSERTION"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "salesforce/salesforce-skills",
-      "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
-      "tree_sha": "659f7bc4dc7d27cb2635f271aa55fa2d41360d2f",
-      "checked_at": "2026-11-20T11:54:17.579327+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 40,
-      "observed_paths": 40,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "Apache-2.0"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "github/awesome-copilot",
-      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
-      "tree_sha": "d2e09b71f98f707c30177fa05416fd336bcfd8bd",
-      "checked_at": "2026-11-20T11:54:28.793249+00:00",
-      "prior_snapshot_present": true,
-      "prior_paths": 482,
-      "observed_paths": 482,
-      "new_paths_vs_prior_snapshot": 0,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "MIT"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "google-deepmind/science-skills",
-      "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
-      "tree_sha": "f27f8525b016570287e99ba8b9fbd5725d8aca78",
-      "checked_at": "2026-11-20T11:54:33.584403+00:00",
-      "prior_snapshot_present": false,
-      "prior_paths": 0,
-      "observed_paths": 40,
-      "new_paths_vs_prior_snapshot": 40,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "Apache-2.0"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     },
     {
       "repository": "deanpeters/Product-Manager-Skills",
-      "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
-      "tree_sha": "09c4799abecd6cb89d219282356e27bcb2fbe7d6",
-      "checked_at": "2026-11-20T11:54:42.507387+00:00",
-      "prior_snapshot_present": false,
-      "prior_paths": 0,
-      "observed_paths": 215,
-      "new_paths_vs_prior_snapshot": 215,
-      "absent_paths_vs_prior_snapshot": 0,
-      "license_spdx": "NOASSERTION"
+      "error": "GitHub API network error: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)"
     }
   ],
-  "failed_targets": [],
   "limitations": [
     "Tree metadata only; no Skill content inspected or downloaded.",
-    "New paths are relative to the old snapshot, not globally unique or recovered dataset rows.",
-    "Queue is not authorization to install or execute. No package size estimate yet."
+    "New paths are relative to the last tracked snapshot, not globally unique or recovered dataset rows.",
+    "Queue is not authorization to install or execute.",
+    "Downloaded package contents are not persisted by GitHub Actions runners; durable storage is a separate configuration gate."
   ]
 }

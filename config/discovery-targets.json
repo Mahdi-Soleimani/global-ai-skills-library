@@ -1,16 +1,439 @@
 {
   "schema_version": "1.0.0",
-  "selection_note": "Bounded first expansion batch derived from the four independent research continuation notes; references indicate research leads, not recovered source skill records.",
+  "selection_note": "Complete source universe: 55 canonical repositories (the historical snapshot had one redirected alias merged into its canonical repository) plus two newly selected repositories. Research leads indicate discovery provenance only, not ownership or recovered source rows.",
   "targets": [
-    {"repository": "microsoft/skills", "research_leads": ["EN-675", "FA-234", "AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Microsoft ecosystem and remaining SDK paths"},
-    {"repository": "NVIDIA/skills", "research_leads": ["EN-675", "AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Remaining product family paths"},
-    {"repository": "awslabs/hcls-agent-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Healthcare and clinical data paths"},
-    {"repository": "phuryn/pm-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Remaining product management plugin paths"},
-    {"repository": "adobe/skills", "research_leads": ["AUX-FA-750PLUS"], "reason": "Per-plugin skill folders"},
-    {"repository": "databricks/databricks-agent-skills", "research_leads": ["AUX-FA-438"], "reason": "Plugin inventory and metadata gap"},
-    {"repository": "salesforce/salesforce-skills", "research_leads": ["AUX-FA-750PLUS", "AUX-FA-438"], "reason": "Sales plugin inventory"},
-    {"repository": "github/awesome-copilot", "research_leads": ["EN-675"], "reason": "Individual path enumeration and provenance"},
-    {"repository": "google-deepmind/science-skills", "research_leads": ["AUX-FA-750PLUS"], "reason": "New science skills source candidate"},
-    {"repository": "deanpeters/Product-Manager-Skills", "research_leads": ["AUX-FA-438"], "reason": "New product management source candidate"}
+    {
+      "repository": "adobe/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Per-plugin skill folders"
+    },
+    {
+      "repository": "alirezarezvani/claude-skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "anthropics/claude-for-legal",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "anthropics/healthcare",
+      "research_leads": [
+        "EN-675"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "anthropics/life-sciences",
+      "research_leads": [
+        "EN-675"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "anthropics/skills",
+      "research_leads": [
+        "EN-675",
+        "FA-234",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "antonbabenko/terraform-skill",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "atlassian/atlassian-mcp-server",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "awslabs/hcls-agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Healthcare and clinical data paths"
+    },
+    {
+      "repository": "ClickHouse/agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "cloudflare/security-audit-skill",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "cloudflare/skills",
+      "research_leads": [
+        "EN-675",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "coreyhaines31/marketingskills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "czlonkowski/n8n-skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "databricks/databricks-agent-skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Plugin inventory and metadata gap"
+    },
+    {
+      "repository": "deanpeters/Product-Manager-Skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "New product management source candidate"
+    },
+    {
+      "repository": "DietrichGebert/ponytail",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "expo/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "flowful-ai/cad-skill",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "getsentry/skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "github/awesome-copilot",
+      "research_leads": [
+        "EN-675"
+      ],
+      "reason": "Individual path enumeration and provenance"
+    },
+    {
+      "repository": "google-deepmind/science-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "New science skills source candidate"
+    },
+    {
+      "repository": "google/skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "huggingface/skills",
+      "research_leads": [
+        "EN-675",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "janestreet/agent_skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "JuliusBrussee/caveman",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "K-Dense-AI/scientific-agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "LinklyAI/best-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "LukasNiessen/kubernetes-skill",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "mattpocock/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "microsoft/azure-skills",
+      "research_leads": [
+        "EN-675"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "microsoft/skills",
+      "research_leads": [
+        "EN-675",
+        "FA-234",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Microsoft ecosystem and remaining SDK paths"
+    },
+    {
+      "repository": "n8n-io/skills",
+      "research_leads": [
+        "EN-675",
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "NVIDIA/skills",
+      "research_leads": [
+        "EN-675",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Remaining product family paths"
+    },
+    {
+      "repository": "obra/superpowers",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "obsidianmd/obsidian-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "openai/codex-security",
+      "research_leads": [
+        "EN-675"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "openai/plugins",
+      "research_leads": [
+        "EN-675",
+        "FA-234"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "openai/skills",
+      "research_leads": [
+        "EN-675",
+        "FA-234",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "OthmanAdi/planning-with-files",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "pbakaus/impeccable",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "phuryn/pm-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Remaining product management plugin paths"
+    },
+    {
+      "repository": "prisma/orm",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "redhat-developer/agentic-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "redis/agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "remotion-dev/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "run-llama/llamaparse-agent-skills",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "salesforce/salesforce-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Sales plugin inventory"
+    },
+    {
+      "repository": "shadcn-ui/ui",
+      "research_leads": [
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "Shopify/agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "stripe/ai",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "supabase/agent-skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "trailofbits/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "vercel-labs/agent-browser",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "vercel-labs/agent-skills",
+      "research_leads": [
+        "EN-675",
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    },
+    {
+      "repository": "vercel-labs/skills",
+      "research_leads": [
+        "AUX-FA-750PLUS",
+        "AUX-FA-438"
+      ],
+      "reason": "Carry-forward source from the verified historical repository snapshot; refresh commit and tree before any download."
+    }
   ]
 }

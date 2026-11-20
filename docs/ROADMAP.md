@@ -18,7 +18,7 @@
 4. اعداد ۷۵۰+ و ۴۳۸ نیز جایگزین دیتابیس کامل یا تعداد فایل‌های CSV نیستند.
 5. Download ≠ Trust ≠ Security Approval ≠ Install ≠ Execution.
 6. هر دریافت باید به Commit SHA، فایل‌های کامل و Hashهای SHA-256 متصل باشد.
-7. مجوز نامعلوم یعنی عدم بازنشر عمومی؛ محتوای Skill شخص ثالث در مخزن عمومی قرار نمی‌گیرد مگر حق بازنشر روشن باشد.
+7. هر مسیر کشف‌شده، مستقل از مجوز، در Source Catalog با لینک و انتساب شخص ثالث ثبت می‌شود. محتوای عمومی فقط پس از عبور از Gate مجوز و شواهد License/Notice بازنشر می‌شود؛ انتساب به‌تنهایی مجوز بازنشر نیست.
 8. اجرای کد دانلودشده روی Host ممنوع است. Dynamic validation فقط با Sandbox واقعاً enforce‌شده مجاز است؛ در غیر این صورت `needs_validation` ثبت می‌شود.
 9. نصب سراسری یا بارگذاری همه Skillها در Context ممنوع؛ فعال‌سازی باید انتخابی و Progressive Disclosure باشد.
 10. تمام پیشرفت‌ها، تغییرات، تست‌ها و تصمیم‌ها زیر `docs/reports/` مستند می‌شوند.
@@ -31,16 +31,18 @@
 | آرشیو محلی گزارش‌ها | ۴ از ۴؛ Hash تأییدشده |
 | اشاره‌های Repository در چهار Manifest | ۸۷ |
 | مراجع متمایز | ۵۶ |
-| Canonical GitHub repositories در Snapshot فعلی | ۵۵ |
-| مسیرهای مشاهده‌شده `SKILL.md` | ۴٬۲۱۴؛ بدون Dedup |
-| بسته‌های دریافت‌شده محلی | ۶۰ |
-| فایل‌های Manifest دریافت | ۶۲۳ |
-| حجم ثبت‌شده | ۱۳٬۵۱۸٬۷۹۷ بایت |
-| طبقه‌بندی Registry | ۵۶ Skill candidate + ۴ test fixture |
+| Canonical GitHub repositories در Snapshot تاریخی | ۵۵ |
+| Targetهای Refresh فعلی | ۵۷ (۵۵ تاریخی + ۲ منبع جدید) |
+| مسیرهای تاریخی مشاهده‌شده SKILL.md | ۴٬۲۱۴ |
+| Source Catalog | ۴٬۲۷۷ رکورد (۴٬۲۱۴ مسیر تاریخی + ۶۳ نسخه دانلودشده) |
+| بسته‌های دریافت‌شده محلی | ۶۳ |
+| فایل‌های Manifest دریافت | ۶۴۰ |
+| حجم ثبت‌شده | ۱۳٬۵۸۳٬۸۸۹ بایت |
+| طبقه‌بندی Registry | ۵۹ Skill candidate + ۴ test fixture |
 | بسته‌های نیازمند بررسی دستی | ۱۰؛ شامل ۹ candidate و ۱ fixture |
 | High-confidence static signals | ۲؛ بررسی دستی باز |
 | تأیید نصب / نصب / اجرای کد | صفر / صفر / صفر |
-| تست پروژه | ۳۶ PASS |
+| تست پروژه | ۵۴ PASS |
 
 این اعداد به Snapshot محلی مورخ 2026-11-20 تعلق دارند؛ تعداد Skillهای یکتای جهانی را اثبات نمی‌کنند.
 
@@ -78,7 +80,7 @@
 
 ### فاز 3 — Crosswalk و Source Reconciliation
 
-**وضعیت:** Crosswalk در سطح Repository و مسیرهای Snapshot ساخته شد: ۸۷ ارجاع، ۵۵ مخزن canonical، ۴٬۲۱۴ مسیر و ۶۰ بسته محلی. تطبیق دقیق رکوردهای تحقیقاتی به‌دلیل نبود دیتابیس‌های اصلی، و اثبات Fork/Mirror و تطبیق کامل بسته‌ها هنوز باز است. گزارش: `docs/reports/PHASE-3-CROSSWALK-2026-11-20.md`.
+**وضعیت:** Crosswalk در سطح Repository و مسیرهای Snapshot ساخته شد: ۸۷ ارجاع، ۵۵ مخزن canonical، ۴٬۲۱۴ مسیر و ۶۳ بسته محلی. تطبیق دقیق رکوردهای تحقیقاتی به‌دلیل نبود دیتابیس‌های اصلی، و اثبات Fork/Mirror و تطبیق کامل بسته‌ها هنوز باز است. گزارش: `docs/reports/PHASE-3-CROSSWALK-2026-11-20.md`.
 
 - تطبیق Source Recordها با Repository، Path و Publisher در سطحی که شواهد منبع اجازه می‌دهد.
 - ساخت `CROSS_REFERENCE` و `DUPLICATE_CANDIDATES`.
@@ -89,7 +91,7 @@
 
 ### فاز 4 — Source Discovery و Repository Expansion
 
-**وضعیت:** Batch اول تکمیل شد؛ ۱۰ مخزن، ۲٬۰۱۸ مسیر با Commit/Tree/Blob SHA، ۲ مخزن جدید و ۲۶۳ مسیر افزوده نسبت به Snapshot قبلی. صف دریافت محلی ساخته شد؛ هنوز محتوای این بسته‌ها دریافت نشده است. کشف منابع تخصصی و غیرانگلیسی و استخراج محتوای فایل‌ها باز است. گزارش: `docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md`.
+**وضعیت:** ۵۷ مخزن برای Refresh تنظیم شده‌اند (۵۵ مخزن canonical تاریخی + دو منبع جدید). Source Catalog عمومی شامل ۴٬۲۷۷ رکورد است: ۴٬۲۱۴ مسیر تاریخی و ۶۳ نسخه immutable از Pilot محلی. آخرین تلاش Refresh محلی فقط Microsoft را با ۲۱۵ مسیر تأیید کرد و ۹ هدف دیگر به خطای TLS خوردند؛ ۴۷ هدف باقیمانده در Runner گیت‌هاب به‌صورت کامل Refresh خواهند شد. مسیرهای قدیمی بدون Commit به‌صراحت Unpinned هستند. گزارش قبلی Batch: docs/reports/PHASE-4-DISCOVERY-BATCH-01-2026-11-20.md.
 
 ادامه Checkpointهای مستقل: EN-675 (awesome-copilot، NVIDIA، Microsoft، Anthropic verticals)؛ FA-234 (Microsoft، skills.sh، SkillsMP، Database Vendors و منابع غیرانگلیسی)؛ SUP-750 (AWS HCLS، phuryn، NVIDIA H-Z، Adobe، Google DeepMind، Agriculture/Manufacturing/Logistics، Tencent/Japan)؛ SUP-438 (Databricks، Salesforce، NVIDIA، Microsoft SDKها، phuryn و حوزه‌های کم‌پوشش).
 
@@ -97,14 +99,14 @@
 
 ### فاز 5 — Downloader و Ingestion Pipeline
 
-**وضعیت:** اتصال صف pinned به Downloader و Batch آزمایشی سه مخزن تکمیل شد؛ ۱۷ فایل و ۶۵٬۰۹۲ بایت دریافت و Hash تأیید شدند. اجرای مجدد صفر دانلود محتوایی داشت. مجموع ۶۳ بسته و ۲٬۰۱۵ مورد باقی‌مانده صف جدید. دریافت انبوه و بررسی وابستگی‌های خارج از دایرکتوری بسته و مجوز فایل‌ها باز است. گزارش: `docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md`.
+**وضعیت:** Downloader به Commit/Tree/Blob pin متصل است؛ Pilot سه مخزن با ۱۷ فایل و ۶۵٬۰۹۲ بایت موفق شد. License/COPYING/NOTICEهای مرتبط از مسیرهای والد و داخل بسته نیز همراه بسته جمع‌آوری می‌شوند. Resume، Hash و Quarantine تست شده‌اند. دانلود عمومی فقط برای SPDXهای allowlist‌شده همراه License evidence انجام می‌شود؛ تمام موارد دیگر همچنان در Source Catalog حضور دارند. گزارش: docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md.
 
 - Batch کوچک، Commit pinning، دریافت پوشه کامل Skill و فایل‌های وابسته.
 - Checkpoint، Resume، Retry، Rate-limit handling، محدودیت حجم و گزارش فایل‌های Skipped.
 - SHA-256 و Git blob SHA؛ جداسازی Quarantine از Catalog.
 - حذف Test Fixtures از مجموعه Skillهای فعال به‌صورت پیش‌فرض؛ حفظ امکان دریافت عمدی آن‌ها برای آزمون امنیتی.
 
-**وضعیت:** Pilot محلی ۶۰ بسته انجام شده؛ Dry-run جدید روی مک در اتصال به `api.github.com` با خطای TLS (`LibreSSL SSL_ERROR_SYSCALL`) متوقف شد و هیچ دانلودی در آن تلاش انجام نشد.
+**وضعیت:** Pilot محلی ۶۳ بسته انجام شده؛ Dry-run جدید روی مک در اتصال به `api.github.com` با خطای TLS (`LibreSSL SSL_ERROR_SYSCALL`) متوقف شد و هیچ دانلودی در آن تلاش انجام نشد.
 
 **معیار پذیرش:** حداقل سه Repository آزمایشی با Hash، ساختار کامل، Resume و طبقه‌بندی Skill/Fixture صحیح.
 
@@ -118,7 +120,22 @@
 
 **معیار پذیرش:** هر بسته گزارش امنیتی، Hash، License status، تصمیم دستی و وضعیت قابل ردیابی داشته باشد.
 
-### فاز 7 — Registry و Search
+### فاز 7 — Attribution و GitHub Actions Automation
+
+**وضعیت:** پیاده‌سازی محلی تکمیل شده؛ نیازمند اولین اجرای موفق GitHub Actions برای تأیید end-to-end روی Runner.
+
+- تمام مسیرهای تاریخی و نسخه‌های دانلودشده در Source Catalog با منبع، مسیر، مالک مخزن، مجوز، وضعیت Pin و وضعیت محتوا ثبت می‌شوند.
+- original_author فقط در صورت وجود شواهد ثبت می‌شود؛ repository_owner به‌عنوان نویسنده فردی فرض نمی‌شود.
+- هر رکورد ownership=third_party و gasl_claims_exclusive_ownership=false دارد.
+- اسکیل‌های دارای مجوز نامشخص، اختصاصی یا خارج از Allowlist از Source Catalog حذف نمی‌شوند؛ فقط محتوای آن‌ها به‌صورت خودکار در مخزن عمومی Mirror نمی‌شود.
+- محتوای واجد شرایط پس از دریافت License/NOTICE، اعتبارسنجی Hash و Static Scan در public-catalog/ با ATTRIBUTION.md و ATTRIBUTION.json قرار می‌گیرد.
+- Workflow روزانه تمام ۵۷ مخزن را Refresh می‌کند، Batch محدود دریافت می‌کند، Registry را به‌روزرسانی می‌کند و تغییرات را به main Commit/Push می‌کند. روشن بودن مک لازم نیست.
+- Runnerهای Actions موقت‌اند؛ فقط Source Catalog و Public Catalog در Git باقی می‌مانند. ذخیره‌سازی خصوصی دائمی خارج از دامنه این Workflow است.
+
+**معیار پذیرش:** یک اجرای واقعی Actions با Refresh موفق، حفظ رکوردهای تاریخی، افزودن حداقل یک بسته واجد شرایط یا ثبت شفاف صفر مورد واجد شرایط، و Commit خودکار به main.
+
+
+### فاز 8 — Registry و Search
 
 - Schema نسخه‌بندی‌شده و Source Recordهای مستقل.
 - Canonical Index با رابطه‌های `same_as`، `fork_of`، `mirror_of`، `supersedes` و `conflicts_with`.
@@ -128,7 +145,7 @@
 
 **معیار پذیرش:** هر نتیجه جست‌وجو منشأ، نسخه، اختلاف و وضعیت امنیت/مجوز را نمایش دهد.
 
-### فاز 8 — CLI و Skill Router
+### فاز 9 — CLI و Skill Router
 
 - تکمیل دستورات واقعی برای status، sources، discover، download، validate، scan، search، info، update-check، route و export.
 - انتخاب Candidate بر اساس Intent، Domain، Agent، OS، License، Security و Evidence.
@@ -138,7 +155,7 @@
 
 **معیار پذیرش:** پرس‌وجوهای واقعی با Precision@K و نتیجه قابل تکرار؛ بدون بارگذاری Context بی‌رویه.
 
-### فاز 9 — Adapters / MCP / Installation
+### فاز 10 — Adapters / MCP / Installation
 
 - تفکیک Native، Tested، Format-Compatible Untested و Conversion Required برای Codex، Claude Code، Cursor، Copilot، Gemini CLI و دیگر Hostها.
 - Dry-run، Backup، Rollback و Install Report.
@@ -146,7 +163,7 @@
 
 **معیار پذیرش:** نصب و حذف آزمایشی بدون تغییر فایل‌های نامرتبط، با تست اختصاصی هر Host/OS.
 
-### فاز 10 — Evaluation و Benchmark
+### فاز 11 — Evaluation و Benchmark
 
 - مقایسه Task با Skill و بدون Skill.
 - ثبت Model، Harness، Skill Commit، ورودی/خروجی، Pass/Fail، Token، Latency و Cost.
@@ -154,7 +171,7 @@
 
 **معیار پذیرش:** امتیاز اثربخشی فقط از آزمون قابل بازتولید حاصل شود؛ موارد بدون Eval برابر Unrated بمانند.
 
-### فاز 11 — GitHub Publication و Release
+### فاز 12 — GitHub Publication و Release
 
 - انتشار کد، Schema، مستندات و Metadata مجاز؛ عدم انتشار گزارش‌های خصوصی، آرشیو اصلی و محتوای Skill شخص ثالث بدون License.
 - README، SECURITY، CONTRIBUTING، Third-party notices و License policy.
@@ -171,8 +188,8 @@
 3. تکمیل ممیزی دستی Cloudflare و ثبت تصمیم؛ بدون اجرای اسکریپت.
 4. تکمیل Crosswalk و ثبت Duplicate Candidates بدون حذف رکورد.
 5. تکمیل triage ده بسته نیازمند بررسی؛ اولویت دو High-confidence signal.
-6. اصلاح/تست Downloader و ادامه Collection به‌صورت Batchهای کوچک.
-7. سپس Registry، Search، Router، Adapters و Evaluation.
+6. تکمیل اجرای واقعی GitHub Actions و ادامه Collection به‌صورت Batchهای کوچک.
+7. سپس Registry/Search، Router، Adapters و Evaluation.
 
 ## گزارش‌دهی و Gate هر مرحله
 

@@ -1,0 +1,15 @@
+{
+  "exclusive_ownership_claimed": false,
+  "execution_performed": false,
+  "generated_at": "2026-11-20T13:32:07+00:00",
+  "local_packages_examined": 63,
+  "new_or_verified_this_run": 0,
+  "public_package_count": 0,
+  "schema_version": "1.0.0",
+  "skipped_by_reason": {
+    "applicable_license_evidence_not_bundled": 43,
+    "license_not_on_public_mirror_allowlist": 20
+  },
+  "skipped_count": 63,
+  "third_party_attribution_preserved": true
+}

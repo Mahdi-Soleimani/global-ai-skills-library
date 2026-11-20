@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
-from queue_ingest import make_plan, ingest, git_blob, package_location, validate_inventory
+from queue_ingest import make_plan, ingest, git_blob, package_location, validate_inventory, public_mirror_rejection
 
 POLICY={"max_file_size_bytes":1000,"max_skill_size_bytes":2000}
 COMMIT="a"*40
@@ -31,6 +31,8 @@ class QueueIngestTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root=Path(self.tmp.name)
         (self.root/"registry").mkdir()
+        (self.root/"config").mkdir()
+        (self.root/"config/policy.json").write_text(json.dumps({"public_mirror_spdx_allowlist":["MIT"]}))
         (self.root/"registry/download-manifest.json").write_text('{"schema_version":"0.1.0","downloads":[]}')
 
     def test_plan_exact_pin_and_nested_boundary(self):
@@ -40,6 +42,48 @@ class QueueIngestTests(unittest.TestCase):
         plan=make_plan(row,tree,POLICY)
         self.assertEqual(len(plan["files"]),2)
         self.assertEqual(plan["nested_skill_dirs_excluded"],["skills/demo/child"])
+
+    def test_plan_bundles_applicable_upstream_license_and_notice_files(self):
+        row,tree=fixture()
+        tree["tree"].extend([
+            entry("LICENSE",b"MIT root text"),
+            entry("skills/LICENSE",b"MIT skills text"),
+            entry("skills/demo/NOTICE",b"Upstream notice")
+        ])
+        plan=make_plan(row,tree,{"max_file_size_bytes":1000,"max_skill_size_bytes":5000})
+        paths={x["path"] for x in plan["files"]}
+        relatives={x["relative"] for x in plan["files"]}
+        self.assertIn("__upstream_licenses__/"+hashlib.sha256(b"LICENSE").hexdigest()[:10]+"-license",relatives)
+        self.assertIn("__upstream_licenses__/"+hashlib.sha256(b"skills/LICENSE").hexdigest()[:10]+"-license",relatives)
+        self.assertIn("NOTICE",relatives)
+        self.assertEqual(len(plan["license_evidence"]),3)
+
+    def test_nested_license_files_inside_package_are_preserved_as_evidence(self):
+        row,tree=fixture()
+        tree["tree"].append(entry("LICENSE",b"MIT root"))
+        tree["tree"].append(entry("skills/demo/assets/LICENSE",b"asset license"))
+        plan=make_plan(row,tree,{"max_file_size_bytes":1000,"max_skill_size_bytes":5000})
+        evidence={x["source_path"] for x in plan["license_evidence"]}
+        self.assertIn("LICENSE",evidence)
+        self.assertIn("skills/demo/assets/LICENSE",evidence)
+
+    def test_package_local_license_is_not_added_twice(self):
+        row,tree=fixture()
+        tree["tree"].append(entry("skills/demo/LICENSE",b"MIT"))
+        plan=make_plan(row,tree,POLICY)
+        self.assertEqual(sum(x["relative"]=="LICENSE" for x in plan["files"]),1)
+        self.assertEqual(len(plan["license_evidence"]),1)
+
+    def test_public_mirror_requires_allowlisted_license_and_bundled_evidence(self):
+        row,tree=fixture()
+        plan=make_plan(row,tree,POLICY)
+        policy={"public_mirror_spdx_allowlist":["MIT"]}
+        self.assertIn("allowlist",public_mirror_rejection(row,plan,policy))
+        row["license_spdx"]="MIT"
+        self.assertIn("LICENSE",public_mirror_rejection(row,plan,policy))
+        tree["tree"].append(entry("LICENSE",b"MIT"))
+        plan=make_plan(row,tree,POLICY)
+        self.assertIsNone(public_mirror_rejection(row,plan,policy))
 
     def test_wrong_tree_and_blob_fail(self):
         row,tree=fixture()
@@ -77,7 +121,23 @@ class QueueIngestTests(unittest.TestCase):
         self.assertEqual(len(manifest["downloads"][0]["skill_packages"]),1)
         meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
         self.assertFalse(meta["execution_performed"])
-        self.assertEqual(meta["license_status"],"repository_metadata_only_review_required")
+        self.assertEqual(meta["license_status"],"unknown_license_reference_only")
+        self.assertFalse(meta["gasl_claims_exclusive_ownership"])
+
+    def test_download_metadata_preserves_upstream_license_and_non_ownership(self):
+        row,tree=fixture()
+        row["license_spdx"]="MIT"
+        tree["tree"].append(entry("LICENSE",b"MIT License"))
+        plan=make_plan(row,tree,{"max_file_size_bytes":1000,"max_skill_size_bytes":5000})
+        result=ingest(self.root,plan,lambda p,item:(
+            b"MIT License" if item["path"]=="LICENSE" else FILES[item["path"]]))
+        meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
+        self.assertEqual(meta["license_status"],"license_evidence_bundled_pending_scan")
+        self.assertEqual(meta["license_evidence"][0]["source_path"],"LICENSE")
+        self.assertEqual(meta["ownership"],"third_party")
+        self.assertIsNone(meta["original_author"])
+        self.assertFalse(meta["gasl_claims_exclusive_ownership"])
+        self.assertIn(COMMIT,meta["source_url"])
 
     def test_wrong_download_never_promoted(self):
         row,tree=fixture(); plan=make_plan(row,tree,POLICY)

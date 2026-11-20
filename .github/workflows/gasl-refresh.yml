@@ -1,0 +1,85 @@
+name: GASL — Daily source catalog and skill mirror
+
+on:
+  schedule:
+    # Daily refresh; avoid the top of the hour when scheduled runners are busiest.
+    - cron: "23 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gasl-library-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Install test dependencies
+        run: python3 -m pip install --disable-pip-version-check pytest==8.4.2
+
+      - name: Run regression tests
+        run: python3 -m pytest -q
+
+      - name: Refresh all commit-pinned source repositories
+        id: discovery
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/discover.py --limit 100 --refresh --retry-errors
+
+      - name: Download a bounded batch with redistributable license evidence
+        id: ingest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 tools/queue_ingest.py --all-queued-repos --per-repo 2 --max-files 120 --max-batch-bytes 52428800 --public-redistributable-only --execute
+
+      - name: Scan downloaded packages and rebuild metadata registry
+        run: |
+          python3 tools/static_scan.py
+          python3 tools/build_registry.py
+
+      - name: Add eligible packages to the public GitHub library
+        run: python3 tools/build_public_catalog.py
+
+      - name: Refresh complete source catalog with download and mirror status
+        run: python3 tools/build_source_catalog.py
+
+      - name: Validate generated changes
+        run: git diff --check
+
+      - name: Commit updated source index and public packages
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config/discovery-targets.json
+          git add config/policy.json
+          git add registry/download-queue.json
+          git add registry/download-manifest.json
+          git add registry/discovery-state.json
+          git add registry/source-catalog.json
+          git add registry/source-catalog.csv
+          git add registry/source-catalog-summary.json
+          git add registry/public-catalog-summary.json
+          git add registry/skills.json
+          git add registry/skills.csv
+          git add registry/skills-summary.json
+          git add registry/content-duplicates.csv
+          git add registry/name-collisions.csv
+          git add reconciliation/discovery-summary.json
+          git add public-catalog/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: refresh attributed skill catalog"
+            git push origin HEAD:main
+          else
+            echo "No source or package changes to commit."
+          fi

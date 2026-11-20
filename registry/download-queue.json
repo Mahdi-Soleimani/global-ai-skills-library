@@ -1,0 +1,3442 @@
+[
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/aks-cost-optimization/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c55949588a6f391d00aa6f3387a9ba1f42eddee3",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "existing_complete_metadata",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/aks-gpu-inference/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "42a952599c484f1a437056310e93d7ef273ea252",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/aks-known-issues/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a0d46fac012c39520a351eb2fdcb8bc915e05228",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/aks-network-capture/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "cffcb7322710cd1f02db709aa6d504ae61ac2772",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/aks-troubleshooting/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b6d2a1e2f762ce0e5f3fb6b2f3551fc44a7e7e3e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/aks-skills/skills/azure-search-nav/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "d4d3d2cedf6bf399613682ae918e20ef25dd2bc3",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-advisor/skills/azure-advisor-actionability/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b51942d4737097d0c0b10ef1dfe567ea8d9f347f",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-advisor/skills/azure-advisor-cost-optimization/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3a574ec50c802f18f32a5bb58d8999f6ff993259",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-advisor/skills/azure-advisor/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9c00fc4b3ac22ba738a542fd6365458e0efcc992",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-cost/skills/cost-analysis/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "91541abbb4c1c578a82a448798ddc03f6fe86a40",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-cost/skills/cost-estimation/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "756ad958d176e212254dff123bfdbf2294fdf4d0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-cost/skills/cost-governance/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4902a03e2b7950bcb7e84b6bfe799b4c92927d9b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-cost/skills/cost-optimization/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "89a2deffe6c0bc48ae593ead1d1f098904882afb",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-kusto-graph-skills/skills/azure-kusto-graph/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c178ce599f816bf6cb35a749582fd71dab5d5f69",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-kusto-graph-skills/skills/azure-kusto-irql-graph/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "285dc22f943a9b1bdf4f48bd2b861fbaba2273bf",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-kusto-graph-skills/skills/azure-kusto-irql/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3af32cdbe307d0d23ea884dead1a0a9a09334390",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-local-skills/skills/azure-local-multi-rack/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "99a6561714f5d49f229c1bd6da8f1a057c7523a2",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-local-skills/skills/azure-local/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a81dc6fe1006b9de54e4740d41fd525d16ca0360",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-observability/skills/assess-observability-health/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ca9af3bdf7aef95151890577abf33f69feddd9cb",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-observability/skills/connect-observability/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4e44df4da9ee7ebabbef252d3f5704b4cd537b7d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-observability/skills/troubleshoot-observability/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "09779b88cdad49aba4d3bb8607f97a0958699924",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-observability/skills/verify-observability-fix/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9e7aa297767aad88c7d0596bd3e40e8ab2082bdf",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9c9bd87a4bf852157158e2c658218762cfd2130c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-ai-document-intelligence-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "249ebfabf8eef0e94a39079d3968434a56eab4ef",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-ai-openai-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4c15f34a6a12e0a7d1f198ce5a61508168c51d54",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-ai-projects-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "80428335ae9036992bc1fda54594380a1c122b18",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-ai-voicelive-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "82e101da3649c7f560fff5ac2f96f7e75268e6e1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-eventgrid-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3156848ee9bf82dc7f0aabd71934e19574113601",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-eventhub-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "11c2a85610791e40b99dec976b422fe326e4fc9c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-identity-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a851ddfc4dc0fc76cdb9fb45f0604c16d4d59f82",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-maps-search-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "79897e10e8bd32128b9b6641087b7a0bf14f7507",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-apicenter-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c67b575cbc92644e4ef78a7cad695a2944f545bc",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-apimanagement-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ed3fe2bfa8e016f675066eca950debeafaf056ba",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-applicationinsights-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "97279bfcc7736acd9e3d3772e118bdf9a52fb0b5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-arizeaiobservabilityeval-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7a820d75e857d1140484b0fe93301bf232f19109",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-botservice-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "8549e745271e52eb7e03a2d71a124899f06d2999",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-fabric-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "19e5a3918fdf9d5c978a5181025a2f6a2c342645",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-mongodbatlas-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "05bdac1c374bbdd03a2ae6c4c173d5d9b18b4160",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-mgmt-weightsandbiases-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "07adf059989627086c55e5aaa94d2057022b1c2d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-cosmosdb-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3318c2734fa2a69f00d526073fad9b49426d5ef1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-durabletask-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "79e685dca8daf9df66c987fbd01525ce34699434",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-mysql-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "0be21fefd35b57a803ca6ac43ba2a82c062e2454",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-playwright-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f213a2efdca47803023f4ae490c76ef3f671599c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-postgresql-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "05ba9fa8774836eb038e7cafe5cb0118c08f3a9a",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-redis-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "339db649fa6bda62a6960a585ce334b1617b82f0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-sql-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6eff090401b0b48fb47ecddbdf36554da8fb8ddf",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-search-documents-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "074a1981b319b9c93327188a3dcbd5ca84888b85",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-security-keyvault-keys-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c9ca1f8736980cf682b5ac1306d327442d3260d0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/azure-servicebus-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "00c292ca53d47563837745e1952110982f949e77",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/m365-agents-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "d914cd1443fa3df60bddee1e061870f0dd404917",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-dotnet/skills/microsoft-azure-webjobs-extensions-authentication-events-dotnet/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a90ab71b73b33f9953ba9f95a556b451849ff4ba",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-agents-persistent-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6345044117d177e1aa06a392c54d70e0850cd5e9",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-anomalydetector-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "1720bde7863898eca16efd3be18d3e072f57bcf1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-contentsafety-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "d9a4e8f157e635c0962744d019f9d3e4d02d58ec",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-formrecognizer-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9ebbe26711148505aa6b53738036f058fb523f2c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-projects-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a28cc004322d021cafc17518c27755a28c1141cc",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-vision-imageanalysis-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5ec2d2d5592e6a71ec707b03b4a5d64643b5a491",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-ai-voicelive-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "584b13e150584b12741a775389b6dab1bdfa82f1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-appconfiguration-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a27cd0325fe6fba6009923912c5174ee364bd2c5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-communication-callautomation-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "75b1857c6d21a89385b07a2c39b0643704be00d4",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-communication-callingserver-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c2bde1986d3ace215f6a28e923e5399326a9882e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-communication-chat-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "22e9dd0e2e8cbcfc5ce26c59d14b4b5c4a8ce0c9",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-communication-common-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b7b13710db6b54f823a5af8dbae652a427b1e776",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-communication-sms-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "d2dfd5056562193e7cbda6be6c7fd6c6faecdfe8",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-compute-batch-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5fc31081115f4710a9b2b961b6662253b0232318",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-cosmos-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "21a14dce1c668ef29e3267b262be6123533eb92e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-data-tables-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "0fbad66ba89446a1481d848c0aa2ed8df0efa897",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-eventgrid-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "75586f26f80854bd65a750a06de00ceb6ff3eb38",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-eventhub-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9399c5d62cc5d5b395e65ad0fc5aaa780e03242e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-identity-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ffe26b990c0cfbbae77a19345024c45d2ed0c608",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-messaging-webpubsub-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b8b8a3fe22a62ad01c34ddff759dad55aa0c5e14",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-monitor-ingestion-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fdafd0a6c66489ff4096732c092c8e17671527e7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-monitor-opentelemetry-exporter-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "2be5ec33b16457816e0737dcc99007560fea74d5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-monitor-query-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4f9d8cfec9d6a166cd5bd18fc91fabc53dc7f343",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-security-keyvault-keys-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "632c3607d93b81d7625969555520be8d873ee2d7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-security-keyvault-secrets-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a2a9f62f50111cc5aa13556b20cc29b2aa37be06",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-java/skills/azure-storage-blob-java/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9202207d800886e1fbe56673a54f7f77b723e114",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/agent-framework-azure-ai-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "98b28f5cc1f34e68cf9ed7f0e1bda6dec04dda0c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-contentsafety-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9caadcc9ee73fa54a2336d6ab117a1e2690e530f",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-contentunderstanding-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5b59e23e547de5392ef1c98a3b4bb7ab91b34738",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-language-conversations-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "2d678f3181212c68164e8e0becd844c889079982",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-ml-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c3b6d0e1765de1f03415d13999c1de850f185ceb",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-projects-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b406c9fdf3bbe3be9546f5e61d8e04edeb60c327",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3f7ec0d3239a968bb2acb0bec5fa6956894365cd",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-transcription-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e27cf1800cec405570f25dbed2b8f9de014192de",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "64da88e8a88f1ff64c38261c0ca0df09544f3b70",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-translation-text-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e8ed670c9d5e23a5a08bee0684c7ea18f64fa809",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-vision-imageanalysis-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "adaaf3c05668d618d8c5a932e37ac78053a255c7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "512d0686e39a7be742d99d27a9aac8210abc319d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-appconfiguration-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "bd07f0434d51ab1efa899c1b234e7f08a05bcab2",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-containerregistry-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fb6ab982dad6d62a6fbd92b0f32cccf80c600528",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-cosmos-db-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "66973512a33a2ce1cd715d96c39f7ddb7ccc645d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-cosmos-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9800d67e64c753e221128e38c43a81bfabdff944",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-data-tables-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6376581bc3df6d0dabf7283665e093f148da9ca7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-eventgrid-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "bf34e1da1aaebb9cca97f7373d9e278b5f9cb3dc",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-eventhub-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "289676f5c80a9f4064980ff98283575502fe1d99",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-identity-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f187f844b717be8d522ff19699e3a12974098a09",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-keyvault-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ef10d433723c358031c68c76d5a13715a5abe153",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-messaging-webpubsubservice-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "20cf2ada27b188fcbcdcbfe7c9d13285d74d8849",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-mgmt-apicenter-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "97f22bbd3a5c7ca25585dcaeafec6dae05e64cc8",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "559dc7e70685f7ce2a31beb51bbea3c492b97c41",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-mgmt-botservice-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4ad0b650c8f7c8de546e691be1845f3c7804ed28",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-mgmt-fabric-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "31cb7e05a4012d5d0fabb2baa3adda43822eca7f",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-monitor-ingestion-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "56f0f86d36e50a701f103f2e20742ad459894804",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-exporter-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7feaa1cd43cedd1d3b2405776622a89651fa0c38",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4428999e5d475fa2f610b24f71d351fb22e6318c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-monitor-query-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c0ce68264ca6872b488716d800c87d128b7a1dd6",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-search-documents-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "41ed03ad443be379d3cd39a3df18ff29634f1940",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-servicebus-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "df06c9281cd34c06b0e8021517019267d9ae3a4c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-speech-to-text-rest-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "0cd1196f591dec4f6d904831497f2282590bdd57",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-storage-blob-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "31cd68bb85830a918a3115b67796d5f5daf0ef0c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-storage-file-datalake-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "bd8a9e4abbdadee2ef5d55429a39e8c179748e3e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-storage-file-share-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5adf7ad61c2304d8ba4ef3f02b2db7e9fff993db",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/azure-storage-queue-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f8ed9816b14f837795dc9899ff4564e69cd2adc0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/fastapi-router-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "be9b22a94a16c840e93baa40d65bfa6a44d52019",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/m365-agents-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3d583a89a369594b8880921f17ca1f68ef9ef2f8",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-python/skills/pydantic-models-py/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "15bd46d5df97e19c42c1b91d5adc916354c23c8b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-cosmos-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6180d7aa40918ee63ce93811fedd3f175e29afd7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-eventhub-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "39e8ddaaa38e6c4e94757250eb26ef2e29ef763d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-identity-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "bbcdd6573d0efede169d7a35d0e9603b86f25241",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-keyvault-certificates-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5f12b3391b353becfa8a42a142097f63290ce3ea",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-keyvault-keys-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "46c85d4db9dc67761ca7b143d6c52af524c5f379",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-keyvault-secrets-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a730a58d8c2a300c75cfc1abd43500b1e50ea977",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-storage-blob-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "3e40722372b75c96602ca3801b83e327b6db5e42",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-rust/skills/azure-storage-queue-rust/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "394fb2c299773253527edcdf8f6505139edd8f27",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/applicationinsights-web-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e1bfcc76ab8e76060350426a04115dc33de8bbd4",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e038281439bf7d5b738ff6a6c9fd211281582e73",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-ai-document-intelligence-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a0c47d3b3c4a9428fb344f519e1d5a1a1f38c7bd",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "baea6df8c76732e7a6ee9268a1de80cd52cb76e1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-ai-translation-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fa832211c5a8a90e6ca63b241314dd0437c96946",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-ai-voicelive-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "64ca766cb56c16b7d2b015cd3684834e25f076db",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-appconfiguration-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "82d0e0ffe52ac030cbe98560e85665bdcab52fcf",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-cosmos-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "33fcce60f1488fbf7e3d1cef4656adb693f215f2",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-eventhub-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fe0cc9ab1db48af480d95c11e72de9db5c7c4645",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-identity-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "50b8b57d4f064c88ddd3c35976511952bcdeba05",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-keyvault-keys-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c995e4c598f385ba4aca948ff8ef2c57dae1bb01",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-keyvault-secrets-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "1f236a2b4c8d9ddab0e808d253c029a32193fcdd",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-microsoft-playwright-testing-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b784591d64f11644dde1f7b165411792751f284a",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "538f028b72746103fa2314ba625acad23c934fce",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-postgres-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "1a2000157b776a125c355b1350f97dac0f11b3b3",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b31e05d49593682d54727deec69b10e5394c1f6f",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-servicebus-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "43e5acb47b8db2aee786f02a19f6c0db19556713",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-storage-blob-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5f9b967cebe6e1821e5a43749ff6f7f7d626c591",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ba358bca21670775d73dce057668e8784624662b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-storage-queue-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "130dd9277b2d87f7095f959d4d5fa93f41af6310",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/azure-web-pubsub-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "175e519e8d39e7fe5c2eaa34013f73f53641c1b5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/frontend-ui-dark-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4ff865e3c1cc60d8e5999cf950a016d7c9f019d2",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/m365-agents-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "00169cce10c70508375fc9300513a7600c7f75f8",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/react-flow-node-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ab4e1a6a5a4c1bf03f4d9b49dee6285e9ce0457d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-sdk-typescript/skills/zustand-store-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fe9aca17683b17d3c86c78cb3473f52a10b38f3d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/airunway-aks-setup/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b073a851e1f9678e349032558a51ab2a36f10454",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/appinsights-instrumentation/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7e0ade1b244f12f6828eaf15b86b7099482c3f3e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-ai/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a9d4b038b9904648e56f3f5c6af80869333a31d7",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-aigateway/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "2a02dbfc3871846ede816112878cf65f7c8427ca",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-app-onboard-prereq/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "17c63cde9f1dfe676dd5353f7427413a6601fbfb",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-app-onboard/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "23ec1d16e8588f97064bf19653e6b54b8bfb5886",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-cloud-migrate/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e371b8297b7e2be0a5521bc8bbbb4fb50aff6a5b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-compliance/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5f133e417691b7b4bf91ae44cc046c4d667821f2",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-compute/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "8a1d1eabfe5c336f7977afc34439779f76612189",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-deploy/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "187e0206cdff0e0af4324761a0eca8aed2fc5ab6",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-diagnostics/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b4ee2db593a16869339b97b9095cdac2f2d49ca9",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-enterprise-infra-planner/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5bc6f5c5a894507b7f89d0d96edc57927780c690",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-kubernetes/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c5b7d501c1f08a1fa64d9f9ea9c34133fd346a41",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-kubernetes/azure-kubernetes-app-deploy/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e3e148299871832471b4b056093e386a132e8d4a",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-kubernetes/azure-kubernetes-automatic-readiness/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c5618c53ef11a5e392f02dddc4e70501df1b3297",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-kusto/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "5037190f2739a5d58d2130142571e940a01dde0d",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-messaging/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9a92df2d9548d268548d22d3f4b2cfd705c96a4c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-prepare/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6a47bf660db5e8664d9857fee3c63028c1e9ac24",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-quotas/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "00eb182af5ceb6861ee0df92d8c3c9986af652ad",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-reliability/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ed5cefb2923cc2e25aa9773dbcfa0f4f7caea033",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-resource-lookup/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "896c1114e1e6f2b07550037056ed1467ef3e558b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-resource-visualizer/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "24aa2ca9ce042b70cba745c50ae5a198db4a9a46",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-storage/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "09ab9126fcb8418d1fe34db1937ec51ee03eda60",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-upgrade/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4d60fedcaa037dafd098d9ca3c4f8302c7520f1c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/azure-validate/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7aca2090d92c3bc4b7618b8ac702af306bb6325b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/discover-azure-skills/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "abee049349692e8bcb0f71970db3de7559bf7ec5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/entra-agent-id/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "ec3318657c9709665e9f22c70e4820cb5bacb986",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/entra-app-registration/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f7f472ade6f8ce489f3efae8bb8533dd0be6b3f0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a77936e63f7f1ce2ae197d0450c2f9a2561225e1",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/finetuning/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "428b2f3648500aede49730c5e233b7c5dd554ac5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/models/deploy-model/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "fd954ccf1ed94a451cf37a4770dff6f375ccb00e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/models/deploy-model/capacity/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "46935315ebdf18fbc93771efb72e7f8f9e9980ac",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/models/deploy-model/customize/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "eb4887175301b4751cca679e11863d1ba6f34bc9",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/microsoft-foundry/models/deploy-model/preset/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "61fc18b28031388c58e8e517b1fb93dae491cca5",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/azure-skills/skills/python-appservice-deploy/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b9f7c8ddb14f145b3aac2a37f2a52f2b059b2bd8",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-ado-convert/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "9c030896cd815faef45a314774d37480329e1f34",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-agents-md/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "45e93b32d3d7f2120cb9b3b7f51e9271e3e0189c",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-architect/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "53bcf7016efbba50e4f634a7a4b4a40cddcb2234",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-changelog/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "cd5c1cd2825da88b0d370d33a329b0d74f727855",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-llms-txt/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f9eaf717a42a1206bdde938219f1d8cfbb1c64c4",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-onboarding/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "c708309fd6314cb58788dcacc40216675024b989",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-page-writer/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "bb203da412a56c38cd457612bc0f46b91f046216",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-qa/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "2568639d0204aff644b86563342487fec78eb332",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-researcher/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b4ccf2ca851d10c1b7395e49f39534af26ad5bce",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/deep-wiki/skills/wiki-vitepress/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "b29a15e05917cb599592604643827c4fc7b6190e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/foundry-iq-skills/skills/foundry-iq/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "61b3f95d462dd2d8b9006f8c805685e095d34f44",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a974c332cdbed595eed80f79285ba12d7946f61e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/install-atk/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "44afbcbbd76801317776563a96d034574716e949",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/m365-agent-evaluator/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "f09feb28a91638a7da7da797a0f409de4e690f26",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "04d194383e9863d8167d8005747cf6a3933ddc26",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/slack-to-teams/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "11dfd2b3b069b8ae77d835c7317c3698d94346f0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/plugins/microsoft-365-agents-toolkit/skills/ui-widget-developer/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "1240df9af50396f6420e83ea7fad62a920edbbb0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/applicationinsights-web-ts/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "e1bfcc76ab8e76060350426a04115dc33de8bbd4",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/cloud-solution-architect/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7db4c335fff4c73300a5b17b8d847acc919e72b0",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/continual-learning/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "1de328f9abe0c345c002a80385619aef277c431e",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/copilot-sdk/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "79f42cd0aef9a7a660f96668bc547d998e2485b4",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/debugview/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "606e6dd78d6b492d562bc505ecc29161732a58fd",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/entra-agent-id/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a8653ea1e50451c43e1ab7dc95f5024543d63658",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/frontend-design-review/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6fd8fe378026252e3810eae36844704f3c684fe3",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/github-issue-creator/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "4351dcd35e719b49c81fa3430708f103db9cdf82",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/kql/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "8be2bdeebd4cdfa0937d3457e70128042cd34904",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/mcp-builder/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "792635390fff9f4c0032b1f0e06db1d81affe678",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/microsoft-docs/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "a5129731352a4dcad109b03e6f8e96bbdd00695b",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/podcast-generation/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "7f2e72053b725adf289d5438138ddcee55e47012",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  },
+  {
+    "repository": "microsoft/skills",
+    "skill_path": ".github/skills/skill-creator/SKILL.md",
+    "commit_sha": "0d60658e34d07c05a5cd0514d3e64ccd653e8539",
+    "tree_sha": "29ed471e492010f2e9ef4502ce3ccfa7b50f0614",
+    "skill_md_blob_sha": "6429efa083961c855fc5c21da8079ae2f4949007",
+    "license_spdx": "MIT",
+    "research_leads": [
+      "EN-675",
+      "FA-234",
+      "AUX-FA-750PLUS",
+      "AUX-FA-438"
+    ],
+    "status": "pending_package_plan",
+    "install_status": "not_approved"
+  }
+]
