@@ -6,20 +6,20 @@ A local-first, provenance-aware library for discovering, collecting, validating,
 
 - Four independent research sources are maintained separately: `EN-675`, `FA-234`, `AUX-FA-750PLUS`, and `AUX-FA-438`. Their original report texts are archived locally and SHA-256 verified.
 - The original row-level CSV/JSON/XLSX databases for the primary EN-675 and FA-234 datasets remain unavailable. No missing records have been reconstructed.
-- The four source manifests contain 87 repository mentions and 56 historical repository references; the expanded source universe has 57 configured repositories (55 historical canonical repositories plus two new candidates) and 4,214 historical SKILL.md paths.
-- Local collection pilot: 63 packages, 640 files, 13,583,889 bytes across seven repositories. The registry classifies these as 59 Skill candidates and four evaluation fixtures.
-- Security status: 10 packages require manual review (nine Skill candidates and one fixture); two high-confidence static signals remain in the review ledger.
+- The four source manifests contain 87 repository mentions and 56 historical repository references. The live source universe now has 57 repositories, 4,478 observed SKILL.md paths, and 4,405 valid Skill-path records.
+- Local-only collection pilot: 63 packages, 640 files, 13,583,889 bytes across seven repositories (59 Skill candidates and four evaluation fixtures). Separately, the public GitHub catalog now contains nine version-pinned packages (119 files; 664,466 bytes).
+- Security status: the local-only 63-package pilot has 10 packages requiring manual review and two high-confidence static signals. The nine public-mirror packages have one manual-review flag and zero high-confidence signals; none has been installed or executed.
 - No downloaded third-party code has been executed. No Skill is approved or installed.
-- The attributed source index currently contains 4,277 records: 4,214 historical repository/path references plus 63 immutable downloaded-package revisions. These are source records, not 4,277 globally unique skills.
+- The live attributed source index contains 4,405 records across 57 repositories; all 4,405 records are commit-pinned. These are repository/path records, not globally unique skills.
 - Project tests: python3 -m pytest -q — 57 passed.
 
 Counts from research reports are reported claims, not verified global-unique Skill totals. Repository `SKILL.md` path counts are not unique-skill counts.
 
-The latest local refresh attempt verified Microsoft (215 paths) but encountered TLS connection failures for the other nine targets. The historical index is retained; the GitHub Actions runner will refresh all 57 repositories using its GitHub token. See `reconciliation/discovery-summary.json`.
+GitHub Actions has verified all 57 repositories with zero errors, refreshed the complete source index, and committed it. The successful run mirrored nine eligible packages with upstream license evidence and attribution. [View successful run](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/44747234619); resulting commit: [83c1031](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/83c103114540687c5ebb76d90318d623b12b65c2).
 
-Queue ingestion pilot (2026-11-20): 3 new packages (17 files; 65,092 bytes), 63 total local packages. See `docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md`.
+The pinned download manifest now contains 71 package records (757 files; 14,229,883 bytes). Nine packages are mirrored publicly; the earlier 63-package local pilot is not copied wholesale into the public repository.
 
-Attribution and automation: every discovered source path is indexed regardless of license. The daily GitHub Actions workflow commits the complete source index and only mirrors package content when the configured redistribution/license-evidence gate passes. See `ATTRIBUTION.md` and `docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md`.
+Attribution and automation are live: every discovered source path is indexed regardless of license; public package content is mirrored only when the configured SPDX/evidence gate passes. Every mirrored package has ATTRIBUTION.md and ATTRIBUTION.json. See ATTRIBUTION.md and docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md.
 
 ## Non-negotiable data and security rules
 

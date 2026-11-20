@@ -13,12 +13,12 @@ Keep every discovered skill represented in GASL regardless of its license, prese
 ### 1. Complete source index
 
 - Expanded discovery targets to 57 canonical repository targets: 55 historical canonical sources plus two newly selected sources. A historical redirected alias was merged into its canonical repository.
-- Rebuilt a public-safe discovery state from the historical 56-entry repository verification snapshot, preserving the union of all 4,214 historical paths. Historical entries without a live Commit SHA are explicitly unpinned.
+- Rebuilt a public-safe discovery state from the historical 56-entry repository verification snapshot, preserving the union of all 4,214 historical paths. The live GitHub Actions refresh subsequently verified all 57 repositories and pinned all 4,405 valid source records to exact commits.
 - Added registry/source-catalog.json, registry/source-catalog.csv, and registry/source-catalog-summary.json.
-- The current source catalog contains 4,277 records: 4,214 historical repository/path references plus 63 immutable downloaded-package revisions. It is not a count of globally unique skills.
+- The successful live source catalog contains 4,405 commit-pinned repository/path records across 57 repositories. It is not a count of globally unique skills.
 - Every record carries source repository, publisher/owner, original path, direct source URL, observed license metadata, commit/tree/blob identifiers when available, source status, content status, third-party ownership, and an explicit no-exclusive-ownership flag.
 - Individual original authors are not inferred from repository ownership. original_author remains null unless there is actual evidence.
-- All 4,214 historical paths remain represented regardless of license. Two new repositories are present as refresh targets pending their first successful live tree enumeration.
+- All 4,214 historical paths remain represented regardless of license. Both newly selected repositories were included in the successful 57/57 live refresh.
 
 ### 2. License and attribution model
 
@@ -35,13 +35,13 @@ Keep every discovered skill represented in GASL regardless of its license, prese
 - Original files are copied unchanged. Each public package receives ATTRIBUTION.md and ATTRIBUTION.json with repository, original path, commit, license, license evidence, and a no-ownership disclaimer.
 - Public package versions are immutable and indexed by repository/path/commit. Older versions remain in the catalog.
 - Security status is displayed in the catalog index but is not described as installation approval. No package is installed or executed.
-- The existing 63 local packages did not pass the new evidence gate: 20 were outside the public-mirror allowlist and 43 did not have applicable license evidence bundled. Consequently the current public content mirror has zero packages; all source records remain in the complete source index.
+- The earlier 63-package local pilot remains local-only. The first successful GitHub Actions batch mirrored nine packages from Apache-2.0, MIT, and MIT-0 repositories after bundling their applicable upstream license/notice evidence. All other discovered paths remain in the complete source index whether or not their content is mirrored.
 
 ### 4. GitHub Actions automation
 
 Added .github/workflows/gasl-refresh.yml:
 
-- Daily schedule at 07:23 UTC and manual workflow_dispatch.
+- Daily schedule at 07:23 UTC, manual workflow_dispatch, and push triggers when the workflow, downloader code, or source/license configuration changes.
 - Runs the regression suite.
 - Refreshes all configured repositories with GITHUB_TOKEN, retry handling, and Commit/Tree/Blob pins.
 - Processes a bounded public-redistributable batch: at most two packages per repository, 120 files, and 50 MiB per run.
@@ -66,15 +66,18 @@ Added .github/workflows/gasl-refresh.yml:
 | Configured source repositories | 57 |
 | Historical canonical repositories | 55 |
 | Historical skill paths | 4,214 |
-| Source catalog records | 4,277 |
-| Immutable downloaded revisions | 63 |
+| Source catalog records | 4,405 |
+| Commit-pinned source records | 4,405 |
+| Publicly mirrored packages | 9 |
+| Public mirror files / bytes | 119 / 664,466 |
+| Download manifest packages | 71 |
+| Download manifest files / bytes | 757 / 14,229,883 |
 | Local package files | 640 |
 | Local package bytes | 13,583,889 |
 | Local skill candidates | 59 |
 | Evaluation fixtures | 4 |
 | Packages requiring manual security review | 10 |
 | High-confidence static signals | 2 |
-| Publicly mirrored packages | 0 |
 | Install-approved / installed / executed | 0 / 0 / 0 |
 | Regression tests | 57 passed |
 
@@ -86,26 +89,28 @@ The four independent research report archives were re-hashed and remain byte-ide
 - Python compilation passed for discovery, queue ingestion, registry builder, source catalog builder, and public catalog builder.
 - GitHub Actions YAML parsed successfully; schedule, workflow_dispatch, contents:write, and refresh job were verified.
 - Static scan completed for all 63 local packages. All package file integrity checks passed. Heuristic scanner still reports ten packages for manual review and two high-confidence signals; no code was executed.
-- Public catalog builder completed and correctly skipped all 63 local packages under the new license/evidence gate.
-- Source catalog invariants verified: 4,277 records, 4,214 distinct historical repository/path references, 63 immutable revisions, and 57 configured targets.
+- The earlier 63-package local pilot was not bulk-copied into the public repository. Nine new packages passed the license/evidence gate and were mirrored with original license/notice files and attribution.
+- Source catalog invariants verified on GitHub: 4,405 records, 4,405 distinct repository/path references, 4,405 commit-pinned records, and 57 configured repositories.
+- Public catalog contains nine immutable package revisions; all nine have ATTRIBUTION.md/JSON, third-party ownership, original source links, exact commits, and license evidence. No package is marked installed or executed.
 - Four independent original research archive hashes passed.
 
 ## Known limitations / next gate
 
-- The last local Mac API refresh attempt verified Microsoft (215 paths) but failed on nine other targets with TLS EOF errors. The remaining 47 targets were not attempted in that local run. The GitHub Actions runner is expected to perform the full refresh with its token; the first real Actions run is still required to validate network, token permissions, branch push, and end-to-end commit.
+- A local Mac API refresh attempt encountered TLS EOF errors. GitHub Actions successfully bypassed that local network limitation: all 57 repositories were refreshed with zero repository errors and the generated index was committed. Daily automation no longer depends on the Mac being online.
 - Repository-level license metadata is not a per-file legal determination. The public mirror gate preserves upstream license evidence and records this limitation; per-file exceptions or extra third-party assets may still require manual review.
 - Unknown or restricted content is indexed with its upstream source URL, not republished as a copied public package.
 - Public content mirroring is not security approval, installation approval, or execution approval.
-- Private persistent storage and broader non-English/niche source research remain separate future work.
+- Private persistent storage and broader non-English/niche source research remain separate future work. Repository-level license metadata is still not a per-file legal determination.
 
-## First live GitHub Actions run and follow-up
+## First live GitHub Actions runs and final acceptance
 
-- Workflow run 44745998519 passed the test and discovery steps. All 57 configured repositories were verified with zero repository errors; 4,478 SKILL.md paths were observed and 4,405 entries entered the package-planning queue.
-- The bounded plan contained nine packages, 119 files, and 664,466 bytes. Eight packages downloaded successfully in the ephemeral runner. The ninth hit a legacy Manifest conflict because the same immutable package had gained bundled upstream license/notice files since the earlier local pilot.
-- The run did not commit runner content because the ingestion step failed; all runner-local downloads were ephemeral and will be fetched again.
-- Fixed manifest merging: for the same repository/path/commit and deterministic package path, a newly hash-verified complete inventory now updates file_count and bytes. A different package path for the same immutable identity still fails closed. Two regression tests cover update and conflict behavior.
-- The fix was pushed in commit 2470b4b and triggered a second Actions run. Its result is pending.
+- Run 44745998519 passed tests and verified all 57 configured repositories with zero repository errors; 4,478 SKILL.md paths were observed and 4,405 entered the source queue. Its first bounded ingest exposed a legacy Manifest inventory mismatch after eight ephemeral downloads.
+- Fixed manifest merging so a complete revalidated package at the same immutable repository/path/commit and deterministic package path can refresh file count and bytes, while conflicting package paths still fail closed.
+- Run 44746633434 downloaded nine packages (119 files; 664,466 bytes), completed scanning and public catalog generation, then failed only because the commit step tried to stage registry/skills.json and registry/skills.csv, both intentionally ignored local-only files.
+- Removed the two ignored paths from the workflow staging list.
+- Run 44747234619 completed successfully. All 57 repositories refreshed, all 4,405 source records were commit-pinned, nine packages were mirrored with attribution and license evidence, and the generated source index/public catalog were committed automatically.
+- The workflow commit is 83c103114540687c5ebb76d90318d623b12b65c2. The local working copy was fast-forward synchronized to this commit.
 
 ## Acceptance
 
-Local implementation and regression acceptance passed: 57 tests. Discovery automation has passed once end-to-end on GitHub Actions. Full ingestion, static scan, public mirroring, and automatic metadata commit remain pending the second Actions run.
+Acceptance passed: 57 project tests; 57/57 source repositories refreshed with zero errors; 4,405 commit-pinned source records; nine attributed public packages; 119 mirrored files; automatic GitHub commit; local working copy synchronized. No downloaded code was installed or executed.

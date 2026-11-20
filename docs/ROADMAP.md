@@ -33,11 +33,16 @@
 | مراجع متمایز | ۵۶ |
 | Canonical GitHub repositories در Snapshot تاریخی | ۵۵ |
 | Targetهای Refresh فعلی | ۵۷ (۵۵ تاریخی + ۲ منبع جدید) |
-| مسیرهای تاریخی مشاهده‌شده SKILL.md | ۴٬۲۱۴ |
-| Source Catalog | ۴٬۲۷۷ رکورد (۴٬۲۱۴ مسیر تاریخی + ۶۳ نسخه دانلودشده) |
-| بسته‌های دریافت‌شده محلی | ۶۳ |
-| فایل‌های Manifest دریافت | ۶۴۰ |
-| حجم ثبت‌شده | ۱۳٬۵۸۳٬۸۸۹ بایت |
+| مسیرهای مشاهده‌شده SKILL.md | ۴٬۴۷۸ |
+| مسیرهای معتبر وارد Source Catalog | ۴٬۴۰۵ |
+| Source Catalog | ۴٬۴۰۵ رکورد، همگی Commit-pinned |
+| Public Catalog | ۹ بسته، ۱۱۹ فایل، ۶۶۴٬۴۶۶ بایت |
+| بسته‌های Pilot محلی | ۶۳ |
+| رکوردهای Manifest دانلود | ۷۱ |
+| فایل‌های Pilot محلی | ۶۴۰ |
+| کل فایل‌های Manifest | ۷۵۷ |
+| حجم Pilot محلی | ۱۳٬۵۸۳٬۸۸۹ بایت |
+| حجم Manifest | ۱۴٬۲۲۹٬۸۸۳ بایت |
 | طبقه‌بندی Registry | ۵۹ Skill candidate + ۴ test fixture |
 | بسته‌های نیازمند بررسی دستی | ۱۰؛ شامل ۹ candidate و ۱ fixture |
 | High-confidence static signals | ۲؛ بررسی دستی باز |
@@ -91,7 +96,7 @@
 
 ### فاز 4 — Source Discovery و Repository Expansion
 
-**وضعیت:** GitHub Actions هر ۵۷ مخزن را با صفر خطای Repository تأیید کرد، ۴٬۴۷۸ مسیر مشاهده و ۴٬۴۰۵ رکورد Source Queue تولید کرد. اجرای دوم ۹ بسته واجد شرایط (۱۱۹ فایل، ۶۶۴٬۴۶۶ بایت) را دانلود و در Runner به Public Catalog افزود؛ مرحله Commit به‌دلیل تلاش برای git-add دو فایل عمداً Ignored متوقف شد. آن دو فایل از فهرست Commit Workflow حذف شده‌اند؛ اجرای بعدی باید Source Catalog و ۹ بسته را روی main پایدار کند.
+**وضعیت:** تکمیل شد. اجرای موفق GitHub Actions هر ۵۷ مخزن را با صفر خطا Refresh کرد؛ ۴٬۴۷۸ مسیر مشاهده و ۴٬۴۰۵ رکورد commit-pinned وارد Source Catalog شد. ۹ بسته واجد شرایط با ۱۱۹ فایل و ۶۶۴٬۴۶۶ بایت به Public Catalog اضافه و به main Commit شدند. Commit نهایی: 83c1031. اجرای روزانه، دستی و trigger بر اساس تغییر کد/تنظیمات فعال است.
 
 ادامه Checkpointهای مستقل: EN-675 (awesome-copilot، NVIDIA، Microsoft، Anthropic verticals)؛ FA-234 (Microsoft، skills.sh، SkillsMP، Database Vendors و منابع غیرانگلیسی)؛ SUP-750 (AWS HCLS، phuryn، NVIDIA H-Z، Adobe، Google DeepMind، Agriculture/Manufacturing/Logistics، Tencent/Japan)؛ SUP-438 (Databricks، Salesforce، NVIDIA، Microsoft SDKها، phuryn و حوزه‌های کم‌پوشش).
 
@@ -99,14 +104,14 @@
 
 ### فاز 5 — Downloader و Ingestion Pipeline
 
-**وضعیت:** Downloader به Commit/Tree/Blob pin متصل است؛ Pilot سه مخزن با ۱۷ فایل و ۶۵٬۰۹۲ بایت موفق شد. License/COPYING/NOTICEهای مرتبط از مسیرهای والد و داخل بسته نیز همراه بسته جمع‌آوری می‌شوند. Resume، Hash و Quarantine تست شده‌اند. دانلود عمومی فقط برای SPDXهای allowlist‌شده همراه License evidence انجام می‌شود؛ تمام موارد دیگر همچنان در Source Catalog حضور دارند. گزارش: docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md.
+**وضعیت:** Downloader به Commit/Tree/Blob pin متصل است؛ Pilot محلی سه مخزن با ۱۷ فایل و ۶۵٬۰۹۲ بایت و اولین Batch عمومی GitHub با ۹ بسته، ۱۱۹ فایل و ۶۶۴٬۴۶۶ بایت موفق شدند. License/COPYING/NOTICEهای مرتبط از مسیرهای والد و داخل بسته همراه بسته جمع‌آوری می‌شوند. Resume، Hash و Quarantine تست شده‌اند. تمام منابع، مستقل از مجوز، در Source Catalog حضور دارند؛ محتوای عمومی فقط با SPDX allowlist و License evidence منتشر می‌شود. گزارش: docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md.
 
 - Batch کوچک، Commit pinning، دریافت پوشه کامل Skill و فایل‌های وابسته.
 - Checkpoint، Resume، Retry، Rate-limit handling، محدودیت حجم و گزارش فایل‌های Skipped.
 - SHA-256 و Git blob SHA؛ جداسازی Quarantine از Catalog.
 - حذف Test Fixtures از مجموعه Skillهای فعال به‌صورت پیش‌فرض؛ حفظ امکان دریافت عمدی آن‌ها برای آزمون امنیتی.
 
-**وضعیت:** Pilot محلی ۶۳ بسته انجام شده؛ Dry-run جدید روی مک در اتصال به `api.github.com` با خطای TLS (`LibreSSL SSL_ERROR_SYSCALL`) متوقف شد و هیچ دانلودی در آن تلاش انجام نشد.
+**وضعیت:** Pilot محلی ۶۳ بسته انجام شده است. اتصال مستقیم مک به api.github.com در یک تلاش با TLS EOF مواجه شد؛ GitHub Actions بدون وابستگی به مک هر ۵۷ مخزن را Refresh کرد و Batch عمومی را با موفقیت دریافت و منتشر کرد.
 
 **معیار پذیرش:** حداقل سه Repository آزمایشی با Hash، ساختار کامل، Resume و طبقه‌بندی Skill/Fixture صحیح.
 
@@ -122,7 +127,7 @@
 
 ### فاز 7 — Attribution و GitHub Actions Automation
 
-**وضعیت:** تست‌ها و Discovery موفق‌اند؛ ۵۷/۵۷ مخزن و ۴٬۴۷۸ مسیر تأیید شده‌اند. پس از اصلاح Manifest، اجرای دوم ۹ بسته (۱۱۹ فایل، ۶۶۴٬۴۶۶ بایت) را دریافت و ۹ بسته را در Public Catalog Runner ساخت. Commit نهایی به‌دلیل git-add فایل‌های skills.json و skills.csv که عمداً در .gitignore هستند شکست خورد. Workflow اصلاح شد تا این فایل‌های local-only را Commit نکند. اجرای بعدی برای تأیید Commit نهایی لازم است.
+**وضعیت:** تکمیل و تأیید عملیاتی شد. ۵۷/۵۷ مخزن، ۴٬۴۷۸ مسیر، ۴٬۴۰۵ رکورد pinned، ۹ بسته Public Mirror، ۵۷ تست موفق و Commit خودکار 83c1031. فایل‌های local-only از Commit عمومی مستثنا باقی ماندند.
 
 - تمام مسیرهای تاریخی و نسخه‌های دانلودشده در Source Catalog با منبع، مسیر، مالک مخزن، مجوز، وضعیت Pin و وضعیت محتوا ثبت می‌شوند.
 - original_author فقط در صورت وجود شواهد ثبت می‌شود؛ repository_owner به‌عنوان نویسنده فردی فرض نمی‌شود.
@@ -132,7 +137,7 @@
 - Workflow روزانه تمام ۵۷ مخزن را Refresh می‌کند، Batch محدود دریافت می‌کند، Registry را به‌روزرسانی می‌کند و تغییرات را به main Commit/Push می‌کند. روشن بودن مک لازم نیست.
 - Runnerهای Actions موقت‌اند؛ فقط Source Catalog و Public Catalog در Git باقی می‌مانند. ذخیره‌سازی خصوصی دائمی خارج از دامنه این Workflow است.
 
-**معیار پذیرش:** اجرای مجدد Actions با Refresh موفق، حفظ رکوردهای تاریخی، افزودن بسته‌های واجد شرایط یا ثبت شفاف صفر مورد واجد شرایط، و Commit خودکار به main.
+**معیار پذیرش:** PASS — اجرای واقعی Actions، Refresh کامل، حفظ منابع مستقل، ۹ بسته دارای Attribution و Commit خودکار به main.
 
 
 ### فاز 8 — Registry و Search
