@@ -233,6 +233,11 @@ def main():
     v.add_argument("--trees", action="store_true")
     v.add_argument("--delay", type=float, default=0.5)
     v.set_defaults(func=cmd_verify)
+    r = sub.add_parser("reconcile", help="Build source crosswalks from local snapshot and registry")
+    def cmd_reconcile(args):
+        from reconcile import run
+        print(json.dumps(run(), indent=2))
+    r.set_defaults(func=cmd_reconcile)
     args = p.parse_args()
     args.func(args)
 

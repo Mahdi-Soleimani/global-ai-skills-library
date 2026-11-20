@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_updated_at": "2026-11-19",
+  "source_manifest_count": 4,
+  "source_repository_mentions": 87,
+  "distinct_source_references": 56,
+  "canonical_repositories": 55,
+  "redirected_source_mentions": 1,
+  "unverified_source_mentions": 0,
+  "observed_skill_paths": 4214,
+  "explicit_test_fixture_paths": 6,
+  "commit_recorded_paths": 234,
+  "tree_ref_only_paths": 1513,
+  "branch_only_paths": 2467,
+  "truncated_tree_repositories": 0,
+  "downloaded_registry_records": 60,
+  "registry_records_not_in_path_snapshot": 0,
+  "registry_records_same_recorded_commit": 1,
+  "registry_records_different_recorded_commit": 0,
+  "registry_records_path_match_only": 59,
+  "duplicate_candidate_groups": 0,
+  "source_skill_record_matches": 0,
+  "source_records_modified": false,
+  "input_sha256": {
+    "research/AUX-FA-438/source-manifest.json": "7359d37b52d4a85cd20d5645df4ba8896af0e5b5385818a0d2075843ee95e5d0",
+    "research/AUX-FA-750PLUS/source-manifest.json": "cf8161cde717bb92a46b67f12e178dbdf97b0f5b4180aa8737967ea4566b3ad9",
+    "research/EN-675/source-manifest.json": "ceaa65e3b083a087bd96e1a25c27c9ef58725d85eee1b18850cac434a5f62043",
+    "research/FA-234/source-manifest.json": "c3980bcf77b74593e6b97cb3aacca99111766d4aed88d62db116986cfc5df899",
+    "registry/source-verification.json": "d29c7ec2aeb5812e3b5ffb91f08dc5631ef1333736e1443ffe5f74b3af1c5761",
+    "registry/skills.json": "364624a61adc34ed3a9b859781a8db44ab133f50dcff47ebb7f27f929bbe522e"
+  },
+  "limitations": [
+    "Historical snapshot, not a fresh crawl.",
+    "Publisher account is not proof of official authorship.",
+    "Paths are not globally unique skills. Tree refs are reported as stored, not independently typed.",
+    "Missing original row-level datasets prevent exact source-skill joins.",
+    "Duplicate assertions limited to the downloaded registry and SKILL.md hashes; no records removed."
+  ]
+}

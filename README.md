@@ -10,7 +10,7 @@ A local-first, provenance-aware library for discovering, collecting, validating,
 - Local collection pilot: 60 packages, 623 files, 13,518,797 bytes across four repositories. The registry classifies these as 56 Skill candidates and four evaluation fixtures.
 - Security status: 10 packages require manual review (nine Skill candidates and one fixture); two high-confidence static signals remain in the review ledger.
 - No downloaded third-party code has been executed. No Skill is approved or installed.
-- Project tests: `python3 -m pytest -q` — 14 passed.
+- Project tests: `python3 -m pytest -q` — 22 passed.
 
 Counts from research reports are reported claims, not verified global-unique Skill totals. Repository `SKILL.md` path counts are not unique-skill counts.
 
@@ -33,6 +33,7 @@ python3 tools/gasl.py verify --limit 3 --trees
 python3 tools/collector.py download --repo openai/codex-security  # dry-run by default
 python3 tools/static_scan.py
 python3 tools/build_registry.py
+python3 tools/gasl.py reconcile  # requires local verification and skill registry snapshots
 ```
 
 Python 3.9+; standard library only. Docker is not required. Collection needs network access to the GitHub API and raw file endpoints. The downloader is dry-run by default; `--execute` is required to download. Evaluation fixtures under `evals/.../fixtures/` are excluded unless `--include-test-fixtures` is supplied.
@@ -42,7 +43,7 @@ Python 3.9+; standard library only. Docker is not required. Collection needs net
 - `config/`: source and safety policy metadata. Account-scoped file IDs are kept only in the local ignored `private/` directory.
 - `datasets/`: independent dataset status and recovery rules.
 - `research/`: four independent source manifests.
-- `reconciliation/`: repository cross-reference only; no source-record merge.
+- `reconciliation/`: repository crosswalk and historical path/registry reconciliation; no source-record merge. Detailed third-party path and duplicate evidence is local-only.
 - `registry/download-manifest.json`: pinned local collection provenance; no third-party Skill contents.
 - `tools/`: source verifier, collector, static scanner, registry builder, and CLI.
 - `tests/`: project regression tests.
