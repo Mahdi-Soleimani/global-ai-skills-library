@@ -51,7 +51,7 @@ Regression tests also prove `prepare_private_bundle` refuses to create a new pri
 - Python `compileall` and `git diff --check` passed.
 - No model turn, third-party script, generated server, actual Agent profile, dynamic Skill execution, authentication or actual installation was touched.
 - [GitHub Actions — Private Skill ZIP preparation safety, run `45076369975`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45076369975): **SUCCESS**, including both new end-to-end packaging-block regressions on Linux.
-- [GitHub Actions — Daily source catalog refresh, run `45076369944`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45076369944): the full regression-test step passed; the full metadata refresh workflow was still running when this report was updated. Do not label its overall result as success before completion.
+- [GitHub Actions — Daily source catalog refresh, run `45076369944`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45076369944): **SUCCESS**. The full regression suite passed and the metadata-only bot refresh committed `694fd30`; this commit was merged safely with the Phase-34 report update before publishing, with no force-push.
 
 ## 6. Modified files and decisions
 
