@@ -1,4 +1,4 @@
-name: GASL — Daily source catalog and skill mirror
+name: GASL — Daily source catalog refresh
 
 on:
   schedule:
@@ -12,6 +12,7 @@ on:
       - tools/**
       - config/discovery-targets.json
       - config/policy.json
+      - config/taxonomy.json
   workflow_dispatch:
 
 permissions:
@@ -32,8 +33,13 @@ jobs:
       - name: Checkout default branch
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
       - name: Install test dependencies
-        run: python3 -m pip install --disable-pip-version-check pytest==8.4.2
+        run: python3 -m pip install --disable-pip-version-check -r requirements-dev.txt -r requirements-mcp.txt
 
       - name: Run regression tests
         run: python3 -m pytest -q
@@ -44,45 +50,51 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 tools/discover.py --limit 100 --refresh --retry-errors
 
-      - name: Download a bounded batch with redistributable license evidence
-        id: ingest
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python3 tools/queue_ingest.py --all-queued-repos --per-repo 2 --max-files 120 --max-batch-bytes 52428800 --public-redistributable-only --execute
+      # This runner maintains references, not a temporary or durable Skill archive.
+      # The user's local GASL retrieves selected packages directly from upstream.
+      - name: Refresh public source catalog (all license classes)
+        run: python3 tools/build_source_catalog.py --public-only
 
-      - name: Scan downloaded packages and rebuild metadata registry
+      - name: Incrementally extract verified public search vocabulary
+        run: python3 tools/search_features.py --limit 200 --workers 4
+
+      - name: Build evidence-only assessments
+        run: python3 tools/skill_evaluation.py
+
+      - name: Build and smoke-test local search and routing indexes
         run: |
-          python3 tools/static_scan.py
-          python3 tools/build_registry.py
-
-      - name: Add eligible packages to the public GitHub library
-        run: python3 tools/build_public_catalog.py
-
-      - name: Refresh complete source catalog with download and mirror status
-        run: python3 tools/build_source_catalog.py
+          python3 tools/skill_search.py --check
+          python3 tools/gasl.py search --query "security audit" --limit 3 --json > /tmp/gasl-search-smoke.json
+          python3 tools/gasl.py route --task "security audit" --top-k 3 --json > /tmp/gasl-route-smoke.json
+          python3 - <<'PY'
+          import json
+          with open("/tmp/gasl-search-smoke.json", encoding="utf-8") as stream:
+              search = json.load(stream)
+          with open("/tmp/gasl-route-smoke.json", encoding="utf-8") as stream:
+              route = json.load(stream)
+          assert search["count"] > 0
+          assert route["returned_count"] > 0
+          assert route["execution_performed"] is False
+          assert route["installation_performed"] is False
+          print("Search and route smoke tests passed.")
+          PY
 
       - name: Validate generated changes
         run: git diff --check
 
-      - name: Commit updated source index and public packages
+      - name: Commit updated source metadata only
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add config/discovery-targets.json
-          git add config/policy.json
           git add registry/download-queue.json
-          git add registry/download-manifest.json
           git add registry/discovery-state.json
           git add registry/source-catalog.json
           git add registry/source-catalog.csv
           git add registry/source-catalog-summary.json
-          git add registry/public-catalog-summary.json
-          git add registry/skills-summary.json
-          git add registry/content-duplicates.csv
-          git add registry/name-collisions.csv
+          git add registry/search-features.json
+          git add registry/skill-evaluations.json
           git add reconciliation/discovery-summary.json
-          git add public-catalog/
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh attributed skill catalog"
             git push origin HEAD:main
