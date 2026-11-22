@@ -35,6 +35,8 @@ jobs:
             bash "$RUNNER_TEMP/gasl-cursor-official-installer.sh" \
             > "$RUNNER_TEMP/gasl-cursor-install-output.txt" 2>&1
           candidate="$RUNNER_TEMP/gasl-cursor-home/.local/bin/agent"
+          test -e "$candidate"
+          candidate="$(realpath "$candidate")"
           test -f "$candidate" && test -x "$candidate"
           echo "GASL_EPHEMERAL_CURSOR_BIN=$candidate" >> "$GITHUB_ENV"
       - name: Verify actual Cursor ACP handshake without account/session/prompt
@@ -68,23 +70,20 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
-      - name: Set up Node.js in ephemeral runner
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install exact Claude Code npm version in runner temp, disable lifecycle scripts
-        env:
-          NPM_CONFIG_AUDIT: 'false'
-          NPM_CONFIG_FUND: 'false'
+      - name: Install exact official Claude Code native version under temporary HOME
         run: |
           set -euo pipefail
-          npm install --prefix "$RUNNER_TEMP/gasl-claude-code" \
-            --ignore-scripts --no-audit --no-fund --no-save --package-lock=false \
-            '@anthropic-ai/claude-code@2.1.330'
-          candidate="$RUNNER_TEMP/gasl-claude-code/node_modules/.bin/claude"
+          mkdir -p "$RUNNER_TEMP/gasl-claude-home"
+          curl --fail --silent --show-error --location --retry 2 --max-time 60 \
+            https://claude.ai/install.sh -o "$RUNNER_TEMP/gasl-claude-official-installer.sh"
+          bash -n "$RUNNER_TEMP/gasl-claude-official-installer.sh"
+          HOME="$RUNNER_TEMP/gasl-claude-home" \
+            bash "$RUNNER_TEMP/gasl-claude-official-installer.sh" 2.1.330 \
+            > "$RUNNER_TEMP/gasl-claude-install-output.txt" 2>&1
+          candidate="$RUNNER_TEMP/gasl-claude-home/.local/bin/claude"
           test -e "$candidate"
           candidate="$(realpath "$candidate")"
-          test -f "$candidate"
+          test -f "$candidate" && test -x "$candidate"
           echo "GASL_EPHEMERAL_CLAUDE_BIN=$candidate" >> "$GITHUB_ENV"
       - name: Verify actual Claude CLI without account or model turn
         run: |
