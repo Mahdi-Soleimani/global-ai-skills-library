@@ -165,6 +165,20 @@ For an already downloaded, exact-pinned Skill, GASL can create a **private ZIP**
 
 The ZIP and a separate audit JSON live **only** in ignored `private/install-bundles/`. GASL rechecks the downloaded file manifest, `SKILL.md` Git Blob, individual SHA-256 values and static-scan status, then verifies the ZIP itself. The output records missing historical non-main Git Blob evidence and unknown licenses rather than claiming that all upstream files have been fully verified. Unsafe, flagged, missing, symlinked, additional or changed files stop packaging. Existing bundles are not silently overwritten. Only the code and synthetic tests are published; **the actual ZIP and third-party source files are not pushed to GitHub**. **Bundle creation is not permission to install or execute anything**, and neither Codex/Cursor/Claude Code configuration nor Claude Desktop account is accessed. For manual inspection only, not automatic importing. See [Phase 25](docs/reports/PHASE-25-PRIVATE-SKILL-BUNDLE-PREPARATION-2026-11-22.md).
 
+### Phase 26: Install and rollback a private ZIP in a disposable test profile
+
+GASL now goes beyond event-only simulation: it can **physically extract** the Phase-25 verified ZIP into a newly created, temporary Codex, Cursor or Claude Code **fixture profile**, checkpoint a replace/upgrade, then restore the exact prior version. No actual Agent application is started, and the real user/project Skill directories are never accessed. Use the precise `plan_id` from the previously created private ZIP:
+
+~~~bash
+./gasl bundle-fixture --plan-id YOUR_EXACT_PLAN_ID \
+  --acknowledge-plan-id YOUR_EXACT_PLAN_ID --agent codex --scope project \
+  --scenario upgrade --stop-after activated
+~~~
+
+`--scenario` supports `fresh`, `upgrade` and `conflict`; `--stop-after` supports `staged`, `backed_up` and `activated`. The trial uses the actual private ZIP bytes, but creates a unique `gasl-host-fixture-*` profile, validates every ZIP file, stages it under that profile, atomically renames a prior **fixture-only** version into a backup, and verifies rollback. A modification to either the active files, backup or even a newly added empty directory blocks automatic removal. CLI exit artifacts contain no third-party Skill text. The private ZIP, detailed local cache and user Agent directories remain untouched.
+
+**This is not a real user-profile installer.** It neither runs a Skill nor enables automatic import or execution. The verified Codex discovery test and Cursor/Claude CLI readiness do not lift any of these restrictions. See [Phase 26](docs/reports/PHASE-26-PRIVATE-BUNDLE-FIXTURE-INSTALL-ROLLBACK-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

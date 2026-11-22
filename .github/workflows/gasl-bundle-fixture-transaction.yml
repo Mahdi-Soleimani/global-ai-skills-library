@@ -1,0 +1,42 @@
+name: GASL — Private ZIP Host fixture transaction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-bundle-fixture-transaction.yml
+      - tools/fixture_bundle_install.py
+      - tools/install_bundle.py
+      - tools/host_adapters.py
+      - tests/test_fixture_bundle_install.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zip-transaction:
+    name: Actual fixture file replacement and rollback, no live Agent profile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout published code without persisted credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Compile archive validation and fixture transaction modules
+        run: python3 -m compileall -q tools/fixture_bundle_install.py tests/test_fixture_bundle_install.py
+
+      - name: Test real filesystem operations with exclusively synthetic private ZIPs
+        run: python3 -m unittest tests.test_fixture_bundle_install -v
+
+      - name: Ensure no user/private package contents appeared in repository
+        run: |
+          set -euo pipefail
+          test ! -e private/install-bundles
+          test ! -e catalog
+          test ! -e private/install-simulation
+          echo 'SYNTHETIC_TEMP_PROFILE_ONLY=PASS'
+          echo 'REAL_USER_HOST_MODIFICATION=FALSE'
+          echo 'THIRD_PARTY_SKILL_EXECUTION=FALSE'

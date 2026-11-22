@@ -374,6 +374,14 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_bundle_fixture(args):
+    from fixture_bundle_install import rehearse_private_bundle
+    result = rehearse_private_bundle(args.plan_id, args.agent, args.scope,
+        args.acknowledge_plan_id, bundle_root=ROOT,
+        scenario=args.scenario, stop_after=args.stop_after)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_install_bundle(args):
     from install_bundle import prepare_private_bundle, verify_private_bundle
     if args.verify_plan_id:
@@ -583,6 +591,18 @@ def main():
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
+
+    bundle_fixture = sub.add_parser('bundle-fixture',
+        help='Materialize a PRIVATE ZIP in a temporary isolated Host profile, then restore; never touch user Agents')
+    bundle_fixture.add_argument('--plan-id', required=True)
+    bundle_fixture.add_argument('--acknowledge-plan-id', required=True,
+        help='Explicit acknowledgment for TEMPORARY PROFILE only; not actual Host install permission')
+    bundle_fixture.add_argument('--agent', required=True, choices=('codex','cursor','claude-code'))
+    bundle_fixture.add_argument('--scope', default='project', choices=('project','user'))
+    bundle_fixture.add_argument('--scenario', default='fresh', choices=('fresh','upgrade','conflict'))
+    bundle_fixture.add_argument('--stop-after', default='activated',
+        choices=('staged','backed_up','activated'))
+    bundle_fixture.set_defaults(func=cmd_bundle_fixture)
 
     install_bundle = sub.add_parser('install-bundle', help='Private reviewed ZIP handoff ONLY; no Skill installation or execution')
     install_bundle.add_argument('--id', help='Pinned Source Record ID to bundle')
