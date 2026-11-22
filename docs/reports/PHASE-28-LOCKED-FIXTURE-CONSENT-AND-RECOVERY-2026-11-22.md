@@ -57,7 +57,7 @@ The complete Mac test suite passed **384 tests and 179 subtests**, Python byte-c
 
 New `.github/workflows/gasl-locked-fixture-transaction.yml` uses `ubuntu-24.04`, minimal `contents: read` permission, checkout with no persisted Git credentials, Python compilation, and only **GASL-authored synthetic pinned ZIP fixtures**. It tests cooperative multi-process locking and independent recovery on Linux. Its final step refuses private ZIPs, personal catalogs, or simulated installation ledgers inside the public checkout.
 
-At initial publication, the Linux workflow's result is **not inferred** from the successful Mac tests. The workflow run must be inspected after pushing, and its outcome appended to this report.
+The actual [Ubuntu GitHub Actions run `45066415189`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45066415189) **completed SUCCESS**. The dedicated job compiled the transaction implementation, ran the synthetic pinned ZIP suite, checked an independent-process lock conflict and recovery, and verified that the Checkout had no private ZIP or catalog contents. This is observed Linux integration evidence, independent of the Mac's local test results.
 
 ## 5. Next gates before production Host installation
 
@@ -67,3 +67,12 @@ At initial publication, the Linux workflow's result is **not inferred** from the
 4. Validate Windows and actual per-user Host layouts/permissions, including change conflicts and recovery from real process crashes. Do not assume successful simulated checkpoints establish power-cut safety.
 
 **Phase 28 locally accepted for fixture-only state-bound, serialized ZIP transaction and cross-process rollback. Production installation is still disabled.**
+
+## 6. Observed publication and sensitive-data verification
+
+- **Public implementation commit:** [`524f4cb`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/524f4cbc1830717f409dc37898fd70a3f6e428b0). The Mac-created source commit was `dd28fc2`; temporary GitHub HTTPS unavailability prevented direct `git push` from the Mac.
+- The seven exact public files were separately reviewed for private keys, API tokens, personal paths, email/telephone values, and embedded credentials (**0 findings**). All existing private `private/install-bundles/` artifacts remain Git-ignored.
+- To publish without rewriting history, the exact seven files were submitted as **Git blobs** through the connected GitHub integration, and every published blob SHA **matched its locally audited Git SHA**. The resulting tree SHA was `342ad1993adb8eb2bf2d58dd65ae3a1b95708617`, **identical** to the tested Mac commit tree. The new GitHub commit used the exact existing parent `80ef9c5`; branch movement was `force=false`, checked against that expected parent SHA, and succeeded. No original downloaded Skill contents were transmitted.
+- The separate source-refresh workflow may create an automated metadata commit; its result is not implicitly counted as Phase 28's dedicated transaction CI. Synchronizing the Mac's locally authored commit with the equivalent GitHub commit must be handled without destructive reset or force push once Mac GitHub connectivity is restored. The two content trees match, but **their different commit object IDs do not mean the Mac branch is currently Git-synchronized**.
+
+**Verified outcome:** Phase 28's full local regression suite and real ephemeral Linux fixture CI both PASS; real Agent profiles remain unchanged, no third-party Skill was executed, and any future production installer requires separate explicit human authorization plus genuine durability tests.
