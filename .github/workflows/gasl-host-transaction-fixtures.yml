@@ -1,0 +1,58 @@
+name: GASL — Inert Host transaction recovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-host-transaction-fixtures.yml
+      - tools/host_adapters.py
+      - tools/host_probe.py
+      - tools/host_transaction_fixture.py
+      - tests/test_host_adapters.py
+      - tests/test_host_transaction_fixture.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inert-host-fixtures:
+    name: Run inert interruption / rollback fixtures on Linux
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout published code without retaining Git credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Compile exact host fixture modules
+        run: python3 -m compileall -q tools/host_adapters.py tools/host_probe.py tools/host_transaction_fixture.py tests/test_host_adapters.py tests/test_host_transaction_fixture.py
+
+      - name: Execute only GASL-authored inert fixture unit tests
+        run: python3 -m unittest tests.test_host_adapters tests.test_host_transaction_fixture -v
+
+      - name: Check one full interruption and safe recovery using inert fixture
+        run: |
+          python3 tools/gasl.py host-transaction-rehearsal \
+            --agent cursor --scope project --kind upgrade \
+            --interrupt-after new_activated > "$RUNNER_TEMP/gasl-phase22-inert.json"
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gasl-phase22-inert.json').read_text())
+          assert result['status'] == 'inert_fixture_recovery_verified'
+          assert result['recovered_original_version'] is True
+          assert result['user_note_preserved'] is True
+          assert result['real_host_files_modified'] is False
+          assert result['real_skill_installed'] is False
+          assert result['third_party_code_executed'] is False
+          assert result['production_install_enabled'] is False
+          print('GASL_OWNED_INERT_FIXTURE_ONLY=PASS')
+          PY

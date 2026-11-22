@@ -332,6 +332,19 @@ def cmd_get(args):
                                    fetch_remote=not args.offline), ensure_ascii=False, indent=2))
 
 
+def cmd_host_probe(args):
+    from host_probe import probe_hosts
+    print(json.dumps(probe_hosts(), ensure_ascii=False, indent=2))
+
+
+def cmd_host_transaction(args):
+    from host_transaction_fixture import rehearse_interrupted_transaction
+    result = rehearse_interrupted_transaction(args.agent, args.scope,
+                                             upgrade=(args.kind == 'upgrade'),
+                                             stop_after=args.interrupt_after)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_host_adapters(args):
     from host_adapters import list_host_adapters
     print(json.dumps(list_host_adapters(), ensure_ascii=False, indent=2))
@@ -523,6 +536,17 @@ def main():
     get.add_argument("--max-chars", type=int, default=20000)
     get.add_argument("--offline", action="store_true")
     get.set_defaults(func=cmd_get)
+    host_probe = sub.add_parser('host-probe', help='Read-only CLI presence probe; never launches real Hosts')
+    host_probe.set_defaults(func=cmd_host_probe)
+    host_transaction = sub.add_parser('host-transaction-rehearsal',
+        help='Inert fixture crash-recovery test; never installs a real Skill')
+    host_transaction.add_argument('--agent', required=True, choices=('codex', 'cursor', 'claude-code'))
+    host_transaction.add_argument('--scope', choices=('project', 'user'), default='project')
+    host_transaction.add_argument('--kind', choices=('fresh', 'upgrade'), default='upgrade')
+    host_transaction.add_argument('--interrupt-after', choices=('prepared', 'old_backed_up', 'new_activated'),
+                                  default='new_activated')
+    host_transaction.set_defaults(func=cmd_host_transaction)
+
     host_adapters = sub.add_parser('host-adapters', help='Show documented Skill host layout matrix; no real host probing')
     host_adapters.set_defaults(func=cmd_host_adapters)
     host_rehearsal = sub.add_parser('host-rehearsal', help='Inert fixture-only adapter install/rollback test; no actual Agent files')

@@ -110,6 +110,25 @@ Documented local directory conventions: Codex `.agents/skills/`, Cursor `.cursor
 
 The rehearsal creates its own short-lived, clearly marked `gasl-host-fixture-*` directory in the OS temporary folder and writes **only GASL-authored inert fixture bytes**. It tests a fresh Skill, a backed-up fixture upgrade and restoration, existing-file conflict protection, and symlink refusal, then deletes the temporary fixture. No user Home, project files, Agent configuration, real Skill code, network endpoint or account is touched. The output is a **fixture-only validation**, not permission to install, enable or execute any real downloaded Skill. See [Phase 21](docs/reports/PHASE-21-HOST-ADAPTER-FIXTURE-REHEARSAL-2026-11-22.md).
 
+### Phase 22: Host capability check and interrupted transaction recovery (fixture only)
+
+Discover which Host CLI programs are visible, **without launching them, reading their user profiles or exposing executable paths**:
+
+~~~bash
+./gasl host-probe
+~~~
+
+An available binary is **not** evidence that it recognizes a Skill. On the development Mac, none of `codex`, `cursor` or `claude` was visible on `PATH` during this phase; real Host discovery remains unverified. For Claude Desktop and generic MCP there is no universal CLI-based local Skill install probe.
+
+Safely rehearse an interrupted *fixture-only* Skill upgrade, with an independent backup, an inert file, recovery and verification:
+
+~~~bash
+./gasl host-transaction-rehearsal --agent cursor --scope project \
+  --kind upgrade --interrupt-after new_activated
+~~~
+
+Accepted agents: `codex`, `cursor`, `claude-code`; scopes: `project`, `user`; `--kind`: `fresh` or `upgrade`; interruption checkpoints: `prepared`, `old_backed_up`, `new_activated`. The tool uses **only its own temporary GASL-owned inert directories**, never reads or modifies the user's actual Agent configuration or downloads/executes a Skill. It refuses to overwrite a modified post-upgrade file or damaged backup. Tests emulate interruption boundaries; they are **not** a power-failure guarantee. A dedicated lightweight GitHub Actions workflow verifies the same behavior on an ephemeral Linux runner. See [Phase 22](docs/reports/PHASE-22-HOST-PROBE-AND-INERT-TRANSACTION-RECOVERY-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
