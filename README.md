@@ -129,6 +129,17 @@ Safely rehearse an interrupted *fixture-only* Skill upgrade, with an independent
 
 Accepted agents: `codex`, `cursor`, `claude-code`; scopes: `project`, `user`; `--kind`: `fresh` or `upgrade`; interruption checkpoints: `prepared`, `old_backed_up`, `new_activated`. The tool uses **only its own temporary GASL-owned inert directories**, never reads or modifies the user's actual Agent configuration or downloads/executes a Skill. It refuses to overwrite a modified post-upgrade file or damaged backup. Tests emulate interruption boundaries; they are **not** a power-failure guarantee. A dedicated lightweight GitHub Actions workflow verifies the same behavior on an ephemeral Linux runner. See [Phase 22](docs/reports/PHASE-22-HOST-PROBE-AND-INERT-TRANSACTION-RECOVERY-2026-11-22.md).
 
+### Phase 23: Real Codex discovery through an isolated App Server
+
+Codex [officially supports the `skills/list` App Server JSON-RPC method](https://learn.chatgpt.com/docs/app-server) to list discovered Skills. GASL now tests that capability against a **real, version-pinned Codex CLI**, installed **only in the temporary directory of an ephemeral Ubuntu GitHub Actions runner**. The test starts Codex App Server with a freshly created, empty `HOME`, `CODEX_HOME` and XDG configuration directory, sends only `initialize` and `skills/list`, and requires the exact path and enabled state of one inert `gasl-discovery-probe/SKILL.md`. It does not start a thread, send a prompt, require authentication, run any Skill code, or install anything in the developer's actual Host profile.
+
+~~~bash
+# For disposable CI/test profiles only, never your normal user-agent profile:
+python3 tools/codex_discovery_probe.py --codex-bin /ABSOLUTE/PATH/TO/CODEX/CLI
+~~~
+
+The script rejects unknown or ambiguous Skill paths and incomplete protocol responses, removes temporary files, and prints a **sanitized JSON result** with no executable locations, user directories or tokens. Real Codex discovery applies **only to the tested inert fixture in that runner**; it is not blanket Agent compatibility or authorization to install GASL packages. Cursor and Claude Code remain documented fixture adapters, with real Host discovery still unverified. See [Phase 23](docs/reports/PHASE-23-REAL-CODEX-DISCOVERY-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

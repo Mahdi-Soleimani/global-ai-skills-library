@@ -1,0 +1,69 @@
+name: GASL — Real Codex Skill discovery in disposable profile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-codex-real-discovery.yml
+      - tools/codex_discovery_probe.py
+      - tests/test_codex_discovery_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-codex-discovery:
+    name: Ask real Codex app-server to discover one inert GASL Skill
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout only published source without persisting credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Set up disposable Node toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test JSON-RPC probe and rejection paths without a Host
+        run: python3 -m unittest tests.test_codex_discovery_probe -v
+
+      - name: Install exact Codex CLI version only under runner temp (no lifecycle scripts)
+        env:
+          NPM_CONFIG_AUDIT: 'false'
+          NPM_CONFIG_FUND: 'false'
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/gasl-codex-cli" \
+            --ignore-scripts --no-audit --no-fund --no-save --package-lock=false \
+            '@openai/codex@0.162.1'
+          codex_bin="$RUNNER_TEMP/gasl-codex-cli/node_modules/@openai/codex/bin/codex.js"
+          test -f "$codex_bin"
+          chmod +x "$codex_bin"
+          echo "GASL_EPHEMERAL_CODEX_BIN=$codex_bin" >> "$GITHUB_ENV"
+
+      - name: Query real Codex skills/list without an account or model turn
+        run: |
+          set -euo pipefail
+          python3 tools/codex_discovery_probe.py \
+            --codex-bin "$GASL_EPHEMERAL_CODEX_BIN" \
+            --output "$RUNNER_TEMP/gasl-codex-discovery-result.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gasl-codex-discovery-result.json').read_text())
+          assert result['status'] == 'verified_isolated_codex_discovery'
+          assert result['isolated_skill_discovery_verified'] is True
+          for key in ('authenticated_user_profile_accessed', 'model_turn_started',
+                      'third_party_skill_executed', 'real_host_files_modified',
+                      'production_installation_enabled'):
+              assert result[key] is False
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as stream:
+              stream.write('## Real Codex Skill discovery (ephemeral only)\n\n')
+              stream.write('**PASS:** Codex CLI 0.162.1 app-server listed the exact inert GASL Skill.\n\n')
+              stream.write('No account credentials, model turn, real Skill installation, or user Host profile were used.\n')
+          print('REAL_CODEX_INERT_SKILL_DISCOVERY=PASS')
+          PY
