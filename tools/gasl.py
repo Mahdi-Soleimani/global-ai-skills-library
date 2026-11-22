@@ -374,6 +374,16 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_locked_bundle_fixture(args):
+    from fixture_transaction_v2 import rehearse_locked_transaction
+    if args.acknowledge_fixture_only != 'GASL_DISPOSABLE_FIXTURE_ONLY':
+        raise SystemExit('Explicit GASL_DISPOSABLE_FIXTURE_ONLY acknowledgement is required')
+    result = rehearse_locked_transaction(args.plan_id, args.agent, args.scope,
+        args.acknowledge_plan_id, bundle_root=ROOT, action=args.action,
+        checkpoint=args.checkpoint)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_target_preflight(args):
     from host_target_preflight import inspect_selected_target, verify_target_unchanged
     if args.expect_state_binding_id:
@@ -602,6 +612,19 @@ def main():
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
+
+    locked_fixture = sub.add_parser('locked-bundle-fixture',
+        help='Test-only exact ZIP+target challenge, POSIX process lock and crash recovery in fresh temp profile')
+    locked_fixture.add_argument('--plan-id', required=True)
+    locked_fixture.add_argument('--acknowledge-plan-id', required=True)
+    locked_fixture.add_argument('--agent', required=True, choices=('codex','cursor','claude-code'))
+    locked_fixture.add_argument('--scope', required=True, choices=('project','user'))
+    locked_fixture.add_argument('--action', required=True, choices=('install','replace'))
+    locked_fixture.add_argument('--checkpoint', default='activated',
+        choices=('staged','backed_up','activated'))
+    locked_fixture.add_argument('--acknowledge-fixture-only', required=True,
+        help='Type GASL_DISPOSABLE_FIXTURE_ONLY; this never authorizes a real Host install')
+    locked_fixture.set_defaults(func=cmd_locked_bundle_fixture)
 
     target_preflight = sub.add_parser('target-preflight',
         help='READ-ONLY check of an explicitly selected Host root; never install, approve or modify')

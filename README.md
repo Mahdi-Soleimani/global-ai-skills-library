@@ -198,6 +198,21 @@ The output includes `relative_target`, `prior_target_state`, source ZIP SHA-256 
 
 The dedicated [target-preflight CI](.github/workflows/gasl-target-preflight.yml) uses only synthetic ZIPs and disposable roots, **not the developer's real Agent profiles**. See [Phase 27](docs/reports/PHASE-27-READ-ONLY-TARGET-PREFLIGHT-2026-11-22.md).
 
+### Phase 28: Exact fixture-only approval, process locking and interrupted ZIP rollback
+
+GASL can rehearse a **state-bound approval challenge**, POSIX `flock`-protected transaction, fsynced staging, and independently resumed recovery on a **freshly generated disposable Host test profile**. It uses the real Phase-25 *private* ZIP bytes, but **never writes to any real Agent profile**, installs a production Skill, invokes a model, or executes Skill code.
+
+~~~bash
+./gasl locked-bundle-fixture --plan-id YOUR_EXACT_PLAN_ID \
+  --acknowledge-plan-id YOUR_EXACT_PLAN_ID --agent codex --scope project \
+  --action replace --checkpoint backed_up \
+  --acknowledge-fixture-only GASL_DISPOSABLE_FIXTURE_ONLY
+~~~
+
+`--action` is `install` (absent target) or `replace` (existing **inert fixture**); checkpoints are `staged`, `backed_up` and `activated`. The challenge binds the private ZIP SHA-256, exact Plan ID, Host, Scope, **temporary target identity**, existing-target fingerprint, and requested action. A changed target or ZIP causes rejection. A persistent lock inode and nonblocking POSIX advisory `flock` serialize cooperating fixture transactions; file and directory `fsync` barriers accompany the staged content and renames. Recovering in a **new process** after an intentional interruption rechecks both current files and versioned backup before restoring them; any conflicting edits are preserved instead of overwritten. On platforms without POSIX locking, the transaction fails closed. The only allowed writes are inside a GASL-marked temporary directory that is removed afterward.
+
+**This is a test-only workflow:** the preview's digest and the `GASL_DISPOSABLE_FIXTURE_ONLY` acknowledgment are **not real user-install permission or an authentication mechanism**, nor do they enable real Host installation. Advisory file locking does not block non-cooperating software; deliberate checkpoint tests do not prove sudden power-loss durability. See [Phase 28](docs/reports/PHASE-28-LOCKED-FIXTURE-CONSENT-AND-RECOVERY-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
