@@ -152,6 +152,19 @@ python3 tools/other_host_protocol_probe.py --host claude-code --binary /ABSOLUTE
 
 The probe creates an empty temporary `HOME` and XDG directories, strips inherited API keys and identity-related environment variables, and never opens a Session, sends a Prompt, logs in, writes to real Agent directories, or runs any Skill. **Cursor ACP initialize and Claude Code `--version` are readiness checks, not real Skill discovery.** Both real Host readiness jobs [passed in GitHub Actions run 45057489934](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45057489934), while both explicitly retained `skill_discovery_verified=false`. The [dedicated GitHub Actions workflow](.github/workflows/gasl-other-host-readiness.yml) retrieves official CLI distributions only inside ephemeral Ubuntu runners and validates the isolated responses. Neither an available binary nor a ready protocol unlocks GASL production installation. See [Phase 24](docs/reports/PHASE-24-OTHER-HOST-READINESS-2026-11-22.md).
 
+### Phase 25: Prepare a verified, private Skill ZIP for review (never install)
+
+For an already downloaded, exact-pinned Skill, GASL can create a **private ZIP** containing only its verified package inventory (including the original LICENSE/NOTICE files where available). First inspect the read-only plan, then explicitly acknowledge its SHA-256 ID to prepare a local bundle:
+
+~~~bash
+./gasl install-plan --id GASL-SRC-ce593c8b9b3fd34f44d6 --agent codex --scope project
+./gasl install-bundle --id GASL-SRC-ce593c8b9b3fd34f44d6 --agent codex \
+  --scope project --acknowledge-plan-id YOUR_EXACT_PLAN_ID
+./gasl install-bundle --verify-plan-id YOUR_EXACT_PLAN_ID
+~~~
+
+The ZIP and a separate audit JSON live **only** in ignored `private/install-bundles/`. GASL rechecks the downloaded file manifest, `SKILL.md` Git Blob, individual SHA-256 values and static-scan status, then verifies the ZIP itself. The output records missing historical non-main Git Blob evidence and unknown licenses rather than claiming that all upstream files have been fully verified. Unsafe, flagged, missing, symlinked, additional or changed files stop packaging. Existing bundles are not silently overwritten. Only the code and synthetic tests are published; **the actual ZIP and third-party source files are not pushed to GitHub**. **Bundle creation is not permission to install or execute anything**, and neither Codex/Cursor/Claude Code configuration nor Claude Desktop account is accessed. For manual inspection only, not automatic importing. See [Phase 25](docs/reports/PHASE-25-PRIVATE-SKILL-BUNDLE-PREPARATION-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

@@ -1,0 +1,38 @@
+name: GASL — Private Skill ZIP preparation safety
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-private-install-bundle.yml
+      - tools/install_bundle.py
+      - tools/install_lifecycle.py
+      - tests/test_install_bundle.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-private-bundle-regressions:
+    name: Verify ZIP creation and tamper rejection (synthetic packages only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout safe code without persisting credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Python compilation
+        run: python3 -m compileall -q tools/install_bundle.py tests/test_install_bundle.py
+
+      - name: Test only synthetic pinned packages, no user or third-party content
+        run: python3 -m unittest tests.test_install_bundle -v
+
+      - name: Assert no repository-local ZIP exports were written
+        run: |
+          set -euo pipefail
+          test ! -e private/install-bundles
+          test ! -e catalog
+          echo 'PRIVATE_BUNDLE_TESTS=PASS; THIRD_PARTY_CONTENT_EXPORTED=FALSE'

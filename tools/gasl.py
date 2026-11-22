@@ -374,6 +374,18 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_install_bundle(args):
+    from install_bundle import prepare_private_bundle, verify_private_bundle
+    if args.verify_plan_id:
+        result = verify_private_bundle(args.verify_plan_id, root=ROOT)
+    elif args.id and args.agent and args.acknowledge_plan_id:
+        result = prepare_private_bundle(args.id, args.agent, args.scope,
+                                        args.acknowledge_plan_id, root=ROOT)
+    else:
+        raise SystemExit('Provide --verify-plan-id OR --id --agent --acknowledge-plan-id')
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -571,6 +583,15 @@ def main():
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
+
+    install_bundle = sub.add_parser('install-bundle', help='Private reviewed ZIP handoff ONLY; no Skill installation or execution')
+    install_bundle.add_argument('--id', help='Pinned Source Record ID to bundle')
+    install_bundle.add_argument('--agent', choices=('codex', 'cursor', 'claude-code', 'claude-desktop'),
+                                help='Intended Host label; not an installation approval')
+    install_bundle.add_argument('--scope', choices=('user', 'project'), default='user')
+    install_bundle.add_argument('--acknowledge-plan-id', help='Exact plan ID from install-plan; explicitly prepare ZIP')
+    install_bundle.add_argument('--verify-plan-id', help='Check a previously created private ZIP without extraction')
+    install_bundle.set_defaults(func=cmd_install_bundle)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)
