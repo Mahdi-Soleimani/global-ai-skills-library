@@ -1,0 +1,81 @@
+name: GASL — Real Codex inert Skill install discover rollback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-codex-transaction-e2e.yml
+      - tools/codex_transaction_e2e.py
+      - tests/test_codex_transaction_e2e.py
+      - tools/fixture_transaction_v2.py
+      - tools/codex_discovery_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-codex-fixture-lifecycle:
+    name: Real Codex app-server sees test-only Skill, then verifies rollback
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout public source without persisted credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Set up disposable Node environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify negative and positive fixture tests using fake subprocess Host
+        run: python3 -m unittest tests.test_codex_transaction_e2e -v
+
+      - name: Install exact vendor Codex CLI release only in runner temporary folder
+        env:
+          NPM_CONFIG_AUDIT: 'false'
+          NPM_CONFIG_FUND: 'false'
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/gasl-codex-e2e" \
+            --ignore-scripts --no-audit --no-fund --no-save --package-lock=false \
+            '@openai/codex@0.162.1'
+          cli="$RUNNER_TEMP/gasl-codex-e2e/node_modules/@openai/codex/bin/codex.js"
+          test -f "$cli" && test -x "$cli"
+          echo "GASL_CODEX_E2E_CLI=$cli" >> "$GITHUB_ENV"
+
+      - name: Run actual Codex app-server before install, after install, after rollback
+        run: |
+          set -euo pipefail
+          python3 tools/codex_transaction_e2e.py \
+            --codex-bin "$GASL_CODEX_E2E_CLI" \
+            --output "$RUNNER_TEMP/gasl-codex-transaction-e2e.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          report=json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-codex-transaction-e2e.json').read_text())
+          assert report['status']=='real_codex_inert_install_discovery_rollback_verified'
+          for key in ('absent_before_install','inert_skill_discovered_after_install',
+                      'absent_after_rollback','fixture_rollback_verified'):
+              assert report[key] is True,key
+          for key in ('model_turn_started','authentication_performed',
+                      'third_party_skill_installed_or_executed','real_host_files_modified',
+                      'production_installation_enabled'):
+              assert report[key] is False,key
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as output:
+              output.write('## Codex real Host Skill lifecycle — PASS\n\n')
+              output.write('Real Codex CLI `0.162.1` observed an inert Skill absent → discovered after fixture-only installation → absent after verified rollback.\n\n')
+              output.write('No account, model turn, downloaded third-party Skill or real Agent profile was accessed.\n')
+          print('REAL_CODEX_INERT_INSTALL_DISCOVER_ROLLBACK=PASS')
+          PY
+
+      - name: Assert no persistent private Skill contents were exported
+        run: |
+          set -euo pipefail
+          test ! -e private/install-bundles
+          test ! -e catalog
+          test ! -e private/install-simulation
+          echo 'THIRD_PARTY_SKILL_CONTENT_EXPORTED=FALSE'
+          echo 'REAL_USER_PROFILE_MODIFIED=FALSE'

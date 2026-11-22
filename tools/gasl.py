@@ -374,6 +374,14 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_codex_transaction_e2e(args):
+    from codex_transaction_e2e import verify_full_codex_lifecycle
+    result = verify_full_codex_lifecycle(args.codex_bin)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if result['status'] != 'real_codex_inert_install_discovery_rollback_verified':
+        raise SystemExit(1)
+
+
 def cmd_locked_bundle_fixture(args):
     from fixture_transaction_v2 import rehearse_locked_transaction
     if args.acknowledge_fixture_only != 'GASL_DISPOSABLE_FIXTURE_ONLY':
@@ -612,6 +620,12 @@ def main():
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
+
+    codex_e2e = sub.add_parser('codex-transaction-e2e',
+        help='Query real Codex after fixture-only install and rollback of inert Skill (no account/model)')
+    codex_e2e.add_argument('--codex-bin', required=True, type=Path,
+        help='Absolute path to locally installed trusted Codex CLI executable')
+    codex_e2e.set_defaults(func=cmd_codex_transaction_e2e)
 
     locked_fixture = sub.add_parser('locked-bundle-fixture',
         help='Test-only exact ZIP+target challenge, POSIX process lock and crash recovery in fresh temp profile')
