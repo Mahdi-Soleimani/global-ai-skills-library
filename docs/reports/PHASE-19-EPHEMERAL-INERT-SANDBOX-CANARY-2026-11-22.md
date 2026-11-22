@@ -58,3 +58,10 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 4. Continue to record each phase under `docs/reports/`. Never put private reports, Skill code or secrets into Actions artifacts or public Git.
 
 **Status before live CI:** implementation and local unit tests PASS; real runner result pending. The eventual verified outcome is recorded below only after inspecting GitHub Actions.
+
+## 7. Live CI iteration 1 — diagnostic follow-up
+
+- Workflow run [`45045856726`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45045856726), triggered by source commit `ba4b934`, **FAILED** in the inert container verification step. Python unit tests, the static Go build and the offline `FROM scratch` image build all passed. The production security/Skill-execution gate stayed disabled.
+- The initial Python wrapper discarded the child process output on a nonzero exit; its `reason_code` only reported `canary_nonzero_exit_or_isolation_failure`, so the failed predicate(s) were not observable. No evidence of an isolation PASS was claimed.
+- The wrapper was corrected to parse **only the self-authored canary JSON**, retain sanitized boolean check outcomes and failed predicate names, and continue to block. Raw Docker stdout/stderr and secrets are not exposed. A new unit test covers this fail-closed diagnostic path.
+- A second CI run must identify the concrete failure(s), which must then be fixed without removing or downgrading an isolation check.

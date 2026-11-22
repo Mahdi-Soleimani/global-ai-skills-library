@@ -136,7 +136,22 @@ def run_benign_canary(image_id, *, docker_bin=None, system=None, runner=subproce
                 _run([docker_bin, 'rm', '--force', container_name], runner=runner, timeout=8)
                 return _empty_result('canary_timeout_container_cleanup_attempted')
             if executed.returncode != 0:
-                return _empty_result('canary_nonzero_exit_or_isolation_failure')
+                # A failing benign canary reports only booleans, not host secrets.
+                # Preserve failing check names for actionable, non-sensitive CI diagnosis.
+                try:
+                    failure = json.loads(executed.stdout)
+                except (TypeError, json.JSONDecodeError):
+                    failure = None
+                if isinstance(failure, dict) and failure.get('schema_version') == 'gasl-inert-canary-1':
+                    checks = failure.get('checks')
+                    if isinstance(checks, dict):
+                        result = _empty_result('benign_isolation_checks_failed')
+                        result['checks'] = {key: value for key, value in checks.items()
+                                            if key in EXPECTED_CHECKS and isinstance(value, bool)}
+                        result['failed_checks'] = sorted(key for key in EXPECTED_CHECKS
+                                                         if checks.get(key) is not True)
+                        return result
+                return _empty_result('docker_container_start_or_runtime_failed')
             try:
                 payload = json.loads(executed.stdout)
             except (TypeError, json.JSONDecodeError):

@@ -101,6 +101,20 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
         self.assertFalse(result['skill_installation_allowed'])
         self.assertFalse(result['host_runtime_isolation_proven'])
 
+    def test_nonzero_canary_exposes_only_failed_predicate_names(self):
+        def runner(argv, **kwargs):
+            if argv[1] == 'version':
+                return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
+            if argv[1] == 'image':
+                return subprocess.CompletedProcess(argv, 0, json.dumps(image_details()), '')
+            return subprocess.CompletedProcess(argv, 1,
+                inert_canary_output({'scratch_tmpfs_restricted_mount': False}), '')
+        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        self.assertEqual(result['reason_code'], 'benign_isolation_checks_failed')
+        self.assertEqual(result['failed_checks'], ['scratch_tmpfs_restricted_mount'])
+        self.assertFalse(result['benign_canary_verified'])
+        self.assertFalse(result['sandbox_execution_enabled'])
+
     def test_failed_check_never_enables_sandbox(self):
         def runner(argv, **kwargs):
             if argv[1] == 'version':
