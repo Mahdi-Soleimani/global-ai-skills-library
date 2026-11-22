@@ -22,6 +22,7 @@ IMAGE_RE = re.compile(r'^sha256:[0-9a-f]{64}$')
 EXPECTED_CHECKS = frozenset((
     'pinned_read_only_input', 'root_filesystem_read_only', 'network_access_denied',
     'network_namespace_has_only_loopback', 'scratch_tmpfs_restricted_mount',
+    'private_pid_namespace_verified',
     'unprivileged_uid_gid', 'capabilities_dropped', 'no_new_privileges',
     'seccomp_filter_active', 'no_unexpected_environment',
     'no_docker_socket_or_host_home', 'fixture_symlink_cannot_escape_to_host',
@@ -83,7 +84,7 @@ def _make_run_command(docker_bin, image_id, fixture_dir, container_name):
         '--memory', '128m', '--memory-swap', '128m',
         '--cpus', '0.5', '--pids-limit', '64',
         '--ulimit', 'nofile=256:256', '--ulimit', 'core=0:0',
-        '--ipc', 'private', '--pid', 'private', '--cgroupns', 'private',
+        '--ipc', 'private', '--cgroupns', 'private',
         '--workdir', '/', '--env', 'GASL_CANARY=INERT_ONLY',
         '--entrypoint', '/canary', image_id,
     ]

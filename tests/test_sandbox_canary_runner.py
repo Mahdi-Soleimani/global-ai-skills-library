@@ -65,13 +65,14 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
         for term in ('--pull never', '--network none', '--read-only', '--cap-drop ALL',
                      '--security-opt no-new-privileges:true', '--memory 128m',
                      '--memory-swap 128m', '--cpus 0.5', '--pids-limit 64',
-                     '--user 65532:65532', '--ipc private', '--pid private',
+                     '--user 65532:65532', '--ipc private',
                      '--cgroupns private', '--entrypoint /canary',
                      '--tmpfs /tmp:rw,nosuid,nodev,noexec,size=8m,mode=1777',
                      '--mount type=bind,src=/tmp/fixture,dst=/skill,readonly'):
             self.assertIn(term, arguments)
         self.assertEqual(argv[-1], IMAGE_ID)
         self.assertNotIn('--privileged', argv)
+        self.assertNotIn('--pid', argv)  # Docker defaults to private; Go canary checks PID 1.
         self.assertNotIn('/var/run/docker.sock', arguments)
         self.assertNotIn('bash', argv)
 

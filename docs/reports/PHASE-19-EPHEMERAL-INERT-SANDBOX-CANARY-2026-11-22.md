@@ -29,7 +29,7 @@ The restricted container uses:
 - `--tmpfs /tmp:rw,nosuid,nodev,noexec,size=8m,mode=1777`, bounded/writable scratch probes;
 - `--user 65532:65532`, `--cap-drop ALL`, `--security-opt no-new-privileges:true`, and checks of `CapEff`, `NoNewPrivs` and active seccomp filter in `/proc/self/status`;
 - `--memory 128m`, `--memory-swap 128m`, `--cpus 0.5`, `--pids-limit 64`, restrictive ulimits and `/sys/fs/cgroup` quota checks;
-- private IPC/PID/cgroup namespaces, no Docker socket or home directory mounted, minimal explicit environment, and a synthetic symlink escape canary;
+- private IPC/cgroup namespaces and Docker's default private PID namespace (verified by PID 1 inside the canary), no Docker socket or home directory mounted, minimal explicit environment, and a synthetic symlink escape canary;
 - `--rm`, a fixed run timeout and forced container cleanup attempt after timeouts.
 
 The test checks at least **17 independent predicates**. Each failed predicate fails the entire check. No falling back to host execution is possible through this CLI path.
@@ -72,3 +72,9 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 - The updated diagnostic parser confirmed the child did **not** return a valid canary JSON result, hence `docker_container_start_or_runtime_failed`; no isolation predicate could yet be assessed.
 - The fail-closed host wrapper was updated again to print only one bounded, sanitized Docker startup error line, with local paths and credential-assignment values redacted. A new test verifies this behavior.
 - The metadata refresh trigger now explicitly excludes stand-alone sandbox canary source/runner changes, to avoid redundant full-library refreshes while iterating on the containment test. That change to the refresh workflow itself still triggers one regular refresh.
+
+### Live CI iteration 3 — Docker startup incompatibility identified
+
+- Run [`45046187857`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046187857) **FAILED** with a Docker daemon validation error: `docker: --pid: invalid PID mode`. The canary had not launched; no isolation claim could be made.
+- The Docker CLI does not accept `--pid private`; a private PID namespace is its default. The explicit unsupported flag was removed, while the benign Go canary was strengthened with `private_pid_namespace_verified = (os.Getpid() == 1)` to check real runtime isolation. No security check was waived.
+- Full local regression suite after this fix: **234 tests and 6 subtests passed**; the static Linux Go canary also rebuilt successfully. The next live CI run will decide whether remaining isolation checks actually hold on Ubuntu.

@@ -194,6 +194,7 @@ func main() {
 	checks["root_filesystem_read_only"] = isDeniedWrite("/gasl-root-write-probe")
 	checks["network_access_denied"] = networkDenied()
 	checks["unprivileged_uid_gid"] = os.Getuid() == 65532 && os.Getgid() == 65532
+	checks["private_pid_namespace_verified"] = os.Getpid() == 1
 	checks["capabilities_dropped"] = strings.HasPrefix(statusField("CapEff"), "0000000000000000")
 	checks["no_new_privileges"] = strings.HasPrefix(statusField("NoNewPrivs"), "1")
 	checks["seccomp_filter_active"] = strings.HasPrefix(statusField("Seccomp"), "2")
