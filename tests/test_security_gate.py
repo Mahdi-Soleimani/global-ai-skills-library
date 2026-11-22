@@ -68,6 +68,20 @@ class SecurityGateTests(unittest.TestCase):
         self.assertTrue(any(f["rule_id"] == "SHELL_OR_PROCESS_SPAWN" for f in report["findings"]))
         self.assertFalse(report["execution_performed"])
 
+    def test_info_only_test_harness_signals_remain_visible_without_actionable_flag(self):
+        self.files["skills/demo/tests/validate.test.cjs"] = (
+            b"const {spawnSync} = require('node:child_process');\n"
+            b"const result = spawnSync('node', ['--version']);\n"
+        )
+        _, _ = self._make_package()
+        result = audit_local_package("source-demo", root=self.root, record=self.row)
+        self.assertTrue(result["integrity_ok"])
+        self.assertEqual(result["security_status"], "no_obvious_static_flags_not_approved")
+        self.assertEqual(result["actionable_finding_count"], 0)
+        self.assertGreaterEqual(result["informational_finding_count"], 1)
+        self.assertFalse(result["installation_allowed"])
+        self.assertFalse(result["execution_allowed"])
+
     def test_changed_skill_body_cannot_be_hidden_by_rewriting_cached_sha256(self):
         folder, source = self._make_package()
         main = folder / "SKILL.md"

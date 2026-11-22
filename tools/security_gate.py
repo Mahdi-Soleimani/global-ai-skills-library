@@ -109,6 +109,8 @@ def audit_local_package(source_record_id, root=ROOT, record=None):
         "integrity_ok": result["integrity_ok"],
         "pinned_skill_blob_ok": pinned_blob_ok,
         "finding_count": result["finding_count"],
+        "actionable_finding_count": result["actionable_finding_count"],
+        "informational_finding_count": result["informational_finding_count"],
         "high_confidence_signals": result["high_confidence_signals"],
         "security_report_path": report_path.relative_to(root).as_posix(),
         "installation_allowed": False,

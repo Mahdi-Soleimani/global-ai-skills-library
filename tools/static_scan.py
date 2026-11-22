@@ -227,13 +227,15 @@ def scan_package(source_path, root=ROOT):
             continue
         integrity.append({"path": unexpected, "status": "unlisted_package_file"})
     integrity_ok = bool(integrity) and all(x["status"] == "ok" for x in integrity)
-    high_confidence = [x for x in findings if x["confidence"] == "high" and x["severity_signal"] != "info"]
+    actionable_findings = [x for x in findings if x["severity_signal"] != "info"]
+    high_confidence = [x for x in actionable_findings if x["confidence"] == "high"]
     status = ("integrity_failed" if not integrity_ok else
-              "manual_review_required" if findings else
+              "manual_review_required" if actionable_findings else
               "no_obvious_static_flags_not_approved")
     metadata["security_status"] = status
     metadata["last_static_scan_at"] = now()
     metadata["static_scan_finding_count"] = len(findings)
+    metadata["static_scan_actionable_finding_count"] = len(actionable_findings)
     metadata["high_confidence_signals"] = len(high_confidence)
     metadata["install_status"] = "not_approved"
     source_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -248,6 +250,8 @@ def scan_package(source_path, root=ROOT):
         "security_status": status,
         "high_confidence_signals": len(high_confidence),
         "finding_count": len(findings),
+        "actionable_finding_count": len(actionable_findings),
+        "informational_finding_count": len(findings) - len(actionable_findings),
         "findings": findings,
         "execution_performed": False,
         "scanned_at": now()

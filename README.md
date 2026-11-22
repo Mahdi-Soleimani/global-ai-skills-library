@@ -61,6 +61,14 @@ For a previously downloaded, pinned Skill, repeat the **offline** integrity and 
 
 `download --execute` now performs this local scan automatically after the verified package download. The audit checks that all files stay inside the selected package, rejects symlinks and unlisted files, verifies file size/SHA-256 and the original pinned `SKILL.md` Git Blob, and reports suspicious code patterns. Detailed evidence is written to the ignored `reports/security/on-demand/` directory. Even a scan with no visible flags remains **`no_obvious_static_flags_not_approved`**; installation/execution stay disabled. The audit never runs downloaded instructions, scripts, tests or dependencies. A real enforced sandbox and installation approval workflow are still separate pending tasks. See [Phase 17](docs/reports/PHASE-17-SELECTED-SKILL-OFFLINE-SECURITY-GATE-2026-11-22.md).
 
+To inspect **sandbox readiness without running or pulling any container or Skill**, use:
+
+~~~bash
+./gasl sandbox
+~~~
+
+This command checks only Docker CLI/daemon availability and prints the required isolation controls. A working Docker daemon is **not** considered proof of an enforced isolation boundary: actual canary tests and explicit consent remain prerequisites for any future dynamic validation. On the development Mac, Docker CLI exists but the daemon was unreachable, so the gate correctly reports `blocked`. The static scanner now preserves informational test-harness findings without treating them as actionable security warnings; all packages still remain unapproved. See [Phase 18](docs/reports/PHASE-18-SECURITY-TRIAGE-AND-SANDBOX-READINESS-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
