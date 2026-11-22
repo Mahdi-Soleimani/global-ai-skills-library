@@ -67,18 +67,112 @@ def is_test_file(path):
             ".spec." in low or low.endswith(("_test.py", "_tests.py")))
 
 
-def scan_package(source_path):
+def _is_regular_bounded_path(root, package_dir, relative_path):
+    """Allow only ordinary files belonging to this exact package; never follow symlinks."""
+    if (not isinstance(relative_path, str) or not relative_path or "\\" in relative_path or
+            "\x00" in relative_path):
+        return None
+    relative = Path(relative_path)
+    if (relative.is_absolute() or any(part in ("..", ".") for part in relative.parts) or
+            not relative.parts or relative.parts[0] != "catalog"):
+        return None
+    target = root / relative
+    try:
+        target.relative_to(package_dir)
+    except ValueError:
+        return None
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            return None
+    if not target.is_file():
+        return None
+    return target
+
+
+def verified_internal_checkpoint(path, metadata):
+    """Recognize a legacy downloader JSON sidecar only if it matches the inventory.
+
+    It is not executable Skill content and is never trusted as authority for
+    the inventory: each entry must match a separately hashed source.json row.
+    """
+    if (path.name != ".gasl-download-checkpoint.json" or path.is_symlink() or
+            not path.is_file() or path.stat().st_size > 256 * 1024):
+        return False
+    try:
+        checkpoint = json.loads(path.read_text(encoding="utf-8"))
+        if set(checkpoint) != {"repository", "commit_sha", "source_skill_path", "files", "updated_at"}:
+            return False
+        if any(checkpoint.get(key) != metadata.get(key) for key in
+               ("repository", "commit_sha", "source_skill_path")):
+            return False
+        files = checkpoint.get("files")
+        if not isinstance(files, dict):
+            return False
+        entries = {item["source_path"]: item for item in metadata.get("files", [])}
+        if not files or set(files) != set(entries):
+            return False
+        return all(
+            source in entries and isinstance(saved, dict) and
+            all(saved.get(key) == entries[source].get(key) for key in
+                ("source_path", "local_path", "size_bytes", "sha256", "git_blob_sha"))
+            for source, saved in files.items()
+        )
+    except (OSError, ValueError, TypeError, KeyError):
+        return False
+
+
+def scan_package(source_path, root=ROOT):
+    # Keep root/source spelling consistent on macOS (/var -> /private/var).
+    # Do not resolve the source file here: doing so could hide a symlink.
+    root = Path(root).absolute()
+    source_path = Path(source_path)
+    if not source_path.is_absolute():
+        source_path = root / source_path
+    source_path = Path(source_path)
+    package_dir = source_path.parent
+    if source_path.is_symlink():
+        raise ValueError("Symlink in security-scan source path")
+    if (source_path.name != "source.json" or
+            package_dir.is_symlink() or root / "catalog" not in package_dir.parents or
+            not package_dir.is_dir() or not package_dir.resolve().is_relative_to((root / "catalog").resolve())):
+        raise ValueError("Security scan requires a regular source.json inside the local catalog")
+    # Reject symlinked directory components, even if they resolve inside catalog.
+    current = root
+    for component in source_path.relative_to(root).parts:
+        current = current / component
+        if current.is_symlink():
+            raise ValueError("Symlink in security-scan source path")
     metadata = json.loads(source_path.read_text(encoding="utf-8"))
     integrity = []
     findings = []
-    for item in metadata.get("files", []):
-        local = ROOT / item["local_path"]
-        if not local.exists() or not local.is_file():
-            integrity.append({"path": item["local_path"], "status": "missing_or_not_regular_file"})
+    seen = set()
+    files = metadata.get("files", [])
+    if not isinstance(files, list) or not files:
+        files = []
+    for item in files:
+        if not isinstance(item, dict):
+            integrity.append({"path": None, "status": "invalid_inventory_entry"})
+            continue
+        local_path = item.get("local_path")
+        if not isinstance(local_path, str) or local_path in seen:
+            integrity.append({"path": local_path, "status": "invalid_or_duplicate_path"})
+            continue
+        seen.add(local_path)
+        local = _is_regular_bounded_path(root, package_dir, local_path)
+        if local is None:
+            integrity.append({"path": local_path, "status": "unsafe_missing_or_nonregular_path"})
+            continue
+        expected_size = item.get("size_bytes")
+        if (not isinstance(expected_size, int) or isinstance(expected_size, bool) or
+                expected_size < 0 or expected_size > 10 * 1024 * 1024 or
+                local.stat().st_size != expected_size):
+            integrity.append({"path": local_path, "status": "size_mismatch_or_scan_limit_exceeded"})
             continue
         digest = sha256(local)
-        ok = digest == item["sha256"]
-        integrity.append({"path": item["local_path"], "status": "ok" if ok else "hash_mismatch"})
+        ok = digest == item.get("sha256")
+        integrity.append({"path": local_path, "status": "ok" if ok else "hash_mismatch"})
         if not ok or local.suffix.lower() not in TEXT_SUFFIXES:
             continue
         try:
@@ -115,6 +209,23 @@ def scan_package(source_path):
             if len(findings) >= 300:
                 break
 
+    # An attacker could add an unlisted file with executable content. Verify
+    # the full local inventory, not only entries declared by source.json.
+    existing = set()
+    for local in package_dir.rglob("*"):
+        relative = local.relative_to(root).as_posix()
+        if local.is_symlink() or not (local.is_file() or local.is_dir()):
+            integrity.append({"path": relative, "status": "unexpected_symlink_or_nonregular_entry"})
+        elif local.is_file():
+            existing.add(relative)
+    ignored_checkpoints = 0
+    for unexpected in sorted(existing - seen - {(source_path.relative_to(root)).as_posix()}):
+        local = root / unexpected
+        if (local.parent == package_dir and
+                verified_internal_checkpoint(local, metadata)):
+            ignored_checkpoints += 1
+            continue
+        integrity.append({"path": unexpected, "status": "unlisted_package_file"})
     integrity_ok = bool(integrity) and all(x["status"] == "ok" for x in integrity)
     high_confidence = [x for x in findings if x["confidence"] == "high" and x["severity_signal"] != "info"]
     status = ("integrity_failed" if not integrity_ok else
@@ -124,6 +235,7 @@ def scan_package(source_path):
     metadata["last_static_scan_at"] = now()
     metadata["static_scan_finding_count"] = len(findings)
     metadata["high_confidence_signals"] = len(high_confidence)
+    metadata["install_status"] = "not_approved"
     source_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return {
         "repository": metadata.get("repository"),
@@ -132,6 +244,7 @@ def scan_package(source_path):
         "commit_sha": metadata.get("commit_sha"),
         "integrity_ok": integrity_ok,
         "integrity": integrity,
+        "recognized_legacy_internal_checkpoints": ignored_checkpoints,
         "security_status": status,
         "high_confidence_signals": len(high_confidence),
         "finding_count": len(findings),

@@ -53,6 +53,14 @@ Use the source record ID returned by search:
 
 The first download command plans the complete package; the second retrieves verified regular files and applicable upstream notices to the ignored local catalog. It does not install or execute anything. Full-package download currently uses the macOS/Linux collector; Windows support remains to be tested. Root-level Skills and unsafe or oversized package layouts require separate handling.
 
+For a previously downloaded, pinned Skill, repeat the **offline** integrity and static security scan without contacting upstream:
+
+~~~bash
+./gasl audit --id YOUR_SOURCE_RECORD_ID
+~~~
+
+`download --execute` now performs this local scan automatically after the verified package download. The audit checks that all files stay inside the selected package, rejects symlinks and unlisted files, verifies file size/SHA-256 and the original pinned `SKILL.md` Git Blob, and reports suspicious code patterns. Detailed evidence is written to the ignored `reports/security/on-demand/` directory. Even a scan with no visible flags remains **`no_obvious_static_flags_not_approved`**; installation/execution stay disabled. The audit never runs downloaded instructions, scripts, tests or dependencies. A real enforced sandbox and installation approval workflow are still separate pending tasks. See [Phase 17](docs/reports/PHASE-17-SELECTED-SKILL-OFFLINE-SECURITY-GATE-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

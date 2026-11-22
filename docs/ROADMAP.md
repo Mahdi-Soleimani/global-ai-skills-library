@@ -115,6 +115,8 @@
 
 ### فاز 6 — Validator و Security Pipeline
 
+**وضعیت تا فاز ۱۷:** گیت آفلاین اسکن ایستا به `gasl download --execute` متصل شد و `gasl audit --id` اضافه شد. مسیرها، Symlink، فایل اضافه، اندازه و SHA-256 و Git Blob اصلی دوباره کنترل می‌شوند. اسکن روی ۳۸ بسته محلی با نسخه Pin‌شده مطابق کاتالوگ فعلی اجرا شد: ۳۰ بدون پرچم آشکار (اما تأییدنشده)، ۸ نیازمند بازبینی، صفر خطای Integrity یا Pin. ۱۶ Checkpoint داخلی قدیمی پس از اعتبارسنجی ساختار و تطبیق فهرست فایل‌ها شناسایی شدند. ۲۵ بسته قدیمی که با Commitهای فعلی کاتالوگ منطبق نیستند، در آمار اسکن اعتبارسنجی‌شده قرار ندارند. Dynamic Sandbox واقعی و تأیید نصب/اجرای Skill هنوز پیاده نشده است. گزارش: `docs/reports/PHASE-17-SELECTED-SKILL-OFFLINE-SECURITY-GATE-2026-11-22.md`.
+
 - اعتبارسنجی Frontmatter و ساختار پوشه.
 - اسکن Prompt Injection، Script، Dependency، Network، Secret، Permission و Obfuscation.
 - ثبت گزارش و وضعیت Lifecycle برای هر بسته.

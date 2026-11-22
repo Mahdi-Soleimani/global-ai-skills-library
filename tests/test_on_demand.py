@@ -36,16 +36,34 @@ class OnDemandTests(unittest.TestCase):
                      *a,fetch=lambda p,i:files[i["path"]],**kw)):
                 planned=download_skill("demo",root=root)
                 self.assertEqual(planned["status"],"planned")
+                self.assertFalse(planned["installation_allowed"])
+                self.assertFalse(planned["security_scan_performed"])
                 self.assertFalse((root/"catalog").exists())
                 actual=download_skill("demo",root=root,execute=True)
                 self.assertEqual(actual["status"],"downloaded")
                 self.assertFalse(actual["installed"])
                 self.assertFalse(actual["executed"])
+                self.assertFalse(actual["installation_allowed"])
+                self.assertFalse(actual["execution_allowed"])
+                self.assertEqual(actual["security_status"], "no_obvious_static_flags_not_approved")
+                self.assertTrue(actual["integrity_ok"])
+                self.assertTrue(actual["security_scan_performed"])
+                self.assertTrue(actual["pinned_skill_blob_ok"])
+                self.assertTrue((root/actual["security_report_path"]).is_file())
                 self.assertEqual(actual["file_count"],2)
                 again=download_skill("demo",root=root,execute=True)
                 self.assertEqual(again["status"],"already_verified")
                 self.assertEqual(tracked.read_text(),'{"downloads":[]}')
                 self.assertTrue((root/"private/on-demand-manifest.json").is_file())
+                with patch("security_gate.audit_local_package", return_value={
+                    "integrity_ok": False,
+                    "security_status": "integrity_failed",
+                    "installation_allowed": False,
+                    "execution_allowed": False,
+                }):
+                    blocked = download_skill("demo", root=root, execute=True)
+                self.assertEqual(blocked["status"], "blocked_integrity_failure")
+                self.assertFalse(blocked["installation_allowed"])
                 meta=json.loads((root/actual["filesystem_path"]/"source.json").read_text())
                 self.assertEqual(meta["license_spdx"],"NOASSERTION")
                 self.assertTrue(meta["package_complete"])

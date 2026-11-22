@@ -38,6 +38,11 @@ def download_skill(source_record_id, root=ROOT, execute=False):
         "status": "planned",
         "installed": False,
         "executed": False,
+        "installation_allowed": False,
+        "execution_allowed": False,
+        "security_status": "not_scanned",
+        "security_scan_performed": False,
+        "manual_review_required": True,
         "untrusted_content": True,
     }
     if not execute:
@@ -53,4 +58,10 @@ def download_skill(source_record_id, root=ROOT, execute=False):
     with lock_path.open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         result.update(ingest(root, plan, manifest_path=manifest))
+        # This is a local, non-executing scan. Never convert static evidence into
+        # installation or execution approval.
+        from security_gate import audit_local_package
+        result.update(audit_local_package(source_record_id, root=root, record=record))
+        if result["integrity_ok"] is False:
+            result["status"] = "blocked_integrity_failure"
     return result

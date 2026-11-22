@@ -338,6 +338,12 @@ def cmd_download(args):
                      ensure_ascii=False, indent=2))
 
 
+def cmd_audit(args):
+    from security_gate import audit_local_package
+    print(json.dumps(audit_local_package(args.id, root=ROOT),
+                     ensure_ascii=False, indent=2))
+
+
 def cmd_auto_review(args):
     """Run a reproducible local proxy review without pretending the labels are gold."""
     from auto_review import evaluate
@@ -430,6 +436,9 @@ def main():
     auto_review = sub.add_parser('auto-review', help='Run independent-from-rank internal proxy assessment; not human gold')
     auto_review.add_argument('--output', type=Path, default=ROOT / 'private' / 'benchmark-review' / 'AUTOMATED-PROXY-EVALUATION-V1.json')
     auto_review.set_defaults(func=cmd_auto_review)
+    audit = sub.add_parser('audit', help='Offline static security audit of one previously downloaded pinned Skill')
+    audit.add_argument('--id', required=True, help='Exact source_record_id; must already be downloaded')
+    audit.set_defaults(func=cmd_audit)
     q = sub.add_parser("search", help="Search attributed Skill source records")
     q.add_argument("--query", required=True)
     q.add_argument("--limit", type=int, default=10)
