@@ -70,3 +70,13 @@ Local acceptance: **345 tests + 130 subtests PASS**; Python compilation and `git
 5. Additional Windows and live Host integration tests with disposable accounts/profiles. No production Skill installer or execution is enabled by Phase 26.
 
 **Phase 26 locally accepted: actual ZIP file materialization and verified rollback in a disposable temp profile. No user Agent profile was modified.**
+
+## 7. Observed GitHub publication and actual Linux CI results
+
+- Source implementation commit [`4c88ab8`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/4c88ab89194411bac118c42b201bd47fd0390f0e) was published to `main` with a **normal, non-force push** after the exact allowlisted seven-file stage and sensitive-content audit found **0 credential, personal-path, email or telephone matches**.
+- A completely clean `git archive HEAD` checkout contained none of `private/`, `catalog/`, `storage/`, `reports/` or `.git`; on this independent checkout, `pytest` again passed **345 tests and 130 subtests**, Python compilation passed, the new CLI help loaded and the published source search index built successfully.
+- The dedicated [GitHub Actions run `45059436504`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45059436504) **completed SUCCESS** on `ubuntu-24.04`. It compiled the new fixture module, performed the synthetic pinned ZIP file-transfer/upgrade/rollback tests, and confirmed that no persistent catalog or private ZIP was present in its published checkout.
+- The actual locally downloaded `academy-guide` ZIP was tested **only on the Mac** inside a disposable fixture; the genuine third-party package was not uploaded to GitHub Actions or public source control, and no real user's Host profile was touched.
+- The routine source-catalog Refresh workflow is separate from the isolated fixture CI result and may create a metadata-only commit. Any concurrent update must be reconciled with a non-destructive merge and re-tested before final publication.
+
+**Acceptance: YES for temporary-profile ZIP file materialization and exact backup/rollback under real macOS and Linux filesystems; NO claim of production Host installation, real Agent discovery in this phase or execution of untrusted Skill instructions.**
