@@ -374,9 +374,62 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_interactive_fixture_consent(args):
+    import sys
+    if args.acknowledge_fixture_only != 'GASL_DISPOSABLE_FIXTURE_ONLY':
+        raise SystemExit('Exact disposable fixture acknowledgment is required')
+    if not sys.stdin.isatty():
+        raise SystemExit('Interactive TTY required; automated approval is never treated as human consent')
+    from fixture_explicit_consent import request_fixture_consent, confirm_fixture_consent
+    from fixture_transaction_v2 import (
+        preview_fixture_consent, enact_fixture_transaction, recover_fixture_transaction)
+    from fixture_bundle_install import _read_bundle
+    from host_transaction_fixture import _new_root
+    from host_adapters import _path_within_fixture, _target_for_fixture
+    with _new_root()[0] as temporary:
+        fixture = Path(temporary)
+        _path_within_fixture(fixture, 'workspace' if args.scope == 'project' else 'home').mkdir()
+        if args.action == 'replace':
+            slug, _ = _read_bundle(ROOT, args.plan_id, args.agent, args.scope)
+            target = _target_for_fixture(fixture, args.agent, args.scope, slug)
+            target.mkdir(parents=True)
+            (target / 'SKILL.md').write_bytes(b'---\nname: gasl-old-inert\n---\n')
+            (target / 'user-note.txt').write_bytes(b'GASL_INERT_FIXTURE_NOTE\n')
+        request = request_fixture_consent(fixture, ROOT, args.plan_id,
+                    args.agent, args.scope, args.action)
+        print(json.dumps({**request,
+            'disposable_fixture_only': True,
+            'user_profile_installation_allowed': False,
+            'third_party_skill_execution_allowed': False,
+        }, ensure_ascii=False, indent=2))
+        print('Review the exact Plan ID, ZIP SHA-256, Host, scope and action above.')
+        try:
+            answer = input('Type the displayed confirmation phrase exactly (or press Enter to cancel): ')
+        except (KeyboardInterrupt, EOFError):
+            raise SystemExit('Fixture confirmation cancelled; no installation occurred')
+        confirm_fixture_consent(fixture, ROOT, request['request_id'], answer)
+        preview = preview_fixture_consent(fixture, ROOT, args.plan_id,
+                                          args.agent, args.scope, args.action)
+        applied = enact_fixture_transaction(fixture, ROOT, args.plan_id,
+            args.agent, args.scope, args.action, preview['approval_challenge'],
+            consent_request_id=request['request_id'])
+        restored = recover_fixture_transaction(fixture)
+        print(json.dumps({
+            'status': 'interactive_fixture_consent_and_rollback_verified',
+            'receipt_consumed_once': applied['one_time_fixture_receipt_consumed'],
+            'original_fixture_state_restored': restored['previous_files_restored'],
+            'human_phrase_entered_in_local_tty': True,
+            'real_user_identity_verified': False,
+            'real_host_files_modified': False,
+            'production_installation_enabled': False,
+            'third_party_skill_executed': False,
+        }, ensure_ascii=False, indent=2))
+
+
 def cmd_codex_transaction_e2e(args):
     from codex_transaction_e2e import verify_full_codex_lifecycle
-    result = verify_full_codex_lifecycle(args.codex_bin)
+    result = verify_full_codex_lifecycle(args.codex_bin,
+        require_one_time_fixture_receipt=args.test_one_time_receipt)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if result['status'] != 'real_codex_inert_install_discovery_rollback_verified':
         raise SystemExit(1)
@@ -621,10 +674,21 @@ def main():
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
 
+    interactive_consent = sub.add_parser('consent-fixture-interactive',
+        help='Require real TTY phrase for ONE private ZIP transaction in a disposable fixture only')
+    interactive_consent.add_argument('--plan-id', required=True)
+    interactive_consent.add_argument('--agent', required=True, choices=('codex','cursor','claude-code'))
+    interactive_consent.add_argument('--scope', required=True, choices=('project','user'))
+    interactive_consent.add_argument('--action', required=True, choices=('install','replace'))
+    interactive_consent.add_argument('--acknowledge-fixture-only', required=True)
+    interactive_consent.set_defaults(func=cmd_interactive_fixture_consent)
+
     codex_e2e = sub.add_parser('codex-transaction-e2e',
         help='Query real Codex after fixture-only install and rollback of inert Skill (no account/model)')
     codex_e2e.add_argument('--codex-bin', required=True, type=Path,
         help='Absolute path to locally installed trusted Codex CLI executable')
+    codex_e2e.add_argument('--test-one-time-receipt', action='store_true',
+        help='CI-only simulated confirmation in disposable fixture; NOT human approval')
     codex_e2e.set_defaults(func=cmd_codex_transaction_e2e)
 
     locked_fixture = sub.add_parser('locked-bundle-fixture',

@@ -8,6 +8,8 @@ on:
       - tools/codex_transaction_e2e.py
       - tests/test_codex_transaction_e2e.py
       - tools/fixture_transaction_v2.py
+      - tools/fixture_explicit_consent.py
+      - tests/test_fixture_explicit_consent.py
       - tools/codex_discovery_probe.py
   workflow_dispatch:
 
@@ -32,6 +34,9 @@ jobs:
 
       - name: Verify negative and positive fixture tests using fake subprocess Host
         run: python3 -m unittest tests.test_codex_transaction_e2e -v
+
+      - name: Test one-time expiring fixture receipts with synthetic packages and fake consent
+        run: python3 -m unittest tests.test_fixture_explicit_consent -v
 
       - name: Install exact vendor Codex CLI release only in runner temporary folder
         env:
@@ -69,6 +74,33 @@ jobs:
               output.write('Real Codex CLI `0.162.1` observed an inert Skill absent → discovered after fixture-only installation → absent after verified rollback.\n\n')
               output.write('No account, model turn, downloaded third-party Skill or real Agent profile was accessed.\n')
           print('REAL_CODEX_INERT_INSTALL_DISCOVER_ROLLBACK=PASS')
+          PY
+
+      - name: Run real Codex through a one-time receipt and assert no human consent claim
+        run: |
+          set -euo pipefail
+          python3 tools/codex_transaction_e2e.py \
+            --codex-bin "$GASL_CODEX_E2E_CLI" \
+            --test-one-time-receipt \
+            --output "$RUNNER_TEMP/gasl-codex-one-time-consent-e2e.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          result=json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-codex-one-time-consent-e2e.json').read_text())
+          assert result['status']=='real_codex_inert_install_discovery_rollback_verified'
+          for name in ('absent_before_install','inert_skill_discovered_after_install',
+                       'absent_after_rollback','fixture_rollback_verified',
+                       'one_time_fixture_receipt_consumed'):
+              assert result[name] is True,name
+          for name in ('human_confirmation_verified','model_turn_started',
+                       'authentication_performed','third_party_skill_installed_or_executed',
+                       'real_host_files_modified','production_installation_enabled'):
+              assert result[name] is False,name
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as output:
+              output.write('\n## One-time consent receipt rehearsal — PASS\n\n')
+              output.write('The receipt was programmatically confirmed in an isolated test fixture; **this is not actual human consent**.\n\n')
+              output.write('Real Codex verified absent → discovered → absent, and a one-time receipt was consumed under the exclusive lock.\n')
+          print('REAL_CODEX_ONE_TIME_FIXTURE_RECEIPT=PASS; HUMAN_APPROVAL=NOT_TESTED')
           PY
 
       - name: Assert no persistent private Skill contents were exported

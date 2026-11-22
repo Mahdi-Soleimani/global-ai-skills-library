@@ -108,7 +108,8 @@ def _host_skills_list(binary, root, *, timeout=25, popen=subprocess.Popen):
                 process.stdout.close()
 
 
-def verify_full_codex_lifecycle(binary, *, query=_host_skills_list):
+def verify_full_codex_lifecycle(binary, *, query=_host_skills_list,
+                                require_one_time_fixture_receipt=False):
     """A meaningful real Host result is only possible after all 3 observations."""
     result = {
         'schema_version': SCHEMA,
@@ -124,6 +125,8 @@ def verify_full_codex_lifecycle(binary, *, query=_host_skills_list):
         'third_party_skill_installed_or_executed': False,
         'real_host_files_modified': False,
         'production_installation_enabled': False,
+        'one_time_fixture_receipt_consumed': False,
+        'human_confirmation_verified': False,
     }
     binary = Path(binary)
     if not binary.is_absolute() or binary.is_symlink() or not binary.is_file():
@@ -142,8 +145,18 @@ def verify_full_codex_lifecycle(binary, *, query=_host_skills_list):
                 return result
             result['absent_before_install'] = True
             preview = preview_fixture_consent(root, root, plan_id, 'codex', 'project', 'install')
-            enact_fixture_transaction(root, root, plan_id, 'codex', 'project',
-                                        'install', preview['approval_challenge'])
+            receipt_id = None
+            if require_one_time_fixture_receipt:
+                # CI confirmation is deliberately synthetic, NOT human consent.
+                from fixture_explicit_consent import request_fixture_consent, confirm_fixture_consent
+                pending = request_fixture_consent(root, root, plan_id, 'codex', 'project', 'install')
+                confirm_fixture_consent(root, root, pending['request_id'],
+                                        pending['confirmation_phrase'])
+                receipt_id = pending['request_id']
+            installed = enact_fixture_transaction(root, root, plan_id, 'codex', 'project',
+                                        'install', preview['approval_challenge'],
+                                        consent_request_id=receipt_id)
+            result['one_time_fixture_receipt_consumed'] = installed['one_time_fixture_receipt_consumed']
             installed_file = root / 'workspace' / '.agents' / 'skills' / SKILL_NAME / 'SKILL.md'
             if not installed_file.is_file() or installed_file.read_bytes() != SKILL_BODY:
                 result['reason_code'] = 'fixture_bytes_not_materialized'
@@ -175,8 +188,11 @@ def main():
     parser = argparse.ArgumentParser(description='Real Codex discovery, only inert installed fixture, never a user profile')
     parser.add_argument('--codex-bin', type=Path, required=True)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--test-one-time-receipt', action='store_true',
+        help='Test only: CI simulates consent in disposable fixture; not human approval')
     args = parser.parse_args()
-    result = verify_full_codex_lifecycle(args.codex_bin)
+    result = verify_full_codex_lifecycle(args.codex_bin,
+              require_one_time_fixture_receipt=args.test_one_time_receipt)
     payload = json.dumps(result, ensure_ascii=False, indent=2) + '\n'
     print(payload, end='')
     if args.output:

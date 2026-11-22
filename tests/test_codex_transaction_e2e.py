@@ -74,6 +74,23 @@ sys.stdin.read()
             self.assertFalse(result[key])
         self.assertNotIn(str(self.temp.name),json.dumps(result))
 
+    def test_one_time_fixture_receipt_e2e_with_synthetic_host(self):
+        result=verify_full_codex_lifecycle(self.fake_host(),
+                    require_one_time_fixture_receipt=True)
+        self.assertEqual(result['status'],'real_codex_inert_install_discovery_rollback_verified')
+        self.assertTrue(result['one_time_fixture_receipt_consumed'])
+        self.assertFalse(result['human_confirmation_verified'])
+        self.assertTrue(result['absent_after_rollback'])
+        self.assertFalse(result['third_party_skill_installed_or_executed'])
+
+    def test_one_time_receipt_does_not_override_bad_host_discovery(self):
+        result=verify_full_codex_lifecycle(self.fake_host('always_absent'),
+                    require_one_time_fixture_receipt=True)
+        self.assertEqual(result['reason_code'], 'codex_failed_to_discover_installed_inert_skill')
+        self.assertTrue(result['one_time_fixture_receipt_consumed'])
+        self.assertFalse(result['human_confirmation_verified'])
+        self.assertFalse(result['fixture_rollback_verified'])
+
     def test_already_present_host_result_rejected_before_transaction(self):
         result=verify_full_codex_lifecycle(self.fake_host('always_present'))
         self.assertEqual(result['reason_code'],'inert_skill_unexpectedly_preexisting')

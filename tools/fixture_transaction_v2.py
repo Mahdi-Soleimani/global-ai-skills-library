@@ -131,7 +131,8 @@ def preview_fixture_consent(fixture, bundle_root, plan_id, agent, scope, action)
 
 
 def enact_fixture_transaction(fixture, bundle_root, plan_id, agent, scope, action,
-                                exact_challenge, *, checkpoint='activated'):
+                                exact_challenge, *, checkpoint='activated',
+                                consent_request_id=None):
     """Materialize source bytes only in marked temp fixture, never a real Host."""
     if checkpoint not in ('staged', 'backed_up', 'activated'):
         raise ValueError('Unrecognized fixture checkpoint')
@@ -143,6 +144,13 @@ def enact_fixture_transaction(fixture, bundle_root, plan_id, agent, scope, actio
             raise ValueError('Exact fixture-only consent challenge mismatch')
         if _path_within_fixture(fixture, JOURNAL).exists():
             raise ValueError('Unfinished fixture transaction must be recovered first')
+        # Phase 30 opt-in: redeem one short-lived, independently confirmed
+        # fixture receipt under the *same* exclusive lock as the file move.
+        # On any later failure it remains consumed (conservative fail-closed).
+        if consent_request_id is not None:
+            from fixture_explicit_consent import consume_under_transaction_lock
+            consume_under_transaction_lock(fixture, bundle_root, consent_request_id,
+                plan_id, agent, scope, action, exact_challenge)
         staged = stage_bundle_fixture(
             fixture, bundle_root, plan_id, agent, scope, plan_id,
             replace_existing=(action == 'replace'))
@@ -182,6 +190,7 @@ def enact_fixture_transaction(fixture, bundle_root, plan_id, agent, scope, actio
                 'file_count': staged['file_count'], 'plan_id': plan_id,
                 'agent': agent, 'scope': scope, 'action': action,
                 'fixture_only_consent_matched': True,
+                'one_time_fixture_receipt_consumed': consent_request_id is not None,
                 'real_user_authorization_collected': False,
                 'real_host_files_modified': False,
                 'third_party_skill_executed': False,

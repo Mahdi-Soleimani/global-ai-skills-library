@@ -224,6 +224,22 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 30: One-time, expiring confirmation for a strictly disposable Skill installation
+
+GASL now supports a **separate, explicit confirmation step** before a test-only Skill transaction. Each request binds the immutable ZIP SHA-256, plan ID, exact temporary destination fingerprint, Host, scope and `install`/`replace` action. It expires within 30–300 seconds and can be **consumed only once under the same POSIX transaction lock**. A private HMAC-protected receipt and local secret are created solely in the disposable GASL fixture; both disappear after the test. Tampered, expired, reused or stale approvals fail closed, including if staging fails after the receipt was consumed.
+
+For a human-operated, *temporary-profile-only* review of an already privately downloaded bundle:
+
+~~~bash
+./gasl consent-fixture-interactive --plan-id YOUR_EXACT_PLAN_ID \
+  --agent codex --scope project --action install \
+  --acknowledge-fixture-only GASL_DISPOSABLE_FIXTURE_ONLY
+~~~
+
+The CLI requires a **real interactive terminal**, prints the selected plan, version digest, Host, scope, operation and a distinct confirmation phrase, and refuses to proceed unless the operator types that phrase exactly. It then installs and rolls back **inside its own disposable fixture**, never inside a real Host account. The phrase and signed local receipt do not prove a person's identity and **cannot authorize production installation**. A failed or canceled confirmation does not install anything.
+
+The [Codex integration workflow](.github/workflows/gasl-codex-transaction-e2e.yml) separately **simulates** the confirmation gesture on synthetic first-party test data and asks the *real Codex App Server* to verify absent → discovered → absent. CI explicitly reports `human_confirmation_verified=false` so automated tests are not misrepresented as genuine human consent. No original downloaded Skill is imported into Codex or uploaded to CI. Real-user Agent installation, login, model invocation and third-party Skill execution remain disabled. See [Phase 30](docs/reports/PHASE-30-ONE-TIME-FIXTURE-CONSENT-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
