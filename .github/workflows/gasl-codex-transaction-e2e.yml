@@ -6,6 +6,8 @@ on:
     paths:
       - .github/workflows/gasl-codex-transaction-e2e.yml
       - tools/codex_transaction_e2e.py
+      - tools/gasl.py
+      - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
       - tools/fixture_transaction_v2.py
       - tools/fixture_explicit_consent.py
@@ -101,6 +103,37 @@ jobs:
               output.write('The receipt was programmatically confirmed in an isolated test fixture; **this is not actual human consent**.\n\n')
               output.write('Real Codex verified absent → discovered → absent, and a one-time receipt was consumed under the exclusive lock.\n')
           print('REAL_CODEX_ONE_TIME_FIXTURE_RECEIPT=PASS; HUMAN_APPROVAL=NOT_TESTED')
+          PY
+
+      - name: Verify real Codex user-scope Skill discovery inside a separate HOME profile
+        run: |
+          set -euo pipefail
+          python3 tools/codex_transaction_e2e.py \
+            --codex-bin "$GASL_CODEX_E2E_CLI" \
+            --scope user \
+            --test-one-time-receipt \
+            --output "$RUNNER_TEMP/gasl-codex-user-scope-e2e.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          result=json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-codex-user-scope-e2e.json').read_text())
+          assert result['status']=='real_codex_inert_install_discovery_rollback_verified'
+          assert result['scope']=='user'
+          assert result['isolated_home_profile_used'] is True
+          assert result['real_home_or_codex_profile_accessed'] is False
+          for key in ('absent_before_install','inert_skill_discovered_after_install',
+                      'absent_after_rollback','fixture_rollback_verified',
+                      'one_time_fixture_receipt_consumed'):
+              assert result[key] is True,key
+          for key in ('human_confirmation_verified','model_turn_started',
+                      'authentication_performed','third_party_skill_installed_or_executed',
+                      'real_host_files_modified','production_installation_enabled'):
+              assert result[key] is False,key
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as output:
+              output.write('\n## Codex user-scope isolated HOME lifecycle — PASS\n\n')
+              output.write('Actual Codex CLI `0.162.1` discovered an inert test Skill under a disposable `$HOME/.agents/skills`, then confirmed its removal after rollback. A one-time receipt was consumed. No actual user home was accessed.\n')
+              output.write('CI simulated the confirmation phrase; this is not a real human consent event.\n')
+          print('REAL_CODEX_USER_SCOPE_ISOLATED_HOME=PASS; HUMAN_APPROVAL=NOT_TESTED')
           PY
 
       - name: Assert no persistent private Skill contents were exported

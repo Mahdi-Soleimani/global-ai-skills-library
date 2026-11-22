@@ -428,7 +428,7 @@ def cmd_interactive_fixture_consent(args):
 
 def cmd_codex_transaction_e2e(args):
     from codex_transaction_e2e import verify_full_codex_lifecycle
-    result = verify_full_codex_lifecycle(args.codex_bin,
+    result = verify_full_codex_lifecycle(args.codex_bin, scope=args.scope,
         require_one_time_fixture_receipt=args.test_one_time_receipt)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if result['status'] != 'real_codex_inert_install_discovery_rollback_verified':
@@ -687,6 +687,8 @@ def main():
         help='Query real Codex after fixture-only install and rollback of inert Skill (no account/model)')
     codex_e2e.add_argument('--codex-bin', required=True, type=Path,
         help='Absolute path to locally installed trusted Codex CLI executable')
+    codex_e2e.add_argument('--scope', choices=('project','user'), default='project',
+        help='Use a disposable HOME; user scope targets its isolated ~/.agents/skills')
     codex_e2e.add_argument('--test-one-time-receipt', action='store_true',
         help='CI-only simulated confirmation in disposable fixture; NOT human approval')
     codex_e2e.set_defaults(func=cmd_codex_transaction_e2e)

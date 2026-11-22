@@ -41,7 +41,14 @@ assert listing['method']=='skills/list'
 assert listing['params']['forceReload'] is True
 cwd=listing['params']['cwds'][0]
 assert cwd==os.getcwd() or os.path.realpath(cwd)==os.path.realpath(os.getcwd())
-expected=os.path.join(cwd,'.agents','skills','gasl-discovery-probe','SKILL.md')
+scope=os.environ['GASL_TEST_SCOPE']
+if scope=='project':
+    expected=os.path.join(cwd,'.agents','skills','gasl-discovery-probe','SKILL.md')
+elif scope=='user':
+    expected=os.path.join(os.environ['HOME'],'.agents','skills','gasl-discovery-probe','SKILL.md')
+    assert os.path.realpath(expected).startswith(os.path.realpath(os.environ['HOME'])+os.sep)
+    assert not os.path.realpath(expected).startswith(os.path.realpath(os.environ['CODEX_HOME'])+os.sep)
+else:raise AssertionError('unexpected scope')
 mode=%r
 exists=os.path.exists(expected)
 if exists:
@@ -73,6 +80,31 @@ sys.stdin.read()
                     'real_host_files_modified','production_installation_enabled'):
             self.assertFalse(result[key])
         self.assertNotIn(str(self.temp.name),json.dumps(result))
+
+    def test_real_host_user_scope_uses_separate_home_profile_and_rolls_back(self):
+        result=verify_full_codex_lifecycle(self.fake_host(),scope='user')
+        self.assertEqual(result['status'],'real_codex_inert_install_discovery_rollback_verified')
+        self.assertEqual(result['scope'],'user')
+        self.assertTrue(result['isolated_home_profile_used'])
+        self.assertTrue(result['absent_before_install'])
+        self.assertTrue(result['inert_skill_discovered_after_install'])
+        self.assertTrue(result['absent_after_rollback'])
+        self.assertTrue(result['fixture_rollback_verified'])
+        self.assertFalse(result['real_home_or_codex_profile_accessed'])
+
+    def test_real_host_user_scope_consumes_one_time_receipt_and_rolls_back(self):
+        result=verify_full_codex_lifecycle(self.fake_host(),scope='user',
+                    require_one_time_fixture_receipt=True)
+        self.assertEqual(result['status'],'real_codex_inert_install_discovery_rollback_verified')
+        self.assertTrue(result['one_time_fixture_receipt_consumed'])
+        self.assertFalse(result['human_confirmation_verified'])
+        self.assertTrue(result['fixture_rollback_verified'])
+
+    def test_invalid_codex_scope_is_rejected_before_any_host_process(self):
+        result=verify_full_codex_lifecycle(self.fake_host(),scope='global')
+        self.assertEqual(result['reason_code'],'unsupported_codex_scope')
+        self.assertFalse(result['isolated_home_profile_used'])
+        self.assertFalse(result['real_home_or_codex_profile_accessed'])
 
     def test_one_time_fixture_receipt_e2e_with_synthetic_host(self):
         result=verify_full_codex_lifecycle(self.fake_host(),
@@ -127,11 +159,12 @@ sys.stdin.read()
         try:
             (root/'workspace').mkdir()
             (root/'home').mkdir()
-            pid=_synthetic_inert_bundle(root)
+            pid=_synthetic_inert_bundle(root,'user')
             self.assertEqual(len(pid),64)
-            preview=preview_fixture_consent(root,root,pid,'codex','project','install')
+            preview=preview_fixture_consent(root,root,pid,'codex','user','install')
             self.assertEqual(preview['plan_id'],pid)
             self.assertFalse(preview['real_user_authorization_collected'])
+            self.assertFalse((root/'home/.agents').exists())
             self.assertFalse((root/'workspace/.agents').exists())
         finally:
             temp.cleanup()

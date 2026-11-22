@@ -224,6 +224,18 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 31: Real Codex user-scope discovery in a disposable HOME
+
+The real Codex App Server test now covers both project scope (`.agents/skills/`) and user scope (`$HOME/.agents/skills/`) using a freshly created, empty `HOME` and `CODEX_HOME`. It asks the pinned Codex CLI to perform only `initialize` and `skills/list` before install, after the inert fixture transaction, and after rollback. The user-scope test also consumes the Phase-30 one-time receipt. It never reads or writes the developer's existing home, `.codex`, or `.agents/skills`, and never starts a model turn or executes a third-party Skill. The official Codex CLI installation guide lists `.agents/skills/` as the project path and `~/.agents/skills/` as the user-wide path: [OpenAI CLI Skill installation](https://developers.openai.com/api/reference/cli). Real-user installation remains disabled.
+
+Run locally against a trusted Codex CLI binary (the command creates and destroys its own isolated HOME):
+
+~~~bash
+./gasl codex-transaction-e2e --codex-bin /absolute/path/to/codex --scope user --test-one-time-receipt
+~~~
+
+CI pins Codex CLI `0.162.1` and runs both project and user scopes against the real App Server. The typed phrase is simulated in CI and must not be represented as human consent. See [Phase 31](docs/reports/PHASE-31-CODEX-ISOLATED-USER-SCOPE-2026-11-22.md).
+
 ### Phase 30: One-time, expiring confirmation for a strictly disposable Skill installation
 
 GASL now supports a **separate, explicit confirmation step** before a test-only Skill transaction. Each request binds the immutable ZIP SHA-256, plan ID, exact temporary destination fingerprint, Host, scope and `install`/`replace` action. It expires within 30–300 seconds and can be **consumed only once under the same POSIX transaction lock**. A private HMAC-protected receipt and local secret are created solely in the disposable GASL fixture; both disappear after the test. Tampered, expired, reused or stale approvals fail closed, including if staging fails after the receipt was consumed.
