@@ -332,6 +332,29 @@ def cmd_get(args):
                                    fetch_remote=not args.offline), ensure_ascii=False, indent=2))
 
 
+def cmd_install_plan(args):
+    from install_lifecycle import plan_install
+    result = plan_install(args.id, args.agent, args.scope, root=ROOT)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_install_simulate(args):
+    from install_lifecycle import plan_install, simulate
+    plan = None
+    if args.action == 'apply':
+        if not args.id or not args.agent:
+            raise SystemExit('Simulated apply requires --id and --agent')
+        plan = plan_install(args.id, args.agent, args.scope, root=ROOT)
+    result = simulate(args.action, args.plan_id,
+                      acknowledgement=args.acknowledge_plan_id, root=ROOT, plan=plan)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_install_status(args):
+    from install_lifecycle import simulation_status
+    print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
+
+
 def cmd_download(args):
     from on_demand import download_skill
     print(json.dumps(download_skill(args.id, root=ROOT, execute=args.execute),
@@ -489,6 +512,27 @@ def main():
     get.add_argument("--max-chars", type=int, default=20000)
     get.add_argument("--offline", action="store_true")
     get.set_defaults(func=cmd_get)
+    install_plan = sub.add_parser('install-plan', help='Read-only pinned Skill install preview; never install')
+    install_plan.add_argument('--id', required=True, help='Source Record ID')
+    install_plan.add_argument('--agent', required=True, choices=('codex', 'cursor', 'claude-desktop', 'generic-mcp'))
+    install_plan.add_argument('--scope', choices=('user', 'project'), default='user')
+    install_plan.set_defaults(func=cmd_install_plan)
+
+    install_simulate = sub.add_parser('install-simulate', help='Simulation-only apply/rollback event; never touch Agent files')
+    install_simulate.add_argument('--action', required=True, choices=('apply', 'rollback'))
+    install_simulate.add_argument('--plan-id', required=True, help='SHA-256 plan ID')
+    install_simulate.add_argument('--acknowledge-plan-id', required=True,
+                                  help='Explicitly repeat exact plan ID; simulated approval only')
+    install_simulate.add_argument('--id', help='Source Record ID, required for simulated apply')
+    install_simulate.add_argument('--agent', choices=('codex', 'cursor', 'claude-desktop', 'generic-mcp'),
+                                  help='Required for simulated apply')
+    install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
+    install_simulate.set_defaults(func=cmd_install_simulate)
+
+    install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
+    install_status.add_argument('--plan-id', required=True)
+    install_status.set_defaults(func=cmd_install_status)
+
     download = sub.add_parser("download", help="Plan one complete local Skill package; --execute downloads without installing")
     download.add_argument("--id", required=True)
     download.add_argument("--execute", action="store_true")

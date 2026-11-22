@@ -123,7 +123,7 @@ def verified_internal_checkpoint(path, metadata):
         return False
 
 
-def scan_package(source_path, root=ROOT):
+def scan_package(source_path, root=ROOT, persist=True):
     # Keep root/source spelling consistent on macOS (/var -> /private/var).
     # Do not resolve the source file here: doing so could hide a symlink.
     root = Path(root).absolute()
@@ -238,7 +238,8 @@ def scan_package(source_path, root=ROOT):
     metadata["static_scan_actionable_finding_count"] = len(actionable_findings)
     metadata["high_confidence_signals"] = len(high_confidence)
     metadata["install_status"] = "not_approved"
-    source_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if persist:
+        source_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return {
         "repository": metadata.get("repository"),
         "skill_name": metadata.get("skill_name"),

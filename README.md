@@ -71,6 +71,29 @@ This command checks only Docker CLI/daemon availability and prints the required 
 
 **Inert container isolation CI (Phase 19):** The separate [GASL sandbox canary workflow](.github/workflows/gasl-sandbox-canary.yml) builds a tiny self-authored static Go program in a `FROM scratch` Docker image **locally**, without downloading dependencies or executing downloaded Skill code. It uses a source-hash-labelled, immutable local Docker image ID and a restricted ephemeral Linux container to test network isolation, read-only mounts, an unprivileged identity, dropped capabilities, seccomp, memory/CPU/process limits, scratch-space limits, absent host secrets and symlink escapes. The Docker run uses `--network none`, `--read-only`, a read-only synthetic fixture and `--pull never`. Only this benign canary can be tested via `./gasl sandbox --verify-canary --image-id sha256:...` on Linux. The ephemeral Linux [canary run 45046458532](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046458532) passed all **18** actual isolation checks. A passing canary is **not** certification of arbitrary-code safety, and no real Skill installation/execution path is enabled. The regular `./gasl sandbox` status command remains non-executing. See [Phase 19](docs/reports/PHASE-19-EPHEMERAL-INERT-SANDBOX-CANARY-2026-11-22.md).
 
+### Phase 20: Preview a pinned Skill installation and simulate rollback (no actual install)
+
+Plan a specific already indexed Skill against an explicit **logical** Agent and scope, fully offline:
+
+~~~bash
+./gasl install-plan --id GASL-SRC-ce593c8b9b3fd34f44d6 --agent codex --scope project
+~~~
+
+The output includes a deterministic SHA-256 `plan_id`, exact source commit and `SKILL.md` Git Blob, license caveats, locally rechecked source/package integrity (when downloaded), static-security warnings, unverified host compatibility, conceptual backup/rollback requirements and the state `actual_install_enabled: false`. This command does not contact the network, run a Skill, create a simulation ledger or modify Agent configuration. Supported **preview labels** are `codex`, `cursor`, `claude-desktop`, `generic-mcp`; these are *not working installer adapters or verified host compatibility claims*.
+
+To test only the simulated approval/state transitions, use the `plan_id` returned by the previous command (and an already downloaded, integrity-clean, no-actionable-flags package):
+
+~~~bash
+./gasl install-simulate --action apply --id GASL-SRC-ce593c8b9b3fd34f44d6 \
+  --agent codex --scope project --plan-id PLAN_SHA256 --acknowledge-plan-id PLAN_SHA256
+./gasl install-status --plan-id PLAN_SHA256
+./gasl install-simulate --action rollback --plan-id PLAN_SHA256 \
+  --acknowledge-plan-id PLAN_SHA256
+~~~
+
+`apply` and `rollback` here **only append local simulation events**, not copy, link, install, uninstall or execute any Skill. The exact plan-ID acknowledgement is for **simulation only** and does not constitute permission for real installation. All events are stored in a private, Git-ignored transactional SQLite ledger with a SHA-256 integrity chain at `private/install-simulation/events.sqlite3`; they can be read with `install-status`. The simulated rollback does **not** restore any actual Agent files because none were changed. An unknown license or unconfirmed Agent remains explicitly warned about, and no actual installation is permitted. See [Phase 20](docs/reports/PHASE-20-INSTALL-LIFECYCLE-SIMULATION-2026-11-22.md).
+
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
