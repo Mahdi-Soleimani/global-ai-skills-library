@@ -76,3 +76,14 @@ Before pushing to the public repository:
 - **Cross-platform:** Windows and actual Host versions remain to be tested; these local fixture tests were run on the authorized macOS computer and the new CI job targets Linux.
 
 **Acceptance:** Phase 22 read-only Host capability discovery and inert interruption/recovery rehearsal **implemented and locally verified**; actual Host Skill recognition, real installation, real rollback of user files, and execution of third-party code remain **disabled or unverified**.
+
+## 7. Published GitHub verification (observed, not inferred)
+
+- Phase-22 source commit: [`5b2fc6a`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/5b2fc6a3a73e36e10daf0a6c94063fe27de5f8ba), successfully pushed by normal non-force `git push origin main` after staged credential/path scans returned **0 findings**.
+- Dedicated inert Host transaction workflow: [Run `45054236897`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45054236897) — **completed / SUCCESS** on Ubuntu, including fixture unit tests and safe interruption/rollback smoke. No credential-bearing Git checkout persisted and no downloaded Skill code was run.
+- Normal metadata refresh workflow: [Run `45054236902`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45054236902) — **completed / SUCCESS**; regression tests, source catalog refresh, index and Router smoke, and allowlisted metadata publication all passed.
+- Refresh-generated metadata commit: [`2dbdbbe`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/2dbdbbe3cd8b045885247a218d5a54b306c64e3a), fast-forwarded onto the Mac without changing the source commit or rewriting history.
+- After the fast-forward, `python3 -m pytest -q` again passed **289 tests and 79 subtests**; an inert Claude Code/user-scope interruption-after-backup rehearsal returned `inert_fixture_recovery_verified` with `real_host_files_modified=false`.
+- Working tree was clean and `origin/main` matched the local `main` immediately after this verification (before this report-only documentation commit).
+
+**Acceptance: PASS for read-only Host CLI availability, disposable interruption recovery, privacy audit, public source publication and actual Linux CI. Still not claimed: any live Agent discovery, real user-file installation/rollback, Windows integration or execution of a third-party Skill.**
