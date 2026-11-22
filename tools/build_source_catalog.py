@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build a complete, third-party-attributed source index; this does not copy upstream content."""
+import argparse
 import csv
 import hashlib
 import json
@@ -31,10 +32,10 @@ def nearest_license(skill_path, license_files):
     return sorted(candidates, key=lambda x: (-len(x["path"].rsplit("/", 1)[0]), x["path"]))[0]
 
 
-def build(root=ROOT):
+def build(root=ROOT, public_only=False):
     state = read(root / "registry/discovery-state.json", {"repositories": {}})
-    historical = read(root / "registry/source-verification.json", {"repositories": {}})
-    local_records = read(root / "registry/skills.json", {"records": []}).get("records", [])
+    historical = {"repositories": {}} if public_only else read(root / "registry/source-verification.json", {"repositories": {}})
+    local_records = [] if public_only else read(root / "registry/skills.json", {"records": []}).get("records", [])
     downloaded = [{**item, "local_content_present": bool(
         item.get("package_path") and (root / item["package_path"] / "source.json").is_file())}
         for item in local_records]
@@ -116,14 +117,24 @@ def build(root=ROOT):
                 mirror_status = "reference_only_until_file_level_rights_and_license_evidence_review"
             if downloaded_meta and downloaded_meta.get("publicly_mirrored"):
                 mirror_status = "published_publicly_with_attribution"
+            elif downloaded_meta and downloaded_meta.get("local_content_present"):
+                mirror_status = downloaded_meta.get("public_mirror_status") or mirror_status
             if downloaded_meta and downloaded_meta.get("publicly_mirrored"):
                 content_status = "mirrored_publicly_with_attribution"
+                collection_status = "publicly_mirrored"
+                collection_scope = "public_catalog"
             elif downloaded_meta and downloaded_meta.get("local_content_present"):
                 content_status = "downloaded_and_hashed_locally"
+                collection_status = downloaded_meta.get("collection_status") or "collected"
+                collection_scope = downloaded_meta.get("collection_scope") or "private_local_catalog"
             elif downloaded_meta:
                 content_status = "historical_package_metadata_only_content_not_present"
+                collection_status = "historical_metadata_only"
+                collection_scope = None
             else:
                 content_status = "not_downloaded_reference_record"
+                collection_status = "not_collected"
+                collection_scope = None
             skill_name = path.rsplit("/", 2)[-2] if path.endswith("/SKILL.md") else path.rsplit("/", 1)[-1]
             if downloaded_meta and downloaded_meta.get("skill_name"):
                 skill_name = downloaded_meta["skill_name"]
@@ -146,7 +157,10 @@ def build(root=ROOT):
                 "license_evidence_path": evidence.get("path") if evidence else None,
                 "license_url": license_url,
                 "license_assessment": license_status,
+                "collection_license_status": downloaded_meta.get("license_status") if downloaded_meta else None,
                 "public_mirror_status": mirror_status,
+                "collection_status": collection_status,
+                "collection_scope": collection_scope,
                 "content_status": content_status,
                 "content_package_path": downloaded_meta.get("package_path") if downloaded_meta else None,
                 "security_status": downloaded_meta.get("security_status", "not_scanned") if downloaded_meta else "not_scanned",
@@ -191,7 +205,13 @@ def build(root=ROOT):
             "license_evidence_path": next((x.get("source_path") for x in item.get("license_evidence", [])), None),
             "license_url": item.get("license_url"),
             "license_assessment": "repository_license_metadata_only" if item.get("license_spdx") else "no_license_identified",
-            "public_mirror_status": "published_publicly_with_attribution" if item.get("publicly_mirrored") else "reference_only_until_file_level_rights_and_license_evidence_review",
+            "collection_license_status": item.get("license_status"),
+            "public_mirror_status": ("published_publicly_with_attribution" if item.get("publicly_mirrored") else
+                                     item.get("public_mirror_status") or "reference_only_until_file_level_rights_and_license_evidence_review"),
+            "collection_status": ("publicly_mirrored" if item.get("publicly_mirrored") else
+                                  item.get("collection_status") or ("collected" if item.get("local_content_present") else "historical_metadata_only")),
+            "collection_scope": ("public_catalog" if item.get("publicly_mirrored") else
+                                 item.get("collection_scope") or ("private_local_catalog" if item.get("local_content_present") else None)),
             "content_status": ("mirrored_publicly_with_attribution" if item.get("publicly_mirrored") else
                                "downloaded_and_hashed_locally" if item.get("local_content_present") else
                                "historical_package_metadata_only_content_not_present"),
@@ -220,6 +240,10 @@ def build(root=ROOT):
         "legacy_unpinned_record_count": sum(x["snapshot_status"] == "legacy_snapshot_unpinned" for x in records),
         "downloaded_record_count": sum(x["content_status"] in
             ("downloaded_and_hashed_locally", "mirrored_publicly_with_attribution") for x in records),
+        "private_collected_record_count": sum(x.get("collection_scope") == "private_local_catalog" for x in records),
+        "collection_status_counts": dict(sorted(Counter(x.get("collection_status", "not_collected") for x in records).items())),
+        "collection_license_status_counts": dict(sorted(Counter(x.get("collection_license_status") or "not_collected" for x in records).items())),
+        "public_mirror_status_counts": dict(sorted(Counter(x.get("public_mirror_status", "unknown") for x in records).items())),
         "historical_package_metadata_only_count": sum(x["content_status"] == "historical_package_metadata_only_content_not_present" for x in records),
         "publicly_mirrored_record_count": sum(x["content_status"] == "mirrored_publicly_with_attribution" for x in records),
         "license_assessment_counts": dict(sorted(counts.items())),
@@ -249,4 +273,7 @@ def build(root=ROOT):
 
 
 if __name__ == "__main__":
-    print(json.dumps(build(), ensure_ascii=False, indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--public-only", action="store_true", help="Exclude local package metadata from the public refresh")
+    args = parser.parse_args()
+    print(json.dumps(build(public_only=args.public_only), ensure_ascii=False, indent=2))

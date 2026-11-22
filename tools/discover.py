@@ -333,7 +333,7 @@ def run(root, limit, retry_errors=False, refresh=False):
             "Tree metadata only; no Skill content inspected or downloaded.",
             "New paths are relative to the last tracked snapshot, not globally unique or recovered dataset rows.",
             "Queue is not authorization to install or execute.",
-            "Downloaded package contents are not persisted by GitHub Actions runners; durable storage is a separate configuration gate.",
+            "Daily automation refreshes source metadata only. Selected package downloads occur on the user machine; no private archive is required.",
             "Repositories whose refresh fails retain their prior queue entries as stale fallbacks; the downloader must not ingest stale fallbacks."
         ]
     }

@@ -143,7 +143,7 @@ def make_plan(row, tree, policy):
 def public_mirror_rejection(row, plan, policy):
     allowed = set(policy.get("public_mirror_spdx_allowlist", []))
     if row.get("license_spdx") not in allowed:
-        return "License is not on the configured public-mirror allowlist; source catalog only"
+        return "Private collection is allowed; public mirror is blocked by the configured license allowlist"
     if not plan.get("license_evidence"):
         return "No applicable upstream LICENSE/COPYING/NOTICE file was bundled"
     return None
@@ -195,9 +195,9 @@ def validate_inventory(root, folder, plan, metadata=False):
             raise ValueError("Package integrity failure")
 
 
-def merge_manifest(root, plan, dest):
-    path = root / "registry/download-manifest.json"
-    manifest = read_json(path)
+def merge_manifest(root, plan, dest, manifest_path=None):
+    path = manifest_path if manifest_path is not None else root / "registry/download-manifest.json"
+    manifest = read_json(path) if path.exists() else {"schema_version": "0.1.0", "downloads": []}
     entry = next((e for e in manifest["downloads"] if e["repository"].casefold()==plan["repository"].casefold() and e["commit_sha"]==plan["commit_sha"]),None)
     if entry is None:
         entry = {"repository":plan["repository"], "commit_sha":plan["commit_sha"], "downloaded_at":now(), "skill_packages":[]}
@@ -218,7 +218,7 @@ def merge_manifest(root, plan, dest):
     write_json(path,manifest)
 
 
-def ingest(root, plan, fetch=fetch_blob):
+def ingest(root, plan, fetch=fetch_blob, manifest_path=None):
     dest = no_symlink(root,package_location(root,plan))
     if dest.exists():
         source = no_symlink(root,dest/"source.json")
@@ -228,7 +228,7 @@ def ingest(root, plan, fetch=fetch_blob):
             not meta.get("package_complete")):
             raise ValueError("Existing package identity conflict")
         validate_inventory(root,dest,plan,metadata=True)
-        merge_manifest(root,plan,dest)
+        merge_manifest(root,plan,dest,manifest_path)
         return {"status":"already_verified","new_files":0,"reused_files":len(plan["files"])}
     stage = no_symlink(root, root/"quarantine"/"queue-ingest"/dest.parent.name/dest.name)
     stage.mkdir(parents=True,exist_ok=True)
@@ -260,11 +260,22 @@ def ingest(root, plan, fetch=fetch_blob):
                 "size_bytes":e["size"],"sha256":hashlib.sha256((stage/e["relative"]).read_bytes()).hexdigest(),
                 "git_blob_sha":e["sha"]} for e in plan["files"]]
     spdx = plan.get("license_spdx")
-    allowlist = set(read_json(root/"config/policy.json").get("public_mirror_spdx_allowlist", []))
+    collection_policy = read_json(root/"config/policy.json")
+    allowlist = set(collection_policy.get("public_mirror_spdx_allowlist", []))
     has_license_evidence = bool(plan.get("license_evidence"))
-    license_status = ("license_evidence_bundled_pending_scan" if spdx in allowlist and has_license_evidence
-                      else "unknown_license_reference_only" if spdx in (None, "", "NOASSERTION", "NONE")
-                      else "license_evidence_missing_or_terms_unreviewed")
+    unknown_license = spdx in (None, "", "NOASSERTION", "NONE")
+    if unknown_license:
+        license_status = "license_unknown_evidence_bundled" if has_license_evidence else "license_unknown_no_evidence"
+    elif has_license_evidence:
+        license_status = "license_evidence_bundled_pending_scan"
+    else:
+        license_status = "license_evidence_missing_content_collected"
+    if spdx not in allowlist:
+        public_mirror_status = "not_eligible_license_policy"
+    elif not has_license_evidence:
+        public_mirror_status = "blocked_missing_license_evidence"
+    else:
+        public_mirror_status = "eligible_pending_static_scan"
     meta = {"collector_version":"0.5.0-attributed","package_type":"skill_candidate",
             "skill_name":dest.name.split("__")[0],"repository":plan["repository"],
             "canonical_repository":plan["repository"],"repository_owner":plan.get("publisher_account") or plan["repository"].split("/")[0],
@@ -274,7 +285,9 @@ def ingest(root, plan, fetch=fetch_blob):
             "skill_md_blob_sha":plan.get("skill_md_blob_sha"),
             "license_spdx":spdx,"license_name":plan.get("license_name"),
             "license_url":plan.get("license_url"),"license_evidence":plan.get("license_evidence",[]),
-            "license_status":license_status,
+            "license_status":license_status,"public_mirror_status":public_mirror_status,
+            "collection_status":"collected","collection_scope":"private_local_catalog",
+            "content_status":"downloaded_and_hashed_locally",
             "ownership":"third_party","original_author":None,"gasl_claims_exclusive_ownership":False,
             "attribution_notice":"Third-party work. Original rights remain with upstream authors/rightsholders. GASL is an attributed collection and does not claim exclusive ownership.",
             "research_leads":plan["research_leads"],"source_link_scope":"repository/path discovery reference; research leads do not establish individual authorship",
@@ -287,7 +300,7 @@ def ingest(root, plan, fetch=fetch_blob):
     if dest.exists():
         raise ValueError("Destination appeared during ingest")
     stage.rename(dest)
-    merge_manifest(root,plan,dest)
+    merge_manifest(root,plan,dest,manifest_path)
     return {"status":"downloaded","new_files":new_files,"reused_files":reused}
 
 
@@ -301,7 +314,6 @@ def main():
     p.add_argument("--max-files",type=int,default=30)
     p.add_argument("--execute",action="store_true")
     p.add_argument("--verify-existing",action="store_true",help="Select existing packages for integrity verification instead of advancing the queue")
-    p.add_argument("--public-redistributable-only",action="store_true",help="Only select packages with an allowlisted SPDX identifier and bundled upstream license/notice evidence")
     args = p.parse_args()
     if args.max_batch_bytes<1 or args.max_files<1:
         p.error("positive bounds required")
@@ -311,14 +323,12 @@ def main():
         queue_path = ROOT/"registry/download-queue.json"
     queue = read_json(queue_path)
     planned, rejected, total, count = [], [], 0, 0
-    allowlist = set(policy.get("public_mirror_spdx_allowlist", []))
+    # License status never filters private collection. Public mirroring is a separate
+    # operation with its own allowlist/evidence checks.
     selected_repos = (list(dict.fromkeys(r["repository"].casefold() for r in queue
                                            if r.get("discovery_status", "verified_metadata_only") != "stale_fallback"
                                            and r.get("install_status") == "not_approved"
-                                           and r.get("status") == "pending_package_plan"
-                                           and (not args.public_redistributable_only or
-                                                (r.get("license_spdx") in allowlist and
-                                                 (r.get("license_evidence_paths") or r.get("license_evidence_path"))))))
+                                           and r.get("status") == "pending_package_plan"))
                       if args.all_queued_repos else list(dict.fromkeys(r.casefold() for r in args.repo)))
     with (ROOT/"registry/discovery/.ingest.lock").open("a") as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -336,21 +346,10 @@ def main():
                 if row["commit_sha"]!=rows[0]["commit_sha"]:
                     raise ValueError("Mixed queue revisions")
                 try:
-                    if args.public_redistributable_only:
-                        allowed = set(policy.get("public_mirror_spdx_allowlist", []))
-                        if row.get("license_spdx") not in allowed:
-                            rejected.append({"repository":row["repository"],"skill_path":row["skill_path"],
-                                             "reason":"License is not on the configured public-mirror allowlist; source catalog only"})
-                            continue
-                        if not (row.get("license_evidence_paths") or row.get("license_evidence_path")):
-                            rejected.append({"repository":row["repository"],"skill_path":row["skill_path"],
-                                             "reason":"No applicable upstream license/notice file identified"})
-                            continue
+                    # Every discovered skill is eligible for private collection, including
+                    # unknown, proprietary, copyleft, and non-allowlisted licenses.
+                    # Public redistribution remains a separate gate in build_public_catalog.py.
                     plan = make_plan(row,tree,policy)
-                    if args.public_redistributable_only:
-                        rejection = public_mirror_rejection(row, plan, policy)
-                        if rejection:
-                            raise ValueError(rejection)
                     dest = no_symlink(ROOT,package_location(ROOT,plan))
                     if dest.exists() and not args.verify_existing:
                         # Skip only after verifying the complete inventory against the pinned tree.

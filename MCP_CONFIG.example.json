@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gasl": {
+      "command": "/absolute/path/to/global-ai-skills-library/gasl",
+      "args": ["mcp"]
+    }
+  }
+}

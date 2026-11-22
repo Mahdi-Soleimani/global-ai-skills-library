@@ -67,6 +67,8 @@ class PublicCatalogTests(unittest.TestCase):
         self.assertFalse(attribution["gasl_claims_exclusive_ownership"])
         self.assertEqual(attribution["ownership"], "third_party")
         self.assertFalse(attribution["execution_performed"])
+        index = json.loads((self.root / "public-catalog/index.json").read_text())
+        self.assertEqual(index["packages"][pid]["description"], "demo skill")
         again = build(self.root)
         self.assertEqual(again["public_package_count"], 1)
 

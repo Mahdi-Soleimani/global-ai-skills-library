@@ -121,7 +121,9 @@ class QueueIngestTests(unittest.TestCase):
         self.assertEqual(len(manifest["downloads"][0]["skill_packages"]),1)
         meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
         self.assertFalse(meta["execution_performed"])
-        self.assertEqual(meta["license_status"],"unknown_license_reference_only")
+        self.assertEqual(meta["license_status"],"license_unknown_no_evidence")
+        self.assertEqual(meta["collection_status"],"collected")
+        self.assertEqual(meta["collection_scope"],"private_local_catalog")
         self.assertFalse(meta["gasl_claims_exclusive_ownership"])
 
     def test_download_metadata_preserves_upstream_license_and_non_ownership(self):
@@ -138,6 +140,44 @@ class QueueIngestTests(unittest.TestCase):
         self.assertIsNone(meta["original_author"])
         self.assertFalse(meta["gasl_claims_exclusive_ownership"])
         self.assertIn(COMMIT,meta["source_url"])
+
+
+    def test_non_allowlisted_license_is_still_collected_with_attribution(self):
+        row,tree=fixture()
+        row["license_spdx"]="GPL-3.0-only"
+        tree["tree"].append(entry("LICENSE",b"GNU GPL v3"))
+        plan=make_plan(row,tree,{"max_file_size_bytes":1000,"max_skill_size_bytes":5000})
+        result=ingest(self.root,plan,lambda p,item:(
+            b"GNU GPL v3" if item["path"]=="LICENSE" else FILES[item["path"]]))
+        self.assertEqual(result["status"],"downloaded")
+        meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
+        self.assertEqual(meta["license_spdx"],"GPL-3.0-only")
+        self.assertEqual(meta["license_status"],"license_evidence_bundled_pending_scan")
+        self.assertEqual(meta["collection_status"],"collected")
+        self.assertEqual(meta["public_mirror_status"],"not_eligible_license_policy")
+        self.assertEqual(meta["ownership"],"third_party")
+        self.assertFalse(meta["gasl_claims_exclusive_ownership"])
+
+    def test_unknown_license_with_license_file_is_collected_but_not_publicly_eligible(self):
+        row,tree=fixture()
+        row["license_spdx"]="NOASSERTION"
+        tree["tree"].append(entry("LICENSE",b"Terms supplied by upstream"))
+        plan=make_plan(row,tree,{"max_file_size_bytes":1000,"max_skill_size_bytes":5000})
+        ingest(self.root,plan,lambda p,item:(
+            b"Terms supplied by upstream" if item["path"]=="LICENSE" else FILES[item["path"]]))
+        meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
+        self.assertEqual(meta["license_status"],"license_unknown_evidence_bundled")
+        self.assertEqual(meta["public_mirror_status"],"not_eligible_license_policy")
+
+    def test_known_license_without_notice_is_collected(self):
+        row,tree=fixture()
+        row["license_spdx"]="MIT"
+        plan=make_plan(row,tree,POLICY)
+        ingest(self.root,plan,lambda p,item:FILES[item["path"]])
+        meta=json.loads((package_location(self.root,plan)/"source.json").read_text())
+        self.assertEqual(meta["license_status"],"license_evidence_missing_content_collected")
+        self.assertEqual(meta["collection_status"],"collected")
+        self.assertEqual(meta["public_mirror_status"],"blocked_missing_license_evidence")
 
     def test_wrong_download_never_promoted(self):
         row,tree=fixture(); plan=make_plan(row,tree,POLICY)

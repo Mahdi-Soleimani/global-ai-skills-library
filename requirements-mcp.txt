@@ -1,0 +1,2 @@
+# Optional dependency for the local STDIO MCP adapter.
+mcp==2.3.0

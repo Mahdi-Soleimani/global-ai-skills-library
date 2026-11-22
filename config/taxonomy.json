@@ -1,0 +1,1840 @@
+{
+  "schema_version": "1.3.0",
+  "normalization": {
+    "unicode": "NFKC",
+    "arabic_yeh_to_persian": true,
+    "arabic_kaf_to_persian": true,
+    "remove_diacritics": true
+  },
+  "domains": [
+    {
+      "id": "software-development",
+      "label": "Software Development",
+      "keywords": [
+        "software",
+        "development",
+        "developer",
+        "programming",
+        "code",
+        "coding",
+        "api",
+        "backend",
+        "frontend",
+        "debug",
+        "refactor",
+        "testing",
+        "git",
+        "github",
+        "python",
+        "javascript",
+        "typescript",
+        "react",
+        "node",
+        "deployment",
+        "devops",
+        "docker",
+        "برنامه نویسی",
+        "کدنویسی",
+        "توسعه نرم افزار",
+        "بک اند",
+        "فرانت اند",
+        "دیباگ",
+        "تست نرم افزار"
+      ]
+    },
+    {
+      "id": "data-analytics",
+      "label": "Data and Analytics",
+      "keywords": [
+        "data",
+        "analytics",
+        "analysis",
+        "sql",
+        "database",
+        "pandas",
+        "excel",
+        "csv",
+        "etl",
+        "dashboard",
+        "metrics",
+        "warehouse",
+        "tableau",
+        "power bi",
+        "داده",
+        "تحلیل داده",
+        "داده کاوی",
+        "پایگاه داده",
+        "گزارش تحلیلی"
+      ]
+    },
+    {
+      "id": "security-compliance",
+      "label": "Security and Compliance",
+      "keywords": [
+        "security",
+        "audit",
+        "vulnerability",
+        "pentest",
+        "threat",
+        "compliance",
+        "privacy",
+        "authentication",
+        "oauth",
+        "secret",
+        "credential",
+        "policy",
+        "penetration testing",
+        "امنیت",
+        "ممیزی",
+        "آسیب پذیری",
+        "تطبیق",
+        "حریم خصوصی",
+        "احراز هویت"
+      ]
+    },
+    {
+      "id": "ai-ml-agents",
+      "label": "AI, Machine Learning and Agents",
+      "keywords": [
+        "artificial intelligence",
+        "ai",
+        "llm",
+        "agent",
+        "model",
+        "machine learning",
+        "ml",
+        "prompt",
+        "embedding",
+        "rag",
+        "vector",
+        "inference",
+        "fine tuning",
+        "هوش مصنوعی",
+        "مدل زبانی",
+        "عامل هوشمند",
+        "پرامپت",
+        "یادگیری ماشین"
+      ]
+    },
+    {
+      "id": "design-creative",
+      "label": "Design and Creative",
+      "keywords": [
+        "design",
+        "ui",
+        "ux",
+        "figma",
+        "brand",
+        "visual",
+        "image",
+        "illustration",
+        "video",
+        "animation",
+        "creative",
+        "art",
+        "طراحی",
+        "رابط کاربری",
+        "تجربه کاربری",
+        "برند",
+        "تصویرسازی"
+      ]
+    },
+    {
+      "id": "content-writing",
+      "label": "Content and Writing",
+      "keywords": [
+        "writing",
+        "write",
+        "copywriting",
+        "content",
+        "blog",
+        "seo",
+        "documentation",
+        "docs",
+        "editing",
+        "translation",
+        "localization",
+        "marketing",
+        "social media",
+        "تولید محتوا",
+        "نویسندگی",
+        "مستندسازی",
+        "ترجمه",
+        "بازاریابی",
+        "سئو"
+      ]
+    },
+    {
+      "id": "productivity-automation",
+      "label": "Productivity and Automation",
+      "keywords": [
+        "email",
+        "calendar",
+        "meeting",
+        "task",
+        "workflow",
+        "automation",
+        "project management",
+        "office",
+        "spreadsheet",
+        "presentation",
+        "اتوماسیون",
+        "مدیریت پروژه",
+        "تقویم",
+        "ایمیل",
+        "بهره وری"
+      ]
+    },
+    {
+      "id": "cloud-infrastructure",
+      "label": "Cloud and Infrastructure",
+      "keywords": [
+        "cloud",
+        "aws",
+        "azure",
+        "gcp",
+        "kubernetes",
+        "terraform",
+        "cloudflare",
+        "infrastructure",
+        "devops",
+        "deploy",
+        "serverless",
+        "docker",
+        "زیرساخت",
+        "رایانش ابری",
+        "استقرار"
+      ]
+    },
+    {
+      "id": "business-finance",
+      "label": "Business and Finance",
+      "keywords": [
+        "business",
+        "finance",
+        "sales",
+        "crm",
+        "accounting",
+        "investment",
+        "pricing",
+        "revenue",
+        "strategy",
+        "market",
+        "customer",
+        "کسب و کار",
+        "مالی",
+        "فروش",
+        "حسابداری",
+        "سرمایه گذاری",
+        "استراتژی"
+      ]
+    },
+    {
+      "id": "research-education",
+      "label": "Research and Education",
+      "keywords": [
+        "research",
+        "scholar",
+        "academic",
+        "education",
+        "teaching",
+        "course",
+        "tutor",
+        "study",
+        "paper",
+        "literature",
+        "پژوهش",
+        "آموزش",
+        "تدریس",
+        "یادگیری",
+        "تحقیق",
+        "مقاله"
+      ]
+    }
+  ],
+  "query_expansions": [
+    {
+      "terms": [
+        "یکپارچه سازی و استقرار مداوم"
+      ],
+      "expand": [
+        "continuous integration",
+        "continuous deployment",
+        "ci cd",
+        "cicd"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "خواندن و ویرایش فایل اکسل"
+      ],
+      "expand": [
+        "read and edit excel files",
+        "edit xlsx files"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "seo content optimization"
+      ],
+      "expand": [
+        "seo content optimization"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "keyword research for seo"
+      ],
+      "expand": [
+        "keyword research for seo"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "امنیت رابط برنامه نویسی"
+      ],
+      "expand": [
+        "api security",
+        "api authentication",
+        "api authorization"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بهینه سازی موتور جستجو"
+      ],
+      "expand": [
+        "seo",
+        "search engine optimization"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ادغام و استقرار پیوسته"
+      ],
+      "expand": [
+        "continuous integration",
+        "continuous deployment",
+        "ci cd",
+        "cicd"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "content optimization"
+      ],
+      "expand": [
+        "content optimization"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "seo keyword research"
+      ],
+      "expand": [
+        "seo keyword research"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "اتوماسیون گردش کار"
+      ],
+      "expand": [
+        "workflow automation",
+        "process automation"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "cloudflare workers"
+      ],
+      "expand": [
+        "cloudflare workers"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "data visualization"
+      ],
+      "expand": [
+        "data visualization"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "redis agent memory"
+      ],
+      "expand": [
+        "redis agent memory"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "تحقیق کلمات کلیدی"
+      ],
+      "expand": [
+        "keyword research",
+        "keyword analysis",
+        "keywords"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "خودکارسازی فرایند"
+      ],
+      "expand": [
+        "workflow automation",
+        "process automation"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بهینه سازی محتوای"
+      ],
+      "expand": [
+        "content optimization",
+        "optimize content"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "excel spreadsheet"
+      ],
+      "expand": [
+        "excel spreadsheet",
+        "xlsx spreadsheet"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "persistent memory"
+      ],
+      "expand": [
+        "persistent memory",
+        "long term memory"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "اکشن های گیت هاب"
+      ],
+      "expand": [
+        "github actions",
+        "github action"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "keyword research"
+      ],
+      "expand": [
+        "keyword research"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "next.js frontend"
+      ],
+      "expand": [
+        "next.js frontend",
+        "nextjs frontend"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "حافظه کوتاه مدت"
+      ],
+      "expand": [
+        "memory",
+        "persistent memory",
+        "long term memory",
+        "context"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "next.js website"
+      ],
+      "expand": [
+        "next.js website",
+        "nextjs website"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "nextjs frontend"
+      ],
+      "expand": [
+        "next.js frontend",
+        "nextjs frontend"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "fastapi backend"
+      ],
+      "expand": [
+        "fastapi backend"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "توسعه فرانت اند"
+      ],
+      "expand": [
+        "frontend development",
+        "front-end development"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "فراخوانی ابزار"
+      ],
+      "expand": [
+        "tool",
+        "tools",
+        "tool use",
+        "function calling"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "احراز هویت api"
+      ],
+      "expand": [
+        "api authentication",
+        "api auth",
+        "api authorization"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "nextjs website"
+      ],
+      "expand": [
+        "next.js website",
+        "nextjs website"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "github actions"
+      ],
+      "expand": [
+        "github actions"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "ci cd pipeline"
+      ],
+      "expand": [
+        "ci cd pipeline",
+        "continuous integration pipeline"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "دستیار هوشمند"
+      ],
+      "expand": [
+        "agent",
+        "agents",
+        "assistant"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "حافظه بلندمدت"
+      ],
+      "expand": [
+        "memory",
+        "persistent memory",
+        "long term memory",
+        "context"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "یادگیری ماشین"
+      ],
+      "expand": [
+        "machine learning",
+        "ml"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "افزونه وردپرس"
+      ],
+      "expand": [
+        "wordpress plugin",
+        "wordpress plugins"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "پلاگین وردپرس"
+      ],
+      "expand": [
+        "wordpress plugin",
+        "wordpress plugins"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "توسعه وب سایت"
+      ],
+      "expand": [
+        "web development",
+        "website development",
+        "web app development"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "سایت اینترنتی"
+      ],
+      "expand": [
+        "website",
+        "web site",
+        "web application"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "گیت هاب اکشنز"
+      ],
+      "expand": [
+        "github actions",
+        "github action"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "کلادفلر ورکرز"
+      ],
+      "expand": [
+        "cloudflare workers",
+        "cloudflare worker"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "پستگرس کیو ال"
+      ],
+      "expand": [
+        "postgres",
+        "postgresql"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "cicd pipeline"
+      ],
+      "expand": [
+        "ci cd pipeline",
+        "continuous integration pipeline"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "فایل‌های اکسل"
+      ],
+      "expand": [
+        "excel file",
+        "xlsx file"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "تجربه کاربری"
+      ],
+      "expand": [
+        "user interface",
+        "ui",
+        "user experience",
+        "ux"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "زیرساخت ابری"
+      ],
+      "expand": [
+        "cloud infrastructure",
+        "cloud"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "تایپ اسکریپت"
+      ],
+      "expand": [
+        "typescript",
+        "type script"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "کلادفلر ورکز"
+      ],
+      "expand": [
+        "cloudflare workers",
+        "cloudflare worker"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "کنترل دسترسی"
+      ],
+      "expand": [
+        "authorization",
+        "access control",
+        "permissions"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ممیزی امنیتی"
+      ],
+      "expand": [
+        "security audit",
+        "security review",
+        "vulnerability assessment"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "فست ای پی آی"
+      ],
+      "expand": [
+        "fastapi",
+        "fast api"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "رست ای پی آی"
+      ],
+      "expand": [
+        "rest api",
+        "restful api"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "حافظه پایدار"
+      ],
+      "expand": [
+        "persistent memory",
+        "long term memory"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "telegram bot"
+      ],
+      "expand": [
+        "telegram bot"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "عامل هوشمند"
+      ],
+      "expand": [
+        "agent",
+        "agents",
+        "assistant"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "پایگاه داده"
+      ],
+      "expand": [
+        "database",
+        "sql",
+        "postgresql"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "تولید محتوا"
+      ],
+      "expand": [
+        "content creation",
+        "content writing"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "رابط کاربری"
+      ],
+      "expand": [
+        "user interface",
+        "ui",
+        "user experience",
+        "ux"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "صفحه گسترده"
+      ],
+      "expand": [
+        "spreadsheet",
+        "google sheets",
+        "excel"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "آنالیز داده"
+      ],
+      "expand": [
+        "data analysis",
+        "data analytics",
+        "analyze data"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "نمودار سازی"
+      ],
+      "expand": [
+        "chart",
+        "charts",
+        "data visualization",
+        "visualization",
+        "chart creation",
+        "visualize data"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "کلمات کلیدی"
+      ],
+      "expand": [
+        "keyword research",
+        "keyword analysis",
+        "keywords"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ربات تلگرام"
+      ],
+      "expand": [
+        "telegram bot",
+        "telegram bots"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "seo content"
+      ],
+      "expand": [
+        "seo content"
+      ],
+      "weight": 1.4
+    },
+    {
+      "terms": [
+        "ساخت نمودار"
+      ],
+      "expand": [
+        "chart creation",
+        "data visualization",
+        "visualize data"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "هوش مصنوعی"
+      ],
+      "expand": [
+        "artificial intelligence",
+        "ai",
+        "llm"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "پیاده سازی"
+      ],
+      "expand": [
+        "build",
+        "create",
+        "implement",
+        "develop"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "خودکارسازی"
+      ],
+      "expand": [
+        "automation",
+        "workflow"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "جریان کاری"
+      ],
+      "expand": [
+        "workflow",
+        "workflows"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "نکست جی اس"
+      ],
+      "expand": [
+        "next.js",
+        "nextjs",
+        "next js"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "تحلیل داده"
+      ],
+      "expand": [
+        "data analysis",
+        "data analytics",
+        "analyze data"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "نمودارسازی"
+      ],
+      "expand": [
+        "chart",
+        "charts",
+        "data visualization",
+        "visualization",
+        "chart creation",
+        "visualize data"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "بات تلگرام"
+      ],
+      "expand": [
+        "telegram bot",
+        "telegram bots"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "احراز هویت"
+      ],
+      "expand": [
+        "authentication",
+        "auth",
+        "identity verification"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "آسیب پذیری"
+      ],
+      "expand": [
+        "vulnerability",
+        "vulnerabilities",
+        "security vulnerability"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بهینه سازی"
+      ],
+      "expand": [
+        "optimization",
+        "optimize",
+        "optimized"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "typescript"
+      ],
+      "expand": [
+        "typescript"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "اتوماسیون"
+      ],
+      "expand": [
+        "automation",
+        "workflow"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "داده کاوی"
+      ],
+      "expand": [
+        "data mining",
+        "data analysis"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بازاریابی"
+      ],
+      "expand": [
+        "marketing",
+        "campaign"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "امنیت api"
+      ],
+      "expand": [
+        "api security",
+        "api authentication",
+        "api authorization"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "فرانت اند"
+      ],
+      "expand": [
+        "frontend",
+        "front end"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "فایل اکسل"
+      ],
+      "expand": [
+        "excel file",
+        "xlsx file"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "ai agents"
+      ],
+      "expand": [
+        "ai agents",
+        "artificial intelligence agents"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "گردش کار"
+      ],
+      "expand": [
+        "workflow",
+        "workflows"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "توسعه وب"
+      ],
+      "expand": [
+        "web development",
+        "website development",
+        "web app development"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "rest api"
+      ],
+      "expand": [
+        "rest api",
+        "restful api"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "وب سایت"
+      ],
+      "expand": [
+        "website",
+        "web site",
+        "web application"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "کلادفلر"
+      ],
+      "expand": [
+        "cloudflare",
+        "workers",
+        "pages"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "مجوزدهی"
+      ],
+      "expand": [
+        "authorization",
+        "access control",
+        "permissions"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "استقرار"
+      ],
+      "expand": [
+        "deployment",
+        "deploy",
+        "release"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "next.js"
+      ],
+      "expand": [
+        "next.js",
+        "nextjs"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "fastapi"
+      ],
+      "expand": [
+        "fastapi"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "پایتون"
+      ],
+      "expand": [
+        "python"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "تلگرام"
+      ],
+      "expand": [
+        "telegram",
+        "telegram bot"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "وردپرس"
+      ],
+      "expand": [
+        "wordpress",
+        "woocommerce"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "افزونه"
+      ],
+      "expand": [
+        "plugin",
+        "plugins",
+        "extension"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "پلاگین"
+      ],
+      "expand": [
+        "plugin",
+        "plugins",
+        "extension"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "نمودار"
+      ],
+      "expand": [
+        "chart",
+        "charts",
+        "data visualization",
+        "visualization"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "پستگرس"
+      ],
+      "expand": [
+        "postgres",
+        "postgresql"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "محتوای"
+      ],
+      "expand": [
+        "content",
+        "content writing",
+        "content creation"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بک اند"
+      ],
+      "expand": [
+        "backend",
+        "back end"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "python"
+      ],
+      "expand": [
+        "python"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "ایجنت"
+      ],
+      "expand": [
+        "agent",
+        "agents",
+        "assistant"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ابزار"
+      ],
+      "expand": [
+        "tool",
+        "tools",
+        "tool use",
+        "function calling"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "حافظه"
+      ],
+      "expand": [
+        "memory",
+        "persistent memory",
+        "long term memory",
+        "context"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ایجاد"
+      ],
+      "expand": [
+        "build",
+        "create",
+        "implement",
+        "develop"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "توسعه"
+      ],
+      "expand": [
+        "develop",
+        "development",
+        "build",
+        "create",
+        "implement"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "امنیت"
+      ],
+      "expand": [
+        "security",
+        "cybersecurity"
+      ],
+      "weight": 1.25
+    },
+    {
+      "terms": [
+        "محتوا"
+      ],
+      "expand": [
+        "content",
+        "content writing",
+        "content creation"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "تحقیق"
+      ],
+      "expand": [
+        "research",
+        "investigation"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "redis"
+      ],
+      "expand": [
+        "redis"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "excel"
+      ],
+      "expand": [
+        "excel",
+        "xlsx"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "ساخت"
+      ],
+      "expand": [
+        "build",
+        "create",
+        "implement",
+        "develop"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "اکسل"
+      ],
+      "expand": [
+        "excel",
+        "xlsx",
+        "microsoft excel"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "ربات"
+      ],
+      "expand": [
+        "bot",
+        "bots",
+        "chatbot"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "ردیس"
+      ],
+      "expand": [
+        "redis"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "سئو"
+      ],
+      "expand": [
+        "seo",
+        "search engine optimization"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "تست"
+      ],
+      "expand": [
+        "test",
+        "testing",
+        "tests"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "seo"
+      ],
+      "expand": [
+        "seo"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "n8n",
+        "ن8ن"
+      ],
+      "expand": [
+        "n8n"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "کش"
+      ],
+      "expand": [
+        "cache",
+        "caching"
+      ],
+      "weight": 1.0
+    },
+    {
+      "terms": [
+        "بهینه سازی پرس و جو",
+        "بهینه‌سازی پرس‌وجو"
+      ],
+      "expand": [
+        "query optimization",
+        "sql optimization",
+        "database query tuning"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "پرس و جوی کند",
+        "پرس‌وجوی کند",
+        "کوئری کند"
+      ],
+      "expand": [
+        "slow SQL query",
+        "slow database query",
+        "query optimization"
+      ],
+      "weight": 1.8
+    },
+    {
+      "terms": [
+        "شاخص ترکیبی",
+        "شاخص‌های ترکیبی",
+        "شاخص های ترکیبی",
+        "شاخص پایگاه داده"
+      ],
+      "expand": [
+        "composite index",
+        "database index",
+        "indexing strategy"
+      ],
+      "weight": 1.7
+    },
+    {
+      "terms": [
+        "گزارش تحلیلی",
+        "گزارش های تحلیلی",
+        "گزارش‌های تحلیلی"
+      ],
+      "expand": [
+        "analytics query",
+        "analytical query",
+        "reporting query"
+      ],
+      "weight": 1.4
+    },
+    {
+      "terms": [
+        "پارتیشن بندی",
+        "پارتیشن‌بندی"
+      ],
+      "expand": [
+        "partitioning",
+        "partition pruning",
+        "table partitioning"
+      ],
+      "weight": 1.4
+    },
+    {
+      "terms": [
+        "ETL افزایشی",
+        "پردازش افزایشی داده"
+      ],
+      "expand": [
+        "incremental ETL",
+        "incremental load",
+        "incremental data processing"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "کنترل کیفیت داده"
+      ],
+      "expand": [
+        "data quality",
+        "data profiling",
+        "data validation"
+      ],
+      "weight": 1.8
+    },
+    {
+      "terms": [
+        "داده تکراری",
+        "داده‌های تکراری",
+        "داده های تکراری"
+      ],
+      "expand": [
+        "duplicate data",
+        "deduplication",
+        "data deduplication"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "مرور نظام مند",
+        "مرور نظام‌مند",
+        "بررسی نظام مند",
+        "بررسی نظام‌مند"
+      ],
+      "expand": [
+        "systematic review",
+        "systematic literature review",
+        "literature review"
+      ],
+      "weight": 2.2
+    },
+    {
+      "terms": [
+        "مرور ادبیات"
+      ],
+      "expand": [
+        "literature review",
+        "review of literature"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "غربالگری مقالات"
+      ],
+      "expand": [
+        "literature screening",
+        "study screening",
+        "study selection"
+      ],
+      "weight": 1.7
+    },
+    {
+      "terms": [
+        "معیار ورود و خروج",
+        "معیارهای ورود و خروج"
+      ],
+      "expand": [
+        "inclusion criteria",
+        "exclusion criteria",
+        "eligibility criteria"
+      ],
+      "weight": 1.7
+    },
+    {
+      "terms": [
+        "سوگیری پژوهش",
+        "ارزیابی سوگیری",
+        "سوگیری"
+      ],
+      "expand": [
+        "risk of bias",
+        "bias assessment",
+        "study bias"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "سنتز شواهد"
+      ],
+      "expand": [
+        "evidence synthesis",
+        "research synthesis"
+      ],
+      "weight": 1.7
+    },
+    {
+      "terms": [
+        "معلم هوشمند"
+      ],
+      "expand": [
+        "AI tutor",
+        "intelligent tutoring system",
+        "intelligent tutoring"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "یادگیری دانش آموزان",
+        "یادگیری دانش‌آموزان"
+      ],
+      "expand": [
+        "student learning",
+        "learning outcomes",
+        "education"
+      ],
+      "weight": 1.3
+    },
+    {
+      "terms": [
+        "دسترسی پذیری",
+        "دسترسی‌پذیری"
+      ],
+      "expand": [
+        "accessibility",
+        "a11y",
+        "wcag"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "پیمایش صفحه کلید",
+        "پیمایش صفحه‌کلید",
+        "صفحه کلید",
+        "صفحه‌کلید"
+      ],
+      "expand": [
+        "keyboard navigation",
+        "keyboard accessibility"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "صفحه خوان",
+        "صفحه‌خوان"
+      ],
+      "expand": [
+        "screen reader",
+        "screen-reader"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "کنتراست رنگ",
+        "کنتراست"
+      ],
+      "expand": [
+        "color contrast",
+        "contrast ratio"
+      ],
+      "weight": 1.5
+    },
+    {
+      "terms": [
+        "خطاهای فرم",
+        "خطای فرم"
+      ],
+      "expand": [
+        "form validation",
+        "form errors",
+        "input validation",
+        "form labels",
+        "form controls",
+        "label association"
+      ],
+      "weight": 1.7
+    },
+    {
+      "terms": [
+        "نمایش موبایل"
+      ],
+      "expand": [
+        "mobile responsive",
+        "responsive design",
+        "mobile layout"
+      ],
+      "weight": 1.4
+    },
+    {
+      "terms": [
+        "راست چین",
+        "راست‌چین",
+        "طراحی راست چین",
+        "طراحی راست‌چین"
+      ],
+      "expand": [
+        "rtl design",
+        "right to left design",
+        "rtl layout"
+      ],
+      "weight": 1.6
+    },
+    {
+      "terms": [
+        "WCAG 2.2",
+        "WCAG",
+        "ممیزی دسترسی پذیری",
+        "ممیزی دسترسی‌پذیری"
+      ],
+      "expand": [
+        "accessibility",
+        "a11y",
+        "accessibility audit",
+        "WCAG 2.2"
+      ],
+      "weight": 3.0
+    },
+    {
+      "terms": [
+        "Screen Reader",
+        "screen-reader",
+        "خوانشگر صفحه"
+      ],
+      "expand": [
+        "screen reader",
+        "aria",
+        "assistive technology",
+        "accessible name"
+      ],
+      "weight": 2.0
+    },
+    {
+      "terms": [
+        "Focus"
+      ],
+      "expand": [
+        "focus management",
+        "keyboard focus",
+        "tab order",
+        "focus"
+      ],
+      "weight": 1.5
+    }
+  ]
+}

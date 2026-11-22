@@ -7,6 +7,8 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
+from build_registry import parse_frontmatter
+
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public-catalog"
 
@@ -44,6 +46,15 @@ def safe_copy(source, target):
     shutil.copyfile(source, target)
 
 
+def skill_description(path):
+    if not path.is_file() or path.is_symlink():
+        return None
+    text = path.read_text(encoding="utf-8", errors="replace")
+    frontmatter = parse_frontmatter(text)
+    description = frontmatter.get("description")
+    return description.strip() if isinstance(description, str) and description.strip() else None
+
+
 def validate_public_package(folder, files):
     expected = {item["path"] for item in files} | {"ATTRIBUTION.md", "ATTRIBUTION.json"}
     actual = set()
@@ -71,6 +82,13 @@ def build(root=ROOT):
     index = read(index_path, {"schema_version": "1.0.0", "updated_at": now(), "packages": {}})
     if index.get("schema_version") != "1.0.0" or not isinstance(index.get("packages"), dict):
         raise ValueError("Public catalog index schema mismatch")
+    # Existing immutable public packages can safely enrich their search metadata
+    # from the already mirrored SKILL.md without re-copying or rewriting the source.
+    for existing in index["packages"].values():
+        package_dir = root / existing.get("package_path", "")
+        description = skill_description(package_dir / "SKILL.md")
+        if description:
+            existing["description"] = description
     published, skipped = [], []
     for source_path in packages:
         meta = read(source_path)
@@ -169,8 +187,10 @@ def build(root=ROOT):
                 if dest.exists():
                     raise ValueError("Public package destination appeared during publication")
                 stage.rename(dest)
+        description = skill_description(source_path.parent / "SKILL.md")
         index["packages"][pid] = {
             "package_id": pid, "skill_name": meta.get("skill_name"),
+            "description": description,
             "repository": meta["repository"], "repository_owner": attribution["repository_owner"],
             "source_skill_path": meta["source_skill_path"],
             "source_url": source_url, "commit_sha": meta["commit_sha"],

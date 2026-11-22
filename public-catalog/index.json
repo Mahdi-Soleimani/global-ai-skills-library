@@ -3,6 +3,7 @@
   "packages": {
     "0d19881bc0b9faa9edaa1d6e": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "description": "Run an AI impact assessment — structured intake, risk analysis, regulatory classification per regime in scope, policy consistency diff, and recommendation with conditions. Uses the house-style structure learned from the seed impact assessment in `~/.claude/plugins/config/claude-for-legal/ai-governance-legal/CLAUDE.md`. Use when user says \"impact assessment for\", \"assess this AI use case\", \"run an AIA\", \"generate an AIA\", \"we need to document this AI system\", \"AI risk assessment for X\", or follows a conditional triage result.",
       "execution_performed": false,
       "file_count": 2,
       "gasl_claims_exclusive_ownership": false,
@@ -29,6 +30,7 @@
     },
     "5f26c47f7fa1e7dd8301cbb3": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
+      "description": "EU AI Act per-system inventory — track each AI system's role (provider, deployer, importer, distributor, authorized representative, product manufacturer) and risk tier (prohibited, high-risk, limited, minimal, GPAI, GPAI+systemic). Role and tier are assessed per system, not per company. Use when the user says \"ai inventory\", \"add an ai system\", \"what systems do we have\", \"classify this ai system\", \"eu ai act register\", or \"ai system registry\".",
       "execution_performed": false,
       "file_count": 2,
       "gasl_claims_exclusive_ownership": false,
@@ -55,6 +57,7 @@
     },
     "69ab4fe3a395f563255c857e": {
       "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+      "description": "Assess whether a release, fix version or milestone is ready to ship using Teamwork Graph across Jira, Projects, Confluence, connected code, deployments and chat. Answers in the conversation first with a rule-based verdict (Ready, Ready with conditions or Not ready), linked blockers, readiness by area, open work, decisions and recorded owners, and evidence gaps. Offers the existing HTML report on request and publication only when Atlassian Artifacts is available and requested. Use for release readiness, a go or no-go view, or /assess-release. For dependencies alone, use dependency-map. For goal health, use status-check. For shipped changes, use release-notes.",
       "execution_performed": false,
       "file_count": 5,
       "gasl_claims_exclusive_ownership": false,
@@ -81,6 +84,7 @@
     },
     "6cfc9349d9b85a227b367626": {
       "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "description": "Use when a launched managed agent needs grading against a rubric and improving ('grade my agent', 'is it good enough'). Builds the outcome with outcome_builder.py, reads verdicts with verdict_reader.py and runs held-back evals from eval_scaffold.py.",
       "execution_performed": false,
       "file_count": 6,
       "gasl_claims_exclusive_ownership": false,
@@ -107,6 +111,7 @@
     },
     "6d267906c5406b6944f1909d": {
       "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+      "description": "Analyzes a multi-step conversion funnel to find where visitors drop off and which steps have the worst leakage. Use this skill when someone describes a journey and asks about conversion rates, drop-off, fallout, or step completion. Trigger for \"analyze our checkout funnel,\" \"where are visitors dropping off,\" \"what's our add-to-cart to purchase conversion rate,\" \"funnel analysis,\" \"show me fallout between steps,\" or \"which step loses the most visitors.\"",
       "execution_performed": false,
       "file_count": 3,
       "gasl_claims_exclusive_ownership": false,
@@ -133,6 +138,7 @@
     },
     "857bbfa8ef60e062d64aadac": {
       "commit_sha": "04e80589cd60aedc22ea791afac5603d95eeae98",
+      "description": "Generates a concise, executive-ready performance summary covering key metrics, trends, and what's driving movement. Use this skill when someone needs to produce a briefing, executive summary, performance narrative, or stakeholder readout — for example, \"write an exec summary of last week's performance,\" \"create a performance briefing for our leadership team,\" \"produce a monthly business review summary,\" \"what should I tell executives about our metrics,\" or \"generate a performance narrative.\" Also trigger for \"QBR summary,\" \"weekly business review,\" or \"stakeholder briefing.\"",
       "execution_performed": false,
       "file_count": 4,
       "gasl_claims_exclusive_ownership": false,
@@ -159,6 +165,7 @@
     },
     "be3fe6cd2c035fbc7910129c": {
       "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
+      "description": "Apply the Atlassian Design System (ADS) to artifacts, pages, mockups and prototypes — official tokens (light and dark), type, spacing, elevation, icons, component recipes, smart links, content and accessibility rules. Use when asked for Atlassian-style or ADS-styled UI.",
       "execution_performed": false,
       "file_count": 88,
       "gasl_claims_exclusive_ownership": false,
@@ -185,6 +192,7 @@
     },
     "c2eb49af93b5af98934533c5": {
       "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "description": "Use when someone wants to build, launch, grade or schedule a Claude Managed Agent in their own Anthropic account ('build me an agent', 'run this nightly'). Reads the session goal, routes with goal_router.py and compiles the loop with loop_compiler.py.",
       "execution_performed": false,
       "file_count": 6,
       "gasl_claims_exclusive_ownership": false,
@@ -211,6 +219,7 @@
     },
     "c6470a0d2e887a5e010990e0": {
       "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
+      "description": "Reasoning skill for designing AWS GenAI and ML architectures for healthcare and life sciences workloads. Use when the user asks to choose between SageMaker and Bedrock, design a RAG system over medical literature, architect clinical NLP or medical imaging inference, plan genomics or drug discovery pipelines on AWS, address HIPAA/PHI compliance in ML systems, design MLOps for regulated clinical models, or optimize cost for HCLS ML workloads. Triggers include \"AWS architecture\", \"SageMaker vs Bedrock\", \"HIPAA ML\", \"clinical RAG\", \"medical imaging inference\", \"genomics on AWS\", \"PHI training\", \"MLOps healthcare\", \"Bedrock guardrails\", \"HealthLake\", \"HCLS cloud architecture\", \"BAA compliance\", \"SageMaker endpoint\", \"Bedrock knowledge base\", \"clinical NLP on AWS\", \"FDA SaMD on AWS\".",
       "execution_performed": false,
       "file_count": 3,
       "gasl_claims_exclusive_ownership": false,

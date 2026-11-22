@@ -60,8 +60,11 @@ class SourceCatalogTests(unittest.TestCase):
         records = [{
             "repository": "Org/Repo", "canonical_repository": "Org/Repo",
             "source_skill_path": "skills/demo/SKILL.md", "commit_sha": "e" * 40,
-            "tree_sha": "f" * 40, "license_spdx": "MIT", "package_path": "catalog/demo",
-            "package_complete": True, "skill_name": "demo", "downloaded_at": "today"
+            "tree_sha": "f" * 40, "license_spdx": "GPL-3.0-only", "package_path": "catalog/demo",
+            "package_complete": True, "skill_name": "demo", "downloaded_at": "today",
+            "license_status": "license_evidence_bundled_pending_scan",
+            "public_mirror_status": "not_eligible_license_policy",
+            "collection_status": "collected", "collection_scope": "private_local_catalog"
         }]
         (self.root / "catalog/demo").mkdir(parents=True)
         (self.root / "catalog/demo/source.json").write_text("{}")
@@ -72,6 +75,30 @@ class SourceCatalogTests(unittest.TestCase):
         self.assertEqual(len(versions), 2)
         self.assertEqual(summary["immutable_revision_count"], 2)
         self.assertIn("e" * 40, {x["commit_sha"] for x in versions})
+        downloaded = next(x for x in versions if x["commit_sha"] == "e" * 40)
+        self.assertEqual(downloaded["collection_status"], "collected")
+        self.assertEqual(downloaded["collection_scope"], "private_local_catalog")
+        self.assertEqual(downloaded["collection_license_status"], "license_evidence_bundled_pending_scan")
+        self.assertEqual(downloaded["public_mirror_status"], "not_eligible_license_policy")
+        self.assertEqual(summary["private_collected_record_count"], 1)
+
+    def test_public_only_does_not_publish_local_package_metadata(self):
+        local = {"repository":"Org/Repo","source_skill_path":"skills/demo/SKILL.md",
+                 "commit_sha":"a"*40,"description":"PRIVATE SENTINEL",
+                 "package_path":"catalog/private-demo","package_complete":True}
+        (self.root/"catalog/private-demo").mkdir(parents=True)
+        (self.root/"catalog/private-demo/source.json").write_text("{}")
+        (self.root/"registry/skills.json").write_text(json.dumps({"records":[local]}))
+        (self.root/"registry/source-verification.json").write_text(json.dumps({
+            "repositories":{"private/research":{"skill_paths":["skills/private/SKILL.md"]}}
+        }))
+        summary=build(self.root,public_only=True)
+        public=(self.root/"registry/source-catalog.json").read_text()
+        self.assertNotIn("PRIVATE SENTINEL",public)
+        self.assertNotIn("private/research",public)
+        self.assertNotIn("catalog/private-demo",public)
+        self.assertEqual(summary["private_collected_record_count"],0)
+        self.assertEqual(summary["source_record_count"],2)
 
 
 if __name__ == "__main__":

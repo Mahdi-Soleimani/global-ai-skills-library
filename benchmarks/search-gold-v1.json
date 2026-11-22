@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0.0",
+  "name": "GASL bilingual search gold set",
+  "status": "provisional",
+  "created_at": "2026-11-20",
+  "description": "Provisional internal regression set for common agent-development tasks. Labels are graded and based on source descriptions; independent domain review is required before public quality claims.",
+  "relevance_scale": {
+    "0": "not relevant or unjudged",
+    "1": "related or adjacent",
+    "2": "relevant",
+    "3": "highly relevant"
+  },
+  "relevant_threshold": 2,
+  "queries": [
+    {
+      "id": "n8n-agent-en",
+      "language": "en",
+      "query": "n8n AI Agent node with tools and persistent memory",
+      "relevant": {
+        "GASL-SRC-dd9c5b087f27ac574c02": 3,
+        "GASL-SRC-1bd5766c75ec4cbc2d28": 3,
+        "GASL-SRC-e05a75b3d1cf64a9803a": 3,
+        "GASL-SRC-a8c1aa87a6805939c9aa": 2,
+        "GASL-SRC-ed335e9f179eac58c0be": 1
+      }
+    },
+    {
+      "id": "n8n-agent-fa",
+      "language": "fa",
+      "query": "ساخت ایجنت هوش مصنوعی با ابزار و حافظه",
+      "relevant": {
+        "GASL-SRC-dd9c5b087f27ac574c02": 3,
+        "GASL-SRC-1bd5766c75ec4cbc2d28": 3,
+        "GASL-SRC-e05a75b3d1cf64a9803a": 3,
+        "GASL-SRC-a8c1aa87a6805939c9aa": 2,
+        "GASL-SRC-ed335e9f179eac58c0be": 1
+      }
+    },
+    {
+      "id": "api-security-en",
+      "language": "en",
+      "query": "Python API authentication authorization security review",
+      "relevant": {
+        "GASL-SRC-38d16dafdd2965f9120e": 3,
+        "GASL-SRC-8f63bf0d0a2e183bba5a": 3,
+        "GASL-SRC-750e978742ebe509a776": 2,
+        "GASL-SRC-530827850c30c535cb40": 2,
+        "GASL-SRC-58c6a03ea255f291ff08": 2,
+        "GASL-SRC-ca6ef21a881022be1f97": 1,
+        "GASL-SRC-f187e6d8feaea0c3d8d2": 2,
+        "GASL-SRC-bdf956be886030345851": 1,
+        "GASL-SRC-0b100e1330ccbdceadea": 1
+      }
+    },
+    {
+      "id": "api-security-fa",
+      "language": "fa",
+      "query": "امنیت و احراز هویت API با پایتون",
+      "relevant": {
+        "GASL-SRC-38d16dafdd2965f9120e": 3,
+        "GASL-SRC-8f63bf0d0a2e183bba5a": 3,
+        "GASL-SRC-750e978742ebe509a776": 2,
+        "GASL-SRC-530827850c30c535cb40": 2,
+        "GASL-SRC-58c6a03ea255f291ff08": 2,
+        "GASL-SRC-ca6ef21a881022be1f97": 1,
+        "GASL-SRC-f187e6d8feaea0c3d8d2": 2,
+        "GASL-SRC-bdf956be886030345851": 1,
+        "GASL-SRC-0b100e1330ccbdceadea": 1,
+        "GASL-SRC-b78bee453a50ae9ae9d1": 1,
+        "GASL-SRC-033b430aee6f07fe65a9": 1
+      }
+    },
+    {
+      "id": "wordpress-en",
+      "language": "en",
+      "query": "WordPress plugin development",
+      "relevant": {
+        "GASL-SRC-b5415d266228969ed99e": 3
+      }
+    },
+    {
+      "id": "wordpress-fa",
+      "language": "fa",
+      "query": "توسعه افزونه وردپرس",
+      "relevant": {
+        "GASL-SRC-b5415d266228969ed99e": 3
+      }
+    },
+    {
+      "id": "cloudflare-en",
+      "language": "en",
+      "query": "Cloudflare Workers development and deployment",
+      "relevant": {
+        "GASL-SRC-e813bbbfdbf35166c061": 3,
+        "GASL-SRC-8aa521d714c79ef8f009": 3,
+        "GASL-SRC-1bdfc6c8d5fcfd956920": 2,
+        "GASL-SRC-93e43b3db32fa9d1e3a4": 2,
+        "GASL-SRC-422891f50199156592a1": 2,
+        "GASL-SRC-628c02e7ae99a9463ce9": 2,
+        "GASL-SRC-92254263028b31984565": 1,
+        "GASL-SRC-ece11e5aa26f1f9d4092": 2
+      }
+    },
+    {
+      "id": "cloudflare-fa",
+      "language": "fa",
+      "query": "توسعه و استقرار برنامه با کلادفلر ورکرز",
+      "relevant": {
+        "GASL-SRC-e813bbbfdbf35166c061": 3,
+        "GASL-SRC-8aa521d714c79ef8f009": 3,
+        "GASL-SRC-1bdfc6c8d5fcfd956920": 2,
+        "GASL-SRC-93e43b3db32fa9d1e3a4": 2,
+        "GASL-SRC-422891f50199156592a1": 2,
+        "GASL-SRC-628c02e7ae99a9463ce9": 2,
+        "GASL-SRC-92254263028b31984565": 1,
+        "GASL-SRC-ece11e5aa26f1f9d4092": 2
+      }
+    },
+    {
+      "id": "github-actions-en",
+      "language": "en",
+      "query": "GitHub Actions CI CD workflow automation testing deployment",
+      "relevant": {
+        "GASL-SRC-7aae455d34c795e87383": 3,
+        "GASL-SRC-8e77d7277c4085c4e7a2": 3,
+        "GASL-SRC-4c95ab3f52ab1d5b7268": 2,
+        "GASL-SRC-5d05d7a663aa74b5caaa": 2,
+        "GASL-SRC-1eac838b1e9806313cfd": 2,
+        "GASL-SRC-32a36839d5bfa5630a36": 2,
+        "GASL-SRC-9377401f7d8d341e4deb": 2,
+        "GASL-SRC-d7afa5c7e26f0836fda0": 2,
+        "GASL-SRC-bb2f828e22b109769000": 1
+      }
+    },
+    {
+      "id": "github-actions-fa",
+      "language": "fa",
+      "query": "اتوماسیون تست و استقرار با گیت هاب اکشنز",
+      "relevant": {
+        "GASL-SRC-7aae455d34c795e87383": 3,
+        "GASL-SRC-8e77d7277c4085c4e7a2": 3,
+        "GASL-SRC-4c95ab3f52ab1d5b7268": 2,
+        "GASL-SRC-5d05d7a663aa74b5caaa": 2,
+        "GASL-SRC-1eac838b1e9806313cfd": 2,
+        "GASL-SRC-32a36839d5bfa5630a36": 2,
+        "GASL-SRC-9377401f7d8d341e4deb": 2,
+        "GASL-SRC-d7afa5c7e26f0836fda0": 2,
+        "GASL-SRC-bb2f828e22b109769000": 1
+      }
+    },
+    {
+      "id": "seo-en",
+      "language": "en",
+      "query": "SEO keyword research and search volume",
+      "relevant": {
+        "GASL-SRC-0ae5f5fbf93d9a52b956": 3,
+        "GASL-SRC-ec9a3f5c176339feb49d": 2,
+        "GASL-SRC-91218ab531241df1d0a6": 2,
+        "GASL-SRC-6c7443ae6d114a8e086d": 1
+      }
+    },
+    {
+      "id": "seo-fa",
+      "language": "fa",
+      "query": "تحقیق کلمات کلیدی برای سئو",
+      "relevant": {
+        "GASL-SRC-0ae5f5fbf93d9a52b956": 3,
+        "GASL-SRC-ec9a3f5c176339feb49d": 2,
+        "GASL-SRC-91218ab531241df1d0a6": 2,
+        "GASL-SRC-6c7443ae6d114a8e086d": 1,
+        "GASL-SRC-a7aaea4c5d51aaca3822": 1,
+        "GASL-SRC-7346093db582338bfb0f": 1
+      }
+    },
+    {
+      "id": "excel-en",
+      "language": "en",
+      "query": "Read and edit Excel XLSX spreadsheet files",
+      "relevant": {
+        "GASL-SRC-0d9ff6af864684b55487": 3,
+        "GASL-SRC-d400f455b2fd964bc34a": 2,
+        "GASL-SRC-014dff37b72425f3e37e": 1,
+        "GASL-SRC-c7df6570d13053d4f828": 1
+      }
+    },
+    {
+      "id": "excel-fa",
+      "language": "fa",
+      "query": "خواندن و ویرایش فایل اکسل و XLSX",
+      "relevant": {
+        "GASL-SRC-0d9ff6af864684b55487": 3,
+        "GASL-SRC-d400f455b2fd964bc34a": 2,
+        "GASL-SRC-014dff37b72425f3e37e": 1,
+        "GASL-SRC-c7df6570d13053d4f828": 1
+      }
+    },
+    {
+      "id": "nextjs-en",
+      "language": "en",
+      "query": "Next.js frontend development with TypeScript",
+      "relevant": {
+        "GASL-SRC-c26d71ba61001a5b0922": 3,
+        "GASL-SRC-d23351b7f52166d0d4ad": 3,
+        "GASL-SRC-1bdfc6c8d5fcfd956920": 2,
+        "GASL-SRC-4d82d69386d6184d1f02": 2,
+        "GASL-SRC-3814f5f0ebc662b9ce3b": 1
+      }
+    },
+    {
+      "id": "nextjs-fa",
+      "language": "fa",
+      "query": "توسعه فرانت اند با نکست جی اس و تایپ اسکریپت",
+      "relevant": {
+        "GASL-SRC-c26d71ba61001a5b0922": 3,
+        "GASL-SRC-d23351b7f52166d0d4ad": 3,
+        "GASL-SRC-1bdfc6c8d5fcfd956920": 2,
+        "GASL-SRC-4d82d69386d6184d1f02": 2,
+        "GASL-SRC-3814f5f0ebc662b9ce3b": 1
+      }
+    },
+    {
+      "id": "telegram-n8n-en",
+      "language": "en",
+      "query": "Telegram bot automation in n8n",
+      "relevant": {
+        "GASL-SRC-7176e090efed14290690": 3,
+        "GASL-SRC-e05a75b3d1cf64a9803a": 3,
+        "GASL-SRC-dd9c5b087f27ac574c02": 2,
+        "GASL-SRC-1bd5766c75ec4cbc2d28": 2,
+        "GASL-SRC-ed335e9f179eac58c0be": 1
+      }
+    },
+    {
+      "id": "telegram-n8n-fa",
+      "language": "fa",
+      "query": "ساخت ربات تلگرام با n8n",
+      "relevant": {
+        "GASL-SRC-7176e090efed14290690": 3,
+        "GASL-SRC-e05a75b3d1cf64a9803a": 3,
+        "GASL-SRC-dd9c5b087f27ac574c02": 2,
+        "GASL-SRC-1bd5766c75ec4cbc2d28": 2,
+        "GASL-SRC-ed335e9f179eac58c0be": 1
+      }
+    },
+    {
+      "id": "fastapi-en",
+      "language": "en",
+      "query": "FastAPI Python REST API backend development",
+      "relevant": {
+        "GASL-SRC-afd03e090009ff45c7c6": 3,
+        "GASL-SRC-ca6ef21a881022be1f97": 2,
+        "GASL-SRC-89c066c416ca68916d35": 2,
+        "GASL-SRC-fd1f11b83928e9a7b6a7": 1
+      }
+    },
+    {
+      "id": "fastapi-fa",
+      "language": "fa",
+      "query": "توسعه بک اند با فست ای پی آی و پایتون",
+      "relevant": {
+        "GASL-SRC-afd03e090009ff45c7c6": 3,
+        "GASL-SRC-ca6ef21a881022be1f97": 2,
+        "GASL-SRC-89c066c416ca68916d35": 2,
+        "GASL-SRC-fd1f11b83928e9a7b6a7": 1,
+        "GASL-SRC-3b46b51abab7df2d79dd": 1,
+        "GASL-SRC-baf6c598b2bf42fcef42": 2,
+        "GASL-SRC-3115501dd90e22fa78ac": 1
+      }
+    },
+    {
+      "id": "redis-en",
+      "language": "en",
+      "query": "Redis persistent memory for AI agents",
+      "relevant": {
+        "GASL-SRC-a571b45567992ee4aee7": 2,
+        "GASL-SRC-4b1cf25ab9c7d39e5f2f": 3,
+        "GASL-SRC-de775c6db2bc3904e127": 2,
+        "GASL-SRC-39219c98e5d430b5b948": 1
+      }
+    },
+    {
+      "id": "redis-fa",
+      "language": "fa",
+      "query": "حافظه پایدار ایجنت با ردیس",
+      "relevant": {
+        "GASL-SRC-4b1cf25ab9c7d39e5f2f": 3,
+        "GASL-SRC-a571b45567992ee4aee7": 2,
+        "GASL-SRC-048b7246dd3c4f9824c8": 2,
+        "GASL-SRC-64a8d0e94042e28fc2a2": 2,
+        "GASL-SRC-de775c6db2bc3904e127": 1
+      }
+    },
+    {
+      "id": "data-viz-en",
+      "language": "en",
+      "query": "Build data analysis charts and visualizations",
+      "relevant": {
+        "GASL-SRC-12053a580ef1ee4f2025": 3,
+        "GASL-SRC-5171fa9ea7fc8ab5ac68": 2,
+        "GASL-SRC-c1895bf0abd4b21192a4": 2,
+        "GASL-SRC-7a579eb1d3fa3090b3b1": 2,
+        "GASL-SRC-28877e78e6e519d30986": 1
+      }
+    },
+    {
+      "id": "data-viz-fa",
+      "language": "fa",
+      "query": "تحلیل داده و ساخت نمودار و مصورسازی",
+      "relevant": {
+        "GASL-SRC-12053a580ef1ee4f2025": 3,
+        "GASL-SRC-5171fa9ea7fc8ab5ac68": 2,
+        "GASL-SRC-c1895bf0abd4b21192a4": 2,
+        "GASL-SRC-7a579eb1d3fa3090b3b1": 2,
+        "GASL-SRC-28877e78e6e519d30986": 1,
+        "GASL-SRC-8ee9c58605e58e45b265": 2,
+        "GASL-SRC-e8b7d46da205f1f5b542": 1,
+        "GASL-SRC-3814f5f0ebc662b9ce3b": 1
+      }
+    },
+    {
+      "id": "seo-content-en",
+      "language": "en",
+      "query": "SEO content optimization",
+      "relevant": {
+        "GASL-SRC-369d327b35de3a00c333": 3,
+        "GASL-SRC-11b781b5c13bd506fe18": 2,
+        "GASL-SRC-521d726b0498f251726f": 2,
+        "GASL-SRC-3a1566370f7e7e06cf65": 2,
+        "GASL-SRC-ec9a3f5c176339feb49d": 1
+      }
+    },
+    {
+      "id": "seo-content-fa",
+      "language": "fa",
+      "query": "بهینه سازی محتوای سئو",
+      "relevant": {
+        "GASL-SRC-369d327b35de3a00c333": 3,
+        "GASL-SRC-521d726b0498f251726f": 2,
+        "GASL-SRC-3a1566370f7e7e06cf65": 2,
+        "GASL-SRC-11b781b5c13bd506fe18": 2,
+        "GASL-SRC-7346093db582338bfb0f": 2,
+        "GASL-SRC-ec9a3f5c176339feb49d": 1
+      }
+    }
+  ]
+}

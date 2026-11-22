@@ -17,6 +17,10 @@
 /registry/source-verification.json
 /registry/source-verification.csv
 
+# Generated local search index
+/registry/gasl-search.sqlite3
+/registry/gasl-search.sqlite3.tmp
+
 # Local runtime artifacts
 .env
 .env.*

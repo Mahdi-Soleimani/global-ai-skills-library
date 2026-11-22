@@ -1,10 +1,10 @@
 {
-  "policy_version": "0.1.0",
+  "policy_version": "0.3.0",
   "auto_execute_downloaded_scripts": false,
   "follow_symlinks": false,
   "allow_download_from_public_repositories": true,
   "download_requires_live_repository_verification": true,
-  "unknown_license": "keep_in_source_catalog_with_upstream_attribution_and_source_link; do_not_publicly_mirror_content_without_verified_redistribution_rights",
+  "unknown_license": "index_and_allow_selected_upstream_retrieval_with_attribution; public_redistribution_review_separate",
   "unknown_provenance": "review",
   "blocked_labels": [
     "BLOCKED",
@@ -63,5 +63,11 @@
     "unknown",
     "CC-BY-NC-*",
     "CC-BY-ND-*"
-  ]
+  ],
+  "collection_policy": "index_all_discovered_skills_and_retrieve_selected_pinned_content_on_demand",
+  "collection_requires_license_allowlist": false,
+  "collection_storage_scope": "user_local_cache_optional",
+  "public_mirror_policy": "separate_distribution_gate; allowlist_and_applicable_license_notice_evidence_required",
+  "private_archive_required": false,
+  "scheduled_refresh_mode": "source_metadata_only"
 }
