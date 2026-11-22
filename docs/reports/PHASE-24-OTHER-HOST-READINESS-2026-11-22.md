@@ -47,8 +47,19 @@ This phase deliberately verifies **real CLI/protocol readiness** only:
 2. Keep Cursor/Claude Code **Skill discovery unverified** until an exact documented discovery procedure succeeds. The previously verified Codex Skill discovery remains valid only for the tested CLI/version and disposable Ubuntu profile.
 3. Advance the separate install-plan transaction and explicit user approval flow only with a trustworthy host-specific adapter, versioned backup/rollback and no execution of untrusted Skill content. Do not enable production install implicitly after a readiness check.
 
-**Phase 24 implementation and synthetic tests completed; live Host CI evidence pending at initial publication.**
+**Phase 24 PASS:** real Cursor ACP readiness and real Claude Code CLI version verified on separate ephemeral Linux runners; 307 local tests passed. Neither Host's Skill discovery is verified; production installation remains disabled.
 
 ### CI iteration 1 — packaging fixes, no readiness claim
 
 The first real workflow [run `45057215100`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45057215100) completed with **two failures** before either supported protocol could be exercised. Cursor's official installer created a symlinked launcher; the fail-closed probe requires the final binary path rather than following user-controlled symlinks. The official npm metadata for the selected Claude Code package exposed a `bin/claude.exe` target on Linux and the probe refused to run it. Both fail-closed behaviors were correct. The CI workflow now resolves the Cursor launcher to its real, executable target and uses the vendor's documented **native Linux installer** for Claude Code release `2.1.330` instead of the mismatched npm binary. The next real CI run must independently verify both Host readiness checks.
+
+### CI iteration 2 — both actual Host readiness jobs PASS
+
+- Workflow [run `45057489934`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45057489934), triggered by non-force publication of the corrected workflow, **completed / SUCCESS** with **two successful jobs** on ephemeral `ubuntu-24.04`.
+- Cursor: official installer created the test-only CLI, its launcher was resolved to a regular executable without weakening the probe's symlink guard, and the **actual Cursor ACP server** returned `protocolVersion=1` and `agentCapabilities` at `initialize`. Recorded `status=real_host_readiness_verified`, `reason_code=cursor_acp_initialized_without_authentication`, `real_host_protocol_verified=true`, **`skill_discovery_verified=false`**.
+- Claude Code: official native Linux installer installed version **`2.1.330`** into an isolated temporary HOME and the **actual vendor CLI** responded successfully to `--version` with `host_version=2.1.330`. Recorded `status=real_host_readiness_verified`, `reason_code=claude_cli_version_verified_without_authentication`, `real_host_protocol_verified=true`, **`skill_discovery_verified=false`**.
+- In both jobs, CI asserted `authentication_performed=false`, `model_turn_started=false`, `third_party_skill_executed=false`, `real_host_files_modified=false` and `production_installation_enabled=false`. No API key, account login, model prompt, Skill installation, Skill invocation or actual developer Host configuration was used.
+- The first failed run remains documented above. The corrected fix commit `9c2f247` was safely merged with the separately generated metadata refresh commit `9df13ab` and published through a normal non-force push in merge commit `8f67925`.
+- All source and report changes were screened for sensitive data; the public Commit includes **no private local Skill packages, account credentials, user Home directories, or raw private audit ledgers**.
+
+**Explicit residual gap:** This success cannot be extrapolated to `skills/list`, Host model execution, real local installation or support for every downloaded Skill. The Phase-23 Codex `skills/list` result is stronger than this Phase-24 readiness result and remains the only independently verified Host-side Skill discovery test.
