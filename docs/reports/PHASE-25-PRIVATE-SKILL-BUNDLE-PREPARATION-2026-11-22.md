@@ -71,3 +71,13 @@ A previous initial live-package attempt correctly failed rather than bypassing m
 5. **Copyright/redistribution:** the ZIP is locally private and contains the original upstream license evidence where available. This phase does not publish, mirror or redistribute third-party Skill source code on GitHub.
 
 **Acceptance: successful private pinned ZIP creation and verification on a real local package, with explicit limitations and no actual Host/Agent modifications.**
+
+## 6. Observed GitHub Actions acceptance and public source verification
+
+- Source implementation commit [`124bbe4`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/124bbe44fd324427f1ab50afa082830fbfb85cf6) was pushed normally (non-force) to `main`; staged content review covered **exactly 7 public code/test/workflow/documentation paths**, with **zero secret, private path, personal email or telephone matches**.
+- Clean archive/export of the commit without `.git`, `private/`, `catalog/`, `storage/`, or `reports/` passed the complete **326-test and 91-subtest** suite, Python byte-compilation, CLI option smoke and search-index checks. The clean checkout contained **no third-party bundle contents**.
+- Dedicated [GitHub Actions run `45058488535`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45058488535) completed **SUCCESS** on ephemeral Ubuntu: checkout without preserved credentials, code compilation, synthetic pinned ZIP checks and an explicit assertion that no repository-local private bundle or catalog was created.
+- The downloaded real `academy-guide` bundle remains **only on the development Mac** inside Git-ignored `private/install-bundles/`, with its accompanying evidence JSON. No binary ZIP, external Skill instructions or original license text was committed to public GitHub.
+- The separate standard source-catalog refresh job may advance remote `main` independently of this feature; any subsequent synchronization must use a normal fast-forward or non-destructive merge, not a forced update.
+
+**Acceptance after live CI: PASS for archive preparation and integrity checks; NOT a Host-side installation approval or third-party safety certification.**
