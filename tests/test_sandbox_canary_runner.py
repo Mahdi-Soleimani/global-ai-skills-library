@@ -153,6 +153,21 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
         self.assertIn('rm', commands[-1])
         self.assertIn('--force', commands[-1])
 
+    def test_container_start_error_redacts_paths_and_tokens(self):
+        def runner(argv, **kwargs):
+            if argv[1] == 'version':
+                return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
+            if argv[1] == 'image':
+                return subprocess.CompletedProcess(argv, 0, json.dumps(image_details()), '')
+            return subprocess.CompletedProcess(argv, 125, '',
+                'docker: failed to mount /home/runner/work/project token=VERY_PRIVATE_SECRET\n')
+        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        self.assertEqual(result['reason_code'], 'docker_container_start_or_runtime_failed')
+        self.assertIn('failed to mount', result['sanitized_docker_error'])
+        self.assertNotIn('/home/runner/work', result['sanitized_docker_error'])
+        self.assertNotIn('VERY_PRIVATE_SECRET', result['sanitized_docker_error'])
+        self.assertFalse(result['sandbox_execution_enabled'])
+
     def test_invalid_runtime_json_blocks(self):
         def runner(argv, **kwargs):
             if argv[1] == 'version':return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')

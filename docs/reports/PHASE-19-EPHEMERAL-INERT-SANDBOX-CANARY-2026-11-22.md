@@ -65,3 +65,10 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 - The initial Python wrapper discarded the child process output on a nonzero exit; its `reason_code` only reported `canary_nonzero_exit_or_isolation_failure`, so the failed predicate(s) were not observable. No evidence of an isolation PASS was claimed.
 - The wrapper was corrected to parse **only the self-authored canary JSON**, retain sanitized boolean check outcomes and failed predicate names, and continue to block. Raw Docker stdout/stderr and secrets are not exposed. A new unit test covers this fail-closed diagnostic path.
 - A second CI run must identify the concrete failure(s), which must then be fixed without removing or downgrading an isolation check.
+
+### Live CI iteration 2 — startup failure remains blocked
+
+- Run [`45045980285`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45045980285), commit `94ce8e6`, **FAILED** after the unit, Go compilation and offline image-build steps passed.
+- The updated diagnostic parser confirmed the child did **not** return a valid canary JSON result, hence `docker_container_start_or_runtime_failed`; no isolation predicate could yet be assessed.
+- The fail-closed host wrapper was updated again to print only one bounded, sanitized Docker startup error line, with local paths and credential-assignment values redacted. A new test verifies this behavior.
+- The metadata refresh trigger now explicitly excludes stand-alone sandbox canary source/runner changes, to avoid redundant full-library refreshes while iterating on the containment test. That change to the refresh workflow itself still triggers one regular refresh.

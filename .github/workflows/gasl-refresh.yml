@@ -10,6 +10,11 @@ on:
     paths:
       - .github/workflows/gasl-refresh.yml
       - tools/**
+      # Sandbox canary CI is self-contained; do not refresh 4,000+ Skill
+      # metadata records for a test-harness-only change.
+      - '!tools/sandbox_canary/**'
+      - '!tools/sandbox_canary_runner.py'
+      - '!tools/sandbox_gate.py'
       - config/discovery-targets.json
       - config/policy.json
       - config/taxonomy.json

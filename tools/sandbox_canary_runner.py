@@ -151,7 +151,16 @@ def run_benign_canary(image_id, *, docker_bin=None, system=None, runner=subproce
                         result['failed_checks'] = sorted(key for key in EXPECTED_CHECKS
                                                          if checks.get(key) is not True)
                         return result
-                return _empty_result('docker_container_start_or_runtime_failed')
+                result = _empty_result('docker_container_start_or_runtime_failed')
+                # Only a bounded, redacted Docker *error* line from the trusted CI
+                # runner; never include stdout, environment, image contents or Skills.
+                stderr = str(executed.stderr or '').splitlines()
+                if stderr:
+                    detail = stderr[0][:500]
+                    detail = re.sub(r'/(?:home|tmp|Users|private)/[^\s"\']+', '<local-path>', detail)
+                    detail = re.sub(r'(?i)(token|password|secret|key)=\S+', r'\1=[REDACTED]', detail)
+                    result['sanitized_docker_error'] = detail[:320]
+                return result
             try:
                 payload = json.loads(executed.stdout)
             except (TypeError, json.JSONDecodeError):
