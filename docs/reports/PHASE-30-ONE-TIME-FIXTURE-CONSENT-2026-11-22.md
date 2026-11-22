@@ -51,11 +51,23 @@ No new Python runtime dependencies were introduced. POSIX `fcntl` remains mandat
 - Independently used the real locally private `academy-guide` ZIP (pinned Phase-25 `plan_id` `f52f11b345714191c780bd63b6e18e1d05a9f2ed3257c3b791a9e2fa00e45fcb`) in a freshly marked temporary Codex project. Both `install` and `replace` cases consumed a simulated test receipt once, copied original ZIP files as data, verified the installed file, rolled back, and preserved the previous inert fixture content. This test **did not launch Codex or run `academy-guide`**. The private archive, original license text and receipt key never enter public Git.
 - Source compilation and `git diff --check` PASS. A full clean public Git archive and real Linux Codex CI must be observed and recorded separately after the new source commit is published; local fake-Host tests are not proof of real Host integration.
 
-## 5. Real Codex test (pending initial remote run)
+## 5. Real Codex CLI and Linux CI evidence — observed SUCCESS
 
-The already-established `gasl-codex-transaction-e2e.yml` workflow is extended to run the full real `@openai/codex@0.162.1` App Server with a synthetic receipt consumed inside a fixture transaction, then verify `absent_before_install`, `inert_skill_discovered_after_install`, `absent_after_rollback` and `fixture_rollback_verified`. It also asserts `one_time_fixture_receipt_consumed=true` and **`human_confirmation_verified=false`**. The command never starts a model turn or authenticates a user account. Record the actual workflow run and evidence here once verified.
+- [Real Codex workflow run `45069553527`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45069553527) completed **SUCCESS** on `ubuntu-24.04`, using actual pinned `@openai/codex@0.162.1` installed under `$RUNNER_TEMP` with npm lifecycle scripts disabled.
+- Synthetic unit tests ran first. Two **independent actual Codex App Server** cycles then passed. In the second, the CI programmatically supplied the exact simulated confirmation phrase to the test-only receipt system, and consumed that receipt under the same POSIX lock as staging.
+- The actual job logs report `status=real_codex_inert_install_discovery_rollback_verified`, with `absent_before_install=true`, `inert_skill_discovered_after_install=true`, `absent_after_rollback=true`, `fixture_rollback_verified=true`, **`one_time_fixture_receipt_consumed=true`**, and **`human_confirmation_verified=false`**. CI printed `REAL_CODEX_ONE_TIME_FIXTURE_RECEIPT=PASS; HUMAN_APPROVAL=NOT_TESTED`.
+- [Locked-fixture transaction workflow run `45069553602`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45069553602) also completed **SUCCESS** independently. Neither job used real user Agent profiles, account credentials, a model turn, downloaded third-party Skill ZIPs or a real-user install permission.
+- The successful real Host validation proves that the test-only receipt does not break Codex Skill discovery/rollback. **It does not prove a human authorized any installation**, that actual user profiles are protected against adversarial external writers, or that unreviewed Skills are safe.
 
-## 6. Residual production gates
+
+## 6. Public Git commit, privacy audit and source verification
+
+- The Phase-30 source commit [`5dc90c9`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/5dc90c9b0a45e7e7e4bb5be6c2a844e9046ab692) was published to `main` by a **normal non-force Git push** after validating a clean local worktree and confirming that the remote branch had not advanced at push time.
+- Exactly **10 allowlisted first-party files** (code, tests, workflow, README, roadmap and report) were staged. A staged search for private keys, API/GitHub tokens, bearer credentials, actual user-home paths, personal email/telephone values and credential-bearing URLs returned **zero findings**.
+- Locally downloaded Skills and original license text remained under ignored `private/install-bundles/` and were not included in the Git commit or CI artifacts. No real user-profile paths or signing keys were published.
+- A completely clean `git archive HEAD` checkout, with `.git`, `private`, `catalog`, `storage` and `reports` absent, passed **419 tests, 223 subtests**, Python byte-compilation, both CLI-help checks and the catalog index smoke (**4,431 skills**). No private assets were created in that checkout.
+
+## 7. Residual production gates
 
 1. **Identity and scope:** this phase proves a local test action and one-time receipt only; it does not authenticate a real human, authorize production, or establish organization/policy ownership of the target directory.
 2. **Real Host installation:** no user profile installation endpoint was added. The only write target is a GASL-marked disposable profile. Runtime/Host verification currently covers Codex and only a self-authored harmless Skill.
@@ -63,4 +75,4 @@ The already-established `gasl-codex-transaction-e2e.yml` workflow is extended to
 4. **Untrusted content:** passing static checks, metadata pinning and file transfer never grants permission to run third-party Skill instructions or scripts. The original package license and provenance require separate review.
 5. **Other systems:** Cursor and Claude Code need independent real Skill discovery/rollback checks, and Windows needs a dedicated tested lock/transaction implementation before production rollout.
 
-**Phase 30 local scope: PASS for a separately confirmed, expiring, one-time, exact-state fixture receipt. Human-approved real Agent installation: NOT IMPLEMENTED and NOT TESTED.**
+**Phase 30 implementation, local regressions, and real isolated Codex/Linux CI: PASS. Human-approved real Agent installation: NOT IMPLEMENTED and NOT TESTED.**
