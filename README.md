@@ -140,6 +140,18 @@ python3 tools/codex_discovery_probe.py --codex-bin /ABSOLUTE/PATH/TO/CODEX/CLI
 
 The isolated [live Codex CI run 45055665888](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45055665888) **passed**, confirming the real `@openai/codex@0.162.1` CLI discovered the exact inert fixture via `skills/list`. The script rejects unknown or ambiguous Skill paths and incomplete protocol responses, removes temporary files, and prints a **sanitized JSON result** with no executable locations, user directories or tokens. Real Codex discovery applies **only to the tested inert fixture in that runner**; it is not blanket Agent compatibility or authorization to install GASL packages. Cursor and Claude Code remain documented fixture adapters, with real Host discovery still unverified. See [Phase 23](docs/reports/PHASE-23-REAL-CODEX-DISCOVERY-2026-11-22.md).
 
+### Phase 24: Cursor ACP and Claude Code readiness without authentication
+
+Cursor Agent CLI [supports ACP](https://cursor.com/docs/cli/acp), which can be initialized without requesting an authenticated Session. Claude Code CLI supports an ordinary `--version` check without starting a model. GASL tests these independent, narrow capabilities with the vendors' **actual CLI binaries in disposable Linux CI environments**:
+
+~~~bash
+# Only in a disposable test profile with a trusted, local executable:
+python3 tools/other_host_protocol_probe.py --host cursor --binary /ABSOLUTE/PATH/TO/agent
+python3 tools/other_host_protocol_probe.py --host claude-code --binary /ABSOLUTE/PATH/TO/claude
+~~~
+
+The probe creates an empty temporary `HOME` and XDG directories, strips inherited API keys and identity-related environment variables, and never opens a Session, sends a Prompt, logs in, writes to real Agent directories, or runs any Skill. **Cursor ACP initialize and Claude Code `--version` are readiness checks, not real Skill discovery.** The [dedicated GitHub Actions workflow](.github/workflows/gasl-other-host-readiness.yml) retrieves official CLI distributions only inside ephemeral Ubuntu runners and validates the isolated responses. Neither an available binary nor a ready protocol unlocks GASL production installation. See [Phase 24](docs/reports/PHASE-24-OTHER-HOST-READINESS-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

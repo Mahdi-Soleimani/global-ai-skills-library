@@ -1,0 +1,109 @@
+name: GASL — Real Cursor and Claude Code CLI readiness
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-other-host-readiness.yml
+      - tools/other_host_protocol_probe.py
+      - tests/test_other_host_protocol_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cursor-acp-handshake:
+    name: Real Cursor ACP initialize (no login, no Skill invocation)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout with no saved credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Validate standalone probe logic without API credentials
+        run: python3 -m unittest tests.test_other_host_protocol_probe -v
+      - name: Install official Cursor CLI in disposable runner home
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/gasl-cursor-home"
+          curl --fail --silent --show-error --location --retry 2 --max-time 60 \
+            https://cursor.com/install -o "$RUNNER_TEMP/gasl-cursor-official-installer.sh"
+          bash -n "$RUNNER_TEMP/gasl-cursor-official-installer.sh"
+          HOME="$RUNNER_TEMP/gasl-cursor-home" \
+            bash "$RUNNER_TEMP/gasl-cursor-official-installer.sh" \
+            > "$RUNNER_TEMP/gasl-cursor-install-output.txt" 2>&1
+          candidate="$RUNNER_TEMP/gasl-cursor-home/.local/bin/agent"
+          test -f "$candidate" && test -x "$candidate"
+          echo "GASL_EPHEMERAL_CURSOR_BIN=$candidate" >> "$GITHUB_ENV"
+      - name: Verify actual Cursor ACP handshake without account/session/prompt
+        run: |
+          set -euo pipefail
+          python3 tools/other_host_protocol_probe.py \
+            --host cursor \
+            --binary "$GASL_EPHEMERAL_CURSOR_BIN" \
+            --output "$RUNNER_TEMP/gasl-cursor-verified.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          record = json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-cursor-verified.json').read_text())
+          assert record['status'] == 'real_host_readiness_verified'
+          assert record['real_host_protocol_verified'] is True
+          assert record['reason_code'] == 'cursor_acp_initialized_without_authentication'
+          assert record['skill_discovery_verified'] is False
+          for key in ('authentication_performed', 'model_turn_started',
+                      'third_party_skill_executed', 'real_host_files_modified',
+                      'production_installation_enabled'):
+              assert record[key] is False
+          print('REAL_CURSOR_ACP_INITIALIZE=PASS; SKILL_DISCOVERY=NOT_TESTED')
+          PY
+
+  claude-code-version:
+    name: Real Claude Code CLI version (no login, no Skill invocation)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout with no saved credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js in ephemeral runner
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact Claude Code npm version in runner temp, disable lifecycle scripts
+        env:
+          NPM_CONFIG_AUDIT: 'false'
+          NPM_CONFIG_FUND: 'false'
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/gasl-claude-code" \
+            --ignore-scripts --no-audit --no-fund --no-save --package-lock=false \
+            '@anthropic-ai/claude-code@2.1.330'
+          candidate="$RUNNER_TEMP/gasl-claude-code/node_modules/.bin/claude"
+          test -e "$candidate"
+          candidate="$(realpath "$candidate")"
+          test -f "$candidate"
+          echo "GASL_EPHEMERAL_CLAUDE_BIN=$candidate" >> "$GITHUB_ENV"
+      - name: Verify actual Claude CLI without account or model turn
+        run: |
+          set -euo pipefail
+          python3 tools/other_host_protocol_probe.py \
+            --host claude-code \
+            --binary "$GASL_EPHEMERAL_CLAUDE_BIN" \
+            --output "$RUNNER_TEMP/gasl-claude-version.json"
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          record = json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-claude-version.json').read_text())
+          assert record['status'] == 'real_host_readiness_verified'
+          assert record['real_host_protocol_verified'] is True
+          assert record['host_version'] == '2.1.330'
+          assert record['skill_discovery_verified'] is False
+          for key in ('authentication_performed', 'model_turn_started',
+                      'third_party_skill_executed', 'real_host_files_modified',
+                      'production_installation_enabled'):
+              assert record[key] is False
+          print('REAL_CLAUDE_CLI_VERSION=PASS; SKILL_DISCOVERY=NOT_TESTED')
+          PY
