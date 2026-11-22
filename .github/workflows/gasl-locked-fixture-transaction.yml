@@ -1,0 +1,39 @@
+name: GASL — Locked disposable Host Skill transaction
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-locked-fixture-transaction.yml
+      - tools/fixture_transaction_v2.py
+      - tests/test_fixture_transaction_v2.py
+      - tools/fixture_bundle_install.py
+      - tools/host_target_preflight.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  locked-fixture-recovery:
+    name: Exclusive lock and cross-process recovery on synthetic ZIPs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout published source without retaining Git credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Compile exact locked transaction modules
+        run: python3 -m compileall -q tools/fixture_transaction_v2.py tests/test_fixture_transaction_v2.py
+      - name: Exercise fixture-only approval, flock and interrupted rollback
+        run: python3 -m unittest tests.test_fixture_transaction_v2 -v
+      - name: Require no third-party ZIP or user-profile files in public checkout
+        run: |
+          set -euo pipefail
+          test ! -e private/install-bundles
+          test ! -e catalog
+          test ! -e private/install-simulation
+          echo 'DISPOSABLE_FIXTURE_ONLY=PASS'
+          echo 'REAL_AGENT_INSTALLATION=FALSE'
+          echo 'THIRD_PARTY_CODE_EXECUTED=FALSE'
