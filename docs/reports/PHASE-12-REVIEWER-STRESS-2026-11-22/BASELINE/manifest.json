@@ -1,0 +1,13 @@
+{
+  "baseline_runs": [
+    "RUN-01.json",
+    "RUN-02.json",
+    "RUN-03.json"
+  ],
+  "baseline_harness": "BASELINE/reviewer_stress_eval.py",
+  "baseline_harness_sha256": "cbdfd69ae2588528c426bc7f318df18aabb1b751473f00f8781cc3bbdffb8191",
+  "baseline_suite_sha256": "b1c4f9406fbb033c2d8998e7f35a87c4ed619a532e448a73284ccea1f2fda0d2",
+  "baseline_search_input_fingerprint": "1fd7676494bad172887c0c58d5643d14baa0fbf7e3bf91326f66ebae7813a348",
+  "baseline_taxonomy_sha256_from_phase_11b_snapshot": "3c16e787ccc6ad0f481f69e3683330801d9ba745578ca9476d26c6f37116174f",
+  "note": "Baseline run outputs are preserved exactly. The original untracked search engine source was not separately snapshotted before remediation; RUN-01..03 JSON preserve its actual result outputs and input fingerprints. Do not claim the baseline source can be reconstructed from the current working tree."
+}

@@ -114,3 +114,10 @@ The four independent research report archives were re-hashed and remain byte-ide
 ## Acceptance
 
 Acceptance passed: 57 project tests; 57/57 source repositories refreshed with zero errors; 4,405 commit-pinned source records; nine attributed public packages; 119 mirrored files; automatic GitHub commit; local working copy synchronized. No downloaded code was installed or executed.
+
+
+## Amendment — collection is independent of license (2026-11-20)
+
+The initial workflow incorrectly coupled the private downloader to the public redistribution allowlist via `--public-redistributable-only`. That filter has been removed from `queue_ingest.py`; all license classes are now eligible for private collection. License metadata and public-mirror eligibility are recorded as separate fields. `build_public_catalog.py` retains its independent public redistribution gate.
+
+The Actions ingestion step is guarded until a durable private archive writer is configured. The repository is public, `catalog/` is local-only, and Actions runners are ephemeral; downloading every package in a runner without a private archive destination would lose the content at job completion. Cloudflare R2 is not enabled in the connected account. The full collection must therefore be persisted to a separate private destination before automated Actions ingestion is enabled. See `PHASE-7-COLLECTION-POLICY-CORRECTION-2026-11-20.md`.

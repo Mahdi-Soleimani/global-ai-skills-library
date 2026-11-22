@@ -22,7 +22,7 @@ Legacy path snapshots without a commit remain visible but are explicitly marked 
 
 The source index contains every discovered path irrespective of license. Repository-level GitHub license metadata is a signal, not a per-file legal determination.
 
-Public content mirroring is a separate operation. The current automation requires:
+Public content mirroring is a separate reviewed operation, not part of daily source refresh. The existing mirror builder requires:
 
 1. A recognized SPDX identifier from config/policy.json.
 2. The applicable LICENSE/COPYING/NOTICE evidence from the source repository, pinned to the same commit, bundled with the package.
@@ -42,13 +42,10 @@ The allowlist is an automation gate, not a legal opinion. Repository-level licen
 2. Refreshes all configured source repositories through the GitHub API.
 3. Pins each successful snapshot to commit/tree/blob identifiers.
 4. Builds the complete metadata-only source catalog and CSV.
-5. Downloads a bounded batch only when the public-mirror license/evidence gate passes.
-6. Runs static integrity/security heuristics without executing any downloaded content.
-7. Preserves historical registry metadata on ephemeral runners.
-8. Builds the public catalog and attribution files.
-9. Commits and pushes changed metadata and eligible packages to main.
+5. Rebuilds the evidence-only assessments and verifies local search/routing.
+6. Commits and pushes only the designated source metadata outputs to main.
 
-The workflow uses GITHUB_TOKEN with contents: write. It does not require the user's Mac to remain online. GitHub Actions runners are ephemeral; therefore only the tracked metadata and public-catalog/ survive between runs. Private persistent storage is outside the scope of this workflow; only eligible public packages and source metadata are persisted by this pipeline.
+The workflow uses the standard GITHUB_TOKEN with contents: write. There is no private archive, separate token, storage bucket, or hosted service requirement. Existing public mirrors remain intact. Users retrieve selected pinned Skill files/packages on demand, with access and integrity checks and source attribution; local downloads are not automatically published.
 
 ## Explicit non-goals
 

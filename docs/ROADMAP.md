@@ -18,7 +18,7 @@
 4. اعداد ۷۵۰+ و ۴۳۸ نیز جایگزین دیتابیس کامل یا تعداد فایل‌های CSV نیستند.
 5. Download ≠ Trust ≠ Security Approval ≠ Install ≠ Execution.
 6. هر دریافت باید به Commit SHA، فایل‌های کامل و Hashهای SHA-256 متصل باشد.
-7. هر مسیر کشف‌شده، مستقل از مجوز، در Source Catalog با لینک و انتساب شخص ثالث ثبت می‌شود. محتوای عمومی فقط پس از عبور از Gate مجوز و شواهد License/Notice بازنشر می‌شود؛ انتساب به‌تنهایی مجوز بازنشر نیست.
+7. هر Skill کشف‌شده، مستقل از نوع مجوز، در کاتالوگ عمومی با منشأ و انتساب ثبت شود. دریافت انتخابی مستقیم از منبع، بدون فیلتر نوع مجوز و با رعایت شرایط دسترسی انجام می‌شود؛ آرشیو خصوصی دائمی لازم نیست. Gate بازتوزیع عمومی جداگانه است.
 8. اجرای کد دانلودشده روی Host ممنوع است. Dynamic validation فقط با Sandbox واقعاً enforce‌شده مجاز است؛ در غیر این صورت `needs_validation` ثبت می‌شود.
 9. نصب سراسری یا بارگذاری همه Skillها در Context ممنوع؛ فعال‌سازی باید انتخابی و Progressive Disclosure باشد.
 10. تمام پیشرفت‌ها، تغییرات، تست‌ها و تصمیم‌ها زیر `docs/reports/` مستند می‌شوند.
@@ -47,7 +47,7 @@
 | بسته‌های نیازمند بررسی دستی | ۱۰؛ شامل ۹ candidate و ۱ fixture |
 | High-confidence static signals | ۲؛ بررسی دستی باز |
 | تأیید نصب / نصب / اجرای کد | صفر / صفر / صفر |
-| تست پروژه | ۵۷ PASS |
+| تست پروژه | ۱۴۳ PASS + ۶ زیرتست |
 
 این اعداد به Snapshot محلی مورخ 2026-11-20 تعلق دارند؛ تعداد Skillهای یکتای جهانی را اثبات نمی‌کنند.
 
@@ -104,16 +104,14 @@
 
 ### فاز 5 — Downloader و Ingestion Pipeline
 
-**وضعیت:** Downloader به Commit/Tree/Blob pin متصل است؛ Pilot محلی سه مخزن با ۱۷ فایل و ۶۵٬۰۹۲ بایت و اولین Batch عمومی GitHub با ۹ بسته، ۱۱۹ فایل و ۶۶۴٬۴۶۶ بایت موفق شدند. License/COPYING/NOTICEهای مرتبط از مسیرهای والد و داخل بسته همراه بسته جمع‌آوری می‌شوند. Resume، Hash و Quarantine تست شده‌اند. تمام منابع، مستقل از مجوز، در Source Catalog حضور دارند؛ محتوای عمومی فقط با SPDX allowlist و License evidence منتشر می‌شود. گزارش: docs/reports/PHASE-5-QUEUE-INGEST-BATCH-01-2026-11-20.md.
+**وضعیت:** Pilot محلی ۶۳ بسته و ۹ بسته عمومی قبلی حفظ شده‌اند. Downloader با Commit/Tree/Blob pin و Resume/Hash/Quarantine کار می‌کند. معماری جدید دریافت انتخابی را با gasl get (SKILL.md) و gasl download (طرح/دریافت بسته کامل محلی) ارائه می‌کند؛ هیچ مخزن خصوصی اجباری نیست. دریافت کامل روی Windows و پشتیبانی از ساختارهای استثنایی هنوز باز است.
 
-- Batch کوچک، Commit pinning، دریافت پوشه کامل Skill و فایل‌های وابسته.
-- Checkpoint، Resume، Retry، Rate-limit handling، محدودیت حجم و گزارش فایل‌های Skipped.
-- SHA-256 و Git blob SHA؛ جداسازی Quarantine از Catalog.
-- حذف Test Fixtures از مجموعه Skillهای فعال به‌صورت پیش‌فرض؛ حفظ امکان دریافت عمدی آن‌ها برای آزمون امنیتی.
+- دریافت بسته منتخب از منبع اصلی با Commit ثابت، بدون فیلتر نوع مجوز.
+- محدودیت حجم، مسیر ایمن، Hash و نگهداری License/COPYING/NOTICE.
+- کش و Manifest محلی اختیاری، خارج از Git.
+- عدم نصب یا اجرای خودکار.
 
-**وضعیت:** Pilot محلی ۶۳ بسته انجام شده است. اتصال مستقیم مک به api.github.com در یک تلاش با TLS EOF مواجه شد؛ GitHub Actions بدون وابستگی به مک هر ۵۷ مخزن را Refresh کرد و Batch عمومی را با موفقیت دریافت و منتشر کرد.
-
-**معیار پذیرش:** حداقل سه Repository آزمایشی با Hash، ساختار کامل، Resume و طبقه‌بندی Skill/Fixture صحیح.
+**معیار پذیرش:** Pilot سه مخزن قبلاً موفق؛ تست‌های مسیر دریافت انتخابی، Resume و عدم تغییر Manifest عمومی اضافه شده‌اند. گزارش اصلاح معماری: docs/reports/PHASE-5-7-ON-DEMAND-ARCHITECTURE-2026-11-20.md.
 
 ### فاز 6 — Validator و Security Pipeline
 
@@ -127,52 +125,61 @@
 
 ### فاز 7 — Attribution و GitHub Actions Automation
 
-**وضعیت:** تکمیل و تأیید عملیاتی شد. ۵۷/۵۷ مخزن، ۴٬۴۷۸ مسیر، ۴٬۴۰۵ رکورد pinned، ۹ بسته Public Mirror، ۵۷ تست موفق و Commit خودکار 83c1031. فایل‌های local-only از Commit عمومی مستثنا باقی ماندند.
+**وضعیت:** اجرای تاریخی Actions با ۵۷ مخزن و ۹ بسته عمومی موفق بوده است. در معماری جدید Workflow فقط کاتالوگ منابع و شواهد Metadata را Refresh می‌کند. وابستگی به Writer آرشیو خصوصی، R2 و دانلود انبوه در Runner حذف شده است.
 
-- تمام مسیرهای تاریخی و نسخه‌های دانلودشده در Source Catalog با منبع، مسیر، مالک مخزن، مجوز، وضعیت Pin و وضعیت محتوا ثبت می‌شوند.
-- original_author فقط در صورت وجود شواهد ثبت می‌شود؛ repository_owner به‌عنوان نویسنده فردی فرض نمی‌شود.
-- هر رکورد ownership=third_party و gasl_claims_exclusive_ownership=false دارد.
-- اسکیل‌های دارای مجوز نامشخص، اختصاصی یا خارج از Allowlist از Source Catalog حذف نمی‌شوند؛ فقط محتوای آن‌ها به‌صورت خودکار در مخزن عمومی Mirror نمی‌شود.
-- محتوای واجد شرایط پس از دریافت License/NOTICE، اعتبارسنجی Hash و Static Scan در public-catalog/ با ATTRIBUTION.md و ATTRIBUTION.json قرار می‌گیرد.
-- Workflow روزانه تمام ۵۷ مخزن را Refresh می‌کند، Batch محدود دریافت می‌کند، Registry را به‌روزرسانی می‌کند و تغییرات را به main Commit/Push می‌کند. روشن بودن مک لازم نیست.
-- Runnerهای Actions موقت‌اند؛ فقط Source Catalog و Public Catalog در Git باقی می‌مانند. ذخیره‌سازی خصوصی دائمی خارج از دامنه این Workflow است.
+- تمام انواع مجوز در Source Catalog ثبت می‌شوند؛ دریافت انتخابی روی سیستم مصرف‌کننده از منبع Pin‌شده انجام می‌شود.
+- بسته‌های عمومی فعلی حفظ می‌شوند و بازتوزیع جدید فرآیند مستقل بازبینی دارد.
+- حالت --public-only مانع ورود Metadata بسته‌های محلی به خروجی سازنده عمومی است.
+- Workflow روزانه و اجرای دستی بدون سرور اختصاصی؛ فقط فایل‌های Metadata مشخص stage می‌شوند.
 
-**معیار پذیرش:** PASS — اجرای واقعی Actions، Refresh کامل، حفظ منابع مستقل، ۹ بسته دارای Attribution و Commit خودکار به main.
+**معیار پذیرش:** تست محلی و ساخت خروجی عمومی موفق پس از اصلاح؛ اجرای واقعی Workflow اصلاح‌شده روی GitHub هنوز لازم است. گزارش: docs/reports/PHASE-5-7-ON-DEMAND-ARCHITECTURE-2026-11-20.md.
 
 
 ### فاز 8 — Registry و Search
 
 - Schema نسخه‌بندی‌شده و Source Recordهای مستقل.
-- Canonical Index با رابطه‌های `same_as`، `fork_of`، `mirror_of`، `supersedes` و `conflicts_with`.
-- SQLite/FTS5 برای جست‌وجوی محلی؛ نام، حوزه، وظیفه، Publisher، سازگاری، امنیت و شواهد.
+- Canonical Index با رابطه‌های same_as، fork_of، mirror_of، supersedes و conflicts_with.
+- SQLite/FTS5 برای جست‌وجوی محلی؛ نام، توضیحات، حوزه، Publisher، سازگاری، امنیت و شواهد.
+- جست‌وجوی فارسی/انگلیسی با نرمال‌سازی حروف عربی/فارسی، حذف واژه‌های پرتکرار و مترادف‌های حوزه‌ای.
+- فیلتر License، Domain، Security status، Public-only و Content-only.
+- Semantic/vector search فقط به‌صورت قابلیت اختیاری و محلی؛ بدون API پولی یا مدل اجباری.
 
-**وضعیت:** Registry فعلی JSON/CSV/summary ساخته می‌شود؛ FTS5 و Canonical Skill index هنوز تکمیل نشده‌اند.
+**وضعیت:** موتور lexical مبتنی بر SQLite FTS5 برای هر ۴٬۴۰۵ رکورد Source Catalog پیاده‌سازی و تست شده است. Taxonomy نسخه‌دار ۱۰ حوزه دارد. نرمال‌سازی فارسی/عربی و گسترش مترادف‌های حوزه‌ای فعال است؛ Taxonomy نسخه ۱.۳.۰ شامل عبارت‌های دوزبانه و وزن‌دهی مفاهیم تخصصی است. توضیحات موجود از منبع عمومی و بسته‌های محلی استفاده می‌شوند. ابزار gasl enrich محتوای SKILL.md را فقط از Commit دقیق و pin‌شده دریافت می‌کند، Frontmatter/Tags/متن قابل جست‌وجو را استخراج می‌کند و Metadata را در private/skill-metadata-cache.json نگه می‌دارد؛ این فایل در Git نادیده گرفته می‌شود. Metadata harvesting برای هر ۴٬۴۰۵ رکورد انجام شده است: ۴٬۴۰۴ دریافت موفق و یک SKILL.md به‌دلیل عبور از سقف ایمنی ۲۵۶ KiB عمداً Skip شده است. ۴٬۳۷۲ رکورد Description و تمام ۴٬۴۰۵ رکورد Search Text محلی دارند. ایندکس SQLite محلی و مشتق‌شده است و با تغییر Fingerprint منابع بازسازی می‌شود. جست‌وجوی معنایی هنوز فعال نیست و هیچ مدل یا API خارجی برای اجرای عادی لازم نیست.
 
-**معیار پذیرش:** هر نتیجه جست‌وجو منشأ، نسخه، اختلاف و وضعیت امنیت/مجوز را نمایش دهد.
+**معیار پذیرش:** PASS برای ۴٬۴۰۵ رکورد، منشأ/Commit/License/Security در نتیجه، فیلترها، فارسی/انگلیسی، دریافت انتخابی محتوا و بازسازی ایندکس. Canonical relationship resolution و Semantic Reranker محلی باز هستند. Benchmark اولیه ۲۶ پرسش دوزبانه با ۱۴۸ Judgment همچنان مجموعه توسعه و provisional است. بسته اصلاح‌شده V2 شامل ۲۶ Query در ۱۳ جفت فارسی/انگلیسی، ۳۸۵ Candidate pair-level، دو داوری مستقل و دو فرم Answerability در private/benchmark-review آماده است. سناریوی Android/Kotlin BroadcastReceiver برای پیامک بانکی بازگردانده شد؛ سناریوی Twilio فقط در آرشیو superseded باقی مانده است. ۱۲ Skill نزدیک بررسی محتوایی pin-verified شدند و هیچ‌کدام پیاده‌سازی مستقیم Android SMS نبودند؛ این شکاف هنوز باید توسط دو داور تأیید شود. گزارش: docs/reports/PHASE-11B-ANDROID-SMS-COVERAGE-CORRECTION-2026-11-22.md.
+
+**پیشرفت جدید:** شاخص عمومی استاندارد واژگان Skill بدون متن اصلی به موتور افزوده شد. نخستین Batch واقعی: ۲۹۱ فایل تأیید شده از ۳۱۶ تلاش، ۲۵ خطای شبکه. Workflow روزانه حداکثر ۲۰۰ مورد ناقص را دریافت می‌کند؛ تغییر Commit با Blob SHA یکسان موجب دریافت مجدد نمی‌شود. جست‌وجوی آفلاین و بدون وابستگی تازه برقرار است. ارزیابی فعلی بهبود Precision/Recall/NDCG و افت جزئی MRR را نشان می‌دهد. در ادامه، Batch دوم و سوم ۹۹۱ رکورد جدیدِ تأییدشده افزودند (مجموع ۱٬۲۸۲ از ۴٬۴۰۵) و ۲۵ خطای شبکه Batch اول رفع شد. ذخیره checkpoint هر ۲۵ درخواست و صف تلاش مجدد بر اساس تعداد تلاش ثبت می‌شود. نمونه مستقل E5-small + RRF روی ۲۶ Query و ۴۱۷ Candidate واقعاً اجرا شد؛ NDCG@5 از ۰٫۴۲۶۱ به ۰٫۴۴۰۵ رسید و Peak RSS کل فرآیند ۷۴۰٫۹۱ MiB بود. به‌دلیل سود محدود و هزینه منابع، حالت پیش‌فرض همچنان FTS5 است. جست‌وجوی برداری در کل کاتالوگ هنوز پیاده نشده است. پوشش Feature اکنون به ۴٬۴۰۴ از ۴٬۴۰۵ رکورد Commit-pinned رسیده است (۹۹٫۹۸٪). تنها رکورد باقی‌مانده به‌دلیل عبور SKILL.md از سقف ایمنی ۲۵۶ KiB عمداً Skip و در Failure Ledger حفظ شده است. از ۴۰ شناسه ثبت‌شده در Failure Ledger، تعداد ۳۹ مورد با Retry بازیابی شدند. Benchmark پس از پوشش با مجموعه داخلی ۲۶ Query و ۱۴۸ Judgment اجرا شد، اما همچنان provisional و غیرمستقل است؛ به‌دلیل تفاوت Source Catalog و Ranking Code با Snapshot قبلی، مقایسه مستقیم انجام نمی‌شود. خطای حجم به‌صورت non-retryable ثبت می‌شود و در اجرای بعدی دوباره دریافت نمی‌شود. ارزیابی مستقل همچنان باز است. گزارش: docs/reports/PHASE-8-SEARCH-FEATURE-COVERAGE-2026-11-22.md؛ خروجی Benchmark: docs/reports/SEARCH-BENCHMARK-POST-FEATURE-COVERAGE-2026-11-22.json. گزارش پایه: docs/reports/PHASE-8-SEARCH-FEATURES-2026-11-20.md.
 
 ### فاز 9 — CLI و Skill Router
 
-- تکمیل دستورات واقعی برای status، sources، discover، download، validate، scan، search، info، update-check، route و export.
+- CLI ساده برای status، sources، discover، download، validate، scan، search، info، update-check، route، enrich و export.
 - انتخاب Candidate بر اساس Intent، Domain، Agent، OS، License، Security و Evidence.
-- Progressive Disclosure؛ بارگذاری فقط Skillهای منتخب.
+- Progressive Disclosure؛ دریافت فقط محتوای Skillهای منتخب.
 
-**وضعیت:** CLI فعلی شامل `summary`، `bootstrap`، `verify`، `collector download`، `static_scan` و `build_registry` است؛ Router هنوز ساخته نشده است.
+**وضعیت:** CLI شامل summary، bootstrap، verify، reconcile، domains، evaluate، index، search، route، enrich، mcp و serve است. Router بر اساس ارتباط وظیفه با Skill و پوشش گروه‌های مفهومی Query رتبه‌بندی می‌کند؛ Metadata completeness و Provenance فقط به‌عنوان شواهد مستقل نمایش داده می‌شوند و امتیاز ارتباط یا کیفیت Skill را دست‌کاری نمی‌کنند. Search response کپی‌های یکسان با Repo/Commit و Content Hash یکسان را فقط در لایه نمایش گروه‌بندی می‌کند و همه Source IDها/مسیرها را نگه می‌دارد؛ Source Catalog و رکوردهای مستقل تغییر یا ادغام نمی‌شوند. Fixtureها و موارد دارای شکست Integrity حذف می‌شوند؛ Manual Review، Security Not Scanned، License و سازگاری نامشخص به‌صورت Warning نمایش داده می‌شوند. Router فقط پیشنهاد می‌دهد و نصب/اجرا نمی‌کند.
 
-**معیار پذیرش:** پرس‌وجوهای واقعی با Precision@K و نتیجه قابل تکرار؛ بدون بارگذاری Context بی‌رویه.
+**معیار پذیرش:** PASS برای خروجی Top-K قابل تکرار، فیلتر Agent در حالت strict، نمایش Warningها و صفر نصب/اجرا؛ Benchmark اولیه Search با Precision@5، Recall@5، MRR@10 و NDCG@5 فقط Regression Set است. بسته V2 اصلاح‌شده شامل ۲۶ Query، ۱۳ جفت دوزبانه، ۳۸۵ Candidate pair-level و فرم جداگانه Answerability برای ۱۳ جفت است. سناریوی Android SMS به‌عنوان آزمون احتمالی نبود پوشش ثبت شده و Twilio جایگزین آن نیست. داوری مستقل، Adjudication و Freeze هنوز انجام نشده‌اند. Runner از Schema `1.1.0` برای برچسب‌های answerable/unanswerable/uncertain و معیارهای جداگانه no-answer پشتیبانی می‌کند؛ اما Router اکنون با سیاست آزمایشی و شفاف `experimental_heuristic_not_calibrated` سه تصمیم `recommend`/`abstain`/`undetermined` را بر اساس شواهد بازیابی تولید می‌کند؛ `recommend` فقط پیشنهاد بررسی است و `abstain` اثبات نبود Skill در کاتالوگ نیست. نسخه قبلی همیشه `undetermined` می‌داد. گزارش‌ها: `docs/reports/PHASE-11B-ANDROID-SMS-COVERAGE-CORRECTION-2026-11-22.md` و `docs/reports/PHASE-13-ROUTER-ANSWERABILITY-GATE-2026-11-22.md`.
 
-### فاز 10 — Adapters / MCP / Installation
+### فاز 10 — MCP / Local API / Explorer
 
-- تفکیک Native، Tested، Format-Compatible Untested و Conversion Required برای Codex، Claude Code، Cursor، Copilot، Gemini CLI و دیگر Hostها.
-- Dry-run، Backup، Rollback و Install Report.
-- نصب فقط برای Skillهای دارای `install_approved` و فقط در Scope انتخاب‌شده.
+- MCP با انتقال STDIO به‌عنوان مسیر اصلی اتصال Agentها؛ بدون Hosted Endpoint و بدون نیاز به سرور اختصاصی.
+- یک Core مشترک برای CLI، MCP، REST API محلی و Explorer؛ منطق جست‌وجو و مسیریابی تکراری پیاده‌سازی نمی‌شود.
+- REST API و Explorer فقط برای اجرای محلی و توسعه؛ Bind پیش‌فرض روی localhost.
+- Progressive Disclosure: جست‌وجو و مشاهده Metadata ابتدا؛ دریافت SKILL.md فقط در صورت درخواست.
+- نصب و اجرای Skillها خارج از دامنه Adapter فعلی باقی می‌ماند.
 
-**معیار پذیرش:** نصب و حذف آزمایشی بدون تغییر فایل‌های نامرتبط، با تست اختصاصی هر Host/OS.
+**وضعیت:** MCP Server با ۶ ابزار search، details، content، route، domains و health پیاده‌سازی شده است. انتقال STDIO با MCP Client واقعی Initialize، List Tools و Call Tool شده است. REST API و Explorer نیز به‌صورت Local-only پیاده‌سازی و تست شده‌اند. راه‌انداز ریشه gasl و install.sh مسیر نصب محلی را ساده می‌کنند. اجرای عادی به سرور، Docker، API Key یا سرویس پولی وابسته نیست. تست End-to-End واقعی STDIO در مجموعه تست‌ها اضافه شده است.
+
+**معیار پذیرش:** PASS برای اتصال واقعی STDIO، فهرست و اجرای ابزارها، استفاده از Core مشترک، دریافت محتوا با Commit pin‌شده و نبود نصب/اجرای خودکار. نصب مستقل در محیط مجازی تازه macOS/Python 3.13.9 و ارتباط STDIO از همان محیط تأیید شد. آزمون Hostهای واقعی Claude Desktop، Cursor و Codex هنوز باز است؛ این برنامه‌ها در مسیرهای استاندارد نصب مک یافت نشدند.
 
 ### فاز 11 — Evaluation و Benchmark
 
 - مقایسه Task با Skill و بدون Skill.
 - ثبت Model، Harness، Skill Commit، ورودی/خروجی، Pass/Fail، Token، Latency و Cost.
 - Regression پس از تغییر نسخه.
+
+**وضعیت:** لایه مقدماتی Evidence Evaluation اضافه شد: metadata_completeness_score و provenance_score جداگانه محاسبه می‌شوند. overall_quality_score برای تمام رکوردها null است. بسته اصلاح‌شده داوری مستقل V2 آماده است (۲۶ Query، ۱۳ جفت دوزبانه، ۳۸۵ Candidate، فرم Answerability و Adjudication Template)؛ هنوز Grade انسانی وارد نشده و Behavioral Benchmark اجرا نشده است. سناریوی Android banking SMS دارای سیگنال شکاف پوشش است، اما برچسب no-answer تا داوری مستقل و بررسی کامل کاتالوگ ثبت نمی‌شود. Benchmark runner از Schema 1.1.0 و معیارهای no-answer پشتیبانی می‌کند؛ Router برای استفاده عملی از سیاست آزمایشی و بدون وابستگی انسانی استفاده می‌کند و محدودیت‌های آن را در پاسخ اعلام می‌کند. هیچ امتیاز کیفیتی از روی Metadata یا رتبه بازیابی جعل نمی‌شود. گزارش‌ها: `docs/reports/PHASE-11B-ANDROID-SMS-COVERAGE-CORRECTION-2026-11-22.md` و `docs/reports/PHASE-13-ROUTER-ANSWERABILITY-GATE-2026-11-22.md`.
+بسته‌های reviewer با نسخه `INTAKE-V2` سخت‌سازی شدند: attestation مستقل انسانی با شناسه مستعار متمایز، فیلد صریح `out_of_pool_reviewed`، ثبت چند Search Formulation و Search Method، قالب جداگانه adjudication برای Answerability و اعتبارسنج خودکار Source Pin/ZIP/Blindness/Grade/Evidence آماده است. Audit کاتالوگ و ZIPها را PASS کرد؛ اختلاف Taxonomy hash با Snapshot زمان ساخت بسته به‌صورت هشدار ثبت شد و Manifest بازنویسی نشد. گزارش: `docs/reports/PHASE-14-HUMAN-REVIEW-INTAKE-2026-11-22.md`.
 
 **معیار پذیرش:** امتیاز اثربخشی فقط از آزمون قابل بازتولید حاصل شود؛ موارد بدون Eval برابر Unrated بمانند.
 
@@ -182,7 +189,7 @@
 - README، SECURITY، CONTRIBUTING، Third-party notices و License policy.
 - CI برای تست، Validation، Static Scan و Hash.
 
-**وضعیت:** Baseline عمومی در GitHub منتشر و با main محلی همگام شد. اطلاعات خصوصی و محتوای بسته‌ها خارج از Git باقی مانده‌اند. License پروژه و Release نهایی هنوز انتخاب/تکمیل نشده است.
+**وضعیت:** Baseline عمومی در GitHub منتشر و با main محلی همگام شد. اطلاعات خصوصی و محتوای بسته‌ها خارج از Git باقی مانده‌اند. README اکنون معماری Local-first و راه‌اندازی دو‌دستوری را مستند می‌کند. Workflow تست‌ها وابستگی اختیاری MCP را نیز نصب می‌کند تا تست‌های Integration در CI قابل اجرا باشند. License پروژه هنوز انتخاب نشده و تا انتخاب/افزودن فایل LICENSE، پروژه از نظر حقوقی هنوز مجوز متن‌باز مشخصی برای کد خود اعطا نکرده است.
 
 **معیار پذیرش:** فقط فایل‌های مجاز منتشر شوند؛ تست‌ها و Hashها بازتولیدپذیر باشند؛ وضعیت پوشش و محدودیت‌ها صادقانه مستند شود.
 
@@ -193,8 +200,10 @@
 3. تکمیل ممیزی دستی Cloudflare و ثبت تصمیم؛ بدون اجرای اسکریپت.
 4. تکمیل Crosswalk و ثبت Duplicate Candidates بدون حذف رکورد.
 5. تکمیل triage ده بسته نیازمند بررسی؛ اولویت دو High-confidence signal.
-6. تکمیل اجرای واقعی GitHub Actions و ادامه Collection به‌صورت Batchهای کوچک.
-7. سپس Registry/Search، Router، Adapters و Evaluation.
+6. اجرای واقعی Workflow جدید Metadata-only روی GitHub؛ دریافت انتخابی محلی جایگزین Collection انبوه و آرشیو خصوصی است.
+7. تست نصب تازه از روی README تأیید شد؛ تکمیل ماتریس سازگاری Hostهای واقعی باقی مانده است.
+8. **مسیر خودکار عملیاتی:** ارزیابی داخلی خودکار V2 روی ۳۸۵ Candidate و ۲۶ Query اجرا شد؛ دو rubric قطعی، ۳۲ اختلاف خودکار، امتیازدهی محافظه‌کارانه و گزارش هر Query ثبت شده است. Router سه تصمیم آزمایشی `recommend`/`abstain`/`undetermined` را بدون وابستگی به داور انسانی و بدون API پولی تولید می‌کند. بررسی انسانی و Gold Dataset مستقل دیگر گیت استفاده از سیستم نیستند و فقط در صورت نیاز برای انتشار ادعای دقت تأییدشده انجام خواهند شد. مقادیر Proxy نباید Gold یا Accuracy مستقل معرفی شوند. برای no-answer قطعی همچنان بررسی کامل کاتالوگ لازم است؛ `abstain` صرفاً فقدان شواهد کافی در نتایج بازیابی است. گزارش: `docs/reports/PHASE-15-AUTONOMOUS-PROXY-EVALUATION-2026-11-22.md`.
+9. انتخاب مجوز کد خود پروژه و افزودن LICENSE پیش از اعلام Release متن‌باز رسمی.
 
 ## گزارش‌دهی و Gate هر مرحله
 

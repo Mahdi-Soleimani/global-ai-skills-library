@@ -1,0 +1,974 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-11-22",
+  "run_reference": "RUN-10.json",
+  "reviewer_model": "Model-simulated domain-specific adjudication after inspecting pinned Skill bodies; not independent human reviewers.",
+  "reviewer_count": 10,
+  "coverage_probe_count": 12,
+  "unique_candidate_bodies_inspected": 36,
+  "verified_git_blob_count": 36,
+  "catalog_wide_review_performed": false,
+  "no_relevant_skill_gold_labels_assigned": false,
+  "probes": [
+    {
+      "reviewer_id": "R01",
+      "persona": "Red-Team Security Architect",
+      "target_domain": "security-compliance",
+      "scenario_id": "SEC-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Formally verify an undocumented proprietary embedded controller secure-boot chain with hardware root of trust, fault injection, side-channel resistance and measured boot; do not substitute a generic web application checklist.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The reviewed top candidates concern Cosmos blockchain vulnerability scanning and NVIDIA/DOCA platform administration. None is a hardware secure-boot or side-channel verification workflow.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-56c8952bfa54923e85f9",
+          "GASL-SRC-5553e132ed5b63cb3499",
+          "GASL-SRC-1375ceec2e2073d40571"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R02",
+      "persona": "Principal Data Platform Engineer",
+      "target_domain": "data-analytics",
+      "scenario_id": "DATA-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Build an exactly-once telemetry ingestion and anomaly pipeline for a proprietary 1990s CNC controller that emits undocumented binary serial frames with clock drift and intermittent offline buffers.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The strongest data-pipeline candidate is a specialized bioinformatics pipeline and serial/Ray execution workflow. It does not cover undocumented CNC binary serial frames, clock drift or exactly-once industrial telemetry.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-4ba8ee458b1410425f05",
+          "GASL-SRC-604c834da4b159c04901",
+          "GASL-SRC-18b8307ed5a982ad2599"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R03",
+      "persona": "RAG and Agent Reliability Lead",
+      "target_domain": "ai-ml-agents",
+      "scenario_id": "AI-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Train and validate a custom multimodal neural codec for a proprietary industrial sensor format with no public architecture, no pretrained checkpoint and strict on-device latency limits.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The reviewed candidates cover computer-vision training, recipe transfer and pretraining from scratch. They do not directly implement or evaluate a proprietary multimodal neural codec.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-079df063cb54eda0cdee",
+          "GASL-SRC-0341851a6947054cf2de",
+          "GASL-SRC-e227ff2f99f9848b7323"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R04",
+      "persona": "Android and Backend Principal Engineer",
+      "target_domain": "software-development",
+      "scenario_id": "DEV-01",
+      "kind": "known_coverage_gap",
+      "difficulty": "extreme",
+      "query": "Build a native Android Kotlin BroadcastReceiver that receives bank SMS locally, captures the originating sender and full message body, and parses transaction fields; do not recommend Twilio webhooks, SMS gateways or cloud messaging.",
+      "model_adjudication": {
+        "verdict": "no_direct_match_in_reviewed_candidates",
+        "rationale": "The reviewed top candidates are a Hugging Face model port, Expo native-module authoring and Expo brownfield integration. The separate Phase 11B audit also inspected all 12 Android/SMS metadata-matched pinned Skills and found no direct BroadcastReceiver/SMS_RECEIVED banking-SMS implementation.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-5240cb74fb5f00e29afe",
+          "GASL-SRC-4fa407a041cd95fa472f",
+          "GASL-SRC-64f8fa59f5c84e7e7598"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R04",
+      "persona": "Android and Backend Principal Engineer",
+      "target_domain": "software-development",
+      "scenario_id": "DEV-04",
+      "kind": "known_coverage_gap",
+      "difficulty": "extreme",
+      "query": "در اپ بومی اندروید با Kotlin و BroadcastReceiver پیامک واریز بانک را روی خود گوشی دریافت کن، سرشماره و متن کامل را بخوان و فیلدهای تراکنش را استخراج کن؛ راهکار Twilio یا Webhook سروری نمی‌خواهم.",
+      "model_adjudication": {
+        "verdict": "no_direct_match_in_reviewed_candidates",
+        "rationale": "The reviewed Kotlin candidates generate MCP servers or Spring Boot projects. They do not receive Android device SMS or parse banking messages.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-8cc57353cc3c2cf9930d",
+          "GASL-SRC-5cf670053d776ae2ee33",
+          "GASL-SRC-e4e7f5f02cb369028cf2"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R04",
+      "persona": "Android and Backend Principal Engineer",
+      "target_domain": "software-development",
+      "scenario_id": "DEV-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Implement a verified compiler backend and cycle-accurate simulator for an undocumented proprietary RISC-V-derived instruction set with formal equivalence proofs.",
+      "model_adjudication": {
+        "verdict": "uncertain_no_direct_match_in_top3",
+        "rationale": "The reviewed candidates concern browser game engines, programmatic SEO and SOC 2 preparation. No compiler backend or RISC-V verification Skill appears in the reviewed top three; the full catalog was not reviewed.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-0d68504db0cf091200d8",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-c660006e8c14421c4646"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R05",
+      "persona": "Automation SRE and Workflow Architect",
+      "target_domain": "productivity-automation",
+      "scenario_id": "AUTO-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Automate a closed-source legacy banking desktop application through an undocumented smart-card serial protocol with no API, no accessibility tree and strict audit requirements.",
+      "model_adjudication": {
+        "verdict": "uncertain_no_direct_match_in_top3",
+        "rationale": "The reviewed candidates concern therapeutic ML datasets, C# API contract drift and Google Ads MCP setup. They do not automate an undocumented legacy banking desktop or smart-card serial protocol.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-8dc0d627010ff7fcd3b7",
+          "GASL-SRC-94668a9a15191595da54",
+          "GASL-SRC-a67ca9e3540cceda632c"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R06",
+      "persona": "Cloud Platform and FinOps Engineer",
+      "target_domain": "cloud-infrastructure",
+      "scenario_id": "CLOUD-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Design a fully air-gapped ARM64 and RISC-V Kubernetes platform with a private artifact mirror, offline signing, custom hardware attestation and no external control plane.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The reviewed candidates include GKE self-hosted AI migration and Kubernetes workflow orchestration. They do not cover a fully air-gapped ARM64/RISC-V control plane, offline signing and hardware attestation.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-7416b8bc0ae3574070ff",
+          "GASL-SRC-0457f75e9822ea95216c",
+          "GASL-SRC-cf4a963bac8bc06f0abc"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R07",
+      "persona": "RTL Product Designer and Accessibility Auditor",
+      "target_domain": "design-creative",
+      "scenario_id": "DES-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Design and validate a tactile accessible interface for a proprietary braille and haptic wearable with novel nonvisual interaction patterns and hardware-specific feedback.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The reviewed candidates include general UI styling and accessible shadcn/Radix components. They do not describe braille or haptic wearable interaction design.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-eed7c2fe202d33bf6ed0",
+          "GASL-SRC-5f5f718a97be8efe49c3",
+          "GASL-SRC-9a3edb578a5f0632a5ac"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R08",
+      "persona": "B2B SaaS CFO and Growth Strategist",
+      "target_domain": "business-finance",
+      "scenario_id": "BIZ-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Model unit economics for a cross-border regulated microtransaction subscription in a market with fragmented settlement rails, sanctions exposure and no reliable public pricing data.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "The reviewed candidates include B2B pricing strategy and executive deliberation. They do not establish country-specific compliance or cross-border regulated microtransaction settlement expertise.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-7ae0071cacd3ef244d29",
+          "GASL-SRC-f8e2619d61441d68b921",
+          "GASL-SRC-0e29e6f89001926daed1"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R09",
+      "persona": "Systematic Review Methodologist and Educator",
+      "target_domain": "research-education",
+      "scenario_id": "RES-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Plan a meta-analysis for a newly emerging educational intervention where the evidence base may contain zero eligible studies; distinguish absence of evidence from evidence of no effect.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "Scientific critical-thinking and literature-review Skills can help appraise evidence and review methodology, but the reviewed candidates do not establish a complete protocol for an empty-evidence meta-analysis.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-2746d30b1e14c52463df",
+          "GASL-SRC-36b81772d1aa2e851b72",
+          "GASL-SRC-ce6e1da8d535d35150a2"
+        ]
+      }
+    },
+    {
+      "reviewer_id": "R10",
+      "persona": "Developer Documentation and Localization Editor",
+      "target_domain": "content-writing",
+      "scenario_id": "DOC-05",
+      "kind": "coverage_probe",
+      "difficulty": "extreme",
+      "query": "Produce accurate developer documentation for a proprietary binary protocol when no OpenAPI schema, source code, packet examples or vendor specification are available; do not invent undocumented behavior.",
+      "model_adjudication": {
+        "verdict": "partial_match_only",
+        "rationale": "OpenAI developer documentation and spec-to-code compliance can help with official API references or checking an existing specification. They cannot reconstruct undocumented binary protocol behavior when no schema, source or packet examples exist.",
+        "review_scope": "top 3 retrieved candidates only; pinned Skill bodies inspected; no catalog-wide search performed",
+        "reviewed_source_ids": [
+          "GASL-SRC-a56b655ba52fd519299f",
+          "GASL-SRC-f1dc73fb49fb1bb7c27f",
+          "GASL-SRC-1741ff40562a958492c8"
+        ]
+      }
+    }
+  ],
+  "pinned_candidate_bodies": [
+    {
+      "source_record_id": "GASL-SRC-56c8952bfa54923e85f9",
+      "skill_name": "cosmos-vulnerability-scanner",
+      "repository": "trailofbits/skills",
+      "source_path": "plugins/building-secure-contracts/skills/cosmos-vulnerability-scanner/SKILL.md",
+      "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
+      "git_blob_sha": "840a45d2d412d32ab064eea845b01d4ef73c76a4",
+      "git_blob_verified": true,
+      "content_sha256": "5f12f1ecdcf220726d32b391e5e646807d09d869d4cc92ae105236ecff4b9a42",
+      "content_bytes": 10940,
+      "description": "description: \"Scans Cosmos SDK blockchain modules and CosmWasm contracts for consensus-critical vulnerabilities — chain halts, fund loss, state divergence. 25 core + 16 IBC + 10 EVM + 3 CosmWasm patterns. Use when auditing custom x/ modules, reviewing IBC integrations, or assessing pre-launch chain security. Updated for SDK v0.53.x.\"",
+      "evidence_by_probe": {
+        "SEC-05": [
+          "name: cosmos-vulnerability-scanner",
+          "description: \"Scans Cosmos SDK blockchain modules and CosmWasm contracts for consensus-critical vulnerabilities — chain halts, fund loss, state divergence. 25 core + 16 IBC + 10 EVM + 3 CosmWasm patterns. Use when auditing custom x/ modules, reviewing IBC integrations, or assessing pre-launch chain ",
+          "# Cosmos Vulnerability Scanner",
+          "Scan Cosmos SDK modules and CosmWasm contracts for vulnerabilities that cause chain halts, consensus failures, or fund loss. Spawns parallel scanning agents — each specializing in a vulnerability category — that return findings to the main skill, which then writes them as individual markdown files t",
+          "- CometBFT consensus engine internals — this covers SDK modules, not the consensus layer itself",
+          "- Cosmos SDK application logic that is not consensus-critical (e.g., CLI commands, REST endpoints)"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-5553e132ed5b63cb3499",
+      "skill_name": "jetson-customize-mgbe",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/jetson-customize-mgbe/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "f3b3e70ea47e9415799096805905a8fe8c8c7bad",
+      "git_blob_verified": true,
+      "content_sha256": "745ab5cab97e54fab80e20ef46f1987b00c472645065209628b5992979ebc71e",
+      "content_bytes": 8276,
+      "description": "description: >-",
+      "evidence_by_probe": {
+        "SEC-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-1375ceec2e2073d40571",
+      "skill_name": "doca-comm-channel-admin",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/doca-comm-channel-admin/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "2648f220bcc7f8f3637b189f8b3d5958d402889d",
+      "git_blob_verified": true,
+      "content_sha256": "8f18431e15653d83280b2fc7c3cf137a93a1c4004d3b08ec1fa6cd52df9a65c0",
+      "content_bytes": 12147,
+      "description": "description: >",
+      "evidence_by_probe": {
+        "SEC-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-4ba8ee458b1410425f05",
+      "skill_name": "make-data-pipeline",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/bioir-make-data-pipeline/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "6aac76cba44902e0423fe4175b7c2d8ee843eb55",
+      "git_blob_verified": true,
+      "content_sha256": "e52d5f1f00485750a0c735b0fb8baa9e0f7ba4743dad65748f92be32a2357751",
+      "content_bytes": 13224,
+      "description": "description: Port an open-source bioinformatics data pipeline into the BioIR pipeline architecture. Use when the user asks to create, port, convert, or write a new data pipeline from OSS code, or add a new model's data processing to the BioIR system. Level 2 is one full build_processor run of the sample manifest, serial and Ray.",
+      "evidence_by_probe": {
+        "DATA-05": [
+          "name: make-data-pipeline",
+          "description: Port an open-source bioinformatics data pipeline into the BioIR pipeline architecture. Use when the user asks to create, port, convert, or write a new data pipeline from OSS code, or add a new model's data processing to the BioIR system. Level 2 is one full build_processor run of the sa",
+          "# Port an Open-Source Data Pipeline to BioIR",
+          "registered BioIR pipeline, validation evidence, and a summary report.",
+          "1. `$BIOIR/docs/advanced/port-data-pipeline.md`",
+          "1. `$BIOIR/docs/advanced/validate-data-pipeline.md`"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-604c834da4b159c04901",
+      "skill_name": "doca-rmax",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/doca-rmax/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "bc6715d60337a90e0a460c9f6309f84827bb8180",
+      "git_blob_verified": true,
+      "content_sha256": "ce172c87daf95d85ce984bc2d07853420d026ced6b832f8c07c4754eb98c4fa4",
+      "content_bytes": 18859,
+      "description": "description: >",
+      "evidence_by_probe": {
+        "DATA-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-18b8307ed5a982ad2599",
+      "skill_name": "tao-generate-video-reasoning-annotations",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/tao-generate-video-reasoning-annotations/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "2a04241932f9d423121fcf9646b5ee2f359660d8",
+      "git_blob_verified": true,
+      "content_sha256": "f7917b6dce2eadbc84015f999ce777a53fd4666bf87964031a29501193afd86e",
+      "content_bytes": 11240,
+      "description": "description: >-",
+      "evidence_by_probe": {
+        "DATA-05": [
+          "Multi-step video annotation pipeline that turns raw videos into",
+          "video_reasoning_annotation pipeline. Triggers include \"video",
+          "\"video captioning pipeline\", \"video distillation\".",
+          "# Video Reasoning Annotation Pipeline",
+          "## Pipeline architecture",
+          "Steps are individually selectable via `workflow.steps`. The pipeline has built-in resume — each step skips already-processed videos, so re-running after a prompt tweak is safe."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-079df063cb54eda0cdee",
+      "skill_name": "tao-train-visual-changenet",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/tao-train-visual-changenet/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "6c275c8da2f428c6cde173d194426eb8bd311b62",
+      "git_blob_verified": true,
+      "content_sha256": "1f767c28086c5827c0b440912366867dbf03dbdea09fadc436edf4683536265e",
+      "content_bytes": 18816,
+      "description": "description: Visual ChangeNet for binary image classification and segmentation in AOI defect detection. Use when training,",
+      "evidence_by_probe": {
+        "AI-05": [
+          "description: Visual ChangeNet for binary image classification and segmentation in AOI defect detection. Use when training,",
+          "`model.backbone.pretrained_backbone_path` empty for default initialization.",
+          "This model is AutoML-enabled at the model layer. Before handling any train-stage request, read `references/skill_info.yaml` and resolve the run override from either an explicit `automl_policy` value or the user's workflow request. Use `automl_policy: on` by default and only expose `on` / `off` in ne",
+          "## Training Requirements",
+          "- **Accepted dataset intents:** training, evaluation, testing, calibration",
+          "`defect_acc` also emitted). AutoML must rank recommendations by the training"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-0341851a6947054cf2de",
+      "skill_name": "tao-validate-recipe-transfer",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/tao-validate-recipe-transfer/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "59750d41640098f4c468588f012c0e0d779fb15a",
+      "git_blob_verified": true,
+      "content_sha256": "7a475af4c76bcc483a7b356f8cea32aecab16603571f717d7c3444b34762e98a",
+      "content_bytes": 16710,
+      "description": "description: Port a published computer vision paper's official code and training recipe onto a customer's own dataset, or diagnose why such a transfer produced bad numbers. Use this whenever someone wants to reproduce a CV paper, run a paper's repo on their own images, fine-tune a published detection/segmentation/classification/keypoint model on customer data, adapt a training recipe to a new dataset, or figure out why a fine-tuned vision model scores well on validation but fails in production. Also use for post-mortems on any failed or disappointing CV training run, and whenever a user mentions mAP that looks too good, a model that \"worked in training but not in deployment\", or transferring",
+      "evidence_by_probe": {
+        "AI-05": [
+          "description: Port a published computer vision paper's official code and training recipe onto a customer's own dataset, or diagnose why such a transfer produced bad numbers. Use this whenever someone wants to reproduce a CV paper, run a paper's repo on their own images, fine-tune a published detectio",
+          "training/eval, so they inherit that repo's requirements (typically docker +",
+          "- computer-vision",
+          "- training",
+          "1. **Does this need training at all?** Zero-shot and promptable models cover a lot of what",
+          "pretrained COCO detectors. If the customer's classes overlap COCO/LVIS vocabulary, or the"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-e227ff2f99f9848b7323",
+      "skill_name": "kermt-pretrain-scratch",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/bionemo-kermt-pretrain-scratch/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "c1483363eefaff239120e68c576664be741081da",
+      "git_blob_verified": true,
+      "content_sha256": "33f9eeb51b365351e708f5411c19b6bdedc2e6371130a1dff7ab5382713f7fa1",
+      "content_bytes": 9561,
+      "description": "description: Pretrain a fresh KERMT model from scratch on a user-provided corpus. Builds a new vocabulary from the corpus, instantiates the model architecture from defaults, and launches pretrain_ddp.py inside the kermt container (detached for long runs). Unlike kermt-continue-pretrain, no starting checkpoint is loaded — the model is randomly initialized.",
+      "evidence_by_probe": {
+        "AI-05": [
+          "name: kermt-pretrain-scratch",
+          "description: Pretrain a fresh KERMT model from scratch on a user-provided corpus. Builds a new vocabulary from the corpus, instantiates the model architecture from defaults, and launches pretrain_ddp.py inside the kermt container (detached for long runs). Unlike kermt-continue-pretrain, no starting ",
+          "# shared with kermt-continue-pretrain; the differences are documented below.",
+          "# kermt-pretrain-scratch",
+          "Pretrain a brand-new KERMT model from scratch on a user-provided corpus. Useful",
+          "`kermt-continue-pretrain`** — no warm start, so the loss curves need to descend"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-5240cb74fb5f00e29afe",
+      "skill_name": "tao-port-huggingface-model",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/tao-port-huggingface-model/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "a6df4d95fc509570675e6f88e1c97cfc0b808a03",
+      "git_blob_verified": true,
+      "content_sha256": "fd8cacf316e17e7e0a4be2f276db9475484c3f22588a982d26637a14c731112c",
+      "content_bytes": 18166,
+      "description": "description: >",
+      "evidence_by_probe": {
+        "DEV-01": [
+          "configuration and native trainer implementation, ONNX export plus TensorRT",
+          "| 4 | ONNX export + tao-deploy TRT engine / inference / eval | [phase-4-deploy.md](references/phase-4-deploy.md) |",
+          "**Goal:** decide whether to proceed at all. Gather credentials, locate/clone the four TAO repos, create a consistent working branch, launch the `tao-hf-inspect` container (Context A), validate the HF model is CV with a supported `pipeline_tag`, extract config + state-dict schema, sanity-check ONNX e",
+          "**Reject if:** `pipeline_tag` is NLP / audio / LLM (non-CV); `AutoConfig` raises; or ONNX export fundamentally cannot work (no rewrite path).",
+          "**Gate:** all 4 TAO repos located/cloned with a consistent branch; `pipeline_tag` confirmed CV; `model_type`, `image_size`, `hidden_size`, `num_labels` extracted; state-dict keys documented + HF→TAO remapping plan drafted; ONNX export sanity check passed (or failure understood); user confirmed `mode",
+          "If a new backbone is needed, decide the strategy (timm wrap > re-implement > HF black-box wrap) before Phase 3 — it changes weight loading, ONNX export, deploy. **Never dual-inherit from `transformers.PreTrainedModel` and `BackboneBase`** (metaclass conflict — compose instead)."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-4fa407a041cd95fa472f",
+      "skill_name": "expo-module",
+      "repository": "openai/plugins",
+      "source_path": "plugins/expo/skills/expo-module/SKILL.md",
+      "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
+      "git_blob_sha": "412c7cdc59754986e4c5ea625c28905750a82a4f",
+      "git_blob_verified": true,
+      "content_sha256": "87c32776432d024d7de00478ae56222a6f44af7029751c13aaa77c79ab15d25f",
+      "content_bytes": 7014,
+      "description": "description: Guide for writing Expo native modules and views using the Expo Modules API (Swift, Kotlin, TypeScript). Covers module definition DSL, native views, shared objects, config plugins, lifecycle hooks, autolinking, and type system. Use when building or modifying native modules for Expo.",
+      "evidence_by_probe": {
+        "DEV-01": [
+          "name: expo-module",
+          "description: Guide for writing Expo native modules and views using the Expo Modules API (Swift, Kotlin, TypeScript). Covers module definition DSL, native views, shared objects, config plugins, lifecycle hooks, autolinking, and type system. Use when building or modifying native modules for Expo.",
+          "# Writing Expo Modules",
+          "Complete reference for building native modules and views using the Expo Modules API. Covers Swift (iOS), Kotlin (Android), and TypeScript.",
+          "- Creating a new Expo native module or native view",
+          "- Adding native functionality (camera, sensors, system APIs) to an Expo app"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-64f8fa59f5c84e7e7598",
+      "skill_name": "expo-brownfield",
+      "repository": "expo/skills",
+      "source_path": "plugins/expo/skills/expo-brownfield/SKILL.md",
+      "commit_sha": "88d9bd79f3fa8452a778fbac65bae162c0b32ce4",
+      "git_blob_sha": "1c49dc15eabafa1a527fa420e7323beceb123ee5",
+      "git_blob_verified": true,
+      "content_sha256": "02a13f4483daecde696f948def1e6474b975238dd9fdfc6b1bcbe3b485601405",
+      "content_bytes": 5935,
+      "description": "description: Integrate Expo and React Native into an existing native iOS or Android app. Use for brownfield, embedding a React Native screen in SwiftUI/UIKit or Kotlin, or AAR/XCFramework packaging. Covers isolated and integrated approaches. For building or distributing a purely native app with EAS, use eas-app-stores.",
+      "evidence_by_probe": {
+        "DEV-01": [
+          "name: expo-brownfield",
+          "description: Integrate Expo and React Native into an existing native iOS or Android app. Use for brownfield, embedding a React Native screen in SwiftUI/UIKit or Kotlin, or AAR/XCFramework packaging. Covers isolated and integrated approaches. For building or distributing a purely native app with EAS,",
+          "# Expo Brownfield",
+          "Identify the existing app entry point, navigation owner, native build system, deployment targets, and any React Native runtime already linked. Record the installed Expo, React Native, and brownfield package versions from the lockfile. Adding EAS Build or Submit to a Swift app alone does not require ",
+          "Preserve the host's SwiftUI `App` / UIKit window and native screens when embedding a feature. **Do not run prebuild in a manually maintained native host**, including during troubleshooting. An isolated Expo producer may use CNG; keep its generated `ios/` and `android/` separate from the consuming ap",
+          "Expo supports two distinct ways to add React Native to a brownfield project:"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-8cc57353cc3c2cf9930d",
+      "skill_name": "kotlin-mcp-server-generator",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/kotlin-mcp-server-generator/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "93dbb30417d6edc1d58de1a2aa6674d7c7e9f913",
+      "git_blob_verified": true,
+      "content_sha256": "4bedcbc52a3f47f831552d7e0e3599c6653e62918ae8bd0b535e2147b8ce1f1e",
+      "content_bytes": 10848,
+      "description": "description: 'Generate a complete Kotlin MCP server project with proper structure, dependencies, and implementation using the official io.modelcontextprotocol:kotlin-sdk library.'",
+      "evidence_by_probe": {
+        "DEV-04": [
+          "description: 'Generate a complete Kotlin MCP server project with proper structure, dependencies, and implementation using the official io.modelcontextprotocol:kotlin-sdk library.'",
+          "# Kotlin MCP Server Project Generator",
+          "You will create a Kotlin MCP server with:",
+          "3. **Server Setup**: Configured MCP server with transports",
+          "logger.info { \"Starting MCP server...\" }",
+          "When generating a Kotlin MCP server:"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-5cf670053d776ae2ee33",
+      "skill_name": "kotlin-springboot",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/kotlin-springboot/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "7737e98b2b965fd12f3b1fa9ddd69ca474ba409a",
+      "git_blob_verified": true,
+      "content_sha256": "0ddd1ab19b608348a3728443160cc7a3a7feaa61ed1ae7cc812cdcd62b574ca2",
+      "content_bytes": 4406,
+      "description": "description: 'Get best practices for developing applications with Spring Boot and Kotlin.'",
+      "evidence_by_probe": {
+        "DEV-04": [
+          "description: 'Get best practices for developing applications with Spring Boot and Kotlin.'",
+          "# Spring Boot with Kotlin Best Practices",
+          "Your goal is to help me write high-quality, idiomatic Spring Boot applications using Kotlin.",
+          "- **Starters:** Use Spring Boot starters (e.g., `spring-boot-starter-web`, `spring-boot-starter-data-jpa`) as usual.",
+          "- **Coroutines:** For reactive applications, leverage Spring Boot's support for Kotlin Coroutines in the data layer.",
+          "- **`suspend` functions:** For non-blocking asynchronous code, use `suspend` functions in your controllers and services. Spring Boot has excellent support for coroutines."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-e4e7f5f02cb369028cf2",
+      "skill_name": "create-spring-boot-kotlin-project",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/create-spring-boot-kotlin-project/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "d656a4fcecbb3536fbff8c331e3edfc4782e8dd2",
+      "git_blob_verified": true,
+      "content_sha256": "75722e39c0294d6fc3eb5b368ec890376707127c944426ed91ad7644621e2f83",
+      "content_bytes": 4180,
+      "description": "description: 'Create Spring Boot Kotlin Project Skeleton'",
+      "evidence_by_probe": {
+        "DEV-04": [
+          "description: 'Create Spring Boot Kotlin Project Skeleton'",
+          "# Create Spring Boot Kotlin project prompt",
+          "- If you need to update the Spring Boot version, please change the `bootVersion` in [download-spring-boot-project-template](#download-spring-boot-project-template)",
+          "## Download Spring Boot project template",
+          "- Run following command in terminal to download a Spring Boot project template",
+          "- (Optional) `docker-compose up -d` to start the services, `./gradlew spring-boot:run` to run the Spring Boot project, `docker-compose rm -sf` to stop the services."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-0d68504db0cf091200d8",
+      "skill_name": "game-engine",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/game-engine/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "5f705898ab72607a9ee0b378b496d551123a7dab",
+      "git_blob_verified": true,
+      "content_sha256": "af6d0628e806be430903743ca1795f715937e65ef81d4c3f0544fb326d23dce2",
+      "content_bytes": 6322,
+      "description": "description: 'Expert skill for building web-based game engines and games using HTML5, Canvas, WebGL, and JavaScript. Use when asked to create games, build game engines, implement game physics, handle collision detection, set up game loops, manage sprites, add game controls, or work with 2D/3D rendering. Covers techniques for platformers, breakout-style games, maze games, tilemaps, audio, multiplayer via WebRTC, and publishing games.'",
+      "evidence_by_probe": {
+        "DEV-05": [
+          "description: 'Expert skill for building web-based game engines and games using HTML5, Canvas, WebGL, and JavaScript. Use when asked to create games, build game engines, implement game physics, handle collision detection, set up game loops, manage sprites, add game controls, or work with 2D/3D render",
+          "# Game Engine Skill",
+          "Build web-based games and game engines using HTML5 Canvas, WebGL, and JavaScript. This skill includes starter templates, reference documentation, and step-by-step workflows for 2D and 3D game development with frameworks such as Phaser, Three.js, Babylon.js, and A-Frame.",
+          "- Building a game engine or game from scratch using web technologies",
+          "- Working with HTML5 Canvas, WebGL, or SVG for game graphics",
+          "- A modern web browser with Canvas/WebGL support"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-62cbf064a8abddb5e480",
+      "skill_name": "programmatic-seo",
+      "repository": "coreyhaines31/marketingskills",
+      "source_path": "skills/programmatic-seo/SKILL.md",
+      "commit_sha": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
+      "git_blob_sha": "09a87f78a6f86e30a4333a7f7623425588b13961",
+      "git_blob_verified": true,
+      "content_sha256": "f59dcb0892fc615d6df8f6debedd6b08de910ad220d5ec4a18e62f076a934c00",
+      "content_bytes": 7354,
+      "description": "description: \"When the user wants SEO pages at scale from templates and data, or asks whether a page set will rank or look thin: location, integration, comparison, directory, and '[X] for [Y]' pages, each useful rather than thin. For SEO audits, see seo-audit. For content planning, see content-strategy.\"",
+      "evidence_by_probe": {
+        "DEV-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-c660006e8c14421c4646",
+      "skill_name": "soc2-audit-prep",
+      "repository": "alirezarezvani/claude-skills",
+      "source_path": "compliance-os/skills/soc2-audit-prep/SKILL.md",
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "git_blob_sha": "2923d16a6d3ae54bf944eb051567a78282c8763a",
+      "git_blob_verified": true,
+      "content_sha256": "d0dc1c09d87e17dd64d0a9e53a3394e11f05a1006ec20a38f476c835b44701f8",
+      "content_bytes": 6111,
+      "description": "description: \"Use for /compliance-os:soc2-audit-prep, or before or during a SOC 2 Type II observation period.\"",
+      "evidence_by_probe": {
+        "DEV-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-8dc0d627010ff7fcd3b7",
+      "skill_name": "pytdc",
+      "repository": "K-Dense-AI/scientific-agent-skills",
+      "source_path": "skills/pytdc/SKILL.md",
+      "commit_sha": "ec59a29a03d5c40f73ab40878df04860bc00e876",
+      "git_blob_sha": "702017b5bcb831349af598fb75c93450aa20bb74",
+      "git_blob_verified": true,
+      "content_sha256": "b7df3f50c1c618a47a81e994b2863ddd8adf695e795aa495c3a8fef5e78a0493",
+      "content_bytes": 14674,
+      "description": "description: Provides Therapeutics Data Commons workflows through PyTDC for registry discovery, dataset access, task-aware splits, evaluator metrics, benchmark groups, and bounded molecular-oracle scoring. Use when working with TDC therapeutic ML datasets or benchmarks.",
+      "evidence_by_probe": {
+        "AUTO-05": [
+          "description: Provides Therapeutics Data Commons workflows through PyTDC for registry discovery, dataset access, task-aware splits, evaluator metrics, benchmark groups, and bounded molecular-oracle scoring. Use when working with TDC therapeutic ML datasets or benchmarks.",
+          "# PyTDC (Therapeutics Data Commons)"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-94668a9a15191595da54",
+      "skill_name": "api-breaking-change-detector",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/api-breaking-change-detector/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "a238d0f7da007657a8eb84afd26d7d6bf2963a58",
+      "git_blob_verified": true,
+      "content_sha256": "1fcd27dcb533c23baaeef7a70089a8095fa0cc21425457b9a653535034d71a80",
+      "content_bytes": 6741,
+      "description": "description: \"Cross-references C# Web API controllers/DTOs against their TypeScript/JavaScript consumers (React, Angular, Vue, Svelte, Node.js, or hand-written/auto-generated HTTP clients like Fetch, Axios, NSwag) to catch contract drift in both directions: backend changes that break client applications (renamed/removed JSON keys, new required parameters, status code shifts) and frontend code sending fields the backend no longer reads. Works directly against source code, not exported OpenAPI spec files. Use when the user asks to check for breaking API changes, verify frontend/backend contract sync, or audit a DTO/controller change against its TypeScript/JS consumers before merging. Not for g",
+      "evidence_by_probe": {
+        "AUTO-05": [
+          "- Verify the client and backend API contract are still in sync"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-a67ca9e3540cceda632c",
+      "skill_name": "google-ads-api-mcp-setup",
+      "repository": "google/skills",
+      "source_path": "skills/ads/google-ads-api-mcp-setup/SKILL.md",
+      "commit_sha": "5fb62c2cf7bc7eda841109c3470d132e87055e23",
+      "git_blob_sha": "0a89a803a1a926683e8bc3ce975fb7603d9db223",
+      "git_blob_verified": true,
+      "content_sha256": "bca91b82ddcc6360c5def84479d7554a92f0a3ba3de64449f8d517995c5ff739",
+      "content_bytes": 23967,
+      "description": "description: Guides developers through downloading, configuring, and installing the official open-source Google Ads MCP Server. Use this skill when a user wants to connect their AI assistant (such as Gemini, Claude Code, or Cursor) to their Google Ads account to query campaigns or retrieve reporting metrics using natural language.",
+      "evidence_by_probe": {
+        "AUTO-05": [
+          "description: Guides developers through downloading, configuring, and installing the official open-source Google Ads MCP Server. Use this skill when a user wants to connect their AI assistant (such as Gemini, Claude Code, or Cursor) to their Google Ads account to query campaigns or retrieve reporting",
+          "# Google Ads API MCP Server Installation",
+          "This skill provides a structured setup guide to install, configure, and integrate the official open-source **[Google Ads Model Context Protocol (MCP) Server](https://github.com/googleads/google-ads-mcp)**.",
+          ">     Google Ads API endpoints (`googleads.googleapis.com`) and PyPI.",
+          "> Google Ads API access and the same OAuth credentials as a standard",
+          "## Step 1: Validate Your Google Ads API Credentials"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-7416b8bc0ae3574070ff",
+      "skill_name": "google-cloud-solution-guided-gke-ai-migration",
+      "repository": "google/skills",
+      "source_path": "skills/cloud/google-cloud-solution-guided-gke-ai-migration/SKILL.md",
+      "commit_sha": "5fb62c2cf7bc7eda841109c3470d132e87055e23",
+      "git_blob_sha": "d2471c8a1a70eee11573726ebcf03e3eebf973c4",
+      "git_blob_verified": true,
+      "content_sha256": "9b296ff2579811657e5279896fab4c779e75448256d590d73cb7665d2481a079",
+      "content_bytes": 33349,
+      "description": "description: >-",
+      "evidence_by_probe": {
+        "CLOUD-05": [
+          "name: google-cloud-solution-guided-gke-ai-migration",
+          "Guides the migration of existing AI workloads (Cloud Run, Gemini API, Gemini Enterprise Agent Platform) to self-hosted GKE inference using gcloud and kubectl. Use when the user has an existing AI inference workload (on Cloud Run, the Gemini API, Gemini Enterprise Agent Platform, or a custom VM) and ",
+          "# Migrate AI Workloads to GKE Inference",
+          "This skill guides agents through the end-to-end process of migrating existing AI inference workloads (e.g., from Cloud Run, Gemini API, Gemini Enterprise Agent Platform) to self-hosted inference on Google Kubernetes Engine (GKE). The agent will act as an interactive architect, using a structured 4-p",
+          "1. **STOP the manual workflow & clarify scope:** State that `google-cloud-solution-guided-gke-ai-migration` is strictly intended for manual, architect-guided migration using native CLIs (`gcloud` and `kubectl`), and that this manual skill workflow is being stopped.",
+          "**This skill is specifically intended for migrating existing AI workloads (from Cloud Run, Gemini API, Agent Platform, or other platforms) to GKE.**"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-0457f75e9822ea95216c",
+      "skill_name": "tao-train-single-step",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/tao-train-single-step/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "b52ed26895e164c2f5379f136f575366fc68ac98",
+      "git_blob_verified": true,
+      "content_sha256": "e55d1208fa8c41eb096c3babc30c4ee32f7bf705b5f8931308323f59d173d425",
+      "content_bytes": 4771,
+      "description": "description: Standard single-step train/eval/export workflow for any TAO model. Use when training a TAO model on a dataset",
+      "evidence_by_probe": {
+        "CLOUD-05": [
+          "- **platform**: Discover the execution platforms from the installed platform skills (tao-run-on-docker / -slurm / -kubernetes / -brev, plus any external one); on a runtime that surfaces only the core router skills, read `skills/platform/tao-run-on-*/SKILL.md` frontmatter.",
+          "-kubernetes / -brev, plus any external one); on a runtime that surfaces only the"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-cf4a963bac8bc06f0abc",
+      "skill_name": "cdf-orchestration-write-dag",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/cdf-orchestration-write-dag/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "6b844b360a9e928a19441d0f29b1b905fe9626b1",
+      "git_blob_verified": true,
+      "content_sha256": "2541e4f8a732fba61c7c4ccc372f7d71ae457ad4548fca501805025f568da54c",
+      "content_bytes": 41993,
+      "description": "description: Use when a user describes a custom CDF Orchestration pipeline — a specific ordered combination of stages such as augmentation only, auto-labeling only, detection+captioning only, or image attribute augmentation without full auto-labeling — that no existing DAG in airflow/dags/workflows/ covers, and asks for a new Kubernetes DAG. Also use to check that a generated or existing DAG's model/container/prompt choices match an external spec document (e.g. a CDF `launchable.md`). Not for requests that an existing DAG already covers, including payload-only changes such as different inputs, endpoints, models, or variant counts — route those to the matching workflow skill, unless the user ",
+      "evidence_by_probe": {
+        "CLOUD-05": [
+          "description: Use when a user describes a custom CDF Orchestration pipeline — a specific ordered combination of stages such as augmentation only, auto-labeling only, detection+captioning only, or image attribute augmentation without full auto-labeling — that no existing DAG in airflow/dags/workflows/",
+          "Composes a new Kubernetes-only Airflow DAG from the **existing task groups and stages** that the",
+          "**Kubernetes, and OSMO for workflows that support it.** This repository checks in K8s manifests for",
+          "every component skill and keeps an offline summary of each. If the component repo is unreachable,",
+          "tags=[\"sdg\", \"kubernetes\", \"<dag_name>\"],",
+          "DAG-seeding step. If the user also wants an OSMO variant (see \"Kubernetes, and OSMO for workflows"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-eed7c2fe202d33bf6ed0",
+      "skill_name": "omniverse-realtime-viewer",
+      "repository": "NVIDIA/skills",
+      "source_path": "skills/omniverse-realtime-viewer/SKILL.md",
+      "commit_sha": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7",
+      "git_blob_sha": "5a7c052ef6c1b8e7ad1d4ba510391be694e477a7",
+      "git_blob_verified": true,
+      "content_sha256": "f231536fcd10a6f342d207e327803a15936270bb163946414f905b4b3e9b9050",
+      "content_bytes": 6521,
+      "description": "description: \"Use as the top-level router for Omniverse Realtime Viewer USD apps, XR delivery, SPG GPU processing, stylized rendering, and focused viewer reference documents.\"",
+      "evidence_by_probe": {
+        "DES-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-5f5f718a97be8efe49c3",
+      "skill_name": "ui-styling",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/ui-styling/SKILL.md",
+      "commit_sha": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e",
+      "git_blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
+      "git_blob_verified": true,
+      "content_sha256": "625e302c60ee8f2e22d56cbe638c4a739e2657f566dae42689503ad517c30f1e",
+      "content_bytes": 10945,
+      "description": "description: Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, creating responsive layouts, adding accessible components (dialogs, dropdowns, forms, tables), customizing themes and colors, implementing dark mode, generating visual designs and posters, or establishing consistent styling patterns across applications.",
+      "evidence_by_probe": {
+        "DES-05": [
+          "description: Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, creating responsive layouts, adding accessible comp",
+          "# UI Styling Skill",
+          "Comprehensive skill for creating beautiful, accessible user interfaces combining shadcn/ui components, Tailwind CSS utility styling, and canvas-based visual design systems.",
+          "- shadcn/ui: https://ui.shadcn.com/llms.txt",
+          "### Component Layer: shadcn/ui",
+          "- Pre-built accessible components via Radix UI primitives"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-9a3edb578a5f0632a5ac",
+      "skill_name": "shadcn",
+      "repository": "openai/plugins",
+      "source_path": "plugins/vercel/skills/shadcn/SKILL.md",
+      "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
+      "git_blob_sha": "68edd737d48c3519876405056a24caf32e2d8385",
+      "git_blob_verified": true,
+      "content_sha256": "f624e06541dcf3c3c8cb3978fe924fa2fded979048f360ae4919f27edbb67fb2",
+      "content_bytes": 19533,
+      "description": "description: shadcn/ui expert guidance — CLI, component installation, composition patterns, custom registries, theming, Tailwind CSS integration, and high-quality interface design. Use when initializing shadcn, adding components, composing product UI, building custom registries, configuring themes, or troubleshooting component issues.",
+      "evidence_by_probe": {
+        "DES-05": [
+          "name: shadcn",
+          "description: shadcn/ui expert guidance — CLI, component installation, composition patterns, custom registries, theming, Tailwind CSS integration, and high-quality interface design. Use when initializing shadcn, adding components, composing product UI, building custom registries, configuring themes, ",
+          "- \"https://ui.shadcn.com/docs\"",
+          "- \"https://ui.shadcn.com/docs/components\"",
+          "- '\\bnpx\\s+shadcn\\b'",
+          "- '\\bnpx\\s+shadcn@latest\\s+(init|add|build|search|list|migrate|info|docs|view)\\b'"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-7ae0071cacd3ef244d29",
+      "skill_name": "board-meeting",
+      "repository": "alirezarezvani/claude-skills",
+      "source_path": "c-level-advisor/skills/board-meeting/SKILL.md",
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "git_blob_sha": "140624a8d4a4a1639cde8f843d3f60095fa985ac",
+      "git_blob_verified": true,
+      "content_sha256": "083812af2020919859326a6fc75bf1fb2883582dcc9b48a1cd210a385790564b",
+      "content_bytes": 6454,
+      "description": "description: \"Use for /c-level-agents:boardroom or a strategic question that needs a structured multi-executive deliberation. Runs six phases: context, isolated C-suite views, critic, synthesis, founder review and decision.\"",
+      "evidence_by_probe": {
+        "BIZ-05": [
+          "| Pricing | CMO, CFO, CRO, CPO |"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-f8e2619d61441d68b921",
+      "skill_name": "pricing-strategist",
+      "repository": "alirezarezvani/claude-skills",
+      "source_path": "commercial/skills/pricing-strategist/SKILL.md",
+      "commit_sha": "f8593c4941210a621a6629ce1da9e07897976d5f",
+      "git_blob_sha": "4f16e1ee07b6760c3979c996926acc806a87427c",
+      "git_blob_verified": true,
+      "content_sha256": "661e17f9cf887ee438fcadd468c4e12a51ddc27bca8f73377bf02f97cd629a89",
+      "content_bytes": 9139,
+      "description": "description: \"Use when choosing or revisiting pricing: seat, usage, value-based, freemium or hybrid, Van Westendorp willingness-to-pay analysis, or Good/Better/Best tiers. Runs pricing_model_picker.py, wtp_analyzer.py and packaging_designer.py and returns a range, not one number.\"",
+      "evidence_by_probe": {
+        "BIZ-05": [
+          "name: pricing-strategist",
+          "description: \"Use when choosing or revisiting pricing: seat, usage, value-based, freemium or hybrid, Van Westendorp willingness-to-pay analysis, or Good/Better/Best tiers. Runs pricing_model_picker.py, wtp_analyzer.py and packaging_designer.py and returns a range, not one number.\"",
+          "tags: [commercial, pricing, packaging, wtp, van-westendorp, value-based-pricing, saas-pricing]",
+          "# pricing-strategist",
+          "Help Commercial, Product Marketing, and CMO functions answer three questions at the pricing-design moment:",
+          "1. **Which pricing model fits this product + customer + market?** (subscription seat-based, usage-based, value-based, freemium, hybrid)"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-0e29e6f89001926daed1",
+      "skill_name": "public-equity-investing",
+      "repository": "openai/plugins",
+      "source_path": "plugins/public-equity-investing/skills/public-equity-investing/SKILL.md",
+      "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
+      "git_blob_sha": "891e08d67c18d3952a37fc022295970e7f9aa0b5",
+      "git_blob_verified": true,
+      "content_sha256": "63a63b89e5a65de1f4b5ef23f8a60ad01655dfbbb43c07018f4da29a1d32943d",
+      "content_bytes": 15821,
+      "description": "description: Route Public Equity Investing workflows for listed-company and public-security research, earnings analysis, valuation, model updates, long/short pitches, catalysts, thesis tracking, ETF/index and constituent diligence, position sizing, hedging, dashboards, and investment memos. Use when the user is evaluating a public company, ticker, sector, portfolio position, event, earnings setup, or investment thesis through an investor lens, including what is priced in, what is mispriced, what proves or kills the thesis, and what to watch next. Do not use for private-company diligence, credit-first analysis, personal financial advice, generic company summaries, or generic document drafting",
+      "evidence_by_probe": {
+        "BIZ-05": []
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-2746d30b1e14c52463df",
+      "skill_name": "scientific-critical-thinking",
+      "repository": "K-Dense-AI/scientific-agent-skills",
+      "source_path": "skills/scientific-critical-thinking/SKILL.md",
+      "commit_sha": "ec59a29a03d5c40f73ab40878df04860bc00e876",
+      "git_blob_sha": "2a2fc151b5b13e4e11ece7410f21a14d5b25e30d",
+      "git_blob_verified": true,
+      "content_sha256": "563af70571b7dcd6a96bf2e303bedfdcba623b4e9f082d58f04aacbc961fdae4",
+      "content_bytes": 13146,
+      "description": "description: Evaluates scientific claims and evidence quality. Applies to experimental design validity, biases and confounders, statistical interpretation, evidence grading frameworks (GRADE, Cochrane Risk of Bias), and teaching critical analysis. Supports evidence appraisal and identifying flaws; formal peer review writing belongs to peer-review.",
+      "evidence_by_probe": {
+        "RES-05": [
+          "description: Evaluates scientific claims and evidence quality. Applies to experimental design validity, biases and confounders, statistical interpretation, evidence grading frameworks (GRADE, Cochrane Risk of Bias), and teaching critical analysis. Supports evidence appraisal and identifying flaws; f",
+          "Critical thinking is a systematic process for evaluating scientific rigor. Assess methodology, experimental design, statistical validity, biases, confounding, and evidence quality using GRADE and Cochrane ROB frameworks. Apply this skill for critical analysis of scientific claims.",
+          "- Assessing statistical validity and evidence quality",
+          "- Applying GRADE or Cochrane risk of bias assessments",
+          "2. **Extract evidence before judging.** Locate the numerical result, uncertainty,",
+          "Keep missing reporting separate from evidence that a procedure was not performed."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-36b81772d1aa2e851b72",
+      "skill_name": "doc-and-modernize",
+      "repository": "github/awesome-copilot",
+      "source_path": "skills/doc-and-modernize/SKILL.md",
+      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
+      "git_blob_sha": "16ba76286989d1a6c288b8f8b24d6d75f5e88b38",
+      "git_blob_verified": true,
+      "content_sha256": "a1b5ff3752fa95d1597d33f95f265ca29171bd00c7315854b062f5117d0a89b6",
+      "content_bytes": 49934,
+      "description": "description: >-",
+      "evidence_by_probe": {
+        "RES-05": [
+          "phased plan to modernize, migrate, upgrade, or rewrite a legacy system",
+          "evidence base for a modernization effort.",
+          "plan to upgrade, migrate, or rewrite a legacy system.",
+          "- If the user wants to **modernize, migrate, upgrade, or rewrite** a system, run",
+          "evidence base both modes rely on.",
+          "- Tech-stack detection table: layer | technology | evidence (file+line)."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-ce6e1da8d535d35150a2",
+      "skill_name": "post-patch-validation",
+      "repository": "trailofbits/skills",
+      "source_path": "plugins/post-patch-validation/skills/post-patch-validation/SKILL.md",
+      "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
+      "git_blob_sha": "fff1346bc3b8a58caf26e2ad2c9569d4a9f55acd",
+      "git_blob_verified": true,
+      "content_sha256": "33b604f4d7d62eab393d710edb98b18505fcbe079c07c9428daa018f29439b54",
+      "content_bytes": 15336,
+      "description": "description: >",
+      "evidence_by_probe": {
+        "RES-05": [
+          "Validates security patches with reproducible baseline-versus-patched evidence, including",
+          "- The task is to review an audit finding against a report without executing patch evidence.",
+          "--evidence-level runtime \\",
+          "honest evidence level: `source` for source/patch invariants only, `build` when target code is",
+          "5. Execute the evidence plan:",
+          "6. Report `result.json`, `report.md`, the evidence level, and the complete `assessment`."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-a56b655ba52fd519299f",
+      "skill_name": "matlab",
+      "repository": "K-Dense-AI/scientific-agent-skills",
+      "source_path": "skills/matlab/SKILL.md",
+      "commit_sha": "ec59a29a03d5c40f73ab40878df04860bc00e876",
+      "git_blob_sha": "7d521444a2b94ff43e3fc32fcb78e023915c658e",
+      "git_blob_verified": true,
+      "content_sha256": "91afa6ec0f0b3797f51da62b79d44d00a32fcdf3690b9505e5987982a8e6d0e2",
+      "content_bytes": 16551,
+      "description": "description: Builds, reviews, migrates, and plans MATLAB or GNU Octave numerical workflows. Use for arrays, tabular/time data, tests, projects, graphics, MAT files, and explicit Python interoperability.",
+      "evidence_by_probe": {
+        "DOC-05": [
+          "Documentation is pinned where noted to proprietary MATLAB R2026a and free",
+          "Reviewed against current MathWorks R2026b documentation and GNU Octave 11.3.0",
+          "- `load`, object deserialization (`loadobj`, custom serialization), function",
+          "can invoke class deserialization behavior; opaque/function/native content",
+          "- [Current MATLAB documentation (R2026b)](https://www.mathworks.com/help/matlab/)"
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-f1dc73fb49fb1bb7c27f",
+      "skill_name": "openai-docs",
+      "repository": "openai/skills",
+      "source_path": "skills/.system/openai-docs/SKILL.md",
+      "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
+      "git_blob_sha": "df395fb442746703eefcc1d0cb9183efa39d9e66",
+      "git_blob_verified": true,
+      "content_sha256": "669a42ccf3323fe0ceda6e466730bcb05dddf1e0c220d6523ea504909fc49165",
+      "content_bytes": 18747,
+      "description": "description: \"Use when the user asks how to build with OpenAI products or APIs, asks about Codex itself or choosing Codex surfaces, needs up-to-date official documentation with citations, help choosing the latest model for a use case, or model upgrade and prompt-upgrade guidance; use OpenAI docs MCP tools for non-Codex docs questions, use the Codex manual helper first for broad Codex self-knowledge, and restrict fallback browsing to official OpenAI domains.\"",
+      "evidence_by_probe": {
+        "DOC-05": [
+          "description: \"Use when the user asks how to build with OpenAI products or APIs, asks about Codex itself or choosing Codex surfaces, needs up-to-date official documentation with citations, help choosing the latest model for a use case, or model upgrade and prompt-upgrade guidance; use OpenAI docs MCP",
+          "Provide authoritative, current guidance from OpenAI developer docs using the developers.openai.com MCP server. \"Docs MCP\" means `mcp__openaiDeveloperDocs__search_openai_docs` and `mcp__openaiDeveloperDocs__fetch_openai_doc`; for API reference, schema, parameter, or required-field questions, also use",
+          "- For API reference, schema, parameter, or required-field questions, use `mcp__openaiDeveloperDocs__get_openapi_spec` when available to verify the API shape alongside the relevant guide or reference page."
+        ]
+      }
+    },
+    {
+      "source_record_id": "GASL-SRC-1741ff40562a958492c8",
+      "skill_name": "spec-to-code-compliance",
+      "repository": "trailofbits/skills",
+      "source_path": "plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md",
+      "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
+      "git_blob_sha": "b10d8a081c39dd8f89bdc0559da3074f367ec869",
+      "git_blob_verified": true,
+      "content_sha256": "eb0d91b50a9c06f50baf8763d1e23566897b9fa3e7ffcf13134eee4e1ccaefe5",
+      "content_bytes": 7547,
+      "description": "description: Check code against the documentation that specifies it - which requirements hold, which the code contradicts, which are absent, and what the code does that no document mentions. Use when comparing an implementation against a whitepaper, protocol spec, or design document.",
+      "evidence_by_probe": {
+        "DOC-05": [
+          "description: Check code against the documentation that specifies it - which requirements hold, which the code contradicts, which are absent, and what the code does that no document mentions. Use when comparing an implementation against a whitepaper, protocol spec, or design document.",
+          "Two artifacts disagree, and the job is to find where. The documentation says what the system does; the code",
+          "decides what it actually does. Every gap between them is either a bug or a documentation fix, and which one it",
+          "You have both documentation describing intended behavior and the code that should implement it. A whitepaper",
+          "Not for code with no documentation of intended behavior. There is nothing to check against, and a requirement",
+          "Not for writing or improving documentation, though it produces the list of what needs fixing."
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Top-three candidate-body inspection is not exhaustive catalog search.",
+    "Verdicts are model-simulated and provisional.",
+    "Do not convert uncertain or partial labels into no-relevant-skill gold qrels.",
+    "Android banking SMS remains a separately audited coverage-gap hypothesis; no direct Skill was found in 12 metadata-matched pinned bodies plus reviewed top results."
+  ],
+  "run10_search_input_fingerprint": "2b4b081ee1fa47ccce3b4ee98ba8e95ef9872b627c9846b60cc8c2c52543fc15",
+  "run10_top3_same_as_run04_for_all_probes": true,
+  "adjudication_note": "The same top-three source IDs were retained for all 12 coverage probes between RUN-04 and RUN-10; the pinned-body review remains applicable to RUN-10. This is not a full-catalog search."
+}

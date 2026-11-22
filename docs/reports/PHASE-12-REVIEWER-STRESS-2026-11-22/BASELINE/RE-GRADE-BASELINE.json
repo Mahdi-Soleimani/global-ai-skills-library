@@ -1,0 +1,2219 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "Re-grade baseline RUN-01..03 using the corrected v1.1.0 expected-skill family list so pre/post comparisons use the same provisional rubric.",
+  "rubric_sha256": "c8272c5f169f1ba776c4499ab4d465b479f148048eeb13242e020d4865dc01b1",
+  "baseline_runs": [
+    {
+      "round": 1,
+      "positive_cases": 38,
+      "expected_hits_top5": 34,
+      "expected_hit_rate_top5": 0.8947368421052632,
+      "explicit_exclusion_cases": 5,
+      "explicit_exclusion_violations": 5,
+      "misses": [
+        "DATA-04",
+        "DES-01",
+        "DES-04",
+        "RES-04"
+      ],
+      "rows": [
+        {
+          "scenario_id": "SEC-01",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "zoom-oauth",
+            "dpop-adoption"
+          ],
+          "expected_hits_top5": [
+            "spring-security",
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-02",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hits_top5": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-03",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secret-serialization"
+          ],
+          "expected_hits_top5": [
+            "secret-serialization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-04",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "senior-security",
+            "zoom-oauth"
+          ],
+          "expected_hits_top5": [
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-05",
+          "reviewer_id": "R01",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-01",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "sql-database-assistant"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-02",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "senior-data-engineer",
+            "data-quality-auditor"
+          ],
+          "expected_hits_top5": [
+            "senior-data-engineer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-03",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "data-quality-auditor",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [
+            "data-quality-auditor"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-04",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-05",
+          "reviewer_id": "R02",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-01",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "redis-search"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_hits_top5": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "AI-02",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "arize-evaluator",
+            "senior-prompt-engineer",
+            "ai-prompt-engineering-safety-review",
+            "eval-driven-dev"
+          ],
+          "expected_hits_top5": [
+            "arize-evaluator"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-03",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hits_top5": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-04",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "senior-prompt-engineer"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-05",
+          "reviewer_id": "R03",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-01",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-02",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "fastapi",
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "fastapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-03",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "nextjs"
+          ],
+          "expected_hits_top5": [
+            "nextjs"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-04",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-05",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-01",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-02",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-workflow-patterns",
+            "n8n-node-configuration-official",
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hits_top5": [
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-03",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "chat-sdk"
+          ],
+          "expected_hits_top5": [
+            "chat-sdk"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-04",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-05",
+          "reviewer_id": "R05",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-01",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-02",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "senior-devops",
+            "eks",
+            "terraform"
+          ],
+          "expected_hits_top5": [
+            "terraform"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "azure-kubernetes",
+            "azure-kubernetes-app-deploy"
+          ],
+          "avoid_hits_top5": [
+            "azure-kubernetes"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "CLOUD-03",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "cloudflare"
+          ],
+          "expected_hits_top5": [
+            "cloudflare"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-04",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "kubernetes",
+            "senior-devops",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "kubernetes",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-05",
+          "reviewer_id": "R06",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-01",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [
+            "apple-hig-expert"
+          ],
+          "avoid_hits_top5": [
+            "apple-hig-expert"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DES-02",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "penpot-uiux-design",
+            "ui-ux-pro-max",
+            "impeccable"
+          ],
+          "expected_hits_top5": [
+            "penpot-uiux-design",
+            "impeccable"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-03",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "audit",
+            "ui-ux-pro-max"
+          ],
+          "expected_hits_top5": [
+            "audit"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-04",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-05",
+          "reviewer_id": "R07",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-01",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-02",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "pricing",
+            "saas-metrics-coach",
+            "cro-advisor"
+          ],
+          "expected_hits_top5": [
+            "pricing"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-03",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hits_top5": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-04",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-05",
+          "reviewer_id": "R08",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-01",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-02",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "scientific-critical-thinking",
+            "scholar-evaluation"
+          ],
+          "expected_hits_top5": [
+            "scientific-critical-thinking"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-03",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-04",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review",
+            "scientific-critical-thinking"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-05",
+          "reviewer_id": "R09",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-01",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "documentation-writer"
+          ],
+          "expected_hits_top5": [
+            "technical-writer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-02",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hits_top5": [
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-03",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hits_top5": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-04",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "i18n-localization"
+          ],
+          "expected_hits_top5": [
+            "i18n-localization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-05",
+          "reviewer_id": "R10",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "positive_cases": 38,
+      "expected_hits_top5": 34,
+      "expected_hit_rate_top5": 0.8947368421052632,
+      "explicit_exclusion_cases": 5,
+      "explicit_exclusion_violations": 5,
+      "misses": [
+        "DATA-04",
+        "DES-01",
+        "DES-04",
+        "RES-04"
+      ],
+      "rows": [
+        {
+          "scenario_id": "SEC-01",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "zoom-oauth",
+            "dpop-adoption"
+          ],
+          "expected_hits_top5": [
+            "spring-security",
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-02",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hits_top5": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-03",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secret-serialization"
+          ],
+          "expected_hits_top5": [
+            "secret-serialization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-04",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "senior-security",
+            "zoom-oauth"
+          ],
+          "expected_hits_top5": [
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-05",
+          "reviewer_id": "R01",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-01",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "sql-database-assistant"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-02",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "senior-data-engineer",
+            "data-quality-auditor"
+          ],
+          "expected_hits_top5": [
+            "senior-data-engineer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-03",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "data-quality-auditor",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [
+            "data-quality-auditor"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-04",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-05",
+          "reviewer_id": "R02",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-01",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "redis-search"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_hits_top5": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "AI-02",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "arize-evaluator",
+            "senior-prompt-engineer",
+            "ai-prompt-engineering-safety-review",
+            "eval-driven-dev"
+          ],
+          "expected_hits_top5": [
+            "arize-evaluator"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-03",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hits_top5": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-04",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "senior-prompt-engineer"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-05",
+          "reviewer_id": "R03",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-01",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-02",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "fastapi",
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "fastapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-03",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "nextjs"
+          ],
+          "expected_hits_top5": [
+            "nextjs"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-04",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-05",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-01",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-02",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-workflow-patterns",
+            "n8n-node-configuration-official",
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hits_top5": [
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-03",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "chat-sdk"
+          ],
+          "expected_hits_top5": [
+            "chat-sdk"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-04",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-05",
+          "reviewer_id": "R05",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-01",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-02",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "senior-devops",
+            "eks",
+            "terraform"
+          ],
+          "expected_hits_top5": [
+            "terraform"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "azure-kubernetes",
+            "azure-kubernetes-app-deploy"
+          ],
+          "avoid_hits_top5": [
+            "azure-kubernetes"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "CLOUD-03",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "cloudflare"
+          ],
+          "expected_hits_top5": [
+            "cloudflare"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-04",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "kubernetes",
+            "senior-devops",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "kubernetes",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-05",
+          "reviewer_id": "R06",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-01",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [
+            "apple-hig-expert"
+          ],
+          "avoid_hits_top5": [
+            "apple-hig-expert"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DES-02",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "penpot-uiux-design",
+            "ui-ux-pro-max",
+            "impeccable"
+          ],
+          "expected_hits_top5": [
+            "penpot-uiux-design",
+            "impeccable"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-03",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "audit",
+            "ui-ux-pro-max"
+          ],
+          "expected_hits_top5": [
+            "audit"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-04",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-05",
+          "reviewer_id": "R07",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-01",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-02",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "pricing",
+            "saas-metrics-coach",
+            "cro-advisor"
+          ],
+          "expected_hits_top5": [
+            "pricing"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-03",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hits_top5": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-04",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-05",
+          "reviewer_id": "R08",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-01",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-02",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "scientific-critical-thinking",
+            "scholar-evaluation"
+          ],
+          "expected_hits_top5": [
+            "scientific-critical-thinking"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-03",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-04",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review",
+            "scientific-critical-thinking"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-05",
+          "reviewer_id": "R09",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-01",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "documentation-writer"
+          ],
+          "expected_hits_top5": [
+            "technical-writer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-02",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hits_top5": [
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-03",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hits_top5": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-04",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "i18n-localization"
+          ],
+          "expected_hits_top5": [
+            "i18n-localization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-05",
+          "reviewer_id": "R10",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "positive_cases": 38,
+      "expected_hits_top5": 34,
+      "expected_hit_rate_top5": 0.8947368421052632,
+      "explicit_exclusion_cases": 5,
+      "explicit_exclusion_violations": 5,
+      "misses": [
+        "DATA-04",
+        "DES-01",
+        "DES-04",
+        "RES-04"
+      ],
+      "rows": [
+        {
+          "scenario_id": "SEC-01",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "zoom-oauth",
+            "dpop-adoption"
+          ],
+          "expected_hits_top5": [
+            "spring-security",
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-02",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hits_top5": [
+            "secrets-vault-manager",
+            "env-secrets-manager"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-03",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "secret-serialization"
+          ],
+          "expected_hits_top5": [
+            "secret-serialization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-04",
+          "reviewer_id": "R01",
+          "expected_patterns": [
+            "spring-security",
+            "senior-security",
+            "zoom-oauth"
+          ],
+          "expected_hits_top5": [
+            "zoom-oauth"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "SEC-05",
+          "reviewer_id": "R01",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-01",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "sql-database-assistant"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-02",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "senior-data-engineer",
+            "data-quality-auditor"
+          ],
+          "expected_hits_top5": [
+            "senior-data-engineer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-03",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "data-quality-auditor",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [
+            "data-quality-auditor"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-04",
+          "reviewer_id": "R02",
+          "expected_patterns": [
+            "sql-database-assistant",
+            "senior-data-engineer"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DATA-05",
+          "reviewer_id": "R02",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-01",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "redis-search"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_hits_top5": [
+            "pinecone-rag",
+            "databricks-vector-search"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "AI-02",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "arize-evaluator",
+            "senior-prompt-engineer",
+            "ai-prompt-engineering-safety-review",
+            "eval-driven-dev"
+          ],
+          "expected_hits_top5": [
+            "arize-evaluator"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-03",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hits_top5": [
+            "n8n-ai-nodes-official",
+            "n8n-agents"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-04",
+          "reviewer_id": "R03",
+          "expected_patterns": [
+            "rag-architect",
+            "senior-prompt-engineer"
+          ],
+          "expected_hits_top5": [
+            "rag-architect"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AI-05",
+          "reviewer_id": "R03",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-01",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-02",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "fastapi",
+            "sql-database-assistant"
+          ],
+          "expected_hits_top5": [
+            "fastapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-03",
+          "reviewer_id": "R04",
+          "expected_patterns": [
+            "nextjs"
+          ],
+          "expected_hits_top5": [
+            "nextjs"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DEV-04",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [
+            "twilio-messaging-webhooks",
+            "twilio-sms-send-message",
+            "twilio-isv-sms-best-practices"
+          ],
+          "avoid_hits_top5": [
+            "twilio-messaging-webhooks"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DEV-05",
+          "reviewer_id": "R04",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-01",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-02",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-workflow-patterns",
+            "n8n-node-configuration-official",
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hits_top5": [
+            "n8n-credentials-and-security-official"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-03",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "chat-sdk"
+          ],
+          "expected_hits_top5": [
+            "chat-sdk"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-04",
+          "reviewer_id": "R05",
+          "expected_patterns": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hits_top5": [
+            "n8n-error-handling",
+            "n8n-workflow-patterns"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "AUTO-05",
+          "reviewer_id": "R05",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-01",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "azure-kubernetes-app-deploy",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-02",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "senior-devops",
+            "eks",
+            "terraform"
+          ],
+          "expected_hits_top5": [
+            "terraform"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [
+            "azure-kubernetes",
+            "azure-kubernetes-app-deploy"
+          ],
+          "avoid_hits_top5": [
+            "azure-kubernetes"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "CLOUD-03",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "cloudflare"
+          ],
+          "expected_hits_top5": [
+            "cloudflare"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-04",
+          "reviewer_id": "R06",
+          "expected_patterns": [
+            "kubernetes",
+            "senior-devops",
+            "azure-kubernetes"
+          ],
+          "expected_hits_top5": [
+            "kubernetes",
+            "azure-kubernetes"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "CLOUD-05",
+          "reviewer_id": "R06",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-01",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [
+            "apple-hig-expert"
+          ],
+          "avoid_hits_top5": [
+            "apple-hig-expert"
+          ],
+          "avoid_violation": true
+        },
+        {
+          "scenario_id": "DES-02",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "penpot-uiux-design",
+            "ui-ux-pro-max",
+            "impeccable"
+          ],
+          "expected_hits_top5": [
+            "penpot-uiux-design",
+            "impeccable"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-03",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "audit",
+            "ui-ux-pro-max"
+          ],
+          "expected_hits_top5": [
+            "audit"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-04",
+          "reviewer_id": "R07",
+          "expected_patterns": [
+            "a11y-audit"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DES-05",
+          "reviewer_id": "R07",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-01",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-02",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "pricing",
+            "saas-metrics-coach",
+            "cro-advisor"
+          ],
+          "expected_hits_top5": [
+            "pricing"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-03",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hits_top5": [
+            "cfo-advisor",
+            "cfo-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-04",
+          "reviewer_id": "R08",
+          "expected_patterns": [
+            "saas-metrics-coach",
+            "saas-economics-efficiency-metrics"
+          ],
+          "expected_hits_top5": [
+            "saas-metrics-coach"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "BIZ-05",
+          "reviewer_id": "R08",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-01",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-02",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "scientific-critical-thinking",
+            "scholar-evaluation"
+          ],
+          "expected_hits_top5": [
+            "scientific-critical-thinking"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-03",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hits_top5": [
+            "bgpt-paper-search",
+            "literature-review"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-04",
+          "reviewer_id": "R09",
+          "expected_patterns": [
+            "literature-review",
+            "scientific-critical-thinking"
+          ],
+          "expected_hits_top5": [],
+          "expected_hit": false,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "RES-05",
+          "reviewer_id": "R09",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-01",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "documentation-writer"
+          ],
+          "expected_hits_top5": [
+            "technical-writer"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-02",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "technical-writer",
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hits_top5": [
+            "aspnet-minimal-api-openapi"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-03",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hits_top5": [
+            "content-strategy",
+            "content-production"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-04",
+          "reviewer_id": "R10",
+          "expected_patterns": [
+            "i18n-localization"
+          ],
+          "expected_hits_top5": [
+            "i18n-localization"
+          ],
+          "expected_hit": true,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        },
+        {
+          "scenario_id": "DOC-05",
+          "reviewer_id": "R10",
+          "expected_patterns": [],
+          "expected_hits_top5": [],
+          "expected_hit": null,
+          "avoid_patterns": [],
+          "avoid_hits_top5": [],
+          "avoid_violation": false
+        }
+      ]
+    }
+  ],
+  "caveat": "This is a family-hit regression signal, not a gold relevance metric."
+}

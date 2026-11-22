@@ -1,0 +1,1062 @@
+{
+  "schema_version": "auto-proxy-v1",
+  "status": "internal_weak_labels_not_human_gold_not_independent",
+  "generated_at": "2026-11-22T15:03:15.603744+00:00",
+  "source_catalog_sha256": "af0617d13790d4bf13ba30c723b2107483898227e60cec99667db24cf39633d2",
+  "review_manifest_sha256": "324ec246e644f54d0551c079c5db1bb94b88a857553a2ad06345933fb3453121",
+  "candidate_count": 385,
+  "query_count": 26,
+  "pair_count": 13,
+  "grade_distribution": {
+    "0": 98,
+    "1": 211,
+    "2": 41,
+    "3": 35
+  },
+  "auto_reviewer_grade_disagreement_count": 32,
+  "answerability_summary": {
+    "proxy_answerable": 22,
+    "uncertain_coverage_gap": 4
+  },
+  "metrics_on_proxy_answerable_queries_only": {
+    "precision_at_k": 0.4182,
+    "recall_at_k": 0.3985,
+    "mrr_at_k": 0.783,
+    "ndcg_at_k": 0.6046
+  },
+  "metric_query_count": 22,
+  "router_decisions_on_proxy_answerable": {
+    "abstain": 2,
+    "recommend": 10,
+    "undetermined": 10
+  },
+  "router_decisions_on_uncertain_gaps": {
+    "abstain": 2,
+    "recommend": 1,
+    "undetermined": 1
+  },
+  "limitations": [
+    "Two thresholds are two variants of the same deterministic heuristic, NOT independent reviewers.",
+    "Proxy grades use cached first 1800 characters of pinned Skill text and may miss relevant details.",
+    "The same text may contribute to search indexing and proxy grading: measured retrieval metrics are not independent quality evidence.",
+    "Unjudged sources outside the candidate pool count as zero under proxy metrics.",
+    "No no-answer gold labels are created; uncertain coverage gap is not corpus-wide absence.",
+    "No threshold was tuned on independent human gold. A Router recommendation is advisory, not security approval."
+  ],
+  "queries": [
+    {
+      "query_id": "oauth-pkce-en",
+      "pair_id": "oauth-pkce",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 1,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9086,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "zoom-oauth",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "sign-in-with-vercel",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "dpop-adoption",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "pinecone-rag",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "arize-instrumentation",
+          "proxy_grade": 0
+        }
+      ]
+    },
+    {
+      "query_id": "oauth-pkce-fa",
+      "pair_id": "oauth-pkce",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 1,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8736,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "zoom-oauth",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "remotion-saas",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "remotion-saas",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "dpop-adoption",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "building-mcp-server-on-cloudflare",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "postgres-tuning-en",
+      "pair_id": "postgres-tuning",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 3,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9736,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 3,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "sql-database-assistant",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "supabase-postgres-best-practices",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "senior-backend",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "sql-queries",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "tuning-oak-query-indexes",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "postgres-tuning-fa",
+      "pair_id": "postgres-tuning",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 3,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5687,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "sql-queries",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "dashboard-expert",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "financial-analyst",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "huggingface-papers",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "senior-backend",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "rag-pdf-ingestion-en",
+      "pair_id": "rag-pdf-ingestion",
+      "language": "en",
+      "provisional_answerability": "uncertain_coverage_gap",
+      "pooled_relevant_proxy_count": 0,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": null,
+      "top5": [
+        {
+          "skill_name": "databricks-unstructured-pdf-generation",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "rag-architect",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "pinecone-rag",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "deepstream-generate-pipeline",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "jetson-video-pipeline",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "rag-pdf-ingestion-fa",
+      "pair_id": "rag-pdf-ingestion",
+      "language": "fa",
+      "provisional_answerability": "uncertain_coverage_gap",
+      "pooled_relevant_proxy_count": 0,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": null,
+      "top5": [
+        {
+          "skill_name": "databricks-unstructured-pdf-generation",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "pinecone-rag",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "adobe-create-pdfs-from-data",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "markitdown",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "liteparse",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "llm-agent-eval-en",
+      "pair_id": "llm-agent-eval",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1111,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4127,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "prompt-engineer-toolkit",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "agent-regression-evals",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "contrib-pr",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "scikit-survival",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "polars",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "llm-agent-eval-fa",
+      "pair_id": "llm-agent-eval",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1111,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.1662,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "senior-prompt-engineer",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "azure-aigateway",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "azure-aigateway",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "add-intent-router",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "eval-driven-dev",
+          "proxy_grade": 0
+        }
+      ]
+    },
+    {
+      "query_id": "android-banking-sms-en",
+      "pair_id": "android-banking-sms",
+      "language": "en",
+      "provisional_answerability": "uncertain_coverage_gap",
+      "pooled_relevant_proxy_count": 0,
+      "router_decision_experimental": "abstain",
+      "router_reason_code": "required_technical_identifiers_not_supported_by_top_candidates",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": null,
+      "top5": [
+        {
+          "skill_name": "twilio-messaging-webhooks",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "incoming-request-advisor",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "incoming-request-advisor",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "twilio-sms-send-message",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "twilio-whatsapp-send-message",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "android-banking-sms-fa",
+      "pair_id": "android-banking-sms",
+      "language": "fa",
+      "provisional_answerability": "uncertain_coverage_gap",
+      "pooled_relevant_proxy_count": 0,
+      "router_decision_experimental": "abstain",
+      "router_reason_code": "required_technical_identifiers_not_supported_by_top_candidates",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": null,
+      "top5": [
+        {
+          "skill_name": "create-spring-boot-kotlin-project",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "spring-boot-4-migration",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "codeql",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "deepstream-import-vision-model",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "kotlin-mcp-server-generator",
+          "proxy_grade": 0
+        }
+      ]
+    },
+    {
+      "query_id": "playwright-workflow-en",
+      "pair_id": "playwright-workflow",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7474,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 3,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "browser-automation",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "audit",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "screen-recording",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "core",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "ui-screenshots",
+          "proxy_grade": 3
+        }
+      ]
+    },
+    {
+      "query_id": "playwright-workflow-fa",
+      "pair_id": "playwright-workflow",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.5556,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9763,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 5,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "ui-screenshots",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "browser-automation",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "playwright-interactive",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "playwright",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "screen-recording",
+          "proxy_grade": 3
+        }
+      ]
+    },
+    {
+      "query_id": "kubernetes-helm-en",
+      "pair_id": "kubernetes-helm",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1111,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4336,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "kubernetes-skill",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "gke-manifest-generation",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "azure-kubernetes",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "azure-kubernetes",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "gke-reliability",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "kubernetes-helm-fa",
+      "pair_id": "kubernetes-helm",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 9,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.4424,
+        "relevant_judgment_count": 9,
+        "retrieved_relevant_count": 3,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "azure-kubernetes-app-deploy",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "azure-kubernetes-app-deploy",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "kubernetes-skill",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "aiq-deploy",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "nvidia-ontology-setup",
+          "proxy_grade": 3
+        }
+      ]
+    },
+    {
+      "query_id": "etl-data-quality-en",
+      "pair_id": "etl-data-quality",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 5,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6966,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "senior-data-engineer",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "ehr-data-parsing",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "edc-data-validation",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "salesforce-flow-design",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "salesforce-apex-quality",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "etl-data-quality-fa",
+      "pair_id": "etl-data-quality",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 5,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.8,
+        "recall_at_k": 0.8,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9398,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 4,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "senior-data-engineer",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "claims-analytics",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "sql-server-table-reconciliation",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "data-quality-auditor",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "chief-data-officer-advisor",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "agent-prompt-injection-en",
+      "pair_id": "agent-prompt-injection",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 5,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8241,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 3,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "agentic-actions-auditor",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "skill-security-auditor",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "mcp-security-audit",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "prompt-optimizer",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "mcp-create-declarative-agent",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "agent-prompt-injection-fa",
+      "pair_id": "agent-prompt-injection",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 5,
+      "router_decision_experimental": "abstain",
+      "router_reason_code": "no_eligible_candidates",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 0,
+        "result_count": 0
+      },
+      "top5": []
+    },
+    {
+      "query_id": "wcag-design-system-en",
+      "pair_id": "wcag-design-system",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 2,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1429,
+        "ndcg_at_k": 0.4748,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 0,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "penpot-uiux-design",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "frontend-design-review",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "atlassian-design",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "audit",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "accessibility-fix",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "wcag-design-system-fa",
+      "pair_id": "wcag-design-system",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 2,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.3249,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 0,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "a11y-audit",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "accessibility-fix",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "accessibility-and-inclusive-visualization",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "content-audit",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "audit",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "saas-unit-economics-en",
+      "pair_id": "saas-unit-economics",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 6,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7041,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 4,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "saas-metrics-coach",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "acquisition-channel-advisor",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "saas-economics-efficiency-metrics",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "cfo-advisor",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "pricing-strategy",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "saas-unit-economics-fa",
+      "pair_id": "saas-unit-economics",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 6,
+      "router_decision_experimental": "abstain",
+      "router_reason_code": "very_low_candidate_coverage",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.4515,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 3,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "saas-msa-review",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "saas-metrics-coach",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "saas-scaffolder",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "saas-economics-efficiency-metrics",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "databricks-lakeflow-connect-saas",
+          "proxy_grade": 1
+        }
+      ]
+    },
+    {
+      "query_id": "literature-review-en",
+      "pair_id": "literature-review",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 10,
+      "router_decision_experimental": "recommend",
+      "router_reason_code": "strong_lexical_match_in_discovery_pool",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6886,
+        "relevant_judgment_count": 10,
+        "retrieved_relevant_count": 6,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "scientific-brainstorming",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "research-lookup",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "peer-review",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "folklore-variant-evidence",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "tam-sam-som-calculator",
+          "proxy_grade": 2
+        }
+      ]
+    },
+    {
+      "query_id": "literature-review-fa",
+      "pair_id": "literature-review",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 10,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5449,
+        "relevant_judgment_count": 10,
+        "retrieved_relevant_count": 1,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "literature-review",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "security-review",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "litreview",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "pr-review-expert",
+          "proxy_grade": 0
+        },
+        {
+          "skill_name": "ai-prompt-engineering-safety-review",
+          "proxy_grade": 0
+        }
+      ]
+    },
+    {
+      "query_id": "api-technical-docs-en",
+      "pair_id": "api-technical-docs",
+      "language": "en",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 17,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.2941,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8849,
+        "relevant_judgment_count": 17,
+        "retrieved_relevant_count": 5,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "shopify-polaris-app-home",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "shopify-polaris-app-home",
+          "proxy_grade": 3
+        },
+        {
+          "skill_name": "shopify-functions",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "shopify-functions",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "shopify-hydrogen",
+          "proxy_grade": 2
+        }
+      ]
+    },
+    {
+      "query_id": "api-technical-docs-fa",
+      "pair_id": "api-technical-docs",
+      "language": "fa",
+      "provisional_answerability": "proxy_answerable",
+      "pooled_relevant_proxy_count": 17,
+      "router_decision_experimental": "undetermined",
+      "router_reason_code": "partial_or_ambiguous_evidence",
+      "router_policy_version": "0.2.0-experimental",
+      "retrieval_metrics_proxy": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.1176,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.2639,
+        "relevant_judgment_count": 17,
+        "retrieved_relevant_count": 2,
+        "result_count": 10
+      },
+      "top5": [
+        {
+          "skill_name": "earth2studio-create-prognostic",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "earth2studio-create-diagnostic",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "pylabrobot",
+          "proxy_grade": 1
+        },
+        {
+          "skill_name": "upgrade-stripe",
+          "proxy_grade": 2
+        },
+        {
+          "skill_name": "cloudflare",
+          "proxy_grade": 2
+        }
+      ]
+    }
+  ],
+  "sanitization": "Per-query summary only; raw 385-row evidence stays in private Git-ignored workspace."
+}

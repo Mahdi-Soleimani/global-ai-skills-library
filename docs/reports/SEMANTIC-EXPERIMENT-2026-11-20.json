@@ -1,0 +1,903 @@
+{
+  "model_repository": "Xenova/multilingual-e5-small",
+  "model_revision": "761b726dd34fb83930e26aab4e9ac3899aa1fa78",
+  "model_files": {
+    "model.onnx": [
+      118054593,
+      "4d24e2bc01a447951524466ef533e52944bf48509e6552810bcee1a2711cb02c"
+    ],
+    "tokenizer.json": [
+      17082730,
+      "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"
+    ]
+  },
+  "dataset_sha256": "c0adb1f411797db9c189db6e65a2697b672d427f75cd023ba77d5b2180eb39f4",
+  "input_fingerprint": "dfd799bc63098e5e6bbfc5042ba902b55548cf5a9587db8bb1cd784f90578b0f",
+  "ranking_code_sha256": "d57ffb424c36365b7a0a97e2e18a964dcad95307b72ee850765b953cb7667fcb",
+  "experiment_code_sha256": "f69a07a11a15986ea91631d0f603140ce3329e11db83f059aca35c37d73d8246",
+  "query_count": 26,
+  "candidate_limit": 30,
+  "unique_candidates": 417,
+  "threads": 2,
+  "model_load_seconds": 5.2,
+  "candidate_embedding_seconds": 3.35,
+  "median_query_embedding_and_rerank_ms": 2.53,
+  "peak_process_rss_mib": 740.91,
+  "averages": {
+    "lexical": {
+      "precision_at_k": 0.3,
+      "recall_at_k": 0.3442,
+      "mrr_at_k": 0.6616,
+      "ndcg_at_k": 0.4261
+    },
+    "semantic_rerank": {
+      "precision_at_k": 0.2538,
+      "recall_at_k": 0.3053,
+      "mrr_at_k": 0.5972,
+      "ndcg_at_k": 0.368
+    },
+    "hybrid_rrf": {
+      "precision_at_k": 0.3154,
+      "recall_at_k": 0.3634,
+      "mrr_at_k": 0.6538,
+      "ndcg_at_k": 0.4405
+    }
+  },
+  "language_averages": {
+    "en": {
+      "lexical": {
+        "precision_at_k": 0.2769,
+        "recall_at_k": 0.3343,
+        "mrr_at_k": 0.6538,
+        "ndcg_at_k": 0.4181
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.3077,
+        "recall_at_k": 0.3727,
+        "mrr_at_k": 0.5833,
+        "ndcg_at_k": 0.4314
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2769,
+        "recall_at_k": 0.3343,
+        "mrr_at_k": 0.6538,
+        "ndcg_at_k": 0.4388
+      }
+    },
+    "fa": {
+      "lexical": {
+        "precision_at_k": 0.3231,
+        "recall_at_k": 0.3541,
+        "mrr_at_k": 0.6694,
+        "ndcg_at_k": 0.4341
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2379,
+        "mrr_at_k": 0.6111,
+        "ndcg_at_k": 0.3046
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.3538,
+        "recall_at_k": 0.3926,
+        "mrr_at_k": 0.6538,
+        "ndcg_at_k": 0.4421
+      }
+    }
+  },
+  "queries": [
+    {
+      "id": "n8n-agent-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9221,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8988,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8988,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "n8n-agent-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.8,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9284,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 4,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.1808,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5549,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "api-security-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4555,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.1962,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4555,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "api-security-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1429,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.1232,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.0841,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "wordpress-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "wordpress-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "cloudflare-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5461,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5145,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5802,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "cloudflare-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.3939,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1429,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4555,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.3948,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "github-actions-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.3184,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.3629,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.2994,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "github-actions-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.375,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6762,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.2938,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.375,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6627,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "seo-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "seo-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1429,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.2676,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.1153,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "excel-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7126,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7768,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.752,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "excel-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7635,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.5514,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7768,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "nextjs-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "nextjs-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1667,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0343,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0265,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "telegram-n8n-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7121,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7121,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7121,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "telegram-n8n-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7416,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6093,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6888,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "fastapi-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.408,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6467,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6467,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "fastapi-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6144,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5799,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7367,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "redis-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8216,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8216,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8216,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "redis-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6321,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.5143,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7283,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "data-viz-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.2727,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "data-viz-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7929,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1111,
+        "ndcg_at_k": 0.0778,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 0,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8012,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 3,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "seo-content-en",
+      "language": "en",
+      "lexical": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5385,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.4065,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5385,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 30
+      }
+    },
+    {
+      "id": "seo-content-fa",
+      "language": "fa",
+      "lexical": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.1006,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "semantic_rerank": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.2725,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      },
+      "hybrid_rrf": {
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.1775,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 1,
+        "result_count": 30
+      }
+    }
+  ],
+  "limitations": [
+    "Provisional development set; not independent.",
+    "Semantic reranking of lexical candidates only, not full-corpus dense retrieval.",
+    "Candidate pool differs from a normal top-10 lexical search.",
+    "Reranking weight fixed at 0.35 before evaluation.",
+    "No model or dependency is required by default GASL."
+  ]
+}

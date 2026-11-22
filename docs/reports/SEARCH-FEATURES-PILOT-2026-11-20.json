@@ -1,0 +1,3471 @@
+{
+  "comparison_scope": "same public-only snapshot and frozen development judgment set; same ranking code with and without 291 verified vocabulary records",
+  "queries": 26,
+  "without_tags": {
+    "schema_version": "1.0.0",
+    "benchmark_name": "GASL bilingual search gold set",
+    "benchmark_status": "provisional",
+    "generated_at": "2026-11-20T18:44:23+00:00",
+    "search_index_version": "1.2.1",
+    "source_record_count": 4405,
+    "source_catalog_sha256": "300620fa59a4e39d0abc4b0fa84ecbdf8ebafb2f12af25eafb4f2ccda899f596",
+    "taxonomy_sha256": "3c16e787ccc6ad0f481f69e3683330801d9ba745578ca9476d26c6f37116174f",
+    "dataset_sha256": "c0adb1f411797db9c189db6e65a2697b672d427f75cd023ba77d5b2180eb39f4",
+    "search_inputs_fingerprint": "6aafd47f02c1149bab64041629ad13cb466501db9947eba2fcad8bbdd16ba041",
+    "ranking_code_sha256": "d57ffb424c36365b7a0a97e2e18a964dcad95307b72ee850765b953cb7667fcb",
+    "private_metadata_cache_present": false,
+    "query_count": 26,
+    "judgment_count": 148,
+    "k": 5,
+    "mrr_k": 10,
+    "relevant_threshold": 2,
+    "averages": {
+      "precision_at_k": 0.2692,
+      "recall_at_k": 0.3092,
+      "mrr_at_k": 0.6282,
+      "ndcg_at_k": 0.3961
+    },
+    "language_averages": {
+      "en": {
+        "precision_at_k": 0.2308,
+        "recall_at_k": 0.2848,
+        "mrr_at_k": 0.5385,
+        "ndcg_at_k": 0.3685
+      },
+      "fa": {
+        "precision_at_k": 0.3077,
+        "recall_at_k": 0.3335,
+        "mrr_at_k": 0.7179,
+        "ndcg_at_k": 0.4236
+      }
+    },
+    "limitations": [
+      "This is a provisional internal regression set, not an independently validated quality benchmark.",
+      "Unjudged results are treated as non-relevant; metrics are relative to the observed judgment set, not exhaustive ground truth.",
+      "Relevance labels require independent review by domain users before public quality claims.",
+      "Search relevance does not assess Skill safety, licensing, installation eligibility, or behavioral quality."
+    ],
+    "queries": [
+      {
+        "id": "n8n-agent-en",
+        "language": "en",
+        "query": "n8n AI Agent node with tools and persistent memory",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.1817,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-df8bfc46fabd996243f6"
+            ],
+            "skill_name": "n8n-mcp-tools-expert",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.416,
+            "relevance_score": 30.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0bc2f01a7ed0fd13e84b"
+            ],
+            "skill_name": "n8n-node-configuration",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.416,
+            "relevance_score": 30.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5f80695f85c9ee751492"
+            ],
+            "skill_name": "n8n-node-configuration-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.416,
+            "relevance_score": 30.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd9c5b087f27ac574c02"
+            ],
+            "skill_name": "n8n-ai-nodes-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.416,
+            "relevance_score": 30.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-c34cb4ff51ec1385762e"
+            ],
+            "skill_name": "scvi-tools",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.39,
+            "relevance_score": 14.13
+          }
+        ]
+      },
+      {
+        "id": "n8n-agent-fa",
+        "language": "fa",
+        "query": "ساخت ایجنت هوش مصنوعی با ابزار و حافظه",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.0904,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-c2eb49af93b5af989345"
+            ],
+            "skill_name": "agent-launcher-orchestrator",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.7,
+            "relevance_score": 41.52
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-bea3d28da0d256cdfac1"
+            ],
+            "skill_name": "agent-memory",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.6,
+            "relevance_score": 36.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a8c1aa87a6805939c9aa",
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.6,
+            "relevance_score": 36.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ecfb8c2986d968a19180"
+            ],
+            "skill_name": "ai-tool-handoff",
+            "repository": "anthropics/claude-for-legal",
+            "relevance_grade": 0,
+            "query_coverage": 0.6,
+            "relevance_score": 36.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5c301406e7d6d375d3b0"
+            ],
+            "skill_name": "typespec-create-agent",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.6,
+            "relevance_score": 36.08
+          }
+        ]
+      },
+      {
+        "id": "api-security-en",
+        "language": "en",
+        "query": "Python API authentication authorization security review",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.0841,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.36,
+            "relevance_score": 25.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6a7917da264745914f61"
+            ],
+            "skill_name": "cuopt-server-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.36,
+            "relevance_score": 25.63
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-99e23e3f6340dc5dfa78"
+            ],
+            "skill_name": "protobuf-grpc-api-review",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.32,
+            "relevance_score": 22.21
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f187e6d8feaea0c3d8d2"
+            ],
+            "skill_name": "twilio-security-api-auth",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.32,
+            "relevance_score": 22.21
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-87de52acad7a8160069b"
+            ],
+            "skill_name": "api-gateway-backend-security-and-rate-limiting",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.32,
+            "relevance_score": 22.21
+          }
+        ]
+      },
+      {
+        "id": "api-security-fa",
+        "language": "fa",
+        "query": "امنیت و احراز هویت API با پایتون",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.1952,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-f187e6d8feaea0c3d8d2"
+            ],
+            "skill_name": "twilio-security-api-auth",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.74,
+            "relevance_score": 65.37
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-87de52acad7a8160069b"
+            ],
+            "skill_name": "api-gateway-backend-security-and-rate-limiting",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.532,
+            "relevance_score": 42.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a7c74183d3adae20f15f"
+            ],
+            "skill_name": "microsoft-azure-webjobs-extensions-authentication-events-dotnet",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.532,
+            "relevance_score": 21.53
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.468,
+            "relevance_score": 35.55
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6a7917da264745914f61"
+            ],
+            "skill_name": "cuopt-server-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.468,
+            "relevance_score": 35.55
+          }
+        ]
+      },
+      {
+        "id": "wordpress-en",
+        "language": "en",
+        "query": "WordPress plugin development",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-f95dc5621ef603b14aac"
+            ],
+            "skill_name": "minecraft-plugin-development",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 56.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e7b1522da1a80b585240"
+            ],
+            "skill_name": "typespec-create-api-plugin",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-30e1babc539e06673259"
+            ],
+            "skill_name": "evaluate-plugin",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.333,
+            "relevance_score": 23.33
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9a00fd56c08b19035117"
+            ],
+            "skill_name": "plugin-eval",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.333,
+            "relevance_score": 23.33
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-75d41a2d2ae74856f7dc"
+            ],
+            "skill_name": "minimal-plugin-skill",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.333,
+            "relevance_score": 23.33
+          }
+        ]
+      },
+      {
+        "id": "wordpress-fa",
+        "language": "fa",
+        "query": "توسعه افزونه وردپرس",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e7b1522da1a80b585240"
+            ],
+            "skill_name": "typespec-create-api-plugin",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1965dc90b2f4569ba1c4"
+            ],
+            "skill_name": "nemo-relay-plugin-build",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f95dc5621ef603b14aac"
+            ],
+            "skill_name": "minecraft-plugin-development",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-80dc0322f10ba3401224"
+            ],
+            "skill_name": "canva-implement-feedback",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 38.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8972b6e6c52f4bf51fc5"
+            ],
+            "skill_name": "implement-patch",
+            "repository": "trailofbits/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 38.04
+          }
+        ]
+      },
+      {
+        "id": "cloudflare-en",
+        "language": "en",
+        "query": "Cloudflare Workers development and deployment",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.2857,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7428,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e813bbbfdbf35166c061"
+            ],
+            "skill_name": "workers-development",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.762,
+            "relevance_score": 50.49
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8aa521d714c79ef8f009"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.524,
+            "relevance_score": 28.81
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-442387682584ec048dab"
+            ],
+            "skill_name": "gateway-workers",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.524,
+            "relevance_score": 25.72
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9834b0aacc1b84f48dd6"
+            ],
+            "skill_name": "workers-profiling",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.524,
+            "relevance_score": 25.72
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-06ef3670556304988cf3"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.524,
+            "relevance_score": 25.72
+          }
+        ]
+      },
+      {
+        "id": "cloudflare-fa",
+        "language": "fa",
+        "query": "توسعه و استقرار برنامه با کلادفلر ورکرز",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.2857,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7428,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e813bbbfdbf35166c061"
+            ],
+            "skill_name": "workers-development",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.615,
+            "relevance_score": 37.77
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8aa521d714c79ef8f009"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.423,
+            "relevance_score": 21.93
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-442387682584ec048dab"
+            ],
+            "skill_name": "gateway-workers",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 19.58
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9834b0aacc1b84f48dd6"
+            ],
+            "skill_name": "workers-profiling",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 19.58
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-06ef3670556304988cf3"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 19.58
+          }
+        ]
+      },
+      {
+        "id": "github-actions-en",
+        "language": "en",
+        "query": "GitHub Actions CI CD workflow automation testing deployment",
+        "precision_at_k": 0.8,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7126,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 4,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-8e77d7277c4085c4e7a2"
+            ],
+            "skill_name": "create-github-action-workflow-specification",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 3,
+            "query_coverage": 0.378,
+            "relevance_score": 20.2
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0768bfd602aac72eaae8"
+            ],
+            "skill_name": "project-workflow-analysis-blueprint-generator",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.378,
+            "relevance_score": 12.95
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1eac838b1e9806313cfd"
+            ],
+            "skill_name": "github-actions-efficiency",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.268,
+            "relevance_score": 18.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-32a36839d5bfa5630a36"
+            ],
+            "skill_name": "github-actions-hardening",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.268,
+            "relevance_score": 18.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-d7afa5c7e26f0836fda0"
+            ],
+            "skill_name": "github-actions-runtime-upgrade-conventions",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.268,
+            "relevance_score": 18.0
+          }
+        ]
+      },
+      {
+        "id": "github-actions-fa",
+        "language": "fa",
+        "query": "اتوماسیون تست و استقرار با گیت هاب اکشنز",
+        "precision_at_k": 0.8,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7603,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 4,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-8e77d7277c4085c4e7a2"
+            ],
+            "skill_name": "create-github-action-workflow-specification",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 3,
+            "query_coverage": 0.615,
+            "relevance_score": 50.89
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1eac838b1e9806313cfd"
+            ],
+            "skill_name": "github-actions-efficiency",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-32a36839d5bfa5630a36"
+            ],
+            "skill_name": "github-actions-hardening",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-d7afa5c7e26f0836fda0"
+            ],
+            "skill_name": "github-actions-runtime-upgrade-conventions",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f692ba8d6f5d8a03de2e"
+            ],
+            "skill_name": "verify-agent-action",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 19.58
+          }
+        ]
+      },
+      {
+        "id": "seo-en",
+        "language": "en",
+        "query": "SEO keyword research and search volume",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-96e62c31ef9297d35d71"
+            ],
+            "skill_name": "literature_search_arxiv",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4a607abdf3b054d2b776"
+            ],
+            "skill_name": "literature_search_biorxiv",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3ac1c3abf87dde831b2d"
+            ],
+            "skill_name": "literature_search_europepmc",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5f3d279acb97390203d7"
+            ],
+            "skill_name": "literature_search_openalex",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4fdc071869fe27dd30ea"
+            ],
+            "skill_name": "bgpt-paper-search",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          }
+        ]
+      },
+      {
+        "id": "seo-fa",
+        "language": "fa",
+        "query": "تحقیق کلمات کلیدی برای سئو",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.1153,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-62cbf064a8abddb5e480"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cc00aeab6c8dfb16273"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-cc25c131f8c8042d2c8f"
+            ],
+            "skill_name": "local-seo-manager",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-91218ab531241df1d0a6"
+            ],
+            "skill_name": "seo-audit",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 2,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-11b781b5c13bd506fe18"
+            ],
+            "skill_name": "ai-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          }
+        ]
+      },
+      {
+        "id": "excel-en",
+        "language": "en",
+        "query": "Read and edit Excel XLSX spreadsheet files",
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9053,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-0d9ff6af864684b55487"
+            ],
+            "skill_name": "xlsx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.429,
+            "relevance_score": 31.84
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-d400f455b2fd964bc34a"
+            ],
+            "skill_name": "convert-excel-to-md",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.286,
+            "relevance_score": 19.39
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-964378be8e2c33107a62"
+            ],
+            "skill_name": "bench-read",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.143,
+            "relevance_score": 8.78
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8f0b4dabbf8fbe976517"
+            ],
+            "skill_name": "adobe-batch-edit-photos",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.143,
+            "relevance_score": 8.78
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-71cf37a9e9d28c2c25f2"
+            ],
+            "skill_name": "adobe-edit-quick-cut",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.143,
+            "relevance_score": 8.78
+          }
+        ]
+      },
+      {
+        "id": "excel-fa",
+        "language": "fa",
+        "query": "خواندن و ویرایش فایل اکسل و XLSX",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7126,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-0d9ff6af864684b55487"
+            ],
+            "skill_name": "xlsx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.556,
+            "relevance_score": 44.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8f0b4dabbf8fbe976517"
+            ],
+            "skill_name": "adobe-batch-edit-photos",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.222,
+            "relevance_score": 14.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-71cf37a9e9d28c2c25f2"
+            ],
+            "skill_name": "adobe-edit-quick-cut",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.222,
+            "relevance_score": 14.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a633c7416842ec60b682"
+            ],
+            "skill_name": "canva-edit-design",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.222,
+            "relevance_score": 14.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-50441b28feeea1623696"
+            ],
+            "skill_name": "i4h-workflow-scene-edit",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.222,
+            "relevance_score": 14.44
+          }
+        ]
+      },
+      {
+        "id": "nextjs-en",
+        "language": "en",
+        "query": "Next.js frontend development with TypeScript",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-57204dcc62479927b458"
+            ],
+            "skill_name": "frontend-ui-dark-ts",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.846,
+            "relevance_score": 34.37
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-49d1a6194ee111df13a2"
+            ],
+            "skill_name": "javascript-typescript-jest",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 38.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-596271e7f01053809699"
+            ],
+            "skill_name": "typescript-mcp-server-generator",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 38.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e8b7d46da205f1f5b542"
+            ],
+            "skill_name": "typescript-data-visualization-engineering",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 38.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6b1e2543afd75436a6db"
+            ],
+            "skill_name": "applicationinsights-web-ts",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 18.56
+          }
+        ]
+      },
+      {
+        "id": "nextjs-fa",
+        "language": "fa",
+        "query": "توسعه فرانت اند با نکست جی اس و تایپ اسکریپت",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.157,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-3814f5f0ebc662b9ce3b"
+            ],
+            "skill_name": "react-and-nextjs-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 1,
+            "query_coverage": 0.579,
+            "relevance_score": 36.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-57204dcc62479927b458"
+            ],
+            "skill_name": "frontend-ui-dark-ts",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.579,
+            "relevance_score": 23.89
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9611369024c40b24e551"
+            ],
+            "skill_name": "nextjs",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.421,
+            "relevance_score": 31.14
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bdfc6c8d5fcfd956920"
+            ],
+            "skill_name": "nextjs-on-cloudflare",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.421,
+            "relevance_score": 31.14
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-49d1a6194ee111df13a2"
+            ],
+            "skill_name": "javascript-typescript-jest",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.421,
+            "relevance_score": 21.8
+          }
+        ]
+      },
+      {
+        "id": "telegram-n8n-en",
+        "language": "en",
+        "query": "Telegram bot automation in n8n",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.1713,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-ed335e9f179eac58c0be"
+            ],
+            "skill_name": "n8n-workflow-patterns",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 1,
+            "query_coverage": 0.615,
+            "relevance_score": 38.17
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4bb6dc797ab50662d2e5"
+            ],
+            "skill_name": "n8n-workflow-lifecycle-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.615,
+            "relevance_score": 38.17
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a8e6cdee6e1612ce41f1"
+            ],
+            "skill_name": "n8n-subworkflows",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-774bc54f45976fe2375a"
+            ],
+            "skill_name": "n8n-error-handling",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          }
+        ]
+      },
+      {
+        "id": "telegram-n8n-fa",
+        "language": "fa",
+        "query": "ساخت ربات تلگرام با n8n",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.2055,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a8e6cdee6e1612ce41f1"
+            ],
+            "skill_name": "n8n-subworkflows",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-774bc54f45976fe2375a"
+            ],
+            "skill_name": "n8n-error-handling",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-09da469b9073c5a5f6e0"
+            ],
+            "skill_name": "n8n-expression-syntax",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-7df71bde7993056b80db"
+            ],
+            "skill_name": "n8n-multi-instance",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          }
+        ]
+      },
+      {
+        "id": "fastapi-en",
+        "language": "en",
+        "query": "FastAPI Python REST API backend development",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6467,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-afd03e090009ff45c7c6"
+            ],
+            "skill_name": "fastapi-router-py",
+            "repository": "microsoft/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.664,
+            "relevance_score": 36.74
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 23.01
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6a7917da264745914f61"
+            ],
+            "skill_name": "cuopt-server-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 23.01
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-d6ad089a21c977bb435d"
+            ],
+            "skill_name": "azure-speech-to-text-rest-py",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 14.7
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-87de52acad7a8160069b"
+            ],
+            "skill_name": "api-gateway-backend-security-and-rate-limiting",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.392,
+            "relevance_score": 19.78
+          }
+        ]
+      },
+      {
+        "id": "fastapi-fa",
+        "language": "fa",
+        "query": "توسعه بک اند با فست ای پی آی و پایتون",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5799,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-afd03e090009ff45c7c6"
+            ],
+            "skill_name": "fastapi-router-py",
+            "repository": "microsoft/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.808,
+            "relevance_score": 49.19
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-87de52acad7a8160069b"
+            ],
+            "skill_name": "api-gateway-backend-security-and-rate-limiting",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.596,
+            "relevance_score": 36.19
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.596,
+            "relevance_score": 36.19
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6a7917da264745914f61"
+            ],
+            "skill_name": "cuopt-server-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.596,
+            "relevance_score": 36.19
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e7b1522da1a80b585240"
+            ],
+            "skill_name": "typespec-create-api-plugin",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.404,
+            "relevance_score": 29.55
+          }
+        ]
+      },
+      {
+        "id": "redis-en",
+        "language": "en",
+        "query": "Redis persistent memory for AI agents",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7661,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+              "GASL-SRC-a8c1aa87a6805939c9aa"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.842,
+            "relevance_score": 35.2
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-48809a340c388bb4e2cb",
+              "GASL-SRC-9f565bd878f92d070b30"
+            ],
+            "skill_name": "redis-clustering",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f670c8db7355976a9cf0",
+              "GASL-SRC-64a8d0e94042e28fc2a2"
+            ],
+            "skill_name": "redis-connections",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a571b45567992ee4aee7",
+              "GASL-SRC-b1193af52ec12b4cfa4a"
+            ],
+            "skill_name": "redis-core",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-fc9e3488164088ec79a7",
+              "GASL-SRC-a5c894a3baae741bff2f"
+            ],
+            "skill_name": "redis-observability",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          }
+        ]
+      },
+      {
+        "id": "redis-fa",
+        "language": "fa",
+        "query": "حافظه پایدار ایجنت با ردیس",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8112,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+              "GASL-SRC-a8c1aa87a6805939c9aa"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.833,
+            "relevance_score": 52.42
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-48809a340c388bb4e2cb",
+              "GASL-SRC-9f565bd878f92d070b30"
+            ],
+            "skill_name": "redis-clustering",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 42.5
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f670c8db7355976a9cf0",
+              "GASL-SRC-64a8d0e94042e28fc2a2"
+            ],
+            "skill_name": "redis-connections",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.667,
+            "relevance_score": 42.5
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a571b45567992ee4aee7",
+              "GASL-SRC-b1193af52ec12b4cfa4a"
+            ],
+            "skill_name": "redis-core",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.667,
+            "relevance_score": 42.5
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-fc9e3488164088ec79a7",
+              "GASL-SRC-a5c894a3baae741bff2f"
+            ],
+            "skill_name": "redis-observability",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 42.5
+          }
+        ]
+      },
+      {
+        "id": "data-viz-en",
+        "language": "en",
+        "query": "Build data analysis charts and visualizations",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1667,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-690f2352a2f61b0968ec"
+            ],
+            "skill_name": "testing-data-visualizations",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.6,
+            "relevance_score": 39.36
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cf3fd2d0e5a8fa30127"
+            ],
+            "skill_name": "exploratory-data-analysis",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 29.2
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-7895ef4cde1dab85d909"
+            ],
+            "skill_name": "cohort-analysis",
+            "repository": "phuryn/pm-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 20.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a489cf7dc27367dbc1df"
+            ],
+            "skill_name": "build-report",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 20.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-718717c43b7d975425ef"
+            ],
+            "skill_name": "ab-test-analysis",
+            "repository": "phuryn/pm-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 20.44
+          }
+        ]
+      },
+      {
+        "id": "data-viz-fa",
+        "language": "fa",
+        "query": "تحلیل داده و ساخت نمودار و مصورسازی",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7929,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-12053a580ef1ee4f2025"
+            ],
+            "skill_name": "visualize-data",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.692,
+            "relevance_score": 51.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8ee9c58605e58e45b265"
+            ],
+            "skill_name": "data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-af17b9113a6d1be0ee41"
+            ],
+            "skill_name": "canvas2d-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5171fa9ea7fc8ab5ac68"
+            ],
+            "skill_name": "d3-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ab0e87ce4ffb6bfa8d1b"
+            ],
+            "skill_name": "threejs-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          }
+        ]
+      },
+      {
+        "id": "seo-content-en",
+        "language": "en",
+        "query": "SEO content optimization",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.5799,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-369d327b35de3a00c333"
+            ],
+            "skill_name": "product-page-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.667,
+            "relevance_score": 39.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9978d884014bd303e49d"
+            ],
+            "skill_name": "image-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 39.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-62cbf064a8abddb5e480"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cc00aeab6c8dfb16273"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-cc25c131f8c8042d2c8f"
+            ],
+            "skill_name": "local-seo-manager",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          }
+        ]
+      },
+      {
+        "id": "seo-content-fa",
+        "language": "fa",
+        "query": "بهینه سازی محتوای سئو",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.3438,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-5811e03e4f1c9a4b9312"
+            ],
+            "skill_name": "app-store-optimization",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.733,
+            "relevance_score": 43.41
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-369d327b35de3a00c333"
+            ],
+            "skill_name": "product-page-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.7,
+            "relevance_score": 44.98
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9978d884014bd303e49d"
+            ],
+            "skill_name": "image-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.7,
+            "relevance_score": 44.98
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-62cbf064a8abddb5e480"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.7,
+            "relevance_score": 39.79
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cc00aeab6c8dfb16273"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.7,
+            "relevance_score": 39.79
+          }
+        ]
+      }
+    ]
+  },
+  "with_verified_tags": {
+    "schema_version": "1.0.0",
+    "benchmark_name": "GASL bilingual search gold set",
+    "benchmark_status": "provisional",
+    "generated_at": "2026-11-20T18:44:26+00:00",
+    "search_index_version": "1.2.1",
+    "source_record_count": 4405,
+    "source_catalog_sha256": "300620fa59a4e39d0abc4b0fa84ecbdf8ebafb2f12af25eafb4f2ccda899f596",
+    "taxonomy_sha256": "3c16e787ccc6ad0f481f69e3683330801d9ba745578ca9476d26c6f37116174f",
+    "dataset_sha256": "c0adb1f411797db9c189db6e65a2697b672d427f75cd023ba77d5b2180eb39f4",
+    "search_inputs_fingerprint": "09e088f1387c043de9912f8ec0925f73afc0f45d90e58523a3030e0e547cc348",
+    "ranking_code_sha256": "d57ffb424c36365b7a0a97e2e18a964dcad95307b72ee850765b953cb7667fcb",
+    "private_metadata_cache_present": false,
+    "query_count": 26,
+    "judgment_count": 148,
+    "k": 5,
+    "mrr_k": 10,
+    "relevant_threshold": 2,
+    "averages": {
+      "precision_at_k": 0.3385,
+      "recall_at_k": 0.3871,
+      "mrr_at_k": 0.5882,
+      "ndcg_at_k": 0.4391
+    },
+    "language_averages": {
+      "en": {
+        "precision_at_k": 0.2615,
+        "recall_at_k": 0.3214,
+        "mrr_at_k": 0.547,
+        "ndcg_at_k": 0.3958
+      },
+      "fa": {
+        "precision_at_k": 0.4154,
+        "recall_at_k": 0.4528,
+        "mrr_at_k": 0.6295,
+        "ndcg_at_k": 0.4825
+      }
+    },
+    "limitations": [
+      "This is a provisional internal regression set, not an independently validated quality benchmark.",
+      "Unjudged results are treated as non-relevant; metrics are relative to the observed judgment set, not exhaustive ground truth.",
+      "Relevance labels require independent review by domain users before public quality claims.",
+      "Search relevance does not assess Skill safety, licensing, installation eligibility, or behavioral quality."
+    ],
+    "queries": [
+      {
+        "id": "n8n-agent-en",
+        "language": "en",
+        "query": "n8n AI Agent node with tools and persistent memory",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8988,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd9c5b087f27ac574c02"
+            ],
+            "skill_name": "n8n-ai-nodes-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.903,
+            "relevance_score": 72.33
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.903,
+            "relevance_score": 68.61
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e05a75b3d1cf64a9803a"
+            ],
+            "skill_name": "n8n-agents-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.903,
+            "relevance_score": 68.61
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1d0b8bf3720b30adb690"
+            ],
+            "skill_name": "n8n-code-python",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.675,
+            "relevance_score": 47.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6351f302cb78f8c8ed50"
+            ],
+            "skill_name": "n8n-code-javascript",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.675,
+            "relevance_score": 47.69
+          }
+        ]
+      },
+      {
+        "id": "n8n-agent-fa",
+        "language": "fa",
+        "query": "ساخت ایجنت هوش مصنوعی با ابزار و حافظه",
+        "precision_at_k": 0.8,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.9284,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 4,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e05a75b3d1cf64a9803a"
+            ],
+            "skill_name": "n8n-agents-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 1.0,
+            "relevance_score": 76.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+              "GASL-SRC-a8c1aa87a6805939c9aa"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.9,
+            "relevance_score": 62.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.8,
+            "relevance_score": 56.42
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd9c5b087f27ac574c02"
+            ],
+            "skill_name": "n8n-ai-nodes-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.8,
+            "relevance_score": 56.42
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a6bd22e351504f0c519f"
+            ],
+            "skill_name": "adobe-create-social-variations",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.8,
+            "relevance_score": 56.42
+          }
+        ]
+      },
+      {
+        "id": "api-security-en",
+        "language": "en",
+        "query": "Python API authentication authorization security review",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-0f49dae4c62c30072ed1"
+            ],
+            "skill_name": "aspnet-core",
+            "repository": "openai/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.64,
+            "relevance_score": 30.84
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-b78bee453a50ae9ae9d1"
+            ],
+            "skill_name": "n8n-credentials-and-security-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.48,
+            "relevance_score": 29.41
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd07af06336dbd8e25d8"
+            ],
+            "skill_name": "fhir-developer",
+            "repository": "anthropics/healthcare",
+            "relevance_grade": 0,
+            "query_coverage": 0.48,
+            "relevance_score": 19.61
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ce1d5494779cc72c2945"
+            ],
+            "skill_name": "finding-google-skills",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.48,
+            "relevance_score": 19.61
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.36,
+            "relevance_score": 25.63
+          }
+        ]
+      },
+      {
+        "id": "api-security-fa",
+        "language": "fa",
+        "query": "امنیت و احراز هویت API با پایتون",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.1667,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.1557,
+        "relevant_judgment_count": 6,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-7fc6d3556a4175c8b8f0",
+              "GASL-SRC-baf6c598b2bf42fcef42",
+              "GASL-SRC-66878d0a9e7e086ffbe6",
+              "GASL-SRC-12d8e7fa108d2922ca23",
+              "GASL-SRC-cb0ecdee6e56461b6806",
+              "GASL-SRC-3ff0f97a5cc581a2079d"
+            ],
+            "skill_name": "databricks-apps-python",
+            "repository": "databricks/databricks-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.792,
+            "relevance_score": 42.62
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f187e6d8feaea0c3d8d2"
+            ],
+            "skill_name": "twilio-security-api-auth",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.74,
+            "relevance_score": 65.37
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-b78bee453a50ae9ae9d1"
+            ],
+            "skill_name": "n8n-credentials-and-security-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 1,
+            "query_coverage": 0.74,
+            "relevance_score": 54.36
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd07af06336dbd8e25d8"
+            ],
+            "skill_name": "fhir-developer",
+            "repository": "anthropics/healthcare",
+            "relevance_grade": 0,
+            "query_coverage": 0.74,
+            "relevance_score": 31.43
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ce1d5494779cc72c2945"
+            ],
+            "skill_name": "finding-google-skills",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.74,
+            "relevance_score": 31.43
+          }
+        ]
+      },
+      {
+        "id": "wordpress-en",
+        "language": "en",
+        "query": "WordPress plugin development",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-f95dc5621ef603b14aac"
+            ],
+            "skill_name": "minecraft-plugin-development",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 56.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5f5585d2be20dcb7ef15"
+            ],
+            "skill_name": "obsidian-cli",
+            "repository": "obsidianmd/obsidian-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 39.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5975fb15ae97948defdc"
+            ],
+            "skill_name": "plugin-creator",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e7b1522da1a80b585240"
+            ],
+            "skill_name": "typespec-create-api-plugin",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4cde02f01e888d11bc4c",
+              "GASL-SRC-4750935e7f402ab20685",
+              "GASL-SRC-55a6f3e80d46befaf150",
+              "GASL-SRC-b874c70fa7bd35037f6b",
+              "GASL-SRC-ee95f42b1989ec428c0e"
+            ],
+            "skill_name": "stripe-best-practices",
+            "repository": "stripe/ai",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 31.17
+          }
+        ]
+      },
+      {
+        "id": "wordpress-fa",
+        "language": "fa",
+        "query": "توسعه افزونه وردپرس",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 1,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e7b1522da1a80b585240"
+            ],
+            "skill_name": "typespec-create-api-plugin",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1965dc90b2f4569ba1c4"
+            ],
+            "skill_name": "nemo-relay-plugin-build",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f95dc5621ef603b14aac"
+            ],
+            "skill_name": "minecraft-plugin-development",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 55.47
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5975fb15ae97948defdc"
+            ],
+            "skill_name": "plugin-creator",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 47.55
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ec4ae36603381d9f3323"
+            ],
+            "skill_name": "create-canvas-extension",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.656,
+            "relevance_score": 46.76
+          }
+        ]
+      },
+      {
+        "id": "cloudflare-en",
+        "language": "en",
+        "query": "Cloudflare Workers development and deployment",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7293,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e813bbbfdbf35166c061"
+            ],
+            "skill_name": "workers-development",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.762,
+            "relevance_score": 50.49
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ad3ac02c06d0cb0c4a5f"
+            ],
+            "skill_name": "cf-cli",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.762,
+            "relevance_score": 36.99
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-422891f50199156592a1"
+            ],
+            "skill_name": "cloudflare-deploy",
+            "repository": "openai/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.524,
+            "relevance_score": 34.98
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e5d3dcc73874c6e27c8b"
+            ],
+            "skill_name": "cloudflare-app-bootstrap",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.524,
+            "relevance_score": 34.98
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8aa521d714c79ef8f009"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.524,
+            "relevance_score": 28.81
+          }
+        ]
+      },
+      {
+        "id": "cloudflare-fa",
+        "language": "fa",
+        "query": "توسعه و استقرار برنامه با کلادفلر ورکرز",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.4286,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.4955,
+        "relevant_judgment_count": 7,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-ad3ac02c06d0cb0c4a5f"
+            ],
+            "skill_name": "cf-cli",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.808,
+            "relevance_score": 51.65
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-422891f50199156592a1"
+            ],
+            "skill_name": "cloudflare-deploy",
+            "repository": "openai/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.615,
+            "relevance_score": 45.64
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e5d3dcc73874c6e27c8b"
+            ],
+            "skill_name": "cloudflare-app-bootstrap",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.615,
+            "relevance_score": 40.87
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e813bbbfdbf35166c061"
+            ],
+            "skill_name": "workers-development",
+            "repository": "cloudflare/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.615,
+            "relevance_score": 37.77
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8aa521d714c79ef8f009"
+            ],
+            "skill_name": "workers-best-practices",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.423,
+            "relevance_score": 21.93
+          }
+        ]
+      },
+      {
+        "id": "github-actions-en",
+        "language": "en",
+        "query": "GitHub Actions CI CD workflow automation testing deployment",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.4826,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-4c95ab3f52ab1d5b7268"
+            ],
+            "skill_name": "agentic-actions-auditor",
+            "repository": "trailofbits/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.756,
+            "relevance_score": 45.27
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8e77d7277c4085c4e7a2"
+            ],
+            "skill_name": "create-github-action-workflow-specification",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 3,
+            "query_coverage": 0.378,
+            "relevance_score": 20.2
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0768bfd602aac72eaae8"
+            ],
+            "skill_name": "project-workflow-analysis-blueprint-generator",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.378,
+            "relevance_score": 12.95
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0ca3e9b2a29dddb39c77"
+            ],
+            "skill_name": "agentic-workflows",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.378,
+            "relevance_score": 11.77
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1220ce75d270140b652d"
+            ],
+            "skill_name": "eas-simulator",
+            "repository": "expo/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.366,
+            "relevance_score": 13.94
+          }
+        ]
+      },
+      {
+        "id": "github-actions-fa",
+        "language": "fa",
+        "query": "اتوماسیون تست و استقرار با گیت هاب اکشنز",
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.625,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8358,
+        "relevant_judgment_count": 8,
+        "retrieved_relevant_count": 5,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-8e77d7277c4085c4e7a2"
+            ],
+            "skill_name": "create-github-action-workflow-specification",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 3,
+            "query_coverage": 0.615,
+            "relevance_score": 50.89
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4c95ab3f52ab1d5b7268"
+            ],
+            "skill_name": "agentic-actions-auditor",
+            "repository": "trailofbits/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.615,
+            "relevance_score": 40.87
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1eac838b1e9806313cfd"
+            ],
+            "skill_name": "github-actions-efficiency",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-32a36839d5bfa5630a36"
+            ],
+            "skill_name": "github-actions-hardening",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-d7afa5c7e26f0836fda0"
+            ],
+            "skill_name": "github-actions-runtime-upgrade-conventions",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 2,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          }
+        ]
+      },
+      {
+        "id": "seo-en",
+        "language": "en",
+        "query": "SEO keyword research and search volume",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-96e62c31ef9297d35d71"
+            ],
+            "skill_name": "literature_search_arxiv",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4a607abdf3b054d2b776"
+            ],
+            "skill_name": "literature_search_biorxiv",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3ac1c3abf87dde831b2d"
+            ],
+            "skill_name": "literature_search_europepmc",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5f3d279acb97390203d7"
+            ],
+            "skill_name": "literature_search_openalex",
+            "repository": "google-deepmind/science-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4fdc071869fe27dd30ea"
+            ],
+            "skill_name": "bgpt-paper-search",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.426,
+            "relevance_score": 22.8
+          }
+        ]
+      },
+      {
+        "id": "seo-fa",
+        "language": "fa",
+        "query": "تحقیق کلمات کلیدی برای سئو",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 0.25,
+        "ndcg_at_k": 0.2188,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-62cbf064a8abddb5e480"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cc00aeab6c8dfb16273"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-cc25c131f8c8042d2c8f"
+            ],
+            "skill_name": "local-seo-manager",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-91218ab531241df1d0a6"
+            ],
+            "skill_name": "seo-audit",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 2,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ec9a3f5c176339feb49d"
+            ],
+            "skill_name": "seo-audit",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.5,
+            "relevance_score": 38.75
+          }
+        ]
+      },
+      {
+        "id": "excel-en",
+        "language": "en",
+        "query": "Read and edit Excel XLSX spreadsheet files",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.4496,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-6106fbe720b2a935ec92"
+            ],
+            "skill_name": "liteparse",
+            "repository": "run-llama/llamaparse-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.714,
+            "relevance_score": 43.57
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0d9ff6af864684b55487"
+            ],
+            "skill_name": "xlsx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.429,
+            "relevance_score": 31.84
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-380fced444e58e5f6db3"
+            ],
+            "skill_name": "assess-patch-risk",
+            "repository": "openai/codex-security",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 22.29
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e5297656b1939f195978"
+            ],
+            "skill_name": "docx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 22.29
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-76090798e224eca2af1d"
+            ],
+            "skill_name": "anndata",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 22.29
+          }
+        ]
+      },
+      {
+        "id": "excel-fa",
+        "language": "fa",
+        "query": "خواندن و ویرایش فایل اکسل و XLSX",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.5005,
+        "relevant_judgment_count": 2,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-6106fbe720b2a935ec92"
+            ],
+            "skill_name": "liteparse",
+            "repository": "run-llama/llamaparse-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.778,
+            "relevance_score": 49.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0d9ff6af864684b55487"
+            ],
+            "skill_name": "xlsx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.556,
+            "relevance_score": 44.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-c7df6570d13053d4f828"
+            ],
+            "skill_name": "doc-extract",
+            "repository": "anthropics/healthcare",
+            "relevance_grade": 1,
+            "query_coverage": 0.556,
+            "relevance_score": 31.11
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-380fced444e58e5f6db3"
+            ],
+            "skill_name": "assess-patch-risk",
+            "repository": "openai/codex-security",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 27.12
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-e5297656b1939f195978"
+            ],
+            "skill_name": "docx",
+            "repository": "anthropics/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.5,
+            "relevance_score": 27.12
+          }
+        ]
+      },
+      {
+        "id": "nextjs-en",
+        "language": "en",
+        "query": "Next.js frontend development with TypeScript",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-57204dcc62479927b458"
+            ],
+            "skill_name": "frontend-ui-dark-ts",
+            "repository": "microsoft/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.846,
+            "relevance_score": 34.37
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6aab795ed3c98f7e3b7b"
+            ],
+            "skill_name": "clickhouse-js-node-rowbinary",
+            "repository": "ClickHouse/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.795,
+            "relevance_score": 39.33
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-7412244809c845e12d45"
+            ],
+            "skill_name": "expo-migrate-module",
+            "repository": "expo/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.795,
+            "relevance_score": 36.54
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-49d1a6194ee111df13a2"
+            ],
+            "skill_name": "javascript-typescript-jest",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 38.44
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-596271e7f01053809699"
+            ],
+            "skill_name": "typescript-mcp-server-generator",
+            "repository": "github/awesome-copilot",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 38.44
+          }
+        ]
+      },
+      {
+        "id": "nextjs-fa",
+        "language": "fa",
+        "query": "توسعه فرانت اند با نکست جی اس و تایپ اسکریپت",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1,
+        "ndcg_at_k": 0.0343,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-6aab795ed3c98f7e3b7b"
+            ],
+            "skill_name": "clickhouse-js-node-rowbinary",
+            "repository": "ClickHouse/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.632,
+            "relevance_score": 35.56
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-7412244809c845e12d45"
+            ],
+            "skill_name": "expo-migrate-module",
+            "repository": "expo/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.632,
+            "relevance_score": 30.3
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3814f5f0ebc662b9ce3b"
+            ],
+            "skill_name": "react-and-nextjs-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 1,
+            "query_coverage": 0.579,
+            "relevance_score": 36.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-bd40ce19c3eacdb13804"
+            ],
+            "skill_name": "react-view-transitions",
+            "repository": "vercel-labs/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.579,
+            "relevance_score": 26.45
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-b3af87d7a5ec5a65e733"
+            ],
+            "skill_name": "react-best-practices",
+            "repository": "vercel-labs/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.579,
+            "relevance_score": 26.45
+          }
+        ]
+      },
+      {
+        "id": "telegram-n8n-en",
+        "language": "en",
+        "query": "Telegram bot automation in n8n",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7416,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e05a75b3d1cf64a9803a"
+            ],
+            "skill_name": "n8n-agents-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 1.0,
+            "relevance_score": 73.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd9c5b087f27ac574c02"
+            ],
+            "skill_name": "n8n-ai-nodes-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 2,
+            "query_coverage": 1.0,
+            "relevance_score": 73.08
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.615,
+            "relevance_score": 46.12
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ed335e9f179eac58c0be"
+            ],
+            "skill_name": "n8n-workflow-patterns",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 1,
+            "query_coverage": 0.615,
+            "relevance_score": 38.17
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-4bb6dc797ab50662d2e5"
+            ],
+            "skill_name": "n8n-workflow-lifecycle-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.615,
+            "relevance_score": 38.17
+          }
+        ]
+      },
+      {
+        "id": "telegram-n8n-fa",
+        "language": "fa",
+        "query": "ساخت ربات تلگرام با n8n",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.75,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7121,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-e05a75b3d1cf64a9803a"
+            ],
+            "skill_name": "n8n-agents-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 3,
+            "query_coverage": 1.0,
+            "relevance_score": 82.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-dd9c5b087f27ac574c02"
+            ],
+            "skill_name": "n8n-ai-nodes-official",
+            "repository": "n8n-io/skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.808,
+            "relevance_score": 63.24
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1bd5766c75ec4cbc2d28"
+            ],
+            "skill_name": "n8n-agents",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.615,
+            "relevance_score": 46.12
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1d0b8bf3720b30adb690"
+            ],
+            "skill_name": "n8n-code-python",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.615,
+            "relevance_score": 46.12
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a8e6cdee6e1612ce41f1"
+            ],
+            "skill_name": "n8n-subworkflows",
+            "repository": "czlonkowski/n8n-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.423,
+            "relevance_score": 31.32
+          }
+        ]
+      },
+      {
+        "id": "fastapi-en",
+        "language": "en",
+        "query": "FastAPI Python REST API backend development",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.3333,
+        "mrr_at_k": 0.5,
+        "ndcg_at_k": 0.408,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-7fc6d3556a4175c8b8f0",
+              "GASL-SRC-baf6c598b2bf42fcef42",
+              "GASL-SRC-66878d0a9e7e086ffbe6",
+              "GASL-SRC-12d8e7fa108d2922ca23",
+              "GASL-SRC-cb0ecdee6e56461b6806",
+              "GASL-SRC-3ff0f97a5cc581a2079d"
+            ],
+            "skill_name": "databricks-apps-python",
+            "repository": "databricks/databricks-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.813,
+            "relevance_score": 50.45
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-afd03e090009ff45c7c6"
+            ],
+            "skill_name": "fastapi-router-py",
+            "repository": "microsoft/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.664,
+            "relevance_score": 36.74
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-0732b33c3abe1e3b022c"
+            ],
+            "skill_name": "adaptyv",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.522,
+            "relevance_score": 22.85
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-816b051e6c44cd0d249c"
+            ],
+            "skill_name": "cuopt-routing-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 23.01
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-6a7917da264745914f61"
+            ],
+            "skill_name": "cuopt-server-api-python",
+            "repository": "NVIDIA/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.429,
+            "relevance_score": 23.01
+          }
+        ]
+      },
+      {
+        "id": "fastapi-fa",
+        "language": "fa",
+        "query": "توسعه بک اند با فست ای پی آی و پایتون",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6144,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-7fc6d3556a4175c8b8f0",
+              "GASL-SRC-baf6c598b2bf42fcef42",
+              "GASL-SRC-66878d0a9e7e086ffbe6",
+              "GASL-SRC-12d8e7fa108d2922ca23",
+              "GASL-SRC-cb0ecdee6e56461b6806",
+              "GASL-SRC-3ff0f97a5cc581a2079d"
+            ],
+            "skill_name": "databricks-apps-python",
+            "repository": "databricks/databricks-agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 1.0,
+            "relevance_score": 66.15
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-afd03e090009ff45c7c6"
+            ],
+            "skill_name": "fastapi-router-py",
+            "repository": "microsoft/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.808,
+            "relevance_score": 49.19
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-45a068d27e13c976f304"
+            ],
+            "skill_name": "chdb-datastore",
+            "repository": "ClickHouse/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.808,
+            "relevance_score": 42.86
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-637fd573a3367277b8de"
+            ],
+            "skill_name": "spark-python-data-source",
+            "repository": "databricks/databricks-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.596,
+            "relevance_score": 38.87
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-87de52acad7a8160069b"
+            ],
+            "skill_name": "api-gateway-backend-security-and-rate-limiting",
+            "repository": "google/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.596,
+            "relevance_score": 36.19
+          }
+        ]
+      },
+      {
+        "id": "redis-en",
+        "language": "en",
+        "query": "Redis persistent memory for AI agents",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6667,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.8216,
+        "relevant_judgment_count": 3,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+              "GASL-SRC-a8c1aa87a6805939c9aa"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 3,
+            "query_coverage": 1.0,
+            "relevance_score": 60.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a9406cde619328bb44dc",
+              "GASL-SRC-de775c6db2bc3904e127"
+            ],
+            "skill_name": "add-redis-iris",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 2,
+            "query_coverage": 0.842,
+            "relevance_score": 66.49
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-2e6eaafe6281bcc0d869",
+              "GASL-SRC-59915f23b42d54993667"
+            ],
+            "skill_name": "add-lens",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.842,
+            "relevance_score": 48.65
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-48809a340c388bb4e2cb",
+              "GASL-SRC-9f565bd878f92d070b30"
+            ],
+            "skill_name": "redis-clustering",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-f670c8db7355976a9cf0",
+              "GASL-SRC-64a8d0e94042e28fc2a2"
+            ],
+            "skill_name": "redis-connections",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.684,
+            "relevance_score": 40.64
+          }
+        ]
+      },
+      {
+        "id": "redis-fa",
+        "language": "fa",
+        "query": "حافظه پایدار ایجنت با ردیس",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.25,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6321,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 1,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+              "GASL-SRC-a8c1aa87a6805939c9aa"
+            ],
+            "skill_name": "add-agent-memory",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 3,
+            "query_coverage": 1.0,
+            "relevance_score": 80.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-a9406cde619328bb44dc",
+              "GASL-SRC-de775c6db2bc3904e127"
+            ],
+            "skill_name": "add-redis-iris",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 1,
+            "query_coverage": 0.833,
+            "relevance_score": 66.29
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-2e6eaafe6281bcc0d869",
+              "GASL-SRC-59915f23b42d54993667"
+            ],
+            "skill_name": "add-lens",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.833,
+            "relevance_score": 53.96
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-1d441f99af7665fee06f",
+              "GASL-SRC-d6e728371df2618f3e95"
+            ],
+            "skill_name": "add-agent-playbooks",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 45.33
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-48809a340c388bb4e2cb",
+              "GASL-SRC-9f565bd878f92d070b30"
+            ],
+            "skill_name": "redis-clustering",
+            "repository": "redis/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 42.5
+          }
+        ]
+      },
+      {
+        "id": "data-viz-en",
+        "language": "en",
+        "query": "Build data analysis charts and visualizations",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.1111,
+        "ndcg_at_k": 0.0,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 0,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-690f2352a2f61b0968ec"
+            ],
+            "skill_name": "testing-data-visualizations",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.6,
+            "relevance_score": 39.36
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cf3fd2d0e5a8fa30127"
+            ],
+            "skill_name": "exploratory-data-analysis",
+            "repository": "K-Dense-AI/scientific-agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 29.2
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-7895ef4cde1dab85d909"
+            ],
+            "skill_name": "cohort-analysis",
+            "repository": "phuryn/pm-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 24.82
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-718717c43b7d975425ef"
+            ],
+            "skill_name": "ab-test-analysis",
+            "repository": "phuryn/pm-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 24.82
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-227f570c9d58d03c7461"
+            ],
+            "skill_name": "cja-dimension-analysis",
+            "repository": "adobe/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.4,
+            "relevance_score": 24.82
+          }
+        ]
+      },
+      {
+        "id": "data-viz-fa",
+        "language": "fa",
+        "query": "تحلیل داده و ساخت نمودار و مصورسازی",
+        "precision_at_k": 0.6,
+        "recall_at_k": 0.6,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.7929,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 3,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-12053a580ef1ee4f2025"
+            ],
+            "skill_name": "visualize-data",
+            "repository": "openai/plugins",
+            "relevance_grade": 3,
+            "query_coverage": 0.692,
+            "relevance_score": 51.69
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-8ee9c58605e58e45b265"
+            ],
+            "skill_name": "data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-af17b9113a6d1be0ee41"
+            ],
+            "skill_name": "canvas2d-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-5171fa9ea7fc8ab5ac68"
+            ],
+            "skill_name": "d3-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 2,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-ab0e87ce4ffb6bfa8d1b"
+            ],
+            "skill_name": "threejs-data-visualization",
+            "repository": "openai/plugins",
+            "relevance_grade": 0,
+            "query_coverage": 0.692,
+            "relevance_score": 49.04
+          }
+        ]
+      },
+      {
+        "id": "seo-content-en",
+        "language": "en",
+        "query": "SEO content optimization",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "mrr_at_k": 1.0,
+        "ndcg_at_k": 0.6144,
+        "relevant_judgment_count": 4,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-11b781b5c13bd506fe18"
+            ],
+            "skill_name": "ai-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 2,
+            "query_coverage": 0.667,
+            "relevance_score": 48.17
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-369d327b35de3a00c333"
+            ],
+            "skill_name": "product-page-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.667,
+            "relevance_score": 39.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9978d884014bd303e49d"
+            ],
+            "skill_name": "image-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 39.67
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-62cbf064a8abddb5e480"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-3cc00aeab6c8dfb16273"
+            ],
+            "skill_name": "programmatic-seo",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.667,
+            "relevance_score": 34.0
+          }
+        ]
+      },
+      {
+        "id": "seo-content-fa",
+        "language": "fa",
+        "query": "بهینه سازی محتوای سئو",
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.4,
+        "mrr_at_k": 0.3333,
+        "ndcg_at_k": 0.3515,
+        "relevant_judgment_count": 5,
+        "retrieved_relevant_count": 2,
+        "result_count": 10,
+        "top_results": [
+          {
+            "source_record_ids": [
+              "GASL-SRC-5811e03e4f1c9a4b9312"
+            ],
+            "skill_name": "app-store-optimization",
+            "repository": "alirezarezvani/claude-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.733,
+            "relevance_score": 43.41
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-b3af87d7a5ec5a65e733"
+            ],
+            "skill_name": "react-best-practices",
+            "repository": "vercel-labs/agent-skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.733,
+            "relevance_score": 31.97
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-11b781b5c13bd506fe18"
+            ],
+            "skill_name": "ai-seo",
+            "repository": "coreyhaines31/marketingskills",
+            "relevance_grade": 2,
+            "query_coverage": 0.7,
+            "relevance_score": 52.77
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-369d327b35de3a00c333"
+            ],
+            "skill_name": "product-page-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 3,
+            "query_coverage": 0.7,
+            "relevance_score": 44.98
+          },
+          {
+            "source_record_ids": [
+              "GASL-SRC-9978d884014bd303e49d"
+            ],
+            "skill_name": "image-seo",
+            "repository": "adobe/skills",
+            "relevance_grade": 0,
+            "query_coverage": 0.7,
+            "relevance_score": 44.98
+          }
+        ]
+      }
+    ]
+  },
+  "feature_record_count": 291,
+  "source_count": 4405,
+  "warm_query_median_ms": 18.8,
+  "warm_query_max_ms": 22.4
+}
