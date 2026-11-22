@@ -42,8 +42,24 @@ No production Skill installer was enabled. Prior integrity scanning, user approv
 
 ## 5. Live CI status and next steps
 
-The real Linux workflow must **complete successfully** before reporting Codex as verified. If it fails, preserve failure evidence and fix the exact protocol/packaging cause without silently substituting a fake Host or relaxing path/enablement checks.
+The real Linux workflow completed successfully. Codex (the actual `@openai/codex@0.162.1` CLI) returned an exact matching, enabled, inert `gasl-discovery-probe/SKILL.md` via App Server `skills/list`. This is **real Codex Skill discovery in that ephemeral Linux profile only**—not Mac Host availability, model invocation, real installation, or approval of downloaded Skills.
 
 After real Codex discovery, extend the same controlled approach to other actual Host CLIs where supported, using new disposable profiles. Do not install downloaded Skills or touch a user's existing Agent configuration without a separate, explicit real-install approval and rollback integration tests.
 
-**Local implementation complete; real CI result pending first actual workflow run.**
+**Phase 23 PASS:** live Codex App Server discovery verified; real Skill installation and execution remain disabled.
+
+## 6. Observed real GitHub Actions evidence
+
+- Source commit: [`4171b0e`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/4171b0e3ed1b9379e1da2839625f07f1665b6e57) (only seven allowlisted code/test/report/CI files; staged secret scan found **0 sensitive matches**).
+- Actual Host workflow: [`45055665888`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45055665888) — **completed / SUCCESS** on Ubuntu 24.04.
+- Executed, in order: checkout with `persist-credentials=false`; Node setup; mocked-protocol unit tests; npm installation of exact `@openai/codex@0.162.1` **under runner temp** with lifecycle scripts disabled; then `python3 tools/codex_discovery_probe.py` against the **real CLI**.
+- The live result JSON contained `status=verified_isolated_codex_discovery`, `reason_code=exact_inert_skill_discovered`, `isolated_skill_discovery_verified=true`.
+- All safe-operation flags remained **false**: `authenticated_user_profile_accessed`, `model_turn_started`, `third_party_skill_executed`, `real_host_files_modified`, `production_installation_enabled`. CI additionally asserted these flags independently.
+- No model prompt or turn was sent: only `initialize`, `initialized` and `skills/list`. No user account was connected and no downloaded third-party Skill was executed or installed.
+- This result establishes that the documented project Skill location is **actually discoverable by the tested Codex CLI version** on an ephemeral Linux Host. It does **not** test Cursor, Claude Code, Windows or a Codex app on the user's Mac.
+
+## 7. Routine metadata refresh and safe publication
+
+- The separate catalog refresh [run `45055665873`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45055665873) **completed / SUCCESS**, including Python regressions, source rediscovery, search vocabulary, index/router checks and allowlisted metadata-only publication.
+- Refresh commit [`6173730`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/6173730) changed only the existing machine-generated registry and reconciliation outputs. It was fetched for safe non-destructive reconciliation with the Phase-23 report update.
+- Phase 23's actual Host CI remains independently SUCCESS; the refresh is not used as a substitute for `skills/list` evidence.
