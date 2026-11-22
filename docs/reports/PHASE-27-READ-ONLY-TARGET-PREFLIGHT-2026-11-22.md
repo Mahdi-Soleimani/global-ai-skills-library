@@ -68,3 +68,13 @@ A separate local CLI smoke run used the actual private `academy-guide` ZIP from 
 - **Windows and real profiles:** inspect disposable real Host accounts with explicit permission; this phase does not modify the user's personal Mac Agent directories or invoke any Skill code.
 
 **Phase 27 acceptance scope: read-only, version/path/state-bound preflight is implemented and locally tested. Real user installation remains disabled.**
+
+## 6. Published source and observed Ubuntu CI evidence
+
+- Published source commit [`33d33d8`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/33d33d8e5ad9fbe994bb037f718a8cfc0a84c192) via ordinary **non-force** Push after inspecting exactly eight allowlisted public code/test/workflow/report files. A staged pattern scan found **zero** key, token, embedded-URL credential, private home path, personal email, or mobile telephone matches; private ZIPs and local audit artifacts remained Git-ignored.
+- A fresh `git archive HEAD` extraction contained **none** of `.git`, `private/`, `catalog/`, `storage/` or `reports/`. The independent checkout passed **365 tests and 139 subtests**, Python compilation, CLI `target-preflight --help` and source index checks without private Mac inputs.
+- Dedicated [GitHub Actions run `45064087665`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45064087665) **completed SUCCESS** on Ubuntu 24.04. Compilation, all 20 target-preflight synthetic tests, source/target mismatch and drift checks, symlink/collision guards, and the assertion that no private ZIP, local catalog or simulated ledger was added to the public checkout all passed.
+- The live Mac ZIP test used the existing locally private `academy-guide` archive, but only with a new disposable target root. No actual Mac Agent profile was inspected, installed, updated or used for Skill execution.
+- The standard source-catalog refresh runs independently; a generated metadata commit must be merged without rewriting history before claiming final branch synchronization.
+
+**Live CI acceptance: PASS for read-only exact target selection and version/state-drift protection; this does not authorize real installation or establish that arbitrary Skill code is safe to execute.**
