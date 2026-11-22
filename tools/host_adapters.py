@@ -17,31 +17,47 @@ HOST_LAYOUTS = {
         'kind': 'filesystem_skill_directory',
         'project': '.agents/skills', 'user': '.agents/skills',
         'docs': 'https://developers.openai.com/api/reference/cli',
-        'verified_with_real_host': False,
+        'verified_with_real_host': True,
+        'verified_capabilities': ['project_skill_discovery', 'user_skill_discovery',
+                                  'skills_list', 'isolated_fixture_rollback'],
+        'verification_scope': 'disposable_home_only',
+        'verification_report': 'docs/reports/PHASE-31-CODEX-ISOLATED-USER-SCOPE-2026-11-22.md',
     },
     'cursor': {
         'kind': 'filesystem_skill_directory',
         'project': '.cursor/skills', 'user': '.cursor/skills',
         'docs': 'https://cursor.com/help/customization/skills',
         'verified_with_real_host': False,
+        'verified_capabilities': [],
+        'verification_scope': None,
+        'verification_report': None,
     },
     'claude-code': {
         'kind': 'filesystem_skill_directory',
         'project': '.claude/skills', 'user': '.claude/skills',
         'docs': 'https://code.claude.com/docs/en/skills',
         'verified_with_real_host': False,
+        'verified_capabilities': [],
+        'verification_scope': None,
+        'verification_report': None,
     },
     'claude-desktop': {
         'kind': 'manual_account_zip_upload',
         'project': None, 'user': None,
         'docs': 'https://support.claude.com/en/articles/12512180-use-skills-in-claude',
         'verified_with_real_host': False,
+        'verified_capabilities': [],
+        'verification_scope': None,
+        'verification_report': None,
     },
     'generic-mcp': {
         'kind': 'no_standard_skill_directory',
         'project': None, 'user': None,
         'docs': None,
         'verified_with_real_host': False,
+        'verified_capabilities': [],
+        'verification_scope': None,
+        'verification_report': None,
     },
 }
 SCOPES = ('project', 'user')
@@ -54,10 +70,11 @@ SKILL_V2 = b'---\nname: fixture-skill\ndescription: GASL inert adapter test only
 
 def list_host_adapters():
     return {'schema_version': 'gasl-host-adapters-v1',
-            'status': 'documented_layouts_not_host_verified',
+            'status': 'codex_isolated_discovery_verified_other_hosts_unverified',
             'agents': HOST_LAYOUTS,
             'real_installation_available': False,
-            'real_host_probe_performed': False,
+            'real_host_probe_performed': True,
+            'real_host_probe_scope': 'disposable_home_only',
             'third_party_skill_executed': False}
 
 

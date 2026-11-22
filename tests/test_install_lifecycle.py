@@ -80,8 +80,14 @@ class InstallLifecycleTests(unittest.TestCase):
                 plan = self._plan(agent=agent)
                 self.assertEqual(plan['host_adapter']['kind'], kind)
                 self.assertEqual(plan['host_adapter']['documented_relative_skill_directory'], path)
-                self.assertFalse(plan['host_adapter']['verified_with_real_host'])
+                self.assertEqual(plan['host_adapter']['verified_with_real_host'], agent == 'codex')
                 self.assertFalse(plan['host_adapter']['actual_install_enabled'])
+                if agent == 'codex':
+                    self.assertEqual(plan['host_adapter']['verification_scope'], 'disposable_home_only')
+                    self.assertIn('host_discovery_verified_in_disposable_profile_only', plan['warnings'])
+                    self.assertNotIn('host_adapter_not_implemented', plan['warnings'])
+                else:
+                    self.assertIn('host_adapter_not_verified_with_real_host', plan['warnings'])
                 self.assertFalse(plan['filesystem_target_resolved'])
                 self.assertFalse(plan['installation_allowed'])
 

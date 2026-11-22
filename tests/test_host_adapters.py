@@ -16,16 +16,20 @@ from host_adapters import (
 class HostAdapterTests(unittest.TestCase):
     def test_matrix_consistent_and_explicitly_not_verified_with_real_hosts(self):
         matrix = list_host_adapters()
-        self.assertEqual(matrix['status'], 'documented_layouts_not_host_verified')
+        self.assertEqual(matrix['status'], 'codex_isolated_discovery_verified_other_hosts_unverified')
         self.assertFalse(matrix['real_installation_available'])
-        self.assertFalse(matrix['real_host_probe_performed'])
+        self.assertTrue(matrix['real_host_probe_performed'])
+        self.assertEqual(matrix['real_host_probe_scope'], 'disposable_home_only')
         self.assertEqual(set(HOST_LAYOUTS), {'codex', 'cursor', 'claude-code', 'claude-desktop', 'generic-mcp'})
         self.assertEqual(HOST_LAYOUTS['codex']['project'], '.agents/skills')
         self.assertEqual(HOST_LAYOUTS['cursor']['user'], '.cursor/skills')
         self.assertEqual(HOST_LAYOUTS['claude-code']['project'], '.claude/skills')
         self.assertEqual(HOST_LAYOUTS['claude-desktop']['kind'], 'manual_account_zip_upload')
-        for host in HOST_LAYOUTS.values():
-            self.assertFalse(host['verified_with_real_host'])
+        self.assertTrue(HOST_LAYOUTS['codex']['verified_with_real_host'])
+        self.assertEqual(set(HOST_LAYOUTS['codex']['verified_capabilities']),
+                         {'project_skill_discovery','user_skill_discovery','skills_list','isolated_fixture_rollback'})
+        for name in ('cursor','claude-code','claude-desktop','generic-mcp'):
+            self.assertFalse(HOST_LAYOUTS[name]['verified_with_real_host'])
 
     def test_each_filesystem_host_and_scope_restores_inert_previous_version(self):
         for agent in ('codex', 'cursor', 'claude-code'):

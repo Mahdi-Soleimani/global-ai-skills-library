@@ -129,7 +129,11 @@ def plan_install(source_record_id, agent, scope='user', *, root=ROOT, lookup=Non
     elif package['actionable_findings']:
         warnings.append('static_security_review_required')
     warnings.append('dynamic_skill_execution_not_approved')
-    warnings.append('host_adapter_not_implemented')
+    if HOST_LAYOUTS[agent].get('verified_with_real_host'):
+        warnings.append('host_discovery_verified_in_disposable_profile_only')
+    else:
+        warnings.append('host_adapter_not_verified_with_real_host')
+    warnings.append('real_user_profile_installation_not_enabled')
     warnings.append('no_user_install_approval_collected')
     can_simulate_apply = (package['status'] == 'downloaded_verified'
                           and package['actionable_findings'] == 0)
@@ -150,7 +154,10 @@ def plan_install(source_record_id, agent, scope='user', *, root=ROOT, lookup=Non
             'kind': HOST_LAYOUTS[agent]['kind'],
             'documented_relative_skill_directory': HOST_LAYOUTS[agent][scope],
             'source_documentation': HOST_LAYOUTS[agent]['docs'],
-            'verified_with_real_host': False,
+            'verified_with_real_host': HOST_LAYOUTS[agent]['verified_with_real_host'],
+            'verified_capabilities': HOST_LAYOUTS[agent].get('verified_capabilities', []),
+            'verification_scope': HOST_LAYOUTS[agent].get('verification_scope'),
+            'verification_report': HOST_LAYOUTS[agent].get('verification_report'),
             'fixture_rehearsal_available': HOST_LAYOUTS[agent]['kind'] == 'filesystem_skill_directory',
             'actual_install_enabled': False,
         },
