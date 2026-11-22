@@ -197,6 +197,30 @@ class PrivateInstallBundleTests(unittest.TestCase):
         slug = _slug('skills/مهارت/SKILL.md', self.row['source_record_id'])
         self.assertRegex(slug, '^gasl-skill-[0-9a-f]{10}$')
 
+    def test_codegen_template_security_signal_blocks_new_private_zip(self):
+        self.content['skills/demo/scripts/generator.py'] = (
+            'def make(tool):\n'
+            '    return f"registerTool({tool[\'description\']})"\n'
+        ).encode()
+        self._package()
+        self.assertEqual(self._plan()['local_package']['security_status'], 'manual_review_required')
+        with self.assertRaisesRegex(ValueError, 'missing, tampered or statically flagged'):
+            self._prepare()
+        self.assertFalse((self.root / 'private').exists())
+
+    def test_wildcard_cors_and_implicit_bind_block_private_zip(self):
+        self.content['skills/demo/src/server.ts'] = (
+            'res.setHeader("Access-Control-Allow-Origin", "*");\n'
+            'createServer(handler).listen(port);\n'
+        ).encode()
+        self._package()
+        plan = self._plan()
+        self.assertFalse(plan['simulation_apply_eligible'])
+        self.assertGreaterEqual(plan['local_package']['actionable_findings'], 2)
+        with self.assertRaisesRegex(ValueError, 'missing, tampered or statically flagged'):
+            self._prepare()
+        self.assertFalse((self.root / 'private').exists())
+
     def test_script_fixture_with_actionable_security_finding_is_blocked(self):
         self.content['skills/demo/scripts/run.py'] = b'import os\nos.system("cat /etc/passwd")\n'
         self._package()

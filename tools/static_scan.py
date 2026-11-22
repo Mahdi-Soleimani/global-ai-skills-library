@@ -29,6 +29,16 @@ RULES = [
         r"\beval\s*\(|new Function\s*\(|base64\s+(-d|--decode)|"
         r"atob\s*\(|Buffer\.from\([^\n]+base64", re.I),
      "Dynamic execution or encoded payload pattern"),
+    ("UNESCAPED_DESCRIPTION_CODE_TEMPLATE", "high", "medium", re.compile(
+        r"f[\"'][^\n]*\{[^}\n]*(?:\[['\"]description['\"]\]|"
+        r"\.description|get\([\"']description[\"']\))[^}\n]*\}", re.I),
+     "Untrusted description text is interpolated into generated source code without an evident encoder"),
+    ("WILDCARD_CORS_ORIGIN", "medium", "high", re.compile(
+        r"Access-Control-Allow-Origin[\"']?\s*(?::|,)\s*[\"']\*[\"']", re.I),
+     "Wildcard CORS accepts requests from every web origin; restrict origins before exposing the server"),
+    ("NODE_SERVER_IMPLICIT_ALL_INTERFACES", "medium", "medium", re.compile(
+        r"\.listen\(\s*(?:port|PORT|[0-9]{2,5})\s*(?:\)|,\s*(?:\(\s*\)\s*=>|function\s*\(|[A-Za-z_$][\w$]*\s*\)))", re.I),
+     "Node HTTP server listens without an explicit loopback address; confirm network exposure and origin/auth controls"),
     ("SHELL_OR_PROCESS_SPAWN", "medium", "low", re.compile(
         r"child_process|subprocess\.(?:run|Popen|call)|os\.system\s*\(|"
         r"execFile\s*\(|spawn(?:Sync)?\s*\(", re.I),
@@ -45,7 +55,7 @@ RULES = [
      "Potential privileged, persistent, or OS automation action"),
 ]
 
-CODE_SUFFIXES = {".js", ".cjs", ".mjs", ".py", ".sh", ".ps1", ".bat", ".cmd", ".rb", ".go", ".rs", ".php"}
+CODE_SUFFIXES = {".js", ".jsx", ".ts", ".tsx", ".cjs", ".mjs", ".py", ".sh", ".ps1", ".bat", ".cmd", ".rb", ".go", ".rs", ".php"}
 TEXT_SUFFIXES = CODE_SUFFIXES | {".md", ".txt", ".json", ".yaml", ".yml"}
 
 
@@ -184,6 +194,8 @@ def scan_package(source_path, root=ROOT, persist=True):
         test_file = is_test_file(item["local_path"])
         for rule_id, severity, confidence, pattern, description in RULES:
             if not code and rule_id != "PROMPT_INJECTION_DIRECTIVE":
+                continue
+            if rule_id == "NODE_SERVER_IMPLICIT_ALL_INTERFACES" and suffix not in {".js", ".jsx", ".ts", ".tsx", ".cjs", ".mjs"}:
                 continue
             if rule_id == "SHELL_OR_PROCESS_SPAWN" and test_file:
                 severity, confidence = "info", "high"

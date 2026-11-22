@@ -5,6 +5,8 @@
 **Source:** [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills), pinned commit `5909a72e62b5fbb809935fb6a55b58bdbe175074`, path `engineering/skills/mcp-server-builder/`  
 **Proposed target:** Codex user scope inside a separately isolated HOME. The user's normal Codex profile is excluded.
 
+> **Superseded by Phase 34:** This Phase-33 report preserves the original historical review, including the initial scanner's zero findings. A later manual review discovered unsafe interpolation of OpenAPI descriptions into generated Python and TypeScript source. The upgraded scanner now reports **two high-severity signals** for this exact pinned package, and a fresh `install-plan` blocks new bundle preparation. The previously created private ZIP remains unapproved and must not be installed or executed. See [Phase 34](PHASE-34-STATIC-CODEGEN-CORS-NETWORK-BIND-2026-11-22.md).
+
 ## 1. Why this candidate was selected
 
 The Phase-32 `academy-guide` candidate is safe-looking but narrowly focused on recommending Claude Academy learning content. For a first practical integration test, `mcp-server-builder` is a better functional match: it scaffolds MCP servers from OpenAPI contracts and validates the resulting tool manifest. It directly supports Python and TypeScript, which makes it a more useful first test for GASL's MCP-building workflow.
@@ -81,7 +83,7 @@ The real Codex run again covers both project and user-scope fixture discovery. I
 
 ## 6. Current state and exact next action
 
-<status>REVIEWED — PRIVATE BUNDLE READY — USER APPROVAL PENDING</status>
+<status>HISTORICAL PHASE-33 STATE — SUPERSEDED: SECURITY REVIEW REQUIRED, INSTALL BLOCKED</status>
 
 - The package is downloaded, pinned, statically reviewed, MIT license included, and packaged into a verified private ZIP.
 - No Skill was installed, invoked, or executed. No Codex profile was modified.
