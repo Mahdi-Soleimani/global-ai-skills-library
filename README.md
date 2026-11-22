@@ -213,6 +213,17 @@ GASL can rehearse a **state-bound approval challenge**, POSIX `flock`-protected 
 
 **This is a test-only workflow:** the preview's digest and the `GASL_DISPOSABLE_FIXTURE_ONLY` acknowledgment are **not real user-install permission or an authentication mechanism**, nor do they enable real Host installation. Advisory file locking does not block non-cooperating software; deliberate checkpoint tests do not prove sudden power-loss durability. See [Phase 28](docs/reports/PHASE-28-LOCKED-FIXTURE-CONSENT-AND-RECOVERY-2026-11-22.md).
 
+### Phase 29: Real Codex discovers a transaction-installed inert Skill, then observes its removal
+
+GASL now has an end-to-end test that connects the **actual Phase-28 fixture transaction** to the **real Codex App Server**. It builds a ZIP containing only GASL-authored, inert `gasl-discovery-probe/SKILL.md`, creates an isolated temporary project and empty Home/`CODEX_HOME`, and checks three independent real Host observations: the Skill is missing **before installation**, present and enabled **after the fixture-only transaction**, and missing again **after rollback**.
+
+~~~bash
+# Only for a trusted local Codex CLI. The script manages a disposable test profile.
+./gasl codex-transaction-e2e --codex-bin /ABSOLUTE/PATH/TO/CODEX/CLI
+~~~
+
+Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):
