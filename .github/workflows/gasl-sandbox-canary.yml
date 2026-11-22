@@ -1,0 +1,85 @@
+name: GASL — Inert sandbox isolation canary
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-sandbox-canary.yml
+      - tools/sandbox_canary/**
+      - tools/sandbox_canary_runner.py
+      - tools/sandbox_gate.py
+      - tests/test_sandbox_canary_runner.py
+      - tests/test_sandbox_gate.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-inert-isolation:
+    name: Verify benign canary restrictions (no Skill code)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GOTOOLCHAIN: local
+      GOPROXY: "off"
+      GOSUMDB: "off"
+      CGO_ENABLED: "0"
+      GOOS: linux
+    steps:
+      - name: Checkout trusted GASL source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Test the non-executing Python policy and canary command construction
+        run: python3 -m unittest tests.test_sandbox_gate tests.test_sandbox_canary_runner -v
+
+      - name: Compile only the repository's inert Go canary (no network dependencies)
+        run: |
+          set -euo pipefail
+          go version
+          mkdir -p "$RUNNER_TEMP/gasl-inert-build"
+          go build -trimpath -ldflags='-s -w' -o "$RUNNER_TEMP/gasl-inert-build/canary" ./tools/sandbox_canary/main.go
+          cp tools/sandbox_canary/Dockerfile "$RUNNER_TEMP/gasl-inert-build/Dockerfile"
+          test -x "$RUNNER_TEMP/gasl-inert-build/canary"
+
+      - name: Build a local FROM scratch canary image (no pull, no build network)
+        run: |
+          set -euo pipefail
+          source_hash="$(sha256sum tools/sandbox_canary/main.go | cut -d ' ' -f 1)"
+          docker build \
+            --pull=false --network=none --no-cache \
+            --build-arg "CANARY_SOURCE_SHA=$source_hash" \
+            -f "$RUNNER_TEMP/gasl-inert-build/Dockerfile" \
+            -t "gasl-inert-canary:${GITHUB_SHA}" \
+            "$RUNNER_TEMP/gasl-inert-build"
+          image_id="$(docker image inspect --format '{{.Id}}' "gasl-inert-canary:${GITHUB_SHA}")"
+          [[ "$image_id" =~ ^sha256:[a-f0-9]{64}$ ]]
+          echo "GASL_LOCAL_CANARY_IMAGE_ID=$image_id" >> "$GITHUB_ENV"
+
+      - name: Run only the inert canary inside a restricted Docker container
+        run: |
+          set -euo pipefail
+          python3 tools/gasl.py sandbox \
+            --verify-canary \
+            --image-id "$GASL_LOCAL_CANARY_IMAGE_ID" \
+            --output "$RUNNER_TEMP/gasl-inert-canary-result.json"
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          report = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gasl-inert-canary-result.json').read_text())
+          assert report['status'] == 'benign_canary_verified'
+          assert report['benign_canary_verified'] is True
+          assert report['sandbox_execution_enabled'] is False
+          assert report['skill_installation_allowed'] is False
+          assert report['host_runtime_isolation_proven'] is False
+          assert report['third_party_code_executed'] is False
+          assert len(report['checks']) >= 17 and all(report['checks'].values())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as output:
+              output.write('## GASL benign container isolation test\n\n')
+              output.write('**PASS:** {} inert canary checks on the ephemeral Ubuntu runner.\n\n'.format(len(report['checks'])))
+              output.write('No Skill code was run. Sandbox installation and third-party execution remain **disabled**.\n')
+          print('BENIGN_CANARY_CHECKS_PASSED', len(report['checks']))
+          PY

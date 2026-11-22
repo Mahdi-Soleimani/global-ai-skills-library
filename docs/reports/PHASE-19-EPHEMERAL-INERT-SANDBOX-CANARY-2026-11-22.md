@@ -1,0 +1,60 @@
+# Phase 19 — Ephemeral inert sandbox isolation canary
+
+**Date:** 2026-11-22  
+**Repository:** `Mahdi-Soleimani/global-ai-skills-library`  
+**Objective:** Validate actual isolation controls in a Linux container without running a downloaded Skill, external script, package manager, real credential or production target.  
+**Execution category:** Only **self-authored benign Go canary**; **third-party Skill execution stays disabled**.
+
+## 1. Starting point and environment
+
+- Phase 18's `./gasl sandbox` correctly reported `blocked`: Docker CLI was available on the macOS development machine, but its daemon was unavailable. Starting a resource-hungry local Docker Desktop VM on the user's 8 GiB Mac is **not required** for normal GASL.
+- Phase 18 re-audited 38 pinned packages: 31 had no actionable static heuristic signals (none were approved), seven required review. No package was dynamically executed.
+- Docker's mere presence, an arbitrary container start, and the legacy `sandbox-exec` binary are not treated as proof of containment.
+
+## 2. New, deliberately narrow implementation
+
+- `tools/sandbox_canary/main.go`: standalone Go program using **only the standard library**. It reads a synthetic fixture, probes restrictions, and returns a machine-readable result. It contains no third-party Skill data and cannot install a Skill.
+- `tools/sandbox_canary/Dockerfile`: `FROM scratch`; the only copied file is the self-compiled static Go binary. Unprivileged UID/GID `65532:65532`; fixed `/canary` entrypoint. Source SHA-256 label ties the image inspection to the checked-out Go source.
+- `tools/sandbox_canary_runner.py`: guards Linux-only execution, requires an exact immutable local `sha256:<64 hex>` image ID, validates image metadata, scrubs Docker-client environment, creates only synthetic read-only fixture files, runs with stringent Docker constraints, checks each canary result, and attempts forced container removal after a timeout. It **does not** accept an arbitrary container command or any Skill path.
+- `./gasl sandbox`: unchanged non-executing readiness by default. Explicit `--verify-canary --image-id sha256:...` is available only for the inert Linux canary and never changes the Skill installation flag.
+- `.github/workflows/gasl-sandbox-canary.yml`: independent workflow triggered by relevant source changes, or manually; `contents: read` only, `ubuntu-24.04`, locally compiles a static Go binary with `GOPROXY=off`, builds an image with `--pull=false --network=none` and `FROM scratch`, then tests the immutable local image ID. **No Skill packages are downloaded or run**. CI emits a per-check summary and fails closed if any check fails.
+
+## 3. Isolation constraints and benign checks
+
+The restricted container uses:
+
+- `--pull never`, immutable local image ID and `/canary` entrypoint;
+- `--network none`, a canary for failed outbound TCP plus an interface check that only loopback exists;
+- `--read-only`, a read-only synthetic fixture mount, and actual `/proc/self/mountinfo` checks for read-only flags;
+- `--tmpfs /tmp:rw,nosuid,nodev,noexec,size=8m,mode=1777`, bounded/writable scratch probes;
+- `--user 65532:65532`, `--cap-drop ALL`, `--security-opt no-new-privileges:true`, and checks of `CapEff`, `NoNewPrivs` and active seccomp filter in `/proc/self/status`;
+- `--memory 128m`, `--memory-swap 128m`, `--cpus 0.5`, `--pids-limit 64`, restrictive ulimits and `/sys/fs/cgroup` quota checks;
+- private IPC/PID/cgroup namespaces, no Docker socket or home directory mounted, minimal explicit environment, and a synthetic symlink escape canary;
+- `--rm`, a fixed run timeout and forced container cleanup attempt after timeouts.
+
+The test checks at least **17 independent predicates**. Each failed predicate fails the entire check. No falling back to host execution is possible through this CLI path.
+
+## 4. Guarantees deliberately not claimed
+
+- **Passing a self-test does not prove an arbitrary malicious Skill cannot escape** the container; Docker, the kernel and the trusted CI runner are part of the attack surface.
+- No external container image, third-party script, real API credential or live target is tested.
+- This phase **does not implement the generalized Skill runner, user approval lifecycle, execution authorization, install/uninstall, package manager or compatibility adapter**. The Boolean `sandbox_execution_enabled` remains `false` even when the benign canary passes.
+- Results are valid only on the **specific ephemeral Linux Runner** on which they are observed. They do not demonstrate that Docker on the user's Mac is configured or ready.
+- No dynamic Skill validation is claimed. Previously reviewed packages remain unapproved.
+
+## 5. Verification and audit trail
+
+- Local macOS build of the Go program with `CGO_ENABLED=0`, `GOOS=linux`, `GOARCH=amd64`, `GOPROXY=off`, `GOSUMDB=off`: **PASS** (static Linux ELF file in `/tmp`, not staged).
+- Python regression suite after integration: **232 tests and 6 subtests passed**.
+- `tests/test_sandbox_canary_runner.py`: **9 tests**, including invalid/non-pinned image rejection, immutable source label checks, Docker flag verification, no Mac execution, fail-closed results, timeout cleanup and benign mock success.
+- Python compilation and whitespace checks: PASS.
+- The newly added GitHub workflow provides the actual **Linux Docker containment verification**. Its live URL, result and number of observed checks must be recorded after its first completion; **do not report Linux canary success from mock-only tests**.
+
+## 6. Next engineering gates
+
+1. Confirm the independent ephemeral GitHub Actions canary run passes every check; if not, investigate and fix a specific fault rather than downgrading or removing a failing check.
+2. Keep the local macOS readiness gate `blocked` until a genuine Docker daemon and the same host-specific canaries can run locally; there is no need to allocate laptop RAM just to pass this phase.
+3. Design a separate, **opt-in** installation proposal, with immutable hashes, license/security evidence, compatibility constraints and manual consent; never expose generalized untrusted execution until dedicated integration, rollback, log/audit and sandbox escape tests are complete.
+4. Continue to record each phase under `docs/reports/`. Never put private reports, Skill code or secrets into Actions artifacts or public Git.
+
+**Status before live CI:** implementation and local unit tests PASS; real runner result pending. The eventual verified outcome is recorded below only after inspecting GitHub Actions.
