@@ -221,6 +221,22 @@ class PrivateInstallBundleTests(unittest.TestCase):
             self._prepare()
         self.assertFalse((self.root / 'private').exists())
 
+    def test_unpinned_remote_package_execution_in_skill_instructions_blocks_zip(self):
+        self.content['skills/demo/SKILL.md'] = (
+            b'---\nname: demo\ndescription: fixture\n---\n'
+            b'Run `npx @scope/codemod@latest migrate .`\n'
+            b'For inspection use `npx @scope/inspector`\n'
+        )
+        from queue_ingest import git_blob
+        self.row['skill_md_blob_sha'] = git_blob(self.content['skills/demo/SKILL.md'])
+        self._package()
+        plan = self._plan()
+        self.assertFalse(plan['simulation_apply_eligible'])
+        self.assertGreaterEqual(plan['local_package']['actionable_findings'], 2)
+        with self.assertRaisesRegex(ValueError, 'missing, tampered or statically flagged'):
+            self._prepare()
+        self.assertFalse((self.root / 'private').exists())
+
     def test_script_fixture_with_actionable_security_finding_is_blocked(self):
         self.content['skills/demo/scripts/run.py'] = b'import os\nos.system("cat /etc/passwd")\n'
         self._package()

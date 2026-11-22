@@ -1,0 +1,106 @@
+name: GASL — Approved third-party Skill discovery only (temporary Codex HOME)
+
+on:
+  workflow_dispatch:
+    inputs:
+      approval_phrase:
+        description: 'Exact approval phrase for this one discovery-only test; no model turn or Skill execution'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  temporary-third-party-skill-discovery:
+    name: Discover one pinned Skill in a disposable Codex user profile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+    steps:
+      - name: Checkout published GASL code only
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Set up isolated Node toolchain
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install exact Codex CLI under runner temp (no lifecycle scripts)
+        env:
+          NPM_CONFIG_AUDIT: 'false'
+          NPM_CONFIG_FUND: 'false'
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/gasl-codex-cli" \
+            --ignore-scripts --no-audit --no-fund --no-save --package-lock=false \
+            '@openai/codex@0.162.1'
+          codex_bin="$RUNNER_TEMP/gasl-codex-cli/node_modules/@openai/codex/bin/codex.js"
+          test -f "$codex_bin"
+          chmod +x "$codex_bin"
+          echo "GASL_EPHEMERAL_CODEX_BIN=$codex_bin" >> "$GITHUB_ENV"
+
+      - name: Fetch the exact pinned public SKILL.md into runner temp
+        run: |
+          set -euo pipefail
+          skill_dir="$RUNNER_TEMP/gasl-third-party-skill"
+          mkdir -p "$skill_dir"
+          curl --fail --location --silent --show-error --max-time 30 \
+            'https://raw.githubusercontent.com/github/awesome-copilot/f10fdb8b2660ce85c98f220b2f1ca24653768a5c/skills/python-mcp-server-generator/SKILL.md' \
+            -o "$skill_dir/SKILL.md"
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          from queue_ingest import git_blob
+          path = Path(__import__('os').environ['RUNNER_TEMP']) / 'gasl-third-party-skill' / 'SKILL.md'
+          expected = '2af91072828c27eec9f758262be17745982f7a3e'
+          actual = git_blob(path.read_bytes())
+          assert actual == expected, (actual, expected)
+          print('PINNED_THIRD_PARTY_SKILL_BLOB=PASS')
+          PY
+
+      - name: Install temporarily and verify only initialize + skills/list + rollback
+        env:
+          APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
+        run: |
+          set -euo pipefail
+          python3 tools/codex_third_party_discovery.py \
+            --codex-bin "$GASL_EPHEMERAL_CODEX_BIN" \
+            --skill-file "$RUNNER_TEMP/gasl-third-party-skill/SKILL.md" \
+            --source-record-id 'GASL-SRC-4231997ac2c731ce1fe3' \
+            --skill-name 'python-mcp-server-generator' \
+            --expected-git-blob '2af91072828c27eec9f758262be17745982f7a3e' \
+            --acknowledge "$APPROVAL_PHRASE" \
+            --output "$RUNNER_TEMP/gasl-third-party-discovery-result.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'gasl-third-party-discovery-result.json'
+          result = json.loads(path.read_text(encoding='utf-8'))
+          assert result['status'] == 'verified_temporary_third_party_codex_discovery_and_rollback'
+          assert result['source_git_blob_verified'] is True
+          assert result['third_party_skill_temporarily_installed'] is True
+          assert result['exact_skill_discovered_and_enabled'] is True
+          assert result['absent_after_rollback'] is True
+          assert result['temporary_profile_deleted'] is True
+          for key in ('model_turn_started', 'authentication_performed',
+                      'third_party_skill_executed', 'skill_commands_or_dependencies_executed',
+                      'real_home_or_codex_profile_accessed', 'real_host_files_modified',
+                      'production_installation_enabled'):
+              assert result[key] is False, key
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as stream:
+              stream.write('## Temporary third-party Codex Skill discovery\n\n')
+              stream.write('**PASS:** exact pinned `python-mcp-server-generator` was discovered in a disposable Codex user HOME and removed.\n\n')
+              stream.write('No model turn, Skill command, dependency install, authentication, or real user profile was used.\n')
+          print('TEMPORARY_THIRD_PARTY_CODEX_SKILL_DISCOVERY=PASS')
+          PY

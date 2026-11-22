@@ -50,6 +50,10 @@ RULES = [
     ("PACKAGE_INSTALL", "medium", "low", re.compile(
         r"\b(npm install|pip install|uv add|brew install|apt-get install|pnpm add)\b", re.I),
      "Package installation command detected"),
+    ("UNPINNED_REMOTE_PACKAGE_EXECUTION", "medium", "medium", re.compile(
+        r"\b(?:npx|pnpm\s+dlx|bunx|yarn\s+dlx|npm\s+(?:exec|create))\s+"
+        r"(?:(?:--yes|-y)\s+)*([@A-Za-z0-9][A-Za-z0-9._/@+-]*)", re.I),
+     "Package runner may download and execute a mutable or unpinned registry package; inspect and pin an exact version"),
     ("PRIVILEGED_OR_PERSISTENT_ACTION", "high", "medium", re.compile(
         r"chmod\s+\+x|launchctl|osascript|sudo\s|crontab|systemctl enable", re.I),
      "Potential privileged, persistent, or OS automation action"),
@@ -133,6 +137,20 @@ def verified_internal_checkpoint(path, metadata):
         return False
 
 
+def _is_exact_pinned_npm_spec(spec):
+    """Only an exact x.y.z package version counts as pinned for remote runners."""
+    if not isinstance(spec, str) or spec.startswith((".", "/", "file:", "git+")):
+        return True
+    version_at = spec.rfind("@")
+    if version_at <= 0:
+        return False
+    if spec.startswith("@") and version_at <= spec.find("/"):
+        return False
+    version = spec[version_at + 1:]
+    return bool(re.fullmatch(
+        r"\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?", version))
+
+
 def scan_package(source_path, root=ROOT, persist=True):
     # Keep root/source spelling consistent on macOS (/var -> /private/var).
     # Do not resolve the source file here: doing so could hide a symlink.
@@ -193,13 +211,16 @@ def scan_package(source_path, root=ROOT, persist=True):
         code = suffix in CODE_SUFFIXES
         test_file = is_test_file(item["local_path"])
         for rule_id, severity, confidence, pattern, description in RULES:
-            if not code and rule_id != "PROMPT_INJECTION_DIRECTIVE":
+            if not code and rule_id not in {"PROMPT_INJECTION_DIRECTIVE", "UNPINNED_REMOTE_PACKAGE_EXECUTION"}:
                 continue
             if rule_id == "NODE_SERVER_IMPLICIT_ALL_INTERFACES" and suffix not in {".js", ".jsx", ".ts", ".tsx", ".cjs", ".mjs"}:
                 continue
             if rule_id == "SHELL_OR_PROCESS_SPAWN" and test_file:
                 severity, confidence = "info", "high"
             for match in pattern.finditer(content):
+                if (rule_id == "UNPINNED_REMOTE_PACKAGE_EXECUTION" and
+                        _is_exact_pinned_npm_spec(match.group(1))):
+                    continue
                 line_no = content.count("\n", 0, match.start()) + 1
                 lines = content.splitlines()
                 start = max(0, line_no - 2)

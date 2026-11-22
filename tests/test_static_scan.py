@@ -111,6 +111,47 @@ class StaticScanSecurityRuleTests(unittest.TestCase):
         self.assertEqual([x['rule_id'] for x in result['findings']],
                          ['WILDCARD_CORS_ORIGIN'])
 
+    def test_unpinned_remote_package_commands_in_skill_markdown_are_flagged(self):
+        result, _ = self.scan({
+            'SKILL.md': (
+                '# Fixture\n'
+                'Run `npx @scope/codemod@latest migrate .` before proceeding.\n'
+                '```bash\n'
+                'npx @scope/inspector\n'
+                'pnpm dlx tool-cli@^2.1.0\n'
+                'npm create app-template@latest\n'
+                '```\n'
+            ),
+        })
+        matches = [x for x in result['findings']
+                   if x['rule_id'] == 'UNPINNED_REMOTE_PACKAGE_EXECUTION']
+        self.assertEqual(len(matches), 4)
+        self.assertEqual(result['security_status'], 'manual_review_required')
+        self.assertTrue(all(x['file'].endswith('SKILL.md') for x in matches))
+
+    def test_exact_npm_versions_and_local_npx_paths_are_not_flagged(self):
+        result, _ = self.scan({
+            'SKILL.md': (
+                '# Fixture\n'
+                'npx @scope/tool@1.2.3 run\n'
+                'pnpm dlx tool-cli@2.4.0\n'
+                'npm exec --yes package@0.9.1\n'
+                'npx ./scripts/local-tool.js\n'
+            ),
+        })
+        self.assertFalse(any(x['rule_id'] == 'UNPINNED_REMOTE_PACKAGE_EXECUTION'
+                             for x in result['findings']))
+
+    def test_unpinned_package_runner_is_detected_in_typescript_comments(self):
+        result, _ = self.scan({
+            'SKILL.md': '# Fixture\n',
+            'src/setup.ts': '// Run bunx @scope/generator@next\n',
+        })
+        matches = [x for x in result['findings']
+                   if x['rule_id'] == 'UNPINNED_REMOTE_PACKAGE_EXECUTION']
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(result['security_status'], 'manual_review_required')
+
     def test_readonly_scan_does_not_rewrite_source_metadata(self):
         result, root = self.scan({'SKILL.md': '# Fixture\n'})
         source = root / 'catalog/fixture__repo/demo/source.json'
