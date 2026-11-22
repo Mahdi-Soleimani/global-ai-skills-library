@@ -78,3 +78,11 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 - Run [`45046187857`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046187857) **FAILED** with a Docker daemon validation error: `docker: --pid: invalid PID mode`. The canary had not launched; no isolation claim could be made.
 - The Docker CLI does not accept `--pid private`; a private PID namespace is its default. The explicit unsupported flag was removed, while the benign Go canary was strengthened with `private_pid_namespace_verified = (os.Getpid() == 1)` to check real runtime isolation. No security check was waived.
 - Full local regression suite after this fix: **234 tests and 6 subtests passed**; the static Linux Go canary also rebuilt successfully. The next live CI run will decide whether remaining isolation checks actually hold on Ubuntu.
+
+### Live CI iteration 4 — three predicates identified, no false PASS
+
+- Run [`45046313367`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046313367) **FAILED** after successfully starting the benign Docker container. Its checks confirmed read-only root/fixture, denied external network sockets, dropped capabilities, Seccomp, no-new-privileges, unprivileged UID/GID, PID namespace isolation, scratch-space quota, and CPU/RAM/PID cgroup limits.
+- Three predicates did not pass: `network_namespace_has_only_loopback` and `scratch_tmpfs_restricted_mount` were **absent from the Go entrypoint's checks map** (helpers existed but were not wired); `no_unexpected_environment` was false because an implicit/expected container environment was not accounted for.
+- Wired the first two checks to their actual runtime filesystem/network probes. Strengthened root/fixture Read-only checks to require `/proc/self/mountinfo` mount flags, not just failed writes.
+- Set `HOME=/nonexistent` explicitly in the container environment and required exactly that safe value. Other unexpected environment variables remain disallowed. Added a source-to-wrapper test asserting that every required check name is registered in the Go entrypoint to prevent silent omissions.
+- Previous runner results remain **failed** and must not be recast as successful. A fresh Linux CI run is required before making a verified isolation claim.

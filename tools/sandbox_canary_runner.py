@@ -86,6 +86,7 @@ def _make_run_command(docker_bin, image_id, fixture_dir, container_name):
         '--ulimit', 'nofile=256:256', '--ulimit', 'core=0:0',
         '--ipc', 'private', '--cgroupns', 'private',
         '--workdir', '/', '--env', 'GASL_CANARY=INERT_ONLY',
+        '--env', 'HOME=/nonexistent',
         '--entrypoint', '/canary', image_id,
     ]
 

@@ -42,6 +42,11 @@ def inert_canary_output(changes=None):
 
 
 class SandboxCanaryRunnerTests(unittest.TestCase):
+    def test_every_required_check_is_registered_in_actual_go_entrypoint(self):
+        source = SOURCE.read_text(encoding='utf-8')
+        for name in sorted(EXPECTED_CHECKS):
+            self.assertIn('checks["{}"]'.format(name), source)
+
     def test_does_not_run_anything_on_macos(self):
         runner = Mock(side_effect=AssertionError('no Docker subprocess allowed'))
         result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Darwin', runner=runner)
@@ -68,6 +73,7 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
                      '--user 65532:65532', '--ipc private',
                      '--cgroupns private', '--entrypoint /canary',
                      '--tmpfs /tmp:rw,nosuid,nodev,noexec,size=8m,mode=1777',
+                     '--env HOME=/nonexistent',
                      '--mount type=bind,src=/tmp/fixture,dst=/skill,readonly'):
             self.assertIn(term, arguments)
         self.assertEqual(argv[-1], IMAGE_ID)

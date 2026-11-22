@@ -128,7 +128,10 @@ func cgroupCPUBounded() bool {
 }
 
 func noLeakedEnvironment() bool {
-	allowed := map[string]bool{"PATH": true, "HOSTNAME": true, "GASL_CANARY": true}
+	allowed := map[string]bool{"PATH": true, "HOSTNAME": true, "GASL_CANARY": true, "HOME": true}
+	if os.Getenv("HOME") != "/nonexistent" {
+		return false
+	}
 	if os.Getenv("GASL_CANARY") != "INERT_ONLY" {
 		return false
 	}
@@ -189,10 +192,13 @@ func main() {
 	checks := map[string]bool{}
 	checks["pinned_read_only_input"] = func() bool {
 		content, err := os.ReadFile("/skill/pinned.txt")
-		return err == nil && string(content) == fixtureText && isDeniedWrite("/skill/pinned.txt")
+		return err == nil && string(content) == fixtureText &&
+			mountHasOptions("/skill", "ro") && isDeniedWrite("/skill/pinned.txt")
 	}()
-	checks["root_filesystem_read_only"] = isDeniedWrite("/gasl-root-write-probe")
+	checks["root_filesystem_read_only"] = mountHasOptions("/", "ro") && isDeniedWrite("/gasl-root-write-probe")
 	checks["network_access_denied"] = networkDenied()
+	checks["network_namespace_has_only_loopback"] = noExternalInterfaces()
+	checks["scratch_tmpfs_restricted_mount"] = scratchIsBoundedTmpfs()
 	checks["unprivileged_uid_gid"] = os.Getuid() == 65532 && os.Getgid() == 65532
 	checks["private_pid_namespace_verified"] = os.Getpid() == 1
 	checks["capabilities_dropped"] = strings.HasPrefix(statusField("CapEff"), "0000000000000000")
