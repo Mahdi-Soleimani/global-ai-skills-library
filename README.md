@@ -234,7 +234,7 @@ Run locally against a trusted Codex CLI binary (the command creates and destroys
 ./gasl codex-transaction-e2e --codex-bin /absolute/path/to/codex --scope user --test-one-time-receipt
 ~~~
 
-CI pins Codex CLI `0.162.1` and runs both project and user scopes against the real App Server. The typed phrase is simulated in CI and must not be represented as human consent. See [Phase 31](docs/reports/PHASE-31-CODEX-ISOLATED-USER-SCOPE-2026-11-22.md).
+CI pins Codex CLI `0.162.1` and runs both project and user scopes against the real App Server; the user-scope lifecycle and one-time receipt passed in [run `45073141936`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45073141936). The typed phrase is simulated in CI and must not be represented as human consent. See [Phase 31](docs/reports/PHASE-31-CODEX-ISOLATED-USER-SCOPE-2026-11-22.md).
 
 ### Phase 30: One-time, expiring confirmation for a strictly disposable Skill installation
 
