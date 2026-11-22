@@ -1,0 +1,42 @@
+name: GASL — Read-only Host target preflight
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gasl-target-preflight.yml
+      - tools/host_target_preflight.py
+      - tests/test_host_target_preflight.py
+      - tools/fixture_bundle_install.py
+      - tools/install_bundle.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-target-readonly:
+    name: Verify exact ZIP+Host+Scope+target binding on synthetic roots
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout public code with no retained credentials
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Compile source and read-only preflight tests
+        run: python3 -m compileall -q tools/host_target_preflight.py tests/test_host_target_preflight.py
+
+      - name: Check synthetic-only selected roots, binding drift and symlink refusal
+        run: python3 -m unittest tests.test_host_target_preflight -v
+
+      - name: Confirm public checkout includes no user ZIP or catalog data
+        run: |
+          set -euo pipefail
+          test ! -e private/install-bundles
+          test ! -e catalog
+          test ! -e private/install-simulation
+          echo 'READ_ONLY_TARGET_PREFLIGHT=PASS'
+          echo 'USER_HOST_FILES_MODIFIED=FALSE'
+          echo 'THIRD_PARTY_SKILL_EXECUTED=FALSE'

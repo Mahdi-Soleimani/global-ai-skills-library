@@ -179,6 +179,25 @@ GASL now goes beyond event-only simulation: it can **physically extract** the Ph
 
 **This is not a real user-profile installer.** It neither runs a Skill nor enables automatic import or execution. The verified Codex discovery test and Cursor/Claude CLI readiness do not lift any of these restrictions. See [Phase 26](docs/reports/PHASE-26-PRIVATE-BUNDLE-FIXTURE-INSTALL-ROLLBACK-2026-11-22.md).
 
+### Phase 27: Read-only, exact Host destination preflight (not installation authorization)
+
+GASL can now inspect a **caller-selected, existing root** before any future real Skill installation. It resolves only the Host's documented relative Skill directory, refuses symlink/file-based escapes and case-only folder collisions, checks the exact pinned private ZIP, and distinguishes a missing Skill from an existing Skill with a full SHA-256 inventory. It does **not** install, authorize, execute, create a backup, launch an Agent or write to that directory.
+
+~~~bash
+# Only after explicitly choosing a project root (never auto-discovered):
+./gasl target-preflight --plan-id YOUR_EXACT_PLAN_ID --agent codex \
+  --scope project --selected-root /ABSOLUTE/SELECTED/PROJECT
+
+# Optional second read: refuse if the ZIP or selected Skill's files changed:
+./gasl target-preflight --plan-id YOUR_EXACT_PLAN_ID --agent codex \
+  --scope project --selected-root /ABSOLUTE/SELECTED/PROJECT \
+  --expect-state-binding-id PRIOR_STATE_BINDING_ID
+~~~
+
+The output includes `relative_target`, `prior_target_state`, source ZIP SHA-256 and a deterministic `state_binding_id` that binds the **selected exact target path and existing content inventory** to the pinned Host/Scope/ZIP identity. It does not display the actual root path, existing filenames or Skill contents. For an already existing target, its bytes are **read locally for hashing only**, never copied into reports, uploads or public Git. This state binding is **not** an installation permission, a user consent receipt or a trusted signature; it must be recomputed at any future install boundary. Missing license or Host compatibility evidence remains explicitly warned about. Claude Desktop and generic MCP have no filesystem preflight adapter.
+
+The dedicated [target-preflight CI](.github/workflows/gasl-target-preflight.yml) uses only synthetic ZIPs and disposable roots, **not the developer's real Agent profiles**. See [Phase 27](docs/reports/PHASE-27-READ-ONLY-TARGET-PREFLIGHT-2026-11-22.md).
+
 ### Connect an MCP client
 
 Example configuration (replace the path with the actual clone location):

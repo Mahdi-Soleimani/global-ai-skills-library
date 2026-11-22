@@ -18,6 +18,9 @@ on:
       # Actual Host discovery test is managed by a dedicated lightweight CI job.
       - '!tools/codex_discovery_probe.py'
       - '!tools/other_host_protocol_probe.py'
+      # Read-only Host target preflights are checked in their dedicated CI;
+      # they do not change the public source catalog.
+      - '!tools/host_target_preflight.py'
       - config/discovery-targets.json
       - config/policy.json
       - config/taxonomy.json

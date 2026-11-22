@@ -374,6 +374,17 @@ def cmd_install_simulate(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_target_preflight(args):
+    from host_target_preflight import inspect_selected_target, verify_target_unchanged
+    if args.expect_state_binding_id:
+        result = verify_target_unchanged(args.plan_id, args.agent, args.scope,
+            args.selected_root, args.expect_state_binding_id, bundle_root=ROOT)
+    else:
+        result = inspect_selected_target(args.plan_id, args.agent, args.scope,
+            args.selected_root, bundle_root=ROOT)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_bundle_fixture(args):
     from fixture_bundle_install import rehearse_private_bundle
     result = rehearse_private_bundle(args.plan_id, args.agent, args.scope,
@@ -591,6 +602,17 @@ def main():
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
+
+    target_preflight = sub.add_parser('target-preflight',
+        help='READ-ONLY check of an explicitly selected Host root; never install, approve or modify')
+    target_preflight.add_argument('--plan-id', required=True)
+    target_preflight.add_argument('--agent', required=True, choices=('codex','cursor','claude-code'))
+    target_preflight.add_argument('--scope', required=True, choices=('project','user'))
+    target_preflight.add_argument('--selected-root', required=True, type=Path,
+        help='Exact pre-existing project root or user home root; never autodetected')
+    target_preflight.add_argument('--expect-state-binding-id',
+        help='Optional prior read-only binding to detect target/package drift; NOT install authorization')
+    target_preflight.set_defaults(func=cmd_target_preflight)
 
     bundle_fixture = sub.add_parser('bundle-fixture',
         help='Materialize a PRIVATE ZIP in a temporary isolated Host profile, then restore; never touch user Agents')
