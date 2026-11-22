@@ -78,3 +78,11 @@ A separate local CLI smoke run used the actual private `academy-guide` ZIP from 
 - The standard source-catalog refresh runs independently; a generated metadata commit must be merged without rewriting history before claiming final branch synchronization.
 
 **Live CI acceptance: PASS for read-only exact target selection and version/state-drift protection; this does not authorize real installation or establish that arbitrary Skill code is safe to execute.**
+
+## 7. Final metadata workflow reconciliation
+
+- Routine catalog refresh [run `45064087505`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45064087505) **completed SUCCESS**, including source rediscovery, allowlisted public metadata update and existing regression gates.
+- GitHub generated the metadata-only commit [`ee1f247`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/ee1f247). It was fetched and merged **non-destructively** with the local Phase-27 CI evidence report. The merge did not change installer files or bring private ZIPs into the repository.
+- The full local suite passed again **after reconciliation**: `365 passed, 139 subtests passed`; byte-compilation and diff whitespace checks also passed.
+
+**The remaining production gate is separate explicit approval tied to the exact destination and source version, followed by real-profile transaction durability validation. Neither is automatically granted by Phase 27.**
