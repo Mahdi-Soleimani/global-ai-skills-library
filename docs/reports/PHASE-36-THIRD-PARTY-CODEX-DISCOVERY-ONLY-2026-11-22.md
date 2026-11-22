@@ -58,6 +58,8 @@ The phrase is not a reusable installation token. The workflow has no other Skill
 - Full suite: **445 tests and 226 subtests passed**.
 - Python compilation, workflow YAML parsing and `git diff --check` passed.
 - The real Codex workflow has **not** been dispatched. Its result must not be described as PASS until a user explicitly approves and the manual run completes successfully.
+- [GitHub Actions — Private Skill ZIP preparation safety, run `45080768286`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45080768286): **SUCCESS**.
+- [GitHub Actions — Daily source catalog refresh, run `45080768162`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45080768162): **SUCCESS**, including the full regression-test step and source-catalog refresh. The run used commit `7d393d1`; it did not dispatch the manual third-party discovery workflow.
 
 ## 6. Current state
 
