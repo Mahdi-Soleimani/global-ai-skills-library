@@ -16,8 +16,9 @@ from queue_ingest import git_blob, no_symlink, package_location
 from skill_search import ROOT, get_skill_by_id, normalize_text
 from static_scan import scan_package
 from security_gate import _legacy_source_path
+from host_adapters import HOST_LAYOUTS
 
-AGENTS = ('codex', 'cursor', 'claude-desktop', 'generic-mcp')
+AGENTS = tuple(HOST_LAYOUTS)
 SCOPES = ('user', 'project')
 SCHEMA = 'gasl-install-plan-v1'
 EVENT_SCHEMA = 'gasl-install-simulation-v1'
@@ -84,7 +85,7 @@ def _compatibility(agent, value):
     if not isinstance(value, str) or not value.strip():
         return {'status': 'not_declared', 'claim': None,
                 'host_integration_verified': False}
-    label = {'codex': 'codex', 'cursor': 'cursor',
+    label = {'codex': 'codex', 'cursor': 'cursor', 'claude-code': 'claude code',
              'claude-desktop': 'claude desktop', 'generic-mcp': 'mcp'}[agent]
     normalized = normalize_text(value)
     return {'status': 'declared_match_unverified' if label in normalized else 'declared_nonmatching_unverified',
@@ -145,6 +146,14 @@ def plan_install(source_record_id, agent, scope='user', *, root=ROOT, lookup=Non
         'logical_destination': 'preview:{}:{}'.format(agent, scope),
         'filesystem_target_resolved': False,
         'compatibility': compatibility,
+        'host_adapter': {
+            'kind': HOST_LAYOUTS[agent]['kind'],
+            'documented_relative_skill_directory': HOST_LAYOUTS[agent][scope],
+            'source_documentation': HOST_LAYOUTS[agent]['docs'],
+            'verified_with_real_host': False,
+            'fixture_rehearsal_available': HOST_LAYOUTS[agent]['kind'] == 'filesystem_skill_directory',
+            'actual_install_enabled': False,
+        },
         'local_package': package,
         'warnings': sorted(set(warnings)),
         'plan_steps': [

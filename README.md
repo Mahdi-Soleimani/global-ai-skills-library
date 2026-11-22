@@ -79,7 +79,7 @@ Plan a specific already indexed Skill against an explicit **logical** Agent and 
 ./gasl install-plan --id GASL-SRC-ce593c8b9b3fd34f44d6 --agent codex --scope project
 ~~~
 
-The output includes a deterministic SHA-256 `plan_id`, exact source commit and `SKILL.md` Git Blob, license caveats, locally rechecked source/package integrity (when downloaded), static-security warnings, unverified host compatibility, conceptual backup/rollback requirements and the state `actual_install_enabled: false`. This command does not contact the network, run a Skill, create a simulation ledger or modify Agent configuration. Supported **preview labels** are `codex`, `cursor`, `claude-desktop`, `generic-mcp`; these are *not working installer adapters or verified host compatibility claims*.
+The output includes a deterministic SHA-256 `plan_id`, exact source commit and `SKILL.md` Git Blob, license caveats, locally rechecked source/package integrity (when downloaded), static-security warnings, unverified host compatibility, conceptual backup/rollback requirements and the state `actual_install_enabled: false`. This command does not contact the network, run a Skill, create a simulation ledger or modify Agent configuration. Supported **preview labels** are `codex`, `cursor`, `claude-code`, `claude-desktop`, `generic-mcp`; these are *not working installer adapters or verified host compatibility claims*.
 
 To test only the simulated approval/state transitions, use the `plan_id` returned by the previous command (and an already downloaded, integrity-clean, no-actionable-flags package):
 
@@ -93,6 +93,22 @@ To test only the simulated approval/state transitions, use the `plan_id` returne
 
 `apply` and `rollback` here **only append local simulation events**, not copy, link, install, uninstall or execute any Skill. The exact plan-ID acknowledgement is for **simulation only** and does not constitute permission for real installation. All events are stored in a private, Git-ignored transactional SQLite ledger with a SHA-256 integrity chain at `private/install-simulation/events.sqlite3`; they can be read with `install-status`. The simulated rollback does **not** restore any actual Agent files because none were changed. An unknown license or unconfirmed Agent remains explicitly warned about, and no actual installation is permitted. See [Phase 20](docs/reports/PHASE-20-INSTALL-LIFECYCLE-SIMULATION-2026-11-22.md).
 
+
+### Phase 21: Verified documentation, isolated Host Adapter rehearsals (no real installation)
+
+The Host Adapter matrix distinguishes **Codex**, **Cursor**, **Claude Code**, **Claude Desktop**, and **generic MCP** instead of inventing one universal Skill installation path:
+
+~~~bash
+./gasl host-adapters
+./gasl host-rehearsal --agent codex --scope project --scenario upgrade
+./gasl host-rehearsal --agent cursor --scope user --scenario conflict
+./gasl host-rehearsal --agent claude-code --scope project --scenario symlink
+./gasl host-rehearsal --agent claude-desktop --scope user
+~~~
+
+Documented local directory conventions: Codex `.agents/skills/`, Cursor `.cursor/skills/`, Claude Code `.claude/skills/` (each with project/user scopes). **Claude Desktop (Chat account) instead uploads a Skill ZIP through Customize > Skills**, not by writing `.claude/skills/`; generic MCP has no universal file-based Skill install destination. These layouts are derived from the vendors' current documentation, **not** an actual live Host integration test.
+
+The rehearsal creates its own short-lived, clearly marked `gasl-host-fixture-*` directory in the OS temporary folder and writes **only GASL-authored inert fixture bytes**. It tests a fresh Skill, a backed-up fixture upgrade and restoration, existing-file conflict protection, and symlink refusal, then deletes the temporary fixture. No user Home, project files, Agent configuration, real Skill code, network endpoint or account is touched. The output is a **fixture-only validation**, not permission to install, enable or execute any real downloaded Skill. See [Phase 21](docs/reports/PHASE-21-HOST-ADAPTER-FIXTURE-REHEARSAL-2026-11-22.md).
 
 ### Connect an MCP client
 

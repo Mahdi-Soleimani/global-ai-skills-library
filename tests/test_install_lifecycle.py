@@ -67,6 +67,32 @@ class InstallLifecycleTests(unittest.TestCase):
         self.assertEqual(p['compatibility']['status'], 'not_declared')
         self.assertEqual(p['logical_destination'], 'preview:codex:project')
 
+    def test_host_adapter_layout_is_documented_not_an_actual_install_target(self):
+        expected = {
+            'codex': ('filesystem_skill_directory', '.agents/skills'),
+            'cursor': ('filesystem_skill_directory', '.cursor/skills'),
+            'claude-code': ('filesystem_skill_directory', '.claude/skills'),
+            'claude-desktop': ('manual_account_zip_upload', None),
+            'generic-mcp': ('no_standard_skill_directory', None),
+        }
+        for agent, (kind, path) in expected.items():
+            with self.subTest(agent=agent):
+                plan = self._plan(agent=agent)
+                self.assertEqual(plan['host_adapter']['kind'], kind)
+                self.assertEqual(plan['host_adapter']['documented_relative_skill_directory'], path)
+                self.assertFalse(plan['host_adapter']['verified_with_real_host'])
+                self.assertFalse(plan['host_adapter']['actual_install_enabled'])
+                self.assertFalse(plan['filesystem_target_resolved'])
+                self.assertFalse(plan['installation_allowed'])
+
+    def test_claude_code_is_distinct_from_claude_desktop_plan_identity(self):
+        code = self._plan(agent='claude-code')
+        desktop = self._plan(agent='claude-desktop')
+        self.assertNotEqual(code['plan_id'], desktop['plan_id'])
+        self.assertEqual(code['host_adapter']['kind'], 'filesystem_skill_directory')
+        self.assertEqual(desktop['host_adapter']['kind'], 'manual_account_zip_upload')
+        self.assertNotIn('.claude/skills', str(desktop['host_adapter']))
+
     def test_source_id_exact_pinned_hash_determines_plan_identity(self):
         p = self._plan()
         self.assertEqual(len(p['plan_id']), 64)

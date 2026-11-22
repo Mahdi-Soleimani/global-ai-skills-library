@@ -332,6 +332,17 @@ def cmd_get(args):
                                    fetch_remote=not args.offline), ensure_ascii=False, indent=2))
 
 
+def cmd_host_adapters(args):
+    from host_adapters import list_host_adapters
+    print(json.dumps(list_host_adapters(), ensure_ascii=False, indent=2))
+
+
+def cmd_host_rehearsal(args):
+    from host_adapters import rehearse_host_fixture
+    print(json.dumps(rehearse_host_fixture(args.agent, args.scope, args.scenario),
+                     ensure_ascii=False, indent=2))
+
+
 def cmd_install_plan(args):
     from install_lifecycle import plan_install
     result = plan_install(args.id, args.agent, args.scope, root=ROOT)
@@ -512,9 +523,17 @@ def main():
     get.add_argument("--max-chars", type=int, default=20000)
     get.add_argument("--offline", action="store_true")
     get.set_defaults(func=cmd_get)
+    host_adapters = sub.add_parser('host-adapters', help='Show documented Skill host layout matrix; no real host probing')
+    host_adapters.set_defaults(func=cmd_host_adapters)
+    host_rehearsal = sub.add_parser('host-rehearsal', help='Inert fixture-only adapter install/rollback test; no actual Agent files')
+    host_rehearsal.add_argument('--agent', required=True, choices=('codex', 'cursor', 'claude-code', 'claude-desktop', 'generic-mcp'))
+    host_rehearsal.add_argument('--scope', choices=('project', 'user'), default='project')
+    host_rehearsal.add_argument('--scenario', choices=('fresh', 'upgrade', 'conflict', 'symlink'), default='upgrade')
+    host_rehearsal.set_defaults(func=cmd_host_rehearsal)
+
     install_plan = sub.add_parser('install-plan', help='Read-only pinned Skill install preview; never install')
     install_plan.add_argument('--id', required=True, help='Source Record ID')
-    install_plan.add_argument('--agent', required=True, choices=('codex', 'cursor', 'claude-desktop', 'generic-mcp'))
+    install_plan.add_argument('--agent', required=True, choices=('codex', 'cursor', 'claude-code', 'claude-desktop', 'generic-mcp'))
     install_plan.add_argument('--scope', choices=('user', 'project'), default='user')
     install_plan.set_defaults(func=cmd_install_plan)
 
@@ -524,7 +543,7 @@ def main():
     install_simulate.add_argument('--acknowledge-plan-id', required=True,
                                   help='Explicitly repeat exact plan ID; simulated approval only')
     install_simulate.add_argument('--id', help='Source Record ID, required for simulated apply')
-    install_simulate.add_argument('--agent', choices=('codex', 'cursor', 'claude-desktop', 'generic-mcp'),
+    install_simulate.add_argument('--agent', choices=('codex', 'cursor', 'claude-code', 'claude-desktop', 'generic-mcp'),
                                   help='Required for simulated apply')
     install_simulate.add_argument('--scope', choices=('user', 'project'), default='user')
     install_simulate.set_defaults(func=cmd_install_simulate)
