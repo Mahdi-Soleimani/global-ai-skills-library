@@ -102,7 +102,23 @@ jobs:
           git add reconciliation/discovery-summary.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: refresh attributed skill catalog"
-            git push origin HEAD:main
+            if git push origin HEAD:main; then
+              echo "Refreshed source metadata committed and published."
+            else
+              # A developer may push while this scheduled refresh is running.
+              # Never force-push, overwrite their work, or merge stale metadata
+              # generated against an older source snapshot into a newer main.
+              git fetch origin main
+              if git merge-base --is-ancestor HEAD origin/main; then
+                echo "Refreshed metadata was already published to the remote."
+              elif git merge-base --is-ancestor "${GITHUB_SHA}" origin/main; then
+                echo "::warning::main advanced while refreshing; metadata publish safely skipped."
+                echo "Source metadata was generated but NOT published because main advanced concurrently; the next refresh must regenerate it." >> "$GITHUB_STEP_SUMMARY"
+              else
+                echo "::error::Remote main was rewritten or moved unexpectedly; refusing metadata push."
+                exit 1
+              fi
+            fi
           else
             echo "No source or package changes to commit."
           fi

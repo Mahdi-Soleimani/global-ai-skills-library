@@ -32,7 +32,7 @@ The restricted container uses:
 - private IPC/cgroup namespaces and Docker's default private PID namespace (verified by PID 1 inside the canary), no Docker socket or home directory mounted, minimal explicit environment, and a synthetic symlink escape canary;
 - `--rm`, a fixed run timeout and forced container cleanup attempt after timeouts.
 
-The test checks at least **17 independent predicates**. Each failed predicate fails the entire check. No falling back to host execution is possible through this CLI path.
+The test checks exactly **18 explicitly enumerated predicates** in the current schema. Each failed predicate fails the entire check. No falling back to host execution is possible through this CLI path.
 
 ## 4. Guarantees deliberately not claimed
 
@@ -45,8 +45,8 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 ## 5. Verification and audit trail
 
 - Local macOS build of the Go program with `CGO_ENABLED=0`, `GOOS=linux`, `GOARCH=amd64`, `GOPROXY=off`, `GOSUMDB=off`: **PASS** (static Linux ELF file in `/tmp`, not staged).
-- Python regression suite after integration: **232 tests and 6 subtests passed**.
-- `tests/test_sandbox_canary_runner.py`: **9 tests**, including invalid/non-pinned image rejection, immutable source label checks, Docker flag verification, no Mac execution, fail-closed results, timeout cleanup and benign mock success.
+- Python regression suite after integration: **235 tests and 6 subtests passed** (after the final full-canary registration guard).
+- `tests/test_sandbox_canary_runner.py`: **12 tests**, including invalid/non-pinned image rejection, immutable source label checks, Docker flag verification, no Mac execution, fail-closed results, timeout cleanup and benign mock success.
 - Python compilation and whitespace checks: PASS.
 - The newly added GitHub workflow provides the actual **Linux Docker containment verification**. Its live URL, result and number of observed checks must be recorded after its first completion; **do not report Linux canary success from mock-only tests**.
 
@@ -57,7 +57,7 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 3. Design a separate, **opt-in** installation proposal, with immutable hashes, license/security evidence, compatibility constraints and manual consent; never expose generalized untrusted execution until dedicated integration, rollback, log/audit and sandbox escape tests are complete.
 4. Continue to record each phase under `docs/reports/`. Never put private reports, Skill code or secrets into Actions artifacts or public Git.
 
-**Status before live CI:** implementation and local unit tests PASS; real runner result pending. The eventual verified outcome is recorded below only after inspecting GitHub Actions.
+**Live CI outcome:** `benign_canary_verified` on the ephemeral Linux runner; 18/18 real benign isolation checks passed. `sandbox_execution_enabled=false` and `skill_installation_allowed=false` still apply. See live verification below. This is *not* approval of arbitrary code or dynamic Skill execution.
 
 ## 7. Live CI iteration 1 — diagnostic follow-up
 
@@ -86,3 +86,16 @@ The test checks at least **17 independent predicates**. Each failed predicate fa
 - Wired the first two checks to their actual runtime filesystem/network probes. Strengthened root/fixture Read-only checks to require `/proc/self/mountinfo` mount flags, not just failed writes.
 - Set `HOME=/nonexistent` explicitly in the container environment and required exactly that safe value. Other unexpected environment variables remain disallowed. Added a source-to-wrapper test asserting that every required check name is registered in the Go entrypoint to prevent silent omissions.
 - Previous runner results remain **failed** and must not be recast as successful. A fresh Linux CI run is required before making a verified isolation claim.
+
+### Live CI iteration 5 — all 18 runtime checks verified
+
+- Live workflow [run `45046458532`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046458532), source commit `2c98a58`, **completed / SUCCESS** on ephemeral `ubuntu-24.04`.
+- Self-authored Go canary compiled locally and packaged in a `FROM scratch` image **without image pulls or build network**.
+- Docker started the benign canary with an immutable local image ID `sha256:1f764569680d441eebed1eb1d1abdf4d78844b6ce11a1a538e962e177ad58fc6` and a matching source SHA-256 `634b1ec36a455fb369e394e017d6c4313cc5eb48ecfead4bfdbf4c701b67eeb0`.
+- All **18** checks reported `true`: `capabilities_dropped`, `cpu_cgroup_bounded`, `fixture_symlink_cannot_escape_to_host`, `memory_cgroup_bounded`, `network_access_denied`, `network_namespace_has_only_loopback`, `no_docker_socket_or_host_home`, `no_new_privileges`, `no_unexpected_environment`, `pids_cgroup_bounded`, `pinned_read_only_input`, `private_pid_namespace_verified`, `root_filesystem_read_only`, `scratch_size_bounded`, `scratch_tmpfs_restricted_mount`, `scratch_writable`, `seccomp_filter_active`, and `unprivileged_uid_gid`.
+- `third_party_code_executed=false`, `sandbox_execution_enabled=false`, `skill_installation_allowed=false`, `host_runtime_isolation_proven=false`. The latter remains false because a finite set of canary tests is not an adversarial escape-proof guarantee.
+- The earlier CI failures are preserved above to make the correction and final verification traceable. No failing security predicate was removed or bypassed.
+
+## 8. Separate Metadata CI race observed
+
+The distinct scheduled/source-catalog workflow [run `45046187882`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046187882) passed its discovery/index/tests but failed at metadata publication because the user's `main` branch advanced concurrently. GitHub rejected the non-fast-forward push as intended. The workflow was updated to keep **non-forced** publication and, if the branch advances, explicitly warn/skip stale metadata with a GitHub summary; it must still error if remote history is unexpectedly rewritten. This does not change the independent Sandbox canary outcome.

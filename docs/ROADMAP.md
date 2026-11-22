@@ -115,7 +115,7 @@
 
 ### فاز 6 — Validator و Security Pipeline
 
-**مرحله ۱۹ — آزمون جداسازی با کد آزمایشی:** Runner ایزوله Docker برای **فقط یک Canary بی‌ضرر نوشته‌شده داخل خود GASL** پیاده‌سازی شد. ساخت تصویر از `FROM scratch` با Go استاتیک، بدون شبکه Build و بدون Pull؛ اجرای آن روی GitHub Actions Linux موقت با محدودیت‌های CPU/RAM/PID، فایل‌سیستم Read-only، Network none، بدون Capability و Secret انجام می‌شود. اسکنر و نصب Skillها تغییری نکرده‌اند و اجرای کد شخص ثالث همچنان غیرفعال است. گزارش: `docs/reports/PHASE-19-EPHEMERAL-INERT-SANDBOX-CANARY-2026-11-22.md`.
+**مرحله ۱۹ — آزمون جداسازی با کد آزمایشی:** Runner ایزوله Docker برای **فقط یک Canary بی‌ضرر نوشته‌شده داخل خود GASL** پیاده‌سازی شد. ساخت تصویر از `FROM scratch` با Go استاتیک، بدون شبکه Build و بدون Pull؛ اجرای واقعی آن روی GitHub Actions Linux موقت انجام شد و هر ۱۸ بررسی جداسازی، محدودیت CPU/RAM/PID، فایل‌سیستم Read-only، Network none، Capabilities و متغیرهای محیطی PASS شدند (Run `45046458532`). اسکنر و نصب Skillها تغییری نکرده‌اند و اجرای کد شخص ثالث همچنان غیرفعال است. گزارش: `docs/reports/PHASE-19-EPHEMERAL-INERT-SANDBOX-CANARY-2026-11-22.md`.
 
 **تکمیل مرحله ۱۸ (بدون اجرای کد شخص ثالث):** بررسی مجدد ۳۸ بسته Pin‌شده نشان داد ۳۱ بسته بدون هشدار ایستای قابل‌اقدام و ۷ بسته نیازمند بررسی بیشتر هستند. ۱۲ هشدار صرفاً اطلاعاتیِ فایل‌های تست در گزارش حفظ شده‌اند، ولی دیگر به اشتباه وضعیت manual_review_required ایجاد نمی‌کنند. تشخیص `gasl sandbox` اضافه شد؛ روی مک توسعه Docker CLI موجود ولی Daemon خاموش/غیرقابل دسترس است و در هر حالت بدون Canary ایزولاسیون، گیت fail-closed باقی می‌ماند. هیچ Skill نصب، تأیید یا اجرا نشده؛ Dynamic Sandbox و نصب انتخابی همچنان مراحل آینده‌اند. گزارش: `docs/reports/PHASE-18-SECURITY-TRIAGE-AND-SANDBOX-READINESS-2026-11-22.md`.
 
