@@ -68,7 +68,18 @@ GASL's offline audit reports:
 
 After Phase 31, the install-plan output still said `host_adapter_not_implemented` for Codex. That was stale: real Codex App Server had already verified project/user discovery and fixture rollback. `HOST_LAYOUTS['codex']` now records the verified capabilities and links to the Phase-31 evidence, while explicitly retaining `actual_install_enabled=false` and `verification_scope=disposable_home_only`. Other Hosts remain unverified. The plan now distinguishes `host_discovery_verified_in_disposable_profile_only` from `real_user_profile_installation_not_enabled` instead of claiming the Codex adapter is wholly unimplemented.
 
-## 5. Current state and exact next action
+## 5. Public CI verification of the adapter metadata correction
+
+After the Codex adapter evidence fields and install-plan warnings were reconciled, the public workflows on commit `1189202` completed successfully:
+
+- [Real Codex App Server lifecycle — run `45074583955`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45074583955): **SUCCESS**.
+- [Private ZIP Host fixture transaction — run `45074583859`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45074583859): **SUCCESS**.
+- [Private Skill ZIP preparation safety — run `45074583807`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45074583807): **SUCCESS**.
+- [Inert Host transaction recovery — run `45074583777`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45074583777): **SUCCESS**.
+
+The real Codex run again covers both project and user-scope fixture discovery. It uses GASL-authored inert content, not the third-party candidate. The clean public `git archive` checkout passed **422 tests and 223 subtests**; private `catalog`, `reports`, `storage` and `private` data were absent.
+
+## 6. Current state and exact next action
 
 <status>REVIEWED — PRIVATE BUNDLE READY — USER APPROVAL PENDING</status>
 
