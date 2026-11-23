@@ -224,6 +224,28 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 45: Unified, readable and provenance-aware Codex Backup review
+
+There is now **one read-only entrypoint** for the three existing verified project-scope Codex recovery flows. You no longer need to guess whether a Skill is installed, was uninstalled with a GASL ownership marker, or has orphaned historical backups:
+
+    # From the GASL repository, explicitly choose an existing Git project root:
+    ./gasl backup-review --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL
+
+    # Select an exact Backup ID from that list to preview the correct existing operation:
+    ./gasl backup-review --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --backup-id EXACT_32_HEX_ID
+
+    # Structured output for reporting — STILL READ-ONLY:
+    ./gasl backup-review --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --format json
+
+The default text review shows the state, Backup IDs, file counts, *locally recorded* source-plan references, ownership evidence, safeguards, available recovery effect and next command with the binding supplied by the relevant existing read-only preview. The output uses $GASL_SELECTED_PROJECT instead of disclosing the actual selected absolute project path. Before using a suggested command, explicitly set the variable to the **same** Git project root. Neither the review, a preview ID nor a suggested command is an installation authorization: the existing write command still requires a **separate exact approval phrase entered in a local interactive TTY** and rechecks target/Backup state under lock.
+
+- **Installed managed Skill:** lists verified retained Backups; restoring one saves the currently active version as another Backup. Byte-identical/no-op versions are not selectable.
+- **Uninstalled with marker:** lists verified project-bound archives and offers the existing reinstall-backup path, without consuming the archives.
+- **Legacy/orphan archives:** verifies the full history and explicitly states that original project ownership is **not proven**, even if a historical manifest records an upstream Plan ID. Only the manually attested reinstall-legacy-backup path is offered.
+- **Pending transaction, unknown owner, occupied/unsafe target or missing receipt:** reports the blocker without guessing ownership, bypassing approval or overwriting user files.
+
+No real user HOME or other projects are scanned. All verified file inventories and the actual restore/write/rollback safety logic remain with the existing Phase 40–44 components; this phase adds **no new write path**. The reviewer never executes a Skill, a dependency, a Codex prompt or a model request. See [Phase 45](docs/reports/PHASE-45-UNIFIED-CODEX-BACKUP-REVIEW-UX-2026-11-23.md).
+
 ### Phase 44: Manual reconciliation of legacy orphaned Codex Skill backups
 
 Pre-Phase-43 uninstall operations retained some historical Backup folders but removed their ownership receipt and did not create the project-bound Uninstall Marker added later. Phase 44 provides a **separate, explicit and manually attested** route to reinstallation without falsely claiming historical ownership.

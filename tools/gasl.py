@@ -566,6 +566,16 @@ def cmd_codex_project_install(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_backup_review(args):
+    from codex_backup_review import review_codex_backups, format_backup_review
+    report = review_codex_backups(args.skill_name, args.selected_root,
+                                  backup_id=args.backup_id)
+    if args.format == 'json':
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        print(format_backup_review(report))
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -860,6 +870,18 @@ def main():
     codex_project.add_argument('--backup-id',
         help='Exact backup ID for restore or archived reinstall')
     codex_project.set_defaults(func=cmd_codex_project_install)
+
+    backup_review = sub.add_parser('backup-review',
+        help='READ-ONLY one-screen Codex project Backup review, provenance, warnings and next steps')
+    backup_review.add_argument('--selected-root', required=True, type=Path,
+        help='Explicit existing Git project root; no implicit HOME or project discovery')
+    backup_review.add_argument('--skill-name', required=True,
+        help='Exact single Codex project Skill slug')
+    backup_review.add_argument('--backup-id',
+        help='Optional exact retained Backup ID for a read-only binding-bound recovery preview')
+    backup_review.add_argument('--format', choices=('text','json'), default='text',
+        help='Human-readable review by default, or machine-readable JSON; no writes in either format')
+    backup_review.set_defaults(func=cmd_backup_review)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)

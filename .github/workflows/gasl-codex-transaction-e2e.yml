@@ -10,11 +10,13 @@ on:
       - tools/codex_project_install.py
       - tools/codex_uninstalled_restore.py
       - tools/codex_legacy_reconcile.py
+      - tools/codex_backup_review.py
       - tools/host_format_review.py
       - tests/test_codex_pinned_bundle_e2e.py
       - tests/test_codex_project_install.py
       - tests/test_codex_uninstalled_restore.py
       - tests/test_codex_legacy_reconcile.py
+      - tests/test_codex_backup_review.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -108,7 +110,7 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real Codex project restore plus attested legacy backup recovery
+      - name: Exercise real Codex backup-review UX across installed, archived and legacy states
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -125,6 +127,7 @@ jobs:
           from codex_legacy_reconcile import (
               audit_legacy_backups, preview_legacy_reinstall, reinstall_legacy_backup,
               _phrase as legacy_reinstall_phrase)
+          from codex_backup_review import review_codex_backups, format_backup_review
           from fixture_bundle_install import _inventory, _remove_verified_dir
           from codex_project_install import (
               preview_install, install_fresh, preview_replace, replace_existing,
@@ -169,6 +172,11 @@ jobs:
                   first=replace_existing(bundle1['plan_id'],project,plan['state_binding_id'],
                       bundle_root=fixture.root,lookup=fixture.lookup,reader=lambda _:phrase)
                   assert first['status']=='codex_project_skill_replaced'
+                  review_installed=review_codex_backups('demo',project,backup_id=first['backup_id'])
+                  assert review_installed['lifecycle']=='installed'
+                  assert review_installed['backup_count']==1
+                  assert '--action restore-backup' in review_installed['selected']['recovery_command']
+                  assert str(project) not in format_backup_review(review_installed)
                   assert expected.read_bytes()==v1
                   observed=discover()
                   assert len(observed)==1 and observed[0]['enabled'] is True, observed
@@ -272,6 +280,10 @@ jobs:
                   assert not discover(), 'Removed Skill must be absent'
                   assert not expected.exists()
                   selected=result['archived_last_active_backup_id']
+                  review_archived=review_codex_backups('demo',project,backup_id=selected)
+                  assert review_archived['lifecycle']=='uninstalled_owned'
+                  assert '--action reinstall-backup' in review_archived['selected']['recovery_command']
+                  assert review_archived['approval_granted'] is False
                   listing=list_uninstalled_backups('demo',project)
                   assert listing['backup_count']==len(result['retained_backup_ids'])
                   assert listing['backups'][-1]['last_active_before_uninstall']
@@ -325,6 +337,10 @@ jobs:
                   _backup_manifest(project/'.gasl-managed','demo',orphan_id).unlink()
                   (project/'.gasl-managed/uninstalled/demo.json').unlink()
                   reviewed=audit_legacy_backups('demo',project)
+                  review_orphan=review_codex_backups('demo',project)
+                  assert review_orphan['lifecycle']=='uninstalled_legacy'
+                  assert review_orphan['historical_project_ownership_verified'] is False
+                  assert review_orphan['manual_ownership_attestation_required'] is True
                   assert reviewed['backup_count'] == listing['backup_count']
                   assert reviewed['historical_project_ownership_verified'] is False
                   selected_legacy=reviewed['backups'][-1]['backup_id']
@@ -332,10 +348,16 @@ jobs:
                   assert preflight['manual_ownership_attestation_required'] is True
                   human_test_phrase=legacy_reinstall_phrase(
                       'demo',selected_legacy,preflight['state_binding_id'])
+                  selected_review=review_codex_backups('demo',project,backup_id=selected_legacy)
+                  assert selected_review['selected']['state_binding_id']==preflight['state_binding_id']
+                  assert '--action reinstall-legacy-backup' in selected_review['selected']['recovery_command']
                   reconciled=reinstall_legacy_backup(
                       'demo',project,selected_legacy,preflight['state_binding_id'],
                       reader=lambda _:human_test_phrase)
                   assert reconciled['status']=='legacy_skill_reinstalled_with_manual_ownership_attestation'
+                  after_manual=review_codex_backups('demo',project)
+                  assert after_manual['lifecycle']=='installed'
+                  assert after_manual['current_version']['historical_project_ownership_verified'] is False
                   assert reconciled['historical_project_ownership_verified'] is False
                   assert len(discover())==1, 'Codex must discover manually reconciled inert Skill'
                   active=json.loads((project/'.gasl-managed/receipts/demo.json').read_text())
@@ -346,7 +368,7 @@ jobs:
                       reader=lambda _:_remove_phrase('demo',active['plan_id']))
                   assert final_uninstall['uninstall_ownership_marker_recorded']
                   assert not discover()
-              print('CODEX_REAL_PROJECT_LEGACY_ATTESTED_RECOVERY_DISCOVERY=PASS')
+              print('CODEX_REAL_BACKUP_REVIEW_ALL_LIFECYCLES_AND_DISCOVERY=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()
