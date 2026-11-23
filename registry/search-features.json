@@ -1440,27 +1440,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-05bdf94a8f6edd3abdef": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "2a01cd0f144f19d283196b02f3d5726a37733293",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cli/SKILL.md",
-      "terms": [
-        "academic",
-        "agent",
-        "ai",
-        "authentication",
-        "cache",
-        "cloud",
-        "data",
-        "inference",
-        "infrastructure",
-        "ml",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-05d7fb77058ccc34cbb9": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
       "git_blob_sha": "4dec5c75d14eb81e41354df5fe412fdfd7f908a6",
@@ -3920,25 +3899,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-10487f96e71c6284891f": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "fbf62203595b187ea833904f67ca0ae2fdaf39a6",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-aws-context-discovery/SKILL.md",
-      "terms": [
-        "aws",
-        "calling",
-        "cloud",
-        "context",
-        "deploy",
-        "identity",
-        "read",
-        "task",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-1057b228443ef3eea713": {
       "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
       "git_blob_sha": "634f6fa42e4e697fa6afd293acd7fb8246574876",
@@ -5388,6 +5348,17 @@
         "web"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
+    },
+    "GASL-SRC-15a5574e5c7b33318069": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "ece849559de75eaa8e9709a51e0e957e6ae630d3",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-local-models/SKILL.md",
+      "terms": [
+        "file",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-15ac0a49fa913f60194f": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -13929,6 +13900,22 @@
       ],
       "verified_at_commit": "c7ed150d376bdd13219eb0bfeb4203e12da85516"
     },
+    "GASL-SRC-38b619da0087879d7676": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "e7d1b49f0907be1d41aeed7b0b00dbb2df622643",
+      "repository": "huggingface/skills",
+      "source_path": "skills/train-sentence-transformers/SKILL.md",
+      "terms": [
+        "bi",
+        "embedding",
+        "fine",
+        "mining",
+        "model",
+        "task",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-38ca031fec4655c50270": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "13312f11e0f9e145c8f3ccd071c8b1d7451af7da",
@@ -14722,6 +14709,26 @@
       "source_path": "skills/productivity/to-questionnaire/SKILL.md",
       "terms": [],
       "verified_at_commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
+    },
+    "GASL-SRC-3bd0fa89136836e118de": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "e65fc90acabc30208883238ec89a27c4cdc1b57e",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-papers/SKILL.md",
+      "terms": [
+        "ai",
+        "analyze",
+        "api",
+        "github",
+        "pages",
+        "paper",
+        "project",
+        "read",
+        "research",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-3bd1d360c344919a03f9": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -16123,6 +16130,25 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-41996b0eeb01a8f7ae40": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "7171d2b71c94eab597cbd8a4b38ba5ca489276af",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-zerogpu/SKILL.md",
+      "terms": [
+        "ai",
+        "build",
+        "code",
+        "coding",
+        "process",
+        "python",
+        "use",
+        "user",
+        "worker",
+        "writing"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-419f25fc100a0aa35816": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "1a4f11614e1084bf91eccebf7983e07aa80f2f23",
@@ -16804,29 +16830,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-4504426f9006adf4ee92": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "c1d0cbbfa60999ced1f97e136af5010ab86c814c",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-lora-space-builder/SKILL.md",
-      "terms": [
-        "app",
-        "build",
-        "control",
-        "create",
-        "edit",
-        "image",
-        "inference",
-        "model",
-        "pipeline",
-        "task",
-        "ui",
-        "use",
-        "user",
-        "video"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-450643e83255054b9cc2": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "86396d16b61f0f051cd0086d40fb8f4fe9a6e583",
@@ -16839,24 +16842,6 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-45126f935609e3caa609": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "ca0fe8b8dfb0e7b307b1b3f0dc612f3da279750d",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-sagemaker-iam-preflight/SKILL.md",
-      "terms": [
-        "action",
-        "cloud",
-        "create",
-        "deployment",
-        "model",
-        "permissions",
-        "use",
-        "user",
-        "write"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-45226d7b846d79418875": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -17628,26 +17613,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-47f870443b255be6fded": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "bc62aa1a63bc31ea9aea9456fed65b334e5010bd",
-      "repository": "huggingface/skills",
-      "source_path": "skills/transformers-js/SKILL.md",
-      "terms": [
-        "access",
-        "art",
-        "image",
-        "javascript",
-        "js",
-        "learning",
-        "machine",
-        "node",
-        "translation",
-        "typescript",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-47fdbe019d3a49449e2e": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "c7f72182475f25bcf1e1c32ab30b7e911812af3e",
@@ -17727,26 +17692,6 @@
         "user"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-4845abfeb504c2994c89": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "e65fc90acabc30208883238ec89a27c4cdc1b57e",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-papers/SKILL.md",
-      "terms": [
-        "ai",
-        "analyze",
-        "api",
-        "github",
-        "pages",
-        "paper",
-        "project",
-        "read",
-        "research",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-4851fadfec38a6d1a837": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -19582,18 +19527,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-4f33b77c35a8ad283557": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "01b7db0cb9e30912eda8aa2b73a744c17ab1e176",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-paper-publisher/SKILL.md",
-      "terms": [
-        "pages",
-        "paper",
-        "research"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-4f37583d30c00c8bfaa7": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "7e0ade1b244f12f6828eaf15b86b7099482c3f3e",
@@ -20577,6 +20510,30 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-527894aca8759ddbc1cd": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "1709fff53a6fe3005a3bc3120f91019482cd0e23",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-serving-image-selection/SKILL.md",
+      "terms": [
+        "aws",
+        "cloud",
+        "code",
+        "deploy",
+        "deployment",
+        "embedding",
+        "fine",
+        "image",
+        "inference",
+        "learning",
+        "llm",
+        "memory",
+        "model",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-52840a88daccb77cbe9a": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "3a3c9bfe17a4698390355c87b02a96c43f9cffb7",
@@ -20966,20 +20923,6 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-54017ae5b9d74af6c7b6": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "abafddcbe62bd6e549c095ee9ce23b921081fe22",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-datasets/SKILL.md",
-      "terms": [
-        "api",
-        "read",
-        "search",
-        "use",
-        "workflows"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-5402b19dd952dcae50e2": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -21785,23 +21728,6 @@
         "data"
       ],
       "verified_at_commit": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe"
-    },
-    "GASL-SRC-57fb178adbf31ecb7f84": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "462a6b99e7767576e1ba6c39c1456873d020de92",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-python-env-setup/SKILL.md",
-      "terms": [
-        "automation",
-        "aws",
-        "cloud",
-        "code",
-        "deployment",
-        "python",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-57ff58e5e4403b2c2d4c": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
@@ -23209,6 +23135,29 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-5d7731a373c86db55c9b": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "c1d0cbbfa60999ced1f97e136af5010ab86c814c",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-lora-space-builder/SKILL.md",
+      "terms": [
+        "app",
+        "build",
+        "control",
+        "create",
+        "edit",
+        "image",
+        "inference",
+        "model",
+        "pipeline",
+        "task",
+        "ui",
+        "use",
+        "user",
+        "video"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-5d7b00c9b4c1bd2b8e4c": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "e244d005c4e7474d0852cca17b2790100c607f7b",
@@ -23925,6 +23874,22 @@
         "user"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-602537af371941d9cc04": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "9046f03f975bcc061234266e70cb56ab43892526",
+      "repository": "huggingface/skills",
+      "source_path": "skills/trl-training/SKILL.md",
+      "terms": [
+        "api",
+        "code",
+        "learning",
+        "model",
+        "python",
+        "use",
+        "writing"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-602f535ded5a9004b1a7": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -24820,6 +24785,26 @@
         "write"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-6392e12ced4450f4a0f5": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "bbae4511df2dac10581bf2ab5ef7eb4d8ecb9f22",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-spaces/SKILL.md",
+      "terms": [
+        "app",
+        "build",
+        "code",
+        "create",
+        "deploy",
+        "docker",
+        "inference",
+        "model",
+        "python",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-63996c409ae3909b4ddc": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -28940,20 +28925,6 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
-    "GASL-SRC-73b2213fb593e90f6215": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "a68b2e79958930b3913cb8e7667e07000031e40b",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-community-evals/SKILL.md",
-      "terms": [
-        "ai",
-        "automation",
-        "backend",
-        "model",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-73b36bd0ebce932ac061": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "220c46438dd314f753ff6650ce08cde07b835b63",
@@ -29952,6 +29923,25 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
+    "GASL-SRC-773a6632758a23c2cc7c": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "0161c21c4a12e0f79ff231d3e04871fa61e15bc7",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-sagemaker-production-defaults/SKILL.md",
+      "terms": [
+        "cloud",
+        "code",
+        "create",
+        "deploy",
+        "deployment",
+        "image",
+        "inference",
+        "use",
+        "workflow",
+        "write"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-773b83374204be70cc3d": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "80329b7c2b317646d2b2486f7a81cafd1e1d1de4",
@@ -30464,24 +30454,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-7994a144d33194872874": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "0634af706451240f82faf0871a15b0faac5f39a2",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-tool-builder/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "data",
-        "process",
-        "script",
-        "task",
-        "tool",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-799fab001ac74b436b49": {
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
       "git_blob_sha": "2745c7d45aa49e280d69855837095aecaf5406ae",
@@ -30541,6 +30513,23 @@
         "review"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-79c152993074961964b2": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "462a6b99e7767576e1ba6c39c1456873d020de92",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-python-env-setup/SKILL.md",
+      "terms": [
+        "automation",
+        "aws",
+        "cloud",
+        "code",
+        "deployment",
+        "python",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-79e1c397b3c1ba089f0a": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -32168,6 +32157,26 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-819cc43653368abdaaa4": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "bc62aa1a63bc31ea9aea9456fed65b334e5010bd",
+      "repository": "huggingface/skills",
+      "source_path": "skills/transformers-js/SKILL.md",
+      "terms": [
+        "access",
+        "art",
+        "image",
+        "javascript",
+        "js",
+        "learning",
+        "machine",
+        "node",
+        "translation",
+        "typescript",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-81a135bfd8a91f43f266": {
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
       "git_blob_sha": "82fd3592e2af142907674214296ef86cc11d6478",
@@ -32831,21 +32840,6 @@
       ],
       "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
-    "GASL-SRC-840fe366921053e0063c": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "d4dac3fd6a8901282affb33f2bf1892c71e24105",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-mem/SKILL.md",
-      "terms": [
-        "cache",
-        "context",
-        "inference",
-        "memory",
-        "model",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-842057c7340b9c27b412": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "5bdf313dc8f686ff4af18134f361e79df0755292",
@@ -32858,6 +32852,18 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-84251dde46969558c5a7": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "01b7db0cb9e30912eda8aa2b73a744c17ab1e176",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-paper-publisher/SKILL.md",
+      "terms": [
+        "pages",
+        "paper",
+        "research"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-84271c8f68eb91c5590c": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -33792,20 +33798,6 @@
         "ui"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-875deeb93fb38b74e753": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "81dfb05834ab34a13cb0171a2fb03e4557b1e148",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-gradio/SKILL.md",
-      "terms": [
-        "build",
-        "editing",
-        "python",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-8767480e90e6878ecff5": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -36261,26 +36253,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-90fe6b6edb7bf9bbb3f0": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "bbae4511df2dac10581bf2ab5ef7eb4d8ecb9f22",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-spaces/SKILL.md",
-      "terms": [
-        "app",
-        "build",
-        "code",
-        "create",
-        "deploy",
-        "docker",
-        "inference",
-        "model",
-        "python",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-911ee66c0551f39b12e8": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "73005d4edc8d4b398422a6c1400c50b7b9874070",
@@ -37864,6 +37836,21 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-9714cd4b44eb6dfbf819": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "d4dac3fd6a8901282affb33f2bf1892c71e24105",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-mem/SKILL.md",
+      "terms": [
+        "cache",
+        "context",
+        "inference",
+        "memory",
+        "model",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-971d5a6c6df2af34798f": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "a895ee654c6fe5b4d99ef49e2e7b3da405a5a610",
@@ -38252,6 +38239,20 @@
         "video"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-98e3da88bb68bba4dedb": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "eb717f2c916d6a03f4322272b0a51fb10963b349",
+      "repository": "huggingface/skills",
+      "source_path": "hf-mcp/skills/hf-mcp/SKILL.md",
+      "terms": [
+        "ai",
+        "documentation",
+        "search",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-98e5fbb19cf18c0832bc": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -38666,30 +38667,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-9a69108e4cffe6b73b7c": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "1709fff53a6fe3005a3bc3120f91019482cd0e23",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-serving-image-selection/SKILL.md",
-      "terms": [
-        "aws",
-        "cloud",
-        "code",
-        "deploy",
-        "deployment",
-        "embedding",
-        "fine",
-        "image",
-        "inference",
-        "learning",
-        "llm",
-        "memory",
-        "model",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-9a85af56c672da98482d": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "11dfd2b3b069b8ae77d835c7317c3698d94346f0",
@@ -39088,25 +39065,6 @@
       ],
       "verified_at_commit": "6b989d6490589647c4c164f7f55c2797cf322f04"
     },
-    "GASL-SRC-9bd38727381d91d4f8c0": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "7171d2b71c94eab597cbd8a4b38ba5ca489276af",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-zerogpu/SKILL.md",
-      "terms": [
-        "ai",
-        "build",
-        "code",
-        "coding",
-        "process",
-        "python",
-        "use",
-        "user",
-        "worker",
-        "writing"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-9bd73153fd97b2ce1ff2": {
       "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
       "git_blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
@@ -39418,6 +39376,24 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-9d489bf8f0f680313b13": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "74ad29af05eee633fb4c04376118f751c24cdd5e",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-llm-trainer/SKILL.md",
+      "terms": [
+        "authentication",
+        "cloud",
+        "deployment",
+        "fine",
+        "infrastructure",
+        "learning",
+        "llm",
+        "model",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-9d6ad72f4cf5cc23a883": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -40958,20 +40934,6 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-a2904b404f4057a4f477": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "eb717f2c916d6a03f4322272b0a51fb10963b349",
-      "repository": "huggingface/skills",
-      "source_path": "hf-mcp/skills/hf-mcp/SKILL.md",
-      "terms": [
-        "ai",
-        "documentation",
-        "search",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-a2a249a95d65c63f7e85": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -43137,22 +43099,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-ab40f45dfdabb239b5f3": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "e7d1b49f0907be1d41aeed7b0b00dbb2df622643",
-      "repository": "huggingface/skills",
-      "source_path": "skills/train-sentence-transformers/SKILL.md",
-      "terms": [
-        "bi",
-        "embedding",
-        "fine",
-        "mining",
-        "model",
-        "task",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-ab4da93331f5410954b4": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
       "git_blob_sha": "a8af746f81da30b9e30b9f3034f15c6c5c1492e2",
@@ -44303,24 +44249,6 @@
         "video"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-b06271bb837361c9f8ae": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "df231aa06d661bf031aaad00dfa286ca83df4940",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-trackio/SKILL.md",
-      "terms": [
-        "api",
-        "automation",
-        "dashboard",
-        "metrics",
-        "ml",
-        "python",
-        "use",
-        "visualization",
-        "visualize"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-b06e711f13d6660b1e54": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -46774,6 +46702,23 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
+    "GASL-SRC-b94c106c8558506b8834": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "766c5d84ee8fa5e5b0dfc51411ea3e62cf0a8f9f",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-best/SKILL.md",
+      "terms": [
+        "ai",
+        "art",
+        "llm",
+        "machine",
+        "model",
+        "task",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-b950b4b4c799bfed997c": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "3729077eaf60351e7d4d7a46464e6f5d2797bd74",
@@ -48011,6 +47956,24 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-be0745dc0ada3ad79af1": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "ca0fe8b8dfb0e7b307b1b3f0dc612f3da279750d",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-sagemaker-iam-preflight/SKILL.md",
+      "terms": [
+        "action",
+        "cloud",
+        "create",
+        "deployment",
+        "model",
+        "permissions",
+        "use",
+        "user",
+        "write"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-be0f538eafd519bfadea": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -50036,23 +49999,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-c672f46750091cc81911": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "766c5d84ee8fa5e5b0dfc51411ea3e62cf0a8f9f",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-best/SKILL.md",
-      "terms": [
-        "ai",
-        "art",
-        "llm",
-        "machine",
-        "model",
-        "task",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-c677e22e8662e105e1e0": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "a81dc6fe1006b9de54e4740d41fd525d16ca0360",
@@ -51093,22 +51039,6 @@
       "terms": [],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-caa050ba1e36ea918ed3": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "9046f03f975bcc061234266e70cb56ab43892526",
-      "repository": "huggingface/skills",
-      "source_path": "skills/trl-training/SKILL.md",
-      "terms": [
-        "api",
-        "code",
-        "learning",
-        "model",
-        "python",
-        "use",
-        "writing"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-caa07d92afe4633b54d9": {
       "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
       "git_blob_sha": "6fa1dcef92fa6644fbccfd8f61b5514ec1720d15",
@@ -51190,17 +51120,6 @@
         "video"
       ],
       "verified_at_commit": "49f948faa9258a0c61caceaf225e179651397431"
-    },
-    "GASL-SRC-cadbb55406d26c207fe6": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "ece849559de75eaa8e9709a51e0e957e6ae630d3",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-local-models/SKILL.md",
-      "terms": [
-        "file",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-cae694fd17a8e179e8f7": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -51653,6 +51572,29 @@
         "code"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-ccfbf2ae7f362fa31978": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "c8e1b321698a3f6ede5cb607cf73cdd2dfc0e63a",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-sagemaker-deployment-planner/SKILL.md",
+      "terms": [
+        "ai",
+        "aws",
+        "cloud",
+        "create",
+        "deploy",
+        "deployment",
+        "embedding",
+        "fine",
+        "image",
+        "inference",
+        "llm",
+        "model",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-cd06ad5555e3b5a6f79d": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -52446,6 +52388,20 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-d004b3daca1644c6692d": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "abafddcbe62bd6e549c095ee9ce23b921081fe22",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-datasets/SKILL.md",
+      "terms": [
+        "api",
+        "read",
+        "search",
+        "use",
+        "workflows"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-d01772b934339aa63303": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -54538,21 +54494,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-d820b9c9568951e56756": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "5a2c554b04218a9c411c184fd749ffb6eb0daabe",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-vision-trainer/SKILL.md",
-      "terms": [
-        "cloud",
-        "fine",
-        "image",
-        "metrics",
-        "tuning",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
-    },
     "GASL-SRC-d84548bbe5dc837fb064": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
       "git_blob_sha": "21844466e6d55f58ae91cccf19d1a916f7ba4a1d",
@@ -54708,6 +54649,20 @@
         "user"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-d8d9c531f845e3459d71": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "a68b2e79958930b3913cb8e7667e07000031e40b",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-community-evals/SKILL.md",
+      "terms": [
+        "ai",
+        "automation",
+        "backend",
+        "model",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-d8dd41336b31fe238501": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -56488,6 +56443,21 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-df611de89b4af1451099": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "5a2c554b04218a9c411c184fd749ffb6eb0daabe",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-vision-trainer/SKILL.md",
+      "terms": [
+        "cloud",
+        "fine",
+        "image",
+        "metrics",
+        "tuning",
+        "use"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-df6926a5caaab93c9ef2": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "ca5282a0fdbfdcf05ac951b1529114f592467021",
@@ -57071,6 +57041,24 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-e166697fc8439329f2e8": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "0634af706451240f82faf0871a15b0faac5f39a2",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-tool-builder/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "data",
+        "process",
+        "script",
+        "task",
+        "tool",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-e16cbad6c2cee910d9c6": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "ca34b9ba851a4232dcd206feffc694cccb70356b",
@@ -57474,6 +57462,25 @@
         "use"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
+    },
+    "GASL-SRC-e3014ad00464a43b6eab": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "fbf62203595b187ea833904f67ca0ae2fdaf39a6",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cloud-aws-context-discovery/SKILL.md",
+      "terms": [
+        "aws",
+        "calling",
+        "cloud",
+        "context",
+        "deploy",
+        "identity",
+        "read",
+        "task",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-e301559e7dcf7a63b564": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -59900,6 +59907,19 @@
       ],
       "verified_at_commit": "6b989d6490589647c4c164f7f55c2797cf322f04"
     },
+    "GASL-SRC-ebd1ce12aaecdc300649": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "638a69b1126dc7206974fc77899e5f83f5d3752b",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-gradio/SKILL.md",
+      "terms": [
+        "build",
+        "python",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "d67b12054923df5bbfa07c5ff1331412deebdf4f"
+    },
     "GASL-SRC-ebd709c8c7ce73c82648": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "git_blob_sha": "ebeee9274729c8df896834af379b78dbd2f576ce",
@@ -60197,6 +60217,24 @@
         "web"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-ecd1536f167835b64417": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "df231aa06d661bf031aaad00dfa286ca83df4940",
+      "repository": "huggingface/skills",
+      "source_path": "skills/huggingface-trackio/SKILL.md",
+      "terms": [
+        "api",
+        "automation",
+        "dashboard",
+        "metrics",
+        "ml",
+        "python",
+        "use",
+        "visualization",
+        "visualize"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-ecdaa6257bdb33672967": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
@@ -60555,24 +60593,6 @@
         "user"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-edf3c66105112fa22aa5": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "74ad29af05eee633fb4c04376118f751c24cdd5e",
-      "repository": "huggingface/skills",
-      "source_path": "skills/huggingface-llm-trainer/SKILL.md",
-      "terms": [
-        "authentication",
-        "cloud",
-        "deployment",
-        "fine",
-        "infrastructure",
-        "learning",
-        "llm",
-        "model",
-        "use"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-ee09bbddb2d3a99478d3": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -61468,25 +61488,6 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-f188a3802f694d81db0f": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "0161c21c4a12e0f79ff231d3e04871fa61e15bc7",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-sagemaker-production-defaults/SKILL.md",
-      "terms": [
-        "cloud",
-        "code",
-        "create",
-        "deploy",
-        "deployment",
-        "image",
-        "inference",
-        "use",
-        "workflow",
-        "write"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-f1b46e68522b5a469c11": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
@@ -63502,6 +63503,27 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-f9666b6233cc807a083e": {
+      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
+      "git_blob_sha": "2a01cd0f144f19d283196b02f3d5726a37733293",
+      "repository": "huggingface/skills",
+      "source_path": "skills/hf-cli/SKILL.md",
+      "terms": [
+        "academic",
+        "agent",
+        "ai",
+        "authentication",
+        "cache",
+        "cloud",
+        "data",
+        "inference",
+        "infrastructure",
+        "ml",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
+    },
     "GASL-SRC-f96daa4b0194be8ffc8f": {
       "commit_sha": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
       "git_blob_sha": "700a3c5d3862ae234abfb7817bb58158a363a7ca",
@@ -63555,29 +63577,6 @@
         "workflow"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-f9a5335d3b9d6b9a652a": {
-      "commit_sha": "5291c2b9365e06b175dc04817610c778623f4836",
-      "git_blob_sha": "c8e1b321698a3f6ede5cb607cf73cdd2dfc0e63a",
-      "repository": "huggingface/skills",
-      "source_path": "skills/hf-cloud-sagemaker-deployment-planner/SKILL.md",
-      "terms": [
-        "ai",
-        "aws",
-        "cloud",
-        "create",
-        "deploy",
-        "deployment",
-        "embedding",
-        "fine",
-        "image",
-        "inference",
-        "llm",
-        "model",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5291c2b9365e06b175dc04817610c778623f4836"
     },
     "GASL-SRC-f9ae4cd0f010208fb72a": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
