@@ -5,6 +5,7 @@ Uses the current process token and native Win32 security APIs. No subprocess,
 localized icacls parsing, third-party package, or implicit HOME discovery.
 """
 import ctypes
+import hashlib
 import os
 from pathlib import Path
 
