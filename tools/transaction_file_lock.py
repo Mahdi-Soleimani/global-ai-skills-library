@@ -7,6 +7,7 @@ The lock remains acquired throughout transaction journal / rename / receipt.
 import contextlib
 import os
 import re
+import stat
 import time
 from pathlib import Path
 
@@ -33,11 +34,12 @@ def is_redirected(path):
 
 
 @contextlib.contextmanager
-def exclusive_lock_file(path, *, attempts=35, pause_seconds=0.10):
-    """Use a secure permanent lockfile with POSIX flock or Windows byte lock.
+def exclusive_lock_file(path, *, attempts=35, pause_seconds=0.10, nonblocking=False):
+    """Use a permanent POSIX flock or Windows byte lock.
 
-    Windows LK_NBLCK waits explicitly with a bounded timeout instead of
-    relying on LK_LOCK's implicit retries. Lock file is never truncated.
+    Nonblocking mode rejects concurrent queue writers immediately on both
+    platforms. Transaction callers keep the existing blocking/retry behavior.
+    Lock file is never truncated.
     """
     if not supported_platform():
         raise ValueError("GASL transaction locking needs POSIX or Windows")
@@ -47,8 +49,11 @@ def exclusive_lock_file(path, *, attempts=35, pause_seconds=0.10):
     fd = os.open(str(path), os.O_CREAT | os.O_RDWR |
                  getattr(os, "O_NOFOLLOW", 0), 0o600)
     with os.fdopen(fd, "a+b") as stream:
+        details = os.fstat(stream.fileno())
+        if not stat.S_ISREG(details.st_mode) or details.st_nlink != 1:
+            raise ValueError("Unsafe GASL lock file (non-regular or hard-link alias)")
         if os.name == "posix":
-            fcntl.flock(stream, fcntl.LOCK_EX)
+            fcntl.flock(stream, fcntl.LOCK_EX | (fcntl.LOCK_NB if nonblocking else 0))
             try:
                 yield stream
             finally:
@@ -56,20 +61,21 @@ def exclusive_lock_file(path, *, attempts=35, pause_seconds=0.10):
         else:
             # Windows lock applies at current seek offset for one byte.
             stream.seek(0)
-            if path.stat().st_size == 0:
+            if details.st_size == 0:
                 stream.write(b"\0")
                 stream.flush()
                 os.fsync(stream.fileno())
             acquired = False
+            limit = 1 if nonblocking else attempts
             try:
-                for i in range(attempts):
+                for i in range(limit):
                     try:
                         stream.seek(0)
                         msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
                         acquired = True
                         break
                     except OSError:
-                        if i + 1 == attempts:
+                        if i + 1 == limit:
                             raise ValueError("Concurrent GASL Windows transaction lock busy")
                         time.sleep(pause_seconds)
                 yield stream

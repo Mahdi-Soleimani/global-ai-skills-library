@@ -14,11 +14,13 @@ on:
       - tools/codex_project_install.py
       - tools/fixture_bundle_install.py
       - tools/queue_ingest.py
+      - tools/on_demand.py
       - tools/host_adapters.py
       - tools/gasl.py
       - tests/test_windows_project_transactions.py
       - tests/test_windows_user_profile.py
       - tests/test_user_profile_install.py
+      - tests/test_queue_ingest_lock.py
       - tests/test_host_adapters.py
       - .github/workflows/gasl-windows-project-install.yml
   pull_request:
@@ -33,11 +35,13 @@ on:
       - tools/codex_project_install.py
       - tools/fixture_bundle_install.py
       - tools/queue_ingest.py
+      - tools/on_demand.py
       - tools/host_adapters.py
       - tools/gasl.py
       - tests/test_windows_project_transactions.py
       - tests/test_windows_user_profile.py
       - tests/test_user_profile_install.py
+      - tests/test_queue_ingest_lock.py
       - tests/test_host_adapters.py
       - .github/workflows/gasl-windows-project-install.yml
   workflow_dispatch:
@@ -101,6 +105,12 @@ jobs:
         run: |
           python -m unittest tests.test_user_profile_install -v
           if ($LASTEXITCODE -ne 0) { throw 'Windows User Profile transaction regression failed' }
+
+      - name: Native Windows queue and selected-download lock integrity tests
+        shell: pwsh
+        run: |
+          python -m unittest tests.test_queue_ingest_lock tests.test_on_demand -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows queue ingestion or on-demand locking regression failed' }
 
       - name: Existing metadata and private bundle tests on Windows
         shell: pwsh

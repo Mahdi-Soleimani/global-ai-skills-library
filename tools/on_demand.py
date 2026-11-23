@@ -9,8 +9,7 @@ def download_skill(source_record_id, root=ROOT, execute=False):
     # Keep the existing POSIX collector optional; basic search and SKILL.md
     # retrieval remain platform independent.
     from queue_ingest import (fetch_tree, make_plan, ingest, package_location,
-                              no_symlink, read_json)
-    import fcntl
+                              no_symlink, read_json, ingestion_lock)
 
     root = Path(root).resolve()
     record = get_skill_by_id(source_record_id, root=root)
@@ -52,11 +51,7 @@ def download_skill(source_record_id, root=ROOT, execute=False):
     private_dir = no_symlink(root, root / "private")
     private_dir.mkdir(exist_ok=True)
     manifest = no_symlink(root, private_dir / "on-demand-manifest.json")
-    lock_dir = no_symlink(root, root / "registry/discovery")
-    lock_dir.mkdir(parents=True, exist_ok=True)
-    lock_path = no_symlink(root, lock_dir / ".ingest.lock")
-    with lock_path.open("a") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    with ingestion_lock(root):
         result.update(ingest(root, plan, manifest_path=manifest))
         # This is a local, non-executing scan. Never convert static evidence into
         # installation or execution approval.

@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 """Plan and ingest exact discovery queue revisions; never execute downloaded files."""
 import argparse
-try:
-    import fcntl
-except ImportError:
-    fcntl = None  # pinned-package inspection remains importable on Windows
 import hashlib
 import json
 import os
@@ -20,6 +16,7 @@ from collector import safe_name, is_excluded_path, now
 from discover import github_json, require_sha, REPO, ORDINARY_MODES
 from path_rules import is_test_fixture_path
 from reconcile import write_json
+from transaction_file_lock import exclusive_lock_file, require_windows_filename_safety
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -54,6 +51,15 @@ def no_symlink(root, path):
     return path
 
 
+def ingestion_lock(root):
+    """Serialize both queue and selected downloads under one safe local lock."""
+    root = Path(root)
+    directory = no_symlink(root, root / "registry" / "discovery")
+    directory.mkdir(parents=True, exist_ok=True)
+    lock_path = no_symlink(root, directory / ".ingest.lock")
+    return exclusive_lock_file(lock_path, attempts=1, nonblocking=True)
+
+
 def checked_file(root, path, item):
     no_symlink(root, path)
     if not path.is_file() or path.stat().st_size != item["size"]:
@@ -63,6 +69,7 @@ def checked_file(root, path, item):
 
 def make_plan(row, tree, policy):
     skill = safe_path(row["skill_path"])
+    require_windows_filename_safety(skill)
     if is_test_fixture_path(skill) or not skill.endswith("/SKILL.md"):
         raise ValueError("Fixture, root-level or noncanonical SKILL.md requires explicit review")
     if tree.get("sha") != row["tree_sha"] or tree.get("truncated") is not False:
@@ -75,6 +82,7 @@ def make_plan(row, tree, policy):
     def add_entry(e, relative):
         path = e["path"]
         safe_path(path)
+        require_windows_filename_safety(relative)
         key = collision_key(relative)
         if key in seen:
             raise ValueError("Case/Unicode collision in package")
@@ -320,23 +328,22 @@ def main():
     args = p.parse_args()
     if args.max_batch_bytes<1 or args.max_files<1:
         p.error("positive bounds required")
-    policy = read_json(ROOT/"config/policy.json")
-    queue_path = ROOT/"registry/discovery/download-queue.json"
-    if not queue_path.exists():
-        queue_path = ROOT/"registry/download-queue.json"
-    queue = read_json(queue_path)
     planned, rejected, total, count = [], [], 0, 0
-    # License status never filters private collection. Public mirroring is a separate
-    # operation with its own allowlist/evidence checks.
-    selected_repos = (list(dict.fromkeys(r["repository"].casefold() for r in queue
-                                           if r.get("discovery_status", "verified_metadata_only") != "stale_fallback"
-                                           and r.get("install_status") == "not_approved"
-                                           and r.get("status") == "pending_package_plan"))
-                      if args.all_queued_repos else list(dict.fromkeys(r.casefold() for r in args.repo)))
-    if fcntl is None:
-        raise ValueError("Queue ingestion is not enabled on Windows until its own lock is ported")
-    with (ROOT/"registry/discovery/.ingest.lock").open("a") as lock:
-        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    # Read the queue only while owning the shared ingestion lock, so concurrent
+    # queue/selected downloads cannot plan against an unlocked stale snapshot.
+    with ingestion_lock(ROOT):
+        policy = read_json(ROOT/"config/policy.json")
+        queue_path = ROOT/"registry/discovery/download-queue.json"
+        if not queue_path.exists():
+            queue_path = ROOT/"registry/download-queue.json"
+        queue = read_json(queue_path)
+        # License status never filters private collection. Public mirroring
+        # remains a separate allowlist/evidence gate.
+        selected_repos = (list(dict.fromkeys(r["repository"].casefold() for r in queue
+                                               if r.get("discovery_status", "verified_metadata_only") != "stale_fallback"
+                                               and r.get("install_status") == "not_approved"
+                                               and r.get("status") == "pending_package_plan"))
+                          if args.all_queued_repos else list(dict.fromkeys(r.casefold() for r in args.repo)))
         for repo in selected_repos:
             rows = [r for r in queue if r["repository"].casefold()==repo
                     and r["install_status"]=="not_approved"
