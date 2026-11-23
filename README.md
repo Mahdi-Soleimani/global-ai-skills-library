@@ -241,6 +241,8 @@ The Phase 48 local evaluator preserves the original labels, reconstructs a pinne
 
 The measured **development-only** baseline at the Phase-48 source snapshot is P@5 **0.4385**, Recall@5 **0.5818**, MRR@10 **0.8987** and NDCG@5 **0.6577**. The experiment score-first yielded NDCG@5 **0.6770** on the same small internal labels, but **only 50% of top-five results were judged**. It improved seven queries and regressed three; that is **not evidence of independently verified real-world quality gains**. No experimental ranker was promoted to default, no quality score was fabricated, and no Skill was installed or executed.
 
+**Fresh checkout comparison:** The development Mac also has optional private metadata and a Git-untracked local Skill manifest, which are absent in GitHub CI. Replaying the exact **tracked-only** inputs in isolation yields production NDCG@5 **0.6456**, and the same score-first experiment falls to **0.6326**. This reversal reinforces why no unadjudicated variant is released. Both input scopes and their SHA-256 fingerprints are documented in the Phase 48 report.
+
 Dedicated lightweight quality CI checks the crosswalk, original-label immutability, absence of fabricated Gold and reproducibility. Actual search-quality promotion requires **two independent human reviewers, adjudication, out-of-pool negatives, a frozen holdout and validated answerability**. See [Phase 48 report](docs/reports/PHASE-48-PROVISIONAL-SEARCH-QUALITY-2026-11-23.md).
 
 ### Phase 47: From a task to a shortlist, comparison, and Skill choice

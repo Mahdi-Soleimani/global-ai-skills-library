@@ -4,7 +4,7 @@
   "query_count": 26,
   "judgment_count": 148,
   "crosswalk_source_id_changes": 24,
-  "source_catalog_sha256": "0e1ff9acb938431bdddfb9a365e46a3464339f13538420ca8413185e999add8d",
+  "source_catalog_sha256": "9365b1edc71c48b7684f0526a9ce519e711afeee1afff4b5bbc04af764140cd8",
   "production_ranker_changed": false,
   "ranker_winner_selected": false,
   "no_answer_gold_available": false,
@@ -549,28 +549,28 @@
         "production": [
           "GASL-SRC-b5415d266228969ed99e",
           "GASL-SRC-f95dc5621ef603b14aac",
-          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-ab3c73bec9f7a465034a",
           "GASL-SRC-e7b1522da1a80b585240",
           "GASL-SRC-9e9ce9d1975d2d4d42fc"
         ],
         "score_first": [
           "GASL-SRC-b5415d266228969ed99e",
           "GASL-SRC-f95dc5621ef603b14aac",
-          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-ab3c73bec9f7a465034a",
           "GASL-SRC-e7b1522da1a80b585240",
           "GASL-SRC-9e9ce9d1975d2d4d42fc"
         ],
         "core_evidence_first": [
           "GASL-SRC-b5415d266228969ed99e",
           "GASL-SRC-f95dc5621ef603b14aac",
-          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-ab3c73bec9f7a465034a",
           "GASL-SRC-e7b1522da1a80b585240",
           "GASL-SRC-9e9ce9d1975d2d4d42fc"
         ],
         "named_entity_first": [
           "GASL-SRC-b5415d266228969ed99e",
           "GASL-SRC-f95dc5621ef603b14aac",
-          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-ab3c73bec9f7a465034a",
           "GASL-SRC-e7b1522da1a80b585240",
           "GASL-SRC-9e9ce9d1975d2d4d42fc"
         ]

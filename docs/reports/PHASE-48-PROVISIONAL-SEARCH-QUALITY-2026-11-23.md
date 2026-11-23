@@ -116,3 +116,30 @@ A genuine optimization phase requires **at least two independent human reviewers
 ## 8. Final local and GitHub verification
 
 Local test counts, workflow Run IDs and final Commit SHA are appended only after live verification.
+
+## 9. Verified Linux CI and two reproducible input scopes
+
+**Feature commit:** [340c177a02623639addaebfd717ce0498cfdb6a3](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/340c177a02623639addaebfd717ce0498cfdb6a3) was pushed to `main` after an exact twelve-file scope audit, staged whitespace validation and secret-pattern scan.
+
+- [Dedicated provisional Search Quality CI — run 45224807801](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45224807801): **completed / SUCCESS**. All 35 targeted tests passed. Git-blob crosswalk replay, ablation reordering and equality of the production baseline between the independent metric runner and ablation runner passed; no winner or human-Gold status was fabricated.
+- [Full source-catalog Refresh and regression — run 45224807734](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45224807734): **completed / SUCCESS**, **656 tests passed**, 57 repositories, 4,431 attributed source records. Automatic **metadata-only** commit [2e8892dd3e965f199714d3f560558f92c698db16](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/2e8892dd3e965f199714d3f560558f92c698db16) was fetched and fast-forwarded locally without force-push, retaining unrelated changes.
+- Full local Python suite before metadata refresh: **650 tests, 258 subtests passed**. Only the optional MCP-server module was excluded from local system Python; dependency-equipped Linux CI includes it. Python compileall, YAML parse and `git diff --check` passed.
+
+**Important environment-specific difference discovered:** The development Mac has a private `private/skill-metadata-cache.json` and a local, Git-untracked `registry/skills.json`; a fresh GitHub checkout has **neither**. Both are legitimate optional local inputs to the existing index. The ranker cannot be assessed by treating their outputs as identical experimental conditions.
+
+After the automated source refresh, all reports were regenerated against one common public-catalog SHA-256:
+`9365b1edc71c48b7684f0526a9ce519e711afeee1afff4b5bbc04af764140cd8`.
+
+| Condition | Production P@5 | Recall@5 | MRR@10 | NDCG@5 | Score-first NDCG@5 |
+|---|---:|---:|---:|---:|---:|
+| Local developer Mac with optional local metadata | 0.4385 | 0.5818 | 0.8987 | **0.6577** | 0.6770 |
+| **Fresh checkout, only tracked inputs** (same as Linux CI) | 0.4385 | 0.5442 | 0.9038 | **0.6456** | **0.6326** |
+
+The development-only score-first variant increased NDCG by +0.0193 **in the local enriched setting**, yet **decreased** NDCG by 0.0130 in the reproducible public checkout. Thus promotion to Production would be unjustified even on the limited provisional data. The checked-in public-only reports are:
+
+- `docs/reports/PHASE-48-PUBLIC-RECONCILED-BASELINE-2026-11-23.json`
+- `docs/reports/PHASE-48-PUBLIC-RANKING-ABLATION-2026-11-23.json`
+
+The public-only run used an isolated temporary directory containing **exactly the Git-tracked** search inputs: `registry/source-catalog.json`, `registry/search-features.json`, `registry/skill-evaluations.json`, `public-catalog/index.json` and `config/taxonomy.json`. It explicitly excluded the untracked `registry/skills.json` and private metadata cache, without modifying or deleting either user-local file. The fresh-checkout metrics matched the dedicated Linux CI (`NDCG@5=0.6456`). The original provisional labels were never modified, and `production_ranker_changed=false` in both ablation results.
+
+**Acceptance and limitation:** the requested search-quality **measurement infrastructure** is implemented, reproducible and CI-verified. An independently demonstrated increase in search relevance is **not complete**, because no independently adjudicated and untouched human Gold set exists. This remains the next evidence gate; no claim of production precision improvement is made.
