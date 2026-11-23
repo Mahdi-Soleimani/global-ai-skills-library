@@ -224,6 +224,20 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 47: From a task to a shortlist, comparison, and Skill choice
+
+GASL Explorer now implements a simple **three-step local workflow** on top of the existing source catalog, search and experimental router. Start the same localhost Explorer as before:
+
+    ./gasl serve
+
+1. **Describe a task:** use *پیشنهاد برای نیاز* to retrieve up to 20 provisional recommendations using the existing task router. Choose the intended Agent and optional domain/content/public filters. When answerability is \`abstain\` or \`undetermined\`, the UI explicitly says that its evidence is insufficient; it does not pretend that an answer or a catalog-wide absence has been proven. The separate *جست‌وجوی گسترده* action still uses the existing lexical search and offers up to 50 results.
+2. **Compare 2–3 options:** tick choices and compare locally recorded source records in an accessible, scrollable table. View description, repository, license/assessment, static security status, declared compatibility, content availability and pinned commit; differences are marked without inventing an overall quality score. The new authenticated \`POST /v1/compare\` takes \`{"ids": ["GASL-SRC-...", "GASL-SRC-..."]}\`, checks exactly two or three distinct, existing source IDs, and never fetches remote code or runs Skills. It returns neither a winning option nor installation/security approval.
+3. **Choose for further review:** directly select any individual result, or compare multiple options and then click *بررسی این گزینه*, to see the source and the optional \`./gasl install-plan --id ... --agent ... --scope project\` command, which is a **read-only installation preview**. No Skill is installed, activated, executed, or implicitly approved. Real installation remains in the separately approved Codex project-only transaction flow.
+
+This is intentionally a small enhancement to the existing **local-only** web UI, with no JavaScript framework, paid API, AI model or new Python dependency. The workflow clears stale comparisons when the user starts another search and uses safe DOM text nodes instead of injecting source text as HTML. It excludes unexpected external source link protocols. Existing REST bearer-token authentication applies to the new compare endpoint.
+
+The ranking is **lexical and experimental**, not a calibrated quality/security assessment. License metadata is not legal clearance; a static scan status does not guarantee a safe Skill; declared Agent compatibility is not verified runtime compatibility. Source record comparisons are advisory. See [Phase 47](docs/reports/PHASE-47-EXPLORER-NEED-COMPARE-SELECT-2026-11-23.md).
+
 ### Phase 46: Offline provenance comparison and evidence boundaries
 
 The read-only provenance comparison distinguishes **verified local bytes**, **claims recorded in local receipts and archive manifests**, and **unverified upstream provenance**. This does **not** connect to the Internet, independently confirm repository ownership, certify Git commit/blob provenance, inspect licenses or attest that Skill instructions/dependencies are safe.

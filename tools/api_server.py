@@ -15,6 +15,7 @@ if str(TOOLS_DIR) not in sys.path:
     sys.path.insert(0, str(TOOLS_DIR))
 
 from gasl_service import domains, health, route, search, skill_content, skill_details
+from skill_compare import compare_skills
 
 MAX_BODY_BYTES = 64 * 1024
 
@@ -151,7 +152,7 @@ def make_handler(root=ROOT, api_token=None):
                     extra_headers={"WWW-Authenticate": "Bearer"},
                 )
                 return
-            if path != "/v1/route":
+            if path not in ("/v1/route", "/v1/compare"):
                 self._json_error(404, "Endpoint not found.")
                 return
             try:
@@ -166,6 +167,9 @@ def make_handler(root=ROOT, api_token=None):
                 body = json.loads(self.rfile.read(length).decode("utf-8"))
                 if not isinstance(body, dict):
                     raise ValueError("JSON request body must be an object.")
+                if path == "/v1/compare":
+                    self._send(200, compare_skills(body.get("ids"), root=root))
+                    return
                 task = body.get("task")
                 if not isinstance(task, str) or not task.strip() or len(task) > 2000:
                     raise ValueError("'task' must be a non-empty string of at most 2000 characters.")
@@ -190,6 +194,8 @@ def make_handler(root=ROOT, api_token=None):
                 self._json_error(400, "Request body must be valid UTF-8 JSON.")
             except ValueError as exc:
                 self._json_error(400, str(exc))
+            except KeyError as exc:
+                self._json_error(404, str(exc))
 
     return Handler
 
@@ -208,7 +214,7 @@ def main():
         parser.error("GASL_API_TOKEN must be set before binding the API to a non-localhost interface.")
     server = create_server(args.host, args.port)
     print("GASL Explorer/API: http://{}:{}/".format(args.host, server.server_address[1]), flush=True)
-    print("REST API: /v1/search, /v1/route, /v1/skills/{id}, /v1/skills/{id}/content", flush=True)
+    print("REST API: /v1/search, /v1/route, /v1/compare, /v1/skills/{id}, /v1/skills/{id}/content", flush=True)
     server.serve_forever()
 
 

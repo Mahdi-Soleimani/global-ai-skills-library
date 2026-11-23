@@ -53,6 +53,21 @@
     #count { color: var(--muted); font-size: 13px; }
     .results { display: grid; gap: 10px; }
     .result { padding: 15px; }
+    .steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+    .steps li { border: 1px solid var(--line); border-radius: 100px; padding: 3px 12px; color: var(--muted); font-size: 12px; }
+    .compare-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .compare-choice { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; font-size: 13px; }
+    .compare-choice input { accent-color: var(--accent); width: 18px; height: 18px; }
+    .compare-section { margin-top: 18px; }
+    .compare-scroll { max-width: 100%; overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: collapse; min-width: 570px; font-size: 13px; }
+    .compare-table th, .compare-table td { padding: 10px; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; overflow-wrap: anywhere; }
+    .compare-table th { color: var(--muted); }
+    .compare-table td.changed { background: var(--panel2); }
+    .compare-table button { font-size: 12px; }
+    .selection { margin-top: 16px; }
+    .selection code { display: block; direction: ltr; text-align: left; overflow-wrap: anywhere; background: #090e16; border-radius: 8px; padding: 12px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     .result-top { display: flex; gap: 12px; justify-content: space-between; align-items: start; }
     .result h3 { font-size: 16px; margin: 0 0 2px; overflow-wrap: anywhere; }
     .repo { color: var(--muted); direction: ltr; text-align: right; font-size: 12px; }
@@ -90,7 +105,10 @@
     <header>
       <div class="eyebrow">GLOBAL AI SKILLS LIBRARY</div>
       <h1>GASL Explorer</h1>
-      <p class="sub">جست‌وجو، بررسی منشأ و دریافت انتخابی دستورالعمل‌های Agent</p>
+      <p class="sub">نیاز را بنویسید، گزینه‌ها را مقایسه کنید و Skill مناسب را برای بررسی انتخاب کنید.</p>
+      <ol class="steps" aria-label="مراحل انتخاب اسکیل">
+        <li>۱. توصیف نیاز</li><li>۲. مقایسه شواهد</li><li>۳. انتخاب و بررسی</li>
+      </ol>
     </header>
 
     <section class="panel" aria-label="جست‌وجوی اسکیل‌ها">
@@ -98,9 +116,16 @@
         <div class="search-row">
           <input id="query" name="q" type="search" required maxlength="1000"
             placeholder="مثلاً: بررسی امنیتی APIهای پایتون و پیدا کردن آسیب‌پذیری‌ها">
-          <button id="searchButton" class="primary" type="submit">جست‌وجو</button>
+          <button id="recommendButton" class="primary" type="button">پیشنهاد برای نیاز</button>
+          <button id="searchButton" type="submit">جست‌وجوی گسترده</button>
         </div>
         <div class="filters">
+          <select id="agent" aria-label="Agent موردنظر برای پیشنهاد و پیش‌نمایش">
+            <option value="">همه Agentها</option>
+            <option value="codex">Codex</option>
+            <option value="cursor">Cursor</option>
+            <option value="claude-code">Claude Code</option>
+          </select>
           <select id="domain" aria-label="حوزه تخصصی">
             <option value="">همه حوزه‌ها</option>
           </select>
@@ -120,11 +145,30 @@
     </section>
 
     <div class="section-head">
-      <h2>نتایج جست‌وجو</h2>
+      <h2>Skillهای مرتبط</h2>
       <span id="count">هنوز جست‌وجویی انجام نشده است</span>
+    </div>
+    <div id="recommendationNotice" class="status" role="status" aria-live="polite">
+      رتبه‌بندی مبتنی بر پوشش واژه‌ها و شواهد کاتالوگ است؛ تضمین کیفیت یا امنیت نیست.
     </div>
     <section id="results" class="results" aria-live="polite">
       <div class="empty">نیاز خود را توصیف کنید تا اسکیل‌های مرتبط پیدا شوند.</div>
+    </section>
+
+    <section id="comparePanel" class="panel compare-section" hidden aria-label="مقایسه Skillها">
+      <div class="compare-bar">
+        <div>
+          <strong>مقایسه انتخاب‌ها</strong>
+          <div id="compareStatus" class="status" aria-live="polite">برای مقایسه، ۲ یا ۳ Skill انتخاب کنید.</div>
+        </div>
+        <button id="compareButton" class="primary" type="button" disabled>مقایسه (۰/۳)</button>
+      </div>
+      <div id="compareBody"></div>
+    </section>
+
+    <section id="selectionPanel" class="panel selection" hidden aria-live="polite">
+      <h2>گزینه انتخاب‌شده برای بررسی</h2>
+      <div id="selectionBody"></div>
     </section>
 
     <section id="detail" class="detail" aria-live="polite">
@@ -136,7 +180,7 @@
     </section>
 
     <footer>
-      GASL فقط کشف و دریافت محتوا را انجام می‌دهد. هیچ اسکیلی نصب یا اجرا نمی‌شود.
+      این صفحه فقط جست‌وجو، مقایسه شواهد و انتخاب برای بررسی را انجام می‌دهد. هیچ اسکیلی نصب یا اجرا نمی‌شود.
       محتوای شخص ثالث ورودی غیرقابل‌اعتماد محسوب می‌شود و باید پیش از استفاده بررسی شود.
     </footer>
   </main>
@@ -144,6 +188,9 @@
   <script>
     const $ = (id) => document.getElementById(id);
     let apiToken = "";
+    let searchRevision = 0;
+    let compareRevision = 0;
+    const selectedSkills = new Map();
     const headers = () => apiToken ? { Authorization: "Bearer " + apiToken } : {};
 
     function el(tag, className, text) {
@@ -196,6 +243,66 @@
       }
     }
 
+    function setBusy(busy) {
+      $("recommendButton").disabled = busy;
+      $("searchButton").disabled = busy;
+      $("recommendButton").textContent = busy ? "در حال بررسی…" : "پیشنهاد برای نیاز";
+      $("searchButton").textContent = busy ? "در حال بررسی…" : "جست‌وجوی گسترده";
+    }
+
+    function resetComparison() {
+      compareRevision++;
+      selectedSkills.clear();
+      $("compareBody").replaceChildren();
+      $("selectionBody").replaceChildren();
+      $("selectionPanel").hidden = true;
+      $("comparePanel").hidden = true;
+      updateCompareButton();
+    }
+
+    function updateCompareButton() {
+      const count = selectedSkills.size;
+      $("compareButton").textContent = "مقایسه (" + count + "/۳)";
+      $("compareButton").disabled = count < 2 || count > 3;
+      $("compareStatus").textContent = count < 2 ?
+        "برای مقایسه حداقل ۲ و حداکثر ۳ Skill انتخاب کنید." :
+        count + " گزینه انتخاب شد؛ مقایسه صرفاً بر اساس شواهد ثبت‌شده است.";
+    }
+
+    function chooseForComparison(item, checkbox) {
+      const id = item.source_record_id;
+      if (!id) { checkbox.checked = false; return; }
+      if (checkbox.checked && selectedSkills.size >= 3 && !selectedSkills.has(id)) {
+        checkbox.checked = false;
+        $("compareStatus").textContent = "حداکثر ۳ Skill قابل مقایسه است؛ ابتدا یک انتخاب را بردارید.";
+        return;
+      }
+      if (checkbox.checked) selectedSkills.set(id, item);
+      else selectedSkills.delete(id);
+      compareRevision++;
+      $("compareBody").replaceChildren();
+      $("selectionPanel").hidden = true;
+      $("selectionBody").replaceChildren();
+      updateCompareButton();
+    }
+
+    function showCandidateList(items, label, warning) {
+      $("count").textContent = label;
+      $("recommendationNotice").textContent = warning;
+      const cards = items.map(renderResult);
+      $("results").replaceChildren(...(cards.length ? cards :
+        [el("div", "empty", "مورد مرتبطی در نتایج بازیابی‌شده پیدا نشد؛ عبارت یا فیلترها را تغییر دهید.")]));
+      $("comparePanel").hidden = cards.length === 0;
+      updateCompareButton();
+    }
+
+    function safeSourceLink(url) {
+      try {
+        const parsed = new URL(url);
+        return parsed.protocol === "https:" && parsed.hostname === "github.com" ? parsed.href : null;
+      } catch (_) { return null; }
+    }
+
     function renderResult(item) {
       const card = el("article", "result");
       const top = el("div", "result-top");
@@ -216,19 +323,32 @@
       card.append(meta);
 
       const actions = el("div", "actions");
+      const label = el("label", "compare-choice");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.setAttribute("aria-label", "انتخاب " + (item.skill_name || item.source_record_id) + " برای مقایسه");
+      checkbox.addEventListener("change", () => chooseForComparison(item, checkbox));
+      label.append(checkbox, el("span", "", "افزودن به مقایسه"));
+      actions.append(label);
       const details = el("button", "", "جزئیات و شواهد");
       details.type = "button";
       details.addEventListener("click", () => showDetails(item.source_record_id));
       actions.append(details);
+
+      const chooseDirectly = el("button", "", "انتخاب برای بررسی");
+      chooseDirectly.type = "button";
+      chooseDirectly.addEventListener("click", () => showSelection(item));
+      actions.append(chooseDirectly);
 
       const content = el("button", "", "دریافت SKILL.md");
       content.type = "button";
       content.addEventListener("click", () => showContent(item.source_record_id));
       actions.append(content);
 
-      if (item.source_url) {
+      const trustedSource = safeSourceLink(item.source_url);
+      if (trustedSource) {
         const source = el("a", "", "مشاهده منبع");
-        source.href = item.source_url;
+        source.href = trustedSource;
         source.target = "_blank";
         source.rel = "noopener noreferrer";
         actions.append(source);
@@ -237,31 +357,206 @@
       return card;
     }
 
+    function beginLookup() {
+      const query = $("query").value.trim();
+      if (!query) {
+        $("query").focus();
+        return null;
+      }
+      const request = ++searchRevision;
+      resetComparison();
+      $("detail").style.display = "none";
+      setBusy(true);
+      $("results").replaceChildren(el("div", "empty", "در حال پیدا کردن گزینه‌های مرتبط…"));
+      return { query, request };
+    }
+
     async function runSearch(event) {
       if (event) event.preventDefault();
-      const query = $("query").value.trim();
-      if (!query) return;
-      $("searchButton").disabled = true;
-      $("searchButton").textContent = "در حال جست‌وجو…";
-      $("results").replaceChildren(el("div", "empty", "در حال جست‌وجو…"));
+      const context = beginLookup();
+      if (!context) return;
       try {
         const params = new URLSearchParams({
-          q: query,
+          q: context.query,
           limit: $("limit").value,
           public_only: String($("publicOnly").checked),
           content_only: String($("contentOnly").checked)
         });
         if ($("domain").value) params.set("domain", $("domain").value);
         const data = await api("/v1/search?" + params.toString());
-        $("count").textContent = data.count + " نتیجه | " + data.search_mode;
-        const cards = (data.results || []).map(renderResult);
-        $("results").replaceChildren(...(cards.length ? cards : [el("div", "empty", "نتیجه‌ای پیدا نشد.")]));
+        if (context.request !== searchRevision) return;
+        showCandidateList(data.results || [], data.count + " نتیجه جست‌وجو",
+          "جست‌وجوی واژگانی است. رتبه نتایج نشان‌دهنده کیفیت یا امنیت Skill نیست؛ برای انتخاب دو یا سه مورد را مقایسه کنید.");
       } catch (error) {
-        showError(error.message);
+        if (context.request === searchRevision) showError(error.message);
       } finally {
-        $("searchButton").disabled = false;
-        $("searchButton").textContent = "جست‌وجو";
+        if (context.request === searchRevision) setBusy(false);
       }
+    }
+
+    async function runRecommendations() {
+      const context = beginLookup();
+      if (!context) return;
+      try {
+        const body = {
+          task: context.query,
+          top_k: Math.min(20, Number($("limit").value)),
+          agent: $("agent").value || null,
+          domain: $("domain").value || null,
+          public_only: $("publicOnly").checked,
+          content_only: $("contentOnly").checked
+        };
+        const data = await api("/v1/route", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        if (context.request !== searchRevision) return;
+        const answer = data.routing_decision;
+        const warning = answer === "abstain" ?
+          "شواهد بازیابی‌شده برای پیشنهاد مطمئن کافی نیست؛ گزینه‌های زیر فقط برای بررسی هستند." :
+          answer === "recommend" ?
+          "این پیشنهاد آزمایشی بر اساس پوشش نیاز شماست، نه تأیید کیفیت یا امنیت. قبل از استفاده، گزینه‌ها را مقایسه کنید." :
+          "ارتباط گزینه‌ها قطعی نیست؛ توضیحات، سازگاری و مجوز را پیش از انتخاب مقایسه کنید.";
+        showCandidateList(data.results || [], data.returned_count + " گزینه | وضعیت: " + answer, warning);
+      } catch (error) {
+        if (context.request === searchRevision) showError(error.message);
+      } finally {
+        if (context.request === searchRevision) setBusy(false);
+      }
+    }
+
+    function comparisonCell(item, key) {
+      const value = item[key];
+      if (value === null || value === undefined || value === "") return "نامشخص";
+      if (Array.isArray(value)) {
+        return value.map(x => x.label || x.id || String(x)).join("، ") || "اعلام نشده";
+      }
+      return String(value);
+    }
+
+    function renderComparison(data) {
+      const container = el("div", "compare-scroll");
+      const table = el("table", "compare-table");
+      const head = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      const firstHead = el("th", "", "معیار");
+      firstHead.scope = "col";
+      headRow.append(firstHead);
+      for (const item of data.items) {
+        const th = el("th", "", item.skill_name || item.source_record_id);
+        th.scope = "col";
+        headRow.append(th);
+      }
+      head.append(headRow);
+      table.append(head);
+      const body = document.createElement("tbody");
+      const fields = [
+        ["توضیح و کاربرد", "description"],
+        ["مخزن", "repository"],
+        ["مجوز ثبت‌شده", "license_spdx"],
+        ["ارزیابی مجوز", "license_assessment"],
+        ["وضعیت بررسی امنیت", "security_status"],
+        ["سازگاری اعلام‌شده", "compatibility"],
+        ["دسترسی به محتوا", "content_status"],
+        ["Commit ثبت‌شده", "commit_sha"]
+      ];
+      for (const [label, key] of fields) {
+        const tr = document.createElement("tr");
+        const th = el("th", "", label);
+        th.scope = "row";
+        tr.append(th);
+        for (const item of data.items) {
+          const td = el("td", (data.different_fields || []).includes(key) ? "changed" : "",
+            comparisonCell(item, key));
+          tr.append(td);
+        }
+        body.append(tr);
+      }
+      const chooseRow = document.createElement("tr");
+      const chooser = el("th", "", "انتخاب");
+      chooser.scope = "row";
+      chooseRow.append(chooser);
+      for (const item of data.items) {
+        const cell = document.createElement("td");
+        const btn = el("button", "primary", "بررسی این گزینه");
+        btn.type = "button";
+        btn.addEventListener("click", () => showSelection(item));
+        cell.append(btn);
+        chooseRow.append(cell);
+      }
+      body.append(chooseRow);
+      table.append(body);
+      container.append(table);
+      $("compareBody").replaceChildren(
+        el("p", "status warn",
+          "تفاوت‌ها در اطلاعات ثبت‌شده برجسته شده‌اند؛ این جدول برنده قطعی یا Skill امن را تعیین نمی‌کند."),
+        container
+      );
+    }
+
+    async function compareSelected() {
+      const ids = [...selectedSkills.keys()];
+      if (ids.length < 2 || ids.length > 3) return;
+      const revision = ++compareRevision;
+      $("compareButton").disabled = true;
+      $("compareStatus").textContent = "در حال مقایسه شواهد…";
+      try {
+        const data = await api("/v1/compare", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ids })
+        });
+        if (revision !== compareRevision) return;
+        if (data.source_record_ids.join("|") !== ids.join("|")) {
+          throw new Error("نتیجه مقایسه با گزینه‌های انتخاب‌شده مطابقت ندارد.");
+        }
+        renderComparison(data);
+        $("compareStatus").textContent = data.count + " گزینه با اطلاعات کاتالوگ مقایسه شدند.";
+        $("comparePanel").scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (error) {
+        if (revision === compareRevision) {
+          $("compareStatus").textContent = "مقایسه انجام نشد: " + error.message;
+        }
+      } finally {
+        if (revision === compareRevision) $("compareButton").disabled = false;
+      }
+    }
+
+    function showSelection(item) {
+      const panel = $("selectionPanel");
+      const id = item.source_record_id;
+      const agent = $("agent").value || "codex";
+      const command = "./gasl install-plan --id " + id + " --agent " + agent + " --scope project";
+      const title = el("h3", "", item.skill_name || id);
+      const source = el("p", "desc", "مخزن: " + (item.repository || "نامشخص"));
+      const warning = el("p", "status warn",
+        "این فقط انتخاب برای بررسی است. فرمان زیر صرفاً پیش‌نمایش نصب را می‌سازد؛ نصب، اجرا یا تأیید امنیت انجام نمی‌دهد.");
+      const instructions = el("p", "desc", "مرحله بعد: منبع و دستورالعمل Skill را بررسی کنید، سپس در صورت تمایل این فرمان را در پوشه GASL اجرا کنید.");
+      const code = el("code", "", command);
+      const actions = el("div", "actions");
+      const detail = el("button", "", "مشاهده شواهد");
+      detail.type = "button";
+      detail.addEventListener("click", () => showDetails(id));
+      actions.append(detail);
+      const copy = el("button", "", "کپی فرمان پیش‌نمایش");
+      copy.type = "button";
+      copy.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(command); copy.textContent = "کپی شد"; }
+        catch (_) { copy.textContent = "کپی در این مرورگر ممکن نیست"; }
+      });
+      actions.append(copy);
+      const url = safeSourceLink(item.source_url);
+      if (url) {
+        const link = el("a", "", "منبع GitHub");
+        link.href = url;
+        link.rel = "noopener noreferrer";
+        link.target = "_blank";
+        actions.append(link);
+      }
+      $("selectionBody").replaceChildren(title, source, warning, instructions, code, actions);
+      panel.hidden = false;
+      panel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     async function showDetails(id) {
@@ -321,6 +616,8 @@
     }
 
     $("searchForm").addEventListener("submit", runSearch);
+    $("recommendButton").addEventListener("click", runRecommendations);
+    $("compareButton").addEventListener("click", compareSelected);
     $("closeDetail").addEventListener("click", () => { $("detail").style.display = "none"; });
     $("apiToken").addEventListener("input", (event) => { apiToken = event.target.value; });
     loadStatus();

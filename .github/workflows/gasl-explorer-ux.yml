@@ -1,0 +1,56 @@
+name: GASL — Explorer choose-and-compare UX
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - web/index.html
+      - tools/api_server.py
+      - tools/skill_compare.py
+      - tools/gasl_service.py
+      - tools/skill_router.py
+      - tests/test_skill_compare.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-explorer-ux.yml
+  pull_request:
+    paths:
+      - web/index.html
+      - tools/api_server.py
+      - tools/skill_compare.py
+      - tools/gasl_service.py
+      - tools/skill_router.py
+      - tests/test_skill_compare.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-explorer-ux.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  explorer-flow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate Python and browser script syntax
+        run: |
+          python3 -m compileall -q tools tests
+          node --check tests/explorer_workflow_smoke.js
+
+      - name: Verify recommendation, comparison and API permissions
+        run: python3 -m unittest tests.test_skill_compare tests.test_api_server tests.test_gasl_service -q
+
+      - name: Exercise need to compare to selection browser flow
+        run: node tests/explorer_workflow_smoke.js
+
+      - name: Verify whitespace and clean source
+        run: git diff --check
