@@ -16,7 +16,9 @@ import tempfile
 import time
 from pathlib import Path
 
-from codex_discovery_probe import _minimal_environment, _read_protocol_message, _request
+from codex_discovery_probe import (
+    _minimal_environment, _read_protocol_message, _request, _protocol_selector,
+)
 from queue_ingest import git_blob
 
 SCHEMA = 'gasl-codex-third-party-discovery-only-v1'
@@ -72,6 +74,8 @@ def _skill_matches(response, project, skill_name):
 
 def _query_codex(binary, root, project, skill_name, skill_file, *, timeout=25,
                  popen=subprocess.Popen):
+    if os.name == "nt" and popen is subprocess.Popen:
+        raise ValueError("Windows live Host probe not yet verified")
     process = None
     try:
         environment = _minimal_environment(root)
@@ -80,7 +84,7 @@ def _query_codex(binary, root, project, skill_name, skill_file, *, timeout=25,
         process = popen([str(binary), 'app-server'], cwd=str(project), env=environment,
                         stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                         stderr=subprocess.DEVNULL, text=False, bufsize=0)
-        with selectors.DefaultSelector() as selector:
+        with _protocol_selector() as selector:
             selector.register(process.stdout, selectors.EVENT_READ)
             buffered = [b'']
             deadline = time.monotonic() + min(max(float(timeout), 1), 45)
@@ -144,11 +148,15 @@ def verify_third_party_codex_discovery(binary, skill_file, *, source_record_id,
         'real_home_or_codex_profile_accessed': False,
         'real_host_files_modified': False,
         'production_installation_enabled': False,
+        'injected_test_transport': query is not _query_codex or popen is not subprocess.Popen,
     }
     binary = Path(binary)
     source = Path(skill_file)
     if not binary.is_absolute() or binary.is_symlink() or not binary.is_file():
         result['reason_code'] = 'absolute_regular_codex_executable_required'
+        return result
+    if os.name == 'nt' and query is _query_codex and popen is subprocess.Popen:
+        result['reason_code'] = 'windows_live_host_probe_not_yet_verified'
         return result
     if (not SOURCE_ID_RE.fullmatch(str(source_record_id))
             or not SKILL_NAME_RE.fullmatch(str(skill_name))

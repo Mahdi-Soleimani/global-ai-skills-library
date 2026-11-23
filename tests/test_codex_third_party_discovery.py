@@ -13,6 +13,7 @@ from codex_third_party_discovery import (
     approval_phrase, verify_third_party_codex_discovery,
 )
 from queue_ingest import git_blob
+from tests.test_codex_discovery_probe import _fixture_popen
 
 SKILL = (
     b'---\nname: python-mcp-server-generator\n'
@@ -72,12 +73,13 @@ else:
         return verify_third_party_codex_discovery(
             self.fake_host(mode), skill_file or self.skill_file,
             source_record_id=SOURCE_ID, skill_name=SKILL_NAME,
-            expected_git_blob=expected_blob)
+            expected_git_blob=expected_blob, popen=_fixture_popen)
 
     def test_exact_pinned_skill_is_discovered_and_removed_from_disposable_home(self):
         result = self.run_probe()
         self.assertEqual(result['status'],
                          'verified_temporary_third_party_codex_discovery_and_rollback')
+        self.assertTrue(result['injected_test_transport'])
         self.assertTrue(result['source_git_blob_verified'])
         self.assertTrue(result['absent_before_install'])
         self.assertTrue(result['third_party_skill_temporarily_installed'])
@@ -131,11 +133,25 @@ else:
             skill_name=SKILL_NAME, expected_git_blob=BLOB)
         self.assertEqual(result['reason_code'], 'absolute_regular_codex_executable_required')
         link = self.root / 'codex-link'
-        link.symlink_to(self.fake_host())
+        try:
+            link.symlink_to(self.fake_host())
+        except OSError as exc:
+            if os.name == 'nt' and getattr(exc, 'winerror', None) == 1314:
+                self.skipTest('Windows runner cannot create a disposable symbolic link')
+            raise
         result = verify_third_party_codex_discovery(
             link, self.skill_file, source_record_id=SOURCE_ID,
             skill_name=SKILL_NAME, expected_git_blob=BLOB)
         self.assertEqual(result['reason_code'], 'absolute_regular_codex_executable_required')
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows live Host gate')
+    def test_default_vendor_transport_remains_gated_before_source_copy(self):
+        result = verify_third_party_codex_discovery(
+            self.fake_host(), self.skill_file, source_record_id=SOURCE_ID,
+            skill_name=SKILL_NAME, expected_git_blob=BLOB)
+        self.assertEqual(result['reason_code'], 'windows_live_host_probe_not_yet_verified')
+        self.assertFalse(result['injected_test_transport'])
+        self.assertFalse(result['third_party_skill_temporarily_installed'])
 
     def test_approval_phrase_is_bound_to_source_skill_and_blob(self):
         phrase = approval_phrase(SOURCE_ID, SKILL_NAME, BLOB)

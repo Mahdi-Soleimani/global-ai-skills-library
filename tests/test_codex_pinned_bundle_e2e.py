@@ -1,5 +1,6 @@
 """Phase 39: synthetic full pinned ZIP transaction and Host discovery regressions."""
 import json
+import os
 import stat
 import sys
 import tempfile
@@ -70,6 +71,7 @@ class PinnedCodexBundleTests(unittest.TestCase):
         result = self.verify(query)
         self.assertEqual(result['status'],
                          'real_codex_pinned_full_bundle_discovery_and_rollback_verified')
+        self.assertTrue(result['injected_test_query'])
         self.assertEqual(calls, [False, True, False])
         self.assertEqual(result['file_count'], 2)
         for flag in ('pinned_package_and_format_checked', 'target_preflight_state_bound',
@@ -98,9 +100,23 @@ class PinnedCodexBundleTests(unittest.TestCase):
         self.assertEqual(self.verify(binary=Path(self.tmp.name)/'missing')['reason_code'],
                          'absolute_regular_codex_executable_required')
         link = Path(self.tmp.name)/'link'
-        link.symlink_to(self.binary)
+        try:
+            link.symlink_to(self.binary)
+        except OSError as exc:
+            if os.name == 'nt' and getattr(exc, 'winerror', None) == 1314:
+                self.skipTest('Windows runner cannot create a disposable symbolic link')
+            raise
         self.assertEqual(self.verify(binary=link)['reason_code'],
                          'absolute_regular_codex_executable_required')
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows live Host gate')
+    def test_default_vendor_query_is_blocked_before_staging(self):
+        result = verify_pinned_bundle_lifecycle(
+            self.binary, self.bundle['plan_id'], ACKNOWLEDGEMENT,
+            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        self.assertEqual(result['reason_code'], 'windows_live_host_probe_not_yet_verified')
+        self.assertFalse(result['injected_test_query'])
+        self.assertFalse(result['full_pinned_zip_temporarily_staged_and_activated'])
 
     def test_preexisting_or_disabled_or_wrong_path_never_succeeds(self):
         for mode in ('preexisting', 'always_absent', 'disabled', 'wrong_path'):

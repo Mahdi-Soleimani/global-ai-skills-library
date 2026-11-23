@@ -17,7 +17,7 @@ from pathlib import Path
 
 from codex_discovery_probe import (
     SKILL_BODY, SKILL_NAME, _extract_exact_skill, _minimal_environment,
-    _read_protocol_message, _request,
+    _read_protocol_message, _request, _protocol_selector,
 )
 from fixture_transaction_v2 import (
     enact_fixture_transaction, preview_fixture_consent, recover_fixture_transaction,
@@ -66,6 +66,8 @@ def _host_skills_list(binary, root, scope='project', *, timeout=25, popen=subpro
     """Ask real Codex app-server only `initialize` and `skills/list` in isolated HOME."""
     if scope not in ('project', 'user'):
         raise ValueError('Unsupported isolated Codex scope')
+    if os.name == "nt" and popen is subprocess.Popen:
+        raise ValueError("Windows live Host probe not yet verified")
     project = root / 'workspace'
     expected = (project / '.agents' / 'skills' if scope == 'project'
                 else root / 'home' / '.agents' / 'skills') / SKILL_NAME / 'SKILL.md'
@@ -77,7 +79,7 @@ def _host_skills_list(binary, root, scope='project', *, timeout=25, popen=subpro
                         env=environment, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                         text=False, bufsize=0)
-        with selectors.DefaultSelector() as selector:
+        with _protocol_selector() as selector:
             selector.register(process.stdout, selectors.EVENT_READ)
             buffered = [b'']
             deadline = time.monotonic() + min(max(float(timeout), 1), 45)
@@ -139,6 +141,7 @@ def verify_full_codex_lifecycle(binary, *, query=_host_skills_list, scope='proje
         'production_installation_enabled': False,
         'one_time_fixture_receipt_consumed': False,
         'human_confirmation_verified': False,
+        'injected_test_query': query is not _host_skills_list,
     }
     if scope not in ('project', 'user'):
         result['reason_code'] = 'unsupported_codex_scope'
@@ -146,6 +149,9 @@ def verify_full_codex_lifecycle(binary, *, query=_host_skills_list, scope='proje
     binary = Path(binary)
     if not binary.is_absolute() or binary.is_symlink() or not binary.is_file():
         result['reason_code'] = 'absolute_regular_codex_executable_required'
+        return result
+    if os.name == 'nt' and query is _host_skills_list:
+        result['reason_code'] = 'windows_live_host_probe_not_yet_verified'
         return result
     with _new_root()[0] as fixture_string:
         root = Path(fixture_string)

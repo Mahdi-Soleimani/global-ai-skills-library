@@ -4,6 +4,8 @@ A fake Codex Host here only validates the protocol implementation. Real vendor
 proof must come from the separate pinned-CLI GitHub Actions run.
 """
 import json
+import os
+from functools import partial
 import stat
 import sys
 import tempfile
@@ -12,10 +14,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from codex_transaction_e2e import _synthetic_inert_bundle, verify_full_codex_lifecycle
+from codex_transaction_e2e import (
+    _synthetic_inert_bundle, _host_skills_list, verify_full_codex_lifecycle as _verify_full_codex_lifecycle,
+)
+from tests.test_codex_discovery_probe import _fixture_popen
 from fixture_transaction_v2 import preview_fixture_consent
 from host_transaction_fixture import _new_root
 from codex_discovery_probe import SKILL_NAME, SKILL_BODY
+
+
+def verify_full_codex_lifecycle(binary, **kwargs):
+    return _verify_full_codex_lifecycle(
+        binary, query=partial(_host_skills_list, popen=_fixture_popen), **kwargs)
 
 
 class CodexFixtureTransactionEndToEndTests(unittest.TestCase):
@@ -29,8 +39,8 @@ class CodexFixtureTransactionEndToEndTests(unittest.TestCase):
 import json,os,sys
 assert sys.argv[1:] == ['app-server']
 assert 'OPENAI_API_KEY' not in os.environ and 'GITHUB_TOKEN' not in os.environ
-assert os.environ['HOME'].startswith(os.environ['TMPDIR'].rsplit('/',1)[0])
-assert os.environ['CODEX_HOME'].startswith(os.environ['HOME'].rsplit('/',1)[0])
+assert os.path.dirname(os.environ['HOME']) == os.path.dirname(os.environ['TMPDIR'])
+assert os.path.dirname(os.environ['CODEX_HOME']) == os.path.dirname(os.environ['HOME'])
 first=json.loads(sys.stdin.readline())
 assert first['method']=='initialize'
 print(json.dumps({'id':0,'result':{'userAgent':'GASL test Host'}}),flush=True)
@@ -71,6 +81,7 @@ sys.stdin.read()
     def test_full_filesystem_sensitive_lifecycle_with_synthetic_host(self):
         result=verify_full_codex_lifecycle(self.fake_host())
         self.assertEqual(result['status'],'real_codex_inert_install_discovery_rollback_verified')
+        self.assertTrue(result['injected_test_query'])
         self.assertTrue(result['absent_before_install'])
         self.assertTrue(result['inert_skill_discovered_after_install'])
         self.assertTrue(result['absent_after_rollback'])
@@ -150,9 +161,21 @@ sys.stdin.read()
                          'absolute_regular_codex_executable_required')
         binary=self.fake_host()
         link=binary.parent/'linked-host'
-        link.symlink_to(binary)
+        try:
+            link.symlink_to(binary)
+        except OSError as exc:
+            if os.name == 'nt' and getattr(exc, 'winerror', None) == 1314:
+                self.skipTest('Windows runner cannot create a disposable symbolic link')
+            raise
         self.assertEqual(verify_full_codex_lifecycle(link)['reason_code'],
                          'absolute_regular_codex_executable_required')
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows live Host gate')
+    def test_default_vendor_query_remains_gated(self):
+        result = _verify_full_codex_lifecycle(self.fake_host())
+        self.assertEqual(result['reason_code'], 'windows_live_host_probe_not_yet_verified')
+        self.assertFalse(result['injected_test_query'])
+        self.assertFalse(result['absent_before_install'])
 
     def test_synthetic_zip_validates_v28_exact_fixture_target_binding(self):
         temp,root=_new_root()

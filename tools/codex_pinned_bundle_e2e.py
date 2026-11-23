@@ -7,6 +7,7 @@ installer, even if the selected ZIP contains genuine third-party content.
 """
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 
@@ -53,6 +54,7 @@ def verify_pinned_bundle_lifecycle(codex_binary, plan_id, acknowledgement, *,
         'model_turn_started': False,
         'authentication_performed': False,
         'production_installation_enabled': False,
+        'injected_test_query': query is not _query_codex,
     }
     binary = Path(codex_binary)
     if not binary.is_absolute() or binary.is_symlink() or not binary.is_file():
@@ -60,6 +62,10 @@ def verify_pinned_bundle_lifecycle(codex_binary, plan_id, acknowledgement, *,
         return result
     if not HEX64.fullmatch(str(plan_id)) or acknowledgement != ACKNOWLEDGEMENT:
         result['reason_code'] = 'exact_disposable_bundle_acknowledgement_required'
+        return result
+
+    if os.name == 'nt' and query is _query_codex:
+        result['reason_code'] = 'windows_live_host_probe_not_yet_verified'
         return result
 
     # No fixture or Host process exists until the source, bundle and content
