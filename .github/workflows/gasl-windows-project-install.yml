@@ -75,6 +75,21 @@ jobs:
           python -m unittest tests.test_windows_project_transactions -v
           if ($LASTEXITCODE -ne 0) { throw 'Windows transaction safety test failed' }
 
+      - name: Diagnose hosted runner profile ancestor ACL principals
+        shell: pwsh
+        run: |
+          $current = Get-Item -LiteralPath $env:USERPROFILE
+          $level = 0
+          while ($true) {
+            $acl = Get-Acl -LiteralPath $current.FullName
+            foreach ($ace in $acl.Access) {
+              Write-Host ("PROFILE_ACL|level={0}|path_leaf={1}|principal={2}|rights={3}|type={4}|inherited={5}|inheritance={6}|propagation={7}" -f $level, $current.Name, $ace.IdentityReference.Value, $ace.FileSystemRights, $ace.AccessControlType, $ace.IsInherited, $ace.InheritanceFlags, $ace.PropagationFlags)
+            }
+            if ($current.Parent -eq $null) { break }
+            $current = $current.Parent
+            $level++
+          }
+
       - name: Native Windows current-user SID, profile and NTFS ACL tests
         shell: pwsh
         run: |
