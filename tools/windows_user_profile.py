@@ -43,11 +43,13 @@ _WRITE_MASK = (
     0x10000000 |  # GENERIC_ALL
     0x40000000    # GENERIC_WRITE
 )
-_TRUSTED_NON_USER_WRITERS = frozenset((
+_TRUSTED_OS_OWNERS = frozenset((
     "S-1-5-18",  # LocalSystem
-    "S-1-5-32-544",  # BUILTIN\Administrators
-    "S-1-3-0",  # CREATOR OWNER (inherited child owner)
+    "S-1-5-32-544",  # BUILTIN\\Administrators
     "S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464",  # TrustedInstaller
+))
+_TRUSTED_NON_USER_WRITERS = _TRUSTED_OS_OWNERS | frozenset((
+    "S-1-3-0",  # CREATOR OWNER (inherited child owner)
 ))
 
 

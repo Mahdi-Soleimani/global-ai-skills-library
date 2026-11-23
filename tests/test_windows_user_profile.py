@@ -29,7 +29,7 @@ class WindowsUserProfileSecurityTests(unittest.TestCase):
                          os.path.normcase(str(Path.home().resolve(strict=True))))
         self.assertEqual(os.path.normcase(str(self.home)),
                          os.path.normcase(str(Path(os.environ["USERPROFILE"]).resolve(strict=True))))
-        self.assertTrue(self.current["acl"]["owner_sid_matches"])
+        self.assertTrue(self.current["acl"]["owner_sid_accepted"])
         self.assertTrue(self.current["acl"]["dacl_present"])
         self.assertEqual(self.current["acl"]["untrusted_write_aces"], 0)
 
@@ -78,6 +78,26 @@ class WindowsUserProfileSecurityTests(unittest.TestCase):
                     ["icacls", str(root), "/remove:g", "*S-1-1-0"],
                     capture_output=True, text=True,
                 )
+
+    def test_trusted_os_owner_requires_explicit_current_sid_modify_acl(self):
+        with tempfile.TemporaryDirectory(prefix="gasl-home-trusted-owner-") as temp:
+            root = Path(temp)
+            grant = subprocess.run(
+                ["icacls", str(root), "/grant", f"*{self.sid}:(OI)(CI)F"],
+                capture_output=True, text=True,
+            )
+            if grant.returncode:
+                self.skipTest("Runner cannot grant current SID on disposable temp directory")
+            owner = subprocess.run(
+                ["icacls", str(root), "/setowner", "*S-1-5-32-544"],
+                capture_output=True, text=True,
+            )
+            if owner.returncode:
+                self.skipTest("Runner cannot set trusted Administrators owner on disposable temp directory")
+            result = wp.verify_owned_path(root, self.sid, directory=True)
+            self.assertFalse(result["owner_sid_matches"])
+            self.assertTrue(result["owner_sid_accepted"])
+            self.assertTrue(result["current_sid_explicit_write"])
 
     def test_reparse_point_in_profile_path_is_rejected(self):
         with tempfile.TemporaryDirectory(prefix="gasl-home-junction-") as temp:
