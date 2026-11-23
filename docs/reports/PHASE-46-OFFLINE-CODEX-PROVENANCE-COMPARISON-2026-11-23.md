@@ -67,3 +67,16 @@ A historically manually reconciled Skill can pass through several committed rest
 ## Next technical direction
 
 Consider an **optional, independent read-only upstream verification plan** for publisher and Git commit/blob checks. It must remain a separate source-validation workflow and never automatically turn a local receipt claim into trusted publisher identity or grant deployment authorization.
+
+## Verified GitHub publication and final test results
+
+- Feature commit [a19326ccaba6ccb1a8796e67fa9ea72b5289913b](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/a19326ccaba6ccb1a8796e67fa9ea72b5289913b) was pushed normally to main after an exact eight-file allowlist, staged whitespace check, sensitive-pattern scan, and passing macOS tests.
+- **Local focused tests:** 166 PASS across Codex provenance comparison, read-only backup review, legacy reconciliation, backup restore, project install, private bundle and Host format review.
+- **Local full regression:** 592 passed, 236 subtests passed; only the optional MCP-server test module was excluded because the local system Python does not have the optional MCP dependency. Python compilation and both GitHub Actions workflow YAML parse checks passed.
+- [Real Codex App Server Linux E2E — Run 45211336480](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45211336480): **completed / SUCCESS**. The Linux runner verified the read-only provenance evidence for installed, uninstalled-owned, and orphaned legacy Skills, including actual Skill discovery in a disposable project.
+- [Private ZIP / Installer safety — Run 45211336591](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45211336591): **completed / SUCCESS**, including 20 new provenance-specific regressions.
+- [Full Regression / Catalog Refresh — Run 45211336554](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45211336554): **completed / SUCCESS**, with **598 passed** in the dependency-equipped Linux runner, **57 source repositories** and **4,431 source records**.
+- Automated metadata-only commit [0db175f3f228e249a1f79be69191ae5fa90a9bc9](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/0db175f3f228e249a1f79be69191ae5fa90a9bc9) was fetched and fast-forwarded to local main without rewriting history or modifying unrelated code.
+- All actual Skill lifecycle writes in integration tests occurred only in disposable Git projects with isolated HOME / CODEX_HOME. **REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE.** The provenance comparison itself performs no writes and no network requests.
+
+**Acceptance:** Phase 46 is fully implemented and verified on macOS and Linux. These checks establish local evidence comparison, not the authenticity or legal/safety status of upstream Skill publishers. No real-user installation was authorized or performed.
