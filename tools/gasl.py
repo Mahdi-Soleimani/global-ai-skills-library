@@ -492,6 +492,26 @@ def cmd_host_format_review(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_codex_project_install(args):
+    from codex_project_install import preview_install, install_fresh, uninstall, recover
+    if args.action in ('preview', 'install'):
+        if not args.plan_id:
+            raise SystemExit('This action requires --plan-id')
+        if args.action == 'preview':
+            result = preview_install(args.plan_id, args.selected_root, bundle_root=ROOT)
+        else:
+            if not args.state_binding_id:
+                raise SystemExit('Real install requires the exact --state-binding-id from preview')
+            result = install_fresh(args.plan_id, args.selected_root,
+                                   args.state_binding_id, bundle_root=ROOT)
+    else:
+        if not args.skill_name:
+            raise SystemExit('Uninstall/recover requires --skill-name')
+        result = (uninstall(args.skill_name, args.selected_root) if args.action == 'uninstall'
+                  else recover(args.skill_name, args.selected_root))
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -768,6 +788,17 @@ def main():
     host_format.add_argument('--host', required=True, choices=('codex', 'cursor', 'claude-code'))
     host_format.add_argument('--scope', default='user', choices=('user', 'project'))
     host_format.set_defaults(func=cmd_host_format_review)
+
+    codex_project = sub.add_parser('codex-project-install',
+        help='Explicit project-scope Codex Skill install (fresh only), uninstall and recovery; real filesystem writes')
+    codex_project.add_argument('--action', required=True, choices=('preview','install','uninstall','recover'))
+    codex_project.add_argument('--selected-root', type=Path, required=True,
+        help='Existing absolute Git project root, never real user HOME')
+    codex_project.add_argument('--plan-id', help='Exact pinned private ZIP Plan ID for preview/install')
+    codex_project.add_argument('--state-binding-id',
+        help='Exact binding from read-only preview; requires interactive approval before real install')
+    codex_project.add_argument('--skill-name', help='Exact GASL-managed name for uninstall/recover')
+    codex_project.set_defaults(func=cmd_codex_project_install)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)

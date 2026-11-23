@@ -7,8 +7,10 @@ on:
       - .github/workflows/gasl-codex-transaction-e2e.yml
       - tools/codex_transaction_e2e.py
       - tools/codex_pinned_bundle_e2e.py
+      - tools/codex_project_install.py
       - tools/host_format_review.py
       - tests/test_codex_pinned_bundle_e2e.py
+      - tests/test_codex_project_install.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -98,6 +100,61 @@ jobs:
                   f.write('\n## Pinned complete ZIP + Codex lifecycle — PASS\n\n')
                   f.write('An inert, GASL-authored two-file pinned ZIP passed actual Codex discovery and locked fixture rollback in an empty temporary user HOME. No third-party package was executed or installed in a real account.\n')
               print('PINNED_FULL_ZIP_CODEX_REAL_HOST_CI=PASS; THIRD_PARTY_EXECUTED=FALSE')
+          finally:
+              fixture.doCleanups()
+          PY
+
+      - name: Exercise real project installer + Codex discovery in disposable Git repo
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os,sys,tempfile
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          from tests.test_install_bundle import PrivateInstallBundleTests
+          from queue_ingest import git_blob
+          from codex_project_install import (
+              preview_install, install_fresh, uninstall, _install_phrase, _remove_phrase)
+          from codex_third_party_discovery import _query_codex
+          fixture=PrivateInstallBundleTests(
+              'test_private_zip_contains_only_pinned_files_and_is_verified')
+          fixture.setUp()
+          try:
+              source=(b'---\nname: demo\ndescription: Inert Phase 40 project install test\n'
+                      b'---\n# GASL test only\nNo executable commands.\n')
+              fixture.content['skills/demo/SKILL.md']=source
+              fixture.row['skill_md_blob_sha']=git_blob(source)
+              fixture._package()
+              bundle=fixture._prepare(agent='codex',scope='project')
+              with tempfile.TemporaryDirectory(prefix='gasl-phase40-ci-') as location:
+                  isolated=Path(location)
+                  project=isolated/'project'
+                  project.mkdir()
+                  (project/'.git').mkdir()
+                  for folder in ('home','codex-home','cache','xdg-config','tmp'):
+                      (isolated/folder).mkdir()
+                  binary=Path(os.environ['GASL_CODEX_E2E_CLI'])
+                  expected=project/'.agents/skills/demo/SKILL.md'
+                  def discover():
+                      return _query_codex(binary,isolated,project,'demo',expected)
+                  assert not discover(), 'Skill must be absent before installation'
+                  plan=preview_install(bundle['plan_id'],project,
+                      bundle_root=fixture.root,lookup=fixture.lookup)
+                  phrase=_install_phrase('demo',bundle['plan_id'],plan['state_binding_id'])
+                  installed=install_fresh(bundle['plan_id'],project,
+                      plan['state_binding_id'],bundle_root=fixture.root,
+                      lookup=fixture.lookup,reader=lambda _:phrase)
+                  assert installed['status']=='codex_project_skill_installed'
+                  skills=discover()
+                  assert len(skills)==1 and skills[0]['enabled'] is True
+                  assert Path(skills[0]['path']).resolve()==expected.resolve()
+                  result=uninstall('demo',project,
+                      reader=lambda _:_remove_phrase('demo',bundle['plan_id']))
+                  assert result['status']=='codex_project_skill_uninstalled'
+                  assert not discover(), 'Removed Skill must be absent'
+                  assert not expected.exists()
+              print('CODEX_REAL_PROJECT_INSTALL_AND_UNINSTALL_FIXTURE=PASS')
+              print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()
           PY
