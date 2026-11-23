@@ -89,3 +89,13 @@ GitHub CI run IDs, conclusions, final commit SHA and any automatic metadata comm
 ## Suggested next work
 
 Prefer auditing and improving the lineage/ownership UI and creating a clear user-facing manual review guide, rather than introducing unrestricted backups imports, hidden installation or automatic provenance claims. Any future user-scope Codex writes require an independent approval and safety review.
+
+## Verified GitHub publication and Linux CI
+
+- Feature commit: [`d090a97e3def79b99f452f770097dc641ecdc146`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/d090a97e3def79b99f452f770097dc641ecdc146), pushed to `main` after a nine-file scope allowlist, staged whitespace check, sensitive-pattern scan and full local tests. No private ZIP, personal filesystem path, credentials, or user Skill payload was published.
+- [Real Codex lifecycle — Run `45201198006`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45201198006): **completed / SUCCESS**. Linux job `Exercise real Codex project restore plus attested legacy backup recovery` passed against inert disposable content. Real Codex App Server observed the manually attested legacy backup after controlled reinstallation, and the following removal. No third-party code or real user profile was involved.
+- [Private ZIP and Installer safety — Run `45201197796`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45201197796): **completed / SUCCESS**, including Phase 44 synthetic reconciliation and refusal tests.
+- [Full catalog Refresh and regression — Run `45201197849`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45201197849): **completed / SUCCESS**, with **555 passed** reported in the dependency-equipped GitHub runner. The metadata summary confirmed **57 source repositories** and **4,431 source records**. The source refresh published a separate metadata-only commit [`c7e9b15`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/c7e9b15d280c0163d9156c3c621ce936e7b1709a).
+- That metadata-only commit was fetched and fast-forwarded into the local `main`, preserving project code and a clean working tree without force-pushing.
+
+**Phase 44 acceptance:** manual-attestation legacy recovery and its fail-closed safeguards are implemented and verified on macOS and Linux with real inert Codex discovery. Historical ownership remains **unproven**; the product makes no contradictory ownership claim or inference.
