@@ -90,6 +90,43 @@ class UserProfileInstallTests(unittest.TestCase):
             )
             self.lock_patch.start()
             self.addCleanup(self.lock_patch.stop)
+
+            original_verify_path = up._verify_windows_path
+            def verify_owned_fake_path(path, *, directory=None, sid_arg=None, **kwargs):
+                path = Path(path)
+                if path.exists() and path.resolve().is_relative_to(self.profile.resolve()):
+                    changed = subprocess.run(
+                        ["icacls", str(path), "/setowner", f"*{sid}"],
+                        capture_output=True, text=True,
+                    )
+                    if changed.returncode:
+                        raise AssertionError(changed.stdout + changed.stderr)
+                return original_verify_path(path, directory=directory, sid=sid_arg, **kwargs)
+            self.verify_path_patch = patch(
+                "user_profile_install._verify_windows_path",
+                side_effect=verify_owned_fake_path,
+            )
+            self.verify_path_patch.start()
+            self.addCleanup(self.verify_path_patch.stop)
+
+            original_verify_tree = up._verify_windows_tree
+            def verify_owned_fake_tree(root):
+                root = Path(root)
+                if root.exists() and root.resolve().is_relative_to(self.profile.resolve()):
+                    for item in [root] + sorted(root.rglob("*"), key=lambda value: value.as_posix()):
+                        changed = subprocess.run(
+                            ["icacls", str(item), "/setowner", f"*{sid}"],
+                            capture_output=True, text=True,
+                        )
+                        if changed.returncode:
+                            raise AssertionError(changed.stdout + changed.stderr)
+                return original_verify_tree(root)
+            self.verify_tree_patch = patch(
+                "user_profile_install._verify_windows_tree",
+                side_effect=verify_owned_fake_tree,
+            )
+            self.verify_tree_patch.start()
+            self.addCleanup(self.verify_tree_patch.stop)
         self.root_patch=patch("user_profile_install._root",
                               side_effect=self._fake_root)
         self.root_patch.start()
