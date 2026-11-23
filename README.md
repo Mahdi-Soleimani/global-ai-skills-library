@@ -224,6 +224,25 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 46: Offline provenance comparison and evidence boundaries
+
+The read-only provenance comparison distinguishes **verified local bytes**, **claims recorded in local receipts and archive manifests**, and **unverified upstream provenance**. This does **not** connect to the Internet, independently confirm repository ownership, certify Git commit/blob provenance, inspect licenses or attest that Skill instructions/dependencies are safe.
+
+    # Review the provenance evidence of active and archived versions, without writing:
+    ./gasl provenance-compare --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL
+
+    # Compare two exact archived versions or active vs one archived version:
+    ./gasl provenance-compare --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --left active --right EXACT_32_HEX_BACKUP_ID
+
+    # Machine-readable structured output:
+    ./gasl provenance-compare --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --format json
+
+For each version, the report includes its role, count of files, a SHA-256 digest of the verified local inventory, locally recorded source kind and Plan ID if available, an ownership-evidence classification, and an **explicit NOT CHECKED** status for upstream owner, Git commit/blob, license and code safety. Comparing two versions shows equality of complete local inventories, counts of added/removed/changed files, and whether their *recorded* Plan references match. None of these imply that two copies came from an authentic upstream publisher.
+
+Historical version ancestry may reveal a prior **manual ownership attestation** even after successive GASL restores and reinstalls. The comparison preserves this warning and never upgrades a manual claim into cryptographic proof. Phase-43 project-bound local markers are evidence of local continuity, not independent proof of who owned the original source or its safety. Legacy archives remain historically unverified.
+
+This feature has **no write action**, no implicit HOME/project discovery, no remote verification, no consent grant and no Skill execution. Backup hashes are observed at review time; unrelated processes with filesystem write access are beyond the protection of a read-only report. For interactive recovery use the **separate**, previously established Phase 40–45 flow. See [Phase 46](docs/reports/PHASE-46-OFFLINE-CODEX-PROVENANCE-COMPARISON-2026-11-23.md).
+
 ### Phase 45: Unified, readable and provenance-aware Codex Backup review
 
 There is now **one read-only entrypoint** for the three existing verified project-scope Codex recovery flows. You no longer need to guess whether a Skill is installed, was uninstalled with a GASL ownership marker, or has orphaned historical backups:

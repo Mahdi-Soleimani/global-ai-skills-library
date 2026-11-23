@@ -11,12 +11,14 @@ on:
       - tools/codex_uninstalled_restore.py
       - tools/codex_legacy_reconcile.py
       - tools/codex_backup_review.py
+      - tools/codex_provenance_compare.py
       - tools/host_format_review.py
       - tests/test_codex_pinned_bundle_e2e.py
       - tests/test_codex_project_install.py
       - tests/test_codex_uninstalled_restore.py
       - tests/test_codex_legacy_reconcile.py
       - tests/test_codex_backup_review.py
+      - tests/test_codex_provenance_compare.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -110,7 +112,7 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real Codex backup-review UX across installed, archived and legacy states
+      - name: Exercise real Codex provenance comparison across installed, archived and legacy states
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -128,6 +130,7 @@ jobs:
               audit_legacy_backups, preview_legacy_reinstall, reinstall_legacy_backup,
               _phrase as legacy_reinstall_phrase)
           from codex_backup_review import review_codex_backups, format_backup_review
+          from codex_provenance_compare import compare_codex_provenance
           from fixture_bundle_install import _inventory, _remove_verified_dir
           from codex_project_install import (
               preview_install, install_fresh, preview_replace, replace_existing,
@@ -177,6 +180,12 @@ jobs:
                   assert review_installed['backup_count']==1
                   assert '--action restore-backup' in review_installed['selected']['recovery_command']
                   assert str(project) not in format_backup_review(review_installed)
+                  evidence_installed=compare_codex_provenance(
+                      'demo',project,left_id='active',right_id=first['backup_id'])
+                  assert evidence_installed['comparison']['same_local_file_inventory'] is False
+                  assert evidence_installed['upstream_verification_performed'] is False
+                  assert evidence_installed['network_requests_performed'] is False
+                  assert evidence_installed['versions'][1]['recorded_source_kind']=='unmanaged'
                   assert expected.read_bytes()==v1
                   observed=discover()
                   assert len(observed)==1 and observed[0]['enabled'] is True, observed
@@ -284,6 +293,10 @@ jobs:
                   assert review_archived['lifecycle']=='uninstalled_owned'
                   assert '--action reinstall-backup' in review_archived['selected']['recovery_command']
                   assert review_archived['approval_granted'] is False
+                  archived_evidence=compare_codex_provenance('demo',project)
+                  assert archived_evidence['lifecycle']=='uninstalled_owned'
+                  assert archived_evidence['comparison'] is None
+                  assert archived_evidence['versions'][-1]['evidence']['local_owner_proof_type']=='local_project_marker_and_archived_receipts'
                   listing=list_uninstalled_backups('demo',project)
                   assert listing['backup_count']==len(result['retained_backup_ids'])
                   assert listing['backups'][-1]['last_active_before_uninstall']
@@ -341,6 +354,12 @@ jobs:
                   assert review_orphan['lifecycle']=='uninstalled_legacy'
                   assert review_orphan['historical_project_ownership_verified'] is False
                   assert review_orphan['manual_ownership_attestation_required'] is True
+                  legacy_evidence=compare_codex_provenance('demo',project)
+                  assert legacy_evidence['lifecycle']=='uninstalled_legacy'
+                  assert legacy_evidence['historical_project_ownership_verified'] is False
+                  assert legacy_evidence['upstream_verification_performed'] is False
+                  assert all(not x['evidence']['historical_project_ownership_proven']
+                             for x in legacy_evidence['versions'])
                   assert reviewed['backup_count'] == listing['backup_count']
                   assert reviewed['historical_project_ownership_verified'] is False
                   selected_legacy=reviewed['backups'][-1]['backup_id']
@@ -358,6 +377,9 @@ jobs:
                   after_manual=review_codex_backups('demo',project)
                   assert after_manual['lifecycle']=='installed'
                   assert after_manual['current_version']['historical_project_ownership_verified'] is False
+                  attested_evidence=compare_codex_provenance('demo',project)
+                  assert attested_evidence['historical_project_ownership_verified'] is False
+                  assert 'manual_attestation' in attested_evidence['versions'][0]['evidence']['local_ownership_evidence']
                   assert reconciled['historical_project_ownership_verified'] is False
                   assert len(discover())==1, 'Codex must discover manually reconciled inert Skill'
                   active=json.loads((project/'.gasl-managed/receipts/demo.json').read_text())
@@ -368,7 +390,7 @@ jobs:
                       reader=lambda _:_remove_phrase('demo',active['plan_id']))
                   assert final_uninstall['uninstall_ownership_marker_recorded']
                   assert not discover()
-              print('CODEX_REAL_BACKUP_REVIEW_ALL_LIFECYCLES_AND_DISCOVERY=PASS')
+              print('CODEX_REAL_OFFLINE_PROVENANCE_EVIDENCE_LIFECYCLES=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()

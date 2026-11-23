@@ -576,6 +576,18 @@ def cmd_backup_review(args):
         print(format_backup_review(report))
 
 
+def cmd_provenance_compare(args):
+    from codex_provenance_compare import (
+        compare_codex_provenance, format_provenance_comparison)
+    report = compare_codex_provenance(
+        args.skill_name, args.selected_root,
+        left_id=args.left, right_id=args.right)
+    if args.format == 'json':
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        print(format_provenance_comparison(report))
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -882,6 +894,19 @@ def main():
     backup_review.add_argument('--format', choices=('text','json'), default='text',
         help='Human-readable review by default, or machine-readable JSON; no writes in either format')
     backup_review.set_defaults(func=cmd_backup_review)
+
+    provenance_compare = sub.add_parser('provenance-compare',
+        help='READ-ONLY local evidence matrix and two-version comparison; does not check upstream authenticity')
+    provenance_compare.add_argument('--selected-root', required=True, type=Path,
+        help='Explicit existing Git project root; no implicit HOME or project discovery')
+    provenance_compare.add_argument('--skill-name', required=True, help='Exact Codex project Skill slug')
+    provenance_compare.add_argument('--left',
+        help='Exact Backup ID or active (when installed); both --left and --right required')
+    provenance_compare.add_argument('--right',
+        help='Exact Backup ID or active (when installed); both --left and --right required')
+    provenance_compare.add_argument('--format', choices=('text','json'), default='text',
+        help='Human-readable evidence matrix by default; JSON for reports, never writes')
+    provenance_compare.set_defaults(func=cmd_provenance_compare)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)
