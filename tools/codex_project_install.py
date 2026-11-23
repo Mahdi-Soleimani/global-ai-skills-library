@@ -62,6 +62,9 @@ def _reject_other_codex_state(root, slug, *, legacy):
     schemas. A pending stage has no slug until its journal is published, so
     any stage in the alternate store is conservatively blocked.
     """
+    pending_migration = root / '.gasl-codex-migration-pending'
+    if pending_migration.exists() or is_redirected(pending_migration):
+        raise ValueError('Codex migration journal exists; explicit recovery required')
     base = root / STATE
     other = base / 'hosts' / 'codex' if legacy else base
     parents = [base]

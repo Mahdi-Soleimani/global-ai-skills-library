@@ -108,6 +108,8 @@ def _candidate_receipt(value, slug, prefix):
 
 
 def _snapshot(root, slug):
+    if _present(root / '.gasl-codex-migration-pending'):
+        raise AuditBlocked('migration_recovery_required')
     base = root / legacy.STATE
     destination = base / 'hosts' / 'codex'
     for path in (base, base / 'hosts', destination):
