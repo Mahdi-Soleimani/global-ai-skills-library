@@ -412,7 +412,11 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
             if ((unsafe_ancestor_right or unsafe_owned_path_right)
                     and ace_sid not in allowed_writers):
                 raise ValueError(
-                    "Windows profile ACL grants unsafe write/delete access to an untrusted SID")
+                    "Windows profile ACL grants unsafe write/delete access to an untrusted SID "
+                    f"(ace_sid_sha256={hashlib.sha256(ace_sid.encode()).hexdigest()[:12]}, "
+                    f"expected_sid_sha256={hashlib.sha256(sid.encode()).hexdigest()[:12]}, "
+                    f"mask=0x{mask:08x}, ace_type={header.AceType}, "
+                    f"ace_flags=0x{header.AceFlags:02x})")
         # A trusted OS owner (e.g. BUILTIN\\Administrators on hosted runners)
         # is acceptable only when this exact user SID has explicit modify and
         # delete rights. Ancestors are checked for untrusted writers, but need
