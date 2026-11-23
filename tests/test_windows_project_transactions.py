@@ -78,6 +78,18 @@ class WindowsProjectTransactionTests(unittest.TestCase):
                               bundle_root=self.bundle_root,lookup=self.fixture.lookup,
                               reader=self.consent)
 
+    def test_windows_package_manifest_paths_are_canonical_posix(self):
+        from queue_ingest import package_location
+        folder=package_location(
+            self.fixture.root,
+            {**self.fixture.row, "skill_path":self.fixture.row["source_path"]}
+        )
+        metadata=json.loads((folder/"source.json").read_text(encoding="utf-8"))
+        for item in metadata["files"]:
+            self.assertTrue(item["local_path"].startswith("catalog/"))
+            self.assertNotIn("\\",item["local_path"])
+        self.assertEqual(len(metadata["files"]),2)
+
     def test_windows_msvcrt_platform_lock_available(self):
         self.assertTrue(supported_platform())
 

@@ -259,7 +259,7 @@ def ingest(root, plan, fetch=fetch_blob, manifest_path=None):
     source = no_symlink(root,stage/"source.json")
     validate_inventory(root,stage,plan,metadata=source.exists())
     records = [{"source_path":e["path"],"package_relative_path":e["relative"],
-                "local_path":str((dest/e["relative"]).relative_to(root)),
+                "local_path":(dest/e["relative"]).relative_to(root).as_posix(),
                 "size_bytes":e["size"],"sha256":hashlib.sha256((stage/e["relative"]).read_bytes()).hexdigest(),
                 "git_blob_sha":e["sha"]} for e in plan["files"]]
     spdx = plan.get("license_spdx")
