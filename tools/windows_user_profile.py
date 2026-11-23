@@ -83,6 +83,7 @@ _TRUSTED_OS_OWNERS = frozenset((
 ))
 _TRUSTED_NON_USER_WRITERS = _TRUSTED_OS_OWNERS | frozenset((
     "S-1-3-0",  # CREATOR OWNER (inherited child owner)
+    "S-1-3-4",  # OWNER RIGHTS (applies only to the already-validated object owner)
 ))
 
 

@@ -50,6 +50,11 @@ class WindowsAclMaskClassificationTests(unittest.TestCase):
         self.assertFalse(wp._ace_applies_to_current_object(0x08))
         self.assertFalse(wp._ace_applies_to_current_object(0x18))
 
+    def test_owner_rights_sid_is_scoped_to_the_validated_object_owner(self):
+        self.assertIn("S-1-3-4", wp._TRUSTED_NON_USER_WRITERS)
+        self.assertNotIn("S-1-1-0", wp._TRUSTED_NON_USER_WRITERS)
+        self.assertNotIn("S-1-5-11", wp._TRUSTED_NON_USER_WRITERS)
+
 
 @unittest.skipUnless(os.name == "nt", "Native Windows token and ACL tests")
 class WindowsUserProfileSecurityTests(unittest.TestCase):
