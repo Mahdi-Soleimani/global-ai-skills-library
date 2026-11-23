@@ -224,9 +224,22 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 41: Explicit Codex project Skill replacement, retained backup and crash recovery
+
+GASL can now replace an **existing** project-scope Codex Skill after a separate read-only preview and an exact local TTY confirmation.
+
+Commands:
+
+    ./gasl codex-project-install --action preview-replace --plan-id EXACT_NEW_PLAN_ID --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT
+    ./gasl codex-project-install --action replace --plan-id EXACT_NEW_PLAN_ID --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --state-binding-id EXACT_PREVIEW_BINDING
+
+Before activation, the complete previous Skill directory (including unlisted user notes/files) is atomically moved into .gasl-managed/backups/SKILL_NAME/BACKUP_ID; a hash inventory and the previous GASL receipt, if any, are retained in a separate manifest. A durable transaction journal allows the recover action to restore the exact previous directory if the process is interrupted before the new receipt is committed. Once committed, the old backup remains and is checked before subsequent upgrades and uninstall. Uninstall removes only the current unchanged managed Skill and deliberately retains verified backups.
+
+The replace flow refuses changed managed files, symlinks, incomplete/modified backup history, stale preview bindings and ambiguous recovery states. It never overwrites a backup. A successful replace returns its backup ID and relative backup path. This is **project scope only**; no real user HOME, other projects, unattended operation, or Skill instruction/dependency execution is enabled. No explicit interactive restore-from-a-successful-backup command exists yet; the automatic recovery command handles interrupted transactions only. See [Phase 41](docs/reports/PHASE-41-CODEX-PROJECT-REPLACEMENT-BACKUP-RECOVERY-2026-11-23.md).
+
 ### Phase 40: Explicit opt-in Codex project Skill installation (fresh only)
 
-GASL now offers a **real, explicitly approved project-scope installer** for Codex: `./gasl codex-project-install --action preview --plan-id EXACT_PROJECT_PLAN_ID --selected-root /ABSOLUTE/GIT/PROJECT` followed by a separate `--action install` with the exact `--state-binding-id` from preview. The CLI requires a live interactive terminal and a source/target-bound confirmation phrase; it refuses existing Skill collisions and the real user HOME. It can `--action uninstall --skill-name EXACT_NAME` with verified ownership/unchanged file inventory, or `--action recover` an interrupted journal. Files are staged outside Codex's discovery directory and no Skill instructions/dependencies are executed. **Replacing existing Skills, production user-scope installation and automatic activation remain unavailable.** See [Phase 40](docs/reports/PHASE-40-OPT-IN-CODEX-PROJECT-INSTALL-2026-11-23.md).
+GASL now offers a **real, explicitly approved project-scope installer** for Codex: `./gasl codex-project-install --action preview --plan-id EXACT_PROJECT_PLAN_ID --selected-root /ABSOLUTE/GIT/PROJECT` followed by a separate `--action install` with the exact `--state-binding-id` from preview. The CLI requires a live interactive terminal and a source/target-bound confirmation phrase; it refuses existing Skill collisions and the real user HOME. It can `--action uninstall --skill-name EXACT_NAME` with verified ownership/unchanged file inventory, or `--action recover` an interrupted journal. Files are staged outside Codex's discovery directory and no Skill instructions/dependencies are executed. **Existing-Skill replacement was added in Phase 41; production user-scope installation and automatic activation remain unavailable.** See [Phase 40](docs/reports/PHASE-40-OPT-IN-CODEX-PROJECT-INSTALL-2026-11-23.md).
 
 ### Phase 39: Verified pinned full ZIP lifecycle in disposable real Codex HOME
 

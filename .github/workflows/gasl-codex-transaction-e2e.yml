@@ -104,29 +104,35 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real project installer + Codex discovery in disposable Git repo
+      - name: Exercise real Codex project install, replacement backup and interrupted-replace recovery
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import os,sys,tempfile
+          import hashlib,os,sys,tempfile
           from pathlib import Path
+          from unittest.mock import patch
           sys.path.insert(0, 'tools')
           from tests.test_install_bundle import PrivateInstallBundleTests
           from queue_ingest import git_blob
+          import codex_project_install as installer
           from codex_project_install import (
-              preview_install, install_fresh, uninstall, _install_phrase, _remove_phrase)
+              preview_install, install_fresh, preview_replace, replace_existing,
+              uninstall, recover, _install_phrase, _replace_phrase, _remove_phrase,
+              _backup_dir, _backup_manifest)
           from codex_third_party_discovery import _query_codex
           fixture=PrivateInstallBundleTests(
               'test_private_zip_contains_only_pinned_files_and_is_verified')
           fixture.setUp()
           try:
-              source=(b'---\nname: demo\ndescription: Inert Phase 40 project install test\n'
-                      b'---\n# GASL test only\nNo executable commands.\n')
-              fixture.content['skills/demo/SKILL.md']=source
-              fixture.row['skill_md_blob_sha']=git_blob(source)
+              v1=(b'---\nname: demo\ndescription: Inert Phase 41 replacement v1\n'
+                  b'---\n# GASL version one\nNo executable commands.\n')
+              fixture.content['skills/demo/SKILL.md']=v1
+              fixture.row['skill_md_blob_sha']=git_blob(v1)
+              fixture.row['commit_sha']=hashlib.sha1(b'phase41-commit-v1').hexdigest()
+              fixture.row['tree_sha']=hashlib.sha1(b'phase41-tree-v1').hexdigest()
               fixture._package()
-              bundle=fixture._prepare(agent='codex',scope='project')
-              with tempfile.TemporaryDirectory(prefix='gasl-phase40-ci-') as location:
+              bundle1=fixture._prepare(agent='codex',scope='project')
+              with tempfile.TemporaryDirectory(prefix='gasl-phase41-ci-') as location:
                   isolated=Path(location)
                   project=isolated/'project'
                   project.mkdir()
@@ -134,26 +140,78 @@ jobs:
                   for folder in ('home','codex-home','cache','xdg-config','tmp'):
                       (isolated/folder).mkdir()
                   binary=Path(os.environ['GASL_CODEX_E2E_CLI'])
-                  expected=project/'.agents/skills/demo/SKILL.md'
+                  target=project/'.agents/skills/demo'
+                  expected=target/'SKILL.md'
+                  target.mkdir(parents=True)
+                  old=(b'---\nname: demo\ndescription: Existing inert Skill\n'
+                       b'---\n# Previous user Skill\n')
+                  (target/'SKILL.md').write_bytes(old)
+                  (target/'user-note.txt').write_text('preserve in backup\n')
                   def discover():
                       return _query_codex(binary,isolated,project,'demo',expected)
-                  assert not discover(), 'Skill must be absent before installation'
-                  plan=preview_install(bundle['plan_id'],project,
+                  before=discover()
+                  assert len(before)==1 and before[0]['enabled'] is True, before
+                  plan=preview_replace(bundle1['plan_id'],project,
                       bundle_root=fixture.root,lookup=fixture.lookup)
-                  phrase=_install_phrase('demo',bundle['plan_id'],plan['state_binding_id'])
-                  installed=install_fresh(bundle['plan_id'],project,
-                      plan['state_binding_id'],bundle_root=fixture.root,
-                      lookup=fixture.lookup,reader=lambda _:phrase)
-                  assert installed['status']=='codex_project_skill_installed'
-                  skills=discover()
-                  assert len(skills)==1 and skills[0]['enabled'] is True
-                  assert Path(skills[0]['path']).resolve()==expected.resolve()
+                  phrase=_replace_phrase('demo',bundle1['plan_id'],plan['state_binding_id'])
+                  first=replace_existing(bundle1['plan_id'],project,plan['state_binding_id'],
+                      bundle_root=fixture.root,lookup=fixture.lookup,reader=lambda _:phrase)
+                  assert first['status']=='codex_project_skill_replaced'
+                  assert expected.read_bytes()==v1
+                  observed=discover()
+                  assert len(observed)==1 and observed[0]['enabled'] is True, observed
+                  backup=_backup_dir(project/'.gasl-managed','demo',first['backup_id'])
+                  assert (backup/'user-note.txt').read_text()=='preserve in backup\n'
+                  assert (backup/'SKILL.md').read_bytes()==old
+
+                  v2=(b'---\nname: demo\ndescription: Inert Phase 41 replacement v2\n'
+                      b'---\n# GASL version two\nNo executable commands.\n')
+                  fixture.content['skills/demo/SKILL.md']=v2
+                  fixture.row['skill_md_blob_sha']=git_blob(v2)
+                  fixture.row['commit_sha']=hashlib.sha1(b'phase41-commit-v2').hexdigest()
+                  fixture.row['tree_sha']=hashlib.sha1(b'phase41-tree-v2').hexdigest()
+                  fixture._package()
+                  bundle2=fixture._prepare(agent='codex',scope='project')
+                  plan2=preview_replace(bundle2['plan_id'],project,
+                      bundle_root=fixture.root,lookup=fixture.lookup)
+                  phrase2=_replace_phrase('demo',bundle2['plan_id'],plan2['state_binding_id'])
+                  original_new=installer._new
+                  calls={'n':0}
+                  def fail_after_backup_move(path,data):
+                      calls['n']+=1
+                      if calls['n']==2:
+                          raise OSError('injected crash after previous Skill backup rename')
+                      return original_new(path,data)
+                  with patch.object(installer,'_new',side_effect=fail_after_backup_move):
+                      try:
+                          replace_existing(bundle2['plan_id'],project,plan2['state_binding_id'],
+                              bundle_root=fixture.root,lookup=fixture.lookup,
+                              reader=lambda _:phrase2)
+                      except OSError as error:
+                          assert 'injected crash' in str(error)
+                      else:
+                          raise AssertionError('Injected replacement interruption did not occur')
+                  assert not target.exists()
+                  assert not discover(), 'Codex should not discover a Skill during interrupted activation'
+                  restored=recover('demo',project)
+                  assert restored['status']=='interrupted_replacement_rolled_back',restored
+                  assert expected.read_bytes()==v1
+                  assert len(discover())==1, 'Codex must rediscover the restored old Skill'
+
+                  plan2=preview_replace(bundle2['plan_id'],project,
+                      bundle_root=fixture.root,lookup=fixture.lookup)
+                  phrase2=_replace_phrase('demo',bundle2['plan_id'],plan2['state_binding_id'])
+                  second=replace_existing(bundle2['plan_id'],project,plan2['state_binding_id'],
+                      bundle_root=fixture.root,lookup=fixture.lookup,reader=lambda _:phrase2)
+                  assert second['status']=='codex_project_skill_replaced'
+                  assert expected.read_bytes()==v2
+                  assert len(discover())==1
                   result=uninstall('demo',project,
-                      reader=lambda _:_remove_phrase('demo',bundle['plan_id']))
+                      reader=lambda _:_remove_phrase('demo',bundle2['plan_id']))
                   assert result['status']=='codex_project_skill_uninstalled'
                   assert not discover(), 'Removed Skill must be absent'
                   assert not expected.exists()
-              print('CODEX_REAL_PROJECT_INSTALL_AND_UNINSTALL_FIXTURE=PASS')
+              print('CODEX_REAL_PROJECT_INSTALL_REPLACE_BACKUP_RECOVERY_UNINSTALL=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()

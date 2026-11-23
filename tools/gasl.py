@@ -493,17 +493,24 @@ def cmd_host_format_review(args):
 
 
 def cmd_codex_project_install(args):
-    from codex_project_install import preview_install, install_fresh, uninstall, recover
-    if args.action in ('preview', 'install'):
+    from codex_project_install import (
+        preview_install, install_fresh, preview_replace, replace_existing, uninstall, recover)
+    if args.action in ('preview', 'install', 'preview-replace', 'replace'):
         if not args.plan_id:
             raise SystemExit('This action requires --plan-id')
         if args.action == 'preview':
             result = preview_install(args.plan_id, args.selected_root, bundle_root=ROOT)
+        elif args.action == 'preview-replace':
+            result = preview_replace(args.plan_id, args.selected_root, bundle_root=ROOT)
         else:
             if not args.state_binding_id:
-                raise SystemExit('Real install requires the exact --state-binding-id from preview')
-            result = install_fresh(args.plan_id, args.selected_root,
-                                   args.state_binding_id, bundle_root=ROOT)
+                raise SystemExit('Real write requires the exact --state-binding-id from preview')
+            if args.action == 'install':
+                result = install_fresh(args.plan_id, args.selected_root,
+                                       args.state_binding_id, bundle_root=ROOT)
+            else:
+                result = replace_existing(args.plan_id, args.selected_root,
+                                           args.state_binding_id, bundle_root=ROOT)
     else:
         if not args.skill_name:
             raise SystemExit('Uninstall/recover requires --skill-name')
@@ -790,13 +797,14 @@ def main():
     host_format.set_defaults(func=cmd_host_format_review)
 
     codex_project = sub.add_parser('codex-project-install',
-        help='Explicit project-scope Codex Skill install (fresh only), uninstall and recovery; real filesystem writes')
-    codex_project.add_argument('--action', required=True, choices=('preview','install','uninstall','recover'))
+        help='Explicit Codex project Skill preview/install/replace/uninstall/recovery; real filesystem writes')
+    codex_project.add_argument('--action', required=True,
+        choices=('preview','install','preview-replace','replace','uninstall','recover'))
     codex_project.add_argument('--selected-root', type=Path, required=True,
         help='Existing absolute Git project root, never real user HOME')
-    codex_project.add_argument('--plan-id', help='Exact pinned private ZIP Plan ID for preview/install')
+    codex_project.add_argument('--plan-id', help='Exact pinned private ZIP Plan ID for preview, fresh install or replacement')
     codex_project.add_argument('--state-binding-id',
-        help='Exact binding from read-only preview; requires interactive approval before real install')
+        help='Exact binding from read-only preview; requires interactive approval before install or replace')
     codex_project.add_argument('--skill-name', help='Exact GASL-managed name for uninstall/recover')
     codex_project.set_defaults(func=cmd_codex_project_install)
 

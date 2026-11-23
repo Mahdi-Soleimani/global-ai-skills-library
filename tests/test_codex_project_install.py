@@ -1,4 +1,5 @@
 """Phase 40 real project installer, exercised ONLY in disposable synthetic Git repos."""
+import hashlib
 import json
 import sys
 import tempfile
@@ -9,8 +10,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'tools'))
 from codex_project_install import (
     preview_install, install_fresh, uninstall, recover,
-    _install_phrase, _remove_phrase, _journal, _receipt, _paths, SCHEMA,
+    _install_phrase, _remove_phrase, _replace_phrase, _journal, _receipt,
+    _paths, _backup_dir, _backup_manifest, _checked_backup, preview_replace,
+    replace_existing, SCHEMA,
 )
+import codex_project_install as installer
 from queue_ingest import git_blob
 from tests import test_install_bundle as bundle_fixture
 
@@ -34,6 +38,7 @@ class ProjectInstallTests(unittest.TestCase):
         self.project.mkdir()
         (self.project/'.git').mkdir()
         self.plan_id = self.bundle['plan_id']
+        self.version_counter = 1
 
     def preview(self):
         return preview_install(self.plan_id, self.project,
@@ -187,6 +192,248 @@ class ProjectInstallTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.preview()
         self.assertEqual(list(outside.iterdir()), [])
+
+
+    def make_next_bundle(self, body=b'# Inert replacement version 2\n'):
+        source = (b'---\nname: demo\ndescription: Inert file-only test Skill v2\n---\n'
+                  + body)
+        self.fixture.content['skills/demo/SKILL.md'] = source
+        self.fixture.row['skill_md_blob_sha'] = git_blob(source)
+        self.version_counter += 1
+        self.fixture.row['commit_sha'] = hashlib.sha1(
+            source + str(self.version_counter).encode()).hexdigest()
+        self.fixture.row['tree_sha'] = hashlib.sha1(
+            b'tree:' + source + str(self.version_counter).encode()).hexdigest()
+        self.folder, _ = self.fixture._package()
+        return self.fixture._prepare(agent='codex', scope='project')
+
+    def existing_skill(self):
+        target = self.target()
+        target.mkdir(parents=True)
+        (target/'SKILL.md').write_bytes(
+            b'---\nname: demo\ndescription: Previous user Skill\n---\n# Original\n')
+        (target/'user-note.txt').write_text('KEEP THIS ORIGINAL FILE\n')
+        from fixture_bundle_install import _inventory
+        return _inventory(target)
+
+    def replace(self, plan_id=None, reader=None, binding=None):
+        selected_plan = plan_id or self.plan_id
+        preview = preview_replace(selected_plan, self.project,
+                                  bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        phrase = _replace_phrase('demo', selected_plan, preview['state_binding_id'])
+        return replace_existing(
+            selected_plan, self.project,
+            binding or preview['state_binding_id'],
+            bundle_root=self.fixture.root, lookup=self.fixture.lookup,
+            reader=reader or (lambda _: phrase))
+
+    def test_replace_preview_is_read_only_and_reports_existing_unmanaged_skill(self):
+        old_files = self.existing_skill()
+        preview = preview_replace(self.plan_id, self.project,
+                                  bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        self.assertTrue(preview['eligible_for_replace'])
+        self.assertFalse(preview['existing_install_managed_by_gasl'])
+        self.assertEqual(preview['existing_file_count'], len(old_files))
+        self.assertFalse(preview['replacement_performed'])
+        self.assertEqual((self.target()/'user-note.txt').read_text(), 'KEEP THIS ORIGINAL FILE\n')
+        self.assertFalse((self.project/'.gasl-managed').exists())
+
+    def test_replace_unmanaged_skill_keeps_full_verified_backup(self):
+        old_files = self.existing_skill()
+        result = self.replace()
+        self.assertEqual(result['status'], 'codex_project_skill_replaced')
+        self.assertTrue(result['previous_skill_restorable'])
+        state = self.state()
+        backup = _backup_dir(state, 'demo', result['backup_id'])
+        manifest_path = _backup_manifest(state, 'demo', result['backup_id'])
+        from fixture_bundle_install import _inventory
+        self.assertEqual(_inventory(backup), old_files)
+        self.assertTrue((backup/'user-note.txt').is_file())
+        manifest = _checked_backup(json.loads(manifest_path.read_text()),
+                                   'demo', result['backup_id'])
+        self.assertIsNone(manifest['previous_receipt'])
+        receipt = json.loads(_receipt(state, 'demo').read_text())
+        self.assertEqual(receipt['action'], 'replace_install')
+        self.assertEqual(receipt['backup_ids'], [result['backup_id']])
+        self.assertFalse((self.target()/'user-note.txt').exists())
+        self.assertTrue((self.target()/'SKILL.md').read_bytes().endswith(
+            b'# No scripts are run during any test.\n'))
+
+    def test_replace_managed_skill_preserves_previous_receipt_in_backup(self):
+        self.matching_install()
+        previous_receipt = json.loads(_receipt(self.state(), 'demo').read_text())
+        new_bundle = self.make_next_bundle()
+        result = self.replace(new_bundle['plan_id'])
+        manifest = _checked_backup(
+            json.loads(_backup_manifest(self.state(), 'demo', result['backup_id']).read_text()),
+            'demo', result['backup_id'])
+        self.assertEqual(manifest['previous_receipt'], previous_receipt)
+        self.assertEqual(manifest['files'], previous_receipt['files'])
+        current = json.loads(_receipt(self.state(), 'demo').read_text())
+        self.assertEqual(current['plan_id'], new_bundle['plan_id'])
+        self.assertEqual(current['backup_ids'], [result['backup_id']])
+
+    def test_repeated_replacement_preserves_all_verified_backup_history(self):
+        self.existing_skill()
+        first = self.replace()
+        second_bundle = self.make_next_bundle(b'# Inert replacement version 3\n')
+        second = self.replace(second_bundle['plan_id'])
+        current = json.loads(_receipt(self.state(), 'demo').read_text())
+        self.assertEqual(current['backup_ids'], [first['backup_id'], second['backup_id']])
+        for backup_id in current['backup_ids']:
+            manifest = _checked_backup(
+                json.loads(_backup_manifest(self.state(), 'demo', backup_id).read_text()),
+                'demo', backup_id)
+            from fixture_bundle_install import _inventory
+            self.assertEqual(_inventory(_backup_dir(self.state(), 'demo', backup_id)),
+                             manifest['files'])
+
+    def test_replace_requires_exact_interactive_confirmation(self):
+        old_files = self.existing_skill()
+        p = preview_replace(self.plan_id, self.project,
+                            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        with self.assertRaisesRegex(ValueError, 'approval'):
+            self.replace(reader=lambda _: 'NO')
+        from fixture_bundle_install import _inventory
+        self.assertEqual(_inventory(self.target()), old_files)
+        self.assertFalse((self.project/'.gasl-managed').exists())
+
+    def test_replace_stale_target_binding_blocks_before_confirmation(self):
+        self.existing_skill()
+        p = preview_replace(self.plan_id, self.project,
+                            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        (self.target()/'late-note.txt').write_text('added after preview')
+        with self.assertRaisesRegex(ValueError, 'stale'):
+            self.replace(binding=p['state_binding_id'], reader=lambda _: '')
+        self.assertTrue((self.target()/'late-note.txt').exists())
+
+    def test_replace_modified_managed_skill_refuses_and_preserves_user_edit(self):
+        self.matching_install()
+        (self.target()/'user-edit.txt').write_text('DO NOT DELETE')
+        new_bundle = self.make_next_bundle()
+        with self.assertRaisesRegex(ValueError, 'changed since installation'):
+            preview_replace(new_bundle['plan_id'], self.project,
+                            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        self.assertEqual((self.target()/'user-edit.txt').read_text(), 'DO NOT DELETE')
+
+    def test_uninstall_retains_verified_previous_version_backups(self):
+        self.existing_skill()
+        replaced = self.replace()
+        removed = uninstall('demo', self.project,
+                            reader=lambda _: _remove_phrase('demo', self.plan_id))
+        self.assertTrue(removed['backups_retained'])
+        self.assertEqual(removed['retained_backup_ids'], [replaced['backup_id']])
+        self.assertTrue(_backup_dir(self.state(), 'demo', replaced['backup_id']).is_dir())
+        self.assertFalse(_receipt(self.state(), 'demo').exists())
+
+    def test_recover_interrupted_replace_after_old_directory_moved(self):
+        old_files = self.existing_skill()
+        original_new = installer._new
+        calls = {'count': 0}
+        def fail_backup_manifest(path, data):
+            calls['count'] += 1
+            if calls['count'] == 2:
+                raise OSError('injected failure after old directory was moved')
+            return original_new(path, data)
+        from unittest.mock import patch
+        with patch.object(installer, '_new', side_effect=fail_backup_manifest):
+            with self.assertRaisesRegex(OSError, 'injected failure'):
+                self.replace()
+        self.assertFalse(self.target().exists())
+        recovered = recover('demo', self.project)
+        self.assertEqual(recovered['status'], 'interrupted_replacement_rolled_back')
+        from fixture_bundle_install import _inventory
+        self.assertEqual(_inventory(self.target()), old_files)
+        self.assertFalse(_journal(self.state(), 'demo').exists())
+        self.assertFalse(any((self.state()/'backups'/'demo').glob('*.json')))
+
+    def test_recover_interrupted_replace_after_new_directory_activated(self):
+        old_files = self.existing_skill()
+        from unittest.mock import patch
+        with patch.object(installer, '_atomic_record',
+                          side_effect=OSError('injected receipt commit failure')):
+            with self.assertRaisesRegex(OSError, 'receipt commit'):
+                self.replace()
+        self.assertTrue(self.target().is_dir())
+        recovered = recover('demo', self.project)
+        self.assertEqual(recovered['status'], 'interrupted_replacement_rolled_back')
+        from fixture_bundle_install import _inventory
+        self.assertEqual(_inventory(self.target()), old_files)
+        self.assertFalse(_receipt(self.state(), 'demo').exists())
+        self.assertFalse(_journal(self.state(), 'demo').exists())
+
+    def test_recovery_refuses_modified_new_target_without_destroying_backup(self):
+        self.existing_skill()
+        from unittest.mock import patch
+        with patch.object(installer, '_atomic_record',
+                          side_effect=OSError('injected receipt commit failure')):
+            with self.assertRaises(OSError):
+                self.replace()
+        backup_root = self.state()/'backups'/'demo'
+        backup = next(path for path in backup_root.iterdir() if path.is_dir())
+        (self.target()/'user-edit.txt').write_text('USER DATA')
+        with self.assertRaisesRegex(ValueError, 'target changed'):
+            recover('demo', self.project)
+        self.assertEqual((self.target()/'user-edit.txt').read_text(), 'USER DATA')
+        self.assertTrue((backup/'user-note.txt').exists())
+
+    def test_recovery_validates_backup_before_removing_new_target(self):
+        self.existing_skill()
+        from unittest.mock import patch
+        with patch.object(installer, '_atomic_record',
+                          side_effect=OSError('injected receipt commit failure')):
+            with self.assertRaises(OSError):
+                self.replace()
+        backup_root = self.state()/'backups'/'demo'
+        backup = next(path for path in backup_root.iterdir() if path.is_dir())
+        (backup/'user-note.txt').write_text('TAMPERED BACKUP')
+        with self.assertRaisesRegex(ValueError, 'backup changed'):
+            recover('demo', self.project)
+        self.assertTrue((self.target()/'SKILL.md').is_file())
+        self.assertEqual((backup/'user-note.txt').read_text(), 'TAMPERED BACKUP')
+
+    def test_recover_commit_marker_keeps_replacement_and_backup(self):
+        self.existing_skill()
+        result = self.replace()
+        state = self.state()
+        receipt = json.loads(_receipt(state, 'demo').read_text())
+        manifest = json.loads(_backup_manifest(state, 'demo', result['backup_id']).read_text())
+        # Recreate the last durable journal checkpoint: receipt already committed.
+        _journal(state, 'demo').write_text(json.dumps({
+            'schema': SCHEMA, 'slug': 'demo', 'operation': 'replace',
+            'transaction': result['backup_id'], 'backup_id': result['backup_id'],
+            'previous_receipt': manifest['previous_receipt'],
+            'old_files': manifest['files'], 'new_files': receipt['files'],
+            'receipt': receipt,
+        }))
+        recovered = recover('demo', self.project)
+        self.assertEqual(recovered['status'], 'replacement_commit_recovered')
+        self.assertTrue(self.target().is_dir())
+        self.assertTrue(_backup_dir(state, 'demo', result['backup_id']).is_dir())
+        self.assertFalse(_journal(state, 'demo').exists())
+
+    def test_replace_refuses_symlink_inside_existing_skill(self):
+        target = self.target()
+        target.mkdir(parents=True)
+        (target/'SKILL.md').write_text(
+            '---\nname: demo\ndescription: old\n---\n')
+        outside = Path(self.tmp.name)/'outside'
+        outside.write_text('DO NOT READ OR CHANGE')
+        (target/'link.txt').symlink_to(outside)
+        with self.assertRaises(ValueError):
+            preview_replace(self.plan_id, self.project,
+                            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
+        self.assertEqual(outside.read_text(), 'DO NOT READ OR CHANGE')
+
+    def test_next_replace_refuses_if_retained_backup_was_modified(self):
+        self.existing_skill()
+        first = self.replace()
+        backup = _backup_dir(self.state(), 'demo', first['backup_id'])
+        (backup/'user-note.txt').write_text('TAMPERED')
+        next_bundle = self.make_next_bundle(b'# Inert replacement version 4\n')
+        with self.assertRaisesRegex(ValueError, 'backup changed'):
+            preview_replace(next_bundle['plan_id'], self.project,
+                            bundle_root=self.fixture.root, lookup=self.fixture.lookup)
 
 
 if __name__ == '__main__':
