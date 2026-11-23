@@ -28,6 +28,7 @@ _FILE_ATTRIBUTE_REPARSE_POINT = 0x0400
 # ACCESS_ALLOWED_ACE_TYPE, ACCESS_ALLOWED_OBJECT_ACE_TYPE and callback forms.
 _ALLOWED_ACE_TYPES = frozenset((0, 5, 9, 11))
 _OBJECT_ACE_TYPES = frozenset((5, 11))
+_INHERIT_ONLY_ACE = 0x08
 # Do not OR FILE_GENERIC_WRITE / FILE_ALL_ACCESS into this mask: those
 # aggregate masks also contain READ_CONTROL and SYNCHRONIZE, which are shared
 # with read-only ACEs. Detect only write-specific bits plus the two unexpanded
@@ -68,6 +69,12 @@ _PATH_REPLACEMENT_MASK = (
 
 def _ace_can_replace_child_path(mask):
     return bool(int(mask) & _PATH_REPLACEMENT_MASK)
+
+
+
+def _ace_applies_to_current_object(flags):
+    # Inherit-only ACEs are evaluated on each descendant's own DACL.
+    return not (int(flags) & _INHERIT_ONLY_ACE)
 _TRUSTED_OS_OWNERS = frozenset((
     "S-1-5-18",  # LocalSystem
     "S-1-5-32-544",  # BUILTIN\\Administrators
@@ -368,6 +375,10 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
                 _raise_winerror(message="Cannot inspect Windows profile ACE")
             header = ctypes.cast(
                 ace_pointer, ctypes.POINTER(_ACE_HEADER)).contents
+            # INHERIT_ONLY_ACE does not grant access to this object. Every
+            # descendant to which it propagates is checked independently.
+            if not _ace_applies_to_current_object(header.AceFlags):
+                continue
             if header.AceType not in _ALLOWED_ACE_TYPES:
                 if header.AceType not in (1, 2, 3, 6, 7, 8, 10, 12, 13, 14):
                     raise ValueError("Unsupported Windows profile ACL entry type")

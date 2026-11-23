@@ -44,6 +44,12 @@ class WindowsAclMaskClassificationTests(unittest.TestCase):
             with self.subTest(mask=hex(mask)):
                 self.assertTrue(wp._ace_can_replace_child_path(mask))
 
+    def test_inherit_only_ace_is_checked_on_the_descendant_not_parent(self):
+        self.assertTrue(wp._ace_applies_to_current_object(0x00))
+        self.assertTrue(wp._ace_applies_to_current_object(0x10))
+        self.assertFalse(wp._ace_applies_to_current_object(0x08))
+        self.assertFalse(wp._ace_applies_to_current_object(0x18))
+
 
 @unittest.skipUnless(os.name == "nt", "Native Windows token and ACL tests")
 class WindowsUserProfileSecurityTests(unittest.TestCase):
