@@ -103,3 +103,18 @@ The original Codex project command remains unchanged. Browser selection for all 
 ## 7. Verification
 
 Local tests and GitHub Actions results plus commit SHA will be appended only after confirmed. No real Host binaries were launched, no user-owned projects/profiles changed and no third-party Skill instructions/scripts were executed.
+
+## 8. Verified feature delivery and automated acceptance
+
+- **Feature Commit:** [95fa7d16a54d54b66cc0071de9b0817e8e1ada29](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/95fa7d16a54d54b66cc0071de9b0817e8e1ada29). The 13-file staged allowlist and sensitive-pattern scan both passed before the normal, non-forced push to main. No private ZIP, account secret or personal HOME path was committed.
+- **Host transaction CI:** [Run 45242143735](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45242143735), **completed SUCCESS**. Includes tests for both Hosts' fresh install, full backup replace, restore, uninstall/reinstall, interruption/recovery and local TTY approval.
+- **Explorer UX CI:** [Run 45242143942](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45242143942), **completed SUCCESS**. Browser selection produces Cursor/Claude Code terminal commands; no HTTP installation route exists.
+- **Existing Codex, ZIP/Host fixture and release-draft workflows** also completed successfully on the same feature commit: Runs 45242143715, 45242143646, 45242143569, 45242143482 and 45242143427.
+- **Full source refresh and regression:** [Run 45242143810](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45242143810), **completed SUCCESS**, **724 passing tests** on Linux, **57 source repositories and 4,431 attributed records**.
+- **Mac local regression before publication:** **718 passing tests and 290 subtests** (excluding only the optional MCP-server suite from local Python). Focused Host/adapter tests: **58 passing tests**. JavaScript DOM workflow, Python compilation, YAML parsing and Git whitespace check passed.
+- **Automatic catalog-only metadata commit:** 16b46cdef3c0704d88169033b57305360e33fb6f, fetched and fast-forwarded locally without force-push or overwriting code.
+- **No real-user/manual Host verification was performed**. Passing CI tests confirm the inert filesystem transaction mechanics, not runtime discovery/operation by Cursor or Claude Code. No third-party Skill code was executed.
+
+**Engineering acceptance:** the requested Cursor and Claude Code **project filesystem transaction implementation and automated regression** are complete. User HOME, Windows, dynamic third-party execution sandbox, independent upstream authenticity evidence and choice of project License remain separate development tasks.
+
+**Private release draft:** The existing release-draft command remains private-only with public_release_allowed=false. Its historical blocker label about other Host scopes means **live Host behavior has not been verified**; it must not be read as saying the new project filesystem installers do not exist.
