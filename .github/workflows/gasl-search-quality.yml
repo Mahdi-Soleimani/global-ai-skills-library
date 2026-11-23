@@ -1,0 +1,80 @@
+name: GASL — Provisional search quality regression
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tools/benchmark_reconcile.py
+      - tools/search_ranking_lab.py
+      - tools/search_benchmark.py
+      - tools/skill_search.py
+      - benchmarks/search-gold-v1.json
+      - benchmarks/search-gold-v1-crosswalk.json
+      - tests/test_benchmark_reconcile.py
+      - tests/test_search_ranking_lab.py
+      - .github/workflows/gasl-search-quality.yml
+  pull_request:
+    paths:
+      - tools/benchmark_reconcile.py
+      - tools/search_ranking_lab.py
+      - tools/search_benchmark.py
+      - tools/skill_search.py
+      - benchmarks/search-gold-v1.json
+      - benchmarks/search-gold-v1-crosswalk.json
+      - tests/test_benchmark_reconcile.py
+      - tests/test_search_ranking_lab.py
+      - .github/workflows/gasl-search-quality.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provisional-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run immutable crosswalk and benchmark regression tests
+        run: |
+          python3 -m compileall -q tools tests
+          python3 -m unittest tests.test_benchmark_reconcile tests.test_search_ranking_lab tests.test_search_benchmark -q
+
+      - name: Reconcile Git-blob-pinned provisional labels, never human gold
+        run: |
+          python3 tools/benchmark_reconcile.py \
+            --map benchmarks/search-gold-v1-crosswalk.json \
+            --report /tmp/gasl-provisional-reconciled-baseline.json
+
+      - name: Compare candidate ranking orders without changing production ranking
+        run: |
+          python3 tools/search_ranking_lab.py \
+            --output /tmp/gasl-provisional-rank-ablation.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          baseline=json.loads(Path('/tmp/gasl-provisional-reconciled-baseline.json').read_text())
+          experiment=json.loads(Path('/tmp/gasl-provisional-rank-ablation.json').read_text())
+          assert experiment['query_count'] == baseline['query_count'] == 26
+          assert experiment['judgment_count'] == baseline['judgment_count'] == 148
+          assert experiment['metrics']['production'] == baseline['averages']
+          assert experiment['production_ranker_changed'] is False
+          assert experiment['ranker_winner_selected'] is False
+          assert experiment['independent_human_gold_available'] is False
+          assert experiment['no_answer_gold_available'] is False
+          assert baseline['reconciliation']['remapped_source_id_count'] >= 0
+          print('PROVISIONAL_SEARCH_EVALUATION_GATES=PASS')
+          PY
+
+      - name: Confirm working tree remains unchanged
+        run: |
+          git diff --exit-code
+          git diff --check

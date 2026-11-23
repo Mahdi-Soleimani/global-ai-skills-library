@@ -1,0 +1,2127 @@
+{
+  "schema": "gasl-provisional-ranking-ablation-v1",
+  "status": "provisional_development_only_not_independent_evaluation",
+  "query_count": 26,
+  "judgment_count": 148,
+  "crosswalk_source_id_changes": 24,
+  "source_catalog_sha256": "0e1ff9acb938431bdddfb9a365e46a3464339f13538420ca8413185e999add8d",
+  "production_ranker_changed": false,
+  "ranker_winner_selected": false,
+  "no_answer_gold_available": false,
+  "independent_human_gold_available": false,
+  "common_candidate_pool_limit": 10,
+  "metrics": {
+    "production": {
+      "precision_at_k": 0.4385,
+      "recall_at_k": 0.5818,
+      "mrr_at_k": 0.8987,
+      "ndcg_at_k": 0.6577
+    },
+    "score_first": {
+      "precision_at_k": 0.4692,
+      "recall_at_k": 0.6209,
+      "mrr_at_k": 0.9263,
+      "ndcg_at_k": 0.677
+    },
+    "core_evidence_first": {
+      "precision_at_k": 0.4231,
+      "recall_at_k": 0.5623,
+      "mrr_at_k": 0.8987,
+      "ndcg_at_k": 0.6325
+    },
+    "named_entity_first": {
+      "precision_at_k": 0.4308,
+      "recall_at_k": 0.5754,
+      "mrr_at_k": 0.9179,
+      "ndcg_at_k": 0.6652
+    }
+  },
+  "language_metrics": {
+    "production": {
+      "en": {
+        "precision_at_k": 0.4308,
+        "recall_at_k": 0.592,
+        "mrr_at_k": 0.859,
+        "ndcg_at_k": 0.6399
+      },
+      "fa": {
+        "precision_at_k": 0.4462,
+        "recall_at_k": 0.5715,
+        "mrr_at_k": 0.9385,
+        "ndcg_at_k": 0.6756
+      }
+    },
+    "score_first": {
+      "en": {
+        "precision_at_k": 0.4615,
+        "recall_at_k": 0.6222,
+        "mrr_at_k": 0.9038,
+        "ndcg_at_k": 0.6573
+      },
+      "fa": {
+        "precision_at_k": 0.4769,
+        "recall_at_k": 0.6196,
+        "mrr_at_k": 0.9487,
+        "ndcg_at_k": 0.6967
+      }
+    },
+    "core_evidence_first": {
+      "en": {
+        "precision_at_k": 0.4462,
+        "recall_at_k": 0.603,
+        "mrr_at_k": 0.859,
+        "ndcg_at_k": 0.6363
+      },
+      "fa": {
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5215,
+        "mrr_at_k": 0.9385,
+        "ndcg_at_k": 0.6287
+      }
+    },
+    "named_entity_first": {
+      "en": {
+        "precision_at_k": 0.4154,
+        "recall_at_k": 0.5792,
+        "mrr_at_k": 0.8974,
+        "ndcg_at_k": 0.6546
+      },
+      "fa": {
+        "precision_at_k": 0.4462,
+        "recall_at_k": 0.5715,
+        "mrr_at_k": 0.9385,
+        "ndcg_at_k": 0.6759
+      }
+    }
+  },
+  "paired_ndcg_query_outcomes": {
+    "score_first": {
+      "unchanged": 16,
+      "improved": 7,
+      "regressed": 3
+    },
+    "core_evidence_first": {
+      "unchanged": 19,
+      "improved": 1,
+      "regressed": 6
+    },
+    "named_entity_first": {
+      "unchanged": 23,
+      "regressed": 1,
+      "improved": 2
+    }
+  },
+  "mean_top5_judged_fraction": 0.5,
+  "mean_candidate_pool_recall_at_10": 0.6822,
+  "queries": [
+    {
+      "id": "n8n-agent-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.75,
+      "judged_result_fraction_at_5": 0.8,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9248,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9248,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9248,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9248,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-ed335e9f179eac58c0be",
+          "GASL-SRC-df8bfc46fabd996243f6"
+        ],
+        "score_first": [
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-ed335e9f179eac58c0be",
+          "GASL-SRC-bab2f44c4904632ae317"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-ed335e9f179eac58c0be",
+          "GASL-SRC-df8bfc46fabd996243f6"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-ed335e9f179eac58c0be",
+          "GASL-SRC-df8bfc46fabd996243f6"
+        ]
+      }
+    },
+    {
+      "id": "n8n-agent-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 4,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8988,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8988,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8988,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8988,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-710b023ab6fd8ad4f677",
+          "GASL-SRC-e653782fa74666a56a50"
+        ],
+        "score_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-710b023ab6fd8ad4f677",
+          "GASL-SRC-e653782fa74666a56a50"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-710b023ab6fd8ad4f677",
+          "GASL-SRC-e653782fa74666a56a50"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-710b023ab6fd8ad4f677",
+          "GASL-SRC-e653782fa74666a56a50"
+        ]
+      }
+    },
+    {
+      "id": "api-security-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 6,
+      "retrieval_pool_recall_at_10": 0.3333,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.531,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5395,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.531,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.1667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4835,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-eb371e4de9e153a878ac",
+          "GASL-SRC-0b4937d30368a30ef070",
+          "GASL-SRC-40c51725932cb38537cc",
+          "GASL-SRC-750e978742ebe509a776"
+        ],
+        "score_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-0b4937d30368a30ef070",
+          "GASL-SRC-eb371e4de9e153a878ac",
+          "GASL-SRC-750e978742ebe509a776",
+          "GASL-SRC-40c51725932cb38537cc"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-eb371e4de9e153a878ac",
+          "GASL-SRC-0b4937d30368a30ef070",
+          "GASL-SRC-40c51725932cb38537cc",
+          "GASL-SRC-750e978742ebe509a776"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-40c51725932cb38537cc",
+          "GASL-SRC-15b7bceeb8fadba79112",
+          "GASL-SRC-bdf956be886030345851",
+          "GASL-SRC-c62eb4bd499c81330334"
+        ]
+      }
+    },
+    {
+      "id": "api-security-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 1,
+      "relevant_source_count_in_labels": 6,
+      "retrieval_pool_recall_at_10": 0.1667,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.1667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4835,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.1667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4835,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.1667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4835,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.1667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.488,
+          "relevant_judgment_count": 6,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-cd14f21a7cfd285b521a",
+          "GASL-SRC-eb371e4de9e153a878ac",
+          "GASL-SRC-bdf956be886030345851",
+          "GASL-SRC-dbd335e23e65718e5b4b"
+        ],
+        "score_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-cd14f21a7cfd285b521a",
+          "GASL-SRC-eb371e4de9e153a878ac",
+          "GASL-SRC-bdf956be886030345851",
+          "GASL-SRC-dbd335e23e65718e5b4b"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-cd14f21a7cfd285b521a",
+          "GASL-SRC-dbd335e23e65718e5b4b",
+          "GASL-SRC-bdf956be886030345851",
+          "GASL-SRC-c62eb4bd499c81330334"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-38d16dafdd2965f9120e",
+          "GASL-SRC-cd14f21a7cfd285b521a",
+          "GASL-SRC-bdf956be886030345851",
+          "GASL-SRC-c62eb4bd499c81330334",
+          "GASL-SRC-0c076179538bf25073f5"
+        ]
+      }
+    },
+    {
+      "id": "wordpress-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 1,
+      "relevant_source_count_in_labels": 1,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 0.25,
+          "ndcg_at_k": 0.4307,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-e813bbbfdbf35166c061",
+          "GASL-SRC-d089a1cc3dd956156cb8",
+          "GASL-SRC-0988c6e44e5487171be1"
+        ],
+        "score_first": [
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-e813bbbfdbf35166c061",
+          "GASL-SRC-d089a1cc3dd956156cb8",
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-0988c6e44e5487171be1"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-e813bbbfdbf35166c061",
+          "GASL-SRC-d089a1cc3dd956156cb8",
+          "GASL-SRC-30e1babc539e06673259"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-e813bbbfdbf35166c061",
+          "GASL-SRC-d089a1cc3dd956156cb8",
+          "GASL-SRC-0988c6e44e5487171be1"
+        ]
+      }
+    },
+    {
+      "id": "wordpress-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 1,
+      "relevant_source_count_in_labels": 1,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 1.0,
+          "relevant_judgment_count": 1,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-e7b1522da1a80b585240",
+          "GASL-SRC-9e9ce9d1975d2d4d42fc"
+        ],
+        "score_first": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-e7b1522da1a80b585240",
+          "GASL-SRC-9e9ce9d1975d2d4d42fc"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-e7b1522da1a80b585240",
+          "GASL-SRC-9e9ce9d1975d2d4d42fc"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-b5415d266228969ed99e",
+          "GASL-SRC-f95dc5621ef603b14aac",
+          "GASL-SRC-2e2be59a6603e5d2457b",
+          "GASL-SRC-e7b1522da1a80b585240",
+          "GASL-SRC-9e9ce9d1975d2d4d42fc"
+        ]
+      }
+    },
+    {
+      "id": "cloudflare-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 6,
+      "relevant_source_count_in_labels": 7,
+      "retrieval_pool_recall_at_10": 0.8571,
+      "judged_result_fraction_at_5": 0.8,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 1.0,
+          "recall_at_k": 0.7143,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6876,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 5,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 1.0,
+          "recall_at_k": 0.7143,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5755,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 5,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-422891f50199156592a1",
+          "GASL-SRC-bb632d2c311bb16639ba"
+        ],
+        "score_first": [
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-e813bbbfdbf35166c061",
+          "GASL-SRC-422891f50199156592a1"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-628c02e7ae99a9463ce9",
+          "GASL-SRC-422891f50199156592a1"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-422891f50199156592a1",
+          "GASL-SRC-bb632d2c311bb16639ba"
+        ]
+      }
+    },
+    {
+      "id": "cloudflare-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 4,
+      "relevant_source_count_in_labels": 7,
+      "retrieval_pool_recall_at_10": 0.5714,
+      "judged_result_fraction_at_5": 0.8,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4915,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4915,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4915,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.5714,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4915,
+          "relevant_judgment_count": 7,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ad3ac02c06d0cb0c4a5f",
+          "GASL-SRC-422891f50199156592a1"
+        ],
+        "score_first": [
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ad3ac02c06d0cb0c4a5f",
+          "GASL-SRC-422891f50199156592a1"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ad3ac02c06d0cb0c4a5f",
+          "GASL-SRC-422891f50199156592a1"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-ece11e5aa26f1f9d4092",
+          "GASL-SRC-93e43b3db32fa9d1e3a4",
+          "GASL-SRC-1bdfc6c8d5fcfd956920",
+          "GASL-SRC-ad3ac02c06d0cb0c4a5f",
+          "GASL-SRC-422891f50199156592a1"
+        ]
+      }
+    },
+    {
+      "id": "github-actions-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 5,
+      "relevant_source_count_in_labels": 8,
+      "retrieval_pool_recall_at_10": 0.625,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.375,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.3873,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.375,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6371,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.375,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.3873,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.375,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.3873,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-6405d34d2d1f68cfa472",
+          "GASL-SRC-8e77d7277c4085c4e7a2",
+          "GASL-SRC-4c95ab3f52ab1d5b7268",
+          "GASL-SRC-ba11de17b9496ee2aa14"
+        ],
+        "score_first": [
+          "GASL-SRC-8e77d7277c4085c4e7a2",
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-4c95ab3f52ab1d5b7268",
+          "GASL-SRC-ba11de17b9496ee2aa14",
+          "GASL-SRC-6405d34d2d1f68cfa472"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-6405d34d2d1f68cfa472",
+          "GASL-SRC-8e77d7277c4085c4e7a2",
+          "GASL-SRC-4c95ab3f52ab1d5b7268",
+          "GASL-SRC-5d05d7a663aa74b5caaa"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-6405d34d2d1f68cfa472",
+          "GASL-SRC-8e77d7277c4085c4e7a2",
+          "GASL-SRC-4c95ab3f52ab1d5b7268",
+          "GASL-SRC-ba11de17b9496ee2aa14"
+        ]
+      }
+    },
+    {
+      "id": "github-actions-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 8,
+      "retrieval_pool_recall_at_10": 0.25,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.125,
+          "mrr_at_k": 0.2,
+          "ndcg_at_k": 0.0755,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.1817,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.125,
+          "mrr_at_k": 0.2,
+          "ndcg_at_k": 0.0755,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.125,
+          "mrr_at_k": 0.2,
+          "ndcg_at_k": 0.0755,
+          "relevant_judgment_count": 8,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-309699c84af79a0e094f",
+          "GASL-SRC-3acfa0476264f7232ce1",
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-1a383e6f2cb8988313f4",
+          "GASL-SRC-d7afa5c7e26f0836fda0"
+        ],
+        "score_first": [
+          "GASL-SRC-309699c84af79a0e094f",
+          "GASL-SRC-1a383e6f2cb8988313f4",
+          "GASL-SRC-d7afa5c7e26f0836fda0",
+          "GASL-SRC-ba11de17b9496ee2aa14",
+          "GASL-SRC-6405d34d2d1f68cfa472"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-309699c84af79a0e094f",
+          "GASL-SRC-3acfa0476264f7232ce1",
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-1a383e6f2cb8988313f4",
+          "GASL-SRC-d7afa5c7e26f0836fda0"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-309699c84af79a0e094f",
+          "GASL-SRC-3acfa0476264f7232ce1",
+          "GASL-SRC-cdd98c9282d9106c5598",
+          "GASL-SRC-1a383e6f2cb8988313f4",
+          "GASL-SRC-d7afa5c7e26f0836fda0"
+        ]
+      }
+    },
+    {
+      "id": "seo-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 1,
+      "relevant_source_count_in_labels": 3,
+      "retrieval_pool_recall_at_10": 0.3333,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6467,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6467,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6467,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6467,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-31f4c7e5476c3b642587",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-99bd1f6632c181b32970",
+          "GASL-SRC-fa2b18ce31d51dc20da7"
+        ],
+        "score_first": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-fa2b18ce31d51dc20da7",
+          "GASL-SRC-4a607abdf3b054d2b776",
+          "GASL-SRC-9339b866d6233d623cda",
+          "GASL-SRC-08d780a05ab5f0223d03"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-31f4c7e5476c3b642587",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-99bd1f6632c181b32970",
+          "GASL-SRC-4a607abdf3b054d2b776"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-31f4c7e5476c3b642587",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-99bd1f6632c181b32970",
+          "GASL-SRC-fa2b18ce31d51dc20da7"
+        ]
+      }
+    },
+    {
+      "id": "seo-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 3,
+      "retrieval_pool_recall_at_10": 0.6667,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.6667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7933,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.6667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7933,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.6667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6616,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.6667,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7933,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-12510160a9ba98f1d661",
+          "GASL-SRC-4a607abdf3b054d2b776",
+          "GASL-SRC-fa2b18ce31d51dc20da7"
+        ],
+        "score_first": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-fa2b18ce31d51dc20da7",
+          "GASL-SRC-e38925163b7b529db2f1",
+          "GASL-SRC-d035231496c1f32363ab"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-12510160a9ba98f1d661",
+          "GASL-SRC-4a607abdf3b054d2b776",
+          "GASL-SRC-fa2b18ce31d51dc20da7"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-abe0b8a8c5602a150be1",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-12510160a9ba98f1d661",
+          "GASL-SRC-4a607abdf3b054d2b776",
+          "GASL-SRC-fa2b18ce31d51dc20da7"
+        ]
+      }
+    },
+    {
+      "id": "excel-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 2,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9053,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9053,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9053,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9053,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-d400f455b2fd964bc34a",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-87fd81362b09d676a691",
+          "GASL-SRC-7d2ebca6ba3f0858eb9f"
+        ],
+        "score_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-d400f455b2fd964bc34a",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-7d2ebca6ba3f0858eb9f",
+          "GASL-SRC-987e80d17e125391065f"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-d400f455b2fd964bc34a",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-87fd81362b09d676a691",
+          "GASL-SRC-7d2ebca6ba3f0858eb9f"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-d400f455b2fd964bc34a",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-87fd81362b09d676a691",
+          "GASL-SRC-7d2ebca6ba3f0858eb9f"
+        ]
+      }
+    },
+    {
+      "id": "excel-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 2,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7126,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8653,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7126,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7126,
+          "relevant_judgment_count": 2,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-7e26fbc4ee694d813398",
+          "GASL-SRC-fc28dad63ef1d4b67f7e",
+          "GASL-SRC-87fd81362b09d676a691"
+        ],
+        "score_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-d400f455b2fd964bc34a",
+          "GASL-SRC-7d2ebca6ba3f0858eb9f",
+          "GASL-SRC-987e80d17e125391065f"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-7e26fbc4ee694d813398",
+          "GASL-SRC-fc28dad63ef1d4b67f7e",
+          "GASL-SRC-87fd81362b09d676a691"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-0d9ff6af864684b55487",
+          "GASL-SRC-6106fbe720b2a935ec92",
+          "GASL-SRC-7e26fbc4ee694d813398",
+          "GASL-SRC-fc28dad63ef1d4b67f7e",
+          "GASL-SRC-87fd81362b09d676a691"
+        ]
+      }
+    },
+    {
+      "id": "nextjs-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.5,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4796,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4796,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4796,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4796,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-94668a9a15191595da54",
+          "GASL-SRC-49d1a6194ee111df13a2"
+        ],
+        "score_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-94668a9a15191595da54",
+          "GASL-SRC-49d1a6194ee111df13a2"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-94668a9a15191595da54",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-49d1a6194ee111df13a2"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-94668a9a15191595da54",
+          "GASL-SRC-49d1a6194ee111df13a2"
+        ]
+      }
+    },
+    {
+      "id": "nextjs-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.5,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5681,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5681,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.25,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4796,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5681,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-9df267daece1f48c7582",
+          "GASL-SRC-8de384a217b6aea83a56"
+        ],
+        "score_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-9df267daece1f48c7582",
+          "GASL-SRC-8de384a217b6aea83a56"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-8de384a217b6aea83a56",
+          "GASL-SRC-49d1a6194ee111df13a2"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-281d8f811ae8a9b81873",
+          "GASL-SRC-26d6d133e8991e2c0374",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-9df267daece1f48c7582",
+          "GASL-SRC-8de384a217b6aea83a56"
+        ]
+      }
+    },
+    {
+      "id": "telegram-n8n-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.75,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7121,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7121,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7121,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7121,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-df8bfc46fabd996243f6",
+          "GASL-SRC-9bdc16775a46dcae04bb"
+        ],
+        "score_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-df8bfc46fabd996243f6",
+          "GASL-SRC-9bdc16775a46dcae04bb"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-df8bfc46fabd996243f6",
+          "GASL-SRC-9bdc16775a46dcae04bb"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-df8bfc46fabd996243f6",
+          "GASL-SRC-9bdc16775a46dcae04bb"
+        ]
+      }
+    },
+    {
+      "id": "telegram-n8n-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.75,
+      "judged_result_fraction_at_5": 0.8,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7386,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7386,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7386,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7386,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-4ec31d621b5d16d3db95",
+          "GASL-SRC-ed335e9f179eac58c0be"
+        ],
+        "score_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-4ec31d621b5d16d3db95",
+          "GASL-SRC-ed335e9f179eac58c0be"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-4ec31d621b5d16d3db95",
+          "GASL-SRC-ed335e9f179eac58c0be"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-e05a75b3d1cf64a9803a",
+          "GASL-SRC-dd9c5b087f27ac574c02",
+          "GASL-SRC-1bd5766c75ec4cbc2d28",
+          "GASL-SRC-4ec31d621b5d16d3db95",
+          "GASL-SRC-ed335e9f179eac58c0be"
+        ]
+      }
+    },
+    {
+      "id": "fastapi-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 1,
+      "relevant_source_count_in_labels": 3,
+      "retrieval_pool_recall_at_10": 0.3333,
+      "judged_result_fraction_at_5": 0.2,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 0.5,
+          "ndcg_at_k": 0.408,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 0.5,
+          "ndcg_at_k": 0.408,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 0.5,
+          "ndcg_at_k": 0.408,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.3333,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6467,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-a3b0daeefc742dc7f8fe",
+          "GASL-SRC-3a16acd1a0ecd83343e1"
+        ],
+        "score_first": [
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-d30e1ef58593f75495ce",
+          "GASL-SRC-57967e4fe25dfff3e119"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-a3b0daeefc742dc7f8fe",
+          "GASL-SRC-3a16acd1a0ecd83343e1"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-29667157e883e4fc6503",
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-a3b0daeefc742dc7f8fe"
+        ]
+      }
+    },
+    {
+      "id": "fastapi-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.5,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5303,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5741,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.4983,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.5303,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-a3b0daeefc742dc7f8fe",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-d5f815344e52598dbe43"
+        ],
+        "score_first": [
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-d5f815344e52598dbe43",
+          "GASL-SRC-45a068d27e13c976f304"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-a3b0daeefc742dc7f8fe",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-45a068d27e13c976f304"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-b67076898309986435e6",
+          "GASL-SRC-3325f95a7694c4a08e19",
+          "GASL-SRC-a3b0daeefc742dc7f8fe",
+          "GASL-SRC-b7680ea130079d3af264",
+          "GASL-SRC-d5f815344e52598dbe43"
+        ]
+      }
+    },
+    {
+      "id": "redis-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 3,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8238,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8046,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8238,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 1.0,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8238,
+          "relevant_judgment_count": 3,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-fc9e3488164088ec79a7",
+          "GASL-SRC-2e6eaafe6281bcc0d869"
+        ],
+        "score_first": [
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-fc9e3488164088ec79a7",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-2e6eaafe6281bcc0d869"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-2e6eaafe6281bcc0d869",
+          "GASL-SRC-fc9e3488164088ec79a7"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-fc9e3488164088ec79a7",
+          "GASL-SRC-2e6eaafe6281bcc0d869"
+        ]
+      }
+    },
+    {
+      "id": "redis-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 4,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7564,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7283,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7564,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7564,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-2e6eaafe6281bcc0d869",
+          "GASL-SRC-fc9e3488164088ec79a7"
+        ],
+        "score_first": [
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-2e6eaafe6281bcc0d869",
+          "GASL-SRC-fc9e3488164088ec79a7",
+          "GASL-SRC-a571b45567992ee4aee7"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-2e6eaafe6281bcc0d869",
+          "GASL-SRC-fc9e3488164088ec79a7"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-4b1cf25ab9c7d39e5f2f",
+          "GASL-SRC-de775c6db2bc3904e127",
+          "GASL-SRC-a571b45567992ee4aee7",
+          "GASL-SRC-2e6eaafe6281bcc0d869",
+          "GASL-SRC-fc9e3488164088ec79a7"
+        ]
+      }
+    },
+    {
+      "id": "data-viz-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.75,
+      "judged_result_fraction_at_5": 0.6,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.2633,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.75,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6328,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.2633,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 0.3333,
+          "ndcg_at_k": 0.2633,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-6b05b3e79cf771b6dba8",
+          "GASL-SRC-7895ef4cde1dab85d909",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68",
+          "GASL-SRC-7a579eb1d3fa3090b3b1",
+          "GASL-SRC-28877e78e6e519d30986"
+        ],
+        "score_first": [
+          "GASL-SRC-5171fa9ea7fc8ab5ac68",
+          "GASL-SRC-6b05b3e79cf771b6dba8",
+          "GASL-SRC-7a579eb1d3fa3090b3b1",
+          "GASL-SRC-28877e78e6e519d30986",
+          "GASL-SRC-12053a580ef1ee4f2025"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-6b05b3e79cf771b6dba8",
+          "GASL-SRC-7895ef4cde1dab85d909",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68",
+          "GASL-SRC-7a579eb1d3fa3090b3b1",
+          "GASL-SRC-28877e78e6e519d30986"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-6b05b3e79cf771b6dba8",
+          "GASL-SRC-7895ef4cde1dab85d909",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68",
+          "GASL-SRC-7a579eb1d3fa3090b3b1",
+          "GASL-SRC-28877e78e6e519d30986"
+        ]
+      }
+    },
+    {
+      "id": "data-viz-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 3,
+      "relevant_source_count_in_labels": 5,
+      "retrieval_pool_recall_at_10": 0.6,
+      "judged_result_fraction_at_5": 1.0,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.6,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8239,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.6,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8239,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.2,
+          "recall_at_k": 0.2,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6086,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 1,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.6,
+          "recall_at_k": 0.6,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.8239,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 3,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-12053a580ef1ee4f2025",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-3814f5f0ebc662b9ce3b",
+          "GASL-SRC-8ee9c58605e58e45b265",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68"
+        ],
+        "score_first": [
+          "GASL-SRC-12053a580ef1ee4f2025",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-3814f5f0ebc662b9ce3b",
+          "GASL-SRC-8ee9c58605e58e45b265",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-12053a580ef1ee4f2025",
+          "GASL-SRC-c4895cfd7b0e8289abeb",
+          "GASL-SRC-073888e3e815063c18a1",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-3814f5f0ebc662b9ce3b"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-12053a580ef1ee4f2025",
+          "GASL-SRC-e8b7d46da205f1f5b542",
+          "GASL-SRC-3814f5f0ebc662b9ce3b",
+          "GASL-SRC-8ee9c58605e58e45b265",
+          "GASL-SRC-5171fa9ea7fc8ab5ac68"
+        ]
+      }
+    },
+    {
+      "id": "seo-content-en",
+      "language": "en",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 2,
+      "relevant_source_count_in_labels": 4,
+      "retrieval_pool_recall_at_10": 0.5,
+      "judged_result_fraction_at_5": 0.4,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7367,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7367,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.6144,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.4,
+          "recall_at_k": 0.5,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7367,
+          "relevant_judgment_count": 4,
+          "retrieved_relevant_count": 2,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-08d780a05ab5f0223d03"
+        ],
+        "score_first": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-08d780a05ab5f0223d03",
+          "GASL-SRC-91218ab531241df1d0a6"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-08d780a05ab5f0223d03"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-62cbf064a8abddb5e480",
+          "GASL-SRC-08d780a05ab5f0223d03"
+        ]
+      }
+    },
+    {
+      "id": "seo-content-fa",
+      "language": "fa",
+      "candidate_count": 10,
+      "relevant_source_count_in_candidate_pool": 5,
+      "relevant_source_count_in_labels": 5,
+      "retrieval_pool_recall_at_10": 1.0,
+      "judged_result_fraction_at_5": 0.8,
+      "metrics": {
+        "production": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.8,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9097,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "score_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.8,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9097,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "core_evidence_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.8,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.7683,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        },
+        "named_entity_first": {
+          "precision_at_k": 0.8,
+          "recall_at_k": 0.8,
+          "mrr_at_k": 1.0,
+          "ndcg_at_k": 0.9097,
+          "relevant_judgment_count": 5,
+          "retrieved_relevant_count": 4,
+          "result_count": 10
+        }
+      },
+      "top_k_source_ids": {
+        "production": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-a56b60d13a6fee518b91",
+          "GASL-SRC-9339b866d6233d623cda",
+          "GASL-SRC-91218ab531241df1d0a6"
+        ],
+        "score_first": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-a56b60d13a6fee518b91",
+          "GASL-SRC-9339b866d6233d623cda",
+          "GASL-SRC-12dd492cd9a056d79424"
+        ],
+        "core_evidence_first": [
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-91218ab531241df1d0a6",
+          "GASL-SRC-a56b60d13a6fee518b91",
+          "GASL-SRC-9339b866d6233d623cda"
+        ],
+        "named_entity_first": [
+          "GASL-SRC-010bf919fbb1492a01dd",
+          "GASL-SRC-11b781b5c13bd506fe18",
+          "GASL-SRC-a56b60d13a6fee518b91",
+          "GASL-SRC-9339b866d6233d623cda",
+          "GASL-SRC-91218ab531241df1d0a6"
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Ablations reorder only the SAME top-10 candidates returned by the existing ranker.",
+    "Higher scores on these already-seen provisional labels are NOT evidence of real-world quality gains.",
+    "Unjudged results are treated as zero; metric differences are biased by incomplete labels.",
+    "No independent human adjudication, no unseen holdout, and no validated answerability labels exist.",
+    "No variant is promoted to production, no Skill is installed or executed."
+  ]
+}

@@ -15,6 +15,10 @@ on:
       - '!tools/sandbox_canary/**'
       - '!tools/sandbox_canary_runner.py'
       - '!tools/sandbox_gate.py'
+      # Benchmark reconciliation and ablation are read-only quality tooling.
+      # Their dedicated workflow must not trigger a 57-repository source refresh.
+      - '!tools/benchmark_reconcile.py'
+      - '!tools/search_ranking_lab.py'
       # Actual Host discovery test is managed by a dedicated lightweight CI job.
       - '!tools/codex_discovery_probe.py'
       - '!tools/other_host_protocol_probe.py'

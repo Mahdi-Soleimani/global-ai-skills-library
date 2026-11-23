@@ -224,6 +224,25 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 48: Reproducible, *provisional* search-quality evaluation
+
+GASL's historical **26-query, 148-judgment** bilingual development set could no longer run directly against the refreshed Source Catalog: 24 of its 72 judged source IDs had changed when upstream repositories advanced to new pinned Commits. The original dataset is **not independently adjudicated Gold**; silently assigning old labels to new IDs would be misleading.
+
+The Phase 48 local evaluator preserves the original labels, reconstructs a pinned historical crosswalk from a **specific old Git revision**, and transfers each label only when **repository, source path and exact Git Blob SHA are the same**. Changed/missing blobs, ambiguous duplicates and reused IDs fail closed.
+
+    # Reproduce the old-ID to new-ID crosswalk from Git history (local only):
+    python3 tools/benchmark_reconcile.py --historical-revision 7e616c0f5a8b6ba906bea59a0ade3fc163d9e418 --write-map benchmarks/search-gold-v1-crosswalk.json --report /tmp/gasl-provisional-baseline.json
+
+    # Replay without requiring the older Git commit to be present locally:
+    python3 tools/benchmark_reconcile.py --map benchmarks/search-gold-v1-crosswalk.json --report /tmp/gasl-provisional-baseline.json
+
+    # Compare four experimental sorts on the same retrieved candidates:
+    python3 tools/search_ranking_lab.py --output /tmp/gasl-provisional-ablation.json
+
+The measured **development-only** baseline at the Phase-48 source snapshot is P@5 **0.4385**, Recall@5 **0.5818**, MRR@10 **0.8987** and NDCG@5 **0.6577**. The experiment score-first yielded NDCG@5 **0.6770** on the same small internal labels, but **only 50% of top-five results were judged**. It improved seven queries and regressed three; that is **not evidence of independently verified real-world quality gains**. No experimental ranker was promoted to default, no quality score was fabricated, and no Skill was installed or executed.
+
+Dedicated lightweight quality CI checks the crosswalk, original-label immutability, absence of fabricated Gold and reproducibility. Actual search-quality promotion requires **two independent human reviewers, adjudication, out-of-pool negatives, a frozen holdout and validated answerability**. See [Phase 48 report](docs/reports/PHASE-48-PROVISIONAL-SEARCH-QUALITY-2026-11-23.md).
+
 ### Phase 47: From a task to a shortlist, comparison, and Skill choice
 
 GASL Explorer now implements a simple **three-step local workflow** on top of the existing source catalog, search and experimental router. Start the same localhost Explorer as before:
