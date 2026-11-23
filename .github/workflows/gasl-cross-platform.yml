@@ -1,0 +1,74 @@
+name: GASL — Cross-platform Python and CLI regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - 'tests/**'
+      - 'web/**'
+      - 'config/**'
+      - 'benchmarks/**'
+      - 'gasl'
+      - 'requirements-dev.txt'
+      - 'requirements-mcp.txt'
+      - '.github/workflows/gasl-cross-platform.yml'
+  pull_request:
+    paths:
+      - 'tools/**'
+      - 'tests/**'
+      - 'web/**'
+      - 'config/**'
+      - 'benchmarks/**'
+      - 'gasl'
+      - 'requirements-dev.txt'
+      - 'requirements-mcp.txt'
+      - '.github/workflows/gasl-cross-platform.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gasl-cross-platform-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    name: ${{ matrix.os }} / Python 3.13
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    env:
+      PYTHONUNBUFFERED: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      GASL_ENABLE_WINDOWS_USER_PROFILE_CI: '0' # Never enable real-user scope in broad matrix tests.
+    steps:
+      - name: Checkout history and source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+
+      - name: Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install test and MCP dependencies
+        run: python -m pip install -r requirements-dev.txt -r requirements-mcp.txt
+
+      - name: Compile source and test modules
+        run: python -m compileall -q tools tests
+
+      - name: Run complete automated regression suite
+        run: python -m pytest -q
+
+      - name: Confirm no actual Agent directories or tracked source modifications
+        if: always()
+        run: |
+          python -c "from pathlib import Path; assert not any(Path(p).exists() for p in ('.agents', '.cursor', '.claude')), 'Unexpected Agent directory in repository'"
+          git diff --exit-code
+          git diff --check

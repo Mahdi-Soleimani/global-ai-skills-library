@@ -3,7 +3,7 @@
 **Date:** 2026-11-23  
 **Repository:** `Mahdi-Soleimani/global-ai-skills-library`  
 **Baseline:** `0e9269b805c9befe522c59a2cbab67939d44522b`  
-**Status:** Implementation and complete local regression passed; native Windows CI acceptance pending.
+**Status:** Native Windows CI and Daily Source Refresh passed; accepted for disposable CI-tested queue/download operations. Real-user/profile or third-party execution approval is not implied.
 
 ## Goal / prior limitation
 The existing `tools/queue_ingest.py` required POSIX `fcntl.flock` and rejected Windows, even though the rest of GASL's transaction engine had a Windows-native `msvcrt.locking` implementation. Separately, `tools/on_demand.py` directly imported `fcntl` and used the same `registry/discovery/.ingest.lock`. Keeping one consumer Windows-enabled while the other uses an incompatible lock would not guarantee mutual exclusion.
@@ -37,3 +37,13 @@ The existing `tools/queue_ingest.py` required POSIX `fcntl.flock` and rejected W
 
 ## Git protocol
 Before publishing, stage only the five above source/workflow/test files plus this report; run staged diff checks and secret scans, fetch `origin/main`, and push a regular fast-forward commit. Record CI evidence in a follow-up report amendment after the result exists.
+
+## Verified native Windows and Daily CI acceptance — 2026-11-23
+
+- **Source commit:** `3fbdf439d1fc72bc2abdbf3556acfa2974664172` on `main`.
+- **Windows workflow:** [Run 45279746011](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45279746011), job `138060757899` — **SUCCESS**; all listed workflow steps passed.
+- **Native Windows queue/selected-download tests:** 9/9 tests **OK**, including Windows-only reserved/ADS-name rejection, real cross-process byte-range lock contention, on-demand shared-lock rejection, hard-linked lock refusal, nonregular lock refusal and checkpoint preservation.
+- **Previous Windows security regressions:** project tests 15/15, SID/ACL tests 18/18 and user-profile lifecycle suite 25 tests (22 pass, 3 documented platform skips), all successful in that run.
+- **Daily Refresh:** [Run 45279746200](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45279746200) — **SUCCESS**, including full regression, source metadata updates, feature extraction and search/router smoke tests.
+- **Refreshed metadata commit:** `461d9c2` updated eight tracked metadata files; developer working tree was clean and was synchronized via `git merge --ff-only origin/main`. No metadata was overwritten or discarded.
+- **Scope of acceptance:** validated on real Windows CI runner using *synthetic disposable roots*; there was no actual current-user Agent Skill installation and no third-party Skill execution. Windows User Profile production gate remains closed.

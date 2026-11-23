@@ -159,6 +159,30 @@ class ReconcileTests(unittest.TestCase):
         original = load_dataset(ROOT/"benchmarks"/"search-gold-v1.json")
         mapping = json.loads((ROOT/"benchmarks"/"search-gold-v1-crosswalk.json").read_text())
         present = json.loads((ROOT/"registry"/"source-catalog.json").read_text())
+        self.assertEqual(len(original["queries"]), 26)
+        self.assertEqual(sum(len(q["relevant"]) for q in original["queries"]), 148)
+        self.assertEqual(len(mapping["identities"]), 72)
+        # The live catalog refreshes independently of these provisional
+        # labels. A changed Git Blob must BLOCK reuse of old grades rather
+        # than silently mapping them onto a new revision.
+        from collections import defaultdict
+        by_path = defaultdict(list)
+        for entry in present["records"]:
+            by_path[(entry["repository"], entry["source_path"])].append(entry)
+        stale = [
+            entry for entry in mapping["identities"]
+            if len([x for x in by_path[(entry["repository"], entry["source_path"])]
+                    if x["skill_md_blob_sha"] == entry["git_blob_sha"]]) != 1
+        ]
+        if stale:
+            before = json.dumps((original, present), sort_keys=True, ensure_ascii=False)
+            with self.assertRaisesRegex(
+                    ValueError, "Git Blob missing, changed, or ambiguous|Mapped Skill path absent"):
+                reconcile(original, mapping, present)
+            self.assertEqual(
+                json.dumps((original, present), sort_keys=True, ensure_ascii=False),
+                before, "Failed crosswalk must never mutate benchmark or catalog")
+            return  # No derived 148-grade report exists for this refreshed catalog.
         derived, audit = reconcile(original, mapping, present)
         self.assertEqual(audit["query_count"], 26)
         self.assertEqual(audit["total_judgments"], 148)

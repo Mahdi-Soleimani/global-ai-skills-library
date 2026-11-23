@@ -443,7 +443,7 @@ class UserProfileInstallTests(unittest.TestCase):
 
     def test_real_root_gate_refuses_fake_home_and_never_writes_real_home(self):
         with patch("user_profile_install._root",new=REAL_PROFILE_ROOT_CHECK):
-            with self.assertRaisesRegex(ValueError,"(current OS account HOME|Refusing root|current Windows token profile|elevated Windows token)"):
+            with self.assertRaisesRegex(ValueError,"(current OS account HOME|Refusing root|current Windows token profile|elevated Windows token|Windows User Profile is disabled)"):
                 up._root(self.profile)
         self.assertFalse((self.profile/".agents").exists())
         self.assertFalse((self.profile/".cursor").exists())

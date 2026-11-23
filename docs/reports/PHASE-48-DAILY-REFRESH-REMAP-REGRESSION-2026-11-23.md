@@ -48,3 +48,11 @@ This prevents a normal pinned-commit refresh from breaking CI solely because its
 - [Provisional Search Quality run 45278194622](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45278194622), job `138055376655`: **SUCCESS**.
 - All steps passed: immutable crosswalk/benchmark regression, reconciled provisional labels, ablation comparison with production ranking unchanged, and final clean working-tree check.
 - The full scheduled `gasl-refresh.yml` runs separately and was **not triggered** by this test-only correction. Its end-to-end source discovery/metadata refresh result is not yet confirmed on this commit.
+
+## Superseding data warning — after subsequent Refresh commit `461d9c2`
+
+A later successful metadata refresh changed the **Git Blob content**, not just the source ID, for `coreyhaines31/marketingskills/skills/seo-audit/SKILL.md`:
+- Previous pinned blob: `1a4fd7536e099e24f841444f621497fc8fd1d768`.
+- New source blob: `8e969c81b41f5ebc820de2ecd51a7c8ab85847c0`.
+- This historical judgment is **stale** for the refreshed content. The original same-blob 148-grade reconciliation is **blocked** by design; the earlier passing dedicated Search Quality CI applied to the *previous* catalog snapshot only.
+- Phase 56 adds a test verifying exact fail-closed behavior on drift while leaving the original provisional grades and provenance untouched. The ranking baseline for the new snapshot is **not** independently validated.
