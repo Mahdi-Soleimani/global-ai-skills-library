@@ -732,6 +732,19 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-025b623ce1092ee994df": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-026fb1103b7812d75d11": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "3bc1104ef05526c5ba43db0323fe8d2890921f58",
@@ -1021,23 +1034,6 @@
         "use"
       ],
       "verified_at_commit": "ed2c66be443e4c16502a0f7cb93c4edf60e93e94"
-    },
-    "GASL-SRC-0370ac35eb9f5dc7c8cc": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-0375424589e02b38699f": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -1424,24 +1420,6 @@
         "use"
       ],
       "verified_at_commit": "74708dab4b3f81a9845803c3f642a4f7d443af69"
-    },
-    "GASL-SRC-05a087fe2a717e63a127": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-05a3d4c1f77de72351b7": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -2081,19 +2059,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-08970419d6994b5430a8": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-08a6da9d4c8095da7ca2": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "598016a408ddee52cb181e853cbe74ceb4ba07a3",
@@ -2194,28 +2159,6 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-08fb4d144062e9539855": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-0908ca89ff54dc0c3777": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -2420,6 +2363,22 @@
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
     },
+    "GASL-SRC-0a48077640e1307be7ee": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "label",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-0a95344e5a5ffdbae28d": {
       "commit_sha": "89c8afa3eee9cdd83838ac31979c2ba1384615aa",
       "git_blob_sha": "d3e9f3bcccb7d9e7e318d49465a33e2325fe0cf4",
@@ -2455,6 +2414,31 @@
         "visualization"
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
+    },
+    "GASL-SRC-0ab969b7b6794b2cfd2f": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-0ac4807b5b300cd27c83": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
@@ -2521,6 +2505,23 @@
         "node"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-0b03a4c349324ad5402b": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-0b100e1330ccbdceadea": {
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
@@ -3373,28 +3374,6 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
-    "GASL-SRC-0e778a1a6ab87aa7dff1": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-0e8f6607fc4788f2d2fa": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "git_blob_sha": "4cc7674100691480336d4bec619308e7585996ab",
@@ -3418,18 +3397,18 @@
       ],
       "verified_at_commit": "1008fd74c0912e2f4819d52324af8a2fac2b74c1"
     },
-    "GASL-SRC-0edcbbb7e909480e8884": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+    "GASL-SRC-0eebd6bb00b43d996720": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
       "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/connect-required-verification-information/SKILL.md",
+      "source_path": "providers/cursor/plugin/skills/connect-recommend/SKILL.md",
       "terms": [
+        "access",
         "business",
         "dashboard",
-        "type",
+        "revenue",
         "use",
-        "user",
-        "verification"
+        "user"
       ],
       "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
@@ -3737,6 +3716,21 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-106fbca5f2dc44c4f6a7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-108fa5dcd21d2dbdc76f": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "b5128659ed73cb54243d0b0841b40cf6f42625d4",
@@ -3747,6 +3741,23 @@
         "use"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-10a15cb3457f16ec7813": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-10a92cd5ccea1d1c5963": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
@@ -3864,6 +3875,28 @@
         "vector"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-110495c5e0b50ded881c": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-110be156b3ab158cdc8e": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -4604,20 +4637,27 @@
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
     },
-    "GASL-SRC-13dd6120d10dfec1ea38": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+    "GASL-SRC-141391f779127ac8f5db": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
       "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/connect-recommend/SKILL.md",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-best-practices/SKILL.md",
       "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
       ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-141e57a10a8030b47e43": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -5410,6 +5450,21 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
+    "GASL-SRC-178d77b9b05909c1d6f6": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-17af63bce1bdacefbd16": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "3e4939402b244bc8d30c10f9f0eeb971f79041fa",
@@ -6158,6 +6213,23 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-1ae5bc69ead421c9b645": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-1aebdab7ee068917e974": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "git_blob_sha": "12149acf2dd23b4514dec57b04a6293eaa1352fa",
@@ -6769,26 +6841,6 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
-    "GASL-SRC-1d4363dbfd6d543b09e3": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-1d441f99af7665fee06f": {
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
       "git_blob_sha": "c070a9a2df254ec09f8f0695628a3ad38d945061",
@@ -6968,31 +7020,6 @@
         "optimize"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-1d9c898266cafe8b966e": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-1db0da92764bb4ffcc85": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
@@ -7390,6 +7417,21 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-1ec526d6866d36394825": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-1ecc3a895d5c6510ef7b": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
@@ -8075,26 +8117,6 @@
       ],
       "verified_at_commit": "b49177d32788f2dc585c42831d845dacf1ebed2c"
     },
-    "GASL-SRC-21675f9e61ae98faec4f": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "selection",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-21695ae18b7702f2c885": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "66a97a579b4bc4f14666d0081c5835864df06b5d",
@@ -8118,23 +8140,6 @@
         "user"
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
-    },
-    "GASL-SRC-21926941b4e3b7430c05": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-21962e5a3755163b4573": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -8416,28 +8421,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-22e97bc63e808519c71f": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-22eddef6dd8dbe5beabc": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "b850aa40aec79881e51536d9f4703ebee25854e7",
@@ -8638,28 +8621,6 @@
         "sql"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-2365dfafa3e59f20e08b": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-2365faad5f7e0ce529a5": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -9785,6 +9746,21 @@
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
     },
+    "GASL-SRC-273aaaf88210b38fee24": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-273f79e57d73c6c70858": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
@@ -10003,23 +9979,6 @@
       ],
       "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
-    "GASL-SRC-27fc291fdf121c725a02": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-27ff0575dcb2b6d184c7": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "6e18c2c7f28c4d11385b3814e2852887c291d0a7",
@@ -10166,21 +10125,6 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-2892294be2ae8e43e81c": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-289b2cfa0edd28edfbb1": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -10474,21 +10418,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-29ac61a419c923c102a8": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-29b31f519aef33d12370": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "6040f5f40ae2fbe27a76c07275c89bf1d17fe7e7",
@@ -10576,6 +10505,25 @@
         "user"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-29f75f8f09bd48526606": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-2a009c800811118afc9d": {
       "commit_sha": "0a923358ea989d7602f0d06507ad3447c62ffe9b",
@@ -11018,6 +10966,28 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-2c95f3e07bc96c0f8fb4": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-2c979c9fcf8138782779": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -11806,26 +11776,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-2fc63ac4f731642300a6": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-2fca1e34b48381c6cd62": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "497124985772c7f418f79e1eabc79cc24005950d",
@@ -12142,28 +12092,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-3153a56d96abab42ecdf": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-3154b990ca9abe6c23eb": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "7530f87bb97f3dce4b6e095c7bf1762aef3ca11c",
@@ -12240,6 +12168,21 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-31b31877156d04410e60": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-31c45a4caddd5283142b": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -12442,25 +12385,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-32c85217df1bcc56ddc5": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-32c953047fa6b5196216": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "183d3beb113dd62a8bc6d2f2c9ea1b4fd8d3c5ed",
@@ -12552,21 +12476,6 @@
         "use"
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
-    },
-    "GASL-SRC-33599f5d76597dbe7ab9": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-3369b186c79019994f21": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -12803,26 +12712,6 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
-    "GASL-SRC-3494a52b309f274e8a12": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-34a10fae3c7fd4981beb": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
       "git_blob_sha": "a101b3968a7b8fe110e7fb5cb7d924b46bb1184e",
@@ -12849,6 +12738,41 @@
         "tool"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
+    },
+    "GASL-SRC-34c20978d17fdd84b6d9": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
+    "GASL-SRC-34e65c093ccf0a96c0d8": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-34f181afd7a9fb27fdbc": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
@@ -13761,6 +13685,19 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-37f3048711032d7b18d9": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-37f87cee8f7f65d2f67d": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "92bf9f6956a0075d270ab4402631a558b6ba4303",
@@ -14184,23 +14121,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-39513a92d9c013448a96": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-39730750b4baac67df82": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "d106dbbfca0f05105462767b6294d136b3a91aa3",
@@ -14340,26 +14260,6 @@
         "website"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
-    },
-    "GASL-SRC-3a0129e35d1a5afc19ce": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-3a16acd1a0ecd83343e1": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -14679,31 +14579,6 @@
         "use"
       ],
       "verified_at_commit": "6b989d6490589647c4c164f7f55c2797cf322f04"
-    },
-    "GASL-SRC-3b715e828b1b6bd884cd": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-3b8c04f85a0a38b479f2": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -16284,6 +16159,24 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-41053e0569b71b6372a5": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-410d7159df4468333a46": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "58cccd31b9a162b204528a711f92efa3a5c4b796",
@@ -17027,6 +16920,28 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-444b8c7c560ff2b6ea84": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-445a381e9778411ffaa7": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "6149c28d0f3b09f430ecd4d7fb9bdd7329fc7a03",
@@ -17129,6 +17044,26 @@
         "workflows"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-44bea51125e16b56702a": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-44deaaf3d0e8d74c1995": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -17778,24 +17713,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-47519a3ed281375fb072": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-476eec56e35a40450a7e": {
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
       "git_blob_sha": "1407c517430684133a3d3180a987899cf432f585",
@@ -18201,6 +18118,31 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-492ab358c6568bb36cea": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-495e66f623399746a6e0": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "04e3923399131afc4e9d4ca9e5708fa8ace9e14c",
@@ -18325,28 +18267,6 @@
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
     },
-    "GASL-SRC-4a300b78e21414e89910": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-4a607abdf3b054d2b776": {
       "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
       "git_blob_sha": "0c54dfde130d570a8dd26036d58b06ce2cc80637",
@@ -18382,21 +18302,6 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-4a72dc610819a0c8c352": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-4a748756585ac5fcba01": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -19340,6 +19245,23 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-4d8d396e4cb46e4b0de7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-4d9ebbfac9be633650e0": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "8e73b6e0fd6be93718b77d9d85acc2cd037f43f3",
@@ -19473,23 +19395,6 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-4e0dc8e6e998bb0c489c": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-4e11364cec4464cd4a89": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -19705,6 +19610,21 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
+    "GASL-SRC-4f257b503581973c0208": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-4f27123d5118415fbaf3": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "e1d627d2bdb38cac223c87eb046a4b520d429a26",
@@ -19889,6 +19809,28 @@
         "video"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-4f771da9687b0cbaf66f": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-4f87622179b39aff7a3b": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -20964,6 +20906,24 @@
         "use"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
+    },
+    "GASL-SRC-53a51632a873ff67c1a4": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-53d699c088ada8a35234": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
@@ -22081,6 +22041,26 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-58e6f9df64005a0bed19": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "selection",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-58f7b78fdf3538dcb297": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "44fe49c68584ea5701780802770cf33950e7ff4d",
@@ -22363,31 +22343,6 @@
         "use"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
-    },
-    "GASL-SRC-5a4987342f0bf6e06618": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-5a5ca35c3dbf313b4a5f": {
       "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
@@ -23093,6 +23048,28 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-5d4517bd94d7816e464f": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-5d4e5e6f36cdc956af6b": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -23976,26 +23953,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-603ca89027e8c3052244": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-603e7373e5b87cca9245": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "4e44df4da9ee7ebabbef252d3f5704b4cd537b7d",
@@ -24112,6 +24069,26 @@
         "ux"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-60bb8eaf134b23803637": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-60c3247a400eddc913f9": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -25464,23 +25441,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-65efde589403daf69a7c": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-66272d01ca2257a7bc7c": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
       "git_blob_sha": "767d0c0c1226fe7fb94f6a40b400e6cba3304f9c",
@@ -25716,6 +25676,28 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-66faad743e86790407e2": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-66fb63f63643428c2fe5": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "35663b9d33eaab09b98ff701d148944412c2bcf8",
@@ -25871,6 +25853,28 @@
         "user"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-675b4020191c1b43b9f7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-6764ad3e2120f6e01239": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -26040,19 +26044,6 @@
         "writing"
       ],
       "verified_at_commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
-    },
-    "GASL-SRC-680dc6e520de1886d99d": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-68204f59a97e4bbe5800": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -26276,22 +26267,6 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-693d2cd6359443dd353b": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "label",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-693deb681e1f58b0070f": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -26570,6 +26545,23 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-6a1038dfb5590bf72e58": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-6a1b25b8ad11faa4b7a3": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -27371,6 +27363,24 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-6d80081c933607748934": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-6d9d66491454d4e27d3e": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -28410,6 +28420,23 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-71fe0714699101bacba1": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-7200f4f0b7c36d049841": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "55d9045e04b98a47ed11f31fb16e00303588dc22",
@@ -28514,23 +28541,6 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
-    "GASL-SRC-7247abf6266c81b3965e": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-7248fb27089c233118b8": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "7aca2090d92c3bc4b7618b8ac702af306bb6325b",
@@ -28605,31 +28615,6 @@
         "use"
       ],
       "verified_at_commit": "a582c51ee29d0f35e6ac321340796f77d43da733"
-    },
-    "GASL-SRC-726edfc62fc055ec283c": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-727056c0ef0faa4cc6ee": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -29241,6 +29226,25 @@
         "write"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-74d03b2c6a4172f0b6a5": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-74f7a08c372a2a039074": {
       "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
@@ -29891,6 +29895,24 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
+    "GASL-SRC-7748c5669f15c011e915": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-774a55bbfab1ab39cef2": {
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
       "git_blob_sha": "1d967bfb1d7d38874147b5810f2a19677bc3161b",
@@ -29970,6 +29992,23 @@
         "user"
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
+    },
+    "GASL-SRC-77998f74b90c9f180a93": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-77a9a1c3d494421438b0": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -30264,23 +30303,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-78ff46a14b96fe167245": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-791be94b559e4a287384": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "2ebb9995e3702ffca7cc92bbfbf016bdd0386d08",
@@ -30337,6 +30359,28 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-796af9c81b8d6bf821b5": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-79727d71f7ba12a31787": {
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
@@ -30729,6 +30773,26 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
+    "GASL-SRC-7a87f71860ae0fdae073": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-7a91be0e6747e74d7590": {
       "commit_sha": "b49177d32788f2dc585c42831d845dacf1ebed2c",
       "git_blob_sha": "5502476132bbe0c55a7783ed716b2332ce33a148",
@@ -30868,6 +30932,31 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-7b201bf6765206505327": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-7b34d0bad98c963a3e47": {
       "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
@@ -31250,6 +31339,21 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-7d4c60865daba3081a85": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-7d621a2db5a5be883042": {
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
       "git_blob_sha": "77c01afb31aa602d0b002ae2438c2b67f0335fcb",
@@ -31277,25 +31381,6 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-7d987f26f33ef7cd72cd": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-7ddce8e23ea5915eef7f": {
       "commit_sha": "88d9bd79f3fa8452a778fbac65bae162c0b32ce4",
@@ -31549,21 +31634,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-7f06dceaeff867712e20": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-7f2e33be7db0688f8e49": {
       "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
       "git_blob_sha": "7084eb43161fc16ccad8ce6cb79557c438385685",
@@ -31590,28 +31660,6 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-7f461780872a86f5b5c8": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-7f491fb63c114b2df377": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -32173,6 +32221,28 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-819b7f545f0cbec878f3": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-best-practices/SKILL.md",
+      "terms": [
+        "api",
+        "development",
+        "integration",
+        "management",
+        "oauth",
+        "permissions",
+        "processing",
+        "sales",
+        "security",
+        "selection",
+        "test",
+        "testing",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-819cc43653368abdaaa4": {
       "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
       "git_blob_sha": "bc62aa1a63bc31ea9aea9456fed65b334e5010bd",
@@ -32477,21 +32547,6 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
-    "GASL-SRC-82a5dad9721378269782": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-82ac34097e560c67ae8b": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
       "git_blob_sha": "eca8ff3e743bb6a149c12787d5488cfa97e0fcda",
@@ -32648,6 +32703,23 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-82e000f7ff02d97ecc1b": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-82e4e2a915dcbe30c9e4": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "git_blob_sha": "01eadaa34e7c9a63a67d6dc3cce1cc81b0e49985",
@@ -32699,28 +32771,6 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
-    "GASL-SRC-832d24f1cfc4a3f75995": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-83542efb94a255901e9a": {
       "commit_sha": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
       "git_blob_sha": "d70d0b8855f2dc1ed06b9d72a373cdc448ed4e8e",
@@ -32763,6 +32813,19 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-8385fbb2ce452b77433f": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-839361d82fa485d783cb": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -32812,26 +32875,6 @@
         "writing"
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
-    },
-    "GASL-SRC-83e5ec707aae44fbf50f": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-83eb8a11475d6a4e6d51": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -33493,21 +33536,6 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
-    "GASL-SRC-86684c31a734cb71bc45": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-8685a4dfc1d321f288f7": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "653dc437371ce908c7d81defc327beabe73266bf",
@@ -33520,28 +33548,6 @@
         "user"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-8688317ba2eef3392fd5": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-868cce821f01548e5a27": {
       "commit_sha": "1008fd74c0912e2f4819d52324af8a2fac2b74c1",
@@ -34059,31 +34065,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-88be70fdfd4faf839be2": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-88c27b20fd9d266e5593": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "84dd7069d8e03469a8172a487d663abf1c7b1af1",
@@ -34297,6 +34278,24 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
+    "GASL-SRC-896eb87069bdd91f7bd1": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-8972678712b6be264a38": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "c6fe8ee513e82a3c0d07bb2a472c1b7fbc005800",
@@ -34416,6 +34415,31 @@
         "vulnerability"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-89e698d81b51401ecb4a": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-8a0239eaf4c22cf4dae8": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -34616,19 +34640,6 @@
         "use"
       ],
       "verified_at_commit": "4bb21ebfa085f6307d5d62bc21765e1d3433f11d"
-    },
-    "GASL-SRC-8adaecbae98e45969f08": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-8adbde1a85716bdcbcc1": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -35637,19 +35648,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-8f1ccdee478bc6495258": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-8f1daf3ffa90e6a508f8": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "a9a24b0e85fbd1d2e39851cc12ec266f3a55794d",
@@ -36034,19 +36032,6 @@
         "user"
       ],
       "verified_at_commit": "626f50fdf2934116eea2c5469339e03d2d524e83"
-    },
-    "GASL-SRC-90ae47804b09d061b522": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-90b16e523c6861d5d7ac": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -36637,24 +36622,6 @@
         "azure"
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
-    },
-    "GASL-SRC-937a0c4e7c9176c48a86": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-937b3adc66e2cf01db8a": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -37887,6 +37854,28 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-97b4286a98bf807684d5": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-97bc924374e94b4951ca": {
       "commit_sha": "b89752f6bca5a26bfde8b019813554241800ca99",
       "git_blob_sha": "9a94044529e5ee1576361c891b4a271504518e6f",
@@ -38398,6 +38387,23 @@
         "use"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-99e643a03b00d3aa1c6d": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-99f9a15144bdf8327d89": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -39177,28 +39183,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-9c8151a8197398918353": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-9ca002b4830921841e12": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "e1da8c9eab6943c90b93781e3763ecea54b8d9de",
@@ -39250,6 +39234,19 @@
         "use"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-9cf934fde4600be6c2df": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-9d1e78d1b61d63066425": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -39361,25 +39358,6 @@
         "writing"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-9d7cbb5a5d30ae605684": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-9d7d19561faad75d050a": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -39599,6 +39577,21 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
+    "GASL-SRC-9e315e0830cb1f0f539c": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-9e31cf3123824356509a": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
@@ -39816,6 +39809,19 @@
       ],
       "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
+    "GASL-SRC-9eed2ad00935c846fee7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-9f0a0b0d19567030fc76": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "4f7e5a4de07db0f6d5fa203f4b66ed78081c6369",
@@ -39828,21 +39834,6 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
-    },
-    "GASL-SRC-9f11415358404e7dcf4c": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-9f1253beaadeecf6eacb": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
@@ -40811,6 +40802,21 @@
         "use"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
+    },
+    "GASL-SRC-a2bcec7444e2f71aaec7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-a2c2379c7613f5ab474a": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -43133,24 +43139,6 @@
       ],
       "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
-    "GASL-SRC-abde4d249fb0a618e812": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-abed8cab39ab17c7af02": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "fc5892bd8312dd62366c67140bfc073fdbb7e7cb",
@@ -43227,6 +43215,23 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
+    "GASL-SRC-ac0e4a68148d68508eaa": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-ac229a1755b70c592842": {
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
       "git_blob_sha": "60a5d4cab7c045ab709df1605023caefad63de60",
@@ -43288,6 +43293,23 @@
         "project"
       ],
       "verified_at_commit": "352a02b05189e2a958a973867cc6eca365cb8fc3"
+    },
+    "GASL-SRC-ac833112db88eb2d06d6": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-acbc8076e62ea02b0a06": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -43845,21 +43867,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-af5eb828fb2fce6bd92b": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/connect-recommend/SKILL.md",
-      "terms": [
-        "access",
-        "business",
-        "dashboard",
-        "revenue",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-af81f6e6f4cd6c2b8775": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "3a785b9e749d26438a56840679c21f3527e66788",
@@ -44153,19 +44160,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-b0e5b8a7e4a1fb8cf802": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "providers/agent-plugins/plugin/skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-b0eb15d4bfa3a9c10d10": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
       "git_blob_sha": "db097807c64ad580c80ff2aa63b072968aa36ac1",
@@ -44352,6 +44346,28 @@
         "workflows"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-b162f05b367fba85ca47": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-b16a73ef3ce5da9e4280": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -44657,6 +44673,23 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-b2a978b121967fbeca9c": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-bfcm-dashboard/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "dashboard",
+        "file",
+        "revenue",
+        "sales",
+        "tools",
+        "use"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-b2afe4cc10f507a5702b": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "0400bdf0fd796cd1119071f4dd010d16bfb8474b",
@@ -44704,6 +44737,23 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-b2f4197e96d99e77eec5": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/metronome/SKILL.md",
+      "terms": [
+        "ai",
+        "customer",
+        "design",
+        "integration",
+        "management",
+        "metrics",
+        "pricing",
+        "use"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-b2faee35e9b8a4a49c55": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -45416,31 +45466,6 @@
         "writing"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-b5a50928febf25fea8d3": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-b5bff5e88ccc0cd453d4": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -46561,23 +46586,6 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
-    "GASL-SRC-b9ab2a142f409c4b0536": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-b9ab8483f372282750d6": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "19e394923b4b5e61fb5994582235394314f94f6f",
@@ -46638,6 +46646,28 @@
         "writing"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-b9d66b07cbfa4be4bccf": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-b9e9a8bc6cb97dbb2722": {
       "commit_sha": "88d9bd79f3fa8452a778fbac65bae162c0b32ce4",
@@ -46713,6 +46743,26 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-ba1535a8e1031f753618": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "providers/cursor/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-ba30865930454db38700": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -46955,28 +47005,6 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
-    },
-    "GASL-SRC-bb2da5609b65546e968d": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-bb312370109b211f11c7": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -47367,23 +47395,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-bc46312e0eb02b08d72b": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-bc6291ec92852e518aff": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "bee98f03fab37d69c843a84adab153a5c6a36919",
@@ -47474,6 +47485,21 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-bcfbdaf6048740f22e1d": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2991160ea61d3db7726e6e89352f174267f7a0a4",
+      "repository": "stripe/ai",
+      "source_path": "skills/connect-recommend/SKILL.md",
+      "terms": [
+        "access",
+        "business",
+        "dashboard",
+        "revenue",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-bcfe1d85da42e3b9911e": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -47954,28 +47980,6 @@
         "sales"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
-    },
-    "GASL-SRC-beb8da8f1ae26be213ae": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "6052aa2db893bf41a81b7096b18b431f1600d0e5",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-best-practices/SKILL.md",
-      "terms": [
-        "api",
-        "development",
-        "integration",
-        "management",
-        "oauth",
-        "permissions",
-        "processing",
-        "sales",
-        "security",
-        "selection",
-        "test",
-        "testing",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-bebab4dd42190e3da6ab": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
@@ -48553,6 +48557,21 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-c11f6766b9ee877d0def": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-c12bde72baaa1e6dfee6": {
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
@@ -49501,21 +49520,6 @@
       "source_path": "shopify-admin/SKILL.md",
       "terms": [],
       "verified_at_commit": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe"
-    },
-    "GASL-SRC-c4ec2afc63d10cd4c3e0": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-c5125ac318e79457c750": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -50790,21 +50794,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-c9a404892cf2a8c08f77": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/connect-required-verification-information/SKILL.md",
-      "terms": [
-        "business",
-        "dashboard",
-        "type",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-c9d97ddeccee62dfad0d": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "git_blob_sha": "200ab2eba725c595ab4144019f38601708a07c84",
@@ -50857,31 +50846,6 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
-    "GASL-SRC-ca05c0547d405fb121aa": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
-      "repository": "stripe/ai",
-      "source_path": "providers/cursor/plugin/skills/stripe-projects/SKILL.md",
-      "terms": [
-        "api",
-        "auth",
-        "caching",
-        "cloud",
-        "database",
-        "email",
-        "infrastructure",
-        "llm",
-        "model",
-        "postgres",
-        "project",
-        "redis",
-        "search",
-        "use",
-        "user",
-        "vector"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-ca0c770adbc783a971d5": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
       "git_blob_sha": "03f2919a33b3696c7e9ee3fbeeee41e23d9a8795",
@@ -50913,6 +50877,21 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-ca403fd3738969e12e40": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
+      "repository": "stripe/ai",
+      "source_path": "providers/agent-plugins/plugin/skills/connect-required-verification-information/SKILL.md",
+      "terms": [
+        "business",
+        "dashboard",
+        "type",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-ca452e94958c0db8d1e5": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -51126,23 +51105,6 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
-    "GASL-SRC-cb3a766dae1b019da870": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "dashboard",
-        "file",
-        "revenue",
-        "sales",
-        "tools",
-        "use"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-cb663920f631c8113d19": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "a667b365d45b5ef950c941239328a785c3cdb729",
@@ -51209,6 +51171,25 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-cbce2dccb46fc664a52a": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-cbd38f4eb2982e2f3193": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -51354,6 +51335,31 @@
         "database"
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
+    },
+    "GASL-SRC-cc70426beecbf5c910fd": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-cc84f5fa48249360c303": {
       "commit_sha": "b49177d32788f2dc585c42831d845dacf1ebed2c",
@@ -51618,6 +51624,31 @@
         "visual"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
+    },
+    "GASL-SRC-cdb5b20103804d65edb1": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a9082cc71c0718d558f63642a34dd303964fbfd4",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7"
     },
     "GASL-SRC-cdb6cc2db5d958348a63": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -52429,6 +52460,26 @@
       ],
       "verified_at_commit": "b49177d32788f2dc585c42831d845dacf1ebed2c"
     },
+    "GASL-SRC-d0d22c232bb29c0a4249": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-d0d4066cbcb9b54dc9aa": {
       "commit_sha": "22f0b463e7a5e579904dd6211a520321035526f7",
       "git_blob_sha": "069d578445805a28b8dacbf70cdf045e1673def0",
@@ -52560,6 +52611,28 @@
         "web"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-d17231a5fe020c25297b": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-apps/SKILL.md",
+      "terms": [
+        "actions",
+        "app",
+        "build",
+        "dashboard",
+        "documentation",
+        "extension",
+        "react",
+        "review",
+        "script",
+        "ui",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-d1a4172c4c31183cb5b4": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -52963,25 +53036,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-d3079578e6c52e508eba": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-d30e1ef58593f75495ce": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "b9f7c8ddb14f145b3aac2a37f2a52f2b059b2bd8",
@@ -53016,19 +53070,6 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
-    },
-    "GASL-SRC-d337ba90d62a1c370d28": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
-      "repository": "stripe/ai",
-      "source_path": "skills/stripe-pay/SKILL.md",
-      "terms": [
-        "agent",
-        "business",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-d344ff591abfb25cd216": {
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
@@ -53961,28 +54002,6 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
-    "GASL-SRC-d6b1ddb8a9ceb9f9f567": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
-    },
     "GASL-SRC-d6d198fac81b4c3a9dd6": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "90f615164f69a3c18ff731bdb75eab10fc8199f4",
@@ -54309,6 +54328,26 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-d7d87b07b97c84ba287c": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "agent",
+        "crm",
+        "database",
+        "memory",
+        "model",
+        "search",
+        "software",
+        "table",
+        "tool",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
     "GASL-SRC-d7efad31e81aa3503e5e": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
@@ -54385,23 +54424,6 @@
         "use"
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
-    },
-    "GASL-SRC-d87b7279ea7e4997d687": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-d8838fa8defd361cf1c5": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -55632,6 +55654,19 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-dc54efce32bcca0bfe7e": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/gemini/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-dc5607facd3996834e2f": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -57154,6 +57189,26 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-e26655bc5357f4c6e25e": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "2720b752a792befdac58d51c7b79c89fe69282d7",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "selection",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7"
+    },
     "GASL-SRC-e2676b02e58d4d68e70c": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "f4124a337f276bd1b23213f91bdf3994f27f25d7",
@@ -58168,6 +58223,24 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-e6173c55dc318c2148a4": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-docs/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "content",
+        "docs",
+        "documentation",
+        "read",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-e622d16663762d7a8ae1": {
       "commit_sha": "88d9bd79f3fa8452a778fbac65bae162c0b32ce4",
       "git_blob_sha": "53f306d9d0c151c548cbda435d3eb7f69507847b",
@@ -58718,6 +58791,17 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-e7db8c759a539efe60c7": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "79487c85142ff041aa071f744a0f24c300fc059e",
+      "repository": "stripe/ai",
+      "source_path": "providers/claude/plugin/skills/stripe-directory/SKILL.md",
+      "terms": [
+        "database",
+        "use"
+      ],
+      "verified_at_commit": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7"
+    },
     "GASL-SRC-e7e59ae6d3f8e19df674": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "43ee9811f60258d035b7c0a91e46c2b669f0bab3",
@@ -58954,25 +59038,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-e8ce6d0e9dc5827ec37a": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-e8d553c83e132bf0a027": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "a9c13151600fd910db786b79b08d4c2ebe4cab75",
@@ -59172,6 +59237,31 @@
         "use"
       ],
       "verified_at_commit": "370f8f33e5bb27dffe8289ea9bdec436686613ce"
+    },
+    "GASL-SRC-e9aa7b0117eec819f1e3": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "ef247340f4850b8e35e8925f52c5d7579ea219a7",
+      "repository": "stripe/ai",
+      "source_path": "providers/grok/plugin/skills/stripe-projects/SKILL.md",
+      "terms": [
+        "api",
+        "auth",
+        "caching",
+        "cloud",
+        "database",
+        "email",
+        "infrastructure",
+        "llm",
+        "model",
+        "postgres",
+        "project",
+        "redis",
+        "search",
+        "use",
+        "user",
+        "vector"
+      ],
+      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-e9bba0484b33827bd3a6": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -59519,23 +59609,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-eb18a0a7c2ded956f392": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-eb28a8495bb6b4670150": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
       "git_blob_sha": "ad99f2c5463822612800668b715c589fd5c3ca69",
@@ -59862,25 +59935,6 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
-    "GASL-SRC-ec1825b00b7c89191b4e": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-implementation-planner/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "business",
-        "code",
-        "integration",
-        "model",
-        "review",
-        "sales",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-ec200177a90898ae7d03": {
       "commit_sha": "23f5ea4c680013542990f2b03970b8064139752b",
       "git_blob_sha": "ff50ca650fa686fecd2285bfa9a51ef622cbdd8c",
@@ -60085,24 +60139,6 @@
         "workflows"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-eca91020c5cb268f4dd5": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-ecc1a614169e6523306d": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
@@ -60633,6 +60669,19 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-ef2e17b55d82ce7cf5b0": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "3c987ebad170715cfff3f0f5e8ac1810d47c82d8",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-pay/SKILL.md",
+      "terms": [
+        "agent",
+        "business",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-ef3338fbd330011bc586": {
       "commit_sha": "8123e483e83712ec98ba27c9fb1a3e38aa9f6a1c",
@@ -61736,24 +61785,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-f344df1d0c258f4c8931": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/claude/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-f3813de577a5bd6b3621": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "8665b40d0665fd114be8b4c2d7368b49248028b7",
@@ -62371,6 +62402,25 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-f5d5f5d7fd371afd3fac": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-f5d88c178f54694c3a12": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
       "git_blob_sha": "bf7bb85ab8ef4b9ac689ea57d6e3d61dcaeae890",
@@ -62963,28 +63013,6 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-f7d29a86f00f92d98cf2": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
-      "repository": "stripe/ai",
-      "source_path": "providers/antigravity/plugin/skills/stripe-apps/SKILL.md",
-      "terms": [
-        "actions",
-        "app",
-        "build",
-        "dashboard",
-        "documentation",
-        "extension",
-        "react",
-        "review",
-        "script",
-        "ui",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-f7d5fdbd32849ba7a55e": {
       "commit_sha": "3cf3dca55262dc179b8dc32b15169c4c6252858e",
@@ -64138,6 +64166,25 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-fbc84caeddbd5a501cc4": {
+      "commit_sha": "b5f75dec8e1400fa0cc935d61250c2073e38ebc7",
+      "git_blob_sha": "186b66a83f6a507ddd6fc6e095015dfa3f1e4d02",
+      "repository": "stripe/ai",
+      "source_path": "providers/antigravity/plugin/skills/stripe-implementation-planner/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "business",
+        "code",
+        "integration",
+        "model",
+        "review",
+        "sales",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
+    },
     "GASL-SRC-fbcb820f40272f852aef": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "f8b961fa86e1bfd0f442485697c6453043b43286",
@@ -64667,23 +64714,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-fde56fa5c4dc1a983b85": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
-      "repository": "stripe/ai",
-      "source_path": "skills/metronome/SKILL.md",
-      "terms": [
-        "ai",
-        "customer",
-        "design",
-        "integration",
-        "management",
-        "metrics",
-        "pricing",
-        "use"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
-    },
     "GASL-SRC-fde7ddc23eae97347abd": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "65e52e0b229581a581dc7ba820408ff394713a93",
@@ -64872,24 +64902,6 @@
         "threat"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
-    },
-    "GASL-SRC-fe3a1b36af331139634e": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "45f3066c7c3392f71132055b846c10c0068d97a2",
-      "repository": "stripe/ai",
-      "source_path": "providers/grok/plugin/skills/stripe-docs/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "content",
-        "docs",
-        "documentation",
-        "read",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
     "GASL-SRC-fe44ea6868a74c15940a": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -65216,26 +65228,6 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-ff6b980454c295523444": {
-      "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
-      "git_blob_sha": "15fcc1c6a7c54057a0f4d7098c112894e1f849b4",
-      "repository": "stripe/ai",
-      "source_path": "providers/gemini/plugin/skills/stripe-directory/SKILL.md",
-      "terms": [
-        "agent",
-        "crm",
-        "database",
-        "memory",
-        "model",
-        "search",
-        "software",
-        "table",
-        "tool",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
     "GASL-SRC-ff70ccfbb013f5ce076b": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
