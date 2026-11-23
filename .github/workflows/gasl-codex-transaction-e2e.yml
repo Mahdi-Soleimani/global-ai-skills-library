@@ -9,10 +9,12 @@ on:
       - tools/codex_pinned_bundle_e2e.py
       - tools/codex_project_install.py
       - tools/codex_uninstalled_restore.py
+      - tools/codex_legacy_reconcile.py
       - tools/host_format_review.py
       - tests/test_codex_pinned_bundle_e2e.py
       - tests/test_codex_project_install.py
       - tests/test_codex_uninstalled_restore.py
+      - tests/test_codex_legacy_reconcile.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -106,11 +108,11 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real Codex project replace, restore, uninstall archive and reinstall
+      - name: Exercise real Codex project restore plus attested legacy backup recovery
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib,os,sys,tempfile
+          import hashlib,json,os,sys,tempfile
           from pathlib import Path
           from unittest.mock import patch
           sys.path.insert(0, 'tools')
@@ -120,6 +122,10 @@ jobs:
           import codex_uninstalled_restore as archived_tools
           from codex_uninstalled_restore import (
               list_uninstalled_backups, preview_reinstall, reinstall_backup, _reinstall_phrase)
+          from codex_legacy_reconcile import (
+              audit_legacy_backups, preview_legacy_reinstall, reinstall_legacy_backup,
+              _phrase as legacy_reinstall_phrase)
+          from fixture_bundle_install import _inventory, _remove_verified_dir
           from codex_project_install import (
               preview_install, install_fresh, preview_replace, replace_existing,
               preview_restore, restore_backup, uninstall, recover,
@@ -309,7 +315,38 @@ jobs:
                   assert len(removed_again['retained_backup_ids']) == listing['backup_count']+1
                   assert not discover()
                   assert not expected.exists()
-              print('CODEX_REAL_PROJECT_REPLACE_RESTORE_UNINSTALL_REINSTALL_RECOVERY=PASS')
+
+                  # Phase 44: simulate a pre-Phase-43 orphan by explicitly
+                  # removing the new ownership marker and newest current
+                  # archive *inside this disposable test-only project*.
+                  orphan_id=removed_again['archived_last_active_backup_id']
+                  archived_path=_backup_dir(project/'.gasl-managed','demo',orphan_id)
+                  _remove_verified_dir(archived_path,_inventory(archived_path))
+                  _backup_manifest(project/'.gasl-managed','demo',orphan_id).unlink()
+                  (project/'.gasl-managed/uninstalled/demo.json').unlink()
+                  reviewed=audit_legacy_backups('demo',project)
+                  assert reviewed['backup_count'] == listing['backup_count']
+                  assert reviewed['historical_project_ownership_verified'] is False
+                  selected_legacy=reviewed['backups'][-1]['backup_id']
+                  preflight=preview_legacy_reinstall('demo',project,selected_legacy)
+                  assert preflight['manual_ownership_attestation_required'] is True
+                  human_test_phrase=legacy_reinstall_phrase(
+                      'demo',selected_legacy,preflight['state_binding_id'])
+                  reconciled=reinstall_legacy_backup(
+                      'demo',project,selected_legacy,preflight['state_binding_id'],
+                      reader=lambda _:human_test_phrase)
+                  assert reconciled['status']=='legacy_skill_reinstalled_with_manual_ownership_attestation'
+                  assert reconciled['historical_project_ownership_verified'] is False
+                  assert len(discover())==1, 'Codex must discover manually reconciled inert Skill'
+                  active=json.loads((project/'.gasl-managed/receipts/demo.json').read_text())
+                  assert active['action']=='legacy_reconcile_install'
+                  assert active['source_kind']=='unmanaged'
+                  assert active['historical_project_ownership_verified'] is False
+                  final_uninstall=uninstall('demo',project,
+                      reader=lambda _:_remove_phrase('demo',active['plan_id']))
+                  assert final_uninstall['uninstall_ownership_marker_recorded']
+                  assert not discover()
+              print('CODEX_REAL_PROJECT_LEGACY_ATTESTED_RECOVERY_DISCOVERY=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()

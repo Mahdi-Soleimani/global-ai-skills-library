@@ -498,7 +498,23 @@ def cmd_codex_project_install(args):
         list_backups, preview_restore, restore_backup, uninstall, recover)
     from codex_uninstalled_restore import (
         list_uninstalled_backups, preview_reinstall, reinstall_backup)
-    if args.action in ('list-uninstalled-backups','preview-reinstall','reinstall-backup'):
+    from codex_legacy_reconcile import (
+        audit_legacy_backups, preview_legacy_reinstall, reinstall_legacy_backup)
+    if args.action in ('audit-legacy-backups','preview-legacy-reinstall','reinstall-legacy-backup'):
+        if not args.skill_name:
+            raise SystemExit('Legacy backup review requires --skill-name')
+        if args.action == 'audit-legacy-backups':
+            result = audit_legacy_backups(args.skill_name, args.selected_root)
+        elif args.action == 'preview-legacy-reinstall':
+            if not args.backup_id:
+                raise SystemExit('Legacy preview requires --backup-id')
+            result = preview_legacy_reinstall(args.skill_name, args.selected_root, args.backup_id)
+        else:
+            if not args.backup_id or not args.state_binding_id:
+                raise SystemExit('Legacy reinstall requires --backup-id and --state-binding-id')
+            result = reinstall_legacy_backup(args.skill_name, args.selected_root,
+                                             args.backup_id, args.state_binding_id)
+    elif args.action in ('list-uninstalled-backups','preview-reinstall','reinstall-backup'):
         if not args.skill_name:
             raise SystemExit('Archived reinstatement requires --skill-name')
         if args.action == 'list-uninstalled-backups':
@@ -833,6 +849,7 @@ def main():
         choices=('preview','install','preview-replace','replace',
                  'list-backups','preview-restore','restore-backup',
                  'list-uninstalled-backups','preview-reinstall','reinstall-backup',
+                 'audit-legacy-backups','preview-legacy-reinstall','reinstall-legacy-backup',
                  'uninstall','recover'))
     codex_project.add_argument('--selected-root', type=Path, required=True,
         help='Existing absolute Git project root, never real user HOME')

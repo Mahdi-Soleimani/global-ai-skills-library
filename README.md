@@ -224,6 +224,30 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 44: Manual reconciliation of legacy orphaned Codex Skill backups
+
+Pre-Phase-43 uninstall operations retained some historical Backup folders but removed their ownership receipt and did not create the project-bound Uninstall Marker added later. Phase 44 provides a **separate, explicit and manually attested** route to reinstallation without falsely claiming historical ownership.
+
+The following commands apply only to an explicitly chosen, existing Git project and a **currently empty** Codex project Skill target:
+
+    # Examine the complete legacy archive chain; READ-ONLY
+    ./gasl codex-project-install --action audit-legacy-backups --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL
+
+    # Inspect one selected historical Backup; READ-ONLY
+    ./gasl codex-project-install --action preview-legacy-reinstall --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL --backup-id EXACT_32_HEX_ID
+
+    # Explicitly attest the backups belong to this project and reinstall
+    ./gasl codex-project-install --action reinstall-legacy-backup --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL --backup-id EXACT_32_HEX_ID --state-binding-id EXACT_PREVIEW_BINDING
+
+    # If a journaled legacy reinstatement was interrupted:
+    ./gasl codex-project-install --action recover --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL
+
+GASL checks every archive directory and manifest against the SHA-256 inventories, enforces a complete/unambiguous historical ancestry, checks the static SKILL.md name matches the selected Skill, rejects symlinks and unknown entries, and binds the preview to the target path and all backup manifests. **These checks cannot cryptographically prove which project originally owned a pre-Phase-43 backup.** The user must acknowledge that uncertainty and enter a separate, exact local TTY attestation phrase. No prompt or default provides implicit ownership approval.
+
+The selected Backup is copied into private staging and the original backup chain remains unchanged. The resulting managed receipt uses **source_kind=unmanaged**, a synthetic local identity, and records manual_ownership_attested=true and historical_project_ownership_verified=false even when a historical manifest mentions an upstream Plan ID. Subsequent opt-in Uninstall produces the Phase 43 ownership marker, preserving the complete chain.
+
+An unresolved legacy backup directory also **blocks ordinary fresh installation and unmanaged replacement** so it cannot silently fall outside new GASL backup history. No third-party Skill code or dependency is executed; the real user HOME remains untouched. Historical ownership still requires the user's independent judgement, not this tool's certification. See [Phase 44](docs/reports/PHASE-44-ATTESTED-LEGACY-CODEX-BACKUP-RECOVERY-2026-11-23.md).
+
 ### Phase 43: Recover a Codex project Skill after a completed uninstall
 
 Uninstall now **archives the currently active Skill** outside the Codex discovery directory, keeps all earlier backup versions, and records a project-bound **Uninstall Ownership Marker** in the project-local .gasl-managed/uninstalled/ directory. An explicitly selected and verified Backup can subsequently be reinstalled into the **same empty project Skill target**, with a fresh receipt preserving the full historical backup chain.

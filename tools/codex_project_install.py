@@ -98,7 +98,7 @@ def _inventory_from_rows(rows):
 def _checked_receipt(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
             or data.get('action') not in ('fresh_install', 'replace_install', 'restore_backup',
-                                           'reinstall_backup')
+                                           'reinstall_backup', 'legacy_reconcile_install')
             or data.get('slug') != slug
             or not HEX64.fullmatch(str(data.get('plan_id')))
             or not HEX64.fullmatch(str(data.get('binding')))
@@ -114,6 +114,17 @@ def _checked_receipt(data, slug):
         raise ValueError('Invalid GASL backup history')
     if data.get('action') == 'replace_install' and not backup_ids:
         raise ValueError('Replacement receipt has no retained backup')
+    if data.get('action') == 'legacy_reconcile_install':
+        from codex_legacy_reconcile import _local_plan
+        ident = data.get('legacy_selected_backup_id')
+        if (not re.fullmatch(r'[0-9a-f]{32}', str(ident))
+                or ident not in backup_ids
+                or data.get('source_kind') != 'unmanaged'
+                or data.get('legacy_identity_derived') is not True
+                or data.get('historical_project_ownership_verified') is not False
+                or data.get('manual_ownership_attested') is not True
+                or data.get('plan_id') != _local_plan(ident, {'files': data['files']})):
+            raise ValueError('Invalid or falsely certified legacy reconciliation receipt')
     if data.get('action') == 'reinstall_backup':
         if (data.get('source_kind') not in ('pinned', 'unmanaged')
                 or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('restored_backup_id')))
@@ -137,9 +148,12 @@ def _checked_journal(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
             or data.get('slug') != slug
             or data.get('operation') not in (
-                'install', 'uninstall', 'uninstall_archive', 'replace', 'restore', 'reinstall')):
+                'install', 'uninstall', 'uninstall_archive', 'replace', 'restore', 'reinstall', 'legacy_reinstall')):
         raise ValueError('Invalid GASL transaction journal')
     _checked_receipt(data.get('receipt'), slug)
+    if data['operation'] == 'legacy_reinstall':
+        from codex_legacy_reconcile import _journal_valid
+        _journal_valid(data, slug)
     if data['operation'] == 'reinstall':
         from codex_uninstalled_restore import validate_reinstall_journal
         validate_reinstall_journal(data, slug)
@@ -274,8 +288,12 @@ def preview_install(plan_id, selected_root, *, bundle_root=ROOT, lookup=None):
     if marker.is_symlink():
         raise ValueError('Symlinked uninstalled ownership marker refused')
     retained_history = marker.exists()
+    backup_dir = state/'backups'/slug
+    unresolved_legacy = (not existing_receipt and not retained_history
+                         and backup_dir.is_dir()
+                         and any(backup_dir.iterdir()))
     eligible = (not target.exists() and not existing_receipt and not pending
-                and not retained_history)
+                and not retained_history and not unresolved_legacy)
     return {
         'status': 'real_project_install_preview_only', 'host': 'codex',
         'scope': 'project', 'plan_id': plan_id, 'slug': slug,
@@ -285,6 +303,7 @@ def preview_install(plan_id, selected_root, *, bundle_root=ROOT, lookup=None):
         'managed_receipt_exists': existing_receipt,
         'pending_transaction_exists': pending,
         'retained_uninstall_ownership_exists': retained_history,
+        'unresolved_legacy_backup_evidence_exists': unresolved_legacy,
         'eligible_for_fresh_install': eligible,
         'existing_skill_replace_supported': False,
         'requires_human_tty_confirmation': True,
@@ -540,6 +559,10 @@ def preview_replace(plan_id, selected_root, *, bundle_root=ROOT, lookup=None):
     if receipt_path.is_symlink():
         raise ValueError('Symlinked GASL receipt refused')
     previous_receipt = _checked_receipt(_load(receipt_path), slug) if receipt_path.exists() else None
+    if previous_receipt is None:
+        backup_dir = state/'backups'/slug
+        if backup_dir.is_dir() and any(backup_dir.iterdir()):
+            raise ValueError('Unresolved legacy Backup history must be reviewed before replacement')
     if previous_receipt is not None:
         if previous_receipt['files'] != old_files:
             raise ValueError('Managed Skill changed since installation; preserve user edits')
@@ -1123,6 +1146,12 @@ def recover(slug, selected_root):
         receipt_path = _receipt(state, slug)
         staged = state/'stage'/record['transaction']
         retired = state/'stage'/('retired-'+record['transaction'])
+        if data['operation'] == 'legacy_reinstall':
+            from codex_legacy_reconcile import recover_legacy_reinstall
+            outcome = recover_legacy_reinstall(root, state, slug, data)
+            return {'status': outcome, 'slug': slug, 'recovery_performed': True,
+                    'historical_project_ownership_verified': False,
+                    'third_party_skill_executed': False}
         if data['operation'] == 'reinstall':
             from codex_uninstalled_restore import recover_reinstall
             outcome = recover_reinstall(root, state, slug, data)
