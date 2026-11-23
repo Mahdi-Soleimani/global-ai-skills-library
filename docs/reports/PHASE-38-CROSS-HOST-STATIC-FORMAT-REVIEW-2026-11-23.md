@@ -66,10 +66,19 @@ Source: `github/awesome-copilot` at pinned commit `f10fdb8b2660ce85c98f220b2f1ca
 - `git diff --check`: PASS.
 - CLI smoke on the real ZIP: `codex`, `cursor`, `claude-code` all produce `read_only_format_review_completed` with `simple_frontmatter_shape_detected` and false installation/discovery claims.
 
-**Environment limitation:** System Python 3.13.9 lacks the optional `mcp` dependency, so the existing MCP integration test module is excluded from the local broad run. This is not a new test regression. Full suite acceptance is independent of this static format feature and should run in a clean dependency-equipped CI.
+**Environment limitation:** System Python 3.13.9 lacks the optional `mcp` dependency, so the existing MCP integration test module was excluded from the local broad run. This is not a new test regression. The independent GitHub Actions source-refresh run installed test dependencies and subsequently passed its full **456-test** regression suite.
 
 ## 6. GitHub CI and remaining work
 
-The existing private ZIP safety workflow now includes this phase's module and synthetic regression suite in its triggers and test command. Record the resulting **live GitHub Actions run ID and conclusion** only after publication and actual observation; do not infer success from local tests.
+The existing private ZIP safety workflow now includes this phase's module and synthetic regression suite in its triggers and test command. Its live Ubuntu run and the independent full-suite source-refresh workflow both completed successfully; exact Run IDs, outcomes and scope are recorded in Section 7 below.
 
 **Acceptance:** source-pinned, no-execution format review is implemented and locally validated. Real Cursor/Claude Code Skill discovery and installation into live profiles are **NOT** implemented, performed or approved. The next step requires an officially supported, verifiable Host discovery route and appropriate account consent if necessary. Production selective installation remains a distinct permission/transaction gate.
+
+## 7. Live publication and observed CI acceptance
+
+- Source publication: commit [`08f883a`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/08f883a4dff95df30f87865c8bb62e9b727b57a4), normal non-forced push to `main` after a seven-file public-only diff and staged sensitive-pattern check (0 matches).
+- [Private Skill ZIP preparation safety — run `45170331891`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45170331891): **completed / SUCCESS** on `08f883a`; actual Linux log confirms **33 passing synthetic unittest cases** and `PRIVATE_BUNDLE_TESTS=PASS; THIRD_PARTY_CONTENT_EXPORTED=FALSE`.
+- [Real Codex inert Skill install/discover/rollback — run `45170331901`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45170331901): **completed / SUCCESS** on the same commit. This tests GASL-authored inert content, not third-party execution or Cursor/Claude Code discovery.
+- [Daily source catalog refresh — run `45170331957`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45170331957): **completed / SUCCESS** on `08f883a`. All refresh steps passed, including **456 full pytest tests**, discovery of 57 repositories, public source-catalog refresh, search/route smoke tests, and metadata-only publication. Automatic metadata commit [`19171fe`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/19171fe) was fetched and safely fast-forwarded onto local `main` without overwriting the uncommitted report update or rewriting Git history.
+
+No new third-party package text, private ZIP, account data, device-specific path or credential was pushed.
