@@ -723,6 +723,14 @@ def cmd_provenance_compare(args):
         print(format_provenance_comparison(report))
 
 
+def cmd_codex_migration_audit(args):
+    from codex_migration_audit import audit_legacy_migration
+    report = audit_legacy_migration(args.skill_name, args.selected_root)
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if report['status'] == 'blocked':
+        raise SystemExit(2)
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -1116,6 +1124,13 @@ def main():
     provenance_compare.add_argument('--format', choices=('text','json'), default='text',
         help='Human-readable evidence matrix by default; JSON for reports, never writes')
     provenance_compare.set_defaults(func=cmd_provenance_compare)
+
+    migration = sub.add_parser('codex-migration-audit',
+        help='READ-ONLY compatibility check of a legacy Codex active receipt and backup chain')
+    migration.add_argument('--selected-root', required=True, type=Path,
+        help='Explicit existing Git project root; never real user HOME')
+    migration.add_argument('--skill-name', required=True, help='Exact Codex Skill slug')
+    migration.set_defaults(func=cmd_codex_migration_audit)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)

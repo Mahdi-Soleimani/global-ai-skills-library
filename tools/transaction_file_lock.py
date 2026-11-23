@@ -90,9 +90,9 @@ _WINDOWS_DEVICES = frozenset(("CON", "PRN", "AUX", "NUL")
                              + tuple("LPT"+str(n) for n in range(1,10)))
 
 
-def require_windows_filename_safety(path):
-    """Fail-closed for Windows-only file name aliases, ADS and device names."""
-    if os.name != "nt":
+def require_windows_filename_safety(path, *, portable=False):
+    """Reject Windows aliases, ADS and devices; portable audits check on all OSes."""
+    if os.name != "nt" and not portable:
         return path
     if not isinstance(path,str) or not path or "\\" in path:
         raise ValueError("Unsafe Windows ZIP relative filename")

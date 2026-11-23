@@ -232,6 +232,14 @@ Windows User Profile uses the same staged transaction, backup, restore, archived
 
 **The production Windows User Profile path remains disabled until native Windows CI passes.** Only the dedicated disposable Windows workflow sets GASL_ENABLE_WINDOWS_USER_PROFILE_CI=1 to exercise fake temporary HOME roots and read-only current-profile inspection. The workflow now tests native token/SID, ACL, Everyone-write refusal, NTFS Junctions, hard-link aliases, impersonation refusal and the full fake-profile transaction lifecycle. No real Agent profile is written. See [Phase 54 report](docs/reports/PHASE-54-WINDOWS-USER-PROFILE-SID-ACL-2026-11-23.md).
 
+### Phase 58: Read-only Codex ownership migration audit
+
+Existing legacy Codex project records and the host-scoped Windows records are deliberately separate. Check compatibility of a **single explicitly selected** legacy active Skill before considering migration:
+
+    python tools/gasl.py codex-migration-audit --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL
+
+The command is read-only on Windows, macOS and Linux. It checks the complete recorded fresh-install/replacement backup chain, content hashes, conflicting state, hardlinks and portable Windows filenames; it computes a candidate metadata digest in memory. It emits no converted receipt, lock, journal or path contents. Exit 0 means compatible candidate metadata only, not installation or migration approval; exit 2 means blocked. Pending transactions, unowned backups, historical uninstall markers and unsupported restore/reconciliation semantics remain blocked. The audit is not a locked snapshot, independent upstream provenance check or rollback certification. No write-capable migration is enabled.
+
 ### Phase 53: Native Windows project-scope Skill transactions
 
 GASL now supports **Windows-native, write-capable project-scope Skill transactions** for Codex, Cursor and Claude Code in explicitly selected existing Git project roots. The engine uses the same verified pinned private ZIP and host-target preflight as the POSIX installers, with a Windows file-range lock based on Python msvcrt. Staging, ownership receipts, journals, complete backup, restore, archived uninstall/reinstall and fail-closed recovery are retained.
