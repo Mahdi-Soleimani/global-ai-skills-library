@@ -46,6 +46,29 @@ class UserProfileInstallTests(unittest.TestCase):
                 capture_output=True, text=True,
             )
             self.assertEqual(granted.returncode, 0, granted.stdout + granted.stderr)
+            owned = subprocess.run(
+                ["icacls", str(self.profile), "/setowner", f"*{sid}"],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(owned.returncode, 0, owned.stdout + owned.stderr)
+
+            original_mkdir = up._mkdir_checked
+            def mkdir_owned_fake_profile(path):
+                original_mkdir(path)
+                path = Path(path)
+                if path.resolve().is_relative_to(self.profile.resolve()):
+                    changed = subprocess.run(
+                        ["icacls", str(path), "/setowner", f"*{sid}"],
+                        capture_output=True, text=True,
+                    )
+                    if changed.returncode:
+                        raise AssertionError(changed.stdout + changed.stderr)
+            self.mkdir_patch = patch(
+                "user_profile_install._mkdir_checked",
+                side_effect=mkdir_owned_fake_profile,
+            )
+            self.mkdir_patch.start()
+            self.addCleanup(self.mkdir_patch.stop)
         self.root_patch=patch("user_profile_install._root",
                               side_effect=self._fake_root)
         self.root_patch.start()
