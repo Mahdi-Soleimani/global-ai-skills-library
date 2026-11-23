@@ -87,3 +87,13 @@ CI run URLs, final conclusions, revision hash and any automatic metadata refresh
 ## Next technical work
 
 The original pre-Phase-43 orphan-backup problem requires an explicit, human-reviewed reconciliation design, not automatic assumption of ownership. Other potential enhancements: optional/approved backup export and pruning, real user-scope Codex deployment with independently approved role checks, and discovery for other Hosts when officially supported.
+
+## Publication and verified GitHub CI
+
+- Feature commit: [`671755b`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/671755bac60f1a55b8f3a21ab90146ccbd15e1b6), pushed normally to `main`, following a staged ten-file allowlist, no-sensitive-pattern scan, whitespace checks and successful macOS regression tests. No private ZIP, device-specific path, real personal Skill or secret was published.
+- [Real Codex lifecycle — run `45195556931`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45195556931): **completed / SUCCESS**. The Ubuntu step `Exercise real Codex project replace, restore, uninstall archive and reinstall` passed against a synthetic inert Skill using real Codex App Server, including interrupted-Reinstall rollback, successful rediscovery, second uninstall and preserved backup chain.
+- [Private ZIP and installer safety — run `45195556905`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45195556905): **completed / SUCCESS**, including all new synthetic archive/reinstall regressions. No third-party content was exported or executed.
+- [Source-catalog refresh and full regression — run `45195556925`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45195556925): **completed / SUCCESS**. The full dependency-equipped Python suite logged **535 passed**, and the refresh operated on the existing 57-repository catalog. The metadata-only automation published a separate `main` commit ([`4c1ef04`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/4c1ef04)).
+- The updated remote metadata commit was fetched and **fast-forwarded** locally without a force push or modifications to unrelated project code. The local `main` and `origin/main` matched with a clean working tree before this evidence-only report update.
+
+**Final technical acceptance:** Phase 43 functionality and Linux CI both pass. Actual reinstallation into a real user's own project was **not performed** and still requires selection of that project plus human TTY approval. Backup directories left by previous versions without ownership markers remain deliberately ineligible for unattended reconciliation.
