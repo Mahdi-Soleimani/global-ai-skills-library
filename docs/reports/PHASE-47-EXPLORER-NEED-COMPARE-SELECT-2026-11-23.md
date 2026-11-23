@@ -75,3 +75,13 @@ To be completed **only after observed test results and GitHub publication**: tes
 ## GitHub publication and CI
 
 Pending live verification: final feature SHA, targeted Explorer workflow result, full catalog-refresh workflow result, and metadata-only automatic commit (if generated).
+
+## Verified publication and CI acceptance — 2026-11-23
+
+- Feature commit: [`1f5656779a5813422bb862f2b3033fa5d91e9db6`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/1f5656779a5813422bb862f2b3033fa5d91e9db6), pushed normally to `main` after a strict nine-file staging allowlist, secret-pattern scan and whitespace checks. No private Skill archive, secret, personal HOME path or unrelated code was published.
+- [Explorer user-flow CI — Run `45217438649`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45217438649): **completed / SUCCESS**. The workflow verified API authentication/validation, Node-based simulated browser interactions, Python compilation and source whitespace.
+- [Full Catalog Refresh and Regression — Run `45217438615`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45217438615): **completed / SUCCESS**. Python integration and regression suite on Linux reported **638 passed**. Source refresh confirmed **57 repositories** and **4,431 source records**. Metadata-only commit [`7ef61f37e9edafeb04d6bb34a7d520ae9d390cdd`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/7ef61f37e9edafeb04d6bb34a7d520ae9d390cdd) was published by GitHub Actions and then **fast-forwarded locally** without force-push.
+- Final local regression after direct single-card selection: **632 passed, 258 subtests passed**, excluding only optional `tests/test_mcp_server.py` in local Python. Node workflow simulation **PASS**. No real Skill execution, installation, user Agent modification, external model calls or new infrastructure costs.
+- The outcome is a **working local exploratory search-and-choice flow**, not a calibrated quality/safety recommender. Human review remains necessary.
+
+**Acceptance status: PASS.**
