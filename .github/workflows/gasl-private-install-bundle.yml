@@ -9,10 +9,12 @@ on:
       - tools/install_lifecycle.py
       - tools/host_format_review.py
       - tools/codex_project_install.py
+      - tools/codex_uninstalled_restore.py
       - tools/gasl.py
       - tests/test_install_bundle.py
       - tests/test_host_format_review.py
       - tests/test_codex_project_install.py
+      - tests/test_codex_uninstalled_restore.py
   workflow_dispatch:
 
 permissions:
@@ -30,10 +32,10 @@ jobs:
           persist-credentials: false
 
       - name: Python compilation
-        run: python3 -m compileall -q tools/install_bundle.py tools/host_format_review.py tools/codex_project_install.py tests/test_install_bundle.py tests/test_host_format_review.py tests/test_codex_project_install.py
+        run: python3 -m compileall -q tools/install_bundle.py tools/host_format_review.py tools/codex_project_install.py tests/test_install_bundle.py tests/test_host_format_review.py tests/test_codex_project_install.py tests/test_codex_uninstalled_restore.py
 
       - name: Test only synthetic pinned packages, no user or third-party content
-        run: python3 -m unittest tests.test_install_bundle tests.test_host_format_review tests.test_codex_project_install -v
+        run: python3 -m unittest tests.test_install_bundle tests.test_host_format_review tests.test_codex_project_install tests.test_codex_uninstalled_restore -v
 
       - name: Assert no repository-local ZIP exports were written
         run: |

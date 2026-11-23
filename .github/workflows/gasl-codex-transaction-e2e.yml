@@ -8,9 +8,11 @@ on:
       - tools/codex_transaction_e2e.py
       - tools/codex_pinned_bundle_e2e.py
       - tools/codex_project_install.py
+      - tools/codex_uninstalled_restore.py
       - tools/host_format_review.py
       - tests/test_codex_pinned_bundle_e2e.py
       - tests/test_codex_project_install.py
+      - tests/test_codex_uninstalled_restore.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -104,7 +106,7 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real Codex project replace, committed-backup restore and crash recovery
+      - name: Exercise real Codex project replace, restore, uninstall archive and reinstall
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -115,6 +117,9 @@ jobs:
           from tests.test_install_bundle import PrivateInstallBundleTests
           from queue_ingest import git_blob
           import codex_project_install as installer
+          import codex_uninstalled_restore as archived_tools
+          from codex_uninstalled_restore import (
+              list_uninstalled_backups, preview_reinstall, reinstall_backup, _reinstall_phrase)
           from codex_project_install import (
               preview_install, install_fresh, preview_replace, replace_existing,
               preview_restore, restore_backup, uninstall, recover,
@@ -257,9 +262,54 @@ jobs:
                   result=uninstall('demo',project,
                       reader=lambda _:_remove_phrase('demo',bundle2['plan_id']))
                   assert result['status']=='codex_project_skill_uninstalled'
+                  assert result['uninstall_ownership_marker_recorded']
                   assert not discover(), 'Removed Skill must be absent'
                   assert not expected.exists()
-              print('CODEX_REAL_PROJECT_REPLACE_RESTORE_BACKUP_RECOVERY_UNINSTALL=PASS')
+                  selected=result['archived_last_active_backup_id']
+                  listing=list_uninstalled_backups('demo',project)
+                  assert listing['backup_count']==len(result['retained_backup_ids'])
+                  assert listing['backups'][-1]['last_active_before_uninstall']
+
+                  # Phase 43: intentionally interrupt a reinstatement after
+                  # the target activation and verify journaled rollback.
+                  new_plan=preview_reinstall('demo',project,selected)
+                  marker=archived_tools._read_marker(project,'demo',project/'.gasl-managed')
+                  phrase=_reinstall_phrase(
+                      'demo',selected,marker['uninstall_event_id'],new_plan['state_binding_id'])
+                  old_new=archived_tools._new
+                  def fail_reinstall_receipt(path,data):
+                      if path.resolve()==(project/'.gasl-managed/receipts/demo.json').resolve():
+                          raise OSError('injected reinstall receipt crash')
+                      return old_new(path,data)
+                  with patch.object(archived_tools,'_new',side_effect=fail_reinstall_receipt):
+                      try:
+                          reinstall_backup('demo',project,selected,new_plan['state_binding_id'],
+                                           reader=lambda _:phrase)
+                      except OSError as error:
+                          assert 'injected reinstall receipt crash' in str(error)
+                      else:
+                          raise AssertionError('Injected reinstall failure did not fire')
+                  assert expected.read_bytes()==v2
+                  rolled=recover('demo',project)
+                  assert rolled['status']=='interrupted_reinstall_rolled_back',rolled
+                  assert not discover(), 'Interrupted reinstall was not removed'
+
+                  new_plan=preview_reinstall('demo',project,selected)
+                  phrase=_reinstall_phrase(
+                      'demo',selected,marker['uninstall_event_id'],new_plan['state_binding_id'])
+                  installed=reinstall_backup(
+                      'demo',project,selected,new_plan['state_binding_id'],reader=lambda _:phrase)
+                  assert installed['status']=='codex_uninstalled_skill_reinstalled_from_backup'
+                  assert expected.read_bytes()==v2
+                  assert len(discover())==1, 'Codex must rediscover reinstated Skill'
+                  # Second removal must retain both prior and new ownership.
+                  removed_again=uninstall('demo',project,
+                      reader=lambda _:_remove_phrase('demo',bundle2['plan_id']))
+                  assert removed_again['status']=='codex_project_skill_uninstalled'
+                  assert len(removed_again['retained_backup_ids']) == listing['backup_count']+1
+                  assert not discover()
+                  assert not expected.exists()
+              print('CODEX_REAL_PROJECT_REPLACE_RESTORE_UNINSTALL_REINSTALL_RECOVERY=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()

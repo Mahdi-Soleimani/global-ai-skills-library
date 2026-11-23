@@ -60,7 +60,7 @@ def _paths(root, slug):
     target, relative = _target_path(root, 'codex', 'project', slug)
     state = root/STATE  # Keep staged SKILL.md outside all Host discovery directories.
     for candidate in (state, state/'receipts', state/'journals', state/'stage',
-                      state/'backups', state/'backups'/slug):
+                      state/'backups', state/'backups'/slug, state/'uninstalled'):
         if candidate.is_symlink() or (candidate.exists() and not candidate.is_dir()):
             raise ValueError('Symlink or non-directory GASL state path')
     return target, relative, state
@@ -97,7 +97,8 @@ def _inventory_from_rows(rows):
 
 def _checked_receipt(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
-            or data.get('action') not in ('fresh_install', 'replace_install', 'restore_backup')
+            or data.get('action') not in ('fresh_install', 'replace_install', 'restore_backup',
+                                           'reinstall_backup')
             or data.get('slug') != slug
             or not HEX64.fullmatch(str(data.get('plan_id')))
             or not HEX64.fullmatch(str(data.get('binding')))
@@ -113,6 +114,14 @@ def _checked_receipt(data, slug):
         raise ValueError('Invalid GASL backup history')
     if data.get('action') == 'replace_install' and not backup_ids:
         raise ValueError('Replacement receipt has no retained backup')
+    if data.get('action') == 'reinstall_backup':
+        if (data.get('source_kind') not in ('pinned', 'unmanaged')
+                or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('restored_backup_id')))
+                or data['restored_backup_id'] not in backup_ids
+                or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('uninstall_event_id')))
+                or (data['source_kind'] == 'unmanaged'
+                    and data.get('unmanaged_restore_plan_id_derived') is not True)):
+            raise ValueError('Invalid reinstalled Skill provenance or backup history')
     if data.get('action') == 'restore_backup':
         if (data.get('source_kind') not in ('pinned', 'unmanaged')
                 or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('restored_backup_id')))
@@ -127,9 +136,16 @@ def _checked_receipt(data, slug):
 def _checked_journal(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
             or data.get('slug') != slug
-            or data.get('operation') not in ('install', 'uninstall', 'replace', 'restore')):
+            or data.get('operation') not in (
+                'install', 'uninstall', 'uninstall_archive', 'replace', 'restore', 'reinstall')):
         raise ValueError('Invalid GASL transaction journal')
     _checked_receipt(data.get('receipt'), slug)
+    if data['operation'] == 'reinstall':
+        from codex_uninstalled_restore import validate_reinstall_journal
+        validate_reinstall_journal(data, slug)
+    if data['operation'] == 'uninstall_archive':
+        from codex_uninstalled_restore import validate_uninstall_journal
+        validate_uninstall_journal(data, slug)
     if data['operation'] == 'replace':
         previous = data.get('previous_receipt')
         if previous is not None:
@@ -205,7 +221,7 @@ def _lock(root, slug):
     # _target_path rejects symlink/non-directory segments.
     for path in (target.parent.parent, target.parent, state,
                  state/'receipts', state/'journals', state/'stage',
-                 state/'backups', state/'backups'/slug):
+                 state/'backups', state/'backups'/slug, state/'uninstalled'):
         _mkdir_checked(path)
     lock = state/'.lock'
     if lock.is_symlink():
@@ -254,7 +270,12 @@ def preview_install(plan_id, selected_root, *, bundle_root=ROOT, lookup=None):
                                         bundle_root=bundle_root)
     existing_receipt = _receipt(state, slug).exists()
     pending = _journal(state, slug).exists()
-    eligible = not target.exists() and not existing_receipt and not pending
+    marker = state/'uninstalled'/(slug+'.json')
+    if marker.is_symlink():
+        raise ValueError('Symlinked uninstalled ownership marker refused')
+    retained_history = marker.exists()
+    eligible = (not target.exists() and not existing_receipt and not pending
+                and not retained_history)
     return {
         'status': 'real_project_install_preview_only', 'host': 'codex',
         'scope': 'project', 'plan_id': plan_id, 'slug': slug,
@@ -263,6 +284,7 @@ def preview_install(plan_id, selected_root, *, bundle_root=ROOT, lookup=None):
         'prior_target_state': preflight['prior_target_state'],
         'managed_receipt_exists': existing_receipt,
         'pending_transaction_exists': pending,
+        'retained_uninstall_ownership_exists': retained_history,
         'eligible_for_fresh_install': eligible,
         'existing_skill_replace_supported': False,
         'requires_human_tty_confirmation': True,
@@ -335,6 +357,10 @@ def install_fresh(plan_id, selected_root, binding, *, bundle_root=ROOT, lookup=N
 
 
 def uninstall(slug, selected_root, *, reader=None):
+    """Archive a removed Codex project Skill for explicit future reinstallation."""
+    from codex_uninstalled_restore import (
+        _read_marker, _marker_path, make_uninstall_marker,
+    )
     root = _root(selected_root)
     target, _, state = _paths(root, slug)
     receipt_path = _receipt(state, slug)
@@ -342,33 +368,72 @@ def uninstall(slug, selected_root, *, reader=None):
     retained_backups = _verify_backup_history(state, slug, record)
     if not target.is_dir() or target.is_symlink() or _inventory(target) != record['files']:
         raise ValueError('Installed Skill changed; refusal preserves user edits')
+    existing = _read_marker(root, slug, state)
+    if existing is not None and (
+            retained_backups[:len(existing['backup_ids'])] != existing['backup_ids']):
+        raise ValueError('Uninstall ownership history does not match active receipt')
+    if len(retained_backups) >= 1000:
+        raise ValueError('Backup history at limit; no files removed')
     _confirm(_remove_phrase(slug, record['plan_id']), reader)
     with _lock(root, slug) as state:
-        if _journal(state, slug).exists():
+        journal = _journal(state, slug)
+        if journal.exists() or journal.is_symlink():
             raise ValueError('Pending transaction requires recovery')
         record = _checked_receipt(_load(receipt_path), slug)
         retained_backups = _verify_backup_history(state, slug, record)
         if _inventory(target) != record['files']:
             raise ValueError('Installed Skill changed since approval')
-        retired = state/'stage'/('retired-'+record['transaction'])
-        if retired.exists() or retired.is_symlink():
-            raise ValueError('Conflicting staged retirement')
-        journal = _journal(state, slug)
-        _new(journal, {'schema': SCHEMA, 'slug': slug,
-                       'operation': 'uninstall', 'receipt': record})
-        target.rename(retired)
+        previous = _read_marker(root, slug, state)
+        if previous is not None and (
+                retained_backups[:len(previous['backup_ids'])] != previous['backup_ids']):
+            raise ValueError('Previous uninstall marker history not inherited')
+        tx = secrets.token_hex(16)
+        archived = _backup_dir(state, slug, tx)
+        manifest_path = _backup_manifest(state, slug, tx)
+        if (archived.exists() or archived.is_symlink()
+                or manifest_path.exists() or manifest_path.is_symlink()):
+            raise ValueError('Uninstall backup identifier collision')
+        marker = make_uninstall_marker(root, slug, record, tx)
+        manifest = {
+            'schema': SCHEMA, 'kind': 'pre_replace_backup', 'slug': slug,
+            'backup_id': tx, 'transaction': tx,
+            'previous_receipt': record, 'files': record['files'],
+        }
+        transaction = {
+            'schema': SCHEMA, 'slug': slug, 'operation': 'uninstall_archive',
+            'archive_id': tx, 'receipt': record,
+            'previous_uninstalled_marker': previous,
+            'uninstalled_marker': marker,
+        }
+        _checked_journal(transaction, slug)
+        _new(journal, transaction)
+        if _inventory(target) != record['files']:
+            raise ValueError('Skill changed after durable uninstall journal')
+        target.rename(archived)
         _sync(target.parent)
-        # Keep the old bytes until receipt deletion, so recovery can restore.
+        _sync(archived.parent)
+        if _inventory(archived) != record['files']:
+            raise ValueError('Archived Skill changed during rename')
+        _new(manifest_path, manifest)
+        marker_path = _marker_path(state, slug)
+        if previous is None:
+            _new(marker_path, marker)
+        else:
+            _atomic_record(marker_path, marker, previous)
         receipt_path.unlink()
         _sync(receipt_path.parent)
-        _remove_verified_dir(retired, record['files'])
         journal.unlink()
         _sync(journal.parent)
-    return {'status': 'codex_project_skill_uninstalled', 'slug': slug,
-            'retained_backup_ids': retained_backups,
-            'backups_retained': bool(retained_backups),
-            'real_uninstall_performed': True, 'third_party_skill_executed': False}
-
+    return {
+        'status': 'codex_project_skill_uninstalled',
+        'slug': slug,
+        'retained_backup_ids': marker['backup_ids'],
+        'backups_retained': True,
+        'uninstall_ownership_marker_recorded': True,
+        'archived_last_active_backup_id': tx,
+        'real_uninstall_performed': True,
+        'third_party_skill_executed': False,
+    }
 
 
 def _backup_dir(state, slug, backup_id):
@@ -1058,6 +1123,18 @@ def recover(slug, selected_root):
         receipt_path = _receipt(state, slug)
         staged = state/'stage'/record['transaction']
         retired = state/'stage'/('retired-'+record['transaction'])
+        if data['operation'] == 'reinstall':
+            from codex_uninstalled_restore import recover_reinstall
+            outcome = recover_reinstall(root, state, slug, data)
+            return {'status': outcome, 'slug': slug, 'recovery_performed': True,
+                    'backup_retained': True, 'third_party_skill_executed': False}
+        if data['operation'] == 'uninstall_archive':
+            from codex_uninstalled_restore import recover_uninstall_archive
+            outcome = recover_uninstall_archive(root, state, slug, data)
+            return {'status': outcome, 'slug': slug, 'recovery_performed': True,
+                    'archived_backup_retained':
+                        outcome == 'archived_uninstall_commit_recovered',
+                    'third_party_skill_executed': False}
         if data['operation'] == 'restore':
             outcome = _recover_restore(root, state, slug, data)
             return {'status': outcome, 'slug': slug, 'recovery_performed': True,

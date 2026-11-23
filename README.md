@@ -224,6 +224,27 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 43: Recover a Codex project Skill after a completed uninstall
+
+Uninstall now **archives the currently active Skill** outside the Codex discovery directory, keeps all earlier backup versions, and records a project-bound **Uninstall Ownership Marker** in the project-local .gasl-managed/uninstalled/ directory. An explicitly selected and verified Backup can subsequently be reinstalled into the **same empty project Skill target**, with a fresh receipt preserving the full historical backup chain.
+
+New commands:
+
+    ./gasl codex-project-install --action list-uninstalled-backups --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL
+
+    ./gasl codex-project-install --action preview-reinstall --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --backup-id EXACT_BACKUP_ID
+
+    ./gasl codex-project-install --action reinstall-backup --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL --backup-id EXACT_BACKUP_ID --state-binding-id EXACT_PREVIEW_BINDING
+
+    # If a journaled uninstall or reinstall was interrupted:
+    ./gasl codex-project-install --action recover --selected-root /ABSOLUTE/EXISTING/GIT/PROJECT --skill-name SKILL
+
+The read-only list and preview verify the ownership marker, selected project target hash, last GASL receipt, each backup manifest and all file SHA-256 inventories. They do not execute Skill code or expose local absolute paths. Reinstallation requires a live local interactive TTY with an exact challenge binding the selected Backup ID, previous uninstall event and preview state. It refuses an occupied destination, foreign/unowned backups, symlinks, modified archives, stale binding or a pending transaction.
+
+Uninstall is still complete **from Codex's viewpoint** (the Skill directory disappears); retaining its exact bytes in a project-local backup makes recovery possible without downloading or re-running it. The current version is newly archived even when no older backups exist. Interrupted uninstalls can restore the prior active version, and interrupted reinstalls are rolled back or finalized only after checking the complete journal and file inventories. A second uninstall updates ownership without dropping the prior version chain.
+
+**Compatibility limit:** Backup folders left behind by **pre-Phase-43 uninstallations do not contain this ownership marker**, so GASL will not automatically claim them for restoration. They require a separate future, explicitly reviewed reconciliation feature. This remains **project-scope Codex only**; real user HOME, other Agent profiles, and unattended installation remain excluded. See [Phase 43](docs/reports/PHASE-43-CODEX-UNINSTALLED-SKILL-REINSTALL-2026-11-23.md).
+
 ### Phase 42: Restore a previously committed Codex Skill backup
 
 Previously, the recover action could undo an **interrupted** upgrade, but could not revert a **successfully committed** upgrade. The new restore workflow lets you choose a retained, hash-verified backup and restore its exact files. It preserves the currently active version as a **new backup**, and the selected historical backup is never consumed or overwritten.

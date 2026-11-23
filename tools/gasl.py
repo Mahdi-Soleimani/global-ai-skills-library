@@ -496,7 +496,23 @@ def cmd_codex_project_install(args):
     from codex_project_install import (
         preview_install, install_fresh, preview_replace, replace_existing,
         list_backups, preview_restore, restore_backup, uninstall, recover)
-    if args.action == 'list-backups':
+    from codex_uninstalled_restore import (
+        list_uninstalled_backups, preview_reinstall, reinstall_backup)
+    if args.action in ('list-uninstalled-backups','preview-reinstall','reinstall-backup'):
+        if not args.skill_name:
+            raise SystemExit('Archived reinstatement requires --skill-name')
+        if args.action == 'list-uninstalled-backups':
+            result = list_uninstalled_backups(args.skill_name, args.selected_root)
+        elif args.action == 'preview-reinstall':
+            if not args.backup_id:
+                raise SystemExit('Previewing reinstall requires --backup-id')
+            result = preview_reinstall(args.skill_name, args.selected_root, args.backup_id)
+        else:
+            if not args.backup_id or not args.state_binding_id:
+                raise SystemExit('Reinstall requires --backup-id and --state-binding-id')
+            result = reinstall_backup(args.skill_name, args.selected_root,
+                                      args.backup_id, args.state_binding_id)
+    elif args.action == 'list-backups':
         if not args.skill_name:
             raise SystemExit('Listing backups requires --skill-name')
         result = list_backups(args.skill_name, args.selected_root)
@@ -812,18 +828,20 @@ def main():
     host_format.set_defaults(func=cmd_host_format_review)
 
     codex_project = sub.add_parser('codex-project-install',
-        help='Explicit Codex project Skill install/replace/backup restore/uninstall/recovery')
+        help='Explicit Codex project Skill install/replace/restore/archived reinstall/uninstall')
     codex_project.add_argument('--action', required=True,
         choices=('preview','install','preview-replace','replace',
-                 'list-backups','preview-restore','restore-backup','uninstall','recover'))
+                 'list-backups','preview-restore','restore-backup',
+                 'list-uninstalled-backups','preview-reinstall','reinstall-backup',
+                 'uninstall','recover'))
     codex_project.add_argument('--selected-root', type=Path, required=True,
         help='Existing absolute Git project root, never real user HOME')
     codex_project.add_argument('--plan-id', help='Exact pinned private ZIP Plan ID for preview, fresh install or replacement')
     codex_project.add_argument('--state-binding-id',
         help='Exact binding from read-only preview; required before install, replace or backup restore')
-    codex_project.add_argument('--skill-name', help='Exact managed Skill name for restore/uninstall/recover')
+    codex_project.add_argument('--skill-name', help='Exact managed Skill name for restore/reinstall/uninstall/recover')
     codex_project.add_argument('--backup-id',
-        help='Exact retained backup ID for preview-restore or restore-backup')
+        help='Exact backup ID for restore or archived reinstall')
     codex_project.set_defaults(func=cmd_codex_project_install)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')

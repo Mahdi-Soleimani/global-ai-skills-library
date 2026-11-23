@@ -322,7 +322,10 @@ class ProjectInstallTests(unittest.TestCase):
         removed = uninstall('demo', self.project,
                             reader=lambda _: _remove_phrase('demo', self.plan_id))
         self.assertTrue(removed['backups_retained'])
-        self.assertEqual(removed['retained_backup_ids'], [replaced['backup_id']])
+        self.assertEqual(removed['retained_backup_ids'][0], replaced['backup_id'])
+        self.assertEqual(len(removed['retained_backup_ids']), 2)
+        self.assertEqual(removed['retained_backup_ids'][-1],
+                         removed['archived_last_active_backup_id'])
         self.assertTrue(_backup_dir(self.state(), 'demo', replaced['backup_id']).is_dir())
         self.assertFalse(_receipt(self.state(), 'demo').exists())
 
@@ -511,7 +514,7 @@ class ProjectInstallTests(unittest.TestCase):
                             _remove_phrase('demo', receipt['plan_id']))
         self.assertTrue(removed['backups_retained'])
         self.assertFalse(self.target().exists())
-        self.assertEqual(len(removed['retained_backup_ids']), 2)
+        self.assertEqual(len(removed['retained_backup_ids']), 3)
 
     def test_restore_multiple_times_keeps_all_historical_backups(self):
         original, upgraded, first = self.prepare_managed_restore()
