@@ -13,7 +13,7 @@ if os.name == "nt":
 
 
 _TOKEN_QUERY = 0x0008
-_TOKEN_USER = 1
+_TOKEN_USER_CLASS = 1
 _TOKEN_ELEVATION = 20
 _TOKEN_HAS_RESTRICTIONS = 21
 _TOKEN_IS_APP_CONTAINER = 29
@@ -55,7 +55,7 @@ class _SID_AND_ATTRIBUTES(ctypes.Structure):
     _fields_ = [("Sid", ctypes.c_void_p), ("Attributes", ctypes.c_ulong)]
 
 
-class _TOKEN_USER(ctypes.Structure):
+class _TOKEN_USER_STRUCT(ctypes.Structure):
     _fields_ = [("User", _SID_AND_ATTRIBUTES)]
 
 
@@ -128,15 +128,15 @@ def _token_identity():
             wintypes.DWORD, ctypes.POINTER(wintypes.DWORD))
         advapi.GetTokenInformation.restype = wintypes.BOOL
         needed = wintypes.DWORD()
-        advapi.GetTokenInformation(token, _TOKEN_USER, None, 0,
+        advapi.GetTokenInformation(token, _TOKEN_USER_CLASS, None, 0,
                                    ctypes.byref(needed))
         if not needed.value or needed.value > 65536:
             _raise_winerror(message="Invalid TokenUser information size")
         user_buffer = ctypes.create_string_buffer(needed.value)
-        if not advapi.GetTokenInformation(token, _TOKEN_USER, user_buffer,
+        if not advapi.GetTokenInformation(token, _TOKEN_USER_CLASS, user_buffer,
                                           needed.value, ctypes.byref(needed)):
             _raise_winerror(message="Cannot read current Windows account SID")
-        user = ctypes.cast(user_buffer, ctypes.POINTER(_TOKEN_USER)).contents
+        user = ctypes.cast(user_buffer, ctypes.POINTER(_TOKEN_USER_STRUCT)).contents
         sid_pointer = user.User.Sid
         if not sid_pointer:
             raise ValueError("Current Windows token has no user SID")
