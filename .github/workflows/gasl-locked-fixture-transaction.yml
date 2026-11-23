@@ -19,6 +19,10 @@ on:
       - tests/test_codex_state_boundary.py
       - tools/codex_migration_audit.py
       - tools/codex_migration_fixture.py
+      - tools/codex_native_review.py
+      - tools/codex_backup_review.py
+      - tools/codex_provenance_compare.py
+      - tests/test_codex_native_review.py
       - tests/test_codex_migration_fixture.py
       - tests/test_codex_migration_audit.py
       - tools/gasl.py
@@ -48,6 +52,6 @@ jobs:
       - name: Compile exact locked transaction modules
         run: python -m compileall -q tools/fixture_transaction_v2.py tools/fixture_explicit_consent.py tools/host_transaction_fixture.py
       - name: Exercise private fixture ACL, consent, shared lock, rollback and schema boundaries
-        run: python -m unittest tests.test_fixture_transaction_v2 tests.test_fixture_explicit_consent tests.test_codex_state_boundary tests.test_codex_migration_audit tests.test_codex_migration_fixture -v
+        run: python -m unittest tests.test_fixture_transaction_v2 tests.test_fixture_explicit_consent tests.test_codex_state_boundary tests.test_codex_migration_audit tests.test_codex_migration_fixture tests.test_codex_native_review -v
       - name: Require no third-party ZIP or user-profile files in public checkout
         run: python -c "from pathlib import Path; assert not any(Path(p).exists() for p in ('private/install-bundles', 'catalog', 'private/install-simulation', '.agents', '.cursor', '.claude')); print('DISPOSABLE_FIXTURE_ONLY=PASS; REAL_AGENT_INSTALLATION=FALSE; THIRD_PARTY_CODE_EXECUTED=FALSE')"

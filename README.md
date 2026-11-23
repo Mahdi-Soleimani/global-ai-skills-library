@@ -240,6 +240,15 @@ Existing legacy Codex project records and the host-scoped Windows records are de
 
 The command is read-only on Windows, macOS and Linux. It checks complete recorded fresh-install, replacement and pinned-restore backup chains, exact restored source Plan and content hashes, conflicting state, hardlinks and portable Windows filenames; it computes a candidate metadata digest in memory. It emits no converted receipt, lock, journal or path contents. Exit 0 means compatible candidate metadata only, not installation or migration approval; exit 2 means blocked. Project-bound uninstall markers and retained reinstall evidence can be checked, but their conversion remains blocked: the native schema does not preserve identical path-binding and historical-marker semantics. Pending transactions, unowned backups, unmanaged restore and unsupported reconciliation remain blocked. The audit is not a locked snapshot, independent upstream provenance check or rollback certification. Reversible migration is rehearsed only on generated inert disposable fixtures. No production write-capable migration is enabled.
 
+### Native Windows Codex backup and provenance review (Phase 58)
+
+The existing read-only `backup-review` and `provenance-compare` commands route to the native host-scoped Codex ownership store on Windows; POSIX retains its legacy review behavior.
+
+    python tools/gasl.py backup-review --selected-root "$env:GASL_SELECTED_PROJECT" --skill-name SKILL
+    python tools/gasl.py provenance-compare --selected-root "$env:GASL_SELECTED_PROJECT" --skill-name SKILL --left active --right EXACT_BACKUP_ID
+
+Both validate recorded backup lineage and file hashes without changing project files. A selected eligible backup can provide a binding from the existing native restore/reinstall preview; any subsequent write still requires exact interactive local approval. Legacy state, pending migrations and rehearsal-only archive evidence are not adopted. Native archive markers are not equivalent to the legacy project-bound ownership marker; local Plan references are not independently verified upstream provenance. No production migration is enabled.
+
 ### Phase 53: Native Windows project-scope Skill transactions
 
 GASL now supports **Windows-native, write-capable project-scope Skill transactions** for Codex, Cursor and Claude Code in explicitly selected existing Git project roots. The engine uses the same verified pinned private ZIP and host-target preflight as the POSIX installers, with a Windows file-range lock based on Python msvcrt. Staging, ownership receipts, journals, complete backup, restore, archived uninstall/reinstall and fail-closed recovery are retained.

@@ -4,6 +4,7 @@
 Local checksum, provenance claims and upstream authenticity are separate facts.
 No network, installer, subprocess, Skill execution or user-profile writes.
 """
+import os
 import hashlib
 import json
 import re
@@ -197,6 +198,9 @@ def _compare(left, right):
 
 def compare_codex_provenance(slug, selected_root, *, left_id=None, right_id=None):
     """One selected Git project, no filesystem changes, no external verification."""
+    if os.name == 'nt':
+        from codex_native_review import compare
+        return compare(slug, selected_root, left_id=left_id, right_id=right_id)
     if (left_id is None) != (right_id is None):
         raise ValueError('Select both --left and --right for a comparison')
     if left_id is not None and left_id == right_id:

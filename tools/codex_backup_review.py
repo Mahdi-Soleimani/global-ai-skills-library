@@ -4,6 +4,8 @@
 This module chooses an *existing* verified lifecycle instead of creating a new
 installation route. It never authorizes, stages, installs or executes a Skill.
 """
+import os
+
 from codex_project_install import (
     _root, _paths, _receipt, _journal, list_backups, preview_restore,
 )
@@ -84,6 +86,9 @@ def review_codex_backups(slug, selected_root, *, backup_id=None):
     Never auto-discover projects, accept an implicit HOME or claim that local
     hash integrity establishes historical ownership.
     """
+    if os.name == 'nt':
+        from codex_native_review import review
+        return review(slug, selected_root, backup_id=backup_id)
     root = _root(selected_root)
     target, relative, state = _paths(root, slug)
     journal = _journal(state, slug)
@@ -283,14 +288,18 @@ def format_backup_review(report):
             'Read-only state binding: ' + selected['state_binding_id'],
             'Next step requires exact interactive TTY approval; this review did NOT approve it:',
             selected['recovery_command'],
-            'First set: export GASL_SELECTED_PROJECT=/absolute/path/to/your/existing/git/project',
+            ('First set in PowerShell: $env:GASL_SELECTED_PROJECT = "C:\\path\\to\\project"'
+             if report.get('ownership_store') == 'native_host_scoped' else
+             'First set: export GASL_SELECTED_PROJECT=/absolute/path/to/your/existing/git/project'),
         ])
     elif report.get('available_recovery'):
         lines.extend([
             '',
             'Select a Backup for a read-only, binding-bound preview:',
             report['review_command_template'],
-            'First set: export GASL_SELECTED_PROJECT=/absolute/path/to/your/existing/git/project',
+            ('First set in PowerShell: $env:GASL_SELECTED_PROJECT = "C:\\path\\to\\project"'
+             if report.get('ownership_store') == 'native_host_scoped' else
+             'First set: export GASL_SELECTED_PROJECT=/absolute/path/to/your/existing/git/project'),
         ])
     elif report.get('next_steps'):
         lines.extend([
