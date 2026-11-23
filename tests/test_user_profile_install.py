@@ -5,6 +5,7 @@ _root validation is tested separately and NEVER permits actual HOME writes.
 """
 import hashlib
 import json
+from contextlib import contextmanager
 import os
 import shutil
 import subprocess
@@ -69,6 +70,26 @@ class UserProfileInstallTests(unittest.TestCase):
             )
             self.mkdir_patch.start()
             self.addCleanup(self.mkdir_patch.stop)
+
+            original_lock = up.exclusive_lock_file
+            @contextmanager
+            def lock_owned_fake_profile(path):
+                with original_lock(path) as handle:
+                    path = Path(path)
+                    if path.resolve().is_relative_to(self.profile.resolve()):
+                        owned_lock = subprocess.run(
+                            ["icacls", str(path), "/setowner", f"*{sid}"],
+                            capture_output=True, text=True,
+                        )
+                        if owned_lock.returncode:
+                            raise AssertionError(owned_lock.stdout + owned_lock.stderr)
+                    yield handle
+            self.lock_patch = patch(
+                "user_profile_install.exclusive_lock_file",
+                side_effect=lock_owned_fake_profile,
+            )
+            self.lock_patch.start()
+            self.addCleanup(self.lock_patch.stop)
         self.root_patch=patch("user_profile_install._root",
                               side_effect=self._fake_root)
         self.root_patch.start()
