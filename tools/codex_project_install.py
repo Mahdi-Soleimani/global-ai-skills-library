@@ -6,10 +6,12 @@ integrity, an exact read-only target binding and local interactive consent
 are required. No downloaded Skill instructions or dependencies are executed.
 """
 import contextlib
+import hashlib
 import json
 import os
 import re
 import secrets
+import stat
 from pathlib import Path
 
 from fixture_bundle_install import _inventory, _read_bundle, _remove_verified_dir, _check_list
@@ -23,6 +25,7 @@ except ImportError:
     fcntl = None
 
 SCHEMA = 'gasl-codex-project-install-v1'
+RESTORE_PREFLIGHT = 'gasl-codex-project-restore-preflight-v1'
 STATE = '.gasl-managed'
 HEX64 = re.compile(r'^[a-f0-9]{64}$')
 SLUG = re.compile(r'^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$')
@@ -94,7 +97,8 @@ def _inventory_from_rows(rows):
 
 def _checked_receipt(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
-            or data.get('action') not in ('fresh_install', 'replace_install') or data.get('slug') != slug
+            or data.get('action') not in ('fresh_install', 'replace_install', 'restore_backup')
+            or data.get('slug') != slug
             or not HEX64.fullmatch(str(data.get('plan_id')))
             or not HEX64.fullmatch(str(data.get('binding')))
             or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('transaction')))
@@ -109,13 +113,21 @@ def _checked_receipt(data, slug):
         raise ValueError('Invalid GASL backup history')
     if data.get('action') == 'replace_install' and not backup_ids:
         raise ValueError('Replacement receipt has no retained backup')
+    if data.get('action') == 'restore_backup':
+        if (data.get('source_kind') not in ('pinned', 'unmanaged')
+                or not re.fullmatch(r'[0-9a-f]{32}', str(data.get('restored_backup_id')))
+                or data['restored_backup_id'] not in backup_ids
+                or data.get('transaction') != backup_ids[-1]
+                or data.get('source_kind') == 'unmanaged'
+                and data.get('unmanaged_restore_plan_id_derived') is not True):
+            raise ValueError('Invalid restored Skill provenance or retained backup history')
     return data
 
 
 def _checked_journal(data, slug):
     if (not isinstance(data, dict) or data.get('schema') != SCHEMA
             or data.get('slug') != slug
-            or data.get('operation') not in ('install', 'uninstall', 'replace')):
+            or data.get('operation') not in ('install', 'uninstall', 'replace', 'restore')):
         raise ValueError('Invalid GASL transaction journal')
     _checked_receipt(data.get('receipt'), slug)
     if data['operation'] == 'replace':
@@ -141,6 +153,40 @@ def _checked_journal(data, slug):
             raise ValueError('Replacement old inventory differs from previous receipt')
         if data['receipt']['files'] != data['new_files']:
             raise ValueError('Replacement receipt differs from new file inventory')
+    if data['operation'] == 'restore':
+        previous = _checked_receipt(data.get('previous_receipt'), slug)
+        selected_id, saved_id = data.get('selected_backup_id'), data.get('current_backup_id')
+        if (not re.fullmatch(r'[0-9a-f]{32}', str(selected_id))
+                or not re.fullmatch(r'[0-9a-f]{32}', str(saved_id))
+                or saved_id != data.get('transaction')
+                or saved_id in previous.get('backup_ids', [])
+                or selected_id not in previous.get('backup_ids', [])
+                or data['receipt']['action'] != 'restore_backup'
+                or data['receipt']['transaction'] != saved_id
+                or data['receipt'].get('restored_backup_id') != selected_id
+                or data['receipt']['backup_ids'] != list(previous['backup_ids']) + [saved_id]):
+            raise ValueError('Invalid restoration transaction identity')
+        _check_list(data.get('current_files'))
+        _check_list(data.get('restored_files'))
+        if (not data['restored_files'] or not data['current_files']
+                or data['current_files'] != previous['files']
+                or data['receipt']['files'] != data['restored_files']
+                or data['current_files'] == data['restored_files']):
+            raise ValueError('Restore journal inventories are invalid')
+        selected_manifest = _checked_backup(data.get('selected_manifest'), slug, selected_id)
+        if selected_manifest['files'] != data['restored_files']:
+            raise ValueError('Selected backup inventory differs from restore journal')
+        source_record = selected_manifest.get('previous_receipt')
+        if (data['receipt']['source_kind'] != (
+                source_record.get('source_kind', 'pinned') if source_record else 'unmanaged')):
+            raise ValueError('Restoration provenance disagrees with selected backup')
+        if source_record and data['receipt']['plan_id'] != source_record['plan_id']:
+            raise ValueError('Restored source Plan ID mismatch')
+        if not source_record and data['receipt']['plan_id'] != _unmanaged_restore_plan_id(
+                selected_id, selected_manifest):
+            raise ValueError('Unmanaged restore synthetic identity mismatch')
+        if data.get('binding') != data['receipt']['binding'] or not HEX64.fullmatch(str(data.get('binding'))):
+            raise ValueError('Restore journal binding mismatch')
     return data
 
 
@@ -552,6 +598,370 @@ def replace_existing(plan_id, selected_root, binding, *,
     }
 
 
+
+def _restore_phrase(slug, selected_backup_id, current_plan_id, binding):
+    return ('RESTORE '+slug.upper()+' '+selected_backup_id[:12].upper()
+            +' '+current_plan_id[:12].upper()+' '+binding[:12].upper()
+            +' KEEP-CURRENT-BACKUP')
+
+
+def _unmanaged_restore_plan_id(backup_id, manifest):
+    """A local synthetic identity, never presented as a pinned upstream Plan."""
+    return hashlib.sha256(
+        b'gasl-unmanaged-restore-v1\x00'
+        + _serialized({'backup_id': backup_id, 'files': manifest['files']})
+    ).hexdigest()
+
+
+def _restore_snapshot(slug, root, selected_backup_id):
+    """Read-only, path-bound snapshot of current files and all backups."""
+    target, relative, state = _paths(root, slug)
+    if not re.fullmatch(r'[0-9a-f]{32}', str(selected_backup_id)):
+        raise ValueError('Invalid selected backup identifier')
+    if not target.is_dir() or target.is_symlink():
+        raise ValueError('Restore requires an installed regular Skill directory')
+    main = target/'SKILL.md'
+    if main.is_symlink() or not main.is_file():
+        raise ValueError('Installed Skill must contain a regular root SKILL.md')
+    journal = _journal(state, slug)
+    if journal.exists() or journal.is_symlink():
+        raise ValueError('Pending transaction requires recovery before restore')
+    receipt_path = _receipt(state, slug)
+    if receipt_path.is_symlink():
+        raise ValueError('Symlinked GASL ownership receipt refused')
+    active = _checked_receipt(_load(receipt_path), slug)
+    current_files = _inventory(target)
+    if current_files != active['files']:
+        raise ValueError('Installed Skill changed; preserving user edits')
+    ids = _verify_backup_history(state, slug, active)
+    if len(ids) >= 1000:
+        raise ValueError('Managed backup history limit reached; preserving all backups')
+    if selected_backup_id not in ids:
+        raise ValueError('Selected backup is not owned by the current Skill history')
+    selected = _checked_backup(
+        _load(_backup_manifest(state, slug, selected_backup_id)), slug, selected_backup_id)
+    if selected['files'] == current_files:
+        raise ValueError('Selected backup is byte-identical to installed Skill')
+    if not any(item['path'] == 'SKILL.md' for item in selected['files']):
+        raise ValueError('Selected backup does not contain a root SKILL.md')
+    origin = selected['previous_receipt']
+    source_kind = origin.get('source_kind', 'pinned') if origin else 'unmanaged'
+    # Include the path hash and *every* backup manifest in the binding, without
+    # leaking any local absolute path or existing file contents in the output.
+    history = []
+    for item in ids:
+        backup_manifest = _checked_backup(_load(_backup_manifest(state,slug,item)),slug,item)
+        history.append({'id': item,
+                        'sha256': hashlib.sha256(_serialized(backup_manifest)).hexdigest()})
+    snapshot = {
+        'schema': RESTORE_PREFLIGHT,
+        'target_sha256': hashlib.sha256(os.fsencode(str(target))).hexdigest(),
+        'slug': slug, 'selected_backup_id': selected_backup_id,
+        'current_receipt_sha256': hashlib.sha256(_serialized(active)).hexdigest(),
+        'current_files': current_files,
+        'restored_files': selected['files'],
+        'history': history,
+    }
+    binding = hashlib.sha256(_serialized(snapshot)).hexdigest()
+    return {
+        'target': target, 'relative': relative, 'state': state,
+        'active': active, 'selected': selected, 'binding': binding,
+        'source_kind': source_kind, 'current_files': current_files,
+        'restored_files': selected['files'], 'history_count': len(ids),
+    }
+
+
+
+def list_backups(slug, selected_root):
+    """Read-only, privacy-preserving inventory of retained project backups."""
+    root = _root(selected_root)
+    target, relative, state = _paths(root, slug)
+    if not target.is_dir() or target.is_symlink():
+        raise ValueError('Listing backups requires an installed Skill directory')
+    journal = _journal(state, slug)
+    if journal.exists() or journal.is_symlink():
+        raise ValueError('Pending transaction requires recovery before listing backups')
+    receipt_path = _receipt(state, slug)
+    if receipt_path.is_symlink():
+        raise ValueError('Symlinked GASL ownership receipt refused')
+    receipt = _checked_receipt(_load(receipt_path), slug)
+    active_files = _inventory(target)
+    if active_files != receipt['files']:
+        raise ValueError('Installed Skill changed; preserve local edits')
+    backup_ids = _verify_backup_history(state, slug, receipt)
+    records = []
+    for backup_id in backup_ids:
+        manifest = _checked_backup(
+            _load(_backup_manifest(state, slug, backup_id)), slug, backup_id)
+        origin = manifest['previous_receipt']
+        source_kind = origin.get('source_kind','pinned') if origin else 'unmanaged'
+        records.append({
+            'backup_id': backup_id,
+            'source_kind': source_kind,
+            'upstream_plan_id': (
+                origin['plan_id'] if origin and source_kind == 'pinned' else None),
+            'file_count': len(manifest['files']),
+            'eligible_for_restore': manifest['files'] != active_files,
+            'backup_integrity_verified': True,
+        })
+    return {
+        'status': 'codex_project_backups_listed_read_only',
+        'host': 'codex', 'scope': 'project', 'slug': slug,
+        'relative_target': relative, 'current_plan_id': receipt['plan_id'],
+        'backup_count': len(records), 'backups': records,
+        'real_host_files_modified': False, 'third_party_skill_executed': False,
+    }
+
+
+
+def preview_restore(slug, selected_root, backup_id):
+    """No writes, no installation, no Host execution or automatic approval."""
+    root = _root(selected_root)
+    snapshot = _restore_snapshot(slug, root, backup_id)
+    selected = snapshot['selected']
+    origin = selected['previous_receipt']
+    return {
+        'status': 'codex_project_backup_restore_preview_only',
+        'host': 'codex', 'scope': 'project', 'slug': slug,
+        'selected_backup_id': backup_id,
+        'relative_target': snapshot['relative'],
+        'state_binding_id': snapshot['binding'],
+        'current_plan_id': snapshot['active']['plan_id'],
+        'restored_source_kind': snapshot['source_kind'],
+        'restored_upstream_plan_id': (
+            origin['plan_id'] if origin and snapshot['source_kind']=='pinned' else None),
+        'current_file_count': len(snapshot['current_files']),
+        'restored_file_count': len(snapshot['restored_files']),
+        'retained_backup_count': snapshot['history_count'],
+        'current_version_will_be_backed_up': True,
+        'selected_backup_preserved_without_modification': True,
+        'requires_local_tty_confirmation': True,
+        'eligible_for_restore': True,
+        'restore_performed': False,
+        'third_party_skill_executed': False,
+    }
+
+
+def _copy_backup_stage(source, stage, expected_files):
+    """Copy verified local backup bytes into a distinct, private staging tree."""
+    if source.is_symlink() or not source.is_dir():
+        raise ValueError('Unsafe original backup')
+    if stage.exists() or stage.is_symlink():
+        raise ValueError('Unexpected restore staging collision')
+    _check_list(expected_files)
+    stage.mkdir(mode=0o700)
+    try:
+        for item in expected_files:
+            source_file = source.joinpath(*item['path'].split('/'))
+            destination = stage.joinpath(*item['path'].split('/'))
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            flags = os.O_RDONLY | getattr(os, 'O_NOFOLLOW', 0)
+            fd = os.open(str(source_file), flags)
+            try:
+                if not stat.S_ISREG(os.fstat(fd).st_mode):
+                    raise ValueError('Nonregular backup file during restore')
+                h = hashlib.sha256()
+                with os.fdopen(fd, 'rb', closefd=False) as stream, destination.open('xb') as output:
+                    while True:
+                        chunk = stream.read(1024*1024)
+                        if not chunk:
+                            break
+                        h.update(chunk)
+                        output.write(chunk)
+                    output.flush()
+                    os.fsync(output.fileno())
+                if h.hexdigest() != item['sha256']:
+                    raise ValueError('Backup bytes changed while copying')
+            finally:
+                os.close(fd)
+        if _inventory(stage) != expected_files:
+            raise ValueError('Restored staging inventory differs from selected backup')
+        _sync(stage)
+    except Exception:
+        _remove_partial_stage(stage)
+        raise
+
+
+def restore_backup(slug, selected_root, backup_id, binding, *, reader=None):
+    """Restore exact historical backup and retain the current active version."""
+    root = _root(selected_root)
+    plan = preview_restore(slug, root, backup_id)
+    if binding != plan['state_binding_id']:
+        raise ValueError('Selected backup or current files changed since preview')
+    _confirm(_restore_phrase(slug, backup_id, plan['current_plan_id'], binding), reader)
+    with _lock(root, slug) as state:
+        snapshot = _restore_snapshot(slug, root, backup_id)
+        if snapshot['binding'] != binding:
+            raise ValueError('Backup or installed files changed after interactive consent')
+        active = snapshot['active']
+        selected = snapshot['selected']
+        current_files, restored_files = snapshot['current_files'], snapshot['restored_files']
+        source_kind = snapshot['source_kind']
+        target = snapshot['target']
+        selected_dir = _backup_dir(state, slug, backup_id)
+        tx = secrets.token_hex(16)
+        stage = state/'stage'/tx
+        current_backup = _backup_dir(state, slug, tx)
+        current_manifest_path = _backup_manifest(state, slug, tx)
+        journal = _journal(state, slug)
+        if (current_backup.exists() or current_backup.is_symlink()
+                or current_manifest_path.exists() or current_manifest_path.is_symlink()
+                or journal.exists() or journal.is_symlink()
+                or stage.exists() or stage.is_symlink()):
+            raise ValueError('Restore transaction identifier/path collision')
+        _copy_backup_stage(selected_dir, stage, restored_files)
+        origin = selected['previous_receipt']
+        restored_plan = (origin['plan_id'] if origin else
+                         _unmanaged_restore_plan_id(backup_id, selected))
+        receipt = {
+            'schema': SCHEMA, 'action': 'restore_backup', 'slug': slug,
+            'transaction': tx, 'plan_id': restored_plan, 'binding': binding,
+            'files': restored_files,
+            'backup_ids': list(active['backup_ids'])+[tx],
+            'restored_backup_id': backup_id, 'source_kind': source_kind,
+        }
+        if source_kind == 'unmanaged':
+            receipt['unmanaged_restore_plan_id_derived'] = True
+        transaction = {
+            'schema': SCHEMA, 'slug': slug, 'operation': 'restore',
+            'transaction': tx, 'current_backup_id': tx,
+            'selected_backup_id': backup_id, 'selected_manifest': selected,
+            'previous_receipt': active, 'receipt': receipt,
+            'current_files': current_files, 'restored_files': restored_files,
+            'binding': binding,
+        }
+        _checked_journal(transaction, slug)
+        _new(journal, transaction)
+        if (_inventory(target) != current_files
+                or _inventory(selected_dir) != restored_files
+                or _load(_backup_manifest(state, slug, backup_id)) != selected):
+            raise ValueError('Installed Skill or selected backup changed before activation')
+        # Same-filesystem rename safeguards the version being replaced.
+        target.rename(current_backup)
+        _sync(target.parent)
+        _sync(current_backup.parent)
+        if _inventory(current_backup) != current_files:
+            raise ValueError('Current Skill changed during backup rename')
+        current_manifest = {
+            'schema': SCHEMA, 'kind': 'pre_replace_backup', 'slug': slug,
+            'backup_id': tx, 'transaction': tx,
+            'previous_receipt': active, 'files': current_files,
+        }
+        _new(current_manifest_path, current_manifest)
+        if target.exists() or target.is_symlink():
+            raise ValueError('Skill target reappeared during restore')
+        stage.rename(target)
+        _sync(target.parent)
+        if _inventory(target) != restored_files:
+            raise ValueError('Restored version differs from verified backup')
+        _atomic_record(_receipt(state, slug), receipt, active)
+        journal.unlink()
+        _sync(journal.parent)
+    return {
+        'status': 'codex_project_skill_backup_restored',
+        'slug': slug, 'restored_backup_id': backup_id,
+        'restored_source_kind': source_kind,
+        'restored_file_count': len(restored_files),
+        'saved_current_backup_id': tx,
+        'saved_current_backup_relative_path': (
+            Path(STATE)/'backups'/slug/tx).as_posix(),
+        'selected_backup_preserved': True,
+        'current_version_backed_up': True,
+        'restoration_performed': True,
+        'third_party_skill_executed': False,
+    }
+
+
+def _recover_restore(root, state, slug, data):
+    """Resolve only exact, evidenced restore states; never discard edits."""
+    target, _, _ = _paths(root, slug)
+    old_receipt = data['previous_receipt']
+    new_receipt = data['receipt']
+    old_files, restored_files = data['current_files'], data['restored_files']
+    selected_id, saved_id = data['selected_backup_id'], data['current_backup_id']
+    selected_dir = _backup_dir(state, slug, selected_id)
+    selected_manifest = _backup_manifest(state, slug, selected_id)
+    saved_dir = _backup_dir(state, slug, saved_id)
+    saved_manifest = _backup_manifest(state, slug, saved_id)
+    stage = state/'stage'/saved_id
+    receipt_path = _receipt(state, slug)
+    journal = _journal(state, slug)
+    if receipt_path.is_symlink():
+        raise ValueError('Symlinked receipt during restore recovery')
+    current_receipt = _checked_receipt(_load(receipt_path), slug)
+    if current_receipt not in (old_receipt, new_receipt):
+        raise ValueError('Restore receipt neither matches old nor new transaction')
+    _verify_backup_history(state, slug, old_receipt)
+    if _load(selected_manifest) != data['selected_manifest']:
+        raise ValueError('Historical backup manifest changed during restore')
+    if _inventory(selected_dir) != restored_files:
+        raise ValueError('Historical backup bytes changed during restore')
+
+    saved_exists = saved_dir.exists() or saved_dir.is_symlink()
+    manifest_exists = saved_manifest.exists() or saved_manifest.is_symlink()
+    stage_exists = stage.exists() or stage.is_symlink()
+    target_exists = target.exists() or target.is_symlink()
+    if saved_exists:
+        if saved_dir.is_symlink() or not saved_dir.is_dir() or _inventory(saved_dir) != old_files:
+            raise ValueError('Saved current-version backup changed; preserve data')
+    expected_manifest = {
+        'schema': SCHEMA, 'kind': 'pre_replace_backup', 'slug': slug,
+        'backup_id': saved_id, 'transaction': saved_id,
+        'previous_receipt': old_receipt, 'files': old_files,
+    }
+    if manifest_exists:
+        if saved_manifest.is_symlink() or _checked_backup(
+                _load(saved_manifest),slug,saved_id) != expected_manifest:
+            raise ValueError('Saved current-version backup manifest changed')
+        if not saved_exists:
+            raise ValueError('Saved current backup manifest exists without backup')
+    if stage_exists:
+        if stage.is_symlink() or not stage.is_dir() or _inventory(stage) != restored_files:
+            raise ValueError('Restore staging changed; preserve data')
+    target_files = None
+    if target_exists:
+        if target.is_symlink() or not target.is_dir():
+            raise ValueError('Restored Skill target replaced with non-directory')
+        target_files = _inventory(target)
+
+    if current_receipt == new_receipt:
+        if target_files != restored_files or not saved_exists:
+            raise ValueError('Committed restoration or saved current version changed')
+        if not manifest_exists:
+            _new(saved_manifest, expected_manifest)
+        if stage_exists:
+            _remove_verified_dir(stage, restored_files)
+        journal.unlink()
+        _sync(journal.parent)
+        return 'restore_commit_recovered'
+
+    # Pre-commit states must be unambiguous.
+    if target_files == old_files and saved_exists:
+        raise ValueError('Ambiguous original version and backup duplication')
+    if target_files == restored_files and not saved_exists:
+        raise ValueError('Restored target exists but the current backup is missing')
+    if target_files is None and not saved_exists:
+        raise ValueError('Both original target and new backup are missing')
+    if target_files not in (None, old_files, restored_files):
+        raise ValueError('Restored target changed; preserving user edits')
+    if target_files == restored_files:
+        _remove_verified_dir(target, restored_files)
+    if saved_exists:
+        if target.exists() or target.is_symlink():
+            raise ValueError('Cannot recover over an occupied target')
+        saved_dir.rename(target)
+        _sync(target.parent)
+    if stage_exists:
+        _remove_verified_dir(stage, restored_files)
+    if manifest_exists:
+        saved_manifest.unlink()
+        _sync(saved_manifest.parent)
+    journal.unlink()
+    _sync(journal.parent)
+    if _inventory(target) != old_files:
+        raise ValueError('Restore rollback did not preserve previous Skill version')
+    return 'interrupted_restore_rolled_back'
+
 def _recover_replace(root, state, slug, data):
     target, _, _ = _paths(root, slug)
     receipt_path = _receipt(state, slug)
@@ -648,6 +1058,12 @@ def recover(slug, selected_root):
         receipt_path = _receipt(state, slug)
         staged = state/'stage'/record['transaction']
         retired = state/'stage'/('retired-'+record['transaction'])
+        if data['operation'] == 'restore':
+            outcome = _recover_restore(root, state, slug, data)
+            return {'status': outcome, 'slug': slug, 'recovery_performed': True,
+                    'previous_skill_restored': outcome == 'interrupted_restore_rolled_back',
+                    'backup_retained': outcome == 'restore_commit_recovered',
+                    'third_party_skill_executed': False}
         if data['operation'] == 'replace':
             outcome = _recover_replace(root, state, slug, data)
             return {'status': outcome, 'slug': slug, 'recovery_performed': True,

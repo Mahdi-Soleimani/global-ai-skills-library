@@ -104,7 +104,7 @@ jobs:
               fixture.doCleanups()
           PY
 
-      - name: Exercise real Codex project install, replacement backup and interrupted-replace recovery
+      - name: Exercise real Codex project replace, committed-backup restore and crash recovery
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -117,7 +117,8 @@ jobs:
           import codex_project_install as installer
           from codex_project_install import (
               preview_install, install_fresh, preview_replace, replace_existing,
-              uninstall, recover, _install_phrase, _replace_phrase, _remove_phrase,
+              preview_restore, restore_backup, uninstall, recover,
+              _install_phrase, _replace_phrase, _restore_phrase, _remove_phrase,
               _backup_dir, _backup_manifest)
           from codex_third_party_discovery import _query_codex
           fixture=PrivateInstallBundleTests(
@@ -206,12 +207,59 @@ jobs:
                   assert second['status']=='codex_project_skill_replaced'
                   assert expected.read_bytes()==v2
                   assert len(discover())==1
+                  # Phase 42: Restore a committed previous pinned version;
+                  # retain the current version and the original backup.
+                  restore_plan=preview_restore('demo',project,second['backup_id'])
+                  assert restore_plan['restored_source_kind']=='pinned'
+                  restore_phrase=_restore_phrase(
+                      'demo',second['backup_id'],restore_plan['current_plan_id'],
+                      restore_plan['state_binding_id'])
+                  first_restore=restore_backup(
+                      'demo',project,second['backup_id'],restore_plan['state_binding_id'],
+                      reader=lambda _:restore_phrase)
+                  assert first_restore['status']=='codex_project_skill_backup_restored'
+                  assert expected.read_bytes()==v1
+                  assert len(discover())==1
+                  v2_saved_id=first_restore['saved_current_backup_id']
+                  assert (_backup_dir(project/'.gasl-managed','demo',v2_saved_id)/
+                          'SKILL.md').read_bytes()==v2
+
+                  # Inject failure after restoring v2's directory but before
+                  # committing the new receipt; recovery must return v1.
+                  back_plan=preview_restore('demo',project,v2_saved_id)
+                  back_phrase=_restore_phrase(
+                      'demo',v2_saved_id,back_plan['current_plan_id'],
+                      back_plan['state_binding_id'])
+                  with patch.object(installer,'_atomic_record',
+                                    side_effect=OSError('injected restore commit failure')):
+                      try:
+                          restore_backup('demo',project,v2_saved_id,
+                              back_plan['state_binding_id'],reader=lambda _:back_phrase)
+                      except OSError as error:
+                          assert 'injected restore commit failure' in str(error)
+                      else:
+                          raise AssertionError('Restore failure injection did not fire')
+                  assert expected.read_bytes()==v2
+                  repaired=recover('demo',project)
+                  assert repaired['status']=='interrupted_restore_rolled_back',repaired
+                  assert expected.read_bytes()==v1
+                  assert len(discover())==1
+                  back_plan=preview_restore('demo',project,v2_saved_id)
+                  back_phrase=_restore_phrase(
+                      'demo',v2_saved_id,back_plan['current_plan_id'],
+                      back_plan['state_binding_id'])
+                  reverted=restore_backup(
+                      'demo',project,v2_saved_id,back_plan['state_binding_id'],
+                      reader=lambda _:back_phrase)
+                  assert reverted['status']=='codex_project_skill_backup_restored'
+                  assert expected.read_bytes()==v2
+                  assert len(discover())==1
                   result=uninstall('demo',project,
                       reader=lambda _:_remove_phrase('demo',bundle2['plan_id']))
                   assert result['status']=='codex_project_skill_uninstalled'
                   assert not discover(), 'Removed Skill must be absent'
                   assert not expected.exists()
-              print('CODEX_REAL_PROJECT_INSTALL_REPLACE_BACKUP_RECOVERY_UNINSTALL=PASS')
+              print('CODEX_REAL_PROJECT_REPLACE_RESTORE_BACKUP_RECOVERY_UNINSTALL=PASS')
               print('REAL_USER_PROFILE_MODIFIED=FALSE; THIRD_PARTY_EXECUTED=FALSE')
           finally:
               fixture.doCleanups()

@@ -224,6 +224,30 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 42: Restore a previously committed Codex Skill backup
+
+Previously, the recover action could undo an **interrupted** upgrade, but could not revert a **successfully committed** upgrade. The new restore workflow lets you choose a retained, hash-verified backup and restore its exact files. It preserves the currently active version as a **new backup**, and the selected historical backup is never consumed or overwritten.
+
+Use an explicit existing Git project root, never the user HOME:
+
+    # 1. List all retained backups without modifying anything
+    ./gasl codex-project-install --action list-backups --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL
+
+    # 2. Preview the chosen backup; copy its state_binding_id
+    ./gasl codex-project-install --action preview-restore --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL --backup-id EXACT_32_CHAR_BACKUP_ID
+
+    # 3. Restore only after entering the exact, backup-bound local TTY approval phrase
+    ./gasl codex-project-install --action restore-backup --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL --backup-id EXACT_32_CHAR_BACKUP_ID --state-binding-id EXACT_PREVIEW_BINDING
+
+    # If an interrupted restore has left a transaction journal:
+    ./gasl codex-project-install --action recover --selected-root /ABSOLUTE/GIT/PROJECT --skill-name SKILL
+
+The read-only preview binds the exact project target path, installed receipt, installed file hashes, selected backup, and all other backup manifests. After explicit confirmation, GASL copies the selected local backup to private staging, atomically moves the active version to a new versioned backup, checks both inventories and commits a new receipt. Interrupted restores return to the previous installed version; crashes after receipt commit safely finalize the new version. Modified files, symlinks, missing manifests, tampering, stale bindings and ambiguous recovery states fail closed without deleting unknown data.
+
+Restoring a backup whose previous version was **unmanaged** is supported: GASL identifies the restored version as unmanaged provenance and uses a clearly marked **synthetic local identity** instead of falsely claiming a pinned upstream package. After restoration, that version is managed by GASL for future updates and opt-in removal. The list-backups action exposes version IDs and provenance without leaking full local paths or user files.
+
+This operation is Codex **project-scope only**, supports local POSIX Hosts (macOS/Linux), and never executes any Skill, its instructions, dependencies or model turns. No actual personal Agent profile was used in tests. See [Phase 42](docs/reports/PHASE-42-CODEX-COMMITTED-BACKUP-RESTORE-2026-11-23.md).
+
 ### Phase 41: Explicit Codex project Skill replacement, retained backup and crash recovery
 
 GASL can now replace an **existing** project-scope Codex Skill after a separate read-only preview and an exact local TTY confirmation.
@@ -235,7 +259,7 @@ Commands:
 
 Before activation, the complete previous Skill directory (including unlisted user notes/files) is atomically moved into .gasl-managed/backups/SKILL_NAME/BACKUP_ID; a hash inventory and the previous GASL receipt, if any, are retained in a separate manifest. A durable transaction journal allows the recover action to restore the exact previous directory if the process is interrupted before the new receipt is committed. Once committed, the old backup remains and is checked before subsequent upgrades and uninstall. Uninstall removes only the current unchanged managed Skill and deliberately retains verified backups.
 
-The replace flow refuses changed managed files, symlinks, incomplete/modified backup history, stale preview bindings and ambiguous recovery states. It never overwrites a backup. A successful replace returns its backup ID and relative backup path. This is **project scope only**; no real user HOME, other projects, unattended operation, or Skill instruction/dependency execution is enabled. No explicit interactive restore-from-a-successful-backup command exists yet; the automatic recovery command handles interrupted transactions only. See [Phase 41](docs/reports/PHASE-41-CODEX-PROJECT-REPLACEMENT-BACKUP-RECOVERY-2026-11-23.md).
+The replace flow refuses changed managed files, symlinks, incomplete/modified backup history, stale preview bindings and ambiguous recovery states. It never overwrites a backup. A successful replace returns its backup ID and relative backup path. This is **project scope only**; no real user HOME, other projects, unattended operation, or Skill instruction/dependency execution is enabled. Phase 42 adds a distinct interactive restore-from-a-successfully-committed-backup command; recovery still handles interrupted transactions. See [Phase 41](docs/reports/PHASE-41-CODEX-PROJECT-REPLACEMENT-BACKUP-RECOVERY-2026-11-23.md).
 
 ### Phase 40: Explicit opt-in Codex project Skill installation (fresh only)
 
