@@ -45,11 +45,15 @@ class MigrationFixtureTests(unittest.TestCase):
         self.assertEqual(self.snapshot(project), before)
         self.assertFalse((root / m.ORIGINAL).exists())
         self.assertFalse((root / m.STAGED).exists())
-        self.assertEqual(audit.audit_legacy_migration(m.SLUG, project)['status'],
-                         'candidate_metadata_verified_read_only')
+        report = audit.audit_legacy_migration(m.SLUG, project)
+        if (project / legacy.STATE / 'uninstalled' / (m.SLUG + '.json')).exists():
+            self.assertEqual(report['status'], 'blocked')
+            self.assertTrue(report['project_bound_archive_evidence_checked'])
+        else:
+            self.assertEqual(report['status'], 'candidate_metadata_verified_read_only')
 
     def test_success_preserves_archive_and_active_bytes_then_exact_rollback(self):
-        for count in (0, 2, 3):
+        for count in (0, 2, 3, 4, 5):
             with self.subTest(count=count):
                 root = self.fixture(count)
                 project = root / m.PROJECT
@@ -62,7 +66,8 @@ class MigrationFixtureTests(unittest.TestCase):
                 self.assertEqual(self.snapshot(root / m.ORIGINAL), old_state)
                 self.assertEqual(self.snapshot(project / '.agents'), active)
                 self.assertFalse((project / legacy.STATE / 'receipts').exists())
-                self.assertTrue((project / legacy.STATE / 'hosts/codex/receipts' /
+                record_type = 'uninstalled' if count == 4 else 'receipts'
+                self.assertTrue((project / legacy.STATE / 'hosts/codex' / record_type /
                                  (m.SLUG + '.json')).is_file())
                 self.assertEqual(m.recover_migration(root)['status'],
                                  'disposable_migration_rolled_back')
@@ -70,7 +75,7 @@ class MigrationFixtureTests(unittest.TestCase):
                 self.assertEqual(m.recover_migration(root)['status'], 'already_restored')
 
     def test_abrupt_process_exit_at_every_apply_checkpoint(self):
-        for count in (0, 2, 3):
+        for count in (0, 2, 3, 4, 5):
             for checkpoint in m.CHECKPOINTS:
                 with self.subTest(count=count, checkpoint=checkpoint):
                     root = self.fixture(count)
@@ -158,6 +163,57 @@ class MigrationFixtureTests(unittest.TestCase):
             m.rehearse_migration(root)
         self.assertEqual(self.snapshot(root), before)
         m.recover_migration(root)
+
+    def test_archive_evidence_original_bytes_and_path_binding_preserved(self):
+        import json
+        for count in (4, 5):
+            with self.subTest(count=count):
+                root = self.fixture(count)
+                project = root / m.PROJECT
+                original = (project / legacy.STATE / 'uninstalled' /
+                            (m.SLUG + '.json')).read_bytes()
+                before = self.snapshot(project)
+                m.rehearse_migration(root)
+                state = project / legacy.STATE / 'hosts/codex'
+                evidence = state / 'historical-evidence' / m.SLUG
+                self.assertEqual(evidence.with_suffix('.legacy-marker').read_bytes(), original)
+                record = json.loads(evidence.with_suffix('.json').read_bytes())
+                self.assertEqual(record['legacy_marker'], json.loads(original))
+                self.assertEqual(record['legacy_marker_sha256'], m._hash(original))
+                self.assertEqual(record['target_sha256'], m._hash(os.fsencode(str(
+                    project.resolve() / '.agents' / 'skills' / m.SLUG))))
+                self.assertFalse(record['production_migration_enabled'])
+                self.assertEqual((state / 'receipts' / (m.SLUG + '.json')).exists(), count == 5)
+                self.assertEqual((state / 'uninstalled' / (m.SLUG + '.json')).exists(), count == 4)
+                m.recover_migration(root)
+                self.assert_restored(root, before)
+
+    def test_archive_evidence_tampering_refuses_rollback(self):
+        for suffix in ('.json', '.legacy-marker'):
+            with self.subTest(suffix=suffix):
+                root = self.fixture(5)
+                m.rehearse_migration(root)
+                evidence = root / m.PROJECT / legacy.STATE / 'hosts/codex/historical-evidence' / (m.SLUG + suffix)
+                evidence.write_bytes(b'UNRECOGNIZED HISTORICAL EVIDENCE')
+                before = self.snapshot(root)
+                with self.assertRaises(ValueError):
+                    m.recover_migration(root)
+                self.assertEqual(self.snapshot(root), before)
+
+    def test_missing_journal_does_not_enable_production_archive_adoption(self):
+        root = self.fixture(4)
+        m.rehearse_migration(root)
+        project = root / m.PROJECT
+        (project / m.JOURNAL).unlink()
+        before = self.snapshot(root)
+        with self.assertRaisesRegex(ValueError, 'Historical Codex migration evidence'):
+            legacy._paths(project, m.SLUG)
+        with patch.object(native, '_host', return_value='codex'):
+            with self.assertRaisesRegex(ValueError, 'Historical Codex migration evidence'):
+                native._paths(project, 'codex', m.SLUG)
+        with self.assertRaises(ValueError):
+            m.recover_migration(root)
+        self.assertEqual(self.snapshot(root), before)
 
     def test_other_marked_fixture_is_refused_without_lock_or_mutation(self):
         temp, root = _new_root()

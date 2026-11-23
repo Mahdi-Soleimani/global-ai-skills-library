@@ -66,6 +66,17 @@ def _reject_other_codex_state(root, slug, *, legacy):
     if pending_migration.exists() or is_redirected(pending_migration):
         raise ValueError('Codex migration journal exists; explicit recovery required')
     base = root / STATE
+    # The historical evidence model is still a rehearsal format. Neither
+    # production engine may adopt it, even if the journal is missing.
+    for folder in (base, base / 'hosts', base / 'hosts' / 'codex',
+                   base / 'hosts' / 'codex' / 'historical-evidence'):
+        if is_redirected(folder) or (folder.exists() and not folder.is_dir()):
+            raise ValueError('Unsafe historical Codex migration evidence path')
+    evidence = base / 'hosts' / 'codex' / 'historical-evidence'
+    if any((evidence / (slug + suffix)).exists() or
+           is_redirected(evidence / (slug + suffix))
+           for suffix in ('.json', '.legacy-marker')):
+        raise ValueError('Historical Codex migration evidence requires explicit review')
     other = base / 'hosts' / 'codex' if legacy else base
     parents = [base]
     if legacy:

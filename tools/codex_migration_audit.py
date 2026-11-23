@@ -124,6 +124,58 @@ def _candidate_receipt(value, slug, prefix, *, prior_manifests=None):
     return native._receipt_valid(candidate, 'codex', slug)
 
 
+ARCHIVE_EVIDENCE_SCHEMA = 'gasl-codex-legacy-archive-evidence-v1'
+
+
+def _archive_candidate(marker, marker_sha, active, mapped, *, target_sha):
+    """Map only verified locally recorded evidence, never authorize a write.
+
+    Keep the complete path-bound original marker in a separate evidence
+    record. This is a rehearsal model, not an accepted production schema.
+    """
+    slug = marker['slug']
+    ids = marker['backup_ids']
+    by_id = {item['backup_id']: item for item in mapped}
+    last = by_id[marker['uninstall_event_id']]['previous_receipt']
+    if marker['target_sha256'] != target_sha:
+        raise AuditBlocked('invalid_project_bound_uninstall_marker')
+    evidence = {
+        'schema': ARCHIVE_EVIDENCE_SCHEMA, 'host': 'codex', 'scope': 'project',
+        'slug': slug, 'target_sha256': target_sha,
+        'legacy_marker_sha256': marker_sha,
+        'legacy_marker': marker,
+        'historical_ownership_independently_verified': False,
+        'production_migration_enabled': False,
+    }
+    if active is None:
+        candidate = None
+        native_marker = {
+            'schema': native.SCHEMA, 'host': 'codex', 'scope': 'project',
+            'slug': slug, 'status': 'uninstalled_archive',
+            'archive_id': marker['uninstall_event_id'],
+            'last_receipt': last, 'backup_ids': ids,
+        }
+    else:
+        native_marker = None
+        if active['action'] == 'reinstall_backup':
+            if set(active) != _BASE_RECEIPT | {
+                    'backup_ids', 'restored_backup_id', 'uninstall_event_id', 'source_kind'}:
+                raise AuditBlocked('historical_fields_require_explicit_semantics')
+            if any(not isinstance(active[key], str) for key in ('plan_id', 'binding', 'transaction')):
+                raise AuditBlocked('invalid_record_identity_type')
+            candidate = native._receipt_valid({
+                'schema': native.SCHEMA, 'host': 'codex', 'scope': 'project',
+                'slug': slug, 'action': 'reinstall', 'transaction': active['transaction'],
+                'plan_id': active['plan_id'], 'binding': active['binding'],
+                'files': active['files'], 'backup_ids': active['backup_ids'],
+                'reinstalled_backup_id': active['restored_backup_id'],
+            }, 'codex', slug)
+        else:
+            candidate = _candidate_receipt(active, slug, active['backup_ids'], prior_manifests=by_id)
+    return {'receipt': candidate, 'marker': native_marker, 'manifests': mapped,
+            'historical_evidence': evidence}
+
+
 def _snapshot(root, slug):
     if _present(root / '.gasl-codex-migration-pending'):
         raise AuditBlocked('migration_recovery_required')
@@ -135,6 +187,10 @@ def _snapshot(root, slug):
         for name in ('receipts', 'journals', 'backups', 'stage', 'uninstalled'):
             _directory(store / name)
         _directory(store / 'backups' / slug)
+    evidence_dir = destination / 'historical-evidence'
+    _directory(evidence_dir)
+    if any(_present(evidence_dir / (slug + suffix)) for suffix in ('.json', '.legacy-marker')):
+        raise AuditBlocked('destination_ownership_or_pending_state')
     target, _ = _target_path(root, 'codex', 'project', slug)
     _directory(target)
     if (any(_present(destination / name / (slug + '.json'))
@@ -235,7 +291,10 @@ def _snapshot(root, slug):
                     raise AuditBlocked('reinstall_source_evidence_mismatch')
             else:
                 _candidate_receipt(active, slug, ids, prior_manifests=mapped_by_id)
+        archive_candidate = _archive_candidate(marker, marker_sha, active, mapped,
+                                                target_sha=hashlib.sha256(os.fsencode(str(target))).hexdigest())
         return {
+            'archive_rehearsal_metadata_sha256': _digest(archive_candidate),
             'source_snapshot_sha256': _digest({
                 'root_binding': hashlib.sha256(os.fsencode(str(root))).hexdigest(),
                 'slug': slug, 'receipt_sha256': active_sha,
@@ -276,6 +335,7 @@ def audit_legacy_migration(slug, selected_root):
         'source_snapshot_sha256': None, 'candidate_metadata_sha256': None,
         'backup_count': 0, 'active_file_count': 0, 'candidate_record_count': 0,
         'historical_lifecycle': None, 'project_bound_archive_evidence_checked': False,
+        'archive_rehearsal_metadata_sha256': None,
         'read_only': True, 'migration_performed': False,
         'migration_write_allowed': False, 'local_tty_approval_collected': False,
         'upstream_provenance_revalidated': False,

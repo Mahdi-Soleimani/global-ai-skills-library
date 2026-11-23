@@ -40,9 +40,13 @@ def _bytes(version):
             + str(version) + '\nNo code or commands.\n').encode()
 
 
-def _expected(count):
-    if type(count) is not int or count not in (0, 2, 3):
+def _expected(count, project=None):
+    if type(count) is not int or count not in (0, 2, 3, 4, 5):
         raise ValueError('Unsupported self-authored fixture history')
+    if count in (4, 5):
+        if project is None:
+            raise ValueError('Path-bound archive fixture requires exact project')
+        return _expected_archive(count, project)
     source, destination = {}, {}
     prefix, previous = [], None
     for version in range(1, count + 2):
@@ -90,6 +94,62 @@ def _expected(count):
     source['receipts/' + SLUG + '.json'] = legacy._serialized(previous)
     destination['hosts/codex/receipts/' + SLUG + '.json'] = legacy._serialized(candidate)
     return source, destination, {'SKILL.md': active_bytes}, candidate, manifests
+
+
+def _expected_archive(count, project):
+    source, destination, active, last, manifests = _expected(2)
+    receipt_rel = 'receipts/' + SLUG + '.json'
+    marker_rel = 'uninstalled/' + SLUG + '.json'
+    old = json.loads(source.pop(receipt_rel))
+    destination.pop('hosts/codex/' + receipt_rel)
+    ident = format(4, '032x')
+    rel = 'backups/' + SLUG + '/' + ident
+    source[rel + '/SKILL.md'] = active['SKILL.md']
+    destination['hosts/codex/' + rel + '/SKILL.md'] = active['SKILL.md']
+    source[rel + '.json'] = legacy._serialized({
+        'schema': legacy.SCHEMA, 'kind': 'pre_replace_backup',
+        'slug': SLUG, 'backup_id': ident, 'transaction': ident,
+        'previous_receipt': old, 'files': old['files'],
+    })
+    manifest = {'schema': native.SCHEMA, 'host': 'codex', 'scope': 'project',
+                'slug': SLUG, 'backup_id': ident, 'files': last['files'],
+                'previous_receipt': last}
+    native._manifest_valid(manifest, 'codex', SLUG, ident)
+    manifests.append(manifest)
+    destination['hosts/codex/' + rel + '.json'] = legacy._serialized(manifest)
+    from codex_uninstalled_restore import MARKER_SCHEMA
+    target_sha = _hash(os.fsencode(str(project.resolve() / '.agents' / 'skills' / SLUG)))
+    marker = {
+        'schema': MARKER_SCHEMA, 'kind': 'uninstalled_codex_project_skill',
+        'slug': SLUG, 'target_sha256': target_sha,
+        'uninstall_event_id': ident, 'archived_current_backup_id': ident,
+        'last_receipt': old, 'backup_ids': old['backup_ids'] + [ident],
+    }
+    marker_bytes = legacy._serialized(marker)
+    source[marker_rel] = marker_bytes
+    restored = None
+    active = {}
+    if count == 5:
+        selected = manifests[0]
+        restored = dict(old, action='reinstall_backup', transaction=format(5, '032x'),
+                        plan_id=selected['previous_receipt']['plan_id'],
+                        files=selected['files'], backup_ids=marker['backup_ids'],
+                        source_kind='pinned', restored_backup_id=selected['backup_id'],
+                        uninstall_event_id=ident)
+        source[receipt_rel] = legacy._serialized(restored)
+        active = {'SKILL.md': _bytes(1)}
+    model = audit._archive_candidate(marker, _hash(marker_bytes), restored, manifests,
+                                     target_sha=target_sha)
+    if model['receipt'] is not None:
+        destination['hosts/codex/' + receipt_rel] = legacy._serialized(model['receipt'])
+    else:
+        destination['hosts/codex/' + marker_rel] = legacy._serialized(model['marker'])
+    destination['hosts/codex/historical-evidence/' + SLUG + '.json'] = legacy._serialized(
+        model['historical_evidence'])
+    # The fixture stores exact original marker bytes separately from the
+    # native lifecycle records; the full old namespace also remains archived.
+    destination['hosts/codex/historical-evidence/' + SLUG + '.legacy-marker'] = marker_bytes
+    return source, destination, active, model['receipt'], manifests
 
 
 def _safe_dir(path):
@@ -176,15 +236,16 @@ def _remove_known_tree(path, expected):
 
 
 def new_fixture(count=2):
-    source, _, active, _, _ = _expected(count)
     temporary, root = _new_root()
     try:
         project = root / PROJECT
+        source, _, active, _, _ = _expected(count, project)
         project.mkdir()
         (project / '.git').mkdir()
         target = project / '.agents' / 'skills' / SLUG
         target.parent.mkdir(parents=True)
-        _create_tree(target, active)
+        if active:
+            _create_tree(target, active)
         _create_tree(project / legacy.STATE, source)
         _write_new(root / MARKER, str(count).encode())
         return temporary, root
@@ -200,7 +261,7 @@ def _context(root):
     if {p.name for p in root.iterdir()} - {HOST_MARKER, MARKER, LOCK, PROJECT, ORIGINAL, STAGED}:
         raise ValueError('Unexpected migration fixture root entry')
     marker = _path_within_fixture(root, MARKER)
-    for count in (0, 2, 3):
+    for count in (0, 2, 3, 4, 5):
         try:
             _read_exact(marker, str(count).encode())
             break
@@ -211,15 +272,18 @@ def _context(root):
     project = _path_within_fixture(root, PROJECT)
     _safe_dir(project)
     target = _path_within_fixture(root, PROJECT + '/.agents/skills/' + SLUG)
-    source, candidate, active, receipt, manifests = _expected(count)
-    _tree(target, active)
+    source, candidate, active, receipt, manifests = _expected(count, project)
+    if active:
+        _tree(target, active)
+    elif _present(target):
+        raise ValueError('Archived migration target must remain absent')
     _safe_dir(project / '.git')
     if any((project / '.git').iterdir()):
         raise ValueError('Fixture Git marker must remain empty')
     if {p.name for p in project.iterdir()} - {'.git', '.agents', legacy.STATE, JOURNAL}:
         raise ValueError('Unexpected project entry in migration fixture')
     if ({p.name for p in (project / '.agents').iterdir()} != {'skills'}
-            or {p.name for p in target.parent.iterdir()} != {SLUG}):
+            or {p.name for p in target.parent.iterdir()} != ({SLUG} if active else set())):
         raise ValueError('Unexpected Skill in migration fixture')
     journal = _path_within_fixture(root, PROJECT + '/' + JOURNAL)
     live = _path_within_fixture(root, PROJECT + '/' + legacy.STATE)
@@ -236,8 +300,39 @@ def _context(root):
 
 def _native_verified(live, candidate, receipt):
     _tree(live, candidate)
-    native._receipt_valid(receipt, 'codex', SLUG)
-    native._history(live / 'hosts' / 'codex', 'codex', SLUG, receipt['backup_ids'])
+    state = live / 'hosts' / 'codex'
+    if receipt is not None:
+        native._receipt_valid(receipt, 'codex', SLUG)
+        native._history(state, 'codex', SLUG, receipt['backup_ids'])
+    else:
+        marker = json.loads(candidate['hosts/codex/uninstalled/' + SLUG + '.json'])
+        native._marker_valid(marker, state, 'codex', SLUG)
+    evidence_key = 'hosts/codex/historical-evidence/' + SLUG
+    if evidence_key + '.json' in candidate:
+        evidence = json.loads(candidate[evidence_key + '.json'])
+        raw = candidate[evidence_key + '.legacy-marker']
+        if (evidence['legacy_marker_sha256'] != _hash(raw)
+                or evidence['legacy_marker'] != json.loads(raw)
+                or evidence['target_sha256'] != evidence['legacy_marker']['target_sha256']
+                or evidence['production_migration_enabled'] is not False):
+            raise ValueError('Historical archive evidence differs from original')
+
+
+def _check_candidate_audit(report, candidate, receipt, manifests):
+    key = 'hosts/codex/historical-evidence/' + SLUG + '.json'
+    if key in candidate:
+        evidence = json.loads(candidate[key])
+        marker_key = 'hosts/codex/uninstalled/' + SLUG + '.json'
+        marker = json.loads(candidate[marker_key]) if marker_key in candidate else None
+        model = {'receipt': receipt, 'marker': marker, 'manifests': manifests,
+                 'historical_evidence': evidence}
+        return (report['status'] == 'blocked'
+                and report['project_bound_archive_evidence_checked'] is True
+                and report['archive_rehearsal_metadata_sha256'] == audit._digest(model)
+                and report['migration_write_allowed'] is False)
+    return (report['status'] == 'candidate_metadata_verified_read_only'
+            and report['candidate_metadata_sha256'] == audit._digest(
+                {'receipt': receipt, 'manifests': manifests}))
 
 
 def rehearse_migration(root, *, checkpoint=lambda name: None):
@@ -250,9 +345,7 @@ def rehearse_migration(root, *, checkpoint=lambda name: None):
             raise ValueError('Existing migration journal or state requires recovery')
         _tree(live, source)
         report = audit.audit_legacy_migration(SLUG, project)
-        if (report['status'] != 'candidate_metadata_verified_read_only'
-                or report['candidate_metadata_sha256'] != audit._digest(
-                    {'receipt': receipt, 'manifests': manifests})):
+        if not _check_candidate_audit(report, candidate, receipt, manifests):
             raise ValueError('Migration audit disagrees with fixture candidate')
         _write_new(journal, payload)
         checkpoint('journal_written')

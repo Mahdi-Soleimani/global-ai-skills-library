@@ -183,6 +183,7 @@ class MigrationAuditTests(unittest.TestCase):
         result = self.check('uninstall_marker_requires_explicit_semantics')
         self.assertTrue(result['project_bound_archive_evidence_checked'])
         self.assertEqual(result['historical_lifecycle'], 'uninstalled_owned')
+        self.assertRegex(result['archive_rehearsal_metadata_sha256'], '^[a-f0-9]{64}$')
         self.assertEqual(result['backup_count'], 2)
         self.assertIsNotNone(result['source_snapshot_sha256'])
         marker['target_sha256'] = '0' * 64
@@ -213,6 +214,7 @@ class MigrationAuditTests(unittest.TestCase):
         result = self.check('uninstall_marker_requires_explicit_semantics')
         self.assertTrue(result['project_bound_archive_evidence_checked'])
         self.assertEqual(result['historical_lifecycle'], 'active_with_retained_uninstall_marker')
+        self.assertRegex(result['archive_rehearsal_metadata_sha256'], '^[a-f0-9]{64}$')
         active['plan_id'] = 'b' * 64
         self.write(self.receipt, active)
         self.check('reinstall_source_evidence_mismatch')
