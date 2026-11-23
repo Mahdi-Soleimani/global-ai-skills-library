@@ -226,7 +226,7 @@ Only App Server `initialize` and `skills/list` are used; there is **no login, pr
 
 ### Phase 54: Windows current-user Profile SID and ACL security (native CI pending)
 
-The current-user Profile transaction engine is being extended to Windows without changing the existing POSIX UID/passwd checks. A new standard-library Win32 adapter reads the current process token SID and GetUserProfileDirectoryW, matches it against USERPROFILE and Path.home(), rejects elevated, restricted, AppContainer, service and impersonated-thread contexts, and verifies actual NTFS owner/DACL ACEs. It rejects reparse points in all path components, untrusted write ACEs, hard-link aliases, unknown ACL entry types and unstable profile identity.
+The current-user Profile transaction engine is being extended to Windows without changing the existing POSIX UID/passwd checks. A new standard-library Win32 adapter reads the current process token SID and GetUserProfileDirectoryW, matches it against USERPROFILE and Path.home(), rejects elevated, restricted, AppContainer, service and impersonated-thread contexts, and verifies actual NTFS owner/DACL ACEs. Ownership may be the current SID or a trusted OS principal only when the current SID has explicit modify/delete access. It rejects non-fixed/network/removable drives, reparse points in all path components, untrusted write ACEs, hard-link aliases, unknown ACL entry types and unstable profile identity.
 
 Windows User Profile uses the same staged transaction, backup, restore, archived uninstall/reinstall and crash-recovery logic with the cross-platform msvcrt file lock. ACLs are checked recursively for the state records, active Skills, staging and retained backups. Windows directory fsync/power-loss durability is not claimed.
 

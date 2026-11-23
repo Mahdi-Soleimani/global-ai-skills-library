@@ -305,10 +305,8 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
             raise ValueError("Windows profile path has no readable owner SID")
         owner_sid = _sid_string(advapi, kernel, owner)
         owner_matches = owner_sid == sid
-        if require_owner and not owner_matches:
-            raise ValueError("Windows profile path is not owned by the current account SID")
-        if not require_owner and owner_sid not in (_TRUSTED_NON_USER_WRITERS | {sid}):
-            raise ValueError("Windows profile ancestor is owned by an untrusted SID")
+        if owner_sid not in (_TRUSTED_OS_OWNERS | {sid}):
+            raise ValueError("Windows profile path is not owned by the current account or a trusted OS principal")
 
         present = wintypes.BOOL()
         defaulted = wintypes.BOOL()
@@ -336,6 +334,7 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
             ctypes.c_void_p, wintypes.DWORD, ctypes.POINTER(ctypes.c_void_p))
         advapi.GetAce.restype = wintypes.BOOL
         allowed_writers = _TRUSTED_NON_USER_WRITERS | {sid}
+        current_sid_write_mask = 0
         for index in range(info.AceCount):
             ace_pointer = ctypes.c_void_p()
             if not advapi.GetAce(dacl_pointer, index, ctypes.byref(ace_pointer)):
@@ -362,11 +361,29 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
                 raise ValueError("Malformed Windows profile access-control entry")
             ace_sid = _sid_string(
                 advapi, kernel, ctypes.c_void_p(base + sid_offset))
+            if ace_sid == sid:
+                current_sid_write_mask |= mask
+                if mask & 0x10000000:  # GENERIC_ALL
+                    current_sid_write_mask |= 0x001F01FF
+                if mask & 0x40000000:  # GENERIC_WRITE
+                    current_sid_write_mask |= 0x00120116
             if mask & _WRITE_MASK and ace_sid not in allowed_writers:
                 raise ValueError(
                     "Windows profile ACL grants write access to an untrusted SID")
+        # A trusted OS owner (e.g. BUILTIN\\Administrators on hosted runners)
+        # is acceptable only when this exact user SID has explicit modify and
+        # delete rights. Ancestors are checked for untrusted writers, but need
+        # not grant the current user write access.
+        if require_owner and not owner_matches:
+            has_modify = (current_sid_write_mask & 0x00120116) == 0x00120116
+            has_delete = bool(current_sid_write_mask & (0x00010000 | 0x00000040))
+            if not (has_modify and has_delete):
+                raise ValueError(
+                    "Trusted Windows profile owner lacks explicit current-user modify/delete ACL")
         return {
             "owner_sid_matches": owner_matches,
+            "owner_sid_accepted": True,
+            "current_sid_explicit_write": bool(current_sid_write_mask & _WRITE_MASK),
             "dacl_present": True,
             "untrusted_write_aces": 0,
             "directory": is_dir,

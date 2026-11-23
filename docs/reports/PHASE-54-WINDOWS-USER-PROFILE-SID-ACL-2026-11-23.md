@@ -19,7 +19,7 @@ New tools/windows_user_profile.py uses only Python standard library ctypes and n
 - That path must match USERPROFILE, Path.home() and the explicitly selected absolute directory after canonicalization.
 - Reject elevated, restricted, AppContainer, LocalSystem/LocalService/NetworkService and impersonated-thread execution contexts.
 - Reject reparse points (including NTFS Junctions) in every existing path component, including the selected path, volume root and profile ancestors. Only local fixed drives are accepted; network and removable profiles are refused.
-- Native GetNamedSecurityInfoW, GetSecurityDescriptorDacl, GetAclInformation and GetAce inspect owner SID and actual DACL ACEs. Profile root and every mutable directory/file must be owned by the current SID. Ancestors need not be user-owned, but may not grant write/delete capabilities to untrusted SIDs.
+- Native GetNamedSecurityInfoW, GetSecurityDescriptorDacl, GetAclInformation and GetAce inspect owner SID and actual DACL ACEs. Profile root and every mutable directory/file must be owned by the current SID, or by a trusted OS principal (SYSTEM, BUILTIN Administrators or TrustedInstaller) with an explicit current-SID modify/delete ACE. Ancestors need not grant the current SID write access, but their owner must be the current SID or a trusted OS principal and they may not grant write/delete capabilities to untrusted SIDs.
 - A NULL/absent DACL, unknown DACL ACE type, broad/untrusted write grant (including SACL-write capability), hard-link alias, owner mismatch or unreadable ACL is a hard failure. SYSTEM, BUILTIN Administrators, TrustedInstaller and CREATOR OWNER are the only non-current-account write principals accepted.
 - Profile identity is an opaque SHA-256 binding to SID, volume serial, file index, normalized profile path and scope. Raw SID and profile path are never stored in receipts.
 - TokenHasRestrictions, TokenIsAppContainer, elevation and thread impersonation are checked before a profile write can be considered.
@@ -44,7 +44,7 @@ The CLI parser and wizard remain shared. A Windows-specific gate currently requi
 
 tests/test_windows_user_profile.py covers:
 
-- Actual current token SID, GetUserProfileDirectoryW, USERPROFILE, Path.home() and profile root owner/DACL (read-only).
+- Actual current token SID, GetUserProfileDirectoryW, USERPROFILE, Path.home(), local fixed-drive check and profile root owner/DACL (read-only).
 - Opaque stable account/profile identity.
 - Owned disposable profile and nested file/directory ACL validation.
 - Wrong owner SID refusal.
@@ -72,4 +72,4 @@ Even after acceptance:
 - This validates filesystem ownership/transaction safety, **not** live discovery by Codex, Cursor or Claude Code.
 - No real Agent was launched and no third-party Skill was executed.
 - Cursor may synchronize User Skills to Cloud Agents when Sync Skills is enabled.
-- User-wide installs can affect all local projects and require the same exact local interactive TTY consent as POSIX.\n
+- User-wide installs can affect all local projects and require the same exact local interactive TTY consent as POSIX.\n\n
