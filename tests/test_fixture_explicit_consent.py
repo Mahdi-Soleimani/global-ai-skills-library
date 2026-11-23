@@ -56,7 +56,7 @@ class TestFixtureConsentReceipts(unittest.TestCase):
                       checkpoint=checkpoint,consent_request_id=request['request_id'])
 
     def test_real_cli_without_tty_never_auto_confirms(self):
-        args=[str(ROOT/'gasl'),'consent-fixture-interactive',
+        args=([sys.executable,str(ROOT/'tools'/'gasl.py')] if os.name == 'nt' else [str(ROOT/'gasl')])+['consent-fixture-interactive',
             '--plan-id',self.pid,'--agent','codex','--scope','project',
             '--action','install','--acknowledge-fixture-only','GASL_DISPOSABLE_FIXTURE_ONLY']
         result=subprocess.run(args,input='',text=True,capture_output=True,timeout=20)
@@ -65,7 +65,7 @@ class TestFixtureConsentReceipts(unittest.TestCase):
         self.assertFalse((self.fixture/'workspace/.agents').exists())
 
     def test_invalid_cli_fixture_acknowledgement_blocks_all_confirmation(self):
-        args=[str(ROOT/'gasl'),'consent-fixture-interactive',
+        args=([sys.executable,str(ROOT/'tools'/'gasl.py')] if os.name == 'nt' else [str(ROOT/'gasl')])+['consent-fixture-interactive',
             '--plan-id',self.pid,'--agent','codex','--scope','project',
             '--action','install','--acknowledge-fixture-only','WRONG']
         result=subprocess.run(args,input='',text=True,capture_output=True,timeout=20)
@@ -231,8 +231,27 @@ class TestFixtureConsentReceipts(unittest.TestCase):
     def test_signing_key_permissions_are_0600_and_never_in_public_status(self):
         request=self.request()
         key=self.fixture/c.KEY_PATH
-        self.assertEqual(key.stat().st_mode & 0o077, 0)
+        if os.name == 'nt':
+            c._verify_private_fixture_path(key)
+        else:
+            self.assertEqual(key.stat().st_mode & 0o077, 0)
         self.assertNotIn(key.read_bytes().hex(),json.dumps(c.inspect_fixture_receipt(self.fixture)))
+
+    @unittest.skipUnless(os.name == 'nt', 'Native Windows ACL test')
+    def test_signing_key_read_grant_to_untrusted_sid_fails_closed(self):
+        request = self.request()
+        key = self.fixture/c.KEY_PATH
+        result = subprocess.run(['icacls',str(key),'/grant','*S-1-1-0:R'],
+                                capture_output=True,text=True,timeout=10)
+        self.assertEqual(result.returncode,0,result.stderr)
+        try:
+            with self.assertRaisesRegex(ValueError,'private fixture ACL grants read'):
+                self.confirm(request)
+            self.assertFalse((self.fixture/'stage').exists())
+        finally:
+            result = subprocess.run(['icacls',str(key),'/remove:g','*S-1-1-0'],
+                                    capture_output=True,text=True,timeout=10)
+            self.assertEqual(result.returncode,0,result.stderr)
 
     def test_symlinked_receipt_and_key_refused_without_touching_target(self):
         request=self.request()

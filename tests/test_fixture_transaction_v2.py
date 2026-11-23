@@ -111,6 +111,8 @@ class FixtureLockedInstallTests(unittest.TestCase):
         output = self.enact(receipt['approval_challenge'],action='replace',checkpoint='activated')
         self.assertEqual(output['status'], 'fixture_bundle_activated')
         self.assertFalse(output['real_user_authorization_collected'])
+        self.assertEqual(output['directory_fsync_supported'], os.name == 'posix')
+        self.assertFalse(output['power_loss_durability_verified'])
         self.assertEqual((self.target()/'SKILL.md').read_bytes(),
                          self.bundle_case.content['skills/demo/SKILL.md'])
         code = ('import json,sys;sys.path.insert(0,sys.argv[1]);'
@@ -192,7 +194,7 @@ class FixtureLockedInstallTests(unittest.TestCase):
 
     def test_unsupported_locking_platform_fails_closed_before_creating_lock_file(self):
         consent=self.preview()['approval_challenge']
-        with patch.object(v2,'fcntl',None),self.assertRaisesRegex(RuntimeError,'unavailable'):
+        with patch.object(v2,'supported_platform',return_value=False),self.assertRaisesRegex(RuntimeError,'unavailable'):
             self.enact(consent)
         self.assertFalse((self.fixture/v2.LOCK).exists())
 
@@ -217,6 +219,26 @@ class FixtureLockedInstallTests(unittest.TestCase):
             with v2._exclusive_fixture_lock(self.fixture):
                 pass
         self.assertEqual(companion.read_text(),'fixture-only lock inode')
+
+    @unittest.skipUnless(os.name == 'nt', 'NTFS junction test')
+    def test_junction_target_refused_before_any_transaction_write(self):
+        outside = self.fixture/'outside'
+        outside.mkdir()
+        sentinel = outside/'sentinel.txt'
+        sentinel.write_bytes(b'PRESERVE')
+        junction = self.fixture/'workspace'/'.agents'
+        child = subprocess.run(['cmd','/c','mklink','/J',str(junction),str(outside)],
+                               capture_output=True, text=True, timeout=10)
+        if child.returncode != 0:
+            self.skipTest('Runner cannot create disposable NTFS junction')
+        try:
+            with self.assertRaisesRegex(ValueError,'Symlink|junction|reparse'):
+                self.preview()
+            self.assertFalse((self.fixture/v2.JOURNAL).exists())
+            self.assertFalse((self.fixture/'stage').exists())
+            self.assertEqual(sentinel.read_bytes(),b'PRESERVE')
+        finally:
+            junction.rmdir()
 
     def test_fsync_failure_after_stage_refuses_activation_and_can_recover(self):
         previous=self.old_version()

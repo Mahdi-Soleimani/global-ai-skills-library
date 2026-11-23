@@ -38,12 +38,21 @@ def _canonical(obj):
                       separators=(',', ':')).encode('utf-8')
 
 
+def _verify_private_fixture_path(path, *, directory=False):
+    if os.name == 'nt':
+        from windows_user_profile import _token_identity, verify_owned_path
+        verify_owned_path(path, _token_identity()['sid'], directory=directory,
+                          require_private=True)
+
+
 def _secret(fixture, *, create=False):
+    _verify_private_fixture_path(fixture, directory=True)
     path = _path_within_fixture(fixture, KEY_PATH)
     if create:
         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL |
-                     getattr(os, 'O_NOFOLLOW', 0), 0o600)
+                     getattr(os, 'O_NOFOLLOW', 0) | getattr(os, 'O_BINARY', 0), 0o600)
         try:
+            _verify_private_fixture_path(path)
             os.write(fd, secrets.token_bytes(32))
             os.fsync(fd)
         finally:
@@ -54,6 +63,7 @@ def _secret(fixture, *, create=False):
         raise ValueError('Unsafe or invalid fixture consent signing key')
     if os.name == 'posix' and (path.stat().st_mode & 0o077):
         raise ValueError('Fixture consent key permissions are too permissive')
+    _verify_private_fixture_path(path)
     return path.read_bytes()
 
 
@@ -69,27 +79,28 @@ def _write_receipt(fixture, record, key, *, new=False):
         raise ValueError('Fixture consent receipt already exists')
     value = {**record, 'mac': _signature(record, key)}
     data = _canonical(value) + b'\n'
-    with tempfile.NamedTemporaryFile(prefix='.gasl-consent-write-', suffix='.tmp',
-                                     dir=fixture, delete=False) as file:
-        staged = Path(file.name)
-        try:
-            os.fchmod(file.fileno(), 0o600)
+    staged = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix='.gasl-consent-write-', suffix='.tmp',
+                                         dir=fixture, delete=False) as file:
+            staged = Path(file.name)
+            if os.name == 'posix':
+                os.fchmod(file.fileno(), 0o600)
+            _verify_private_fixture_path(staged)
             file.write(data)
             file.flush()
             os.fsync(file.fileno())
-        except BaseException:
-            staged.unlink(missing_ok=True)
-            raise
-    try:
         if new:
             os.link(staged, path)
         else:
             if not path.is_file() or path.stat().st_nlink != 1:
                 raise ValueError('Consent record replaced or hardlinked')
+            _verify_private_fixture_path(path)
             staged.replace(path)
         _sync_directory(fixture)
     finally:
-        staged.unlink(missing_ok=True)
+        if staged is not None:
+            staged.unlink(missing_ok=True)
 
 
 def _read_receipt(fixture):
@@ -97,6 +108,8 @@ def _read_receipt(fixture):
     if (not path.is_file() or path.is_symlink() or path.stat().st_size > 4000
             or path.stat().st_nlink != 1):
         raise ValueError('Fixture consent receipt missing or invalid')
+    _verify_private_fixture_path(fixture, directory=True)
+    _verify_private_fixture_path(path)
     value = json.loads(path.read_text(encoding='utf-8'))
     if (not isinstance(value, dict) or set(value) != RECORD_FIELDS
             or value.get('schema') != SCHEMA or not ID_RE.fullmatch(str(value.get('id')))

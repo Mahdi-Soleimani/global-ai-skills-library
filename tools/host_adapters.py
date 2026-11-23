@@ -7,10 +7,12 @@ Claude Code's local .claude/skills directory.
 """
 import hashlib
 import json
+import os
 import re
 import shutil
 import tempfile
 from pathlib import Path
+from transaction_file_lock import is_redirected, require_windows_filename_safety
 
 HOST_LAYOUTS = {
     'codex': {
@@ -102,11 +104,14 @@ def _checked_fixture(root):
     """Fixture file operations are allowed ONLY under a newly created temp root."""
     root = Path(root).absolute()
     temp = Path(tempfile.gettempdir()).resolve()
-    if (root.is_symlink() or not root.name.startswith(FIXTURE_PREFIX)
+    if (is_redirected(root) or not root.name.startswith(FIXTURE_PREFIX)
             or root.parent.resolve() != temp or not root.is_dir()):
         raise ValueError('Only a dedicated temporary GASL host fixture root is allowed')
+    if os.name == 'nt':
+        from windows_user_profile import assert_no_reparse_components
+        assert_no_reparse_components(root)
     marker = root / MARKER
-    if (marker.is_symlink() or not marker.is_file()
+    if (is_redirected(marker) or not marker.is_file()
             or marker.read_bytes() != b'INERT_HOST_FIXTURE_ONLY\n'):
         raise ValueError('Host fixture marker missing, altered or symlinked')
     return root
@@ -116,12 +121,16 @@ def _path_within_fixture(root, relative):
     if (not isinstance(relative, str) or not relative or '\\' in relative
             or Path(relative).is_absolute() or any(x in ('..', '.') for x in relative.split('/'))):
         raise ValueError('Invalid or escaping fixture-relative path')
+    require_windows_filename_safety(relative)
     target = root / relative
     current = root
     for part in target.relative_to(root).parts:
         current = current / part
-        if current.is_symlink():
-            raise ValueError('Symlink in fixture target path')
+        if is_redirected(current):
+            raise ValueError('Symlink or junction in fixture target path')
+    if os.name == 'nt':
+        from windows_user_profile import assert_no_reparse_components
+        assert_no_reparse_components(target)
     return target
 
 

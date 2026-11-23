@@ -38,6 +38,80 @@ def _setup_fixture(root):
     return project, expected
 
 
+def _windows_runtime_environment(root, base, config, cache):
+    """Explicit Windows profile/temp variables, never inherit user credentials."""
+    if os.name != 'nt':
+        return {}
+    home = root / 'home'
+    drive, tail = os.path.splitdrive(str(home))
+    env = {
+        'USERPROFILE': str(home), 'HOMEDRIVE': drive, 'HOMEPATH': tail,
+        'APPDATA': str(root / config), 'LOCALAPPDATA': str(root / cache),
+        'TEMP': str(root / 'tmp'), 'TMP': str(root / 'tmp'),
+    }
+    # Windows needs SystemRoot for side-by-side assemblies and system DLLs.
+    # Do not copy arbitrary inherited environment variables.
+    for key in ('SystemRoot', 'WINDIR'):
+        if base.get(key):
+            env[key] = base[key]
+    return env
+
+
+class _WindowsPipeSelector:
+    """Single-reader anonymous-pipe readiness using native PeekNamedPipe.
+
+    Windows select() only accepts sockets. Peek without consuming, then the
+    existing reader may read available bytes or observe EOF. No reader thread,
+    busy spin, or unbounded read is required.
+    """
+    def __init__(self):
+        import ctypes
+        import msvcrt
+        from ctypes import wintypes
+        self.ctypes = ctypes
+        self.wintypes = wintypes
+        self.msvcrt = msvcrt
+        self.peek = ctypes.WinDLL('kernel32', use_last_error=True).PeekNamedPipe
+        self.peek.argtypes = [wintypes.HANDLE, wintypes.LPVOID, wintypes.DWORD,
+                              wintypes.LPDWORD, wintypes.LPDWORD, wintypes.LPDWORD]
+        self.peek.restype = wintypes.BOOL
+        self.handle = None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_):
+        self.handle = None
+
+    def register(self, stream, events):
+        if self.handle is not None or events != selectors.EVENT_READ:
+            raise ValueError('Only one protocol output reader is supported')
+        self.handle = self.msvcrt.get_osfhandle(stream.fileno())
+
+    def select(self, timeout):
+        if self.handle is None:
+            raise ValueError('Protocol pipe is not registered')
+        deadline = time.monotonic() + max(0.0, timeout)
+        while True:
+            available = self.wintypes.DWORD()
+            if not self.peek(self.handle, None, 0, None,
+                             self.ctypes.byref(available), None):
+                code = self.ctypes.get_last_error()
+                if code in (109, 232, 233):  # broken/closing/disconnected pipe
+                    return [True]
+                raise self.ctypes.WinError(code)
+            if available.value:
+                return [True]
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return []
+            time.sleep(min(0.01, remaining))
+
+
+def _protocol_selector():
+    return _WindowsPipeSelector() if os.name == 'nt' else selectors.DefaultSelector()
+
+
 def _minimal_environment(root, base_env=None):
     """No user credentials/tokens, no real home, no real Codex configuration."""
     if base_env is None:
@@ -51,6 +125,7 @@ def _minimal_environment(root, base_env=None):
         'TMPDIR': str(root / 'tmp'),
         'CI': '1',
         'NO_COLOR': '1',
+        **_windows_runtime_environment(root, base_env, 'xdg-config', 'cache'),
     }
 
 
@@ -59,6 +134,8 @@ def _read_protocol_message(proc, selector, buffered, deadline):
     while time.monotonic() < deadline:
         if b'\n' in buffered[0]:
             raw, buffered[0] = buffered[0].split(b'\n', 1)
+            if len(raw) > MAX_PROTOCOL_BYTES:
+                raise ValueError('Codex app-server protocol message exceeded bounded size')
             try:
                 value = json.loads(raw)
             except (ValueError, UnicodeError):
@@ -125,6 +202,9 @@ def verify_codex_discovery(binary, *, timeout=25, popen=subprocess.Popen):
     if not path.is_absolute() or path.is_symlink() or not path.is_file():
         result['reason_code'] = 'absolute_local_codex_executable_required'
         return result
+    if os.name == 'nt' and popen is subprocess.Popen:
+        result['reason_code'] = 'windows_live_host_probe_not_yet_verified'
+        return result
     with tempfile.TemporaryDirectory(prefix='gasl-codex-discovery-') as temporary:
         root = Path(temporary)
         project, skill_file = _setup_fixture(root)
@@ -134,7 +214,7 @@ def verify_codex_discovery(binary, *, timeout=25, popen=subprocess.Popen):
             proc = popen([str(path), 'app-server'], stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                          text=False, cwd=str(project), env=env, bufsize=0)
-            with selectors.DefaultSelector() as selector:
+            with _protocol_selector() as selector:
                 selector.register(proc.stdout, selectors.EVENT_READ)
                 buffer = [b'']
                 deadline = time.monotonic() + min(max(float(timeout), 1), 45)

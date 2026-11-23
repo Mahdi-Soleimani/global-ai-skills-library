@@ -9,7 +9,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
-from other_host_protocol_probe import verify_host_readiness, _runtime
+from other_host_protocol_probe import verify_host_readiness as _verify_host_readiness, _runtime
+from tests.test_codex_discovery_probe import _fixture_popen
+
+
+def verify_host_readiness(host, binary, **kwargs):
+    return _verify_host_readiness(host, binary, popen=_fixture_popen, **kwargs)
 
 
 class OtherHostProtocolProbeTests(unittest.TestCase):
@@ -67,6 +72,12 @@ print('2.1.330 (Claude Code)',flush=True)
         result = verify_host_readiness('claude-code', self._write("print('not a version')"))
         self.assertEqual(result['reason_code'], 'claude_cli_version_unavailable')
 
+    def test_claude_version_with_oversized_output_fails_closed(self):
+        result = verify_host_readiness(
+            'claude-code', self._write("print('2.1.330 ' + 'x' * 10000,flush=True)"))
+        self.assertFalse(result['real_host_protocol_verified'])
+        self.assertEqual(result['reason_code'], 'host_protocol_unavailable_or_timed_out')
+
     def test_invalid_binary_path_never_launches_process(self):
         for host in ('cursor', 'claude-code'):
             for path in ('./host-fake', '/never/a/real/path'):
@@ -78,7 +89,12 @@ print('2.1.330 (Claude Code)',flush=True)
     def test_symlink_binary_rejected(self):
         binary = self._write("print('2.1.330')")
         link = binary.parent / 'other'
-        link.symlink_to(binary)
+        try:
+            link.symlink_to(binary)
+        except OSError as exc:
+            if os.name == 'nt' and getattr(exc, 'winerror', None) == 1314:
+                self.skipTest('Windows runner cannot create a disposable symbolic link')
+            raise
         result = verify_host_readiness('claude-code', link)
         self.assertEqual(result['reason_code'], 'absolute_local_executable_required')
 
@@ -92,6 +108,17 @@ print('2.1.330 (Claude Code)',flush=True)
             self.assertEqual(env['PATH'], '/usr/bin')
             self.assertNotIn('CURSOR_API_KEY',env)
             self.assertNotIn('ANTHROPIC_API_KEY',env)
+            if os.name == 'nt':
+                self.assertEqual(env['USERPROFILE'], str(root/'home'))
+                self.assertEqual(env['APPDATA'], str(root/'xdg-config'))
+                self.assertEqual(env['LOCALAPPDATA'], str(root/'xdg-cache'))
+                self.assertEqual(env['TEMP'], str(root/'tmp'))
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows live Host gate')
+    def test_native_windows_vendor_launch_remains_gated(self):
+        report = _verify_host_readiness('claude-code', self._write("print('2.1.330')"))
+        self.assertEqual(report['reason_code'], 'windows_live_host_probe_not_yet_verified')
+        self.assertFalse(report['real_host_protocol_verified'])
 
     def test_host_name_validation_is_strict(self):
         with self.assertRaisesRegex(ValueError,'Unsupported Host'):

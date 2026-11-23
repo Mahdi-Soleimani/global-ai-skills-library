@@ -305,7 +305,7 @@ def _sid_string(advapi, kernel, pointer):
         kernel.LocalFree(ctypes.cast(result, ctypes.c_void_p))
 
 
-def verify_owned_path(path, sid, *, directory=None, require_owner=True):
+def verify_owned_path(path, sid, *, directory=None, require_owner=True, require_private=False):
     """Require safe DACLs and, by default, current SID ownership."""
     if os.name != "nt":
         raise ValueError("Windows ACL checks require Windows")
@@ -411,6 +411,12 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
                 not require_owner and _ace_can_replace_child_path(mask))
             unsafe_owned_path_right = (
                 require_owner and _ace_grants_write(mask))
+            # Fixture signing keys also require confidentiality, not only
+            # protection against untrusted writes. Fail closed on read-data,
+            # generic-read or generic-all grants to other principals.
+            if (require_private and ace_sid not in allowed_writers
+                    and mask & (0x00000001 | 0x80000000 | 0x10000000)):
+                raise ValueError("Windows private fixture ACL grants read access to an untrusted SID")
             if ((unsafe_ancestor_right or unsafe_owned_path_right)
                     and ace_sid not in allowed_writers):
                 raise ValueError(

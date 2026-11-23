@@ -16,7 +16,9 @@ import tempfile
 import time
 from pathlib import Path
 
-from codex_discovery_probe import _read_protocol_message
+from codex_discovery_probe import (
+    _read_protocol_message, _protocol_selector, _windows_runtime_environment,
+)
 
 HOSTS = ('cursor', 'claude-code')
 MAX_TIMEOUT = 18
@@ -51,6 +53,7 @@ def _runtime(root, base=None):
         'NO_COLOR': '1',
         'DISABLE_AUTOUPDATER': '1',
         'CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC': '1',
+        **_windows_runtime_environment(root, base, 'xdg-config', 'xdg-cache'),
     }
 
 
@@ -61,6 +64,9 @@ def verify_host_readiness(host, binary, *, timeout=12, popen=subprocess.Popen):
     path = Path(binary)
     if not path.is_absolute() or path.is_symlink() or not path.is_file():
         result['reason_code'] = 'absolute_local_executable_required'
+        return result
+    if os.name == 'nt' and popen is subprocess.Popen:
+        result['reason_code'] = 'windows_live_host_probe_not_yet_verified'
         return result
     with tempfile.TemporaryDirectory(prefix='gasl-host-readiness-') as tmp:
         root = Path(tmp)
@@ -74,7 +80,7 @@ def verify_host_readiness(host, binary, *, timeout=12, popen=subprocess.Popen):
                          stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                          stderr=subprocess.DEVNULL, text=False, bufsize=0)
             deadline = time.monotonic() + min(max(float(timeout), 1), MAX_TIMEOUT)
-            with selectors.DefaultSelector() as sel:
+            with _protocol_selector() as sel:
                 sel.register(proc.stdout, selectors.EVENT_READ)
                 buffer = [b'']
                 if host == 'cursor':
@@ -117,7 +123,9 @@ def verify_host_readiness(host, binary, *, timeout=12, popen=subprocess.Popen):
                                 total += len(chunk)
                                 if total > 8192:
                                     raise ValueError('Claude CLI version output exceeded limit')
-                            elif proc.poll() is not None:
+                            else:
+                                # EOF is final even if the child has not exited yet.
+                                # Wait below with the same deadline, not a busy loop.
                                 break
                         elif proc.poll() is not None:
                             break

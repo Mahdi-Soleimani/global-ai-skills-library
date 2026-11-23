@@ -19,10 +19,8 @@ from host_adapters import _checked_fixture, _path_within_fixture, _target_for_fi
 from host_target_preflight import inspect_selected_target
 from host_transaction_fixture import _new_root
 
-try:
-    import fcntl
-except ImportError:  # Unsupported platforms must fail closed, never omit locking.
-    fcntl = None
+from transaction_file_lock import exclusive_lock_file, supported_platform, is_redirected
+
 
 SCHEMA = 'gasl-v28-fixture-consent-v1'
 LOCK = '.gasl-phase28-transaction.lock'
@@ -34,7 +32,13 @@ def _digest(value):
 
 
 def _sync_directory(folder):
-    """Durability barrier for an existing fixture directory; unsupported => error."""
+    """POSIX directory durability barrier; Windows offers process recovery only."""
+    if is_redirected(folder) or not Path(folder).is_dir():
+        raise ValueError('Unsafe fixture durability directory')
+    if os.name == 'nt':
+        # Python cannot fsync a Windows directory handle. File data is still
+        # flushed explicitly; no sudden-power-loss durability claim is made.
+        return
     flags = os.O_RDONLY | getattr(os, 'O_DIRECTORY', 0)
     fd = os.open(folder, flags)
     try:
@@ -45,13 +49,16 @@ def _sync_directory(folder):
 
 def _sync_tree(path):
     """fsync data before rename, then its directory metadata."""
-    if path.is_symlink() or not path.is_dir():
+    if is_redirected(path) or not path.is_dir():
         raise ValueError('Only a regular fixture staging directory may be synced')
     for item in sorted(path.rglob('*')):
-        if item.is_symlink():
-            raise ValueError('Symlink in fixture staging directory')
+        if is_redirected(item):
+            raise ValueError('Symlink or junction in fixture staging directory')
         if item.is_file():
-            fd = os.open(item, os.O_RDONLY | getattr(os, 'O_NOFOLLOW', 0))
+            if item.stat().st_nlink != 1:
+                raise ValueError('Hard-link alias in fixture staging directory')
+            flags = os.O_RDWR if os.name == 'nt' else os.O_RDONLY
+            fd = os.open(item, flags | getattr(os, 'O_NOFOLLOW', 0))
             try:
                 os.fsync(fd)
             finally:
@@ -67,25 +74,22 @@ def _sync_tree(path):
 def _exclusive_fixture_lock(fixture):
     """Nonblocking, cooperative process lock; NEVER delete the lock inode."""
     fixture = _checked_fixture(fixture)
-    if fcntl is None:
-        raise RuntimeError('POSIX flock is unavailable: fixture transactions disabled')
+    if not supported_platform():
+        raise RuntimeError('Native file locking is unavailable: fixture transactions disabled')
     path = _path_within_fixture(fixture, LOCK)
-    flags = os.O_RDWR | os.O_CREAT | getattr(os, 'O_NOFOLLOW', 0)
-    fd = os.open(path, flags, 0o600)
-    try:
-        if not os.path.isfile(path) or os.stat(path).st_nlink != 1:
-            raise ValueError('Fixture lock path is not a unique regular file')
+    with contextlib.ExitStack() as stack:
         try:
-            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
-            raise ValueError('Fixture transaction already locked by another process')
+            stack.enter_context(exclusive_lock_file(path, nonblocking=True))
+        except BlockingIOError as exc:
+            raise ValueError('Fixture transaction already locked by another process') from exc
+        except ValueError as exc:
+            if 'transaction lock busy' in str(exc):
+                raise ValueError('Fixture transaction already locked by another process') from exc
+            if 'hard-link alias' in str(exc):
+                raise ValueError('Fixture lock path is not a unique regular file') from exc
+            raise
         _sync_directory(fixture)
         yield
-    finally:
-        try:
-            fcntl.flock(fd, fcntl.LOCK_UN)
-        finally:
-            os.close(fd)
 
 
 def _chosen_profile(fixture, scope):
@@ -190,6 +194,8 @@ def enact_fixture_transaction(fixture, bundle_root, plan_id, agent, scope, actio
                 'file_count': staged['file_count'], 'plan_id': plan_id,
                 'agent': agent, 'scope': scope, 'action': action,
                 'fixture_only_consent_matched': True,
+                'directory_fsync_supported': os.name == 'posix',
+                'power_loss_durability_verified': False,
                 'one_time_fixture_receipt_consumed': consent_request_id is not None,
                 'real_user_authorization_collected': False,
                 'real_host_files_modified': False,
@@ -220,6 +226,8 @@ def recover_fixture_transaction(fixture):
                 _sync_directory(path)
         _sync_directory(fixture)
         return {**result, 'recovery_revalidated_under_lock': True,
+                'directory_fsync_supported': os.name == 'posix',
+                'power_loss_durability_verified': False,
                 'real_user_authorization_collected': False}
 
 

@@ -2,9 +2,11 @@
 import json
 import os
 import stat
+import subprocess
 import sys
 import tempfile
 import textwrap
+import time
 import unittest
 from pathlib import Path
 
@@ -12,8 +14,20 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from codex_discovery_probe import (
     _extract_exact_skill, _minimal_environment, SKILL_BODY, SKILL_NAME,
-    verify_codex_discovery,
+    verify_codex_discovery as _verify_codex_discovery,
 )
+
+
+def _fixture_popen(args, **kwargs):
+    # Execute the authored fixture with the current Python on Windows, where
+    # CreateProcess cannot launch a plain script with a POSIX shebang.
+    if os.name == 'nt':
+        args = [sys.executable, '-I', '-B', *args]
+    return subprocess.Popen(args, **kwargs)
+
+
+def verify_codex_discovery(binary, **kwargs):
+    return _verify_codex_discovery(binary, popen=_fixture_popen, **kwargs)
 
 
 class CodexDiscoveryProbeTests(unittest.TestCase):
@@ -116,6 +130,28 @@ class CodexDiscoveryProbeTests(unittest.TestCase):
         report = verify_codex_discovery(self._fake_codex(mode='broken_json'))
         self.assertEqual(report['reason_code'], 'codex_protocol_unavailable_or_invalid')
 
+    def test_partial_protocol_line_cannot_hang_probe(self):
+        self.bin.write_text(
+            '#!/usr/bin/env python3\nimport sys,time\nsys.stdin.readline()\n'
+            'sys.stdout.write("{");sys.stdout.flush()\ntime.sleep(30)\n',
+            encoding='utf-8')
+        self.bin.chmod(self.bin.stat().st_mode | stat.S_IXUSR)
+        start = time.monotonic()
+        report = verify_codex_discovery(self.bin, timeout=1)
+        self.assertFalse(report['isolated_skill_discovery_verified'])
+        self.assertEqual(report['reason_code'], 'codex_protocol_unavailable_or_invalid')
+        self.assertLess(time.monotonic() - start, 8)
+
+    def test_oversized_protocol_output_fails_closed(self):
+        self.bin.write_text(
+            '#!/usr/bin/env python3\nimport sys\nsys.stdin.readline()\n'
+            'print("X" * (3 * 1024 * 1024),flush=True)\n',
+            encoding='utf-8')
+        self.bin.chmod(self.bin.stat().st_mode | stat.S_IXUSR)
+        report = verify_codex_discovery(self.bin, timeout=10)
+        self.assertFalse(report['isolated_skill_discovery_verified'])
+        self.assertEqual(report['reason_code'], 'codex_protocol_unavailable_or_invalid')
+
     def test_missing_or_relative_or_symlink_executable_is_blocked(self):
         for invalid in ('codex', Path(self.tmp.name)/'nonexistent'):
             with self.subTest(path=invalid):
@@ -123,9 +159,20 @@ class CodexDiscoveryProbeTests(unittest.TestCase):
                                  'absolute_local_codex_executable_required')
         binary = self._fake_codex()
         link = Path(self.tmp.name) / 'alias'
-        link.symlink_to(binary)
+        try:
+            link.symlink_to(binary)
+        except OSError as exc:
+            if os.name == 'nt' and getattr(exc, 'winerror', None) == 1314:
+                self.skipTest('Windows runner cannot create a disposable symbolic link')
+            raise
         self.assertEqual(verify_codex_discovery(link)['reason_code'],
                          'absolute_local_codex_executable_required')
+
+    @unittest.skipUnless(os.name == 'nt', 'Windows live Host gate')
+    def test_native_windows_vendor_launch_remains_gated(self):
+        report = _verify_codex_discovery(self._fake_codex())
+        self.assertEqual(report['reason_code'], 'windows_live_host_probe_not_yet_verified')
+        self.assertFalse(report['isolated_skill_discovery_verified'])
 
     def test_protocol_parser_rejects_unstructured_response(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -146,8 +193,15 @@ class CodexDiscoveryProbeTests(unittest.TestCase):
             env = _minimal_environment(root, {'PATH':'/usr/bin','OPENAI_API_KEY':'SENSITIVE',
                                                'GITHUB_TOKEN':'SENSITIVE','HOME':'/real/user'})
             self.assertEqual(env['PATH'], '/usr/bin')
-            self.assertEqual(set(env), {'PATH','HOME','CODEX_HOME','XDG_CONFIG_HOME',
-                                        'XDG_CACHE_HOME','TMPDIR','CI','NO_COLOR'})
+            keys = {'PATH','HOME','CODEX_HOME','XDG_CONFIG_HOME',
+                    'XDG_CACHE_HOME','TMPDIR','CI','NO_COLOR'}
+            if os.name == 'nt':
+                keys.update({'USERPROFILE','HOMEDRIVE','HOMEPATH','APPDATA',
+                             'LOCALAPPDATA','TEMP','TMP'})
+                self.assertEqual(env['USERPROFILE'], env['HOME'])
+                self.assertEqual(env['TEMP'], env['TMPDIR'])
+                self.assertEqual(env['APPDATA'], env['XDG_CONFIG_HOME'])
+            self.assertEqual(set(env), keys)
             self.assertNotIn('SENSITIVE',str(env))
             self.assertTrue(env['HOME'].startswith(directory))
 
