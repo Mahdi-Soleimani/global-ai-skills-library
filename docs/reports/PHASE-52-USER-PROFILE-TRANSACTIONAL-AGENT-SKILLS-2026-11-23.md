@@ -50,7 +50,7 @@ All real operations require the caller to provide an existing absolute selected-
 - Reinstall from a marker-linked backup with exact consent, never from an arbitrary unmanaged directory.
 - Recovery following interrupted install, replace, restore, uninstall or reinstall, rolling back only when staged/target/backup bytes match the journal and preserving committed changes when verified.
 
-Each write requires the exact TTY phrase **USER PROFILE ALL PROJECTS**, bound to selected Host, Skill name, Plan or backup identity and state binding. The Cursor phrase also contains **CURSOR-SYNC-RISK**. Every optional pinned download and private ZIP creation is separately approved before the final install approval. The HTTP Explorer never gains write access.
+Every **ordinary** write (install, replace, restore, uninstall or reinstall) requires the exact TTY phrase **USER PROFILE ALL PROJECTS**, bound to the Host, Skill name, Plan/backup identity and state binding. **Explicit recover is an administrative exception**: it does not ask for another TTY phrase but may only finalize or undo a previously journaled transaction when exact recorded inventories still match; any ambiguity or unexpected user edit causes refusal. The Cursor phrase also contains **CURSOR-SYNC-RISK**. Every optional pinned download and private ZIP creation is separately approved before the final install approval. The HTTP Explorer never gains write access.
 
 ## 4. User-facing flow
 
@@ -106,6 +106,16 @@ Test fixtures temporarily patch only the internal profile-root validator to poin
 - OS filesystem ACLs, privilege escalation by hostile external processes and cloud synchronization behavior are **not certified** by local directory checks or POSIX locks.
 - A process crash *before* the first durable journal may leave an orphan staging directory; automatic recovery does not delete arbitrary unknown files.
 
-## 8. Verification evidence
+## 8. Verified automated acceptance, scope and publication
 
-Local targeted/full test outcomes, CI workflow run IDs, exact Git commit and public source-refresh status are appended only after observed.
+- **Feature commit:** [2c5e8d1b17ac78274f67a8f9439712feea7351ba](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/2c5e8d1b17ac78274f67a8f9439712feea7351ba), pushed normally after an exact 13-file staged allowlist check, whitespace check and private-key/token/personal-HOME pattern scan. The upstream main advanced first; the feature was rebased without conflicts, not force-pushed.
+- **User Profile CI:** [Run 45249762481](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45249762481), **completed SUCCESS**, **77 passing dedicated tests** plus the read-only Explorer browser workflow. Tests cover all three Hosts with artificial HOMEs and inert Skills, OS account and path binding, fake HOME, owned archive restore, uninstall, crashes, edited files and ZIP rejection.
+- **Explorer CI:** [Run 45249762399](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45249762399), **completed SUCCESS**. Only terminal commands are provided for both Project and User scopes; there is no browser-authorized filesystem write.
+- **Other compatibility CI:** previously existing private ZIP, inert recovery, Codex project and Cursor/Claude project workflows all passed on the exact feature commit (Runs 45249762935, 45249763204, 45249762381, 45249762887, 45249762795); the private MVP draft check also passed (Run 45249762872).
+- **Full Linux regression + source refresh:** [Run 45249762895](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45249762895), **completed SUCCESS**, **786 passing tests**, **57 source repositories and 4,431 attributed Skill records**.
+- **Local macOS suite:** **780 passed and 323 subtests passed** before push. The only optional locally omitted module was the MCP-server suite; dependency-equipped Linux CI included it. Node DOM simulation, Python compileall, YAML parse and Git diff/whitespace checks passed.
+- **Automated metadata-only refresh commit:** c2173037a6545485f707d6b9adf9077cb894811a, fast-forwarded into local main without force push or altering User/Project Skill files.
+
+**Engineering acceptance:** transactional current-user POSIX filesystem installation and version management for Codex, Cursor and Claude Code are implemented and pass synthetic and repository-level CI tests. This is not proof of live Host Skill discovery or behavior. No real user's HOME/Agent profile, unrelated repository, running Codex/Cursor/Claude session or third-party Skill script was modified or invoked.
+
+**Remaining scope:** Windows writable transactions; independent upstream publisher authenticity; dynamic sandbox; owner-selected project License and public distribution. User-requested real-user tests and independent human relevance adjudication remain deferred. Any publication remains private-draft-only with public_release_allowed=false.
