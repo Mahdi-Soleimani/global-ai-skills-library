@@ -53,7 +53,9 @@ def _inventory(folder):
                      for row in entries for i in range(1, len(row['path'].split('/')))}
     if actual_dirs != expected_dirs:
         raise ValueError('Empty or untracked directory in fixture inventory')
-    return entries
+    # WindowsPath sorts paths case-insensitively; canonical manifests require
+    # a case-sensitive relative POSIX-path order on every operating system.
+    return sorted(entries, key=lambda row: row['path'])
 
 
 def _same_inventory(path, entries):

@@ -35,6 +35,10 @@ class WindowsProjectTransactionTests(unittest.TestCase):
         self.version = 0
 
     def prepare(self, host):
+        # ProjectInstallTests.setUp has already created the initial Codex ZIP.
+        # Reuse it; private bundles deliberately cannot be overwritten.
+        if host == "codex" and self.version == 0:
+            return self.case.plan_id
         return self.fixture._prepare(agent=host, scope="project")["plan_id"]
 
     def state(self, host):
@@ -105,6 +109,9 @@ class WindowsProjectTransactionTests(unittest.TestCase):
                 self.assertTrue((self.target(host)/"SKILL.md").is_file())
                 self.assertTrue(hp._receipt(self.state(host),"demo").is_file())
                 self.assertFalse(result["skill_executed"])
+                from fixture_bundle_install import _inventory
+                paths=[entry["path"] for entry in _inventory(self.target(host))]
+                self.assertEqual(paths,sorted(paths))
         self.assertEqual(len({(self.target(host)/"SKILL.md").read_bytes()
                               for host in ("codex","cursor","claude-code")}),1)
         self.assertFalse((self.project/"SKILL.md").exists())
