@@ -78,4 +78,12 @@ The command never accepts a destination root or `--install` flag and never acts 
 
 This phase proves an isolated Codex *metadata discovery lifecycle* for an exact full ZIP, **not** Skill behavioral correctness or arbitrary-code safety. Cursor/Claude Code real Skill discovery, real-user installation, permanent activation, automatic upgrade, untrusted code execution and production consent are still **not enabled**. A user-profile installer would require a separate explicit opt-in action, fresh target-role confirmation, conflict/backups, versioned immutable receipts, security policy and failure recovery guarantees. Do not infer authorization from a test-only acknowledgement.
 
-CI URL / result are appended only after real GitHub workflow inspection.
+## Verified GitHub Actions evidence (actual completed runs)
+
+- Published code on `main` in commit [`bb66032`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/bb6603284556fdb7324af5b8ad251ce52570861d) with an ordinary non-force push, after a seven-file staged source check, whitespace validation and no sensitive-pattern matches.
+- [Real Codex inert Skill lifecycle — run `45172898331`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45172898331): **completed / SUCCESS**. The exact new full-ZIP test step logged `PINNED_FULL_ZIP_CODEX_REAL_HOST_CI=PASS; THIRD_PARTY_EXECUTED=FALSE`, confirming a two-file GASL-authored ZIP with **real Codex CLI 0.162.1** in an isolated Ubuntu profile. The independent existing Codex install/discover/rollback and user-scope tests also passed. All nine new synthetic Host tests passed.
+- [Private Skill ZIP safety — run `45172898397`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45172898397): **completed / SUCCESS**; bundle regressions continue to pass without publishing or executing downloaded Skill files.
+- [Daily source-catalog refresh — run `45172898207`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45172898207): **completed / SUCCESS**, including **465 passing full pytest tests**, refresh of **57 repositories**, **4,431 attributed source records**, and a metadata-only commit to `main`.
+- Automated metadata commit [`b5beba0`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/b5beba0) was fetched and fast-forwarded locally without a force push; the project remained clean and in sync.
+
+**Final scope:** Full-pinned-ZIP Codex discovery and rollback is verified in disposable macOS and Linux environments, with no model invocation, third-party code execution or real-user installation. Production installation is still disabled.
