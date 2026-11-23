@@ -1131,6 +1131,19 @@
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
+    "GASL-SRC-046f7181f0639a27b252": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "804e553325fedc49dd7e75c30c6cffeebaa6650b",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/design-system/SKILL.md",
+      "terms": [
+        "brand",
+        "creation",
+        "design",
+        "use"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
+    },
     "GASL-SRC-046f8e24528bba638457": {
       "commit_sha": "a582c51ee29d0f35e6ac321340796f77d43da733",
       "git_blob_sha": "ae7d0b3539a98374cddd69b902d314d7501a9533",
@@ -1609,30 +1622,6 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-067781a5d1f6abc6b4ae": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "56d809dd879986f505c6ee98d69860bdeb955faf",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/design/SKILL.md",
-      "terms": [
-        "actions",
-        "ai",
-        "brand",
-        "build",
-        "chart",
-        "cloud",
-        "create",
-        "design",
-        "google",
-        "identity",
-        "js",
-        "media",
-        "social",
-        "ui",
-        "web"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-0691e6b3e0868e798310": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -4048,6 +4037,30 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
+    "GASL-SRC-1183b1a42396e34532c2": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "56d809dd879986f505c6ee98d69860bdeb955faf",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/design/SKILL.md",
+      "terms": [
+        "actions",
+        "ai",
+        "brand",
+        "build",
+        "chart",
+        "cloud",
+        "create",
+        "design",
+        "google",
+        "identity",
+        "js",
+        "media",
+        "social",
+        "ui",
+        "web"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
+    },
     "GASL-SRC-118719adeebbb70fcf43": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
       "git_blob_sha": "3c4247f10f7626a30ebffaad25b6b5f7b6d911b8",
@@ -6092,6 +6105,24 @@
         "use"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
+    },
+    "GASL-SRC-18e27d523018260447cc": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "79fa5ee1884ce1b9f76627a1bea073d3dd67ee7b",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/banner-design/SKILL.md",
+      "terms": [
+        "actions",
+        "art",
+        "create",
+        "creative",
+        "design",
+        "google",
+        "media",
+        "social",
+        "website"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-18ef63b45a567a9846c0": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
@@ -11051,6 +11082,20 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-2b6d857ccc652b5b010e": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "52d345d1f4ab5fde70b38fdd0601ad42ef0449f1",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/slides/SKILL.md",
+      "terms": [
+        "chart",
+        "copywriting",
+        "create",
+        "design",
+        "js"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
+    },
     "GASL-SRC-2b7f7f1ecad4c0e671f3": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "f9c8b7cf6bbf64c39b0978596d12f2ed07349aa2",
@@ -11360,6 +11405,24 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-2d88bc91512c431f20e2": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "79fa5ee1884ce1b9f76627a1bea073d3dd67ee7b",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/banner-design/SKILL.md",
+      "terms": [
+        "actions",
+        "art",
+        "create",
+        "creative",
+        "design",
+        "google",
+        "media",
+        "social",
+        "website"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-2d899c5e506d104d029d": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
@@ -11738,21 +11801,6 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-2efb05a662db5bbcb4c6": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/ui-styling/SKILL.md",
-      "terms": [
-        "create",
-        "design",
-        "ui",
-        "use",
-        "user",
-        "visual"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-2f063be609282cb0d698": {
       "commit_sha": "a582c51ee29d0f35e6ac321340796f77d43da733",
@@ -12429,6 +12477,29 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-31fae2972db29d231f03": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "e6cfdd50ec8cbf6855d27ee5446424378ea6a416",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "terms": [
+        "accessibility",
+        "chart",
+        "charts",
+        "color",
+        "data",
+        "design",
+        "intelligence",
+        "layout",
+        "mobile",
+        "pages",
+        "responsive",
+        "ui",
+        "ux",
+        "web"
+      ],
+      "verified_at_commit": "6ec2bb58334ca3014573c4cbd4834ee3a40afd9d"
+    },
     "GASL-SRC-32113d1c13ef77a23bb7": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "95542980a45ddb72f9f48a3325481c1b03cc8b9e",
@@ -12892,6 +12963,30 @@
         "verification"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-347bab07965088c014fb": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "56d809dd879986f505c6ee98d69860bdeb955faf",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/design/SKILL.md",
+      "terms": [
+        "actions",
+        "ai",
+        "brand",
+        "build",
+        "chart",
+        "cloud",
+        "create",
+        "design",
+        "google",
+        "identity",
+        "js",
+        "media",
+        "social",
+        "ui",
+        "web"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-34812c59e645256822d5": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -18270,6 +18365,21 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-4a7cc62d16ad8b971899": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/ui-styling/SKILL.md",
+      "terms": [
+        "create",
+        "design",
+        "ui",
+        "use",
+        "user",
+        "visual"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
+    },
     "GASL-SRC-4aa03cbac94859e793bc": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
       "git_blob_sha": "bf02ea3c6fd7bb2d4dd328b5aeb7538d117b95f7",
@@ -19190,19 +19300,6 @@
         "video"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-4dd29826712889a93764": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "804e553325fedc49dd7e75c30c6cffeebaa6650b",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/design-system/SKILL.md",
-      "terms": [
-        "brand",
-        "creation",
-        "design",
-        "use"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-4decde31519ccf4bf4e2": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -21931,6 +22028,22 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
+    "GASL-SRC-5918a9d0ccc9f3297435": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/brand/SKILL.md",
+      "terms": [
+        "brand",
+        "compliance",
+        "content",
+        "identity",
+        "management",
+        "marketing",
+        "visual"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
+    },
     "GASL-SRC-591d26cce5ff1e915aac": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "b62821c78a212937e6c038185357f1f586ca066e",
@@ -22520,30 +22633,6 @@
         "user"
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
-    },
-    "GASL-SRC-5b4338e77fed65da6882": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "56d809dd879986f505c6ee98d69860bdeb955faf",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/design/SKILL.md",
-      "terms": [
-        "actions",
-        "ai",
-        "brand",
-        "build",
-        "chart",
-        "cloud",
-        "create",
-        "design",
-        "google",
-        "identity",
-        "js",
-        "media",
-        "social",
-        "ui",
-        "web"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-5b4ab6ba2efb644de1b5": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -24005,6 +24094,21 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-60b306287d48d51e6b48": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/ui-styling/SKILL.md",
+      "terms": [
+        "create",
+        "design",
+        "ui",
+        "use",
+        "user",
+        "visual"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-60b6eddc8e7b0fd66e1a": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -27173,22 +27277,6 @@
         "pages"
       ],
       "verified_at_commit": "352a02b05189e2a958a973867cc6eca365cb8fc3"
-    },
-    "GASL-SRC-6bfc1c1479967d082a37": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/brand/SKILL.md",
-      "terms": [
-        "brand",
-        "compliance",
-        "content",
-        "identity",
-        "management",
-        "marketing",
-        "visual"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-6c249811aa635afd77c0": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -31821,24 +31909,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-800e486efe4434a7dc6f": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "79fa5ee1884ce1b9f76627a1bea073d3dd67ee7b",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/banner-design/SKILL.md",
-      "terms": [
-        "actions",
-        "art",
-        "create",
-        "creative",
-        "design",
-        "google",
-        "media",
-        "social",
-        "website"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
-    },
     "GASL-SRC-800f84b78954b1cd5f17": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "75474c9ebd8c4db8e5871fba8cb477130142216a",
@@ -34715,24 +34785,6 @@
       "terms": [],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-8b2c7e6cf031511bec53": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "79fa5ee1884ce1b9f76627a1bea073d3dd67ee7b",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/banner-design/SKILL.md",
-      "terms": [
-        "actions",
-        "art",
-        "create",
-        "creative",
-        "design",
-        "google",
-        "media",
-        "social",
-        "website"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
-    },
     "GASL-SRC-8b335011730744eea0a4": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "ebf83049cc7697ffaf73274977684a9c4166d9bc",
@@ -35025,20 +35077,6 @@
         "use"
       ],
       "verified_at_commit": "a192894723a8f47e7f504c7b5041967ff1f18e55"
-    },
-    "GASL-SRC-8c7117e557092dbe2a52": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "52d345d1f4ab5fde70b38fdd0601ad42ef0449f1",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/slides/SKILL.md",
-      "terms": [
-        "chart",
-        "copywriting",
-        "create",
-        "design",
-        "js"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-8c717d592d91b3b0e02b": {
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
@@ -36619,6 +36657,20 @@
         "workflow"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-930ebe7665431bec5c1a": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "52d345d1f4ab5fde70b38fdd0601ad42ef0449f1",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/slides/SKILL.md",
+      "terms": [
+        "chart",
+        "copywriting",
+        "create",
+        "design",
+        "js"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-9338928c9f77ebbe155d": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -39058,22 +39110,6 @@
         "user"
       ],
       "verified_at_commit": "6b989d6490589647c4c164f7f55c2797cf322f04"
-    },
-    "GASL-SRC-9bd73153fd97b2ce1ff2": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/brand/SKILL.md",
-      "terms": [
-        "brand",
-        "compliance",
-        "content",
-        "identity",
-        "management",
-        "marketing",
-        "visual"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-9bdc16775a46dcae04bb": {
       "commit_sha": "ecdeca6f760b56bb1b11c0a7c961f11b69cb87d5",
@@ -47944,21 +47980,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-bdf3d3c8bccd09d819ec": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "b5a9acb9643e10b3629c0b9cac7e616c1080b597",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/ui-styling/SKILL.md",
-      "terms": [
-        "create",
-        "design",
-        "ui",
-        "use",
-        "user",
-        "visual"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
-    },
     "GASL-SRC-bdf956be886030345851": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "f99098cde3279c8394f603b5772916ae07221591",
@@ -48468,6 +48489,22 @@
         "video"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-bff3643170e38364f07f": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "3eddf309084e6c4493fa19a6b31e755703ba5e86",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": "cli/assets/skills/brand/SKILL.md",
+      "terms": [
+        "brand",
+        "compliance",
+        "content",
+        "identity",
+        "management",
+        "marketing",
+        "visual"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-bffe6cd0cbd7189df19f": {
       "commit_sha": "f41ce9991ce9b45b19cf4b4fda1d1a066b45dd14",
@@ -49334,19 +49371,6 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
-    },
-    "GASL-SRC-c42338384f4078364da4": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "804e553325fedc49dd7e75c30c6cffeebaa6650b",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/design-system/SKILL.md",
-      "terms": [
-        "brand",
-        "creation",
-        "design",
-        "use"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-c429bab8a021febbd99e": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
@@ -53247,6 +53271,19 @@
         "vulnerability"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-d356e2e3231d0bdff859": {
+      "commit_sha": "f823ab5fb970de820e5a0626a0786aba9aee0543",
+      "git_blob_sha": "804e553325fedc49dd7e75c30c6cffeebaa6650b",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "source_path": ".claude/skills/design-system/SKILL.md",
+      "terms": [
+        "brand",
+        "creation",
+        "design",
+        "use"
+      ],
+      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
     "GASL-SRC-d359021ee3ae1f1285d7": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -57898,20 +57935,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-e4dd5384605be1600605": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "52d345d1f4ab5fde70b38fdd0601ad42ef0449f1",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": "cli/assets/skills/slides/SKILL.md",
-      "terms": [
-        "chart",
-        "copywriting",
-        "create",
-        "design",
-        "js"
-      ],
-      "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
-    },
     "GASL-SRC-e4e7f5f02cb369028cf2": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "d656a4fcecbb3536fbff8c331e3edfc4782e8dd2",
@@ -60247,29 +60270,6 @@
         "workers"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-ece348761501769b1958": {
-      "commit_sha": "7e935ad920b390035e0e139bce555d091d14c70b",
-      "git_blob_sha": "e6cfdd50ec8cbf6855d27ee5446424378ea6a416",
-      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "source_path": ".claude/skills/ui-ux-pro-max/SKILL.md",
-      "terms": [
-        "accessibility",
-        "chart",
-        "charts",
-        "color",
-        "data",
-        "design",
-        "intelligence",
-        "layout",
-        "mobile",
-        "pages",
-        "responsive",
-        "ui",
-        "ux",
-        "web"
-      ],
-      "verified_at_commit": "6ec2bb58334ca3014573c4cbd4834ee3a40afd9d"
     },
     "GASL-SRC-ecf2dff2558de35fd34f": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
