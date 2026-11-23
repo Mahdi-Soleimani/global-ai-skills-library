@@ -566,6 +566,17 @@ def cmd_codex_project_install(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_codex_install_wizard(args):
+    from codex_explorer_handoff import inspect_handoff, install_from_explorer
+    if args.action == 'preview':
+        result = inspect_handoff(args.id, args.selected_root, root=ROOT)
+    else:
+        result = install_from_explorer(
+            args.id, args.selected_root, action=args.action, root=ROOT,
+            download_if_missing=args.download_if_missing)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_backup_review(args):
     from codex_backup_review import review_codex_backups, format_backup_review
     report = review_codex_backups(args.skill_name, args.selected_root,
@@ -882,6 +893,19 @@ def main():
     codex_project.add_argument('--backup-id',
         help='Exact backup ID for restore or archived reinstall')
     codex_project.set_defaults(func=cmd_codex_project_install)
+
+    codex_wizard = sub.add_parser(
+        'codex-install-wizard',
+        help='Local interactive Codex project install handoff; NO installation via HTTP')
+    codex_wizard.add_argument('--id', required=True, help='Exact pinned Skill source record ID')
+    codex_wizard.add_argument('--selected-root', required=True, type=Path,
+        help='Absolute existing Git project root; never auto-detect or use the user HOME')
+    codex_wizard.add_argument('--action', choices=('preview', 'install', 'replace'),
+        default='preview',
+        help='Preview is read-only; install/replace need exact local interactive TTY approval')
+    codex_wizard.add_argument('--download-if-missing', action='store_true',
+        help='For install/replace only: separate exact TTY consent for pinned GitHub download')
+    codex_wizard.set_defaults(func=cmd_codex_install_wizard)
 
     backup_review = sub.add_parser('backup-review',
         help='READ-ONLY one-screen Codex project Backup review, provenance, warnings and next steps')

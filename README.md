@@ -224,6 +224,33 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 49: Explicit Codex project installation handoff from Explorer
+
+GASL Explorer's selected Skill view now shows a **copyable terminal command** that completes the Codex project-scope installation workflow without turning the local web API into a write-capable service. The browser **does not** install, execute, download or approve any Skill. It never receives permission to write inside an Agent project.
+
+From the GASL repository, explicitly choose an **existing absolute Git project root** and one selected pinned source record:
+
+    export GASL_SELECTED_PROJECT="/absolute/path/to/your/existing/git/project"
+    ./gasl codex-install-wizard --id GASL-SRC-EXACT_SOURCE_ID --selected-root "$GASL_SELECTED_PROJECT" --action preview
+
+The preview checks pinned source identity, local downloaded-package integrity, known static scan findings, recorded compatibility/license warnings and project-root eligibility. It creates no ZIP or Agent files and does not require a TTY.
+
+When the chosen source and project are correct, the user **separately opts into** installation:
+
+    ./gasl codex-install-wizard --id GASL-SRC-EXACT_SOURCE_ID --selected-root "$GASL_SELECTED_PROJECT" --action install --download-if-missing
+
+The interactive wizard enforces these gates, each with its own real **local TTY exact phrase** when necessary:
+
+1. **Optional pinned download** — only if missing and the user explicitly passed \`--download-if-missing\`. The existing on-demand downloader rechecks the exact commit/blob and performs static scanning. No downloaded script runs.
+2. **Private ZIP** — if absent, the wizard displays the exact Plan and requires approval before producing the locally ignored private bundle. A pre-existing ZIP must pass independent integrity verification; altered ZIPs are refused, not overwritten.
+3. **Project target preflight** — invokes the existing Codex project install/replace preview with its target/ZIP hash binding. Missing destination is required for \`install\`; it never silently overwrites an existing directory.
+4. **Real installation** — the existing project-only transactional installer requires a **separate, exact TTY phrase**. It rechecks the binding under a local lock, writes an ownership receipt, and preserves crash-recovery semantics. It never executes Skill content.
+5. **Replace** — permitted **only** with the separately requested \`--action replace\`. The existing installer retains and verifies the entire prior Skill in a restorable Backup; no automatic replacement happens on name collision.
+
+A missing, tampered, ambiguous, or statically flagged source remains blocked. Real user \`HOME\` scope is not supported. The required project root is not inferred from the browser, and the workflow never starts or uses Codex itself. Cursor and Claude Code remain preview-only until their own separate actual installation design is complete.
+
+**Important:** Running this CLI with an exact TTY phrase is a real action on the explicitly chosen project. The Phase-49 synthetic tests use only disposable Git roots; **no real user project install or real-host/manual test has been performed**. Other hosts, Windows, security sandbox execution and public release readiness remain separate roadmap work. See [Phase 49](docs/reports/PHASE-49-CODEX-EXPLORER-INSTALL-HANDOFF-2026-11-23.md).
+
 ### Phase 48: Reproducible, *provisional* search-quality evaluation
 
 GASL's historical **26-query, 148-judgment** bilingual development set could no longer run directly against the refreshed Source Catalog: 24 of its 72 judged source IDs had changed when upstream repositories advanced to new pinned Commits. The original dataset is **not independently adjudicated Gold**; silently assigning old labels to new IDs would be misleading.

@@ -155,6 +155,13 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
   assert.equal(nodes.selectionPanel.hidden, false);
   const command = descendants(nodes.selectionBody, n => n.tag === "code")[0];
   assert.match(command.textContent, /install-plan --id GASL-SRC-a1 --agent codex --scope project/);
+  const interactive = descendants(nodes.selectionBody, n => n.tag === "code")
+    .find(n => n.textContent.includes("codex-install-wizard"));
+  assert(interactive, "Selected Codex Skill must show exact terminal-only installation handoff");
+  assert.match(interactive.textContent,
+    /codex-install-wizard --id GASL-SRC-a1 --selected-root "\$GASL_SELECTED_PROJECT" --action install --download-if-missing/);
+  assert(descendants(nodes.selectionBody, n => n.tag === "code")
+    .some(n => n.textContent.includes("export GASL_SELECTED_PROJECT=")));
   assert.equal(calls.filter(c => c.url === "/v1/compare").length, 1);
   assert.equal(calls.filter(c => c.url.startsWith("/v1/install")).length, 0);
   assert.equal(descendants(nodes.results, n => n.tag === "a" && n.href?.startsWith("javascript:")).length, 0);

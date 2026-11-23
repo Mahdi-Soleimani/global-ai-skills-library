@@ -527,25 +527,51 @@
       const panel = $("selectionPanel");
       const id = item.source_record_id;
       const agent = $("agent").value || "codex";
-      const command = "./gasl install-plan --id " + id + " --agent " + agent + " --scope project";
+      const validSource = /^GASL-SRC-[A-Za-z0-9_-]{1,100}$/.test(id || "");
       const title = el("h3", "", item.skill_name || id);
       const source = el("p", "desc", "مخزن: " + (item.repository || "نامشخص"));
       const warning = el("p", "status warn",
-        "این فقط انتخاب برای بررسی است. فرمان زیر صرفاً پیش‌نمایش نصب را می‌سازد؛ نصب، اجرا یا تأیید امنیت انجام نمی‌دهد.");
-      const instructions = el("p", "desc", "مرحله بعد: منبع و دستورالعمل Skill را بررسی کنید، سپس در صورت تمایل این فرمان را در پوشه GASL اجرا کنید.");
-      const code = el("code", "", command);
+        "انتخاب در مرورگر مجوز نصب نیست. برای نصب واقعی فقط Codex و پروژه Git صریح پشتیبانی می‌شود. تأیید در ترمینال الزامی است.");
       const actions = el("div", "actions");
       const detail = el("button", "", "مشاهده شواهد");
       detail.type = "button";
       detail.addEventListener("click", () => showDetails(id));
       actions.append(detail);
-      const copy = el("button", "", "کپی فرمان پیش‌نمایش");
-      copy.type = "button";
-      copy.addEventListener("click", async () => {
-        try { await navigator.clipboard.writeText(command); copy.textContent = "کپی شد"; }
-        catch (_) { copy.textContent = "کپی در این مرورگر ممکن نیست"; }
-      });
-      actions.append(copy);
+      const elements = [title, source, warning];
+      if (!validSource) {
+        elements.push(el("p", "status warn", "شناسه منبع معتبر نیست؛ هیچ فرمانی ساخته نشد."));
+      } else {
+        const preview = "./gasl install-plan --id " + id + " --agent " + agent + " --scope project";
+        elements.push(el("p", "desc", "بررسی منبع و پیش‌نمایش بدون نصب:"));
+        elements.push(el("code", "", preview));
+        const copy = el("button", "", "کپی فرمان پیش‌نمایش");
+        copy.type = "button";
+        copy.addEventListener("click", async () => {
+          try { await navigator.clipboard.writeText(preview); copy.textContent = "کپی شد"; }
+          catch (_) { copy.textContent = "کپی در این مرورگر ممکن نیست"; }
+        });
+        actions.append(copy);
+        if (agent === "codex") {
+          const command = "./gasl codex-install-wizard --id " + id +
+            " --selected-root \"$GASL_SELECTED_PROJECT\" --action install --download-if-missing";
+          const setup = 'export GASL_SELECTED_PROJECT="/absolute/path/to/existing/git/project"';
+          elements.push(el("p", "desc",
+            "برای نصب واقعی در ترمینال، نخست مسیر پروژه Git خودتان را تنظیم و سپس فرمان نصب تعاملی را اجرا کنید. " +
+            "دریافت نسخه پین‌شده فقط با تأیید جداگانه شما انجام می‌شود و در صورت هشدار ایستا یا ناقص‌بودن بسته، نصب متوقف خواهد شد."));
+          elements.push(el("code", "", setup));
+          elements.push(el("code", "", command));
+          const installCopy = el("button", "", "کپی فرمان نصب تعاملی Codex");
+          installCopy.type = "button";
+          installCopy.addEventListener("click", async () => {
+            try { await navigator.clipboard.writeText(command); installCopy.textContent = "کپی شد"; }
+            catch (_) { installCopy.textContent = "کپی در این مرورگر ممکن نیست"; }
+          });
+          actions.append(installCopy);
+        } else {
+          elements.push(el("p", "status warn",
+            "برای این Agent فعلاً نصب واقعی از Explorer فعال نیست؛ فقط پیش‌نمایش قابل دریافت است."));
+        }
+      }
       const url = safeSourceLink(item.source_url);
       if (url) {
         const link = el("a", "", "منبع GitHub");
@@ -554,7 +580,8 @@
         link.target = "_blank";
         actions.append(link);
       }
-      $("selectionBody").replaceChildren(title, source, warning, instructions, code, actions);
+      elements.push(actions);
+      $("selectionBody").replaceChildren(...elements);
       panel.hidden = false;
       panel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
