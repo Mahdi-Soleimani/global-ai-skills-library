@@ -15,6 +15,28 @@ import windows_user_profile as wp
 import user_profile_install as up
 
 
+class WindowsAclMaskClassificationTests(unittest.TestCase):
+    def test_read_only_file_generic_read_does_not_look_like_write(self):
+        # FILE_GENERIC_READ includes READ_CONTROL and SYNCHRONIZE. These bits
+        # must not cause a false-positive write classification.
+        self.assertFalse(wp._ace_grants_write(0x00120089))
+        self.assertFalse(wp._ace_grants_write(0x001200A0))
+        self.assertFalse(wp._ace_grants_write(0x00020000))  # READ_CONTROL
+        self.assertFalse(wp._ace_grants_write(0x00100000))  # SYNCHRONIZE
+
+    def test_file_generic_write_and_full_control_are_detected(self):
+        self.assertTrue(wp._ace_grants_write(0x00120116))
+        self.assertTrue(wp._ace_grants_write(0x001F01FF))
+        self.assertTrue(wp._ace_grants_write(0x40000000))  # GENERIC_WRITE
+        self.assertTrue(wp._ace_grants_write(0x10000000))  # GENERIC_ALL
+
+    def test_individual_mutating_rights_are_detected(self):
+        for mask in (0x2, 0x4, 0x10, 0x40, 0x100, 0x10000,
+                     0x40000, 0x80000, 0x01000000):
+            with self.subTest(mask=hex(mask)):
+                self.assertTrue(wp._ace_grants_write(mask))
+
+
 @unittest.skipUnless(os.name == "nt", "Native Windows token and ACL tests")
 class WindowsUserProfileSecurityTests(unittest.TestCase):
     def setUp(self):

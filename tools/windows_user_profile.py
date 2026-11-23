@@ -28,6 +28,11 @@ _FILE_ATTRIBUTE_REPARSE_POINT = 0x0400
 # ACCESS_ALLOWED_ACE_TYPE, ACCESS_ALLOWED_OBJECT_ACE_TYPE and callback forms.
 _ALLOWED_ACE_TYPES = frozenset((0, 5, 9, 11))
 _OBJECT_ACE_TYPES = frozenset((5, 11))
+# Do not OR FILE_GENERIC_WRITE / FILE_ALL_ACCESS into this mask: those
+# aggregate masks also contain READ_CONTROL and SYNCHRONIZE, which are shared
+# with read-only ACEs. Detect only write-specific bits plus the two unexpanded
+# generic rights. Expanded GENERIC_WRITE / GENERIC_ALL already contain the
+# specific bits below.
 _WRITE_MASK = (
     0x00000002 |  # FILE_WRITE_DATA / FILE_ADD_FILE
     0x00000004 |  # FILE_APPEND_DATA / FILE_ADD_SUBDIRECTORY
@@ -38,11 +43,14 @@ _WRITE_MASK = (
     0x00040000 |  # WRITE_DAC
     0x00080000 |  # WRITE_OWNER
     0x01000000 |  # ACCESS_SYSTEM_SECURITY
-    0x00120116 |  # FILE_GENERIC_WRITE
-    0x001F01FF |  # FILE_ALL_ACCESS
-    0x10000000 |  # GENERIC_ALL
-    0x40000000    # GENERIC_WRITE
+    0x10000000 |  # GENERIC_ALL (unexpanded)
+    0x40000000    # GENERIC_WRITE (unexpanded)
 )
+
+
+def _ace_grants_write(mask):
+    """Classify write capability without mistaking shared read bits as writes."""
+    return bool(int(mask) & _WRITE_MASK)
 _TRUSTED_OS_OWNERS = frozenset((
     "S-1-5-18",  # LocalSystem
     "S-1-5-32-544",  # BUILTIN\\Administrators
@@ -369,7 +377,7 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
                     current_sid_write_mask |= 0x001F01FF
                 if mask & 0x40000000:  # GENERIC_WRITE
                     current_sid_write_mask |= 0x00120116
-            if mask & _WRITE_MASK and ace_sid not in allowed_writers:
+            if _ace_grants_write(mask) and ace_sid not in allowed_writers:
                 raise ValueError(
                     "Windows profile ACL grants write access to an untrusted SID")
         # A trusted OS owner (e.g. BUILTIN\\Administrators on hosted runners)
