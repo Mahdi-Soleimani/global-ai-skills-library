@@ -79,3 +79,13 @@ Potential separate follow-up: a small, **read-only** provenance comparison expla
 - **All actual write operations in test setup occurred only in disposable Git project roots with temporary isolated HOME/CODEX_HOME**, never a user project or actual personal Agent profile.
 
 **GitHub status at this point:** feature code and tests are validated locally. Do not infer a successful Linux workflow or published commit before live verification; record exact Run IDs and Commit SHA after publication.
+
+## Verified GitHub publication and Linux CI
+
+- Feature commit [a969e42fa19db865332b570cd64448a9540516c1](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/a969e42fa19db865332b570cd64448a9540516c1) was pushed normally to main after an eight-file staged scope audit, sensitive-pattern scan, whitespace check and successful macOS tests. No private bundle, personal Skill content or credentials were published.
+- [Real Codex App Server lifecycle Run 45205397207](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45205397207): **completed / SUCCESS**. The Linux step exercising the **actual Phase-45 read-only reviewer** across installed, project-marker-owned and manually attested orphan states passed, including correct next-command selection and no absolute project path disclosure. The inert Skill was discovered via the real Host protocol.
+- [Private Skill ZIP / Installer safety Run 45205396762](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45205396762): **completed / SUCCESS**, including all 23 new Phase-45 read-only, integrity and no-approval regressions.
+- [Full source-catalog Refresh / Regression Run 45205396708](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45205396708): **completed / SUCCESS**, **578 passed** in the dependency-equipped GitHub runner. Catalog refresh confirmed **57 source repositories** and **4,431 source records**.
+- The automatic metadata-only Refresh commit [b7e8f4efa75be86b116c9bf434ce881b938a80c3](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/b7e8f4efa75be86b116c9bf434ce881b938a80c3) was fetched and fast-forwarded locally without a force push, preserving the updated registry files, source code and a clean local working tree.
+
+**Phase 45 acceptance:** The user-facing review is only a read-only presentation/selection layer. It **did not** add or exercise writes to a real user Agent profile, grant installation permission, execute Skill contents, certify upstream trust or claim historical ownership from local file hashes.
