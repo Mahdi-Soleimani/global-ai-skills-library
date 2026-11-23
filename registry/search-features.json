@@ -23,22 +23,6 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
-    "GASL-SRC-0024f3f223091a6ce348": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "dee2e6f17c24a89b3e5d7ebf89739395812cee7f",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/vercel/SKILL.md",
-      "terms": [
-        "access",
-        "agent",
-        "authentication",
-        "deployment",
-        "secret",
-        "test",
-        "use"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-002bf5ea8b526bca533d": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "b9f7c8ddb14f145b3aac2a37f2a52f2b059b2bd8",
@@ -1162,6 +1146,18 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-045dd21867b5e7b5ba4f": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "698d47635e29b57feaeedace201836dd5fc02db2",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/genomic-variant-interpretation/SKILL.md",
+      "terms": [
+        "function",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-04662e8f0829f4181656": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "git_blob_sha": "eeb43ab697f52acd07e01ba986a034deb7638983",
@@ -1292,21 +1288,6 @@
         "data"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-04b122665e5f3556593e": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "fbe05bf101b6920fd921d7abfeb31c58162ef943",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/ehr-data-parsing/SKILL.md",
-      "terms": [
-        "csv",
-        "data",
-        "pipeline",
-        "python",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-04b779d4bfd6cce43899": {
       "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
@@ -1841,17 +1822,6 @@
         "workflows"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-07704f72bbc4372c2891": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "b8bfb646b81b90eee5cc5dc4800abe8b3db20c1f",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/radiology-preprocessing/SKILL.md",
-      "terms": [
-        "pipeline",
-        "workflows"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-07992b2848ad2854998b": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -2555,6 +2525,32 @@
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
     },
+    "GASL-SRC-0a6b6c5f2bafc3b0a9a5": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "75ad6a4a6d8aaacbddf0aeead99963abdbf7b1a3",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/core/SKILL.md",
+      "terms": [
+        "agent",
+        "app",
+        "auth",
+        "content",
+        "data",
+        "form",
+        "pages",
+        "read",
+        "site",
+        "task",
+        "test",
+        "type",
+        "use",
+        "user",
+        "web",
+        "website",
+        "workflow"
+      ],
+      "verified_at_commit": "d2dfc782ccdd79d25a9b4f0acced9321789cecb8"
+    },
     "GASL-SRC-0a757cff21df625a7fe4": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "1f3568a40cd2923ebff2395b4234f102e31a388c",
@@ -2790,31 +2786,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-0b4ef5d0e68f38be16b0": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "da629432b61aa80540da8a53bb4c48698d6fb589",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/medical-device-software-compliance/SKILL.md",
-      "terms": [
-        "ai",
-        "analysis",
-        "assessment",
-        "compliance",
-        "control",
-        "cybersecurity",
-        "design",
-        "file",
-        "management",
-        "market",
-        "ml",
-        "review",
-        "software",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-0b5e637cb78d80108b5a": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "512d0686e39a7be742d99d27a9aac8210abc319d",
@@ -2905,25 +2876,6 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-0baa4e284a0344d214a1": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "463559e4da5b576e475dcd6b927a63b798a9c83a",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/webmcp-gen/SKILL.md",
-      "terms": [
-        "agent",
-        "automation",
-        "build",
-        "create",
-        "js",
-        "site",
-        "tools",
-        "use",
-        "web",
-        "workflows"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-0bc2f01a7ed0fd13e84b": {
       "commit_sha": "ecdeca6f760b56bb1b11c0a7c961f11b69cb87d5",
@@ -3425,6 +3377,17 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-0deb97ae3966ea08da99": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "ebf94494d84af61d22486e4041841363aaa53a4a",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/risk-stratification-indices/SKILL.md",
+      "terms": [
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-0def3cacd908c9fa4bfb": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -4508,25 +4471,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-12b22d7594add06b4879": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "9a79cab345e31fd44512cdf2ed54017fe4b46067",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/translational-research/SKILL.md",
-      "terms": [
-        "context",
-        "data",
-        "design",
-        "fast",
-        "integration",
-        "model",
-        "research",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-12bb7f54404f078f81f9": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "4893e3038aff3455f1ac84558e8777739da87113",
@@ -4605,6 +4549,22 @@
         "extension"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-12e76748d049f8179503": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "dee2e6f17c24a89b3e5d7ebf89739395812cee7f",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/vercel/SKILL.md",
+      "terms": [
+        "access",
+        "agent",
+        "authentication",
+        "deployment",
+        "secret",
+        "test",
+        "use"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-12ebacb552e26ce56f21": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -5616,6 +5576,19 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-16e9c3d66ebaf7537e0c": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "bac32037cde809abcd88978a3195c68e3f533ce8",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/cell-type-annotation/SKILL.md",
+      "terms": [
+        "code",
+        "identity",
+        "pipeline",
+        "type"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-16ee6cc15bccc352f290": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "94b1c1a3cbff363039f88e520542ad0b3575d8ea",
@@ -6416,21 +6389,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-19e240b0e52d402b51dc": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "91e2bca8d0b184200846d6d8b2a6555a714dd715",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/slack/SKILL.md",
-      "terms": [
-        "automation",
-        "data",
-        "search",
-        "task",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-19e34fed77ec499cd33a": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
       "git_blob_sha": "d106dbbfca0f05105462767b6294d136b3a91aa3",
@@ -6754,30 +6712,6 @@
         "security"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
-    },
-    "GASL-SRC-1b17520d486420810360": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "a8ed9bba7a0b26b7389acbaa0eed49e77a119963",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/ml-researcher/SKILL.md",
-      "terms": [
-        "ai",
-        "audit",
-        "data",
-        "deployment",
-        "design",
-        "learning",
-        "machine",
-        "metrics",
-        "ml",
-        "model",
-        "pipeline",
-        "site",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-1b19ddb43099708a8cad": {
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
@@ -7924,6 +7858,27 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-1f538ae27c00498819a4": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "55642f2c1b611ac128f18235555bd56031d668fb",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/claims-analytics/SKILL.md",
+      "terms": [
+        "analysis",
+        "analytics",
+        "analyze",
+        "build",
+        "code",
+        "data",
+        "etl",
+        "files",
+        "pipeline",
+        "sql",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-1f542e0cbc8f6f85ad9e": {
       "commit_sha": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
       "git_blob_sha": "6e67f6e080d104973fe89a7903464c74d980edca",
@@ -8864,20 +8819,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-2353464cbcb1c3b82a3c": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "0af29554eb131a3a5ad40417d5ce83281ad0c065",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/scrna-seq-pipeline/SKILL.md",
-      "terms": [
-        "analysis",
-        "integration",
-        "pipeline",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-2359da5314e03f7b0792": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "dc8b8684d50d89153727fcf4881589caf6f04a2a",
@@ -9392,21 +9333,6 @@
         "user"
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
-    },
-    "GASL-SRC-25103901d261aa8f0f9e": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "5b7706b320dc80ac3a6410a0297dbf5173c52143",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/drug-repurposing/SKILL.md",
-      "terms": [
-        "action",
-        "data",
-        "design",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-25412d2fec23ae84c208": {
       "commit_sha": "b110b2f8e9eb1f287892f937050dfd40af862cbb",
@@ -10241,6 +10167,25 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-27efa8ef08225df4558d": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "ce75af8047ed73fc487d8f40124990b23d42bcca",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/digital-pathology/SKILL.md",
+      "terms": [
+        "analysis",
+        "cloud",
+        "code",
+        "deployment",
+        "embedding",
+        "image",
+        "inference",
+        "model",
+        "pipeline",
+        "python"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-27fc291fdf121c725a02": {
       "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
       "git_blob_sha": "d1e7cfd4df8ba2933bc57faf8eafd0b4aa6aedb2",
@@ -10861,22 +10806,6 @@
       ],
       "verified_at_commit": "22f0b463e7a5e579904dd6211a520321035526f7"
     },
-    "GASL-SRC-29f5be781a1690da43f7": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "4190f3b73021f2b4db4a657748cc8ca827298916",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/structure-based-drug-design/SKILL.md",
-      "terms": [
-        "design",
-        "function",
-        "optimization",
-        "site",
-        "strategy",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-2a0381f19b640f0ac4bd": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "f8dc15e05478d4806ca05ea4ecb9cb2ddd49c5a7",
@@ -11104,6 +11033,26 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-2b2f7ae5ec563334345a": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "e4bf00e8e669e43d717e00050df320455352fa86",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/electron/SKILL.md",
+      "terms": [
+        "agent",
+        "app",
+        "application",
+        "automation",
+        "code",
+        "control",
+        "figma",
+        "task",
+        "test",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-2b36316828b9301399f5": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -11334,6 +11283,25 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-2c4b4ef3ee742ccd8031": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "9a79cab345e31fd44512cdf2ed54017fe4b46067",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/translational-research/SKILL.md",
+      "terms": [
+        "context",
+        "data",
+        "design",
+        "fast",
+        "integration",
+        "model",
+        "research",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-2c7a05ec75ed33f22bde": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "c8f52df0d148fc100c3ced6d0108c11922b0fe66",
@@ -11370,20 +11338,6 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
-    "GASL-SRC-2c8f259f197a4455cc6b": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "b618a109f2eaceb7a3636ed8c0b34b253bbc61a7",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/cheminformatics/SKILL.md",
-      "terms": [
-        "analysis",
-        "pipeline",
-        "process",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-2c9fe0d2b97d39421782": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "5d65dbe24d64c0a81230e19c58a494e9df2021b1",
@@ -11393,6 +11347,24 @@
         "docker"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-2caf024fd8d46b45d47e": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "2867cb5f7820bbcdf951c80b3028c9a52a57eb9d",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/pharmacoepidemiology/SKILL.md",
+      "terms": [
+        "analysis",
+        "control",
+        "data",
+        "design",
+        "inference",
+        "model",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-2cba5557593b76de543b": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
@@ -12095,24 +12067,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-2f660036346caa110ac0": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "14ac0985a376fbfaff40114db574033342e28689",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/pa-clinical-policy/SKILL.md",
-      "terms": [
-        "auth",
-        "authorization",
-        "documentation",
-        "management",
-        "policy",
-        "review",
-        "strategy",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-2f8d1d8bdc73ce9922d1": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "c9ca1f8736980cf682b5ac1306d327442d3260d0",
@@ -12600,21 +12554,6 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-31b04ab0df2d32489c05": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "7084eb43161fc16ccad8ce6cb79557c438385685",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/multi-omics-integration/SKILL.md",
-      "terms": [
-        "analysis",
-        "data",
-        "integration",
-        "strategy",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-31c45a4caddd5283142b": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -14479,6 +14418,20 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
+    "GASL-SRC-39c7fae88cdfad769dfa": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "0af29554eb131a3a5ad40417d5ce83281ad0c065",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/scrna-seq-pipeline/SKILL.md",
+      "terms": [
+        "analysis",
+        "integration",
+        "pipeline",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-39cba07253e1acd3fd12": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "33bb2142e1cf1b8c5edede436b83cded29ee17bd",
@@ -15349,6 +15302,22 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
+    "GASL-SRC-3d2d7904c7ad56bca397": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "768082c1ea42ddb20ad7703de03ddbd5941a84fa",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/ehr-data-parsing/SKILL.md",
+      "terms": [
+        "csv",
+        "data",
+        "pipeline",
+        "python",
+        "quality",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "336e2211c39e45fd15bbe8253776c7a1c306ef66"
+    },
     "GASL-SRC-3d2ee72174159b2afa41": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "git_blob_sha": "e58a474ca80feffdeb28842bc3bdee37da6510e7",
@@ -15634,21 +15603,6 @@
         "write"
       ],
       "verified_at_commit": "49f948faa9258a0c61caceaf225e179651397431"
-    },
-    "GASL-SRC-3e228c08f8cd5499d932": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "e5a989ede222446bd944069c871303db83d91b2f",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/roda-open-data/SKILL.md",
-      "terms": [
-        "access",
-        "aws",
-        "data",
-        "search",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-3e3f0aa1cc455db9287e": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -16160,27 +16114,6 @@
         "use"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-402ef4e791dc612fb7be": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "55642f2c1b611ac128f18235555bd56031d668fb",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/claims-analytics/SKILL.md",
-      "terms": [
-        "analysis",
-        "analytics",
-        "analyze",
-        "build",
-        "code",
-        "data",
-        "etl",
-        "files",
-        "pipeline",
-        "sql",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-4045e57e24b3c68569d1": {
       "commit_sha": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
@@ -17812,6 +17745,25 @@
       ],
       "verified_at_commit": "c9be0e931b7930f7d02126d04774d904c381e7d7"
     },
+    "GASL-SRC-471461a6ddd5f7eb03e1": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "084e34d1fbdb877ca4e96c1203c9caf43119d53a",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": ".agents/skills/technical-writer/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "code",
+        "developer",
+        "documentation",
+        "edit",
+        "integration",
+        "review",
+        "use",
+        "write"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-4746c48a43766dac30b3": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "5b8fabd7e09f0f00fa4e6ff5c675f9a945d9f31c",
@@ -18924,6 +18876,23 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
+    "GASL-SRC-4ba5c9ec6ee79f1c10ca": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "ac81a14017d8cd387cbdfacbd569b99ae25c2fff",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/dogfood/SKILL.md",
+      "terms": [
+        "app",
+        "application",
+        "review",
+        "site",
+        "test",
+        "use",
+        "ux",
+        "web"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-4ba73ca7526d33f56bef": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "b9d0109c3b2c266a96069f7e19693e9541f53802",
@@ -18994,17 +18963,6 @@
         "prompt"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-4bc30ca225fae7f67e1f": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "51bd96ebe0de53c9f4e92c8b73f431118aabe14e",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/protein-structure-analysis/SKILL.md",
-      "terms": [
-        "analysis",
-        "pipeline"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-4bc3f1154b610e25a1fb": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
@@ -19959,18 +19917,6 @@
       ],
       "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
-    "GASL-SRC-4f49c8cf0db204e54b68": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "698d47635e29b57feaeedace201836dd5fc02db2",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/genomic-variant-interpretation/SKILL.md",
-      "terms": [
-        "function",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-4f509441516d5327de29": {
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
       "git_blob_sha": "cc8d402a98841bf5eca09668abbcd91e52fd3b1c",
@@ -20585,6 +20531,21 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
+    "GASL-SRC-5156893608aab1717508": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "5b7706b320dc80ac3a6410a0297dbf5173c52143",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/drug-repurposing/SKILL.md",
+      "terms": [
+        "action",
+        "data",
+        "design",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-51619d5a047aeefc2cf0": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "37e82a3a27822ecd4f495e5e51392c6563d40f92",
@@ -20739,6 +20700,17 @@
         "user"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-51fdb461b1c46d52e874": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "b8bfb646b81b90eee5cc5dc4800abe8b3db20c1f",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/radiology-preprocessing/SKILL.md",
+      "terms": [
+        "pipeline",
+        "workflows"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-5210f610b8441cb573b6": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -23139,24 +23111,6 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
-    "GASL-SRC-5ce3b7060b8ffdd6ff26": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "8dc651c20e418ff2e1b140ac6bdf38724d023b78",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/biomarker-discovery/SKILL.md",
-      "terms": [
-        "analysis",
-        "data",
-        "design",
-        "develop",
-        "integration",
-        "metrics",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-5ceed9e95a28b6008a4d": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "6edb38579e08c0abd369a8c0ce53286b3ef0a587",
@@ -23211,17 +23165,6 @@
         "vulnerabilities"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-5d142735edfa6d8cda07": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "5da2d1942bb3da1e48c7961a98189e32be46ba45",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/rna-seq-analysis/SKILL.md",
-      "terms": [
-        "analysis",
-        "pipeline"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-5d1cee2ef5b90b81086c": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -24072,24 +24015,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-5ffd95260b7838454e13": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "2867cb5f7820bbcdf951c80b3028c9a52a57eb9d",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/pharmacoepidemiology/SKILL.md",
-      "terms": [
-        "analysis",
-        "control",
-        "data",
-        "design",
-        "inference",
-        "model",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-6012c64d277be1731e80": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "72e2ea4babec86fb882f86f07100b9958c1349da",
@@ -24823,6 +24748,36 @@
         "use"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-6279856d43d1b21d4c3c": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "f2e2ce9eba0ffb82b201fc76689ec8740f17eba4",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skills/agent-browser/SKILL.md",
+      "terms": [
+        "actions",
+        "agent",
+        "agents",
+        "ai",
+        "app",
+        "automation",
+        "aws",
+        "cloud",
+        "code",
+        "data",
+        "figma",
+        "pages",
+        "site",
+        "task",
+        "test",
+        "testing",
+        "tools",
+        "use",
+        "user",
+        "web",
+        "website"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-628c02e7ae99a9463ce9": {
       "commit_sha": "5108325ecceabc899c761e07aa617b09c02445ee",
@@ -26253,6 +26208,24 @@
       ],
       "verified_at_commit": "370f8f33e5bb27dffe8289ea9bdec436686613ce"
     },
+    "GASL-SRC-678890c044eeaee8538c": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "14ac0985a376fbfaff40114db574033342e28689",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/pa-clinical-policy/SKILL.md",
+      "terms": [
+        "auth",
+        "authorization",
+        "documentation",
+        "management",
+        "policy",
+        "review",
+        "strategy",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-678e48544cdfd3155651": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "9aadb2d09de8d67c6cb548e6c7a420fad2e919fa",
@@ -26562,24 +26535,6 @@
         "use"
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
-    },
-    "GASL-SRC-6916a39df8ec117bb0f6": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "c46382baadc02ca80adde0455f29d253e8b6849f",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/quantitative-proteomics/SKILL.md",
-      "terms": [
-        "analysis",
-        "code",
-        "data",
-        "design",
-        "pipeline",
-        "strategy",
-        "study",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-691f7d026f35e6fb7a94": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -27341,6 +27296,24 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-6b5d676d2581f0a86055": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "c46382baadc02ca80adde0455f29d253e8b6849f",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/quantitative-proteomics/SKILL.md",
+      "terms": [
+        "analysis",
+        "code",
+        "data",
+        "design",
+        "pipeline",
+        "strategy",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-6b9c566ba474baa126fe": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -28971,25 +28944,6 @@
       ],
       "verified_at_commit": "22f0b463e7a5e579904dd6211a520321035526f7"
     },
-    "GASL-SRC-737bcd5613d2abcbdcb9": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "ce75af8047ed73fc487d8f40124990b23d42bcca",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/digital-pathology/SKILL.md",
-      "terms": [
-        "analysis",
-        "cloud",
-        "code",
-        "deployment",
-        "embedding",
-        "image",
-        "inference",
-        "model",
-        "pipeline",
-        "python"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-7380c063ef43bca6f398": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "3defe44609b398ad9e11eba7d0a7e53d697323c5",
@@ -29275,19 +29229,6 @@
         "visualize"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-747afb09ed6b3b0d23d9": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "868f709cea4da40ea52c739d687e9b7821ce5bd2",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/coordination-of-benefits/SKILL.md",
-      "terms": [
-        "revenue",
-        "use",
-        "user",
-        "workers"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-747fb216da347545c416": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -29755,36 +29696,6 @@
         "user"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
-    },
-    "GASL-SRC-760537b7a91799954062": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "f2e2ce9eba0ffb82b201fc76689ec8740f17eba4",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skills/agent-browser/SKILL.md",
-      "terms": [
-        "actions",
-        "agent",
-        "agents",
-        "ai",
-        "app",
-        "automation",
-        "aws",
-        "cloud",
-        "code",
-        "data",
-        "figma",
-        "pages",
-        "site",
-        "task",
-        "test",
-        "testing",
-        "tools",
-        "use",
-        "user",
-        "web",
-        "website"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-761fc5878a3dc013aad3": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -30322,6 +30233,23 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-77ecc2efb9a6df1324b3": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "6fa1dcef92fa6644fbccfd8f61b5514ec1720d15",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/claims-billing-rules/SKILL.md",
+      "terms": [
+        "audit",
+        "code",
+        "coding",
+        "compliance",
+        "edit",
+        "investigation",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-78089de3ad7ee7c2976f": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "fc9faa8e025c5007c3c5b9445cd56058dee73677",
@@ -30706,6 +30634,24 @@
       ],
       "verified_at_commit": "49f948faa9258a0c61caceaf225e179651397431"
     },
+    "GASL-SRC-79828ef21775bddb3937": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "2befb29403376d119aa74224592f8ca90534b511",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/vercel-sandbox/SKILL.md",
+      "terms": [
+        "agent",
+        "app",
+        "automation",
+        "js",
+        "next",
+        "persistent",
+        "task",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-7983dba3572dc3abe4de": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "3f037f4c2608cbe97d568557c1b343ad6f1499e8",
@@ -30927,6 +30873,27 @@
         "warehouse"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
+    },
+    "GASL-SRC-7a0c99d5bdcd398e0f40": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "2ac6f165994ffe14f640aade5cd0cb267ea78c18",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/bioinformatics-on-healthomics/SKILL.md",
+      "terms": [
+        "analysis",
+        "aws",
+        "cache",
+        "calling",
+        "create",
+        "infrastructure",
+        "pipeline",
+        "tools",
+        "type",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-7a111eb70972f5cebaaf": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -31218,6 +31185,30 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-7b34d0bad98c963a3e47": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "a8ed9bba7a0b26b7389acbaa0eed49e77a119963",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/ml-researcher/SKILL.md",
+      "terms": [
+        "ai",
+        "audit",
+        "data",
+        "deployment",
+        "design",
+        "learning",
+        "machine",
+        "metrics",
+        "ml",
+        "model",
+        "pipeline",
+        "site",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-7b4ba604de9afe19cda2": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -31566,19 +31557,6 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-7cf075ea58a9d2039e8a": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "bac32037cde809abcd88978a3195c68e3f533ce8",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/cell-type-annotation/SKILL.md",
-      "terms": [
-        "code",
-        "identity",
-        "pipeline",
-        "type"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-7cf5dae6b14771ef9b1d": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -32013,6 +31991,21 @@
       ],
       "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
+    "GASL-SRC-7f2e33be7db0688f8e49": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "7084eb43161fc16ccad8ce6cb79557c438385685",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/multi-omics-integration/SKILL.md",
+      "terms": [
+        "analysis",
+        "data",
+        "integration",
+        "strategy",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-7f2f302bd18a6754571a": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "877e9b4231906f183ad8f0e34a41e2af9dfa3728",
@@ -32211,17 +32204,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-7fc889194bdd2232d6bb": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "ebf94494d84af61d22486e4041841363aaa53a4a",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/risk-stratification-indices/SKILL.md",
-      "terms": [
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-7fcb883f81eb8851aa06": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
       "git_blob_sha": "7162be4c8d460aaa3d898cb574f15ce6972fe827",
@@ -32235,6 +32217,22 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-7fd4e500245264e05f30": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "ee151b2321a0a2fd4395985f790c313876c4bd72",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/clinical-data-standards/SKILL.md",
+      "terms": [
+        "code",
+        "coding",
+        "data",
+        "model",
+        "term",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-7fdfb2031e2a78d07737": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -33059,23 +33057,6 @@
         "workflows"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
-    },
-    "GASL-SRC-82bbe1e469cb2d28eba6": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "eeb4ad5241a541e9268539e7a484f2d06b16cf25",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/quality-measures/SKILL.md",
-      "terms": [
-        "analysis",
-        "build",
-        "continuous",
-        "data",
-        "pipeline",
-        "sql",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-82bbed8b397d78e92ec3": {
       "commit_sha": "8cefe4cc729cf388ba3591510faa080df89ede4f",
@@ -34619,21 +34600,6 @@
         "strategy"
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
-    },
-    "GASL-SRC-890a669bc9ef17e42869": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "c0f8afa88ee556872638e8a1512d8f85068435c3",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/trajectory-analysis/SKILL.md",
-      "terms": [
-        "analysis",
-        "development",
-        "inference",
-        "pipeline",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-890ca7683f7a52d2976f": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
@@ -36736,6 +36702,17 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-91b2507d7f56b2d7b116": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "5da2d1942bb3da1e48c7961a98189e32be46ba45",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/rna-seq-analysis/SKILL.md",
+      "terms": [
+        "analysis",
+        "pipeline"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-91c256ec80e80882f81d": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "b52ed26895e164c2f5379f136f575366fc68ac98",
@@ -36886,24 +36863,6 @@
         "writing"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-92914b2b5f0a8b9de06b": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "89d6392a8ba18cfac7ab2f479bc894401c8366bb",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/edc-data-validation/SKILL.md",
-      "terms": [
-        "build",
-        "code",
-        "data",
-        "edit",
-        "pipeline",
-        "review",
-        "use",
-        "user",
-        "verification"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-92a02edc6a64a2059115": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -38242,6 +38201,25 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-96f4bfdc8568842a5e38": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "4080c026f8c88c61be9df1cce0bfb662cf66b74d",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/multi-omics-pipeline/SKILL.md",
+      "terms": [
+        "analysis",
+        "build",
+        "code",
+        "data",
+        "etl",
+        "integration",
+        "pipeline",
+        "python",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-9700b82c85ebe9f9577f": {
       "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
       "git_blob_sha": "8d634432f444de84c50d69d730bb0b82227a39f0",
@@ -38691,23 +38669,6 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
-    "GASL-SRC-98b91b3cb53d659f33f3": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "ac81a14017d8cd387cbdfacbd569b99ae25c2fff",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/dogfood/SKILL.md",
-      "terms": [
-        "app",
-        "application",
-        "review",
-        "site",
-        "test",
-        "use",
-        "ux",
-        "web"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-98c571f5824a2cc5e98b": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "220c46438dd314f753ff6650ce08cde07b835b63",
@@ -38883,24 +38844,6 @@
         "vulnerability"
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
-    },
-    "GASL-SRC-99a983d5d96ef78b10e7": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "e24a8b56ffb5d9e23a1df272aa96b2370d8ec24c",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/provider-denial-workup/SKILL.md",
-      "terms": [
-        "analyze",
-        "auth",
-        "authorization",
-        "code",
-        "management",
-        "revenue",
-        "use",
-        "user",
-        "write"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-99bd1f6632c181b32970": {
       "commit_sha": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1",
@@ -39455,6 +39398,22 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
+    "GASL-SRC-9b53b4f4e3616ea8c186": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "16b442f74d25292066edf116caa4e4664dd9b9dd",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/modern-web-guidance/SKILL.md",
+      "terms": [
+        "agent",
+        "build",
+        "code",
+        "frontend",
+        "ui",
+        "use",
+        "web"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-9b556e89a2a0b79a2369": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "951601caa5bc475d2e3eadc3f2c11e2eaf59ed0c",
@@ -39585,25 +39544,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-9c102181136bbd2a1a7c": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "2671ec7525e81330270b7d129a12bb1d4fca8975",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/risk-adjustment/SKILL.md",
-      "terms": [
-        "build",
-        "code",
-        "coding",
-        "data",
-        "pipeline",
-        "project",
-        "python",
-        "sql",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-9c164fe2e3337dddea99": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "6169d8cb29ed2257c6587b3832f9678f2d7394ce",
@@ -39629,26 +39569,6 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-9c33697e9f8e2676dfdf": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "e4bf00e8e669e43d717e00050df320455352fa86",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/electron/SKILL.md",
-      "terms": [
-        "agent",
-        "app",
-        "application",
-        "automation",
-        "code",
-        "control",
-        "figma",
-        "task",
-        "test",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-9c38db0eed5f112dc2b6": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
@@ -40280,21 +40200,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-9e7fdbad45111919a4b0": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "5d0e48a62d41320d2ee12fc72fb8bd2496649e95",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/ngs-quality-control/SKILL.md",
-      "terms": [
-        "analysis",
-        "control",
-        "data",
-        "metrics",
-        "pipeline",
-        "read"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-9e8b478fd37d64e5df9c": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "a77936e63f7f1ce2ae197d0450c2f9a2561225e1",
@@ -40484,6 +40389,24 @@
         "use"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-9f4eb3a39723432ce018": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "e24a8b56ffb5d9e23a1df272aa96b2370d8ec24c",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/provider-denial-workup/SKILL.md",
+      "terms": [
+        "analyze",
+        "auth",
+        "authorization",
+        "code",
+        "management",
+        "revenue",
+        "use",
+        "user",
+        "write"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-9f565bd878f92d070b30": {
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
@@ -40704,22 +40627,6 @@
         "sql"
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
-    },
-    "GASL-SRC-a051dc2687cf72b97006": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "ee151b2321a0a2fd4395985f790c313876c4bd72",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/clinical-data-standards/SKILL.md",
-      "terms": [
-        "code",
-        "coding",
-        "data",
-        "model",
-        "term",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-a05e6686746129bbbe58": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -41450,27 +41357,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-a2c5e2e391dab8aa7e31": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "2ac6f165994ffe14f640aade5cd0cb267ea78c18",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/bioinformatics-on-healthomics/SKILL.md",
-      "terms": [
-        "analysis",
-        "aws",
-        "cache",
-        "calling",
-        "create",
-        "infrastructure",
-        "pipeline",
-        "tools",
-        "type",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-a2c6f4aa1af232451929": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "1c70fc13011ff1bf37d1e6a26c2687c185644150",
@@ -42030,6 +41916,31 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-a54156315b8a30937cf9": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "da629432b61aa80540da8a53bb4c48698d6fb589",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/medical-device-software-compliance/SKILL.md",
+      "terms": [
+        "ai",
+        "analysis",
+        "assessment",
+        "compliance",
+        "control",
+        "cybersecurity",
+        "design",
+        "file",
+        "management",
+        "market",
+        "ml",
+        "review",
+        "software",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-a546fe0efa61d202506b": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "git_blob_sha": "d87df28e7d8abb4e57ecc6e47d71c274d16054c7",
@@ -42504,21 +42415,6 @@
       ],
       "verified_at_commit": "0d60658e34d07c05a5cd0514d3e64ccd653e8539"
     },
-    "GASL-SRC-a71a36029931c9b24d06": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "88d6ecedf7d0766f093c667ec1663e1d40f2c3a4",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/variant-calling/SKILL.md",
-      "terms": [
-        "calling",
-        "data",
-        "pipeline",
-        "read",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-a73a40d575491c67909e": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "ba2476200d292552f1d859a9ba51da0b37b1c926",
@@ -42915,6 +42811,30 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-a8d6daa50af063c51fbd": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "ef51ea5f4e2789b4168143f56f3fa07f510d4f93",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/pa-decision-automation/SKILL.md",
+      "terms": [
+        "analysis",
+        "analyze",
+        "auth",
+        "authorization",
+        "automation",
+        "build",
+        "data",
+        "engine",
+        "mining",
+        "ml",
+        "pipeline",
+        "use",
+        "user",
+        "workflow",
+        "workflows"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-a8e6cdee6e1612ce41f1": {
       "commit_sha": "ecdeca6f760b56bb1b11c0a7c961f11b69cb87d5",
       "git_blob_sha": "3a66d11d25b490b91414d214f48b2220bfeeb080",
@@ -43248,6 +43168,19 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
+    "GASL-SRC-a9cbae4f2233d919f8f3": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "9af151b68040ce84ac9c6a329bb3e32b03e42514",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/hedis-measure-specification/SKILL.md",
+      "terms": [
+        "audit",
+        "continuous",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-a9cf2cfda46cb89b6d8d": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "14d19b7dda9de98e7a911146087b038c11df0cce",
@@ -43491,19 +43424,6 @@
         "react"
       ],
       "verified_at_commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62"
-    },
-    "GASL-SRC-aae9e295d1b64945e8d1": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "9af151b68040ce84ac9c6a329bb3e32b03e42514",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/hedis-measure-specification/SKILL.md",
-      "terms": [
-        "audit",
-        "continuous",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-ab0065ecfe959a05c3d8": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -44151,21 +44071,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-ade5a1b8a78c2fce7c35": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "1d68de6c9cc176f80d5adc2973d30f68781cf99c",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/cdisc-compliance/SKILL.md",
-      "terms": [
-        "compliance",
-        "data",
-        "design",
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-aded550cdde4ec0e02b1": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "d3667edbe5c9f8aedfcec06fd1ce57a2b3f3b1fb",
@@ -44257,24 +44162,6 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-ae5349661e536cfb06e2": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "5c30c72b24d7a08090cbe5678c12547d6ff6223c",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/imaging-study-design/SKILL.md",
-      "terms": [
-        "analysis",
-        "design",
-        "pipeline",
-        "site",
-        "strategy",
-        "study",
-        "test",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-ae61230bef4ee030af0b": {
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
@@ -48080,6 +47967,21 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-bc7d4a5a51a5a34ba499": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "91e2bca8d0b184200846d6d8b2a6555a714dd715",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/slack/SKILL.md",
+      "terms": [
+        "automation",
+        "data",
+        "search",
+        "task",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-bc860837a0bb10546147": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "88b5ec71339fd00eb527233ed942eb92057f620f",
@@ -49249,21 +49151,6 @@
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
     },
-    "GASL-SRC-c1f1ee69e17ce01dea79": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "b0def2403d231986484b0a0b4bab8d1790f27b1a",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/derive-client/SKILL.md",
-      "terms": [
-        "api",
-        "build",
-        "file",
-        "site",
-        "use",
-        "website"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-c1f4c18ac70eccea3b3a": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "974129394ec77bb66d01adb2bfd90e99b767a0b0",
@@ -49477,25 +49364,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-c320f986b8d6f9e685b0": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "4080c026f8c88c61be9df1cce0bfb662cf66b74d",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/multi-omics-pipeline/SKILL.md",
-      "terms": [
-        "analysis",
-        "build",
-        "code",
-        "data",
-        "etl",
-        "integration",
-        "pipeline",
-        "python",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-c32fd0d67f8d0956cd20": {
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "git_blob_sha": "c938b948a94fc7fa1ff62faaf6ecb020cc291b7a",
@@ -49583,6 +49451,16 @@
         "use"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-c38a3f34655463918ed2": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "ca7bd83dd3c699a23f9bf752716218befad385d2",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/molecular-docking/SKILL.md",
+      "terms": [
+        "pipeline"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-c39a0691459094eadca9": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -50336,26 +50214,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-c6470a0d2e887a5e0109": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "3898524bb789f736b71cc7b6fc83a271283b7db7",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/aws-genai-ml-architect/SKILL.md",
-      "terms": [
-        "aws",
-        "cloud",
-        "compliance",
-        "design",
-        "inference",
-        "literature",
-        "ml",
-        "optimize",
-        "rag",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-c66656fab83d625bdebc": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "6301cc45f7fad6391ad53e7939ecf048caab9444",
@@ -50629,6 +50487,24 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-c722cf70e34e85706a35": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "5c30c72b24d7a08090cbe5678c12547d6ff6223c",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/imaging-study-design/SKILL.md",
+      "terms": [
+        "analysis",
+        "design",
+        "pipeline",
+        "site",
+        "strategy",
+        "study",
+        "test",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-c75458b8a88a949d000f": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "2ef0d2db9110fb13b87d9b0e169b167446fddf7e",
@@ -50643,6 +50519,21 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-c75ea38499bff5b7aadf": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "b0def2403d231986484b0a0b4bab8d1790f27b1a",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/derive-client/SKILL.md",
+      "terms": [
+        "api",
+        "build",
+        "file",
+        "site",
+        "use",
+        "website"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-c776159d19208cefa114": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -50662,6 +50553,17 @@
         "workflows"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-c78e7236aef54bce1e8d": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "3a973a5c958ba88169dd00d5077fecc0793fc8b8",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/dicom-processing/SKILL.md",
+      "terms": [
+        "image",
+        "pipeline"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-c7a4c336587561566d72": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -51310,23 +51212,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-caa07d92afe4633b54d9": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "6fa1dcef92fa6644fbccfd8f61b5514ec1720d15",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/claims-billing-rules/SKILL.md",
-      "terms": [
-        "audit",
-        "code",
-        "coding",
-        "compliance",
-        "edit",
-        "investigation",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-caa2615b08a5c9e0d178": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
       "git_blob_sha": "e1762dfb7feaa73a99e326eb30c3666727e7b33a",
@@ -51940,22 +51825,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-cd2f639727ab574f3c03": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "7003e4dc9896903f975e8f7ff4cdfa182b5ddfa3",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/rwd-cohort-analysis/SKILL.md",
-      "terms": [
-        "analysis",
-        "data",
-        "metrics",
-        "model",
-        "pipeline",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
-    },
     "GASL-SRC-cd3739697fb5bee99369": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "766ade82e8ef74d151d353db15bb5b48ef8fec56",
@@ -52258,6 +52127,20 @@
         "user"
       ],
       "verified_at_commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba"
+    },
+    "GASL-SRC-ce63f1c86ebaf541eb2c": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "b618a109f2eaceb7a3636ed8c0b34b253bbc61a7",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/cheminformatics/SKILL.md",
+      "terms": [
+        "analysis",
+        "pipeline",
+        "process",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-ce63f7c2cd714cbe01cd": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -52793,6 +52676,22 @@
         "use"
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
+    },
+    "GASL-SRC-d120e66aeb3e0adaa624": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "4190f3b73021f2b4db4a657748cc8ca827298916",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/structure-based-drug-design/SKILL.md",
+      "terms": [
+        "design",
+        "function",
+        "optimization",
+        "site",
+        "strategy",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-d1244434db5cbf676dc6": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -53749,6 +53648,21 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-d442395f87c53e76681b": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "e5a989ede222446bd944069c871303db83d91b2f",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/roda-open-data/SKILL.md",
+      "terms": [
+        "access",
+        "aws",
+        "data",
+        "search",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-d4462d8aaa14d398f35c": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "fe10c24905fe6db172fef87f49064afb6f835d54",
@@ -53814,30 +53728,6 @@
         "web"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-d49d649b6894cce9fb08": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "ef51ea5f4e2789b4168143f56f3fa07f510d4f93",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/pa-decision-automation/SKILL.md",
-      "terms": [
-        "analysis",
-        "analyze",
-        "auth",
-        "authorization",
-        "automation",
-        "build",
-        "data",
-        "engine",
-        "mining",
-        "ml",
-        "pipeline",
-        "use",
-        "user",
-        "workflow",
-        "workflows"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-d49d851f63238b5ce1c3": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -55102,6 +54992,21 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
+    "GASL-SRC-d96af8a8f39c350efcf7": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "5d0e48a62d41320d2ee12fc72fb8bd2496649e95",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/ngs-quality-control/SKILL.md",
+      "terms": [
+        "analysis",
+        "control",
+        "data",
+        "metrics",
+        "pipeline",
+        "read"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-d9764580c088c42c7549": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "5bc6f5c5a894507b7f89d0d96edc57927780c690",
@@ -55538,6 +55443,22 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-daf1e65e64b2c3776a1a": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "7003e4dc9896903f975e8f7ff4cdfa182b5ddfa3",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/rwd-cohort-analysis/SKILL.md",
+      "terms": [
+        "analysis",
+        "data",
+        "metrics",
+        "model",
+        "pipeline",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-daf6a8b21f1792e09e6f": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
       "git_blob_sha": "339d2068d6f2c447622fb5a99c173a1b9ae47146",
@@ -55586,17 +55507,6 @@
         "use"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
-    },
-    "GASL-SRC-db1828353e875fb00da3": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "3a973a5c958ba88169dd00d5077fecc0793fc8b8",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/dicom-processing/SKILL.md",
-      "terms": [
-        "image",
-        "pipeline"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-db1b2b6e2a157f07e8cd": {
       "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
@@ -55652,6 +55562,26 @@
         "visual"
       ],
       "verified_at_commit": "b49177d32788f2dc585c42831d845dacf1ebed2c"
+    },
+    "GASL-SRC-db3a80fe4bd13944d369": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "3898524bb789f736b71cc7b6fc83a271283b7db7",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/aws-genai-ml-architect/SKILL.md",
+      "terms": [
+        "aws",
+        "cloud",
+        "compliance",
+        "design",
+        "inference",
+        "literature",
+        "ml",
+        "optimize",
+        "rag",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-db4197da7113d74a47bb": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -56129,23 +56059,6 @@
       "source_path": "shopify-polaris-admin-extensions/SKILL.md",
       "terms": [],
       "verified_at_commit": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe"
-    },
-    "GASL-SRC-dcd6b62b0726f97cba87": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "421f695257f9a4084ec801ad6384250b80638e59",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/agentcore/SKILL.md",
-      "terms": [
-        "agent",
-        "automation",
-        "aws",
-        "cloud",
-        "infrastructure",
-        "task",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
     },
     "GASL-SRC-dcdc04fa70a981af865f": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -56636,16 +56549,6 @@
         "use"
       ],
       "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
-    "GASL-SRC-df0d088bb875f2f8bc63": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "ca7bd83dd3c699a23f9bf752716218befad385d2",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/molecular-docking/SKILL.md",
-      "terms": [
-        "pipeline"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-df1dc9b1cab75e5d3109": {
       "commit_sha": "1afc2f7cb96363c861b3cf22f4b8cc882f513318",
@@ -57235,32 +57138,6 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
-    },
-    "GASL-SRC-e163d1579bb80a363ce4": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "75ad6a4a6d8aaacbddf0aeead99963abdbf7b1a3",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/core/SKILL.md",
-      "terms": [
-        "agent",
-        "app",
-        "auth",
-        "content",
-        "data",
-        "form",
-        "pages",
-        "read",
-        "site",
-        "task",
-        "test",
-        "type",
-        "use",
-        "user",
-        "web",
-        "website",
-        "workflow"
-      ],
-      "verified_at_commit": "d2dfc782ccdd79d25a9b4f0acced9321789cecb8"
     },
     "GASL-SRC-e165abeeaacb4a25befb": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -58281,22 +58158,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-e54efbc605fae2c26281": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "16b442f74d25292066edf116caa4e4664dd9b9dd",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/modern-web-guidance/SKILL.md",
-      "terms": [
-        "agent",
-        "build",
-        "code",
-        "frontend",
-        "ui",
-        "use",
-        "web"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-e5522bad631e849e36c7": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "6ae2529c6b4e6b55d7594fa294ebb6b55fb68b97",
@@ -58761,6 +58622,40 @@
         "user"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-e6d13ba600be617dd502": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "c0f8afa88ee556872638e8a1512d8f85068435c3",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/trajectory-analysis/SKILL.md",
+      "terms": [
+        "analysis",
+        "development",
+        "inference",
+        "pipeline",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
+    "GASL-SRC-e6dd99bbd2d95e102e44": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "abe4987f273941df53813554f958904434cb663b",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/risk-adjustment-strategy/SKILL.md",
+      "terms": [
+        "audit",
+        "chart",
+        "coding",
+        "documentation",
+        "model",
+        "revenue",
+        "review",
+        "strategy",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-e6e3189c59b99ca5c141": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -59518,6 +59413,19 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-e9e6f42d086f73152c11": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "868f709cea4da40ea52c739d687e9b7821ce5bd2",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/coordination-of-benefits/SKILL.md",
+      "terms": [
+        "revenue",
+        "use",
+        "user",
+        "workers"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-e9eddc48866053e7d68a": {
       "commit_sha": "581553b531e8fcc0328b25aed3471baf3021c6bc",
@@ -60288,6 +60196,21 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-ec62c7b773a3ab1fd491": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "1d68de6c9cc176f80d5adc2973d30f68781cf99c",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/cdisc-compliance/SKILL.md",
+      "terms": [
+        "compliance",
+        "data",
+        "design",
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-ec84fa59df654594b822": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "54e2d9981439307d6eb30f712188a2fb563413ae",
@@ -60607,6 +60530,34 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-ed7ef7821d4fb0c40b90": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "eeb4ad5241a541e9268539e7a484f2d06b16cf25",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/quality-measures/SKILL.md",
+      "terms": [
+        "analysis",
+        "build",
+        "continuous",
+        "data",
+        "pipeline",
+        "sql",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
+    "GASL-SRC-ed834ccb704508bcb043": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "51bd96ebe0de53c9f4e92c8b73f431118aabe14e",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/protein-structure-analysis/SKILL.md",
+      "terms": [
+        "analysis",
+        "pipeline"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-ed952cc8ab71e179282a": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -61102,25 +61053,6 @@
       ],
       "verified_at_commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba"
     },
-    "GASL-SRC-f02d0917241087d9d327": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "084e34d1fbdb877ca4e96c1203c9caf43119d53a",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": ".agents/skills/technical-writer/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "code",
-        "developer",
-        "documentation",
-        "edit",
-        "integration",
-        "review",
-        "use",
-        "write"
-      ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
-    },
     "GASL-SRC-f02ddeca02c38156d6ab": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "0700c05e71cebc046620e22e171406a95d2ba18e",
@@ -61279,6 +61211,24 @@
         "use"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
+    },
+    "GASL-SRC-f09386e5047cd4a3ace8": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "8dc651c20e418ff2e1b140ac6bdf38724d023b78",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/biomarker-discovery/SKILL.md",
+      "terms": [
+        "analysis",
+        "data",
+        "design",
+        "develop",
+        "integration",
+        "metrics",
+        "study",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-f09e8fcbee46ff72bf8e": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -62160,6 +62110,24 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-f4264f284943d3c31094": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "89d6392a8ba18cfac7ab2f479bc894401c8366bb",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/edc-data-validation/SKILL.md",
+      "terms": [
+        "build",
+        "code",
+        "data",
+        "edit",
+        "pipeline",
+        "review",
+        "use",
+        "user",
+        "verification"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
+    },
     "GASL-SRC-f450cb57293ebac39862": {
       "commit_sha": "b110b2f8e9eb1f287892f937050dfd40af862cbb",
       "git_blob_sha": "90b851d8369b505e136ba49ae7db21413a262543",
@@ -62815,6 +62783,25 @@
       ],
       "verified_at_commit": "a192894723a8f47e7f504c7b5041967ff1f18e55"
     },
+    "GASL-SRC-f70fd3baf2469b41f546": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "463559e4da5b576e475dcd6b927a63b798a9c83a",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/webmcp-gen/SKILL.md",
+      "terms": [
+        "agent",
+        "automation",
+        "build",
+        "create",
+        "js",
+        "site",
+        "tools",
+        "use",
+        "web",
+        "workflows"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-f712d32c45ef849f60ef": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "ca6ff32a95465ff964e8e2a2fe97e729286fbda0",
@@ -63271,6 +63258,23 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-f8c2bc767e947e5395d3": {
+      "commit_sha": "e0d56f21bb81a7e72c6ea8550de00e091d2668ac",
+      "git_blob_sha": "421f695257f9a4084ec801ad6384250b80638e59",
+      "repository": "vercel-labs/agent-browser",
+      "source_path": "skill-data/agentcore/SKILL.md",
+      "terms": [
+        "agent",
+        "automation",
+        "aws",
+        "cloud",
+        "infrastructure",
+        "task",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+    },
     "GASL-SRC-f8c502eb53243873013e": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "c5618c53ef11a5e392f02dddc4e70501df1b3297",
@@ -63667,23 +63671,24 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-f9e79a39f7aa8044eafc": {
-      "commit_sha": "c091f702a731499070f32f2f3136c5bcb8b0e60f",
-      "git_blob_sha": "2befb29403376d119aa74224592f8ca90534b511",
-      "repository": "vercel-labs/agent-browser",
-      "source_path": "skill-data/vercel-sandbox/SKILL.md",
+    "GASL-SRC-fa09e4ba0e50f8038595": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "2671ec7525e81330270b7d129a12bb1d4fca8975",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/risk-adjustment/SKILL.md",
       "terms": [
-        "agent",
-        "app",
-        "automation",
-        "js",
-        "next",
-        "persistent",
-        "task",
+        "build",
+        "code",
+        "coding",
+        "data",
+        "pipeline",
+        "project",
+        "python",
+        "sql",
         "use",
         "user"
       ],
-      "verified_at_commit": "4605d82cfc20dbd051f57a631b5b7130e32141a5"
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-fa0e624a6a9a073310aa": {
       "commit_sha": "22afb84b8e1afc7bf13dd8854c452fd0a747a01a",
@@ -64235,25 +64240,6 @@
         "user"
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
-    },
-    "GASL-SRC-fbf86f0bd1ca462c89c8": {
-      "commit_sha": "a4826bd6793a8522aab3f5f0410ef527b910cb7f",
-      "git_blob_sha": "abe4987f273941df53813554f958904434cb663b",
-      "repository": "awslabs/hcls-agent-skills",
-      "source_path": "skills/risk-adjustment-strategy/SKILL.md",
-      "terms": [
-        "audit",
-        "chart",
-        "coding",
-        "documentation",
-        "model",
-        "revenue",
-        "review",
-        "strategy",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-fc0f5cdf33ea8b3b8c75": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -65059,6 +65045,21 @@
         "use"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
+    },
+    "GASL-SRC-fecdb4d0c69d10dd6e90": {
+      "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
+      "git_blob_sha": "88d6ecedf7d0766f093c667ec1663e1d40f2c3a4",
+      "repository": "awslabs/hcls-agent-skills",
+      "source_path": "skills/variant-calling/SKILL.md",
+      "terms": [
+        "calling",
+        "data",
+        "pipeline",
+        "read",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
     "GASL-SRC-fed4e52e0cbddfb90580": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
