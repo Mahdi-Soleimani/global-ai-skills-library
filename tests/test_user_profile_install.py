@@ -37,6 +37,7 @@ class UserProfileInstallTests(unittest.TestCase):
         self.profile.mkdir()
         if os.name == "nt":
             sid = windows_profile.current_profile()["sid"]
+            self.sid = sid
             removed = subprocess.run(
                 ["icacls", str(self.profile), "/inheritance:r"],
                 capture_output=True, text=True,
