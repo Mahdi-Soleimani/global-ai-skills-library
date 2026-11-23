@@ -72,3 +72,13 @@ No protection against a hostile process that ignores the advisory lock and mutat
 ## Next slice
 
 Add safe **replace/upgrade** of an existing Skill with explicit separate per-action consent, immutable backup of the previous directory, and restoration after interruption, tested under forced failures. After that, make account/user-scope deployment an independent, explicit feature with unambiguous target-role validation and opt-in. Do not weaken preflight, execution or license-review boundaries to achieve automatic activation.
+
+## GitHub publication and independently observed CI results
+
+- Feature commit [`c61681d6e34c`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/c61681d6e34c68bacd6cadba319b2be179cb5140) was pushed to `main` after an eight-file staged change review, whitespace checks, and a sensitive-pattern scan with zero matches. No private ZIP, real Codex profile, local Skill payload, credential or personal path was included.
+- [Private ZIP + project installer safety — run `45181941968`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45181941968): **completed / SUCCESS**. Synthetic package and recovery regressions, ZIP integrity and no private ZIP export checks passed on Ubuntu.
+- [Real Codex fixture lifecycle — run `45181942150`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45181942150): **completed / SUCCESS**. Crucially, the dedicated `Exercise real project installer + Codex discovery in disposable Git repo` step passed. This was a synthetic, inert file-only Skill installed into a freshly created disposable Git project; the real Codex App Server observed it, and confirmed absence after uninstall. It was not an install into any user-owned project.
+- [Daily catalog refresh and full regression — run `45181942126`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45181942126): **completed / SUCCESS**. The full dependency-equipped Python suite logged **479 passed**. Source discovery continued to report **57 repositories** and **4,431 source records**. Metadata refresh was published through an automated metadata-only commit.
+- Source-refresh commit [`5990f6e`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/5990f6e) was fetched and safely fast-forwarded into the local `main` with no force push or working tree conflict.
+
+**Final Phase 40 acceptance:** First opt-in, project-only **fresh** Codex Skill install/uninstall/recovery is implemented and verified through real filesystem operations and actual Codex discovery in disposable environments. Existing-Skill replacement/backup, user HOME scope, unattended installation, and executing downloaded content remain expressly out of scope.
