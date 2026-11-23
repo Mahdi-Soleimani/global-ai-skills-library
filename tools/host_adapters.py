@@ -85,9 +85,10 @@ def list_host_adapters():
                 'POSIX': ['project', 'user'],
                 'Windows': ['project'],
             },
-            # Filesystem transactions verified only with inert disposable
-            # Windows-runner projects; no live Agent discovery or HOME writes.
+            # Windows User Profile remains disabled until its native SID/ACL
+            # and disposable transaction CI is green.
             'windows_native_project_fixture_verified': True,
+            'windows_native_user_profile_security_verified': False,
             'windows_live_host_discovery_verified': False,
             'windows_user_profile_installer_enabled': False,
             'real_installation_requires_local_tty': True,

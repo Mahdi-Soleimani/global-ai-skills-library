@@ -224,6 +224,14 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 54: Windows current-user Profile SID and ACL security (native CI pending)
+
+The current-user Profile transaction engine is being extended to Windows without changing the existing POSIX UID/passwd checks. A new standard-library Win32 adapter reads the current process token SID and GetUserProfileDirectoryW, matches it against USERPROFILE and Path.home(), rejects elevated, restricted, AppContainer, service and impersonated-thread contexts, and verifies actual NTFS owner/DACL ACEs. It rejects reparse points in all path components, untrusted write ACEs, hard-link aliases, unknown ACL entry types and unstable profile identity.
+
+Windows User Profile uses the same staged transaction, backup, restore, archived uninstall/reinstall and crash-recovery logic with the cross-platform msvcrt file lock. ACLs are checked recursively for the state records, active Skills, staging and retained backups. Windows directory fsync/power-loss durability is not claimed.
+
+**The production Windows User Profile path remains disabled until native Windows CI passes.** Only the dedicated disposable Windows workflow sets GASL_ENABLE_WINDOWS_USER_PROFILE_CI=1 to exercise fake temporary HOME roots and read-only current-profile inspection. The workflow now tests native token/SID, ACL, Everyone-write refusal, NTFS Junctions, hard-link aliases, impersonation refusal and the full fake-profile transaction lifecycle. No real Agent profile is written. See [Phase 54 report](docs/reports/PHASE-54-WINDOWS-USER-PROFILE-SID-ACL-2026-11-23.md).
+
 ### Phase 53: Native Windows project-scope Skill transactions
 
 GASL now supports **Windows-native, write-capable project-scope Skill transactions** for Codex, Cursor and Claude Code in explicitly selected existing Git project roots. The engine uses the same verified pinned private ZIP and host-target preflight as the POSIX installers, with a Windows file-range lock based on Python msvcrt. Staging, ownership receipts, journals, complete backup, restore, archived uninstall/reinstall and fail-closed recovery are retained.
@@ -242,9 +250,9 @@ The cross-platform file lock uses POSIX flock on macOS/Linux and msvcrt.locking 
 
 **Native verification:** [Windows GitHub Actions Run 45254049109](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45254049109) passed **15 Windows-native transaction tests plus 57 existing safety/adapter tests**. Two earlier failed runs exposed and prompted fixes for portable source metadata and canonical file ordering; no integrity checks were bypassed.
 
-**Scope boundary:** Windows currently supports *project installation only*. Windows User Profile writes remain blocked until OS account SID and filesystem ACL ownership checks are independently implemented. Windows GitHub Actions tests use only inert packages and disposable Git projects, never user Agent profiles. Real-user/manual tests are deferred. See [Phase 53 report](docs/reports/PHASE-53-WINDOWS-PROJECT-SKILL-TRANSACTIONS-2026-11-23.md).
+**Scope boundary:** Windows currently supports *project installation only*. The Windows User Profile SID/ACL implementation is tracked separately in Phase 54 and remains gated until its native Windows CI passes. Windows GitHub Actions tests use only inert packages and disposable roots, never real Agent installations or third-party Skill execution. See [Phase 53 report](docs/reports/PHASE-53-WINDOWS-PROJECT-SKILL-TRANSACTIONS-2026-11-23.md).
 
-### Phase 52: Current-user Profile installation, backup and recovery (POSIX only)
+### Phase 52: Current-user Profile installation, backup and recovery (POSIX; Windows extension pending Phase 54 CI)
 
 GASL now supports explicit, local TTY-only **user-wide Skill installation** for Codex, Cursor and Claude Code. These operations affect all local projects under the *current OS account's actual HOME*: Codex uses ~/.agents/skills/, Cursor ~/.cursor/skills/, and Claude Code ~/.claude/skills/. Ownership receipts, backup manifests, pending transaction journals and uninstall markers live separately under ~/.gasl-managed/user/hosts/HOST/.
 
@@ -266,7 +274,7 @@ The user-wide transaction engine provides fresh installation, replacement of unm
 
     ./gasl user-profile-install --help
 
-**Verification boundary:** these write-capable paths are tested only with inert Skill packages and synthetic disposable HOME roots. No actual user profile was modified, no third-party Skill was executed, and no new live Cursor/Claude Host discovery claim is made. Windows, runtime sandbox, independent publisher identity verification and a user-selected GASL project License remain separate. See [Phase 52 report](docs/reports/PHASE-52-USER-PROFILE-TRANSACTIONAL-AGENT-SKILLS-2026-11-23.md).
+**Verification boundary:** these write-capable paths are tested only with inert Skill packages and synthetic disposable HOME roots. No actual user profile was modified, no third-party Skill was executed, and no new live Cursor/Claude Host discovery claim is made. Windows User Profile security is being implemented separately in Phase 54 and remains gated until native CI acceptance. Runtime sandbox, independent publisher identity verification and a user-selected GASL project License remain separate. See [Phase 52 report](docs/reports/PHASE-52-USER-PROFILE-TRANSACTIONAL-AGENT-SKILLS-2026-11-23.md).
 
 ### Phase 51: Real Cursor and Claude Code project Skill transactions (POSIX only)
 

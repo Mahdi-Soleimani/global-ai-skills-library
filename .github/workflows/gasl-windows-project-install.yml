@@ -1,10 +1,13 @@
-name: GASL — Windows native project Skill transactions
+name: GASL — Windows native project and user-profile Skill transactions
 
 on:
   push:
     branches: [main]
     paths:
       - tools/transaction_file_lock.py
+      - tools/windows_user_profile.py
+      - tools/user_profile_install.py
+      - tools/user_profile_wizard.py
       - tools/host_project_install.py
       - tools/host_project_wizard.py
       - tools/host_target_preflight.py
@@ -14,11 +17,16 @@ on:
       - tools/host_adapters.py
       - tools/gasl.py
       - tests/test_windows_project_transactions.py
+      - tests/test_windows_user_profile.py
+      - tests/test_user_profile_install.py
       - tests/test_host_adapters.py
       - .github/workflows/gasl-windows-project-install.yml
   pull_request:
     paths:
       - tools/transaction_file_lock.py
+      - tools/windows_user_profile.py
+      - tools/user_profile_install.py
+      - tools/user_profile_wizard.py
       - tools/host_project_install.py
       - tools/host_project_wizard.py
       - tools/host_target_preflight.py
@@ -28,6 +36,8 @@ on:
       - tools/host_adapters.py
       - tools/gasl.py
       - tests/test_windows_project_transactions.py
+      - tests/test_windows_user_profile.py
+      - tests/test_user_profile_install.py
       - tests/test_host_adapters.py
       - .github/workflows/gasl-windows-project-install.yml
   workflow_dispatch:
@@ -37,9 +47,11 @@ permissions:
 
 jobs:
   native-windows:
-    name: Native Windows disposable Git fixture transactions
+    name: Native Windows project and current-user profile transactions
     runs-on: windows-latest
     timeout-minutes: 12
+    env:
+      GASL_ENABLE_WINDOWS_USER_PROFILE_CI: '1'
     steps:
       - name: Checkout repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
@@ -62,6 +74,18 @@ jobs:
         run: |
           python -m unittest tests.test_windows_project_transactions -v
           if ($LASTEXITCODE -ne 0) { throw 'Windows transaction safety test failed' }
+
+      - name: Native Windows current-user SID, profile and NTFS ACL tests
+        shell: pwsh
+        run: |
+          python -m unittest tests.test_windows_user_profile -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows token, profile or ACL security test failed' }
+
+      - name: User Profile transaction lifecycle on disposable fake HOME roots
+        shell: pwsh
+        run: |
+          python -m unittest tests.test_user_profile_install -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows User Profile transaction regression failed' }
 
       - name: Existing metadata and private bundle tests on Windows
         shell: pwsh

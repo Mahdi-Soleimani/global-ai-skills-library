@@ -5,7 +5,9 @@ _root validation is tested separately and NEVER permits actual HOME writes.
 """
 import hashlib
 import json
+import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -233,10 +235,18 @@ class UserProfileInstallTests(unittest.TestCase):
         outside.mkdir()
         dest=self._path(host)
         dest.parent.mkdir(parents=True)
-        dest.symlink_to(outside)
+        if os.name == "nt":
+            result=subprocess.run(["cmd","/c","mklink","/J",str(dest),str(outside)],
+                                  capture_output=True,text=True)
+            if result.returncode:
+                self.skipTest("Runner does not permit disposable NTFS Junction creation")
+        else:
+            dest.symlink_to(outside)
         with self.assertRaises(ValueError):
             self._preview(host,plan)
         self.assertEqual(list(outside.iterdir()),[])
+        if os.name == "nt":
+            dest.rmdir()
 
     def test_crash_before_receipt_rolls_back_only_exact_bytes(self):
         host="codex"
@@ -311,6 +321,7 @@ class UserProfileInstallTests(unittest.TestCase):
         self.assertTrue(new_target.is_dir())
         self.assertTrue(self._path(host).is_dir())
 
+    @unittest.skipIf(os.name == "nt", "Windows binds profile identity to token SID, not POSIX UID")
     def test_profile_uid_drift_invalidates_receipt(self):
         host="codex"
         plan=self._package(host)
@@ -323,12 +334,13 @@ class UserProfileInstallTests(unittest.TestCase):
 
     def test_real_root_gate_refuses_fake_home_and_never_writes_real_home(self):
         with patch("user_profile_install._root",new=REAL_PROFILE_ROOT_CHECK):
-            with self.assertRaisesRegex(ValueError,"(current OS account HOME|Refusing root)"):
+            with self.assertRaisesRegex(ValueError,"(current OS account HOME|Refusing root|current Windows token profile|elevated Windows token)"):
                 up._root(self.profile)
         self.assertFalse((self.profile/".agents").exists())
         self.assertFalse((self.profile/".cursor").exists())
 
 
+    @unittest.skipIf(os.name == "nt", "Windows checks native DACL ACEs, not chmod mode bits")
     def test_world_writable_profile_state_refused_without_changes(self):
         host="cursor"
         plan=self._package(host)
@@ -343,6 +355,7 @@ class UserProfileInstallTests(unittest.TestCase):
             state.chmod(original_mode)
         self.assertFalse(self._path(host).exists())
 
+    @unittest.skipIf(os.name == "nt", "Windows checks native DACL ACEs, not chmod mode bits")
     def test_world_writable_agent_directory_refused(self):
         host="claude-code"
         plan=self._package(host)
@@ -416,7 +429,7 @@ class UserProfileInstallTests(unittest.TestCase):
         import os
         with patch("user_profile_install._root",new=REAL_PROFILE_ROOT_CHECK):
             with patch.dict(os.environ,{"HOME":str(self.profile)}):
-                with self.assertRaisesRegex(ValueError,"current OS account HOME"):
+                with self.assertRaisesRegex(ValueError,"(current OS account HOME|current Windows token profile)"):
                     up._root(self.profile)
         self.assertFalse((self.profile/".agents").exists())
 

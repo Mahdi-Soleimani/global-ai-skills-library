@@ -31,6 +31,7 @@ class HostAdapterTests(unittest.TestCase):
         self.assertEqual(matrix['real_installation_platform_scopes']['POSIX'],
                          ['project','user'])
         self.assertTrue(matrix['windows_native_project_fixture_verified'])
+        self.assertFalse(matrix['windows_native_user_profile_security_verified'])
         self.assertFalse(matrix['windows_live_host_discovery_verified'])
         self.assertFalse(matrix['windows_user_profile_installer_enabled'])
         self.assertTrue(matrix['real_installation_requires_local_tty'])

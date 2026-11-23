@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Phase 52: isolated POSIX user-profile Skill transactions for Codex, Cursor and Claude Code.
+"""Phase 54: isolated cross-platform current-user profile Skill transactions.
 
 The verified ZIP reader / host format / target preflight are shared with the
 Codex engine. All mutable GASL records are host-isolated. Third-party Skills
-are never executed. Only the explicitly selected current OS account
-HOME may be modified after exact local TTY approval.
+are never executed. Only the explicitly selected current OS account HOME may be modified after
+exact local TTY approval. POSIX validates UID/passwd/mode; Windows validates
+the process-token SID, GetUserProfileDirectoryW, non-elevated token and native
+owner/DACL ACEs before any profile write.
 """
 import contextlib
 import hashlib
@@ -17,7 +19,7 @@ from pathlib import Path
 try:
     import pwd
 except ImportError:
-    pwd = None  # Windows remains explicitly unsupported.
+    pwd = None  # Windows uses its process token and native profile APIs.
 
 from codex_project_install import (
     _serialized, _sync, _new, _load, _mkdir_checked, _stage,
@@ -27,6 +29,7 @@ from fixture_bundle_install import _inventory, _read_bundle, _remove_verified_di
 from host_format_review import review_host_format
 from host_target_preflight import _explicit_root, _target_path, inspect_selected_target, verify_target_unchanged
 from skill_search import ROOT
+from transaction_file_lock import is_redirected, exclusive_lock_file, supported_platform
 
 HOSTS = ("codex", "cursor", "claude-code")
 SCHEMA = "gasl-profile-multihost-v1"
@@ -37,28 +40,72 @@ SLUG = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$")
 
 def _root(selected):
     """A User-scope write may select only the current OS user's real HOME."""
-    if os.name!="posix" or fcntl is None or pwd is None:
-        raise ValueError("User profile installer requires POSIX account and filesystem locking")
-    if os.getuid()==0 or os.geteuid()!=os.getuid():
+    if os.name == "nt":
+        if os.environ.get("GASL_ENABLE_WINDOWS_USER_PROFILE_CI") != "1":
+            raise ValueError("Windows User Profile is disabled pending native SID/ACL CI acceptance")
+        from windows_user_profile import (
+            current_profile, verify_owned_path, assert_no_reparse_components,
+        )
+        assert_no_reparse_components(Path(selected))
+        home = _explicit_root(selected)
+        current = current_profile()
+        if current["elevated"]:
+            raise ValueError("Refusing elevated Windows token for User Profile installation")
+        if os.path.normcase(str(home)) != os.path.normcase(str(current["profile"])):
+            raise ValueError("Selected profile must equal the current Windows token profile")
+        verify_owned_path(home, current["sid"], directory=True)
+        return home
+    if os.name != "posix" or fcntl is None or pwd is None:
+        raise ValueError("User profile installer requires a supported OS account and filesystem lock")
+    if os.getuid() == 0 or os.geteuid() != os.getuid():
         raise ValueError("Refusing root/elevated account installation")
-    home=_explicit_root(selected)
-    actual=Path(pwd.getpwuid(os.getuid()).pw_dir).resolve(strict=True)
-    exported=Path.home().resolve(strict=True)
-    if home!=actual or home!=exported:
+    home = _explicit_root(selected)
+    actual = Path(pwd.getpwuid(os.getuid()).pw_dir).resolve(strict=True)
+    exported = Path.home().resolve(strict=True)
+    if home != actual or home != exported:
         raise ValueError("Selected profile must equal current OS account HOME")
-    info=home.stat()
-    if info.st_uid!=os.getuid() or info.st_mode & 0o002:
+    info = home.stat()
+    if info.st_uid != os.getuid() or info.st_mode & 0o002:
         raise ValueError("Selected user profile ownership/permissions unsafe")
     return home
 
 
 def _profile_identity(profile):
-    profile=Path(profile).resolve(strict=True)
-    info=profile.stat()
+    profile = Path(profile).resolve(strict=True)
+    if os.name == "nt":
+        from windows_user_profile import profile_identity
+        return profile_identity(profile)
+    info = profile.stat()
     return hashlib.sha256(_serialized({
-        "uid":os.getuid(),"dev":info.st_dev,"inode":info.st_ino,
-        "home":str(profile),"scope":"user",
+        "uid": os.getuid(), "dev": info.st_dev, "inode": info.st_ino,
+        "home": str(profile), "scope": "user",
     })).hexdigest()
+
+
+def _windows_sid():
+    if os.name != "nt":
+        return None
+    from windows_user_profile import _token_identity
+    return _token_identity()["sid"]
+
+
+def _verify_windows_path(path, *, directory=None, sid=None):
+    if os.name == "nt":
+        from windows_user_profile import verify_owned_path
+        return verify_owned_path(path, sid or _windows_sid(), directory=directory)
+    return None
+
+
+def _verify_windows_tree(path):
+    if os.name == "nt":
+        from windows_user_profile import verify_owned_tree
+        return verify_owned_tree(path, _windows_sid())
+    return None
+
+
+def _write_record(path, data):
+    _new(path, data)
+    _verify_windows_path(path, directory=False)
 
 
 def _host(host):
@@ -74,6 +121,9 @@ def _paths(profile, host, slug):
     profile = _root(profile)
     target, relative = _target_path(profile, host, "user", slug)
     state = profile/".gasl-managed"/"user"/"hosts"/host
+    sid = _windows_sid() if os.name == "nt" else None
+    if sid is not None:
+        _verify_windows_path(profile, directory=True, sid=sid)
     checks = [
         profile/".gasl-managed", profile/".gasl-managed"/"user",
         profile/".gasl-managed"/"user"/"hosts",
@@ -81,19 +131,31 @@ def _paths(profile, host, slug):
         state/"backups", state/"backups"/slug, state/"uninstalled",
     ]
     for path in checks:
-        if path.is_symlink() or (path.exists() and not path.is_dir()):
+        if is_redirected(path) or (path.exists() and not path.is_dir()):
             raise ValueError("Unsafe GASL user-profile state directory")
         if path.exists():
-            info=path.stat()
-            if info.st_uid!=os.getuid() or info.st_mode & 0o002:
-                raise ValueError("User-profile state has unsafe owner/permissions")
+            if os.name == "nt":
+                _verify_windows_path(path, directory=True)
+            else:
+                info = path.stat()
+                if info.st_uid != os.getuid() or info.st_mode & 0o002:
+                    raise ValueError("User-profile state has unsafe owner/permissions")
     # Host-level ancestors are not under GASL's exclusive control; require
-    # current-user ownership before any future mutation of this profile.
-    for candidate in (target.parent.parent,target.parent):
+    # current-account ownership and safe Windows ACLs before modifying them.
+    for candidate in (target.parent.parent, target.parent):
         if candidate.exists():
-            info=candidate.stat()
-            if info.st_uid!=os.getuid() or info.st_mode & 0o002:
-                raise ValueError("Agent user Skill directory has unsafe owner/permissions")
+            if os.name == "nt":
+                _verify_windows_path(candidate, directory=True)
+            else:
+                info = candidate.stat()
+                if info.st_uid != os.getuid() or info.st_mode & 0o002:
+                    raise ValueError("Agent user Skill directory has unsafe owner/permissions")
+    # State records and backup contents are also owned data, not merely paths.
+    if os.name == "nt" and state.is_dir():
+        for entry in state.rglob("*"):
+            if is_redirected(entry) or not (entry.is_file() or entry.is_dir()):
+                raise ValueError("Unsafe Windows user-profile state entry")
+            _verify_windows_path(entry, directory=entry.is_dir(), sid=sid)
     return target, relative, state
 
 
@@ -182,6 +244,7 @@ def _history(state, host, slug, backup_ids, pending_backup_id=None):
             raise ValueError("Broken backup lineage")
         if _inventory(_backup(state, slug, backup_id)) != manifest["files"]:
             raise ValueError("Backup was modified or is incomplete")
+        _verify_windows_tree(_backup(state, slug, backup_id))
     # No unrecognized backup in this Skill's state folder can be silently adopted.
     parent = state/"backups"/slug
     if parent.is_dir():
@@ -227,7 +290,7 @@ def _read_state(profile, host, slug):
     receipt_path, journal_path, marker_path = (_receipt(state,slug),
                                                _journal(state,slug), _marker(state,slug))
     for path in (receipt_path, journal_path, marker_path):
-        if path.is_symlink():
+        if is_redirected(path):
             raise ValueError("Symlinked host transaction record")
     receipt = (_receipt_valid(_load(receipt_path),host,slug)
                if receipt_path.exists() else None)
@@ -242,8 +305,9 @@ def _read_state(profile, host, slug):
         raise ValueError("Active ownership and uninstall marker cannot coexist")
     if receipt is not None:
         _history(state,host,slug,receipt["backup_ids"])
-        if not target.is_dir() or target.is_symlink() or _inventory(target)!=receipt["files"]:
+        if not target.is_dir() or is_redirected(target) or _inventory(target)!=receipt["files"]:
             raise ValueError("Managed Skill contents changed; refuse to modify")
+        _verify_windows_tree(target)
     elif marker is None:
         parent=state/"backups"/slug
         if parent.is_dir() and any(parent.iterdir()):
@@ -288,13 +352,13 @@ def _preview_bundle(plan_id, profile, host, *, bundle_root=ROOT, lookup=None,
     if marker is not None:
         raise ValueError("Archived uninstalled Skill must be explicitly reinstated first")
     if replace:
-        if receipt is None or not target.is_dir() or target.is_symlink():
+        if receipt is None or not target.is_dir() or is_redirected(target):
             raise ValueError("Replacement requires an unmodified GASL-owned Skill")
         if receipt["plan_id"] == plan_id:
             raise ValueError("Pinned Skill version is already active")
         eligible=True
     else:
-        if (receipt is not None or target.exists() or target.is_symlink()):
+        if (receipt is not None or target.exists() or is_redirected(target)):
             raise ValueError("Fresh install requires an unoccupied target; no overwrite")
         eligible=True
     return {
@@ -323,24 +387,20 @@ def preview_replace(plan_id, profile, host, *, bundle_root=ROOT, lookup=None):
 
 @contextlib.contextmanager
 def _lock(profile, host, slug):
-    if fcntl is None:
-        raise ValueError("This real profile installer needs a POSIX filesystem")
-    target, _, state = _paths(profile,host,slug)
-    for path in (target.parent.parent,target.parent,profile/".gasl-managed",
+    if not supported_platform():
+        raise ValueError("User Profile transactions require POSIX or Windows file locking")
+    target, _, state = _paths(profile, host, slug)
+    for path in (target.parent.parent, target.parent, profile/".gasl-managed",
                  profile/".gasl-managed"/"user",
-                 profile/".gasl-managed"/"user"/"hosts",state,state/"receipts",state/"journals",
-                 state/"stage",state/"backups",state/"backups"/slug,state/"uninstalled"):
+                 profile/".gasl-managed"/"user"/"hosts", state, state/"receipts",
+                 state/"journals", state/"stage", state/"backups",
+                 state/"backups"/slug, state/"uninstalled"):
         _mkdir_checked(path)
-    lock=state/".lock"
-    if lock.is_symlink() or (lock.exists() and not lock.is_file()):
-        raise ValueError("Unsafe host transaction lock")
-    fd=os.open(str(lock), os.O_CREAT|os.O_RDWR|getattr(os,"O_NOFOLLOW",0),0o600)
-    with os.fdopen(fd,"a+b") as handle:
-        fcntl.flock(handle,fcntl.LOCK_EX)
-        try:
-            yield state
-        finally:
-            fcntl.flock(handle,fcntl.LOCK_UN)
+        _verify_windows_path(path, directory=True)
+    lock = state/".lock"
+    with exclusive_lock_file(lock):
+        _verify_windows_path(lock, directory=False)
+        yield state
 
 
 def _consent(text, reader=None):
@@ -376,12 +436,12 @@ def _write_journal(state,host,slug,operation,tx,new_receipt,previous_receipt,
           "old_files":old_files or [],"new_files":new_files or [],
           "selected_backup_id":selected_id,"marker":marker,
           "profile_identity":_profile_identity(state.parents[3])}
-    _new(_journal(state,slug),data)
+    _write_record(_journal(state,slug),data)
     return data
 
 
 def _store_receipt(state,slug,record):
-    _new(_receipt(state,slug),record)
+    _write_record(_receipt(state,slug),record)
 
 
 def _finish_journal(state,slug):
@@ -433,11 +493,12 @@ def _apply_bundle(plan_id,profile,host,binding,*,bundle_root,lookup,reader,repla
         stage=state/"stage"/tx
         backup_id=tx if replace else None
         for path in (stage,_backup(state,slug,tx),_manifest(state,slug,tx)):
-            if path.exists() or path.is_symlink():
+            if path.exists() or is_redirected(path):
                 raise ValueError("Transaction identifier collision")
         _stage(stage,rows)
         if _inventory(stage)!=inventory:
             raise ValueError("Staged pinned ZIP changed")
+        _verify_windows_tree(stage)
         if replace and _inventory(target)!=previous["files"]:
             raise ValueError("Managed Skill changed before replacement")
         ids=(previous["backup_ids"]+[tx]) if replace else []
@@ -451,13 +512,15 @@ def _apply_bundle(plan_id,profile,host,binding,*,bundle_root,lookup,reader,repla
             _sync(target.parent)
             if _inventory(_backup(state,slug,tx))!=previous["files"]:
                 raise ValueError("Previous Skill changed during archiving")
-            _new(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
-        if target.exists() or target.is_symlink():
+            _verify_windows_tree(_backup(state,slug,tx))
+            _write_record(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
+        if target.exists() or is_redirected(target):
             raise ValueError("Target occupied before activation")
         stage.rename(target)
         _sync(target.parent)
         if _inventory(target)!=inventory:
             raise ValueError("Installed files differ from verified ZIP")
+        _verify_windows_tree(target)
         if replace:
             # Remove only the previously checked ownership receipt.
             existing=_receipt_valid(_load(_receipt(state,slug)),host,slug)
@@ -533,7 +596,7 @@ def _preview_state(host,profile,slug,action,selected_id=None):
     elif action=="reinstall":
         if marker is None:
             raise ValueError("Reinstall requires retained GASL uninstall ownership")
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Archived reinstall target must be absent")
         if not TXID.fullmatch(str(selected_id)) or selected_id not in marker["backup_ids"]:
             raise ValueError("Reinstall requires a valid retained backup ID")
@@ -584,13 +647,14 @@ def restore(host,profile,slug,backup_id,binding,*,reader=None):
         selected,rows=_backup_copy_rows(state,host,slug,backup_id)
         tx=secrets.token_hex(16)
         saved=_backup(state,slug,tx)
-        if any(x.exists() or x.is_symlink() for x in
+        if any(x.exists() or is_redirected(x) for x in
                (saved,_manifest(state,slug,tx),state/"stage"/tx)):
             raise ValueError("Transaction ID collision")
         stage=state/"stage"/tx
         _stage(stage,rows)
         if _inventory(stage)!=selected["files"]:
             raise ValueError("Selected restored version staging mismatch")
+        _verify_windows_tree(stage)
         new=_new_receipt(host,slug,"restore",tx,
                          selected["previous_receipt"]["plan_id"],binding,
                          selected["files"],previous["backup_ids"]+[tx],
@@ -605,13 +669,15 @@ def restore(host,profile,slug,backup_id,binding,*,reader=None):
         _sync(target.parent)
         if _inventory(saved)!=previous["files"]:
             raise ValueError("Previous active version changed during backup")
-        _new(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
-        if target.exists() or target.is_symlink():
+        _verify_windows_tree(saved)
+        _write_record(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
+        if target.exists() or is_redirected(target):
             raise ValueError("Destination unexpectedly occupied during restoration")
         stage.rename(target)
         _sync(target.parent)
         if _inventory(target)!=selected["files"]:
             raise ValueError("Restored version differs from verified backup")
+        _verify_windows_tree(target)
         if _load(_receipt(state,slug))!=previous:
             raise ValueError("Active receipt changed during restore")
         _receipt(state,slug).unlink()
@@ -635,7 +701,7 @@ def uninstall(host,profile,slug,binding,*,reader=None):
         target,_,state,previous,_=_read_state(profile,host,slug)
         tx=secrets.token_hex(16)
         archived=_backup(state,slug,tx)
-        if any(x.exists() or x.is_symlink() for x in
+        if any(x.exists() or is_redirected(x) for x in
                (archived,_manifest(state,slug,tx))):
             raise ValueError("Backup ID collision")
         marker={
@@ -649,12 +715,14 @@ def uninstall(host,profile,slug,binding,*,reader=None):
                        backup_id=tx,old_files=previous["files"],marker=marker)
         if _inventory(target)!=previous["files"]:
             raise ValueError("Managed Skill changed immediately before archive")
+        _verify_windows_tree(target)
         target.rename(archived)
         _sync(target.parent)
         if _inventory(archived)!=previous["files"]:
             raise ValueError("Uninstall archive differs from previous files")
-        _new(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
-        _new(_marker(state,slug),marker)
+        _verify_windows_tree(archived)
+        _write_record(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
+        _write_record(_marker(state,slug),marker)
         if _load(_receipt(state,slug))!=previous:
             raise ValueError("Active ownership changed before uninstall commit")
         _receipt(state,slug).unlink()
@@ -677,12 +745,13 @@ def reinstall(host,profile,slug,backup_id,binding,*,reader=None):
         target,_,state,_,marker=_read_state(profile,host,slug)
         selected,rows=_backup_copy_rows(state,host,slug,backup_id)
         tx=secrets.token_hex(16)
-        if (state/"stage"/tx).exists() or (state/"stage"/tx).is_symlink():
+        if (state/"stage"/tx).exists() or is_redirected(state/"stage"/tx):
             raise ValueError("Staging collision")
         stage=state/"stage"/tx
         _stage(stage,rows)
         if _inventory(stage)!=selected["files"]:
             raise ValueError("Archived Skill staging mismatch")
+        _verify_windows_tree(stage)
         new=_new_receipt(host,slug,"reinstall",tx,
                          selected["previous_receipt"]["plan_id"],binding,
                          selected["files"],marker["backup_ids"],
@@ -691,12 +760,13 @@ def reinstall(host,profile,slug,backup_id,binding,*,reader=None):
         _write_journal(state,host,slug,"reinstall",tx,new,None,
                        new_files=selected["files"],
                        selected_id=backup_id,marker=marker)
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Reinstall target appeared after consent")
         stage.rename(target)
         _sync(target.parent)
         if _inventory(target)!=selected["files"]:
             raise ValueError("Reinstalled backup differs from recorded inventory")
+        _verify_windows_tree(target)
         _store_receipt(state,slug,new)
         if _load(_marker(state,slug))!=marker:
             raise ValueError("Uninstall marker unexpectedly changed")
@@ -812,7 +882,7 @@ def recover(host,profile,slug):
     with _lock(profile,host,slug) as state:
         target,_,state=_paths(profile,host,slug)
         path=_journal(state,slug)
-        if path.is_symlink() or not path.is_file():
+        if is_redirected(path) or not path.is_file():
             raise ValueError("No safe pending transaction journal for recovery")
         data=_journal_valid(_load(path),state,host,slug)
         action=data["operation"]
@@ -827,7 +897,7 @@ def recover(host,profile,slug):
         backup=_backup(state,slug,tx)
         manifest_path=_manifest(state,slug,tx)
         for entry in (target,stage,backup,manifest_path,current_path,marker_path):
-            if entry.is_symlink():
+            if is_redirected(entry):
                 raise ValueError("Symlink found in interrupted profile transaction")
         current=(_receipt_valid(_load(current_path),host,slug)
                  if current_path.exists() else None)
@@ -846,6 +916,12 @@ def recover(host,profile,slug):
         current_inventory=_inventory(target) if target.exists() else None
         stage_inventory=_inventory(stage) if stage.exists() else None
         backup_inventory=_inventory(backup) if backup.exists() else None
+        if current_inventory is not None:
+            _verify_windows_tree(target)
+        if stage_inventory is not None:
+            _verify_windows_tree(stage)
+        if backup_inventory is not None:
+            _verify_windows_tree(backup)
         if stage_inventory is not None and stage_inventory!=new:
             raise ValueError("Interrupted staging directory was edited; refuse recovery")
         if (current_inventory is not None and
@@ -905,11 +981,12 @@ def recover(host,profile,slug):
                 marker_path.unlink()
                 _sync(state/"uninstalled")
             if backup_inventory is not None:
-                if target.exists() or target.is_symlink():
+                if target.exists() or is_redirected(target):
                     raise ValueError("Original target path reappeared before restore")
                 backup.rename(target)
                 _sync(target.parent)
                 _sync(backup.parent)
+                _verify_windows_tree(target)
                 if manifest_path.exists():
                     manifest_path.unlink()
                     _sync(manifest_path.parent)
@@ -917,7 +994,7 @@ def recover(host,profile,slug):
                 if _load(current_path)!=prev:
                     raise ValueError("Old ownership receipt changed before rollback")
             else:
-                _new(current_path,prev)
+                _write_record(current_path,prev)
             if _inventory(target)!=old:
                 raise ValueError("Restored original Skill inventory failed check")
         elif action in ("install","reinstall"):

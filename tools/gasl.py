@@ -1047,14 +1047,14 @@ def main():
     host_wizard.set_defaults(func=cmd_host_project_wizard)
 
     user_host = sub.add_parser('user-profile-install',
-        help='POSIX current-user HOME Skill transactions: Codex, Cursor and Claude Code')
+        help='POSIX current-user transactions; Windows User Profile is gated pending native SID/ACL CI')
     user_host.add_argument('--host',required=True,choices=('codex','cursor','claude-code'))
     user_host.add_argument('--action',required=True,choices=(
         'preview','install','preview-replace','replace',
         'list-backups','preview-restore','restore',
         'preview-uninstall','uninstall','preview-reinstall','reinstall','recover'))
     user_host.add_argument('--selected-home',required=True,type=Path,
-        help='Exact current OS account HOME; validated against passwd and $HOME')
+        help='Exact current OS profile; POSIX passwd/UID or Windows token/SID validation')
     user_host.add_argument('--plan-id',help='Exact Plan ID of verified Host-scoped private ZIP')
     user_host.add_argument('--state-binding-id',help='Exact state binding from preview')
     user_host.add_argument('--skill-name',help='Exact Skill folder for backup/uninstall/recovery')
@@ -1066,7 +1066,7 @@ def main():
     user_wizard.add_argument('--host',required=True,choices=('codex','cursor','claude-code'))
     user_wizard.add_argument('--id',required=True,help='Pinned source record ID')
     user_wizard.add_argument('--selected-home',required=True,type=Path,
-        help='Existing absolute OS account HOME; must not be an arbitrary directory')
+        help='Existing absolute OS profile; must not be an arbitrary directory')
     user_wizard.add_argument('--action',choices=('preview','install','replace'),default='preview')
     user_wizard.add_argument('--download-if-missing',action='store_true',
         help='Opt-in pinned download requiring separate exact local TTY approval')
