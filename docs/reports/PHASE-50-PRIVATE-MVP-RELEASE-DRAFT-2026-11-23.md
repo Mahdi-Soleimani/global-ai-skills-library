@@ -56,3 +56,17 @@ Even when an author-supplied license exists, these gates do not auto-publish or 
 The module and tests are written. Local and GitHub CI outcomes, final source SHA and draft-archive SHA will be added after they are observed. A public release remains **blocked** until a project LICENSE is selected and relevant redistribution and Host-support policy is reviewed. User Profile/Windows/Cursor/Claude Code/Sandbox features remain separate implementation work and are **not claimed complete**.
 
 No manual user test, independent human relevance adjudication, live third-party Skill execution, or real Host installation was performed.
+
+## Confirmed GitHub Actions and current source state
+
+- Feature commit: d07945c519b079643b89eb4211575fec6df85ac3 — normal push to main, exact eight-file staged allowlist and no secrets detected.
+- [Private MVP release draft gate — Run 45237294098](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45237294098): **SUCCESS**, including the 10 synthetic Git-fixture packaging tests and no public output.
+- [Explorer and interactive Codex handoff — Run 45237294067](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45237294067): **SUCCESS**.
+- [Private ZIP safety — Run 45237293830](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45237293830): **SUCCESS**.
+- [Existing inert Codex CI — Run 45237293899](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45237293899): **SUCCESS** on synthetic files only, no actual third-party Skill execution.
+- [Full regression and source refresh — Run 45237293932](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45237293932): **SUCCESS**, with **681 passing Python tests**, 57 source repositories and 4,431 attributed records.
+- Automatic metadata-only catalog commit: 3d1e24ac47ab9055950c1630573db89aa38063eb. Local main was updated by fast-forward without force push.
+- Mac local regression: **675 passing tests, 258 subtests**; YAML, Python compilation, deterministic ZIP fixture checks and Explorer browser-DOM simulation passed.
+- No manual Host testing, real user project installation, independent relevance adjudication or public distribution was performed.
+
+**Release acceptance:** private packaging and source integrity checks are implemented and verified in synthetic and automated CI. A public release remains blocked and no public license is implicitly supplied. The specific private draft file is generated locally from the *final clean commit* and its hash is verified separately; that operation is not public publication.

@@ -237,9 +237,9 @@ GASL now supports a **private, offline, reproducible ZIP draft** of the core CLI
     # Read-only verification of the existing draft; never extracts the ZIP
     ./gasl release-draft --action verify
 
-The private ZIP is placed under the ignored \`private/release-drafts/\` directory, with a SHA-256 sidecar and a manifest of every included file's name, length and hash. ZIP entry order, timestamp and permissions are deterministic; a second run of the same source commit yields identical archive bytes. Overwriting existing drafts, symlink paths, uncommitted source changes, missing required runtime files and unexpected large inputs are refused.
+The private ZIP is placed under the ignored `private/release-drafts/` directory, with a SHA-256 sidecar and a manifest of every included file's name, length and hash. ZIP entry order, timestamp and permissions are deterministic; a second run of the same source commit yields identical archive bytes. Overwriting existing drafts, symlink paths, uncommitted source changes, missing required runtime files and unexpected large inputs are refused.
 
-**This is deliberately NOT a public release.** The code project still lacks a project \`LICENSE\` chosen by its owner; licensing collected third-party Skills would require separate terms/attribution review. Even if a project license is later added, the current tool keeps \`public_release_allowed=false\` until other release blockers are resolved. It does **not** upload files to GitHub, grant a software license, declare Windows or other Host compatibility, or run third-party code. See [Phase 50 report](docs/reports/PHASE-50-PRIVATE-MVP-RELEASE-DRAFT-2026-11-23.md).
+**This is deliberately NOT a public release.** The code project still lacks a project `LICENSE` chosen by its owner; licensing collected third-party Skills would require separate terms/attribution review. Even if a project license is later added, the current tool keeps `public_release_allowed=false` until other release blockers are resolved. It does **not** upload files to GitHub, grant a software license, declare Windows or other Host compatibility, or run third-party code. See [Phase 50 report](docs/reports/PHASE-50-PRIVATE-MVP-RELEASE-DRAFT-2026-11-23.md).
 
 ### Phase 49: Explicit Codex project installation handoff from Explorer
 
@@ -258,13 +258,13 @@ When the chosen source and project are correct, the user **separately opts into*
 
 The interactive wizard enforces these gates, each with its own real **local TTY exact phrase** when necessary:
 
-1. **Optional pinned download** — only if missing and the user explicitly passed \`--download-if-missing\`. The existing on-demand downloader rechecks the exact commit/blob and performs static scanning. No downloaded script runs.
+1. **Optional pinned download** — only if missing and the user explicitly passed `--download-if-missing`. The existing on-demand downloader rechecks the exact commit/blob and performs static scanning. No downloaded script runs.
 2. **Private ZIP** — if absent, the wizard displays the exact Plan and requires approval before producing the locally ignored private bundle. A pre-existing ZIP must pass independent integrity verification; altered ZIPs are refused, not overwritten.
-3. **Project target preflight** — invokes the existing Codex project install/replace preview with its target/ZIP hash binding. Missing destination is required for \`install\`; it never silently overwrites an existing directory.
+3. **Project target preflight** — invokes the existing Codex project install/replace preview with its target/ZIP hash binding. Missing destination is required for `install`; it never silently overwrites an existing directory.
 4. **Real installation** — the existing project-only transactional installer requires a **separate, exact TTY phrase**. It rechecks the binding under a local lock, writes an ownership receipt, and preserves crash-recovery semantics. It never executes Skill content.
-5. **Replace** — permitted **only** with the separately requested \`--action replace\`. The existing installer retains and verifies the entire prior Skill in a restorable Backup; no automatic replacement happens on name collision.
+5. **Replace** — permitted **only** with the separately requested `--action replace`. The existing installer retains and verifies the entire prior Skill in a restorable Backup; no automatic replacement happens on name collision.
 
-A missing, tampered, ambiguous, or statically flagged source remains blocked. Real user \`HOME\` scope is not supported. The required project root is not inferred from the browser, and the workflow never starts or uses Codex itself. Cursor and Claude Code remain preview-only until their own separate actual installation design is complete.
+A missing, tampered, ambiguous, or statically flagged source remains blocked. Real user `HOME` scope is not supported. The required project root is not inferred from the browser, and the workflow never starts or uses Codex itself. Cursor and Claude Code remain preview-only until their own separate actual installation design is complete.
 
 **Important:** Running this CLI with an exact TTY phrase is a real action on the explicitly chosen project. The Phase-49 synthetic tests use only disposable Git roots; **no real user project install or real-host/manual test has been performed**. Other hosts, Windows, security sandbox execution and public release readiness remain separate roadmap work. See [Phase 49](docs/reports/PHASE-49-CODEX-EXPLORER-INSTALL-HANDOFF-2026-11-23.md).
 
