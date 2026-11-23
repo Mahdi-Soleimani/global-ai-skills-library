@@ -76,6 +76,12 @@ class WindowsUserProfileSecurityTests(unittest.TestCase):
         )
         if grants.returncode:
             self.skipTest("Runner cannot set isolated ACLs on disposable test directory")
+        observed = subprocess.run(
+            ["icacls", str(root)], capture_output=True, text=True,
+        )
+        print("DISPOSABLE_PROFILE_ACL_AFTER_HARDENING", observed.stdout, flush=True)
+        if observed.returncode:
+            self.skipTest("Runner cannot inspect isolated ACLs on disposable test directory")
 
     def test_current_profile_matches_token_environment_and_home(self):
         self.assertRegex(self.sid, r"^S-1-")
