@@ -49,10 +49,10 @@ def _root(selected):
         assert_no_reparse_components(Path(selected))
         home = _explicit_root(selected)
         current = current_profile()
-        if current["elevated"]:
-            raise ValueError("Refusing elevated Windows token for User Profile installation")
         if os.path.normcase(str(home)) != os.path.normcase(str(current["profile"])):
             raise ValueError("Selected profile must equal the current Windows token profile")
+        if current["elevated"]:
+            raise ValueError("Refusing elevated Windows token for User Profile installation")
         verify_owned_path(home, current["sid"], directory=True)
         return home
     if os.name != "posix" or fcntl is None or pwd is None:

@@ -18,6 +18,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"tools"))
 
 import user_profile_install as up
+import windows_user_profile as windows_profile
 REAL_PROFILE_ROOT_CHECK=up._root
 from queue_ingest import git_blob
 from tests import test_codex_project_install as inert
@@ -33,6 +34,18 @@ class UserProfileInstallTests(unittest.TestCase):
         self.root=self.fixture.root
         self.profile=Path(self.fixture_case.tmp.name)/"inert-os-home"
         self.profile.mkdir()
+        if os.name == "nt":
+            sid = windows_profile.current_profile()["sid"]
+            removed = subprocess.run(
+                ["icacls", str(self.profile), "/inheritance:r"],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(removed.returncode, 0, removed.stdout + removed.stderr)
+            granted = subprocess.run(
+                ["icacls", str(self.profile), "/grant:r", f"*{sid}:(OI)(CI)F"],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(granted.returncode, 0, granted.stdout + granted.stderr)
         self.root_patch=patch("user_profile_install._root",
                               side_effect=self._fake_root)
         self.root_patch.start()
