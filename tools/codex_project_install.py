@@ -55,9 +55,36 @@ def _root(selected):
     return root
 
 
+def _reject_other_codex_state(root, slug, *, legacy):
+    """Read-only schema boundary: never adopt or overwrite the other engine's state.
+
+    Legacy and host-isolated layouts deliberately retain separate receipt
+    schemas. A pending stage has no slug until its journal is published, so
+    any stage in the alternate store is conservatively blocked.
+    """
+    base = root / STATE
+    other = base / 'hosts' / 'codex' if legacy else base
+    parents = [base]
+    if legacy:
+        parents += [base / 'hosts', other]
+    parents += [other / name for name in ('receipts', 'journals', 'uninstalled',
+                                          'backups', 'stage')]
+    parents += [other / 'backups' / slug]
+    for path in parents:
+        if is_redirected(path) or (path.exists() and not path.is_dir()):
+            raise ValueError('Unsafe alternate Codex ownership state; migration blocked')
+    records = [other / name / (slug + '.json')
+               for name in ('receipts', 'journals', 'uninstalled')]
+    if (any(path.exists() or is_redirected(path) for path in records)
+            or any(path.is_dir() and any(path.iterdir())
+                   for path in (other / 'backups' / slug, other / 'stage'))):
+        raise ValueError('Alternate Codex ownership history exists; explicit migration required')
+
+
 def _paths(root, slug):
     if not SLUG.fullmatch(str(slug)):
         raise ValueError('Unsafe Skill name')
+    _reject_other_codex_state(root, slug, legacy=True)
     target, relative = _target_path(root, 'codex', 'project', slug)
     state = root/STATE  # Keep staged SKILL.md outside all Host discovery directories.
     for candidate in (state, state/'receipts', state/'journals', state/'stage',
@@ -245,6 +272,7 @@ def _lock(root, slug):
     with os.fdopen(fd, 'a+b', closefd=True) as stream:
         fcntl.flock(stream, fcntl.LOCK_EX)
         try:
+            _reject_other_codex_state(root, slug, legacy=True)
             yield state
         finally:
             fcntl.flock(stream, fcntl.LOCK_UN)

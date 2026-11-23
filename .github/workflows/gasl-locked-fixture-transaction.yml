@@ -9,6 +9,14 @@ on:
       - tests/test_fixture_transaction_v2.py
       - tools/fixture_bundle_install.py
       - tools/host_target_preflight.py
+      - tools/host_transaction_fixture.py
+      - tools/fixture_explicit_consent.py
+      - tools/windows_user_profile.py
+      - tools/transaction_file_lock.py
+      - tools/codex_project_install.py
+      - tools/host_project_install.py
+      - tests/test_fixture_explicit_consent.py
+      - tests/test_codex_state_boundary.py
   workflow_dispatch:
 
 permissions:
@@ -16,24 +24,25 @@ permissions:
 
 jobs:
   locked-fixture-recovery:
-    name: Exclusive lock and cross-process recovery on synthetic ZIPs
-    runs-on: ubuntu-24.04
+    name: Exclusive lock and cross-process recovery / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
     timeout-minutes: 10
     steps:
       - name: Checkout published source without retaining Git credentials
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: Compile exact locked transaction modules
-        run: python3 -m compileall -q tools/fixture_transaction_v2.py tests/test_fixture_transaction_v2.py
-      - name: Exercise fixture-only approval, flock and interrupted rollback
-        run: python3 -m unittest tests.test_fixture_transaction_v2 -v
+        run: python -m compileall -q tools/fixture_transaction_v2.py tools/fixture_explicit_consent.py tools/host_transaction_fixture.py
+      - name: Exercise private fixture ACL, consent, shared lock, rollback and schema boundaries
+        run: python -m unittest tests.test_fixture_transaction_v2 tests.test_fixture_explicit_consent tests.test_codex_state_boundary -v
       - name: Require no third-party ZIP or user-profile files in public checkout
-        run: |
-          set -euo pipefail
-          test ! -e private/install-bundles
-          test ! -e catalog
-          test ! -e private/install-simulation
-          echo 'DISPOSABLE_FIXTURE_ONLY=PASS'
-          echo 'REAL_AGENT_INSTALLATION=FALSE'
-          echo 'THIRD_PARTY_CODE_EXECUTED=FALSE'
+        run: python -c "from pathlib import Path; assert not any(Path(p).exists() for p in ('private/install-bundles', 'catalog', 'private/install-simulation', '.agents', '.cursor', '.claude')); print('DISPOSABLE_FIXTURE_ONLY=PASS; REAL_AGENT_INSTALLATION=FALSE; THIRD_PARTY_CODE_EXECUTED=FALSE')"

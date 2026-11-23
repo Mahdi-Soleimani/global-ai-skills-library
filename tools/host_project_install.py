@@ -15,7 +15,7 @@ from pathlib import Path
 
 from codex_project_install import (
     _root, _serialized, _sync, _new, _load, _mkdir_checked, _stage,
-    _inventory_from_rows, _confirm, fcntl,
+    _inventory_from_rows, _confirm, fcntl, _reject_other_codex_state,
 )
 from fixture_bundle_install import _inventory, _read_bundle, _remove_verified_dir, _check_list
 from host_format_review import review_host_format
@@ -41,6 +41,8 @@ def _paths(project, host, slug):
     if not SLUG.fullmatch(str(slug)):
         raise ValueError("Unsafe project Skill folder")
     project = _root(project)
+    if host == "codex":
+        _reject_other_codex_state(project, slug, legacy=False)
     target, relative = _target_path(project, host, "project", slug)
     state = project/".gasl-managed"/"hosts"/host
     checks = [
@@ -271,7 +273,14 @@ def _lock(project, host, slug):
             raise ValueError("Junction or symlink in project transaction paths")
         _mkdir_checked(path)
     lock=state/".lock"
-    with exclusive_lock_file(lock):
+    with contextlib.ExitStack() as stack:
+        if host == "codex":
+            # Use the old engine's coordination path as well as our own.
+            # This is a cooperating local-process lock, not a distributed
+            # cross-OS filesystem locking guarantee.
+            stack.enter_context(exclusive_lock_file(state.parent.parent/".lock"))
+            _reject_other_codex_state(_root(project), slug, legacy=False)
+        stack.enter_context(exclusive_lock_file(lock))
         yield state
 
 

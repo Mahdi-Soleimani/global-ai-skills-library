@@ -23,10 +23,75 @@ _NAME = 'fixture-skill'
 _USER_NOTE = b'USER_MODIFICATION_SHOULD_SURVIVE\n'
 
 
+def _protect_new_windows_fixture(root):
+    """Restrict a newly created, empty disposable directory before any data.
+
+    Hosted Windows runners may create a 0700 directory owned by Administrators
+    with no explicit ACE for the token SID. Set a protected, inheritable DACL
+    on this fresh directory only, rather than weakening the receipt checker.
+    Never repair or change permissions on an existing populated fixture.
+    """
+    import ctypes
+    from ctypes import wintypes
+    from windows_user_profile import (
+        _apis, _token_identity, _raise_winerror, assert_no_reparse_components,
+        verify_owned_path,
+    )
+    root = Path(root)
+    if (not root.is_absolute() or not root.name.startswith(FIXTURE_PREFIX)
+            or root.parent.resolve() != Path(tempfile.gettempdir()).resolve()
+            or not root.is_dir() or any(root.iterdir())):
+        raise ValueError('Only a freshly created empty Windows fixture may be protected')
+    assert_no_reparse_components(root)
+    sid = _token_identity()['sid']
+    advapi, kernel, _ = _apis()
+    descriptor = ctypes.c_void_p()
+    advapi.ConvertStringSecurityDescriptorToSecurityDescriptorW.argtypes = (
+        wintypes.LPCWSTR, wintypes.DWORD, ctypes.POINTER(ctypes.c_void_p),
+        ctypes.POINTER(wintypes.DWORD))
+    advapi.ConvertStringSecurityDescriptorToSecurityDescriptorW.restype = wintypes.BOOL
+    # Only the exact token SID and LocalSystem have inheritable access.
+    # D:P disables inherited ACLs from the parent temporary directory.
+    sddl = 'D:P(A;OICI;FA;;;' + sid + ')(A;OICI;FA;;;SY)'
+    if not advapi.ConvertStringSecurityDescriptorToSecurityDescriptorW(
+            sddl, 1, ctypes.byref(descriptor), None):
+        _raise_winerror(message='Cannot construct private fixture DACL')
+    try:
+        present, defaulted = wintypes.BOOL(), wintypes.BOOL()
+        dacl = ctypes.c_void_p()
+        advapi.GetSecurityDescriptorDacl.argtypes = (
+            ctypes.c_void_p, ctypes.POINTER(wintypes.BOOL),
+            ctypes.POINTER(ctypes.c_void_p), ctypes.POINTER(wintypes.BOOL))
+        advapi.GetSecurityDescriptorDacl.restype = wintypes.BOOL
+        if (not advapi.GetSecurityDescriptorDacl(
+                descriptor, ctypes.byref(present), ctypes.byref(dacl),
+                ctypes.byref(defaulted)) or not present.value or not dacl.value):
+            raise ValueError('Cannot obtain private fixture DACL')
+        advapi.SetNamedSecurityInfoW.argtypes = (
+            wintypes.LPWSTR, ctypes.c_int, wintypes.DWORD,
+            ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p)
+        advapi.SetNamedSecurityInfoW.restype = wintypes.DWORD
+        status = advapi.SetNamedSecurityInfoW(
+            str(root), 1, 0x80000004, None, None, dacl, None)
+        if status:
+            _raise_winerror(status, 'Cannot protect new disposable fixture DACL')
+    finally:
+        kernel.LocalFree.argtypes = (ctypes.c_void_p,)
+        kernel.LocalFree.restype = ctypes.c_void_p
+        kernel.LocalFree(descriptor)
+    verify_owned_path(root, sid, directory=True, require_private=True)
+
+
 def _new_root():
     directory = tempfile.TemporaryDirectory(prefix=FIXTURE_PREFIX)
     root = Path(directory.name)
-    (root / MARKER).write_bytes(b'INERT_HOST_FIXTURE_ONLY\n')
+    try:
+        if os.name == 'nt':
+            _protect_new_windows_fixture(root)
+        (root / MARKER).write_bytes(b'INERT_HOST_FIXTURE_ONLY\n')
+    except BaseException:
+        directory.cleanup()
+        raise
     return directory, root
 
 

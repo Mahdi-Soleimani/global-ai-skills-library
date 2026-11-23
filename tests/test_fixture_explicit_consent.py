@@ -238,6 +238,24 @@ class TestFixtureConsentReceipts(unittest.TestCase):
         self.assertNotIn(key.read_bytes().hex(),json.dumps(c.inspect_fixture_receipt(self.fixture)))
 
     @unittest.skipUnless(os.name == 'nt', 'Native Windows ACL test')
+    def test_new_fixture_root_and_receipt_inherit_private_acl_without_repair(self):
+        from windows_user_profile import _token_identity, verify_owned_path
+        from host_transaction_fixture import _protect_new_windows_fixture
+        sid = _token_identity()['sid']
+        root_acl = verify_owned_path(self.fixture, sid, directory=True,
+                                     require_private=True)
+        self.assertTrue(root_acl['current_sid_explicit_write'])
+        request = self.request()
+        for path in (self.fixture/c.KEY_PATH, self.fixture/c.RECEIPT_PATH):
+            checked = verify_owned_path(path, sid, directory=False,
+                                        require_private=True)
+            self.assertTrue(checked['current_sid_explicit_write'])
+        with self.assertRaisesRegex(ValueError, 'freshly created empty'):
+            _protect_new_windows_fixture(self.fixture)
+        self.assertEqual(c.inspect_fixture_receipt(self.fixture)['status'], 'pending')
+        self.confirm(request)
+
+    @unittest.skipUnless(os.name == 'nt', 'Native Windows ACL test')
     def test_signing_key_read_grant_to_untrusted_sid_fails_closed(self):
         request = self.request()
         key = self.fixture/c.KEY_PATH
