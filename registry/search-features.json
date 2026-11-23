@@ -564,6 +564,18 @@
       ],
       "verified_at_commit": "462a27fa456e43a68bd645fef457217326bfd369"
     },
+    "GASL-SRC-01d55c8324dbbdce6f87": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "dd661c405683d3399bb88b9a75766de3f1985bb4",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/contrib-pr/SKILL.md",
+      "terms": [
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-01e1a5639c1f178e1c01": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "c2e4089ba6849f9c4ca19d60855d75bd4d84034c",
@@ -1577,18 +1589,6 @@
         "memory"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-05ec4b906b2770f3ed56": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "7715e42d7aded511a0970ed7cdf4d2ce934c6e3a",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/review-fetch-phase/SKILL.md",
-      "terms": [
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-05ef69859d6bb0af5dea": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -3862,22 +3862,6 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-0fcd2764ad46ecc55a61": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "f4ee10e50ed4e3920ff6177e7b0a9b37a6ac3b64",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/draft-release-notes/SKILL.md",
-      "terms": [
-        "context",
-        "docs",
-        "file",
-        "release",
-        "use",
-        "write",
-        "writing"
-      ],
-      "verified_at_commit": "be8630297e6270a00062822baafd8e4d6162db7c"
     },
     "GASL-SRC-0fce727cd7c4ad466380": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -6647,6 +6631,22 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-1af168aec4079a104a7f": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "f4ee10e50ed4e3920ff6177e7b0a9b37a6ac3b64",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/draft-release-notes/SKILL.md",
+      "terms": [
+        "context",
+        "docs",
+        "file",
+        "release",
+        "use",
+        "write",
+        "writing"
+      ],
+      "verified_at_commit": "be8630297e6270a00062822baafd8e4d6162db7c"
+    },
     "GASL-SRC-1af7a547c13555b4a66f": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "6629a08dadbb70423e9429ca45b7ecd2d742abc7",
@@ -7612,21 +7612,6 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
-    "GASL-SRC-1e79d30cde6fb8641123": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "42c0f08b9e4aba88236cca2de17152e5a860c6e6",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/review-implement-phase/SKILL.md",
-      "terms": [
-        "actions",
-        "implement",
-        "review",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-1e826f062b6b83d580c8": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "c81b2e78a25dfdac342c73f47c95c8152b771add",
@@ -8335,6 +8320,21 @@
         "video"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-211da3812844dc9fbe8c": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "42c0f08b9e4aba88236cca2de17152e5a860c6e6",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/review-implement-phase/SKILL.md",
+      "terms": [
+        "actions",
+        "implement",
+        "review",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-2157bca573811e96b4c8": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -9462,6 +9462,21 @@
         "write"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-254d99f83f07679d1723": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "1172dfccec382b979f41007222f7d1403baefe10",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/review-triage-phase/SKILL.md",
+      "terms": [
+        "action",
+        "actions",
+        "review",
+        "use",
+        "user",
+        "workflow"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-2550ac15bead687669ae": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -10896,29 +10911,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-2a188b153588a2b4c3f1": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "abcd41f8f78193d8e268b4d99343be5eff7c45ee",
-      "repository": "prisma/orm",
-      "source_path": "skills/prisma-8/SKILL.md",
-      "terms": [
-        "app",
-        "build",
-        "code",
-        "editing",
-        "extension",
-        "next",
-        "postgres",
-        "project",
-        "query",
-        "sql",
-        "tool",
-        "use",
-        "user",
-        "writing"
-      ],
-      "verified_at_commit": "be8630297e6270a00062822baafd8e4d6162db7c"
-    },
     "GASL-SRC-2a421716a2b5032f6f8a": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "5c153336ca2d78b40d145e0b598465fda2029c14",
@@ -11494,6 +11486,19 @@
         "use"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
+    },
+    "GASL-SRC-2d24d2af25070fd30952": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "322ff645ae601939c5e693806ccc506e2387fd63",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/adr-review/SKILL.md",
+      "terms": [
+        "context",
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-2d31cb4abe0a0766b8d8": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -12638,6 +12643,17 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-327c385647aed428b197": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "461c859d3999d649a24b1104f194a5e18756e280",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/bumping-biome/SKILL.md",
+      "terms": [
+        "files",
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-329ad085da2426bfc9cb": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
@@ -15136,21 +15152,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-3c8d0725626b45ae5e64": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "1172dfccec382b979f41007222f7d1403baefe10",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/review-triage-phase/SKILL.md",
-      "terms": [
-        "action",
-        "actions",
-        "review",
-        "use",
-        "user",
-        "workflow"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-3c90892c832eef80b1db": {
       "commit_sha": "63934658c2823454a930af50998ff0cdf99e6ebf",
       "git_blob_sha": "1628178d57222c47660a3cff33fd7fa2cfd6b9e6",
@@ -15983,20 +15984,6 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
-    "GASL-SRC-3f6e5e9271b02c0518a5": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "a139ce37a10e2eb348f47e8987bb905acd1e95b2",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/github-review-iteration/SKILL.md",
-      "terms": [
-        "agents",
-        "github",
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-3f859535d0fea631448f": {
       "commit_sha": "63934658c2823454a930af50998ff0cdf99e6ebf",
       "git_blob_sha": "04aa725a0d5ee5f51b22e1069251109f256bbb6b",
@@ -16382,6 +16369,18 @@
         "write"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-40ea8de0a7d395cc9264": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "7715e42d7aded511a0970ed7cdf4d2ce934c6e3a",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/review-fetch-phase/SKILL.md",
+      "terms": [
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-40f3328a9e189a9e7ad2": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -19814,21 +19813,6 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
-    "GASL-SRC-4f45a424b80d4d990ab2": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "4965e35bc909221944d20d3d1068ff339db6c3c4",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/write-architecture-docs/SKILL.md",
-      "terms": [
-        "design",
-        "docs",
-        "documentation",
-        "use",
-        "user",
-        "write"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-4f509441516d5327de29": {
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
       "git_blob_sha": "cc8d402a98841bf5eca09668abbcd91e52fd3b1c",
@@ -21451,6 +21435,21 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-55bde5c92d22f37a3b24": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "150a24acb68dfee50959b926c1e31d073fb1b207",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/no-bare-casts/SKILL.md",
+      "terms": [
+        "code",
+        "file",
+        "site",
+        "type",
+        "typescript",
+        "writing"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-55d3ac06b718c388f625": {
       "commit_sha": "b89752f6bca5a26bfde8b019813554241800ca99",
       "git_blob_sha": "1c06cb1436efd87f5641270cef3c2a27a71442ed",
@@ -21703,17 +21702,6 @@
         "workflows"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
-    },
-    "GASL-SRC-57282b75eb8a4eea9817": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "461c859d3999d649a24b1104f194a5e18756e280",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/bumping-biome/SKILL.md",
-      "terms": [
-        "files",
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-574077d1fa0b2126fa16": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
@@ -22427,6 +22415,17 @@
       ],
       "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
     },
+    "GASL-SRC-5a5ca35c3dbf313b4a5f": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "61e69149a187492b36951c2214c8d57a72140697",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/ast-visitor-pattern/SKILL.md",
+      "terms": [
+        "type",
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-5a5e598dde7d754cb102": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "git_blob_sha": "c8f1aa3a3912306b8df89805c6d63c697f27f827",
@@ -22460,6 +22459,21 @@
         "user"
       ],
       "verified_at_commit": "ebc80490a67b566b30c4a22407acd9f569650958"
+    },
+    "GASL-SRC-5a76a2cae31c817d8ae6": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "b9d49b680ae9d152cb901afaf7726ab3c2601a50",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/triage-contributor-pr/SKILL.md",
+      "terms": [
+        "ci",
+        "docs",
+        "read",
+        "review",
+        "use",
+        "workflow"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-5a7e8111dc421b566cc3": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -22895,6 +22909,20 @@
         "user"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-5c7585830d9afc821810": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "8d634432f444de84c50d69d730bb0b82227a39f0",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/product-direction/SKILL.md",
+      "terms": [
+        "agent",
+        "api",
+        "build",
+        "project",
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-5c7bee4b303f5a5f564b": {
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
@@ -26979,17 +27007,6 @@
         "use"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-6aec6c5c02105d4b2a16": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "61e69149a187492b36951c2214c8d57a72140697",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/ast-visitor-pattern/SKILL.md",
-      "terms": [
-        "type",
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-6b05b3e79cf771b6dba8": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -32611,6 +32628,29 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
+    "GASL-SRC-820f742ba57ba38fef1c": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "abcd41f8f78193d8e268b4d99343be5eff7c45ee",
+      "repository": "prisma/orm",
+      "source_path": "skills/prisma-8/SKILL.md",
+      "terms": [
+        "app",
+        "build",
+        "code",
+        "editing",
+        "extension",
+        "next",
+        "postgres",
+        "project",
+        "query",
+        "sql",
+        "tool",
+        "use",
+        "user",
+        "writing"
+      ],
+      "verified_at_commit": "be8630297e6270a00062822baafd8e4d6162db7c"
+    },
     "GASL-SRC-821096675cdad583eaf0": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
@@ -38073,20 +38113,6 @@
       ],
       "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
-    "GASL-SRC-9700b82c85ebe9f9577f": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "8d634432f444de84c50d69d730bb0b82227a39f0",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/product-direction/SKILL.md",
-      "terms": [
-        "agent",
-        "api",
-        "build",
-        "project",
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-970fe674ad064aff826c": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "3083c8e594708e0b1057cf1d45e3fab315bbe2c6",
@@ -39104,22 +39130,6 @@
         "verification"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-9ae9161dc1947237c430": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "f1d5a08859d69bd76d6310d20412e9d133259e36",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/markdown-no-artificial-line-wraps/SKILL.md",
-      "terms": [
-        "artificial",
-        "docs",
-        "editing",
-        "files",
-        "github",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-9ae99f579b64dc7271c6": {
       "commit_sha": "63934658c2823454a930af50998ff0cdf99e6ebf",
@@ -42278,20 +42288,6 @@
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
     },
-    "GASL-SRC-a773df54bd3abd6ebbfa": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "e3ba296d1ad40d4df8e2ce148af65f13a8691974",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/create-pr/SKILL.md",
-      "terms": [
-        "create",
-        "github",
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-a79598b2bf8d4f419adc": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "6a89bb82a99f36477f50dd7e5822340ad764f777",
@@ -44698,18 +44694,6 @@
         "write"
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
-    },
-    "GASL-SRC-b157e954659b66f2728b": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "dd661c405683d3399bb88b9a75766de3f1985bb4",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/contrib-pr/SKILL.md",
-      "terms": [
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-b16a73ef3ce5da9e4280": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -47702,26 +47686,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-bc292d99ed751c1ad97a": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "d2abad6b5e92db9e4e2a51aace2c70af65bf27ba",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/record-gotcha/SKILL.md",
-      "terms": [
-        "agent",
-        "code",
-        "customer",
-        "experience",
-        "extension",
-        "file",
-        "integration",
-        "postgres",
-        "project",
-        "tests",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-bc46312e0eb02b08d72b": {
       "commit_sha": "2815b93e2c54a87bd9b146df62704a0e84930929",
       "git_blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
@@ -48547,21 +48511,6 @@
         "use"
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
-    },
-    "GASL-SRC-bfd9597d7882f9c714a7": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "150a24acb68dfee50959b926c1e31d073fb1b207",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/no-bare-casts/SKILL.md",
-      "terms": [
-        "code",
-        "file",
-        "site",
-        "type",
-        "typescript",
-        "writing"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-bfefa1898bf17bf17a80": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -49685,6 +49634,18 @@
       ],
       "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
+    "GASL-SRC-c513bf2a0f21431b09c9": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "af6a0cf4029117f4c2902fb696250bb68bdc8ea3",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/multiline-commit-messages/SKILL.md",
+      "terms": [
+        "git",
+        "tool",
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-c529838a3bb1e3e4980c": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
       "git_blob_sha": "6e18c2c7f28c4d11385b3814e2852887c291d0a7",
@@ -50681,16 +50642,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-c8d779daf260f277c3da": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "4aba602832efdb86eaec25072533792e93bd161c",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/psl-ast-layers/SKILL.md",
-      "terms": [
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-c8e8f47c8d74cb3edb16": {
       "commit_sha": "abeeaf95660ba9e8b7c753eb38f441ca707a8823",
       "git_blob_sha": "3947ff9c4ad980d14fc07fccbf659d47c114e81d",
@@ -51040,21 +50991,6 @@
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
     },
-    "GASL-SRC-ca7b8951ffdf304525df": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "b9d49b680ae9d152cb901afaf7726ab3c2601a50",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/triage-contributor-pr/SKILL.md",
-      "terms": [
-        "ci",
-        "docs",
-        "read",
-        "review",
-        "use",
-        "workflow"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-ca7e5375afc5fd7f7966": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "97923531b34c01eece57da3a868113967c4b492a",
@@ -51151,6 +51087,26 @@
         "video"
       ],
       "verified_at_commit": "49f948faa9258a0c61caceaf225e179651397431"
+    },
+    "GASL-SRC-cae39cb1bbfc86eb1600": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "d2abad6b5e92db9e4e2a51aace2c70af65bf27ba",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/record-gotcha/SKILL.md",
+      "terms": [
+        "agent",
+        "code",
+        "customer",
+        "experience",
+        "extension",
+        "file",
+        "integration",
+        "postgres",
+        "project",
+        "tests",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-cae694fd17a8e179e8f7": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -53319,6 +53275,20 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-d368b077c62dd6bbe474": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "a139ce37a10e2eb348f47e8987bb905acd1e95b2",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/github-review-iteration/SKILL.md",
+      "terms": [
+        "agents",
+        "github",
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-d369147787d8501781e0": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "f7f472ade6f8ce489f3efae8bb8533dd0be6b3f0",
@@ -54070,6 +54040,16 @@
         "content"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-d66561aae14b5889be85": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "4aba602832efdb86eaec25072533792e93bd161c",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/psl-ast-layers/SKILL.md",
+      "terms": [
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-d66f40662a55278fa92a": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
@@ -55149,6 +55129,21 @@
       ],
       "verified_at_commit": "5909a72e62b5fbb809935fb6a55b58bdbe175074"
     },
+    "GASL-SRC-da14bc81f7954fd35eca": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "7c1e19f137be7a010be8dbe3c9b0595d53c3dda7",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/record-upgrade-instructions/SKILL.md",
+      "terms": [
+        "code",
+        "extension",
+        "test",
+        "tests",
+        "translation",
+        "use"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-da29880458ad9f999e31": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "72d8eac69920b97d20bbcf012469808129ec129f",
@@ -55957,19 +55952,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-dd5cdf7d2a518e7dcd65": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "322ff645ae601939c5e693806ccc506e2387fd63",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/adr-review/SKILL.md",
-      "terms": [
-        "context",
-        "review",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-dd678955e99349ec3ad6": {
       "commit_sha": "c62f4daeceaedf2caa65654b2091a5bb283dcda7",
       "git_blob_sha": "2c5e8f3706c78b0e680271cd117841b32959874a",
@@ -56345,21 +56327,6 @@
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
     },
-    "GASL-SRC-defb42ec38aad9f8f6fc": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "7c1e19f137be7a010be8dbe3c9b0595d53c3dda7",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/record-upgrade-instructions/SKILL.md",
-      "terms": [
-        "code",
-        "extension",
-        "test",
-        "tests",
-        "translation",
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
-    },
     "GASL-SRC-df1dc9b1cab75e5d3109": {
       "commit_sha": "1afc2f7cb96363c861b3cf22f4b8cc882f513318",
       "git_blob_sha": "91ebd13e6ebdd1a89b09c214378223c92d3b9792",
@@ -56717,18 +56684,6 @@
         "visual"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-e042b1070e33fc407b2e": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "af6a0cf4029117f4c2902fb696250bb68bdc8ea3",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/multiline-commit-messages/SKILL.md",
-      "terms": [
-        "git",
-        "tool",
-        "use"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-e04fad30c8390ecd1c6b": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
@@ -57707,6 +57662,21 @@
       ],
       "verified_at_commit": "e86a60a721a39e6d8fa1621fcaa6750ad5e0e17d"
     },
+    "GASL-SRC-e3db5b9d0353110150c5": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "4965e35bc909221944d20d3d1068ff339db6c3c4",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/write-architecture-docs/SKILL.md",
+      "terms": [
+        "design",
+        "docs",
+        "documentation",
+        "use",
+        "user",
+        "write"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-e3e3f50b6ffb86124166": {
       "commit_sha": "7a28957892243484ba63abc72a972a14b578eb1a",
       "git_blob_sha": "b26b8d5c0b02d4951934d8f6eaa96dbac29b179e",
@@ -58135,23 +58105,6 @@
         "use"
       ],
       "verified_at_commit": "626f50fdf2934116eea2c5469339e03d2d524e83"
-    },
-    "GASL-SRC-e595a961911f542c70ff": {
-      "commit_sha": "3e2a183a89d642bf2cfbfed86a35bf383b9b7749",
-      "git_blob_sha": "f1388a7bfef2463214738cab6ccfcc541efb9c91",
-      "repository": "prisma/orm",
-      "source_path": "skills-contrib/publish-npm-version/SKILL.md",
-      "terms": [
-        "docs",
-        "github",
-        "next",
-        "release",
-        "site",
-        "use",
-        "web",
-        "workflow"
-      ],
-      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-e5a084463294375b9ab0": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -59369,6 +59322,23 @@
         "video"
       ],
       "verified_at_commit": "04e80589cd60aedc22ea791afac5603d95eeae98"
+    },
+    "GASL-SRC-ea3223f8da29b4b59997": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "f1388a7bfef2463214738cab6ccfcc541efb9c91",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/publish-npm-version/SKILL.md",
+      "terms": [
+        "docs",
+        "github",
+        "next",
+        "release",
+        "site",
+        "use",
+        "web",
+        "workflow"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-ea353fb8d1882adcc1e3": {
       "commit_sha": "5ecd4e16f9fdaab05f25b1ee8f0364a3623baac4",
@@ -62553,6 +62523,22 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-f5e57704afee96b38a57": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "f1d5a08859d69bd76d6310d20412e9d133259e36",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/markdown-no-artificial-line-wraps/SKILL.md",
+      "terms": [
+        "artificial",
+        "docs",
+        "editing",
+        "files",
+        "github",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
+    },
     "GASL-SRC-f5fb891684b0a696c9f8": {
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
       "git_blob_sha": "76bdeb6a7bff93cbe924c0652f1fd7a3c3ffc46c",
@@ -63578,6 +63564,20 @@
         "user"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-f9a6a58e1ef4e839a921": {
+      "commit_sha": "6286335218605d71c22c7901b87054c00fddb072",
+      "git_blob_sha": "e3ba296d1ad40d4df8e2ce148af65f13a8691974",
+      "repository": "prisma/orm",
+      "source_path": "skills-contrib/create-pr/SKILL.md",
+      "terms": [
+        "create",
+        "github",
+        "review",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "5bfd99ad3913dd526d137d9763264cb5675aaa5e"
     },
     "GASL-SRC-f9ae4cd0f010208fb72a": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
