@@ -61,6 +61,7 @@ class WindowsUserProfileSecurityTests(unittest.TestCase):
     def _harden_disposable_directory(self, root):
         """Remove inherited runner-temp ACLs and grant only test-owned principals."""
         root = Path(root)
+        print("DISPOSABLE_PROFILE_EXPECTED_TOKEN_SID", self.sid, flush=True)
         removed = subprocess.run(
             ["icacls", str(root), "/inheritance:r"],
             capture_output=True, text=True,
