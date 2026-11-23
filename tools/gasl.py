@@ -426,6 +426,16 @@ def cmd_interactive_fixture_consent(args):
         }, ensure_ascii=False, indent=2))
 
 
+def cmd_codex_pinned_bundle_e2e(args):
+    from codex_pinned_bundle_e2e import verify_pinned_bundle_lifecycle
+    result = verify_pinned_bundle_lifecycle(
+        args.codex_bin, args.plan_id, args.acknowledge_fixture_only,
+        bundle_root=ROOT)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if result['status'] != 'real_codex_pinned_full_bundle_discovery_and_rollback_verified':
+        raise SystemExit(1)
+
+
 def cmd_codex_transaction_e2e(args):
     from codex_transaction_e2e import verify_full_codex_lifecycle
     result = verify_full_codex_lifecycle(args.codex_bin, scope=args.scope,
@@ -688,6 +698,14 @@ def main():
     interactive_consent.add_argument('--action', required=True, choices=('install','replace'))
     interactive_consent.add_argument('--acknowledge-fixture-only', required=True)
     interactive_consent.set_defaults(func=cmd_interactive_fixture_consent)
+
+    pinned_codex = sub.add_parser('codex-pinned-bundle-e2e',
+        help='Exact pinned full ZIP -> temporary Codex HOME -> skills/list -> rollback; never installs for a user')
+    pinned_codex.add_argument('--codex-bin', required=True, type=Path)
+    pinned_codex.add_argument('--plan-id', required=True)
+    pinned_codex.add_argument('--acknowledge-fixture-only', required=True,
+        help='Exactly GASL_DISPOSABLE_CODEX_BUNDLE_ONLY; never grants production approval')
+    pinned_codex.set_defaults(func=cmd_codex_pinned_bundle_e2e)
 
     codex_e2e = sub.add_parser('codex-transaction-e2e',
         help='Query real Codex after fixture-only install and rollback of inert Skill (no account/model)')

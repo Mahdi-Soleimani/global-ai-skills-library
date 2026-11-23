@@ -6,6 +6,9 @@ on:
     paths:
       - .github/workflows/gasl-codex-transaction-e2e.yml
       - tools/codex_transaction_e2e.py
+      - tools/codex_pinned_bundle_e2e.py
+      - tools/host_format_review.py
+      - tests/test_codex_pinned_bundle_e2e.py
       - tools/gasl.py
       - tools/host_adapters.py
       - tests/test_codex_transaction_e2e.py
@@ -37,6 +40,9 @@ jobs:
       - name: Verify negative and positive fixture tests using fake subprocess Host
         run: python3 -m unittest tests.test_codex_transaction_e2e -v
 
+      - name: Check pinned full-bundle negative and success paths (synthetic Host)
+        run: python3 -m unittest tests.test_codex_pinned_bundle_e2e -v
+
       - name: Test one-time expiring fixture receipts with synthetic packages and fake consent
         run: python3 -m unittest tests.test_fixture_explicit_consent -v
 
@@ -52,6 +58,49 @@ jobs:
           cli="$RUNNER_TEMP/gasl-codex-e2e/node_modules/@openai/codex/bin/codex.js"
           test -f "$cli" && test -x "$cli"
           echo "GASL_CODEX_E2E_CLI=$cli" >> "$GITHUB_ENV"
+
+      - name: End-to-end pinned full ZIP with actual Codex, inert test source only
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          from tests.test_install_bundle import PrivateInstallBundleTests
+          from codex_pinned_bundle_e2e import ACKNOWLEDGEMENT, verify_pinned_bundle_lifecycle
+          from queue_ingest import git_blob
+          fixture = PrivateInstallBundleTests(
+              'test_private_zip_contains_only_pinned_files_and_is_verified')
+          fixture.setUp()
+          try:
+              source = (b'---\nname: demo\ndescription: Inert GASL full ZIP live Host test\n'
+                        b'---\n# Test only\nNo executable scripts or external dependencies.\n')
+              fixture.content['skills/demo/SKILL.md'] = source
+              fixture.row['skill_md_blob_sha'] = git_blob(source)
+              fixture._package()
+              package = fixture._prepare(agent='codex', scope='user')
+              result = verify_pinned_bundle_lifecycle(
+                  Path(os.environ['GASL_CODEX_E2E_CLI']), package['plan_id'],
+                  ACKNOWLEDGEMENT, bundle_root=fixture.root, lookup=fixture.lookup)
+              assert result['status'] == 'real_codex_pinned_full_bundle_discovery_and_rollback_verified', result
+              for key in ('pinned_package_and_format_checked', 'target_preflight_state_bound',
+                          'absent_before_install', 'full_pinned_zip_temporarily_staged_and_activated',
+                          'exact_skill_discovered_and_enabled', 'fixture_rollback_verified',
+                          'absent_after_rollback', 'temporary_profile_deleted'):
+                  assert result[key] is True, key
+              assert result['file_count'] == 2
+              for key in ('real_user_authorization_collected', 'real_home_or_codex_profile_accessed',
+                          'real_host_files_modified', 'third_party_skill_executed',
+                          'skill_commands_or_dependencies_executed', 'model_turn_started',
+                          'authentication_performed', 'production_installation_enabled'):
+                  assert result[key] is False, key
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+                  f.write('\n## Pinned complete ZIP + Codex lifecycle — PASS\n\n')
+                  f.write('An inert, GASL-authored two-file pinned ZIP passed actual Codex discovery and locked fixture rollback in an empty temporary user HOME. No third-party package was executed or installed in a real account.\n')
+              print('PINNED_FULL_ZIP_CODEX_REAL_HOST_CI=PASS; THIRD_PARTY_EXECUTED=FALSE')
+          finally:
+              fixture.doCleanups()
+          PY
 
       - name: Run actual Codex app-server before install, after install, after rollback
         run: |
