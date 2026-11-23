@@ -253,6 +253,8 @@ class WindowsProjectTransactionTests(unittest.TestCase):
             if process.poll() is None:
                 process.kill()
                 process.wait()
+            process.stdout.close()
+            process.stderr.close()
 
     def test_windows_reserved_names_are_rejected(self):
         for name in ("NUL","con.txt","AUX.md","COM1.log","foo:ADS","a?b",

@@ -240,6 +240,8 @@ Windows paths use .agents/skills/SLUG, .cursor/skills/SLUG and .claude/skills/SL
 
 The cross-platform file lock uses POSIX flock on macOS/Linux and msvcrt.locking on Windows. It coordinates cooperating GASL transactions, not arbitrary external editors or privileged actors. The journal and byte inventory protect interrupted **process** operations, but Windows directory fsync durability is not claimed. Cloud sync, network shares, third-party concurrent writers, power-loss durability and live Agent discovery are **not certified**.
 
+**Native verification:** [Windows GitHub Actions Run 45254049109](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45254049109) passed **15 Windows-native transaction tests plus 57 existing safety/adapter tests**. Two earlier failed runs exposed and prompted fixes for portable source metadata and canonical file ordering; no integrity checks were bypassed.
+
 **Scope boundary:** Windows currently supports *project installation only*. Windows User Profile writes remain blocked until OS account SID and filesystem ACL ownership checks are independently implemented. Windows GitHub Actions tests use only inert packages and disposable Git projects, never user Agent profiles. Real-user/manual tests are deferred. See [Phase 53 report](docs/reports/PHASE-53-WINDOWS-PROJECT-SKILL-TRANSACTIONS-2026-11-23.md).
 
 ### Phase 52: Current-user Profile installation, backup and recovery (POSIX only)

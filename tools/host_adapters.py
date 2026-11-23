@@ -85,7 +85,11 @@ def list_host_adapters():
                 'POSIX': ['project', 'user'],
                 'Windows': ['project'],
             },
-            'windows_native_transactions_need_real_runner_validation': True,
+            # Filesystem transactions verified only with inert disposable
+            # Windows-runner projects; no live Agent discovery or HOME writes.
+            'windows_native_project_fixture_verified': True,
+            'windows_live_host_discovery_verified': False,
+            'windows_user_profile_installer_enabled': False,
             'real_installation_requires_local_tty': True,
             'cursor_and_claude_live_host_discovery_verified': False,
             'real_host_probe_performed': True,
