@@ -224,6 +224,30 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 52: Current-user Profile installation, backup and recovery (POSIX only)
+
+GASL now supports explicit, local TTY-only **user-wide Skill installation** for Codex, Cursor and Claude Code. These operations affect all local projects under the *current OS account's actual HOME*: Codex uses ~/.agents/skills/, Cursor ~/.cursor/skills/, and Claude Code ~/.claude/skills/. Ownership receipts, backup manifests, pending transaction journals and uninstall markers live separately under ~/.gasl-managed/user/hosts/HOST/.
+
+Run from this GASL repository:
+
+    # Read-only preview, never installs or prepares a ZIP
+    ./gasl user-profile-wizard --host codex --id GASL-SRC-EXACT_ID --selected-home "$HOME" --action preview
+
+    # Real user-wide filesystem install with independent, exact local TTY approvals
+    ./gasl user-profile-wizard --host codex --id GASL-SRC-EXACT_ID --selected-home "$HOME" --action install --download-if-missing
+
+Use --host cursor or --host claude-code for the other supported Agents. The Explorer selection panel offers both project-only and user-wide copyable commands; **the browser cannot install, execute, approve, or download Skills**.
+
+The selected HOME is checked against the current operating-system passwd record, real/effective UID, the current Python HOME and filesystem owner. Sudo/root, selecting another account's HOME, a fake HOME variable, symlinks, unsafe ownership and world-writable state or Agent directories are refused. Receipts, journal entries, backup manifests, markers and approval bindings carry or verify an immutable SHA-256 account identity including current UID, canonical HOME and filesystem inode; copied state from another HOME is not adopted.
+
+Every write uses an explicit **USER PROFILE ALL PROJECTS** approval phrase. Cursor's exact phrase additionally includes **CURSOR-SYNC-RISK**: if Cursor Sync Skills is enabled, a user-scope Skill might be synchronized to Cloud Agents. Cursor may also discover Skills stored in the Codex or Claude user directories. GASL does not control Cursor settings, and installing is not a safety certification.
+
+The user-wide transaction engine provides fresh installation, replacement of unmodified GASL-owned Skills with full-byte backup, backup listing, restore while archiving the replaced version, uninstall with retained archive, reinstatement of a chosen owned backup, and interrupted-transaction recovery. It refuses unexpected user edits, ambiguous ownership or altered ZIP/manifest evidence. The low-level command is:
+
+    ./gasl user-profile-install --help
+
+**Verification boundary:** these write-capable paths are tested only with inert Skill packages and synthetic disposable HOME roots. No actual user profile was modified, no third-party Skill was executed, and no new live Cursor/Claude Host discovery claim is made. Windows, runtime sandbox, independent publisher identity verification and a user-selected GASL project License remain separate. See [Phase 52 report](docs/reports/PHASE-52-USER-PROFILE-TRANSACTIONAL-AGENT-SKILLS-2026-11-23.md).
+
 ### Phase 51: Real Cursor and Claude Code project Skill transactions (POSIX only)
 
 GASL now has a **separate host-scoped transactional filesystem installer** for **Cursor** and **Claude Code** at an explicitly selected existing Git **project root**. The current official paths are `.cursor/skills/<slug>/SKILL.md` and `.claude/skills/<slug>/SKILL.md` respectively. The implementation reuses the previously verified pinned ZIP, static Skill format review, full-file hashing and exact target binding, but stores independent ownership receipts, journals, backup versions, and uninstall markers under `.gasl-managed/hosts/cursor/` and `.gasl-managed/hosts/claude-code/`.

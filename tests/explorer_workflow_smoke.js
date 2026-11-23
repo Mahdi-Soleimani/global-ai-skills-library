@@ -172,6 +172,20 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
     assert(command.textContent.includes("--selected-root \"$GASL_SELECTED_PROJECT\""));
     assert(command.textContent.includes("--action install --download-if-missing"));
   }
+  for (const host of ["codex", "cursor", "claude-code"]) {
+    nodes.agent.value = host;
+    selections[0].listeners.click();
+    const global = descendants(nodes.selectionBody, n => n.tag === "code")
+      .find(n => n.textContent.includes("user-profile-wizard"));
+    assert(global, "User-scope local TTY wizard must be visible for " + host);
+    assert(global.textContent.includes("--host " + host + " --id GASL-SRC-a1"));
+    assert(global.textContent.includes('--selected-home "$HOME"'));
+    assert(global.textContent.includes("--action install --download-if-missing"));
+    const explanation = descendants(nodes.selectionBody, n => n.tag === "p")
+      .map(n => n.textContent).join(" ");
+    assert(explanation.includes("User Profile"));
+    if (host === "cursor") assert(explanation.includes("Cloud Agents"));
+  }
   nodes.agent.value = "codex";
   assert.equal(calls.filter(c => c.url === "/v1/compare").length, 1);
   assert.equal(calls.filter(c => c.url.startsWith("/v1/install")).length, 0);

@@ -623,6 +623,63 @@ def cmd_host_project_wizard(args):
     print(json.dumps(result,ensure_ascii=False,indent=2))
 
 
+def cmd_user_profile_install(args):
+    import user_profile_install as hp
+    host,profile=args.host,args.selected_home
+    action=args.action
+    if action in ('preview','install','preview-replace','replace'):
+        if not args.plan_id:
+            raise SystemExit('This action requires --plan-id from a verified private ZIP')
+        if action=='preview':
+            result=hp.preview_install(args.plan_id,profile,host,bundle_root=ROOT)
+        elif action=='preview-replace':
+            result=hp.preview_replace(args.plan_id,profile,host,bundle_root=ROOT)
+        else:
+            if not args.state_binding_id:
+                raise SystemExit('Write action requires exact --state-binding-id from preview')
+            handler=hp.install if action=='install' else hp.replace
+            result=handler(args.plan_id,profile,host,args.state_binding_id,
+                           bundle_root=ROOT)
+    else:
+        if not args.skill_name:
+            raise SystemExit('Backup/uninstall/recovery requires --skill-name')
+        slug=args.skill_name
+        if action=='list-backups':
+            result=hp.list_backups(host,profile,slug)
+        elif action=='preview-uninstall':
+            result=hp.preview_uninstall(host,profile,slug)
+        elif action=='uninstall':
+            if not args.state_binding_id:
+                raise SystemExit('Uninstall requires --state-binding-id from preview')
+            result=hp.uninstall(host,profile,slug,args.state_binding_id)
+        elif action=='recover':
+            result=hp.recover(host,profile,slug)
+        else:
+            if not args.backup_id:
+                raise SystemExit('Restore/reinstall requires exact --backup-id')
+            if action=='preview-restore':
+                result=hp.preview_restore(host,profile,slug,args.backup_id)
+            elif action=='preview-reinstall':
+                result=hp.preview_reinstall(host,profile,slug,args.backup_id)
+            else:
+                if not args.state_binding_id:
+                    raise SystemExit('Restore/reinstall requires --state-binding-id')
+                operation=hp.restore if action=='restore' else hp.reinstall
+                result=operation(host,profile,slug,args.backup_id,args.state_binding_id)
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+
+
+def cmd_user_profile_wizard(args):
+    from user_profile_wizard import inspect_handoff, install_from_explorer
+    if args.action=='preview':
+        result=inspect_handoff(args.id,args.selected_home,args.host,root=ROOT)
+    else:
+        result=install_from_explorer(
+            args.id,args.selected_home,args.host,action=args.action,
+            root=ROOT,download_if_missing=args.download_if_missing)
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+
+
 def cmd_release_draft(args):
     from release_draft import inspect_release, build_release_draft, verify_release_draft
     result = {
@@ -986,6 +1043,32 @@ def main():
     host_wizard.add_argument('--download-if-missing',action='store_true',
         help='Opt-in pinned download requiring separate exact local TTY approval')
     host_wizard.set_defaults(func=cmd_host_project_wizard)
+
+    user_host = sub.add_parser('user-profile-install',
+        help='POSIX current-user HOME Skill transactions: Codex, Cursor and Claude Code')
+    user_host.add_argument('--host',required=True,choices=('codex','cursor','claude-code'))
+    user_host.add_argument('--action',required=True,choices=(
+        'preview','install','preview-replace','replace',
+        'list-backups','preview-restore','restore',
+        'preview-uninstall','uninstall','preview-reinstall','reinstall','recover'))
+    user_host.add_argument('--selected-home',required=True,type=Path,
+        help='Exact current OS account HOME; validated against passwd and $HOME')
+    user_host.add_argument('--plan-id',help='Exact Plan ID of verified Host-scoped private ZIP')
+    user_host.add_argument('--state-binding-id',help='Exact state binding from preview')
+    user_host.add_argument('--skill-name',help='Exact Skill folder for backup/uninstall/recovery')
+    user_host.add_argument('--backup-id',help='Exact owned backup ID for restore/reinstall')
+    user_host.set_defaults(func=cmd_user_profile_install)
+
+    user_wizard = sub.add_parser('user-profile-wizard',
+        help='Local-TTY user-profile installation for Codex, Cursor and Claude Code')
+    user_wizard.add_argument('--host',required=True,choices=('codex','cursor','claude-code'))
+    user_wizard.add_argument('--id',required=True,help='Pinned source record ID')
+    user_wizard.add_argument('--selected-home',required=True,type=Path,
+        help='Existing absolute OS account HOME; must not be an arbitrary directory')
+    user_wizard.add_argument('--action',choices=('preview','install','replace'),default='preview')
+    user_wizard.add_argument('--download-if-missing',action='store_true',
+        help='Opt-in pinned download requiring separate exact local TTY approval')
+    user_wizard.set_defaults(func=cmd_user_profile_wizard)
 
     release_draft = sub.add_parser('release-draft',
         help='Inspect/build/verify a PRIVATE reproducible MVP ZIP; never publish or grant a license')

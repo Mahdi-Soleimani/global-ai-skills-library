@@ -1,0 +1,66 @@
+name: GASL — Current-user Profile Skill lifecycle
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tools/user_profile_install.py
+      - tools/user_profile_wizard.py
+      - tools/host_adapters.py
+      - tools/gasl.py
+      - web/index.html
+      - tests/test_user_profile_install.py
+      - tests/test_user_profile_wizard.py
+      - tests/test_host_adapters.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-user-profile-install.yml
+  pull_request:
+    paths:
+      - tools/user_profile_install.py
+      - tools/user_profile_wizard.py
+      - tools/host_adapters.py
+      - tools/gasl.py
+      - web/index.html
+      - tests/test_user_profile_install.py
+      - tests/test_user_profile_wizard.py
+      - tests/test_host_adapters.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-user-profile-install.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  user-profile-transaction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate syntax and CLI surface
+        run: |
+          python3 -m compileall -q tools tests
+          ./gasl user-profile-install --help >/tmp/gasl-user-profile-help.txt
+          ./gasl user-profile-wizard --help >/tmp/gasl-user-wizard-help.txt
+          grep -q -- '--selected-home' /tmp/gasl-user-profile-help.txt
+
+      - name: Test account binding, exact TTY consent, archived restores and fault recovery
+        run: |
+          python3 -m unittest tests.test_user_profile_install tests.test_user_profile_wizard tests.test_host_adapters -q
+
+      - name: Confirm Explorer only copies local commands
+        run: |
+          node tests/explorer_workflow_smoke.js
+
+      - name: Ensure user profile tests did not alter source tree
+        run: |
+          git diff --exit-code
+          git diff --check

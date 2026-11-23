@@ -76,7 +76,10 @@ def list_host_adapters():
             # remains verified only for isolated Codex fixtures.
             'real_installation_available': True,
             'real_installation_supported_hosts': ['codex', 'cursor', 'claude-code'],
-            'real_installation_scope': 'project_only',
+            'real_installation_scope': 'project_and_current_os_user_profile',
+            'real_user_profile_requires_os_home_match': True,
+            'user_profile_writes_require_local_tty': True,
+
             'real_installation_platform': 'POSIX_only',
             'real_installation_requires_local_tty': True,
             'cursor_and_claude_live_host_discovery_verified': False,
