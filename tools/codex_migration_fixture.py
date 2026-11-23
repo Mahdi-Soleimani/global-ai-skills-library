@@ -41,7 +41,7 @@ def _bytes(version):
 
 
 def _expected(count):
-    if type(count) is not int or count not in (0, 2):
+    if type(count) is not int or count not in (0, 2, 3):
         raise ValueError('Unsupported self-authored fixture history')
     source, destination = {}, {}
     prefix, previous = [], None
@@ -74,12 +74,22 @@ def _expected(count):
             'files': [{'path': 'SKILL.md', 'sha256': _hash(_bytes(version))}],
             'backup_ids': list(prefix),
         }
-    candidate = audit._candidate_receipt(previous, SLUG, prefix)
-    source['receipts/' + SLUG + '.json'] = legacy._serialized(previous)
-    destination['hosts/codex/receipts/' + SLUG + '.json'] = legacy._serialized(candidate)
+    active_bytes = _bytes(count + 1)
     manifests = [json.loads(destination['hosts/codex/backups/' + SLUG + '/' + ident + '.json'])
                  for ident in prefix]
-    return source, destination, {'SKILL.md': _bytes(count + 1)}, candidate, manifests
+    if count == 3:
+        # The third archive preserves v3 while restoring the exact v1 bytes.
+        selected = manifests[0]
+        active_bytes = _bytes(1)
+        previous.update(action='restore_backup', source_kind='pinned',
+                        restored_backup_id=prefix[0],
+                        plan_id=selected['previous_receipt']['plan_id'],
+                        files=selected['files'])
+    candidate = audit._candidate_receipt(previous, SLUG, prefix,
+                                         prior_manifests={m['backup_id']: m for m in manifests})
+    source['receipts/' + SLUG + '.json'] = legacy._serialized(previous)
+    destination['hosts/codex/receipts/' + SLUG + '.json'] = legacy._serialized(candidate)
+    return source, destination, {'SKILL.md': active_bytes}, candidate, manifests
 
 
 def _safe_dir(path):
@@ -190,7 +200,7 @@ def _context(root):
     if {p.name for p in root.iterdir()} - {HOST_MARKER, MARKER, LOCK, PROJECT, ORIGINAL, STAGED}:
         raise ValueError('Unexpected migration fixture root entry')
     marker = _path_within_fixture(root, MARKER)
-    for count in (0, 2):
+    for count in (0, 2, 3):
         try:
             _read_exact(marker, str(count).encode())
             break

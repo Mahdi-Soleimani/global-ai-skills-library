@@ -49,7 +49,7 @@ class MigrationFixtureTests(unittest.TestCase):
                          'candidate_metadata_verified_read_only')
 
     def test_success_preserves_archive_and_active_bytes_then_exact_rollback(self):
-        for count in (0, 2):
+        for count in (0, 2, 3):
             with self.subTest(count=count):
                 root = self.fixture(count)
                 project = root / m.PROJECT
@@ -70,7 +70,7 @@ class MigrationFixtureTests(unittest.TestCase):
                 self.assertEqual(m.recover_migration(root)['status'], 'already_restored')
 
     def test_abrupt_process_exit_at_every_apply_checkpoint(self):
-        for count in (0, 2):
+        for count in (0, 2, 3):
             for checkpoint in m.CHECKPOINTS:
                 with self.subTest(count=count, checkpoint=checkpoint):
                     root = self.fixture(count)

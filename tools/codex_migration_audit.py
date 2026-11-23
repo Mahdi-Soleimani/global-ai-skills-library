@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Read-only legacy Codex -> host-scoped receipt compatibility rehearsal.
 
-Only a strictly understood active fresh/replace chain is mapped in memory.
+Only strictly understood active pinned histories are mapped in memory.
 No migration, authorization, ownership attestation, source fetch or write is
 performed. Other histories retain their original semantics and are blocked.
 """
@@ -80,13 +80,19 @@ def _inventory_checked(folder):
     return entries
 
 
-def _candidate_receipt(value, slug, prefix):
+def _candidate_receipt(value, slug, prefix, *, prior_manifests=None):
     legacy._checked_receipt(value, slug)
     if any(not isinstance(value[key], str) for key in ('plan_id', 'binding', 'transaction')):
         raise AuditBlocked('invalid_record_identity_type')
-    if value['action'] not in ('fresh_install', 'replace_install'):
+    historical_action = value['action']
+    if historical_action not in ('fresh_install', 'replace_install', 'restore_backup'):
         raise AuditBlocked('historical_action_requires_explicit_semantics')
-    if set(value) not in (_BASE_RECEIPT, _BASE_RECEIPT | {'backup_ids'}):
+    if historical_action == 'restore_backup':
+        if value.get('source_kind') != 'pinned':
+            raise AuditBlocked('unmanaged_restore_requires_manual_review')
+        if set(value) != _BASE_RECEIPT | {'backup_ids', 'restored_backup_id', 'source_kind'}:
+            raise AuditBlocked('historical_fields_require_explicit_semantics')
+    elif set(value) not in (_BASE_RECEIPT, _BASE_RECEIPT | {'backup_ids'}):
         raise AuditBlocked('historical_fields_require_explicit_semantics')
     if value.get('backup_ids', []) != prefix:
         raise AuditBlocked('backup_lineage_mismatch')
@@ -97,13 +103,24 @@ def _candidate_receipt(value, slug, prefix):
     else:
         if not prefix or value['transaction'] != prefix[-1]:
             raise AuditBlocked('backup_lineage_mismatch')
-        action = 'replace'
+        action = 'replace' if historical_action == 'replace_install' else 'restore'
     candidate = {
         'schema': native.SCHEMA, 'host': 'codex', 'scope': 'project',
         'slug': slug, 'action': action, 'transaction': value['transaction'],
         'plan_id': value['plan_id'], 'binding': value['binding'],
         'files': value['files'], 'backup_ids': list(prefix),
     }
+    if action == 'restore':
+        selected_id = value['restored_backup_id']
+        # The selected backup must predate the archive created by the
+        # restore itself. Match its exact recorded bytes and Plan identity.
+        if selected_id not in prefix[:-1] or prior_manifests is None:
+            raise AuditBlocked('restore_source_lineage_mismatch')
+        selected = prior_manifests.get(selected_id)
+        if (selected is None or selected['files'] != value['files']
+                or selected['previous_receipt']['plan_id'] != value['plan_id']):
+            raise AuditBlocked('restore_source_evidence_mismatch')
+        candidate['restored_backup_id'] = selected_id
     return native._receipt_valid(candidate, 'codex', slug)
 
 
@@ -127,27 +144,56 @@ def _snapshot(root, slug):
         raise AuditBlocked('destination_ownership_or_pending_state')
     if _present(legacy._journal(base, slug)) or _nonempty(base / 'stage'):
         raise AuditBlocked('legacy_recovery_required')
-    if _present(base / 'uninstalled' / (slug + '.json')):
-        # Do not erase project-bound historical marker semantics, including
-        # an older marker retained after a reinstall.
-        raise AuditBlocked('uninstall_marker_requires_explicit_semantics')
+    marker_path = base / 'uninstalled' / (slug + '.json')
     receipt_path = legacy._receipt(base, slug)
-    if not _present(receipt_path):
+    marker = None
+    marker_sha = None
+    if _present(marker_path):
+        # Native active receipts cannot coexist with a retained uninstall
+        # marker, and native archive markers do not enforce the old path
+        # binding. Inspect evidence, but never silently convert this state.
+        marker, marker_sha = _record(marker_path)
+        from codex_uninstalled_restore import MARKER_SCHEMA
+        expected_fields = {'schema', 'kind', 'slug', 'target_sha256',
+                           'uninstall_event_id', 'archived_current_backup_id',
+                           'last_receipt', 'backup_ids'}
+        if (not isinstance(marker, dict) or set(marker) != expected_fields
+                or marker['schema'] != MARKER_SCHEMA
+                or marker['kind'] != 'uninstalled_codex_project_skill'
+                or marker['slug'] != slug
+                or marker['target_sha256'] != hashlib.sha256(os.fsencode(str(target))).hexdigest()
+                or marker['uninstall_event_id'] != marker['archived_current_backup_id']
+                or not isinstance(marker['uninstall_event_id'], str)
+                or not native.TXID.fullmatch(marker['uninstall_event_id'])):
+            raise AuditBlocked('invalid_project_bound_uninstall_marker')
+        last = legacy._checked_receipt(marker['last_receipt'], slug)
+        expected_ids = last.get('backup_ids', []) + [marker['uninstall_event_id']]
+        if (marker['backup_ids'] != expected_ids or len(expected_ids) > 1000
+                or len(set(expected_ids)) != len(expected_ids)):
+            raise AuditBlocked('uninstall_marker_lineage_mismatch')
+    if _present(receipt_path):
+        active, active_sha = _record(receipt_path)
+        legacy._checked_receipt(active, slug)
+        ids = active.get('backup_ids', [])
+        if not target.is_dir() or _inventory_checked(target) != active['files']:
+            raise AuditBlocked('active_inventory_mismatch')
+        if marker is not None and ids[:len(marker['backup_ids'])] != marker['backup_ids']:
+            raise AuditBlocked('uninstall_marker_lineage_mismatch')
+    elif marker is not None:
+        if _present(target):
+            raise AuditBlocked('archived_target_occupied')
+        active, active_sha = None, None
+        ids = marker['backup_ids']
+    else:
         if _nonempty(base / 'backups' / slug):
             raise AuditBlocked('unowned_history_requires_manual_review')
         raise AuditBlocked('no_legacy_active_receipt')
-    active, active_sha = _record(receipt_path)
-    legacy._checked_receipt(active, slug)
-    ids = active.get('backup_ids', [])
-    candidate = _candidate_receipt(active, slug, ids)
-    if not target.is_dir() or _inventory_checked(target) != active['files']:
-        raise AuditBlocked('active_inventory_mismatch')
     parent = base / 'backups' / slug
     expected = set(ids) | {ident + '.json' for ident in ids}
     actual = {p.name for p in parent.iterdir()} if parent.is_dir() else set()
     if actual != expected:
         raise AuditBlocked('unknown_or_missing_backup_entries')
-    source_digests, mapped = [], []
+    source_digests, mapped, mapped_by_id, originals = [], [], {}, {}
     for index, ident in enumerate(ids):
         path = legacy._backup_manifest(base, slug, ident)
         manifest, raw_sha = _record(path)
@@ -157,7 +203,7 @@ def _snapshot(root, slug):
         previous = manifest['previous_receipt']
         if previous is None:
             raise AuditBlocked('unmanaged_backup_requires_manual_review')
-        converted = _candidate_receipt(previous, slug, ids[:index])
+        converted = _candidate_receipt(previous, slug, ids[:index], prior_manifests=mapped_by_id)
         if _inventory_checked(legacy._backup_dir(base, slug, ident)) != manifest['files']:
             raise AuditBlocked('backup_inventory_mismatch')
         item = {'schema': native.SCHEMA, 'host': 'codex', 'scope': 'project',
@@ -165,8 +211,44 @@ def _snapshot(root, slug):
                 'files': manifest['files']}
         native._manifest_valid(item, 'codex', slug, ident)
         mapped.append(item)
+        mapped_by_id[ident] = item
+        originals[ident] = manifest
         source_digests.append({'backup_id': ident, 'manifest_sha256': raw_sha,
                                'inventory_sha256': _digest(manifest['files'])})
+    if marker is not None:
+        last_manifest = originals[marker['uninstall_event_id']]
+        if last_manifest['previous_receipt'] != marker['last_receipt']:
+            raise AuditBlocked('uninstall_marker_archive_mismatch')
+        if active is not None:
+            # A retained marker is itself historical ownership evidence.
+            # Validate current reinstatement evidence, but do not discard it
+            # to satisfy the native schema's active/archived exclusivity.
+            if active['action'] == 'reinstall_backup':
+                if active.get('source_kind') != 'pinned':
+                    raise AuditBlocked('unmanaged_restore_requires_manual_review')
+                selected = mapped_by_id.get(active['restored_backup_id'])
+                if (active['uninstall_event_id'] != marker['uninstall_event_id']
+                        or active['restored_backup_id'] not in marker['backup_ids']
+                        or ids != marker['backup_ids']
+                        or selected is None or selected['files'] != active['files']
+                        or selected['previous_receipt']['plan_id'] != active['plan_id']):
+                    raise AuditBlocked('reinstall_source_evidence_mismatch')
+            else:
+                _candidate_receipt(active, slug, ids, prior_manifests=mapped_by_id)
+        return {
+            'source_snapshot_sha256': _digest({
+                'root_binding': hashlib.sha256(os.fsencode(str(root))).hexdigest(),
+                'slug': slug, 'receipt_sha256': active_sha,
+                'marker_sha256': marker_sha, 'backups': source_digests,
+            }),
+            'backup_count': len(ids),
+            'active_file_count': len(active['files']) if active else 0,
+            'historical_lifecycle': 'active_with_retained_uninstall_marker' if active else 'uninstalled_owned',
+            'project_bound_archive_evidence_checked': True,
+            'candidate_metadata_sha256': None,
+            'candidate_record_count': 0,
+        }
+    candidate = _candidate_receipt(active, slug, ids, prior_manifests=mapped_by_id)
     # No converted records are emitted to stdout or persisted. The original
     # binding is retained as historical evidence, never as a new approval.
     return {
@@ -193,6 +275,7 @@ def audit_legacy_migration(slug, selected_root):
         'source_schema': legacy.SCHEMA, 'candidate_schema': native.SCHEMA,
         'source_snapshot_sha256': None, 'candidate_metadata_sha256': None,
         'backup_count': 0, 'active_file_count': 0, 'candidate_record_count': 0,
+        'historical_lifecycle': None, 'project_bound_archive_evidence_checked': False,
         'read_only': True, 'migration_performed': False,
         'migration_write_allowed': False, 'local_tty_approval_collected': False,
         'upstream_provenance_revalidated': False,
@@ -213,8 +296,12 @@ def audit_legacy_migration(slug, selected_root):
         if first != _snapshot(root, slug):
             raise AuditBlocked('state_changed_during_audit')
         report.update(first)
-        report.update(status='candidate_metadata_verified_read_only',
-                      reason_code='simple_locally_recorded_chain_compatible')
+        if first['candidate_metadata_sha256'] is None:
+            report.update(status='blocked',
+                          reason_code='uninstall_marker_requires_explicit_semantics')
+        else:
+            report.update(status='candidate_metadata_verified_read_only',
+                          reason_code='simple_locally_recorded_chain_compatible')
     except AuditBlocked as exc:
         report['reason_code'] = str(exc)
     except (OSError, ValueError, TypeError, KeyError, RuntimeError):

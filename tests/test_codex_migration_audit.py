@@ -138,7 +138,7 @@ class MigrationAuditTests(unittest.TestCase):
         for relative, reason in (
             ('journals/demo.json', 'legacy_recovery_required'),
             ('stage/unknown', 'legacy_recovery_required'),
-            ('uninstalled/demo.json', 'uninstall_marker_requires_explicit_semantics'),
+            ('uninstalled/demo.json', 'invalid_or_unsafe_local_evidence'),
             ('hosts/codex/receipts/demo.json', 'destination_ownership_or_pending_state'),
             ('hosts/codex/journals/demo.json', 'destination_ownership_or_pending_state'),
             ('hosts/codex/uninstalled/demo.json', 'destination_ownership_or_pending_state'),
@@ -159,6 +159,82 @@ class MigrationAuditTests(unittest.TestCase):
         self.check('no_legacy_active_receipt')
         (self.backups / 'unowned').write_bytes(b'KEEP')
         self.check('unowned_history_requires_manual_review')
+
+    def archive(self):
+        from codex_uninstalled_restore import make_uninstall_marker
+        ident = 'e' * 32
+        marker = make_uninstall_marker(self.root, 'demo', self.active, ident)
+        backup = self.backups / ident
+        self.target.rename(backup)
+        self.write(backup.with_suffix('.json'), {
+            'schema': legacy.SCHEMA, 'kind': 'pre_replace_backup', 'slug': 'demo',
+            'backup_id': ident, 'transaction': ident, 'previous_receipt': self.active,
+            'files': self.active['files'],
+        })
+        self.receipt.unlink()
+        path = self.state / 'uninstalled' / 'demo.json'
+        path.parent.mkdir()
+        self.write(path, marker)
+        return path, marker
+
+    def test_owned_archive_verified_but_never_converted_without_path_binding(self):
+        self.replace('2')
+        path, marker = self.archive()
+        result = self.check('uninstall_marker_requires_explicit_semantics')
+        self.assertTrue(result['project_bound_archive_evidence_checked'])
+        self.assertEqual(result['historical_lifecycle'], 'uninstalled_owned')
+        self.assertEqual(result['backup_count'], 2)
+        self.assertIsNotNone(result['source_snapshot_sha256'])
+        marker['target_sha256'] = '0' * 64
+        self.write(path, marker)
+        self.check('invalid_project_bound_uninstall_marker')
+
+    def test_archived_target_collision_and_changed_archive_block(self):
+        path, marker = self.archive()
+        self.target.mkdir()
+        self.check('archived_target_occupied')
+        self.target.rmdir()
+        (self.backups / marker['uninstall_event_id'] / 'SKILL.md').write_bytes(b'CHANGED')
+        self.check('backup_inventory_mismatch')
+
+    def test_reinstalled_marker_and_exact_source_evidence_preserved(self):
+        self.replace('2')
+        _, marker = self.archive()
+        ident = marker['backup_ids'][0]
+        source = json.loads((self.backups / (ident + '.json')).read_bytes())
+        self.target.mkdir()
+        (self.target / 'SKILL.md').write_bytes((self.backups / ident / 'SKILL.md').read_bytes())
+        active = dict(self.active, action='reinstall_backup', transaction='f'*32,
+                      plan_id=source['previous_receipt']['plan_id'],
+                      files=source['files'], backup_ids=marker['backup_ids'],
+                      restored_backup_id=ident, uninstall_event_id=marker['uninstall_event_id'],
+                      source_kind='pinned')
+        self.write(self.receipt, active)
+        result = self.check('uninstall_marker_requires_explicit_semantics')
+        self.assertTrue(result['project_bound_archive_evidence_checked'])
+        self.assertEqual(result['historical_lifecycle'], 'active_with_retained_uninstall_marker')
+        active['plan_id'] = 'b' * 64
+        self.write(self.receipt, active)
+        self.check('reinstall_source_evidence_mismatch')
+
+    def test_pinned_restore_maps_only_exact_prior_source(self):
+        backup = self.replace('2')
+        source = json.loads(backup.with_suffix('.json').read_bytes())
+        self.replace('3')
+        (self.target / 'SKILL.md').write_bytes((backup / 'SKILL.md').read_bytes())
+        self.active.update(action='restore_backup', source_kind='pinned',
+                           restored_backup_id=backup.name,
+                           plan_id=source['previous_receipt']['plan_id'],
+                           files=source['files'])
+        self.write(self.receipt, self.active)
+        self.assertEqual(self.check()['backup_count'], 2)
+        self.active['plan_id'] = 'f' * 64
+        self.write(self.receipt, self.active)
+        self.check('restore_source_evidence_mismatch')
+        self.active['source_kind'] = 'unmanaged'
+        self.active['unmanaged_restore_plan_id_derived'] = True
+        self.write(self.receipt, self.active)
+        self.check('unmanaged_restore_requires_manual_review')
 
     def test_duplicate_json_keys_and_hardlink_refused(self):
         original = self.receipt.read_bytes()
