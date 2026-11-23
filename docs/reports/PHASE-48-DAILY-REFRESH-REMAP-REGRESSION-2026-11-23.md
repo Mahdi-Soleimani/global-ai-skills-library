@@ -3,7 +3,7 @@
 **Date:** 2026-11-23  
 **Repository:** `Mahdi-Soleimani/global-ai-skills-library`  
 **Baseline HEAD:** `0d0831f31c907f7b40f46132f856bc0e308d655c`  
-**Status:** local regression fixed; next Daily Source Refresh CI required.
+**Status:** local full regression and dedicated Search Quality CI passed; full Daily Refresh CI remains pending.
 
 ## Objective / baseline failure
 The Daily Refresh workflow, including [run 45267081985](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45267081985), failed `tests.test_benchmark_reconcile.ReconcileTests.test_full_real_reconciliation_26_queries_148_preserved` because a historical expectation `remapped_source_id_count == 24` no longer describes the refreshed pinned catalog (now `26`). The failure reproduces locally as `AssertionError: 26 != 24`.
@@ -42,3 +42,9 @@ This prevents a normal pinned-commit refresh from breaking CI solely because its
 ## Full local regression confirmation
 - `python3 -m pytest -q`: **792 passed, 27 skipped, 337 subtests passed**, 43.26 s. No failure.
 - A dedicated lightweight `gasl-search-quality.yml` CI job is configured to run on changes to `tests/test_benchmark_reconcile.py`; this verifies the crosswalk and ranking comparison without triggering a 57-repository refresh. The scheduled Daily Refresh still needs its next independent run before it can be declared green.
+
+## Dedicated GitHub CI acceptance
+- Fix committed/pushed as `675d4654b996d7ff4ae83b0df5165df98bfa746e` (ordinary non-force push).
+- [Provisional Search Quality run 45278194622](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45278194622), job `138055376655`: **SUCCESS**.
+- All steps passed: immutable crosswalk/benchmark regression, reconciled provisional labels, ablation comparison with production ranking unchanged, and final clean working-tree check.
+- The full scheduled `gasl-refresh.yml` runs separately and was **not triggered** by this test-only correction. Its end-to-end source discovery/metadata refresh result is not yet confirmed on this commit.
