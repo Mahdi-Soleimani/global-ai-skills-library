@@ -9,7 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
-from benchmark_reconcile import MAPPING_SCHEMA, build_mapping, reconcile, historical_from_git
+from benchmark_reconcile import (MAPPING_SCHEMA, build_mapping, reconcile,
+                                 historical_from_git, inspect_crosswalk)
 from search_benchmark import load_dataset
 
 OLD = "GASL-SRC-old"
@@ -154,6 +155,124 @@ class ReconcileTests(unittest.TestCase):
         self.assertEqual(len(digest), 64)
         with self.assertRaisesRegex(ValueError, "complete 40"):
             historical_from_git(ROOT, "main")
+
+    def test_drift_audit_preserves_all_eligible_and_blocked_judgments(self):
+        candidate = copy.deepcopy(self.present)
+        candidate["records"][0]["skill_md_blob_sha"] = "f"*40
+        before = copy.deepcopy((self.original, self.mapping, candidate))
+        audit = inspect_crosswalk(self.original, self.mapping, candidate)
+        self.assertEqual(audit["evaluation_status"], "rejudgment_required")
+        self.assertFalse(audit["ranking_metrics_allowed"])
+        self.assertEqual(audit["total_judgments"], 4)
+        self.assertEqual(audit["same_blob_eligible_judgment_count"], 2)
+        self.assertEqual(audit["blocked_judgment_count"], 2)
+        self.assertEqual(audit["blocked_identity_count"], 1)
+        self.assertEqual(audit["affected_query_count"], 2)
+        self.assertEqual(audit["blocked_identities"][0]["status"], "changed_blob")
+        self.assertEqual(audit["blocked_identities"][0]["historical_git_blob_sha"], BLOB)
+        self.assertEqual(audit["blocked_identities"][0]["current_candidates"][0]["git_blob_sha"], "f"*40)
+        self.assertEqual([x["blocked_historical_ids"] for x in audit["queries"]], [[OLD], [OLD]])
+        self.assertFalse(audit["new_judgments_created"])
+        self.assertNotIn("metrics", audit)
+        self.assertNotIn("averages", audit)
+        self.assertEqual((self.original, self.mapping, candidate), before)
+        with self.assertRaisesRegex(ValueError, "Git Blob"):
+            reconcile(self.original, self.mapping, candidate)
+
+    def test_drift_audit_ready_missing_and_ambiguous_are_distinct(self):
+        ready = inspect_crosswalk(self.original, self.mapping, self.present)
+        self.assertTrue(ready["ranking_metrics_allowed"])
+        self.assertEqual(ready["evaluation_status"], "ready_provisional")
+        self.assertEqual(ready["same_blob_eligible_judgment_count"], 4)
+        self.assertEqual(ready["blocked_judgment_count"], 0)
+        missing = copy.deepcopy(self.present)
+        missing["records"].pop(0)
+        report = inspect_crosswalk(self.original, self.mapping, missing)
+        self.assertEqual(report["evaluation_status"], "rejudgment_required")
+        self.assertEqual(report["blocked_identities"][0]["status"], "missing_path")
+        self.assertEqual(report["blocked_identities"][0]["current_candidates"], [])
+        duplicate = copy.deepcopy(self.present)
+        duplicate["records"].append({**duplicate["records"][0], "source_record_id": "duplicate"})
+        report = inspect_crosswalk(self.original, self.mapping, duplicate)
+        self.assertEqual(report["evaluation_status"], "integrity_blocked")
+        self.assertEqual(report["blocked_identities"][0]["status"], "ambiguous_blob")
+        self.assertFalse(report["ranking_metrics_allowed"])
+
+    def test_drift_audit_reports_multiple_integrity_problems_not_just_first(self):
+        candidate = copy.deepcopy(self.present)
+        candidate["records"][0]["commit_sha"] = None
+        candidate["records"][1]["skill_md_blob_sha"] = "f"*40
+        report = inspect_crosswalk(self.original, self.mapping, candidate)
+        self.assertEqual(report["evaluation_status"], "integrity_blocked")
+        self.assertEqual(report["same_blob_eligible_identity_count"], 0)
+        self.assertEqual(report["blocked_judgment_count"], 4)
+        self.assertEqual({x["status"] for x in report["blocked_identities"]},
+                         {"invalid_current_pin", "historical_id_conflict"})
+        self.assertFalse(report["ranking_metrics_allowed"])
+
+    def test_drift_many_to_one_blocks_every_colliding_historical_identity(self):
+        original = copy.deepcopy(self.original)
+        history = copy.deepcopy(self.history)
+        history["records"][1] = {**history["records"][0], "source_record_id": KEEP}
+        mapping = build_mapping(original, history, OLD_COMMIT, "e"*64)
+        candidate = {"records": [self.present["records"][0]]}
+        report = inspect_crosswalk(original, mapping, candidate)
+        self.assertEqual(report["evaluation_status"], "integrity_blocked")
+        self.assertEqual(report["same_blob_eligible_judgment_count"], 0)
+        self.assertEqual(report["blocked_judgment_count"], 4)
+        self.assertEqual([r["status"] for r in report["blocked_identities"]],
+                         ["many_to_one", "many_to_one"])
+        with self.assertRaisesRegex(ValueError, "many-to-one"):
+            reconcile(original, mapping, candidate)
+
+    def test_audit_cli_writes_report_but_never_evaluates_blocked_labels(self):
+        import contextlib
+        import io
+        import tempfile
+        from benchmark_reconcile import main
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            catalog = root/"registry"/"source-catalog.json"
+            catalog.parent.mkdir()
+            data = root/"dataset.json"
+            mapping = root/"map.json"
+            report = root/"drift.json"
+            strict = root/"strict.json"
+            candidate = copy.deepcopy(self.present)
+            candidate["records"][0]["skill_md_blob_sha"] = "f"*40
+            for path, obj in ((catalog, candidate), (data, self.original), (mapping, self.mapping)):
+                path.write_text(json.dumps(obj, ensure_ascii=False), encoding="utf-8")
+            inputs = {path: path.read_bytes() for path in (catalog, data, mapping)}
+            argv = ["benchmark_reconcile.py", "--root", str(root), "--dataset", str(data),
+                    "--map", str(mapping)]
+            with patch("sys.argv", argv+["--audit-report", str(report)]), \
+                 patch("benchmark_reconcile.run_benchmark", side_effect=AssertionError("must not rank")), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                main()
+            result = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual(result["evaluation_status"], "rejudgment_required")
+            self.assertEqual(len(result["current_catalog_sha256"]), 64)
+            self.assertEqual(len(result["original_dataset_sha256"]), 64)
+            with patch("sys.argv", argv+["--report", str(strict)]):
+                with self.assertRaisesRegex(ValueError, "Git Blob"):
+                    main()
+            self.assertFalse(strict.exists())
+            with patch("sys.argv", argv+["--audit-report", str(data)]), \
+                 contextlib.redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as error:
+                    main()
+                self.assertEqual(error.exception.code, 2)
+            self.assertEqual({path: path.read_bytes() for path in inputs}, inputs)
+            candidate["records"][0]["skill_md_blob_sha"] = BLOB
+            candidate["records"][0]["commit_sha"] = None
+            catalog.write_text(json.dumps(candidate), encoding="utf-8")
+            with patch("sys.argv", argv+["--audit-report", str(report)]), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                with self.assertRaises(SystemExit) as error:
+                    main()
+                self.assertEqual(error.exception.code, 2)
+            self.assertEqual(json.loads(report.read_text(encoding="utf-8"))["evaluation_status"],
+                             "integrity_blocked")
 
     def test_full_real_reconciliation_26_queries_148_preserved(self):
         original = load_dataset(ROOT/"benchmarks"/"search-gold-v1.json")

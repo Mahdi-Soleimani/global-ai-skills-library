@@ -11,6 +11,7 @@ on:
       - tools/skill_search.py
       - benchmarks/search-gold-v1.json
       - benchmarks/search-gold-v1-crosswalk.json
+      - registry/source-catalog.json
       - tests/test_benchmark_reconcile.py
       - tests/test_search_ranking_lab.py
       - .github/workflows/gasl-search-quality.yml
@@ -22,6 +23,7 @@ on:
       - tools/skill_search.py
       - benchmarks/search-gold-v1.json
       - benchmarks/search-gold-v1-crosswalk.json
+      - registry/source-catalog.json
       - tests/test_benchmark_reconcile.py
       - tests/test_search_ranking_lab.py
       - .github/workflows/gasl-search-quality.yml
@@ -48,13 +50,44 @@ jobs:
           python3 -m compileall -q tools tests
           python3 -m unittest tests.test_benchmark_reconcile tests.test_search_ranking_lab tests.test_search_benchmark -q
 
+      - name: Audit all pinned judgment identities before evaluating ranking
+        id: drift
+        run: |
+          python3 tools/benchmark_reconcile.py \
+            --map benchmarks/search-gold-v1-crosswalk.json \
+            --audit-report "$RUNNER_TEMP/gasl-benchmark-drift.json"
+          python3 - <<'PYTHON'
+          import json, os
+          from pathlib import Path
+          audit=json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-benchmark-drift.json').read_text(encoding='utf-8'))
+          status=audit['evaluation_status']
+          ready=audit['ranking_metrics_allowed']
+          assert status in ('ready_provisional', 'rejudgment_required')
+          assert ready == (status == 'ready_provisional') == (audit['blocked_judgment_count'] == 0)
+          assert audit['same_blob_eligible_judgment_count'] + audit['blocked_judgment_count'] == audit['total_judgments']
+          assert audit['new_judgments_created'] is False
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write('ready='+str(ready).lower()+'\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('## Provisional judgment identity audit\n\n')
+              f.write('**Evaluation status:** '+status+'\n\n')
+              f.write('Same-blob eligible judgments: '+str(audit['same_blob_eligible_judgment_count'])+' / '+str(audit['total_judgments'])+'\n\n')
+              f.write('Blocked judgments: '+str(audit['blocked_judgment_count'])+'; affected queries: '+str(audit['affected_query_count'])+'\n\n')
+              if not ready:
+                  f.write('**Ranking metrics and ablations NOT RUN. Rejudgment required; no old grades transferred to changed content.**\n')
+          if not ready:
+              print('::warning::Benchmark version drift detected; ranking evaluation remains blocked pending rejudgment.')
+          PYTHON
+
       - name: Reconcile Git-blob-pinned provisional labels, never human gold
+        if: steps.drift.outputs.ready == 'true'
         run: |
           python3 tools/benchmark_reconcile.py \
             --map benchmarks/search-gold-v1-crosswalk.json \
             --report /tmp/gasl-provisional-reconciled-baseline.json
 
       - name: Compare candidate ranking orders without changing production ranking
+        if: steps.drift.outputs.ready == 'true'
         run: |
           python3 tools/search_ranking_lab.py \
             --output /tmp/gasl-provisional-rank-ablation.json

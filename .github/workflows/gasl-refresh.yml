@@ -70,6 +70,28 @@ jobs:
       - name: Refresh public source catalog (all license classes)
         run: python3 tools/build_source_catalog.py --public-only
 
+      # Metadata-only commits made by GITHUB_TOKEN do not trigger a second
+      # workflow. Audit the freshly generated catalog here before publication.
+      - name: Audit provisional judgment drift in refreshed catalog
+        run: |
+          python3 tools/benchmark_reconcile.py \
+            --map benchmarks/search-gold-v1-crosswalk.json \
+            --audit-report "$RUNNER_TEMP/gasl-benchmark-drift.json"
+          python3 - <<'PYTHON'
+          import json, os
+          from pathlib import Path
+          audit=json.loads((Path(os.environ['RUNNER_TEMP'])/'gasl-benchmark-drift.json').read_text(encoding='utf-8'))
+          assert audit['evaluation_status'] in ('ready_provisional', 'rejudgment_required')
+          assert audit['new_judgments_created'] is False
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('## Refreshed catalog judgment identity audit\n\n')
+              f.write('Evaluation status: **'+audit['evaluation_status']+'**\n\n')
+              f.write('Blocked historical judgments: '+str(audit['blocked_judgment_count'])+' / '+str(audit['total_judgments'])+'\n\n')
+              f.write('This is metadata validation, not an evaluation of search ranking quality.\n')
+          if not audit['ranking_metrics_allowed']:
+              print('::warning::Changed or missing judged Skills require rejudgment. No quality metrics generated.')
+          PYTHON
+
       - name: Incrementally extract verified public search vocabulary
         run: python3 tools/search_features.py --limit 200 --workers 4
 

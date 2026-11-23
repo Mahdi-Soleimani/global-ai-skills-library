@@ -364,7 +364,13 @@ The measured **development-only** baseline at the Phase-48 source snapshot is P@
 
 **Fresh checkout comparison:** The development Mac also has optional private metadata and a Git-untracked local Skill manifest, which are absent in GitHub CI. Replaying the exact **tracked-only** inputs in isolation yields production NDCG@5 **0.6456**, and the same score-first experiment falls to **0.6326**. This reversal reinforces why no unadjudicated variant is released. Both input scopes and their SHA-256 fingerprints are documented in the Phase 48 report.
 
-Dedicated lightweight quality CI checks the crosswalk, original-label immutability, absence of fabricated Gold and reproducibility. Actual search-quality promotion requires **two independent human reviewers, adjudication, out-of-pool negatives, a frozen holdout and validated answerability**. See [Phase 48 report](docs/reports/PHASE-48-PROVISIONAL-SEARCH-QUALITY-2026-11-23.md).
+**Phase 57: source-version drift audit.** Inspect every historical judgment before attempting ranking evaluation:
+
+    python3 tools/benchmark_reconcile.py --map benchmarks/search-gold-v1-crosswalk.json --audit-report /tmp/gasl-benchmark-drift.json
+
+The JSON report records source/commit/blob identities, same-blob eligibility, blocked identities, affected query IDs, counts and input digests, without producing ranking metrics or creating new judgments. `ready_provisional` permits the existing strict evaluator; `rejudgment_required` records changed/missing content and blocks all aggregate ranking metrics; `integrity_blocked` additionally exits nonzero for identity collisions, ambiguous matches or invalid pins. The quality workflow reports ordinary drift explicitly and skips both metric steps; the daily refresh audits its newly generated catalog before metadata publication. A successful audit is **not** a successful ranking evaluation. The original strict `--report` and ablation commands still fail closed on any unresolved judgment.
+
+Dedicated lightweight quality CI checks the crosswalk, original-label immutability, absence of fabricated Gold and reproducibility. Actual search-quality promotion requires **two independent human reviewers, adjudication, out-of-pool negatives, a frozen holdout and validated answerability**. See [Phase 48 report](docs/reports/PHASE-48-PROVISIONAL-SEARCH-QUALITY-2026-11-23.md) and [Phase 57 report](docs/reports/PHASE-57-BENCHMARK-VERSION-DRIFT-2026-11-23.md).
 
 ### Phase 47: From a task to a shortlist, comparison, and Skill choice
 
