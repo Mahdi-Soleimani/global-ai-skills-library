@@ -403,6 +403,20 @@ class UserProfileInstallTests(unittest.TestCase):
         self._install(host,plan)
         other=Path(self.fixture_case.tmp.name)/"another-inert-home"
         other.mkdir()
+        if os.name == "nt":
+            # The copied receipt must reach the profile identity check, not
+            # fail first on the disposable destination's inherited runner ACL.
+            for args in (
+                ["/inheritance:r"],
+                ["/grant:r", f"*{self.sid}:(OI)(CI)F"],
+                ["/setowner", f"*{self.sid}"],
+            ):
+                hardened = subprocess.run(
+                    ["icacls", str(other), *args], capture_output=True, text=True,
+                )
+                self.assertEqual(hardened.returncode, 0,
+                                 "Failed to secure disposable relocated HOME ACL")
+            windows_profile.verify_owned_path(other, self.sid, directory=True)
         original=self._state(host)
         moved_state=other/".gasl-managed"/"user"/"hosts"/host
         moved_state.parent.mkdir(parents=True)
