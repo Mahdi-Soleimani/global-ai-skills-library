@@ -36,6 +36,14 @@ class WindowsAclMaskClassificationTests(unittest.TestCase):
             with self.subTest(mask=hex(mask)):
                 self.assertTrue(wp._ace_grants_write(mask))
 
+    def test_ancestor_add_child_rights_do_not_allow_replacing_profile(self):
+        self.assertFalse(wp._ace_can_replace_child_path(0x00120116))
+        self.assertFalse(wp._ace_can_replace_child_path(0x40000000))
+        self.assertTrue(wp._ace_can_replace_child_path(0x001F01FF))
+        for mask in (0x40, 0x10000, 0x40000, 0x80000, 0x01000000):
+            with self.subTest(mask=hex(mask)):
+                self.assertTrue(wp._ace_can_replace_child_path(mask))
+
 
 @unittest.skipUnless(os.name == "nt", "Native Windows token and ACL tests")
 class WindowsUserProfileSecurityTests(unittest.TestCase):

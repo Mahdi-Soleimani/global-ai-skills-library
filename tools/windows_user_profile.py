@@ -51,6 +51,23 @@ _WRITE_MASK = (
 def _ace_grants_write(mask):
     """Classify write capability without mistaking shared read bits as writes."""
     return bool(int(mask) & _WRITE_MASK)
+
+
+# Creating a sibling in a parent directory cannot modify an already-existing
+# profile entry. For ancestors, reject only rights that can remove/replace the
+# profile entry or take over its parent's owner/security descriptor.
+_PATH_REPLACEMENT_MASK = (
+    0x00000040 |  # FILE_DELETE_CHILD
+    0x00010000 |  # DELETE
+    0x00040000 |  # WRITE_DAC
+    0x00080000 |  # WRITE_OWNER
+    0x01000000 |  # ACCESS_SYSTEM_SECURITY
+    0x10000000    # GENERIC_ALL
+)
+
+
+def _ace_can_replace_child_path(mask):
+    return bool(int(mask) & _PATH_REPLACEMENT_MASK)
 _TRUSTED_OS_OWNERS = frozenset((
     "S-1-5-18",  # LocalSystem
     "S-1-5-32-544",  # BUILTIN\\Administrators
@@ -377,9 +394,14 @@ def verify_owned_path(path, sid, *, directory=None, require_owner=True):
                     current_sid_write_mask |= 0x001F01FF
                 if mask & 0x40000000:  # GENERIC_WRITE
                     current_sid_write_mask |= 0x00120116
-            if _ace_grants_write(mask) and ace_sid not in allowed_writers:
+            unsafe_ancestor_right = (
+                not require_owner and _ace_can_replace_child_path(mask))
+            unsafe_owned_path_right = (
+                require_owner and _ace_grants_write(mask))
+            if ((unsafe_ancestor_right or unsafe_owned_path_right)
+                    and ace_sid not in allowed_writers):
                 raise ValueError(
-                    "Windows profile ACL grants write access to an untrusted SID")
+                    "Windows profile ACL grants unsafe write/delete access to an untrusted SID")
         # A trusted OS owner (e.g. BUILTIN\\Administrators on hosted runners)
         # is acceptable only when this exact user SID has explicit modify and
         # delete rights. Ancestors are checked for untrusted writers, but need
