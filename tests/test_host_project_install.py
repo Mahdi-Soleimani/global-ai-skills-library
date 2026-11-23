@@ -1,6 +1,7 @@
 """Phase 51: both real POSIX Host adapters exercised ONLY with inert Git fixtures."""
 import hashlib
 import json
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -334,7 +335,8 @@ class HostProjectInstallTests(unittest.TestCase):
 
     def test_unknown_host_and_home_scope_disallowed(self):
         plan=self.setup_host("cursor")
-        with self.assertRaisesRegex(ValueError,"Only Cursor"):
+        with self.assertRaisesRegex(
+                ValueError, "Bundle is not bound" if os.name == "nt" else "Only Cursor"):
             self.preview("codex",plan)
         with self.assertRaises(ValueError):
             h.preview_install(plan,self.root,"cursor",

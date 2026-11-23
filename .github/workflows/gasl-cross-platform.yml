@@ -1,4 +1,4 @@
-name: GASL — Cross-platform Python and CLI regression
+name: GASL — Cross-platform platform-eligible regression
 
 on:
   push:
@@ -63,8 +63,32 @@ jobs:
       - name: Compile source and test modules
         run: python -m compileall -q tools tests
 
-      - name: Run complete automated regression suite
+      - name: Run complete POSIX automated regression suite
+        if: runner.os != 'Windows'
         run: python -m pytest -q
+
+      - name: Confirm excluded legacy modules still require POSIX
+        if: runner.os == 'Windows'
+        run: |
+          python -c "import sys; sys.path.insert(0, 'tools'); import codex_project_install as codex, fixture_transaction_v2 as fixture; assert codex.fcntl is None and fixture.fcntl is None, 'Remove POSIX-only exclusions after actual Windows port'"
+
+      - name: Run all Windows-eligible automated regression tests
+        if: runner.os == 'Windows'
+        run: >-
+          python -m pytest -q
+          --ignore=tests/test_codex_backup_review.py
+          --ignore=tests/test_codex_legacy_reconcile.py
+          --ignore=tests/test_codex_provenance_compare.py
+          --ignore=tests/test_codex_uninstalled_restore.py
+          --ignore=tests/test_codex_project_install.py
+          --ignore=tests/test_codex_explorer_handoff.py
+          --ignore=tests/test_fixture_explicit_consent.py
+          --ignore=tests/test_fixture_transaction_v2.py
+          --ignore=tests/test_codex_transaction_e2e.py
+          --ignore=tests/test_codex_discovery_probe.py
+          --ignore=tests/test_codex_pinned_bundle_e2e.py
+          --ignore=tests/test_codex_third_party_discovery.py
+          --ignore=tests/test_other_host_protocol_probe.py
 
       - name: Confirm no actual Agent directories or tracked source modifications
         if: always()

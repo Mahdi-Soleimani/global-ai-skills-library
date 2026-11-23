@@ -58,3 +58,34 @@ After fast-forwarding the CI-produced metadata commit `461d9c2`, the full macOS 
 **Verified local:** `python3 -m unittest tests.test_benchmark_reconcile tests.test_search_ranking_lab -q`: **18 OK**; `python3 -m pytest -q`: **798 passed, 28 skipped, 337 subtests passed**.
 
 **Outstanding:** The separate provisional Search Quality pipeline still cannot generate a *new* full 148-judgment ranking report until the content-drift eligibility is resolved. Do not interpret a green general CI matrix as valid current-catalog search-quality metrics. Keep production ranking unchanged and do not relabel the changed Skill automatically.
+
+## Windows full-suite failure analysis and platform eligibility correction
+
+[First matrix run 45282313869](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45282313869) on `2fa01c7`:
+- Ubuntu: **798 passed, 28 skipped**.
+- macOS: **798 passed, 28 skipped**.
+- Windows: **189 failed, 631 passed, 6 skipped**. This is **not a successful full-Windows-suite run**.
+- Of the 189 Windows failures, **183** occurred inside thirteen **legacy POSIX-only** test modules, depending on `codex_project_install.py`'s original `fcntl`/legacy `.gasl-managed/` engine, POSIX `fixture_transaction_v2.py` with `flock`/directory `fsync`, or POSIX synthetic executable/host-protocol fixtures. Those engines are not Windows-native and **must not be enabled by bypassing their platform gates**; Phase 53 deliberately introduced a separate Windows Codex project state under `.gasl-managed/hosts/codex/` to avoid legacy receipt adoption.
+- The other six failures are portable test expectation mismatches: Windows legitimately supports Codex in the new Host adapter, a Windows user-scope gate is disabled in the broad CI matrix, and native Windows User Profile tests need a *locally scoped, read-only* CI gate. Test assertions and temporary test scopes have been corrected; no production security validation is loosened.
+
+**Explicit matrix policy after this finding:** Ubuntu/macOS continue to run the full original `pytest` suite without exclusions. Windows runs the full **Windows-supported** suite, explicitly excluding ONLY these thirteen modules in the workflow (no global test skipping or rewriting the legacy installer into an unsafe Windows mode):
+
+1. `tests/test_codex_backup_review.py`
+2. `tests/test_codex_legacy_reconcile.py`
+3. `tests/test_codex_provenance_compare.py`
+4. `tests/test_codex_uninstalled_restore.py`
+5. `tests/test_codex_project_install.py`
+6. `tests/test_codex_explorer_handoff.py`
+7. `tests/test_fixture_explicit_consent.py`
+8. `tests/test_fixture_transaction_v2.py`
+9. `tests/test_codex_transaction_e2e.py`
+10. `tests/test_codex_discovery_probe.py`
+11. `tests/test_codex_pinned_bundle_e2e.py`
+12. `tests/test_codex_third_party_discovery.py`
+13. `tests/test_other_host_protocol_probe.py`
+
+**Guard:** a dedicated Windows CI step asserts the two core POSIX legacy modules still lack `fcntl`, preventing these exclusions from silently persisting after a proper port. The existing separate native Windows test workflow is **not excluded** and continues full SID/ACL, Project Scope, User Profile fixture, Queue and lock tests. The broad matrix continues to set the User Profile gate to `0`; individual read-only Windows security fixtures may temporarily patch that flag in their own narrow test context.
+
+**Honest acceptance boundary:** A green three-job platform-eligible matrix does **not** prove that these thirteen legacy POSIX modules are supported on Windows. Their safe Windows migration, if still necessary, remains distinct future work subject to the original Windows Codex state separation. No existing test is skipped simply because its ACL, SID, ownership or Lock assertion failed on a supported Windows path.
+
+**Next verification:** rerun complete macOS local tests, then require the three platform-eligible CI jobs to pass. Capture Windows passed/skipped counts. Cross-platform *all-module* completeness remains open until legacy POSIX-only engines have safe native Windows replacements or have been explicitly retired.

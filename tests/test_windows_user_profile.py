@@ -196,20 +196,23 @@ class WindowsUserProfileSecurityTests(unittest.TestCase):
                 up._root(self.home)
 
     def test_user_installer_accepts_only_non_elevated_current_token_profile(self):
-        with patch("windows_user_profile.current_profile",
-                   return_value={**self.current, "elevated": False}):
-            self.assertEqual(up._root(self.home), self.home)
-        with patch("windows_user_profile.current_profile",
-                   return_value={**self.current, "elevated": True}):
-            with self.assertRaisesRegex(ValueError, "elevated Windows token"):
-                up._root(self.home)
+        # Enable the gate in this test only; all inspected paths are read-only.
+        with patch.dict(os.environ, {"GASL_ENABLE_WINDOWS_USER_PROFILE_CI": "1"}):
+            with patch("windows_user_profile.current_profile",
+                       return_value={**self.current, "elevated": False}):
+                self.assertEqual(up._root(self.home), self.home)
+            with patch("windows_user_profile.current_profile",
+                       return_value={**self.current, "elevated": True}):
+                with self.assertRaisesRegex(ValueError, "elevated Windows token"):
+                    up._root(self.home)
 
     def test_user_installer_rejects_another_existing_directory(self):
         with tempfile.TemporaryDirectory(prefix="gasl-not-home-") as temp:
-            with patch("windows_user_profile.current_profile",
-                       return_value={**self.current, "elevated": False}):
-                with self.assertRaisesRegex(ValueError, "current Windows token profile"):
-                    up._root(Path(temp))
+            with patch.dict(os.environ, {"GASL_ENABLE_WINDOWS_USER_PROFILE_CI": "1"}):
+                with patch("windows_user_profile.current_profile",
+                           return_value={**self.current, "elevated": False}):
+                    with self.assertRaisesRegex(ValueError, "current Windows token profile"):
+                        up._root(Path(temp))
 
     def test_thread_impersonation_is_rejected_before_profile_identity(self):
         with patch("windows_user_profile._reject_thread_impersonation",

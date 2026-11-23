@@ -538,7 +538,7 @@ class UserProfileInstallTests(unittest.TestCase):
         import os
         with patch("user_profile_install._root",new=REAL_PROFILE_ROOT_CHECK):
             with patch.dict(os.environ,{"HOME":str(self.profile)}):
-                with self.assertRaisesRegex(ValueError,"(current OS account HOME|current Windows token profile)"):
+                with self.assertRaisesRegex(ValueError,"(current OS account HOME|current Windows token profile|Windows User Profile is disabled)"):
                     up._root(self.profile)
         self.assertFalse((self.profile/".agents").exists())
 

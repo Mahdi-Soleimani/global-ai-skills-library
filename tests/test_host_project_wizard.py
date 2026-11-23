@@ -1,5 +1,6 @@
 """Phase 51 terminal-only Cursor/Claude wizard, disposable inert fixture tests."""
 import json
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -163,8 +164,15 @@ class HostProjectWizardTests(unittest.TestCase):
         self.assertFalse(self.case.target(host).exists())
 
     def test_refuses_unknown_host_and_non_git_root(self):
-        with self.assertRaises(ValueError):
-            self.preview("codex")
+        if os.name == "nt":
+            # Phase 53 deliberately supports Codex through the Windows-native
+            # project adapter; it is not an unknown Host on Windows.
+            result=self.preview("codex")
+            self.assertEqual(result["host"],"codex")
+            self.assertFalse(result["real_host_modified"])
+        else:
+            with self.assertRaises(ValueError):
+                self.preview("codex")
         with self.assertRaises(ValueError):
             inspect_handoff(self.source,self.root,"cursor",root=self.root,
                             lookup=self.case.fixture.lookup)
