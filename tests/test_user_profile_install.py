@@ -92,16 +92,16 @@ class UserProfileInstallTests(unittest.TestCase):
             self.addCleanup(self.lock_patch.stop)
 
             original_verify_path = up._verify_windows_path
-            def verify_owned_fake_path(path, *, directory=None, sid_arg=None, **kwargs):
+            def verify_owned_fake_path(path, *, directory=None, sid=None):
                 path = Path(path)
                 if path.exists() and path.resolve().is_relative_to(self.profile.resolve()):
                     changed = subprocess.run(
-                        ["icacls", str(path), "/setowner", f"*{sid}"],
+                        ["icacls", str(path), "/setowner", f"*{sid or self.sid}"],
                         capture_output=True, text=True,
                     )
                     if changed.returncode:
                         raise AssertionError(changed.stdout + changed.stderr)
-                return original_verify_path(path, directory=directory, sid=sid_arg, **kwargs)
+                return original_verify_path(path, directory=directory, sid=sid)
             self.verify_path_patch = patch(
                 "user_profile_install._verify_windows_path",
                 side_effect=verify_owned_fake_path,
