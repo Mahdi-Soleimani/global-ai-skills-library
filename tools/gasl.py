@@ -1020,7 +1020,8 @@ def main():
 
     project_host = sub.add_parser('host-project-install',
         help='Real transactional CURSOR / CLAUDE-CODE project Skill install and recovery')
-    project_host.add_argument('--host',required=True,choices=('cursor','claude-code'))
+    project_host.add_argument('--host',required=True,choices=('codex','cursor','claude-code'),
+        help='Windows supports all three; POSIX Codex uses its existing dedicated command')
     project_host.add_argument('--action',required=True,choices=(
         'preview','install','preview-replace','replace',
         'list-backups','preview-restore','restore',
@@ -1035,7 +1036,8 @@ def main():
 
     host_wizard = sub.add_parser('host-project-wizard',
         help='Explorer-selected Cursor/Claude Code project installation with exact local TTY approvals')
-    host_wizard.add_argument('--host',required=True,choices=('cursor','claude-code'))
+    host_wizard.add_argument('--host',required=True,choices=('codex','cursor','claude-code'),
+        help='Windows supports all three; POSIX Codex uses codex-install-wizard')
     host_wizard.add_argument('--id',required=True,help='Pinned source record ID')
     host_wizard.add_argument('--selected-root',required=True,type=Path,
         help='Existing absolute Git project root')

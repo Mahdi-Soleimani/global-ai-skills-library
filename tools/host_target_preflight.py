@@ -12,6 +12,7 @@ import re
 from pathlib import Path
 
 from fixture_bundle_install import _inventory, _read_bundle
+from transaction_file_lock import is_redirected
 from host_adapters import HOST_LAYOUTS, SLUG
 
 SCHEMA = 'gasl-host-target-preflight-v1'
@@ -26,7 +27,7 @@ def _canonical_bytes(obj):
 def _explicit_root(selected_root):
     """Canonicalize a caller-chosen existing root, never discover HOME itself."""
     supplied = Path(selected_root)
-    if not supplied.is_absolute() or supplied.is_symlink() or not supplied.is_dir():
+    if not supplied.is_absolute() or is_redirected(supplied) or not supplied.is_dir():
         raise ValueError('An existing absolute, nonsymlink root must be explicitly supplied')
     return supplied.resolve(strict=True)
 
@@ -43,7 +44,7 @@ def _target_path(root, agent, scope, slug):
     current = root
     for part in (*base.parts, slug):
         current = current / part
-        if current.is_symlink():
+        if is_redirected(current):
             raise ValueError('Symlink in selected Host target path')
         if current.exists() and not current.is_dir():
             raise ValueError('Non-directory in selected Host target path')

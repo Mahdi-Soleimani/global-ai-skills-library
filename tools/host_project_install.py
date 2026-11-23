@@ -21,6 +21,7 @@ from fixture_bundle_install import _inventory, _read_bundle, _remove_verified_di
 from host_format_review import review_host_format
 from host_target_preflight import _target_path, inspect_selected_target, verify_target_unchanged
 from skill_search import ROOT
+from transaction_file_lock import exclusive_lock_file, supported_platform, is_redirected
 
 HOSTS = ("cursor", "claude-code")
 SCHEMA = "gasl-project-multihost-v1"
@@ -30,8 +31,8 @@ SLUG = re.compile(r"^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$")
 
 
 def _host(host):
-    if host not in HOSTS:
-        raise ValueError("Only Cursor and Claude Code project Skills are supported")
+    if host not in HOSTS and not (os.name == "nt" and host == "codex"):
+        raise ValueError("Only Cursor and Claude Code projects (plus Windows Codex) are supported")
     return host
 
 
@@ -48,7 +49,7 @@ def _paths(project, host, slug):
         state/"backups", state/"backups"/slug, state/"uninstalled",
     ]
     for path in checks:
-        if path.is_symlink() or (path.exists() and not path.is_dir()):
+        if is_redirected(path) or (path.exists() and not path.is_dir()):
             raise ValueError("Unsafe GASL host-isolated state directory")
     return target, relative, state
 
@@ -173,7 +174,7 @@ def _read_state(project, host, slug):
     receipt_path, journal_path, marker_path = (_receipt(state,slug),
                                                _journal(state,slug), _marker(state,slug))
     for path in (receipt_path, journal_path, marker_path):
-        if path.is_symlink():
+        if is_redirected(path):
             raise ValueError("Symlinked host transaction record")
     receipt = (_receipt_valid(_load(receipt_path),host,slug)
                if receipt_path.exists() else None)
@@ -234,7 +235,7 @@ def _preview_bundle(plan_id, project, host, *, bundle_root=ROOT, lookup=None,
             raise ValueError("Pinned Skill version is already active")
         eligible=True
     else:
-        if (receipt is not None or target.exists() or target.is_symlink()):
+        if (receipt is not None or target.exists() or is_redirected(target)):
             raise ValueError("Fresh install requires an unoccupied target; no overwrite")
         eligible=True
     return {
@@ -260,23 +261,18 @@ def preview_replace(plan_id, project, host, *, bundle_root=ROOT, lookup=None):
 
 @contextlib.contextmanager
 def _lock(project, host, slug):
-    if fcntl is None:
-        raise ValueError("This real project installer needs a POSIX filesystem")
+    if not supported_platform():
+        raise ValueError("This installer needs Windows or POSIX filesystem locks")
     target, _, state = _paths(project,host,slug)
     for path in (target.parent.parent,target.parent,project/".gasl-managed",
                  project/".gasl-managed"/"hosts",state,state/"receipts",state/"journals",
                  state/"stage",state/"backups",state/"backups"/slug,state/"uninstalled"):
+        if is_redirected(path):
+            raise ValueError("Junction or symlink in project transaction paths")
         _mkdir_checked(path)
     lock=state/".lock"
-    if lock.is_symlink() or (lock.exists() and not lock.is_file()):
-        raise ValueError("Unsafe host transaction lock")
-    fd=os.open(str(lock), os.O_CREAT|os.O_RDWR|getattr(os,"O_NOFOLLOW",0),0o600)
-    with os.fdopen(fd,"a+b") as handle:
-        fcntl.flock(handle,fcntl.LOCK_EX)
-        try:
-            yield state
-        finally:
-            fcntl.flock(handle,fcntl.LOCK_UN)
+    with exclusive_lock_file(lock):
+        yield state
 
 
 def _consent(text, reader=None):
@@ -379,7 +375,7 @@ def _apply_bundle(plan_id,project,host,binding,*,bundle_root,lookup,reader,repla
             if _inventory(_backup(state,slug,tx))!=previous["files"]:
                 raise ValueError("Previous Skill changed during archiving")
             _new(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Target occupied before activation")
         stage.rename(target)
         _sync(target.parent)
@@ -460,7 +456,7 @@ def _preview_state(host,project,slug,action,selected_id=None):
     elif action=="reinstall":
         if marker is None:
             raise ValueError("Reinstall requires retained GASL uninstall ownership")
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Archived reinstall target must be absent")
         if not TXID.fullmatch(str(selected_id)) or selected_id not in marker["backup_ids"]:
             raise ValueError("Reinstall requires a valid retained backup ID")
@@ -530,7 +526,7 @@ def restore(host,project,slug,backup_id,binding,*,reader=None):
         if _inventory(saved)!=previous["files"]:
             raise ValueError("Previous active version changed during backup")
         _new(_manifest(state,slug,tx),_snapshot(state,host,slug,previous,tx))
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Destination unexpectedly occupied during restoration")
         stage.rename(target)
         _sync(target.parent)
@@ -613,7 +609,7 @@ def reinstall(host,project,slug,backup_id,binding,*,reader=None):
         _write_journal(state,host,slug,"reinstall",tx,new,None,
                        new_files=selected["files"],
                        selected_id=backup_id,marker=marker)
-        if target.exists() or target.is_symlink():
+        if target.exists() or is_redirected(target):
             raise ValueError("Reinstall target appeared after consent")
         stage.rename(target)
         _sync(target.parent)
@@ -727,7 +723,7 @@ def recover(host,project,slug):
     with _lock(project,host,slug) as state:
         target,_,state=_paths(project,host,slug)
         path=_journal(state,slug)
-        if path.is_symlink() or not path.is_file():
+        if is_redirected(path) or not path.is_file():
             raise ValueError("No safe pending transaction journal for recovery")
         data=_journal_valid(_load(path),state,host,slug)
         action=data["operation"]
@@ -820,7 +816,7 @@ def recover(host,project,slug):
                 marker_path.unlink()
                 _sync(state/"uninstalled")
             if backup_inventory is not None:
-                if target.exists() or target.is_symlink():
+                if target.exists() or is_redirected(target):
                     raise ValueError("Original target path reappeared before restore")
                 backup.rename(target)
                 _sync(target.parent)

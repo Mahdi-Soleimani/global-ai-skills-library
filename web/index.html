@@ -570,11 +570,24 @@
             catch (_) { installCopy.textContent = "کپی در این مرورگر ممکن نیست"; }
           });
           actions.append(installCopy);
+          const windowsCommand = "python tools/gasl.py host-project-wizard --host " + agent +
+            " --id " + id + ' --selected-root "$GASL_SELECTED_PROJECT" --action install --download-if-missing';
+          elements.push(el("p", "desc",
+            "در Windows می‌توان همین نصب پروژه‌ای را با Python اجرا کرد. " +
+            "این مسیر فقط Project Scope است و برای User Profile ویندوز هنوز فعال نیست."));
+          elements.push(el("code", "", windowsCommand));
+          const windowsCopy = el("button", "", "کپی فرمان Windows Project");
+          windowsCopy.type = "button";
+          windowsCopy.addEventListener("click", async () => {
+            try { await navigator.clipboard.writeText(windowsCommand); windowsCopy.textContent = "کپی شد"; }
+            catch (_) { windowsCopy.textContent = "کپی در این مرورگر ممکن نیست"; }
+          });
+          actions.append(windowsCopy);
           const globalCommand = "./gasl user-profile-wizard --host " + agent +
             " --id " + id +
             ' --selected-home "$HOME" --action install --download-if-missing';
           elements.push(el("p", "status warn",
-            "نصب سراسری User Profile روی تمام پروژه‌های محلی این حساب اثر دارد. " +
+            "نصب سراسری User Profile فعلاً مخصوص macOS/Linux است و روی تمام پروژه‌های محلی این حساب اثر دارد. " +
             (agent === "cursor" ?
               "در Cursor، اگر Sync Skills فعال باشد، Skill ممکن است به Cloud Agents هم منتقل شود." :
               "Cursor ممکن است Skillهای مسیر Codex یا Claude Code را نیز شناسایی کند.") +

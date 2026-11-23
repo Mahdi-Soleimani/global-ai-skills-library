@@ -18,6 +18,7 @@ from fixture_bundle_install import _inventory, _read_bundle, _remove_verified_di
 from host_format_review import review_host_format
 from host_target_preflight import _explicit_root, _target_path, inspect_selected_target, verify_target_unchanged
 from skill_search import ROOT
+from transaction_file_lock import is_redirected
 
 try:
     import fcntl
@@ -49,7 +50,7 @@ def _root(selected):
     if root == Path.home().resolve():
         raise ValueError('Refusing user HOME: Phase 40 supports selected project scope only')
     git = root/'.git'
-    if git.is_symlink() or not (git.is_dir() or git.is_file()):
+    if is_redirected(git) or not (git.is_dir() or git.is_file()):
         raise ValueError('A real existing Git project root must be selected')
     return root
 
@@ -221,7 +222,7 @@ def _checked_journal(data, slug):
 
 
 def _mkdir_checked(path):
-    if path.is_symlink() or (path.exists() and not path.is_dir()):
+    if is_redirected(path) or (path.exists() and not path.is_dir()):
         raise ValueError('Unsafe path')
     if not path.exists():
         path.mkdir(mode=0o700)

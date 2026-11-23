@@ -17,6 +17,7 @@ from host_adapters import SLUG, _checked_fixture, _path_within_fixture, _target_
 from host_transaction_fixture import _new_root
 from install_bundle import MAX_BYTES, MAX_FILES, MAX_ONE_FILE, SCHEMA as BUNDLE_SCHEMA
 from queue_ingest import collision_key, git_blob, no_symlink, safe_path
+from transaction_file_lock import is_redirected, require_windows_filename_safety
 
 SCHEMA = 'gasl-private-bundle-fixture-transaction-v1'
 JOURNAL = '.gasl-bundle-fixture-transaction.json'
@@ -26,12 +27,12 @@ HEX = re.compile(r'^[0-9a-f]{64}$')
 
 def _inventory(folder):
     """Full regular-file inventory; reject symlinks, empty directories, collisions."""
-    if not folder.is_dir() or folder.is_symlink():
+    if not folder.is_dir() or is_redirected(folder):
         raise ValueError('Fixture target is not a regular directory')
     entries, total, seen = [], 0, set()
     actual_dirs = set()
     for file in sorted(folder.rglob('*')):
-        if file.is_symlink():
+        if is_redirected(file):
             raise ValueError('Symlink in fixture inventory')
         if file.is_dir():
             actual_dirs.add(file.relative_to(folder).as_posix())
@@ -56,7 +57,7 @@ def _inventory(folder):
 
 
 def _same_inventory(path, entries):
-    if not path.is_dir() or path.is_symlink():
+    if not path.is_dir() or is_redirected(path):
         return False
     try:
         return _inventory(path) == entries
@@ -69,11 +70,11 @@ def _remove_verified_dir(path, entries):
         raise ValueError('Fixture content changed: refuse to remove user edits')
     for entry in entries:
         file = path / entry['path']
-        if file.is_symlink() or hashlib.sha256(file.read_bytes()).hexdigest() != entry['sha256']:
+        if is_redirected(file) or hashlib.sha256(file.read_bytes()).hexdigest() != entry['sha256']:
             raise ValueError('Unexpected file modification during fixture cleanup')
         file.unlink()
     for folder in sorted((x for x in path.rglob('*') if x.is_dir()), key=lambda p: len(p.parts), reverse=True):
-        if folder.is_symlink():
+        if is_redirected(folder):
             raise ValueError('Unexpected symlink during fixture cleanup')
         folder.rmdir()
     path.rmdir()
@@ -137,6 +138,7 @@ def _read_bundle(bundle_root, plan_id, agent, scope):
             if len(parts) < 2 or not SLUG.fullmatch(parts[0]):
                 raise ValueError('Unsafe ZIP Skill folder')
             rel = safe_path('/'.join(parts[1:]))
+            require_windows_filename_safety(rel)
             if collision_key(rel) in seen or rel.casefold() == 'source.json':
                 raise ValueError('ZIP duplicate or reserved entry')
             seen.add(collision_key(rel))

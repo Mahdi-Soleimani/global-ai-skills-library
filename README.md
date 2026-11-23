@@ -224,6 +224,24 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 53: Native Windows project-scope Skill transactions
+
+GASL now supports **Windows-native, write-capable project-scope Skill transactions** for Codex, Cursor and Claude Code in explicitly selected existing Git project roots. The engine uses the same verified pinned private ZIP and host-target preflight as the POSIX installers, with a Windows file-range lock based on Python msvcrt. Staging, ownership receipts, journals, complete backup, restore, archived uninstall/reinstall and fail-closed recovery are retained.
+
+From a Windows PowerShell terminal in the GASL repository:
+
+    $env:GASL_SELECTED_PROJECT = "C:\path\to\an\existing\git-project"
+    python tools/gasl.py host-project-wizard --host codex --id GASL-SRC-EXACT_ID --selected-root "$env:GASL_SELECTED_PROJECT" --action preview
+    python tools/gasl.py host-project-wizard --host codex --id GASL-SRC-EXACT_ID --selected-root "$env:GASL_SELECTED_PROJECT" --action install --download-if-missing
+
+Change --host codex to --host cursor or --host claude-code as needed. **PowerShell** is used on Windows because the repository root ./gasl launcher is a Unix Bash script. The installer still requires exact interactive TTY approval and a fresh Plan/target binding. Browser selection only copies commands; no HTTP endpoint gains installation access.
+
+Windows paths use .agents/skills/SLUG, .cursor/skills/SLUG and .claude/skills/SLUG. Windows Codex uses an **independent host-scoped** ownership store at .gasl-managed/hosts/codex/; it does not silently adopt or migrate existing POSIX Codex receipts under .gasl-managed/. Existing unmanaged Skills are always refused, not overwritten. Windows NTFS Junctions, Symlinks and unsafe ZIP device or ADS filenames are blocked.
+
+The cross-platform file lock uses POSIX flock on macOS/Linux and msvcrt.locking on Windows. It coordinates cooperating GASL transactions, not arbitrary external editors or privileged actors. The journal and byte inventory protect interrupted **process** operations, but Windows directory fsync durability is not claimed. Cloud sync, network shares, third-party concurrent writers, power-loss durability and live Agent discovery are **not certified**.
+
+**Scope boundary:** Windows currently supports *project installation only*. Windows User Profile writes remain blocked until OS account SID and filesystem ACL ownership checks are independently implemented. Windows GitHub Actions tests use only inert packages and disposable Git projects, never user Agent profiles. Real-user/manual tests are deferred. See [Phase 53 report](docs/reports/PHASE-53-WINDOWS-PROJECT-SKILL-TRANSACTIONS-2026-11-23.md).
+
 ### Phase 52: Current-user Profile installation, backup and recovery (POSIX only)
 
 GASL now supports explicit, local TTY-only **user-wide Skill installation** for Codex, Cursor and Claude Code. These operations affect all local projects under the *current OS account's actual HOME*: Codex uses ~/.agents/skills/, Cursor ~/.cursor/skills/, and Claude Code ~/.claude/skills/. Ownership receipts, backup manifests, pending transaction journals and uninstall markers live separately under ~/.gasl-managed/user/hosts/HOST/.

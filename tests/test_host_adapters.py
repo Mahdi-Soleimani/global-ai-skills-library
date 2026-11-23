@@ -24,7 +24,12 @@ class HostAdapterTests(unittest.TestCase):
                          'project_and_current_os_user_profile')
         self.assertTrue(matrix['real_user_profile_requires_os_home_match'])
         self.assertTrue(matrix['user_profile_writes_require_local_tty'])
-        self.assertEqual(matrix['real_installation_platform'],'POSIX_only')
+        self.assertEqual(matrix['real_installation_platform'],
+                         'POSIX_project_and_user_Windows_project_only')
+        self.assertEqual(matrix['real_installation_platform_scopes']['Windows'],
+                         ['project'])
+        self.assertEqual(matrix['real_installation_platform_scopes']['POSIX'],
+                         ['project','user'])
         self.assertTrue(matrix['real_installation_requires_local_tty'])
         self.assertFalse(matrix['cursor_and_claude_live_host_discovery_verified'])
         self.assertTrue(matrix['real_host_probe_performed'])

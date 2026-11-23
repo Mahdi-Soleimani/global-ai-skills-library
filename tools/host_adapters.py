@@ -80,7 +80,12 @@ def list_host_adapters():
             'real_user_profile_requires_os_home_match': True,
             'user_profile_writes_require_local_tty': True,
 
-            'real_installation_platform': 'POSIX_only',
+            'real_installation_platform': 'POSIX_project_and_user_Windows_project_only',
+            'real_installation_platform_scopes': {
+                'POSIX': ['project', 'user'],
+                'Windows': ['project'],
+            },
+            'windows_native_transactions_need_real_runner_validation': True,
             'real_installation_requires_local_tty': True,
             'cursor_and_claude_live_host_discovery_verified': False,
             'real_host_probe_performed': True,

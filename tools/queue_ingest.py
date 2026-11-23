@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Plan and ingest exact discovery queue revisions; never execute downloaded files."""
 import argparse
-import fcntl
+try:
+    import fcntl
+except ImportError:
+    fcntl = None  # pinned-package inspection remains importable on Windows
 import hashlib
 import json
 import os
@@ -46,8 +49,8 @@ def no_symlink(root, path):
     current = root
     for part in relative.parts:
         current = current / part
-        if current.is_symlink():
-            raise ValueError("Symlink in local destination")
+        if current.is_symlink() or (hasattr(current, "is_junction") and current.is_junction()):
+            raise ValueError("Symlink or junction in local destination")
     return path
 
 
@@ -330,6 +333,8 @@ def main():
                                            and r.get("install_status") == "not_approved"
                                            and r.get("status") == "pending_package_plan"))
                       if args.all_queued_repos else list(dict.fromkeys(r.casefold() for r in args.repo)))
+    if fcntl is None:
+        raise ValueError("Queue ingestion is not enabled on Windows until its own lock is ported")
     with (ROOT/"registry/discovery/.ingest.lock").open("a") as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
         for repo in selected_repos:

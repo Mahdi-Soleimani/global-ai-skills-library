@@ -1,0 +1,79 @@
+name: GASL — Windows native project Skill transactions
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/transaction_file_lock.py
+      - tools/host_project_install.py
+      - tools/host_project_wizard.py
+      - tools/host_target_preflight.py
+      - tools/codex_project_install.py
+      - tools/fixture_bundle_install.py
+      - tools/queue_ingest.py
+      - tools/host_adapters.py
+      - tools/gasl.py
+      - tests/test_windows_project_transactions.py
+      - tests/test_host_adapters.py
+      - .github/workflows/gasl-windows-project-install.yml
+  pull_request:
+    paths:
+      - tools/transaction_file_lock.py
+      - tools/host_project_install.py
+      - tools/host_project_wizard.py
+      - tools/host_target_preflight.py
+      - tools/codex_project_install.py
+      - tools/fixture_bundle_install.py
+      - tools/queue_ingest.py
+      - tools/host_adapters.py
+      - tools/gasl.py
+      - tests/test_windows_project_transactions.py
+      - tests/test_host_adapters.py
+      - .github/workflows/gasl-windows-project-install.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-windows:
+    name: Native Windows disposable Git fixture transactions
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Verify CLI imports and cross-platform source syntax
+        shell: pwsh
+        run: |
+          python -m compileall -q tools tests
+          python tools/gasl.py host-project-install --help | Out-File -FilePath $env:RUNNER_TEMP\host-project-help.txt
+          python tools/gasl.py host-project-wizard --help | Out-File -FilePath $env:RUNNER_TEMP\host-wizard-help.txt
+          if ($LASTEXITCODE -ne 0) { throw 'CLI failed on Windows' }
+
+      - name: Native Windows staged installs, retained backup, restore, rollback, junction and lock tests
+        shell: pwsh
+        run: |
+          python -m unittest tests.test_windows_project_transactions -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows transaction safety test failed' }
+
+      - name: Existing metadata and private bundle tests on Windows
+        shell: pwsh
+        run: |
+          python -m unittest tests.test_install_bundle tests.test_host_target_preflight tests.test_host_adapters -q
+          if ($LASTEXITCODE -ne 0) { throw 'Windows read-only bundle regressions' }
+
+      - name: Assert no host profile or installed Skills in repository
+        shell: pwsh
+        run: |
+          if (Test-Path '.agents') { throw 'Unexpected Agent directory created in repo' }
+          if (Test-Path '.cursor') { throw 'Unexpected Cursor directory created in repo' }
+          if (Test-Path '.claude') { throw 'Unexpected Claude directory created in repo' }
+          git diff --exit-code
+          if ($LASTEXITCODE -ne 0) { throw 'Windows tests modified tracked repository files' }

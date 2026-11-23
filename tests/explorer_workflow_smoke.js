@@ -181,6 +181,11 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
     assert(global.textContent.includes("--host " + host + " --id GASL-SRC-a1"));
     assert(global.textContent.includes('--selected-home "$HOME"'));
     assert(global.textContent.includes("--action install --download-if-missing"));
+    const win = descendants(nodes.selectionBody, n => n.tag === "code")
+      .find(n => n.textContent.includes("python tools/gasl.py host-project-wizard"));
+    assert(win, "Windows project install must have its own Python CLI example for "+host);
+    assert(win.textContent.includes("--host "+host+" --id GASL-SRC-a1"));
+    assert(win.textContent.includes('--selected-root "$GASL_SELECTED_PROJECT"'));
     const explanation = descendants(nodes.selectionBody, n => n.tag === "p")
       .map(n => n.textContent).join(" ");
     assert(explanation.includes("User Profile"));
