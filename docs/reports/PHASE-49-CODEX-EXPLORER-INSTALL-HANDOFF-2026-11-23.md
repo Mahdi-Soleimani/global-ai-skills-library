@@ -67,3 +67,14 @@ No Agent User Profile installation, Cursor/Claude actual installation, full Wind
 ## Verification
 
 Local synthetic tests and the existing Explorer workflow script were successful. Full regression and GitHub Actions results will be recorded only after they are observed.
+
+## GitHub publication and automated verification
+
+- Feature commit: [`83806ba7637a72eb0c760622313c23733b46d28e`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/83806ba7637a72eb0c760622313c23733b46d28e), pushed on `main` after exact nine-file scope audit and sensitive-pattern scan. No private ZIP or token entered version control.
+- [Explorer workflow run 45235640862](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45235640862): **completed SUCCESS**, including all synthetic wizard/HTTP/DOM tests.
+- [ZIP preparation safety run 45235641025](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45235641025): **completed SUCCESS**.
+- [Existing inert Codex fixture lifecycle run 45235640907](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45235640907): **completed SUCCESS**. It tests only disposable inert Skills; this feature did not perform a new real user installation or execute a third-party Skill.
+- [Full catalog refresh and regression run 45235641044](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45235641044): **completed SUCCESS**, with **671 automated tests passed** and **57 source repositories / 4,430 attributed source records** after source refresh.
+- Automatic catalog-only commit [`d55060fc3dd19de3a3d4d6e35bbe651dc92c0223`](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/d55060fc3dd19de3a3d4d6e35bbe651dc92c0223) was fetched and fast-forwarded into the local `main` without force-pushing.
+- Local test evidence: **665 tests, 258 subtests PASS**, plus `EXPLORER_NEED_COMPARE_SELECT_WORKFLOW=PASS`. Python compilation and YAML parsing passed.
+- No manual user test, no live untrusted Skill run, no human relevance adjudication and no actual Codex user project install were conducted.

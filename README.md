@@ -224,6 +224,23 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 50: Deterministic private MVP release draft and publication gate
+
+GASL now supports a **private, offline, reproducible ZIP draft** of the core CLI/Explorer distribution. The build uses only a strict allowlist of **Git-tracked** runtime files, local source-catalog metadata, project attribution/notices and required configuration. It **excludes** untracked/private Skill packages, personal files, test fixtures, credentials and the user's Agent profiles.
+
+    # Read-only release readiness report (no ZIP created)
+    ./gasl release-draft --action inspect
+
+    # Only after committing intended changes: create a private local draft ZIP
+    ./gasl release-draft --action build
+
+    # Read-only verification of the existing draft; never extracts the ZIP
+    ./gasl release-draft --action verify
+
+The private ZIP is placed under the ignored \`private/release-drafts/\` directory, with a SHA-256 sidecar and a manifest of every included file's name, length and hash. ZIP entry order, timestamp and permissions are deterministic; a second run of the same source commit yields identical archive bytes. Overwriting existing drafts, symlink paths, uncommitted source changes, missing required runtime files and unexpected large inputs are refused.
+
+**This is deliberately NOT a public release.** The code project still lacks a project \`LICENSE\` chosen by its owner; licensing collected third-party Skills would require separate terms/attribution review. Even if a project license is later added, the current tool keeps \`public_release_allowed=false\` until other release blockers are resolved. It does **not** upload files to GitHub, grant a software license, declare Windows or other Host compatibility, or run third-party code. See [Phase 50 report](docs/reports/PHASE-50-PRIVATE-MVP-RELEASE-DRAFT-2026-11-23.md).
+
 ### Phase 49: Explicit Codex project installation handoff from Explorer
 
 GASL Explorer's selected Skill view now shows a **copyable terminal command** that completes the Codex project-scope installation workflow without turning the local web API into a write-capable service. The browser **does not** install, execute, download or approve any Skill. It never receives permission to write inside an Agent project.

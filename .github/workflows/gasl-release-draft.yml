@@ -1,0 +1,57 @@
+name: GASL — Private MVP release draft gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/release_draft.py
+      - tools/gasl.py
+      - tests/test_release_draft.py
+      - .github/workflows/gasl-release-draft.yml
+  pull_request:
+    paths:
+      - tools/release_draft.py
+      - tools/gasl.py
+      - tests/test_release_draft.py
+      - .github/workflows/gasl-release-draft.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  private-release-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Test tracked-only packaging and publication blockers
+        run: |
+          python3 -m compileall -q tools tests
+          python3 -m unittest tests.test_release_draft -q
+
+      - name: Audit real source tree without building or publishing
+        run: |
+          ./gasl release-draft --action inspect > /tmp/gasl-readiness.json
+          python3 - <<'PY'
+          import json
+          r=json.load(open('/tmp/gasl-readiness.json'))
+          assert r['private_artifact_only'] is True
+          assert r['public_release_allowed'] is False
+          assert r['all_files_from_git_index'] is True
+          assert r['third_party_skill_executed'] is False
+          assert r['host_paths_modified'] is False
+          print('PRIVATE_RELEASE_PUBLICATION_GATE=PASS')
+          PY
+
+      - name: Ensure CI did not write release artifacts
+        run: |
+          test ! -d private/release-drafts
+          git diff --check

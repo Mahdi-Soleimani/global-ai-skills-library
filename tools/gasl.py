@@ -566,6 +566,16 @@ def cmd_codex_project_install(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_release_draft(args):
+    from release_draft import inspect_release, build_release_draft, verify_release_draft
+    result = {
+        'inspect': inspect_release,
+        'build': build_release_draft,
+        'verify': verify_release_draft,
+    }[args.action](root=ROOT)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_codex_install_wizard(args):
     from codex_explorer_handoff import inspect_handoff, install_from_explorer
     if args.action == 'preview':
@@ -893,6 +903,13 @@ def main():
     codex_project.add_argument('--backup-id',
         help='Exact backup ID for restore or archived reinstall')
     codex_project.set_defaults(func=cmd_codex_project_install)
+
+    release_draft = sub.add_parser('release-draft',
+        help='Inspect/build/verify a PRIVATE reproducible MVP ZIP; never publish or grant a license')
+    release_draft.add_argument('--action', required=True,
+        choices=('inspect', 'build', 'verify'),
+        help='Public release is blocked until license and other release gates are resolved')
+    release_draft.set_defaults(func=cmd_release_draft)
 
     codex_wizard = sub.add_parser(
         'codex-install-wizard',
