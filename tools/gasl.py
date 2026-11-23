@@ -476,6 +476,12 @@ def cmd_install_bundle(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_host_format_review(args):
+    from host_format_review import review_host_format
+    result = review_host_format(args.plan_id, args.host, args.scope, root=ROOT)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_install_status(args):
     from install_lifecycle import simulation_status
     print(json.dumps(simulation_status(args.plan_id, root=ROOT), ensure_ascii=False, indent=2))
@@ -737,6 +743,13 @@ def main():
     install_bundle.add_argument('--acknowledge-plan-id', help='Exact plan ID from install-plan; explicitly prepare ZIP')
     install_bundle.add_argument('--verify-plan-id', help='Check a previously created private ZIP without extraction')
     install_bundle.set_defaults(func=cmd_install_bundle)
+
+    host_format = sub.add_parser('host-format-review',
+        help='Check pinned ZIP Skill metadata for a Host without installing or running it')
+    host_format.add_argument('--plan-id', required=True, help='Previously verified private bundle Plan ID')
+    host_format.add_argument('--host', required=True, choices=('codex', 'cursor', 'claude-code'))
+    host_format.add_argument('--scope', default='user', choices=('user', 'project'))
+    host_format.set_defaults(func=cmd_host_format_review)
 
     install_status = sub.add_parser('install-status', help='Read-only simulated install state for a plan ID')
     install_status.add_argument('--plan-id', required=True)
