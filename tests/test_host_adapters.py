@@ -17,7 +17,13 @@ class HostAdapterTests(unittest.TestCase):
     def test_matrix_consistent_and_explicitly_not_verified_with_real_hosts(self):
         matrix = list_host_adapters()
         self.assertEqual(matrix['status'], 'codex_isolated_discovery_verified_other_hosts_unverified')
-        self.assertFalse(matrix['real_installation_available'])
+        self.assertTrue(matrix['real_installation_available'])
+        self.assertEqual(set(matrix['real_installation_supported_hosts']),
+                         {'codex','cursor','claude-code'})
+        self.assertEqual(matrix['real_installation_scope'],'project_only')
+        self.assertEqual(matrix['real_installation_platform'],'POSIX_only')
+        self.assertTrue(matrix['real_installation_requires_local_tty'])
+        self.assertFalse(matrix['cursor_and_claude_live_host_discovery_verified'])
         self.assertTrue(matrix['real_host_probe_performed'])
         self.assertEqual(matrix['real_host_probe_scope'], 'disposable_home_only')
         self.assertEqual(set(HOST_LAYOUTS), {'codex', 'cursor', 'claude-code', 'claude-desktop', 'generic-mcp'})

@@ -566,6 +566,63 @@ def cmd_codex_project_install(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def cmd_host_project_install(args):
+    import host_project_install as hp
+    host,project=args.host,args.selected_root
+    action=args.action
+    if action in ('preview','install','preview-replace','replace'):
+        if not args.plan_id:
+            raise SystemExit('This action requires --plan-id from a verified private ZIP')
+        if action=='preview':
+            result=hp.preview_install(args.plan_id,project,host,bundle_root=ROOT)
+        elif action=='preview-replace':
+            result=hp.preview_replace(args.plan_id,project,host,bundle_root=ROOT)
+        else:
+            if not args.state_binding_id:
+                raise SystemExit('Write action requires exact --state-binding-id from preview')
+            handler=hp.install if action=='install' else hp.replace
+            result=handler(args.plan_id,project,host,args.state_binding_id,
+                           bundle_root=ROOT)
+    else:
+        if not args.skill_name:
+            raise SystemExit('Backup/uninstall/recovery requires --skill-name')
+        slug=args.skill_name
+        if action=='list-backups':
+            result=hp.list_backups(host,project,slug)
+        elif action=='preview-uninstall':
+            result=hp.preview_uninstall(host,project,slug)
+        elif action=='uninstall':
+            if not args.state_binding_id:
+                raise SystemExit('Uninstall requires --state-binding-id from preview')
+            result=hp.uninstall(host,project,slug,args.state_binding_id)
+        elif action=='recover':
+            result=hp.recover(host,project,slug)
+        else:
+            if not args.backup_id:
+                raise SystemExit('Restore/reinstall requires exact --backup-id')
+            if action=='preview-restore':
+                result=hp.preview_restore(host,project,slug,args.backup_id)
+            elif action=='preview-reinstall':
+                result=hp.preview_reinstall(host,project,slug,args.backup_id)
+            else:
+                if not args.state_binding_id:
+                    raise SystemExit('Restore/reinstall requires --state-binding-id')
+                operation=hp.restore if action=='restore' else hp.reinstall
+                result=operation(host,project,slug,args.backup_id,args.state_binding_id)
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+
+
+def cmd_host_project_wizard(args):
+    from host_project_wizard import inspect_handoff, install_from_explorer
+    if args.action=='preview':
+        result=inspect_handoff(args.id,args.selected_root,args.host,root=ROOT)
+    else:
+        result=install_from_explorer(
+            args.id,args.selected_root,args.host,action=args.action,
+            root=ROOT,download_if_missing=args.download_if_missing)
+    print(json.dumps(result,ensure_ascii=False,indent=2))
+
+
 def cmd_release_draft(args):
     from release_draft import inspect_release, build_release_draft, verify_release_draft
     result = {
@@ -903,6 +960,32 @@ def main():
     codex_project.add_argument('--backup-id',
         help='Exact backup ID for restore or archived reinstall')
     codex_project.set_defaults(func=cmd_codex_project_install)
+
+    project_host = sub.add_parser('host-project-install',
+        help='Real transactional CURSOR / CLAUDE-CODE project Skill install and recovery')
+    project_host.add_argument('--host',required=True,choices=('cursor','claude-code'))
+    project_host.add_argument('--action',required=True,choices=(
+        'preview','install','preview-replace','replace',
+        'list-backups','preview-restore','restore',
+        'preview-uninstall','uninstall','preview-reinstall','reinstall','recover'))
+    project_host.add_argument('--selected-root',required=True,type=Path,
+        help='Explicit absolute Git project root; never user HOME')
+    project_host.add_argument('--plan-id',help='Exact Plan ID of verified Host-scoped private ZIP')
+    project_host.add_argument('--state-binding-id',help='Exact state binding from preview')
+    project_host.add_argument('--skill-name',help='Exact Skill folder for backup/uninstall/recovery')
+    project_host.add_argument('--backup-id',help='Exact owned backup ID for restore/reinstall')
+    project_host.set_defaults(func=cmd_host_project_install)
+
+    host_wizard = sub.add_parser('host-project-wizard',
+        help='Explorer-selected Cursor/Claude Code project installation with exact local TTY approvals')
+    host_wizard.add_argument('--host',required=True,choices=('cursor','claude-code'))
+    host_wizard.add_argument('--id',required=True,help='Pinned source record ID')
+    host_wizard.add_argument('--selected-root',required=True,type=Path,
+        help='Existing absolute Git project root')
+    host_wizard.add_argument('--action',choices=('preview','install','replace'),default='preview')
+    host_wizard.add_argument('--download-if-missing',action='store_true',
+        help='Opt-in pinned download requiring separate exact local TTY approval')
+    host_wizard.set_defaults(func=cmd_host_project_wizard)
 
     release_draft = sub.add_parser('release-draft',
         help='Inspect/build/verify a PRIVATE reproducible MVP ZIP; never publish or grant a license')

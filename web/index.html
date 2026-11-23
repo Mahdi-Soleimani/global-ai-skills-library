@@ -531,7 +531,7 @@
       const title = el("h3", "", item.skill_name || id);
       const source = el("p", "desc", "مخزن: " + (item.repository || "نامشخص"));
       const warning = el("p", "status warn",
-        "انتخاب در مرورگر مجوز نصب نیست. برای نصب واقعی فقط Codex و پروژه Git صریح پشتیبانی می‌شود. تأیید در ترمینال الزامی است.");
+        "انتخاب در مرورگر مجوز نصب نیست. نصب پروژه‌ای Codex، Cursor و Claude Code فقط در ترمینال و با تأیید صریح فعال است؛ سازگاری عملی هر Skill هنوز نیازمند بررسی است.");
       const actions = el("div", "actions");
       const detail = el("button", "", "مشاهده شواهد");
       detail.type = "button";
@@ -551,16 +551,19 @@
           catch (_) { copy.textContent = "کپی در این مرورگر ممکن نیست"; }
         });
         actions.append(copy);
-        if (agent === "codex") {
-          const command = "./gasl codex-install-wizard --id " + id +
+        if (agent === "codex" || agent === "cursor" || agent === "claude-code") {
+          const prefix = agent === "codex" ?
+            "./gasl codex-install-wizard --id " + id :
+            "./gasl host-project-wizard --host " + agent + " --id " + id;
+          const command = prefix +
             " --selected-root \"$GASL_SELECTED_PROJECT\" --action install --download-if-missing";
           const setup = 'export GASL_SELECTED_PROJECT="/absolute/path/to/existing/git/project"';
           elements.push(el("p", "desc",
-            "برای نصب واقعی در ترمینال، نخست مسیر پروژه Git خودتان را تنظیم و سپس فرمان نصب تعاملی را اجرا کنید. " +
-            "دریافت نسخه پین‌شده فقط با تأیید جداگانه شما انجام می‌شود و در صورت هشدار ایستا یا ناقص‌بودن بسته، نصب متوقف خواهد شد."));
+            "برای نصب پروژه‌ای، مسیر پروژه Git را در ترمینال مشخص و سپس فرمان تعاملی را اجرا کنید. " +
+            "دانلود پین‌شده، ایجاد ZIP و نصب هرکدام تأیید مستقل لازم دارند. این مسیر اجرای خودکار Skill یا تأیید سازگاری Host نیست."));
           elements.push(el("code", "", setup));
           elements.push(el("code", "", command));
-          const installCopy = el("button", "", "کپی فرمان نصب تعاملی Codex");
+          const installCopy = el("button", "", "کپی فرمان نصب تعاملی " + agent);
           installCopy.type = "button";
           installCopy.addEventListener("click", async () => {
             try { await navigator.clipboard.writeText(command); installCopy.textContent = "کپی شد"; }
@@ -569,7 +572,7 @@
           actions.append(installCopy);
         } else {
           elements.push(el("p", "status warn",
-            "برای این Agent فعلاً نصب واقعی از Explorer فعال نیست؛ فقط پیش‌نمایش قابل دریافت است."));
+            "این Agent مسیر نصب فایل‌محور پروژه‌ای ندارد؛ فقط پیش‌نمایش ارائه می‌شود."));
         }
       }
       const url = safeSourceLink(item.source_url);

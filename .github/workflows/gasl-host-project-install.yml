@@ -1,0 +1,60 @@
+name: GASL — Cursor and Claude Code project transactions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - tools/host_project_install.py
+      - tools/host_project_wizard.py
+      - tools/gasl.py
+      - web/index.html
+      - tests/test_host_project_install.py
+      - tests/test_host_project_wizard.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-host-project-install.yml
+  pull_request:
+    paths:
+      - tools/host_project_install.py
+      - tools/host_project_wizard.py
+      - tools/gasl.py
+      - web/index.html
+      - tests/test_host_project_install.py
+      - tests/test_host_project_wizard.py
+      - tests/explorer_workflow_smoke.js
+      - .github/workflows/gasl-host-project-install.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  project-hosts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Validate CLI and transacted Host Python
+        run: |
+          python3 -m compileall -q tools tests
+          ./gasl host-project-install --help > /tmp/gasl-project-host-help.txt
+          ./gasl host-project-wizard --help > /tmp/gasl-project-wizard-help.txt
+
+      - name: Verify host-scoped receipt backup restore reinstall and interrupted recovery
+        run: |
+          python3 -m unittest tests.test_host_project_install tests.test_host_project_wizard -q
+
+      - name: Verify Explorer remains browser-readonly and offers correct terminal commands
+        run: |
+          node tests/explorer_workflow_smoke.js
+
+      - name: Check staged source formatting
+        run: |
+          git diff --check

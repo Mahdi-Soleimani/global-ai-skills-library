@@ -72,7 +72,14 @@ def list_host_adapters():
     return {'schema_version': 'gasl-host-adapters-v1',
             'status': 'codex_isolated_discovery_verified_other_hosts_unverified',
             'agents': HOST_LAYOUTS,
-            'real_installation_available': False,
+            # Separate transactional installers exist, but live Host discovery
+            # remains verified only for isolated Codex fixtures.
+            'real_installation_available': True,
+            'real_installation_supported_hosts': ['codex', 'cursor', 'claude-code'],
+            'real_installation_scope': 'project_only',
+            'real_installation_platform': 'POSIX_only',
+            'real_installation_requires_local_tty': True,
+            'cursor_and_claude_live_host_discovery_verified': False,
             'real_host_probe_performed': True,
             'real_host_probe_scope': 'disposable_home_only',
             'third_party_skill_executed': False}

@@ -79,7 +79,7 @@ Plan a specific already indexed Skill against an explicit **logical** Agent and 
 ./gasl install-plan --id GASL-SRC-ce593c8b9b3fd34f44d6 --agent codex --scope project
 ~~~
 
-The output includes a deterministic SHA-256 `plan_id`, exact source commit and `SKILL.md` Git Blob, license caveats, locally rechecked source/package integrity (when downloaded), static-security warnings, unverified host compatibility, conceptual backup/rollback requirements and the state `actual_install_enabled: false`. This command does not contact the network, run a Skill, create a simulation ledger or modify Agent configuration. Supported **preview labels** are `codex`, `cursor`, `claude-code`, `claude-desktop`, `generic-mcp`; these are *not working installer adapters or verified host compatibility claims*.
+The output includes a deterministic SHA-256 `plan_id`, exact source commit and `SKILL.md` Git Blob, license caveats, locally rechecked source/package integrity (when downloaded), static-security warnings, unverified host compatibility, conceptual backup/rollback requirements and the state `actual_install_enabled: false`. This command does not contact the network, run a Skill, create a simulation ledger or modify Agent configuration. Supported **preview labels** are `codex`, `cursor`, `claude-code`, `claude-desktop`, `generic-mcp`; this particular plan command does not install or verify Host compatibility. Separate POSIX project-only transactional installers now exist for Codex, Cursor and Claude Code, but other preview targets remain preview-only.
 
 To test only the simulated approval/state transitions, use the `plan_id` returned by the previous command (and an already downloaded, integrity-clean, no-actionable-flags package):
 
@@ -224,6 +224,31 @@ GASL now has an end-to-end test that connects the **actual Phase-28 fixture tran
 
 Only App Server `initialize` and `skills/list` are used; there is **no login, prompt, model turn, untrusted downloaded Skill or real Agent directory access**. The test fails closed on wrong Skill path/disabled state, malformed protocol replies, failed ZIP installation, or unexpected discovery after rollback. The [dedicated Linux workflow](.github/workflows/gasl-codex-transaction-e2e.yml) installs exact Codex CLI `0.162.1` in runner temporary storage with npm lifecycle scripts disabled and validates this real-host lifecycle; synthetic fake-Host tests remain separate evidence. The real-user production installer is still disabled. See [Phase 29](docs/reports/PHASE-29-REAL-CODEX-TRANSACTION-DISCOVERY-2026-11-22.md).
 
+### Phase 51: Real Cursor and Claude Code project Skill transactions (POSIX only)
+
+GASL now has a **separate host-scoped transactional filesystem installer** for **Cursor** and **Claude Code** at an explicitly selected existing Git **project root**. The current official paths are `.cursor/skills/<slug>/SKILL.md` and `.claude/skills/<slug>/SKILL.md` respectively. The implementation reuses the previously verified pinned ZIP, static Skill format review, full-file hashing and exact target binding, but stores independent ownership receipts, journals, backup versions, and uninstall markers under `.gasl-managed/hosts/cursor/` and `.gasl-managed/hosts/claude-code/`.
+
+From the GASL repository:
+
+    export GASL_SELECTED_PROJECT="/absolute/path/to/your/existing/git/project"
+    ./gasl host-project-wizard --host cursor --id GASL-SRC-EXACT_ID --selected-root "$GASL_SELECTED_PROJECT" --action preview
+    ./gasl host-project-wizard --host cursor --id GASL-SRC-EXACT_ID --selected-root "$GASL_SELECTED_PROJECT" --action install --download-if-missing
+
+For Claude Code change `--host cursor` to `--host claude-code`. The read-only preview creates no project or ZIP files. Real actions require a **local TTY** and distinct, exact approvals for optional pinned download, private ZIP creation and final installation. The browser only supplies copyable terminal commands; **there is no HTTP write endpoint**. For replacing a GASL-managed Skill, use `--action replace` explicitly. Existing unmanaged files are never silently overwritten or adopted.
+
+The explicit low-level transaction CLI handles **fresh install, replace, list-backups, restore, uninstall/archive, reinstall from an owned archive, and interrupted-transaction recovery**:
+
+    ./gasl host-project-install --host cursor --selected-root "$GASL_SELECTED_PROJECT" --action list-backups --skill-name exact-slug
+    ./gasl host-project-install --host cursor --selected-root "$GASL_SELECTED_PROJECT" --action preview-uninstall --skill-name exact-slug
+    ./gasl host-project-install --host cursor --selected-root "$GASL_SELECTED_PROJECT" --action preview-restore --skill-name exact-slug --backup-id EXACT_BACKUP_ID
+    # Copy the fresh state_binding_id printed by the chosen preview.
+    ./gasl host-project-install --host cursor --selected-root "$GASL_SELECTED_PROJECT" --action restore --skill-name exact-slug --backup-id EXACT_BACKUP_ID --state-binding-id EXACT_BINDING
+    ./gasl host-project-install --host cursor --selected-root "$GASL_SELECTED_PROJECT" --action recover --skill-name exact-slug
+
+The engine uses a host-local POSIX lock, a durable write-ahead journal, verified staging, atomic same-filesystem rename, full-file Backup, SHA-256 inventory and ownership checks. It **refuses changed user files, path symlinks, unknown archive lineages and stale preflight bindings**. Restoration retains the version it replaces as another Backup; uninstall retains a restorable archive and owner marker. Recovery can roll back or finalize a recorded transaction only if its exact byte inventories are still intact; it refuses any uncertain state instead of deleting user changes.
+
+**Scope boundary:** this is **real filesystem installation code**, tested with entirely inert synthetic Skill packages and disposable Git roots; **the real Cursor/Claude Code applications have NOT been launched for discovery** and no user project/Agent profile has been modified. Therefore no claim of verified runtime Host behavior is made. Cursor may also discover Skills placed in Claude directories: the engine isolates ownership state, not all Host-level discovery or precedence effects. User HOME scope, Windows writes, third-party code execution, sandbox, and an open-source/public release remain separate roadmap tasks. See [Phase 51 report](docs/reports/PHASE-51-CURSOR-CLAUDE-PROJECT-INSTALL-2026-11-23.md).
+
 ### Phase 50: Deterministic private MVP release draft and publication gate
 
 GASL now supports a **private, offline, reproducible ZIP draft** of the core CLI/Explorer distribution. The build uses only a strict allowlist of **Git-tracked** runtime files, local source-catalog metadata, project attribution/notices and required configuration. It **excludes** untracked/private Skill packages, personal files, test fixtures, credentials and the user's Agent profiles.
@@ -264,7 +289,7 @@ The interactive wizard enforces these gates, each with its own real **local TTY 
 4. **Real installation** — the existing project-only transactional installer requires a **separate, exact TTY phrase**. It rechecks the binding under a local lock, writes an ownership receipt, and preserves crash-recovery semantics. It never executes Skill content.
 5. **Replace** — permitted **only** with the separately requested `--action replace`. The existing installer retains and verifies the entire prior Skill in a restorable Backup; no automatic replacement happens on name collision.
 
-A missing, tampered, ambiguous, or statically flagged source remains blocked. Real user `HOME` scope is not supported. The required project root is not inferred from the browser, and the workflow never starts or uses Codex itself. Cursor and Claude Code remain preview-only until their own separate actual installation design is complete.
+A missing, tampered, ambiguous, or statically flagged source remains blocked. Real user `HOME` scope is not supported. The required project root is not inferred from the browser, and the workflow never starts or uses Codex itself. This was the Phase-49 state; Phase 51 has since added separate POSIX project-only Cursor and Claude Code transactional installers. Real Host discovery remains unverified.
 
 **Important:** Running this CLI with an exact TTY phrase is a real action on the explicitly chosen project. The Phase-49 synthetic tests use only disposable Git roots; **no real user project install or real-host/manual test has been performed**. Other hosts, Windows, security sandbox execution and public release readiness remain separate roadmap work. See [Phase 49](docs/reports/PHASE-49-CODEX-EXPLORER-INSTALL-HANDOFF-2026-11-23.md).
 
