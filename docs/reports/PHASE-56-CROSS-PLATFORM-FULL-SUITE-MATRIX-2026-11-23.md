@@ -89,3 +89,23 @@ After fast-forwarding the CI-produced metadata commit `461d9c2`, the full macOS 
 **Honest acceptance boundary:** A green three-job platform-eligible matrix does **not** prove that these thirteen legacy POSIX modules are supported on Windows. Their safe Windows migration, if still necessary, remains distinct future work subject to the original Windows Codex state separation. No existing test is skipped simply because its ACL, SID, ownership or Lock assertion failed on a supported Windows path.
 
 **Next verification:** rerun complete macOS local tests, then require the three platform-eligible CI jobs to pass. Capture Windows passed/skipped counts. Cross-platform *all-module* completeness remains open until legacy POSIX-only engines have safe native Windows replacements or have been explicitly retired.
+
+## Final CI acceptance — platform-eligible matrix (2026-11-23)
+
+**Code revision under test:** `3f2a67fcc28cd312488f64122e0cd210a1c92204`.
+
+**Verified GitHub Actions run:** [45283916154](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45283916154), **all three jobs completed successfully**.
+
+| Runner / Python | Job ID | Pytest result | Status |
+| --- | --- | --- | --- |
+| Ubuntu / 3.13 | `138075160377` | `798 passed, 28 skipped` (38.45s) | SUCCESS |
+| macOS / 3.13 | `138075160251` | `798 passed, 28 skipped` (84.80s) | SUCCESS |
+| Windows / 3.13 | `138075159825` | `580 passed, 6 skipped` (172.41s) | SUCCESS |
+
+- Windows's 586 collected tests **exclude thirteen known legacy POSIX-only modules by explicit filename**. This is not a claim of all 826 collected tests running on Windows. The earlier comprehensive run `45282313869` (189 failures on Windows) remains documented, not erased.
+- Native Windows Project/Profile/Queue security regression [run 45283915905](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45283915905) **SUCCESS**; separate [Cursor/Claude Project run 45283916024](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45283916024) **SUCCESS**; [User Profile lifecycle run 45283916376](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45283916376) **SUCCESS**.
+- Native security and transaction tests were not removed from the platform-eligible matrix; the legacy fcntl and fsync-dependent modules have not been falsely ported or marked Windows-supported.
+- Scope remained fixture-only. `GASL_ENABLE_WINDOWS_USER_PROFILE_CI=0` in the broad matrix; no actual user HOME writes, third-party Skill execution, License or publication approval.
+- Search Quality run `45282313905` is separately **FAILED**, intentionally fail-closed on a changed pinned Git Blob for `seo-audit`. This does not permit transfer of the two old provisional grades (`seo-en`, `seo-fa`) to the new blob. Independent new-catalog search-quality measurements remain blocked, and no ranking production change was made.
+
+**Phase 56 acceptance decision:** Automated cross-platform **platform-eligible** regression coverage is accepted. **Full parity of the 13 POSIX-only legacy test modules on Windows remains open**; do not label it complete. The content-drift quality benchmark review also remains open independently.
