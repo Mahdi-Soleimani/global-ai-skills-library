@@ -163,7 +163,27 @@ class ReconcileTests(unittest.TestCase):
         self.assertEqual(audit["query_count"], 26)
         self.assertEqual(audit["total_judgments"], 148)
         self.assertEqual(audit["distinct_judged_ids"], 72)
-        self.assertEqual(audit["remapped_source_id_count"], 24)
+        # Remap totals change when a source's pinned commit changes while its
+        # repository/path/Git Blob remain identical (24 became 26 for two SEO
+        # Skills). Check the current catalog, not an obsolete snapshot count.
+        pinned = {row["historical_source_id"]: row for row in mapping["identities"]}
+        by_id = {row["source_record_id"]: row for row in present["records"]}
+        checked = {row["old_source_id"]: row for row in audit["identity_checks"]}
+        self.assertEqual(set(checked), set(pinned))
+        self.assertEqual(audit["unchanged_git_blob_count"], 72)
+        self.assertEqual(audit["remapped_source_id_count"],
+                         len(set(pinned) - set(by_id)))
+        for old_id, record in checked.items():
+            historic = pinned[old_id]
+            current = by_id[record["current_source_id"]]
+            self.assertEqual((current["repository"], current["source_path"],
+                              current["skill_md_blob_sha"]),
+                             (historic["repository"], historic["source_path"],
+                              historic["git_blob_sha"]))
+        for old_query, new_query in zip(original["queries"], derived["queries"]):
+            for old_id, grade in old_query["relevant"].items():
+                self.assertEqual(new_query["relevant"][checked[old_id]["current_source_id"]],
+                                 grade)
         for query in derived["queries"]:
             self.assertNotIn("GASL-SRC-530827850c30c535cb40", query["relevant"])
 

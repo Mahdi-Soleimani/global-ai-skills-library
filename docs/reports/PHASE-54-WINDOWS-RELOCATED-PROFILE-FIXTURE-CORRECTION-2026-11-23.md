@@ -3,7 +3,7 @@
 **Date:** 2026-11-23  
 **Repository:** `Mahdi-Soleimani/global-ai-skills-library`  
 **Baseline HEAD:** `31c5d580267bc80fd9aa36aada2467e91a74b11c`  
-**Status:** macOS regression passes; native Windows CI acceptance pending.
+**Status:** Native Windows CI fixture-regression acceptance passed; production Windows User Scope remains gated.
 
 ## Objective and observed failure
 The Windows native workflow run [45269179260](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45269179260), job `138024092496`, failed exactly one test: `test_relocated_profile_cannot_reuse_foreign_receipt_even_if_files_copied`. Its expected `different user profile` rejection was preempted by `Trusted Windows profile owner lacks explicit current-user modify/delete ACL`. The remaining 15 Windows project tests and 18 Windows SID/ACL tests passed. This is a **test precondition failure candidate**, not permission to relax the security verifier.
@@ -39,3 +39,12 @@ On macOS:
 
 ## Git and publication
 Initial change is restricted to the single test file plus this report. Before pushing, verify allowlisted staged paths, secret patterns, `git diff --cached --check`, remote ancestry, and a normal non-force push. Record the new commit and native CI result in a follow-up report amendment only after observation.
+
+## Verified native Windows acceptance (follow-up)
+- Change committed and pushed on `main` as `0d0831f31c907f7b40f46132f856bc0e308d655c` (normal push, no force).
+- [GitHub Actions run 45277306600](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45277306600), job `138052318204`: **SUCCESS**.
+- Verified successful steps: Windows project transactions, actual SID/profile/ACL tests, disposable fake HOME lifecycle, private-bundle and adapter regressions, and no repository Agent directory/tracked-file modification check.
+- The previously failing relocated-profile test is included in the successful lifecycle suite. **No test was skipped to conceal the failure**; the original platform-specific three lifecycle skips remain.
+- Additional local macOS suite: `python3 -m unittest tests.test_user_profile_install tests.test_user_profile_wizard tests.test_host_adapters tests.test_host_target_preflight -q`: **97 tests, OK**.
+- No live HOME, User Scope production feature flag, ACL policy or operating-system clock was changed.
+- Production Windows User Scope enablement is deliberately a separate security/product decision; the temporary CI-only flag stays in place.
