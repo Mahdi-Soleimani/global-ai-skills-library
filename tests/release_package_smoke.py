@@ -87,6 +87,8 @@ try:
     assert health["status"] == "ok" and health["source_record_count"] > 0
     assert not health["installation_enabled"] and not health["execution_enabled"]
     assert b"GASL" in get("/")
+    domains = json.loads(get("/v1/domains"))
+    assert domains["count"] == len(domains["domains"]) > 0
     result = json.loads(get("/v1/search?q=python%20security&limit=3"))
     assert result["count"] > 0
     ident = result["results"][0]["source_record_id"]
@@ -106,6 +108,7 @@ finally:
     thread.join(timeout=5)
 ''')
         mcp_verified = False
+        mcp_tools_exercised = 0
         if mcp:
             result = run("-c", r'''
 import asyncio, json, os, sys
@@ -123,13 +126,34 @@ async def main():
             assert {t.name for t in tools.tools} == {
                 "gasl_search_skills", "gasl_get_skill_details", "gasl_get_skill_content",
                 "gasl_route_task", "gasl_list_domains", "gasl_health"}
-            reply = await session.call_tool("gasl_health", {})
-            payload = json.loads(reply.content[0].text)
-            assert payload["status"] == "ok" and not payload["execution_enabled"]
-            print(json.dumps({"mcp_verified":True}))
+            async def call(name, arguments):
+                reply = await session.call_tool(name, arguments)
+                assert not reply.is_error
+                return json.loads(reply.content[0].text)
+            health = await call("gasl_health", {})
+            assert health["status"] == "ok" and not health["execution_enabled"]
+            assert not health["installation_enabled"]
+            domains = await call("gasl_list_domains", {})
+            assert domains["domains"]
+            search = await call("gasl_search_skills", {"query":"python security audit", "limit":5})
+            assert 0 < search["count"] <= 5
+            ident = search["results"][0]["source_record_id"]
+            detail = await call("gasl_get_skill_details", {"source_record_id":ident})
+            assert detail["source_record_id"] == ident
+            assert len(detail["commit_sha"]) == 40
+            assert not detail["installation_allowed"] and not detail["execution_allowed"]
+            content = await call("gasl_get_skill_content",
+                                 {"source_record_id":ident,"fetch_remote":False})
+            assert content["error"] == "content_unavailable" and "not cached" in content["message"]
+            route = await call("gasl_route_task", {"task":"بررسی امنیت API پایتون","top_k":5})
+            assert route["returned_count"] > 0
+            assert route["routing_decision"] in ("recommend","abstain","undetermined")
+            assert not route["installation_performed"] and not route["execution_performed"]
+            print(json.dumps({"mcp_verified":True,"mcp_tools_exercised":6}))
 asyncio.run(main())
 ''')
             mcp_verified = result["mcp_verified"]
+            mcp_tools_exercised = result["mcp_tools_exercised"]
         assert not any((package / p).exists() for p in (
             ".git", ".agents", ".cursor", ".claude", "catalog", "public-catalog/packages",
             "private/install-bundles", "private/skill-cache"))
@@ -138,7 +162,8 @@ asyncio.run(main())
                 "source_commit": report["source_commit"], "archive_sha256": report["archive_sha256"],
                 "source_record_count": rest["source_record_count"], "cli_search_verified": True,
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
-                "mcp_stdio_verified": mcp_verified, "third_party_skill_executed": False,
+                "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
+                "third_party_skill_executed": False,
                 "public_release_allowed": False}
 
 

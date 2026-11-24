@@ -120,6 +120,13 @@ class ApiServerTests(unittest.TestCase):
         except urllib.error.HTTPError as exc:
             self.assertEqual(exc.headers.get("WWW-Authenticate"), "Bearer")
 
+    def test_domains_endpoint_returns_taxonomy_list(self):
+        status, body = self.request("/v1/domains")
+        self.assertEqual(status, 200)
+        payload = json.loads(body)
+        self.assertEqual(payload["count"], 1)
+        self.assertEqual(payload["domains"][0]["id"], "security")
+
     def test_search_and_details(self):
         status, body = self.request("/v1/search?q=python%20security")
         self.assertEqual(status, 200)

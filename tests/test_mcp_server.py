@@ -113,6 +113,10 @@ class McpServerTests(unittest.TestCase):
         self.assertEqual(payload["answerability"]["policy_status"], "experimental_heuristic_not_calibrated")
         self.assertFalse(payload["answerability"]["empty_results_prove_no_relevant_skill"])
 
+    def test_domains_tool_returns_taxonomy_list(self):
+        result = self.call_tool("gasl_list_domains", {})
+        self.assertEqual(json.loads(result.content[0].text)["domains"][0]["id"], "security")
+
     def test_health_tool_reports_search_mode(self):
         result = self.call_tool("gasl_health", {})
         payload = json.loads(result.content[0].text)

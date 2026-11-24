@@ -92,7 +92,7 @@ def route(task, top_k=5, domain=None, license_spdx=None, agent=None,
 
 
 def domains(root=ROOT):
-    return load_taxonomy(Path(root)).get("domains", [])
+    return load_taxonomy(Path(root))
 
 
 def skill_details(source_record_id, root=ROOT):
