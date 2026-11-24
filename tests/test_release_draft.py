@@ -52,6 +52,25 @@ class ReleaseDraftTests(unittest.TestCase):
                         "-c","user.email=test@example.invalid","commit","-qm","synthetic fixture"],
                        check=True,capture_output=True,env=env)
 
+    def test_canary_sources_required_when_runner_shipped(self):
+        runner=self.root/"tools/sandbox_canary_runner.py"
+        runner.write_bytes(b"# inert runner fixture")
+        subprocess.run(["git","-C",str(self.root),"add","-A"],check=True,capture_output=True)
+        self.commit()
+        with self.assertRaisesRegex(ValueError,"Missing trusted sandbox"):
+            inspect_release(self.root)
+        from release_draft import CANARY_FILES
+        for name in CANARY_FILES:
+            path=self.root/name
+            path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_bytes(b"inert source fixture")
+        subprocess.run(["git","-C",str(self.root),"add","-A"],check=True,capture_output=True)
+        self.commit()
+        result=build_release_draft(self.root)
+        with zipfile.ZipFile(self.root/result["relative_archive"]) as archive:
+            for name in CANARY_FILES:
+                self.assertEqual(archive.read("gasl-mvp/"+name),b"inert source fixture")
+
     def test_inspect_is_readonly_and_public_release_blocked(self):
         report=inspect_release(self.root)
         self.assertEqual(report["status"],"local_release_readiness_only")

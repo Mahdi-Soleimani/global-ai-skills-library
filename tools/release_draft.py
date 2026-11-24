@@ -28,6 +28,7 @@ STATIC_FILES = frozenset({
     "registry/skill-evaluations.json", "registry/source-catalog-summary.json",
     "public-catalog/index.json",
 })
+CANARY_FILES = frozenset({"tools/sandbox_canary/main.go", "tools/sandbox_canary/Dockerfile"})
 MAX_FILES = 160
 MAX_TOTAL_BYTES = 55 * 1024 * 1024
 MAX_MANIFEST_BYTES = 256 * 1024
@@ -55,7 +56,7 @@ def _tracked(root):
 
 
 def _included(path):
-    return (path in STATIC_FILES
+    return (path in STATIC_FILES or path in CANARY_FILES
             or path in ("LICENSE", "LICENSE.md", "COPYING")
             or (path.startswith("tools/") and path.endswith(".py") and
                 len(Path(path).parts) == 2)
@@ -142,6 +143,8 @@ def _inputs(root):
     if not STATIC_FILES.issubset(files):
         raise ValueError("Required runtime/review files not tracked: " +
                          ", ".join(sorted(STATIC_FILES-set(files))))
+    if "tools/sandbox_canary_runner.py" in files and not CANARY_FILES.issubset(files):
+        raise ValueError("Missing trusted sandbox canary build sources")
     if set(files) != {name for name in _tracked(root) if _included(name)}:
         raise ValueError("Release index differs from committed source tree")
     if not 1 <= len(files) <= MAX_FILES or sum(size for _, size in tree.values()) > MAX_TOTAL_BYTES:

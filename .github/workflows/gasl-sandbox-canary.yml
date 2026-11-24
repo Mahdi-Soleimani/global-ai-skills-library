@@ -35,35 +35,11 @@ jobs:
       - name: Test the non-executing Python policy and canary command construction
         run: python3 -m unittest tests.test_sandbox_gate tests.test_sandbox_canary_runner -v
 
-      - name: Compile only the repository's inert Go canary (no network dependencies)
-        run: |
-          set -euo pipefail
-          go version
-          mkdir -p "$RUNNER_TEMP/gasl-inert-build"
-          go build -trimpath -ldflags='-s -w' -o "$RUNNER_TEMP/gasl-inert-build/canary" ./tools/sandbox_canary/main.go
-          cp tools/sandbox_canary/Dockerfile "$RUNNER_TEMP/gasl-inert-build/Dockerfile"
-          test -x "$RUNNER_TEMP/gasl-inert-build/canary"
-
-      - name: Build a local FROM scratch canary image (no pull, no build network)
-        run: |
-          set -euo pipefail
-          source_hash="$(sha256sum tools/sandbox_canary/main.go | cut -d ' ' -f 1)"
-          docker build \
-            --pull=false --network=none --no-cache \
-            --build-arg "CANARY_SOURCE_SHA=$source_hash" \
-            -f "$RUNNER_TEMP/gasl-inert-build/Dockerfile" \
-            -t "gasl-inert-canary:${GITHUB_SHA}" \
-            "$RUNNER_TEMP/gasl-inert-build"
-          image_id="$(docker image inspect --format '{{.Id}}' "gasl-inert-canary:${GITHUB_SHA}")"
-          [[ "$image_id" =~ ^sha256:[a-f0-9]{64}$ ]]
-          echo "GASL_LOCAL_CANARY_IMAGE_ID=$image_id" >> "$GITHUB_ENV"
-
       - name: Run only the inert canary inside a restricted Docker container
         run: |
           set -euo pipefail
           python3 tools/gasl.py sandbox \
             --verify-canary \
-            --image-id "$GASL_LOCAL_CANARY_IMAGE_ID" \
             --output "$RUNNER_TEMP/gasl-inert-canary-result.json"
           python3 - <<'PY'
           import json
@@ -72,6 +48,10 @@ jobs:
           report = json.loads((Path(os.environ['RUNNER_TEMP']) / 'gasl-inert-canary-result.json').read_text())
           assert report['status'] == 'benign_canary_verified'
           assert report['benign_canary_verified'] is True
+          assert report['local_source_build_performed'] is True
+          assert report['external_image_accepted'] is False
+          assert report['local_build_tag_removed'] is True
+          assert report['container_cleanup_verified'] is True
           assert report['sandbox_execution_enabled'] is False
           assert report['skill_installation_allowed'] is False
           assert report['host_runtime_isolation_proven'] is False

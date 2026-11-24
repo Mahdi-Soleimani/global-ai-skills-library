@@ -22,3 +22,6 @@ Published baseline 4122302c98f3cbff0132adbfe46aa6f1e6ec4626: dedicated six-combi
 - Actual metadata-only review: microsoft/azure-skills source GASL-SRC-58c1d955dc8eaeca0fd4: 3507 recursive entries, 789 tree objects including root, 6 planned files, 32159 bytes, 3.93s. microsoft/skills source GASL-SRC-65124ab362904889e2f0: 3880 recursive entries, 1051 tree objects including root, 7 planned files, 33299 bytes, 5.40s. Both passed exact tree reconstruction; no blob download or execution. Full local regression pending.
 
 Full local regression increment 2: 924 passed, 40 skipped, 453 subtests passed in 105.21s, zero failures. Remote checked in sync before commit. Exact revision CI pending.
+
+## Final acceptance
+Published 19af0578cd3b2d655cb03f6d2e26008f2b9acd89. Dedicated six-combination collection CI 45382898579 succeeded, broad CI 45382898575 succeeded on all three OS (Windows 809 passed/7 skipped), private six-combination release gate 45382898490 succeeded. Full local regression 924 passed/40 skipped, 453 subtests. Phase 63 accepted for portable pinned ordinary collection and Git tree reconstruction, not independent commit reconstruction or execution approval.

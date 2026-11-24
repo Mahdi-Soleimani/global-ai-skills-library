@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 from sandbox_canary_runner import (
     EXPECTED_CHECKS, SOURCE, _image_is_verified_local_canary,
-    _make_run_command, run_benign_canary,
+    _make_run_command, _run_locally_built_canary, run_benign_canary,
 )
 
 IMAGE_ID = 'sha256:' + 'a' * 64
@@ -42,6 +42,55 @@ def inert_canary_output(changes=None):
 
 
 class SandboxCanaryRunnerTests(unittest.TestCase):
+    def test_public_entrypoint_rejects_even_pinned_external_image(self):
+        runner=Mock(side_effect=AssertionError("No external image execution"))
+        compiler=Mock(side_effect=AssertionError("No compilation"))
+        report=run_benign_canary(IMAGE_ID,system="Linux",runner=runner,compiler=compiler)
+        self.assertEqual(report["reason_code"],"external_canary_image_not_accepted_build_locally")
+        runner.assert_not_called()
+        compiler.assert_not_called()
+
+    def test_local_build_only_and_cleanup(self):
+        calls=[]
+        def compiler(argv,**kw):
+            self.assertEqual(kw["env"]["GOPROXY"],"off")
+            self.assertEqual(kw["env"]["CGO_ENABLED"],"0")
+            self.assertEqual(Path(argv[-1]).read_bytes(),SOURCE.read_bytes())
+            Path(argv[argv.index("-o")+1]).write_bytes(b"INERT FIXTURE BINARY")
+            return subprocess.CompletedProcess(argv,0,"","")
+        def runner(argv,**kw):
+            calls.append(argv)
+            if argv[1:3]==["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
+            if argv[1]=="build":
+                self.assertIn("--network=none",argv)
+                self.assertIn("--pull=false",argv)
+                self.assertEqual(set(x.name for x in Path(argv[-1]).iterdir()),{"Dockerfile","canary"})
+                Path(argv[argv.index("--iidfile")+1]).write_text(IMAGE_ID)
+                return subprocess.CompletedProcess(argv,0,"","")
+            if argv[1]=="version":
+                return subprocess.CompletedProcess(argv,0,"29.0.1","")
+            if argv[1:3]==["image","inspect"]:
+                return subprocess.CompletedProcess(argv,0,json.dumps(image_details()),"")
+            if argv[1]=="run":
+                self.assertEqual(argv[-1],IMAGE_ID)
+                return subprocess.CompletedProcess(argv,0,inert_canary_output(),"")
+            if argv[1:3]==["image","ls"]:
+                tag=calls[0][calls[0].index("-t")+1]
+                removed=any(c[1:3]==["image","rm"] for c in calls)
+                return subprocess.CompletedProcess(argv,0,"" if removed else tag+"\n","")
+            if argv[1:3]==["image","rm"]:
+                self.assertEqual(argv[-1],calls[0][calls[0].index("-t")+1])
+                return subprocess.CompletedProcess(argv,0,"","")
+            self.fail("Unexpected subcommand")
+        result=run_benign_canary(system="Linux",docker_bin="/usr/bin/docker",go_bin="/usr/bin/go",
+                                 runner=runner,compiler=compiler)
+        self.assertTrue(result["benign_canary_verified"])
+        self.assertTrue(result["local_source_build_performed"])
+        self.assertTrue(result["local_build_tag_removed"])
+        self.assertFalse(result["external_image_accepted"])
+        self.assertFalse(result["sandbox_execution_enabled"])
+
     def test_every_required_check_is_registered_in_actual_go_entrypoint(self):
         source = SOURCE.read_text(encoding='utf-8')
         for name in sorted(EXPECTED_CHECKS):
@@ -49,14 +98,14 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
 
     def test_does_not_run_anything_on_macos(self):
         runner = Mock(side_effect=AssertionError('no Docker subprocess allowed'))
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Darwin', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Darwin', runner=runner)
         self.assertEqual(result['reason_code'], 'requires_ephemeral_linux_runner_not_local_mac')
         self.assertFalse(result['benign_canary_verified'])
         runner.assert_not_called()
 
     def test_unpinned_image_rejected_before_process_launch(self):
         runner = Mock(side_effect=AssertionError('no Docker subprocess allowed'))
-        result = run_benign_canary('inert-canary:latest', docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary('inert-canary:latest', docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'immutable_local_image_id_required')
         runner.assert_not_called()
 
@@ -85,6 +134,8 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
     def test_connected_daemon_and_verified_inert_canary_success(self):
         calls = []
         def runner(argv, **kwargs):
+            if argv[1:3] == ["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
             calls.append((argv, kwargs))
             self.assertEqual(kwargs['env']['HOME'], '/nonexistent')
             if argv[1] == 'version':
@@ -99,7 +150,7 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
                 self.assertTrue((source / 'escape-to-host').is_symlink())
                 return subprocess.CompletedProcess(argv, 0, inert_canary_output(), '')
             self.fail('unexpected Docker subcommand: {}'.format(argv))
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['status'], 'benign_canary_verified')
         self.assertTrue(result['benign_canary_verified'])
         self.assertEqual(set(result['checks']), EXPECTED_CHECKS)
@@ -110,13 +161,15 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
 
     def test_nonzero_canary_exposes_only_failed_predicate_names(self):
         def runner(argv, **kwargs):
+            if argv[1:3] == ["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
             if argv[1] == 'version':
                 return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
             if argv[1] == 'image':
                 return subprocess.CompletedProcess(argv, 0, json.dumps(image_details()), '')
             return subprocess.CompletedProcess(argv, 1,
                 inert_canary_output({'scratch_tmpfs_restricted_mount': False}), '')
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'benign_isolation_checks_failed')
         self.assertEqual(result['failed_checks'], ['scratch_tmpfs_restricted_mount'])
         self.assertFalse(result['benign_canary_verified'])
@@ -124,6 +177,8 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
 
     def test_failed_check_never_enables_sandbox(self):
         def runner(argv, **kwargs):
+            if argv[1:3] == ["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
             if argv[1] == 'version':
                 return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
             if argv[1] == 'image':
@@ -132,13 +187,13 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
                 json.dumps({'schema_version': 'gasl-inert-canary-1', 'passed': True,
                             'checks': {**{x: True for x in EXPECTED_CHECKS}, 'network_access_denied': False},
                             'third_party_code_executed': False, 'skills_installed': False}), '')
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'canary_report_contains_failures_or_missing_checks')
         self.assertFalse(result['benign_canary_verified'])
 
     def test_daemon_unreachable_blocks(self):
         runner = Mock(return_value=subprocess.CompletedProcess([], 1, '', 'daemon down'))
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'docker_daemon_unreachable')
         self.assertEqual(runner.call_count, 1)
 
@@ -146,6 +201,11 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
         commands = []
         def runner(argv, **kwargs):
             commands.append(argv)
+            if argv[1:3] == ["container","ls"]:
+                run=next(c for c in commands if c[1]=="run")
+                name=run[run.index("--name")+1]
+                removed=any(c[1]=="rm" for c in commands)
+                return subprocess.CompletedProcess(argv,0,"" if removed else name+"\n","")
             if argv[1] == 'version':
                 return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
             if argv[1] == 'image':
@@ -155,20 +215,39 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
             if argv[1] == 'rm':
                 return subprocess.CompletedProcess(argv, 0, '', '')
             self.fail('unexpected Docker subcommand')
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
-        self.assertEqual(result['reason_code'], 'canary_timeout_container_cleanup_attempted')
-        self.assertIn('rm', commands[-1])
-        self.assertIn('--force', commands[-1])
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        self.assertEqual(result['reason_code'], 'canary_timeout_container_cleanup_verified')
+        self.assertTrue(result['container_cleanup_verified'])
+        self.assertIn('--force', next(c for c in commands if c[1]=='rm'))
+        self.assertEqual(commands[-1][1:3],['container','ls'])
+
+    def test_cleanup_failure_blocks_even_passing_canary(self):
+        def runner(argv,**kwargs):
+            if argv[1]=="version":
+                return subprocess.CompletedProcess(argv,0,"29.0.1","")
+            if argv[1:3]==["image","inspect"]:
+                return subprocess.CompletedProcess(argv,0,json.dumps(image_details()),"")
+            if argv[1]=="run":
+                return subprocess.CompletedProcess(argv,0,inert_canary_output(),"")
+            if argv[1:3]==["container","ls"]:
+                return subprocess.CompletedProcess(argv,1,"","unreachable")
+            self.fail("Unexpected subcommand")
+        result=_run_locally_built_canary(IMAGE_ID,system="Linux",docker_bin="/usr/bin/docker",runner=runner)
+        self.assertEqual(result["reason_code"],"canary_container_cleanup_unverified")
+        self.assertFalse(result["benign_canary_verified"])
+        self.assertFalse(result["sandbox_execution_enabled"])
 
     def test_container_start_error_redacts_paths_and_tokens(self):
         def runner(argv, **kwargs):
+            if argv[1:3] == ["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
             if argv[1] == 'version':
                 return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
             if argv[1] == 'image':
                 return subprocess.CompletedProcess(argv, 0, json.dumps(image_details()), '')
             return subprocess.CompletedProcess(argv, 125, '',
                 'docker: failed to mount /home/runner/work/project token=VERY_PRIVATE_SECRET\n')
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'docker_container_start_or_runtime_failed')
         self.assertIn('failed to mount', result['sanitized_docker_error'])
         self.assertNotIn('/home/runner/work', result['sanitized_docker_error'])
@@ -177,10 +256,12 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
 
     def test_invalid_runtime_json_blocks(self):
         def runner(argv, **kwargs):
+            if argv[1:3] == ["container","ls"]:
+                return subprocess.CompletedProcess(argv,0,"","")
             if argv[1] == 'version':return subprocess.CompletedProcess(argv, 0, '29.0.1\n', '')
             if argv[1] == 'image':return subprocess.CompletedProcess(argv, 0, json.dumps(image_details()), '')
             return subprocess.CompletedProcess(argv, 0, 'invalid JSON', '')
-        result = run_benign_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
+        result = _run_locally_built_canary(IMAGE_ID, docker_bin='/usr/bin/docker', system='Linux', runner=runner)
         self.assertEqual(result['reason_code'], 'invalid_canary_result')
 
 

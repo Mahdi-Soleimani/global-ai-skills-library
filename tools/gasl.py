@@ -781,8 +781,6 @@ def cmd_download(args):
 def cmd_sandbox(args):
     if args.verify_canary:
         from sandbox_canary_runner import run_benign_canary
-        if not args.image_id:
-            raise SystemExit('--verify-canary requires --image-id sha256:...')
         result = run_benign_canary(args.image_id)
         content = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
         print(content, end='')
@@ -923,7 +921,7 @@ def main():
     auto_review.set_defaults(func=cmd_auto_review)
     sandbox = sub.add_parser('sandbox', help='Read-only readiness or explicitly requested inert Linux CI isolation canary')
     sandbox.add_argument('--verify-canary', action='store_true', help='Run only self-authored benign canary on Linux; no Skill execution')
-    sandbox.add_argument('--image-id', help='Immutable local Docker image ID for the inert canary')
+    sandbox.add_argument('--image-id', help='Deprecated: external canary images are refused; omit to build locally')
     sandbox.add_argument('--output', type=Path, help='Optional result JSON path (canary mode)')
     sandbox.set_defaults(func=cmd_sandbox)
     audit = sub.add_parser('audit', help='Offline static security audit of one previously downloaded pinned Skill')

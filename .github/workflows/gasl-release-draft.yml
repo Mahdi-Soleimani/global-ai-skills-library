@@ -16,6 +16,8 @@ on:
       - tools/api_server.py
       - tools/root_skill_review.py
       - tools/root_skill_scope.py
+      - tools/sandbox_canary_runner.py
+      - tools/sandbox_canary/**
       - tests/test_root_skill_review.py
       - tests/test_root_skill_scope.py
       - web/index.html
@@ -37,6 +39,8 @@ on:
       - tools/api_server.py
       - tools/root_skill_review.py
       - tools/root_skill_scope.py
+      - tools/sandbox_canary_runner.py
+      - tools/sandbox_canary/**
       - tests/test_root_skill_review.py
       - tests/test_root_skill_scope.py
       - web/index.html
