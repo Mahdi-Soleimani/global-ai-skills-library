@@ -87,8 +87,8 @@ class ReleaseDraftTests(unittest.TestCase):
         built = build_release_draft(self.root)
         verified = verify_release_draft(self.root)
         self.assertTrue(verified["canonical_archive_encoding_verified"])
-        self.assertEqual(built["source_commit"], "84af3b801f3e8140671f0bddad12d8849ab6350d")
-        self.assertEqual(built["archive_sha256"], "3ef32205ef59cc0994ef6412155279cf9f6eb0e6697bc92fa119a2f9eba8fd1b")
+        self.assertEqual(built["source_commit"], "1acbffeba382a741282e9c5431e30a9f1e3e7d8f")
+        self.assertEqual(built["archive_sha256"], "fd1a3faa4d41191e433e32b966e1a916665cef565f20fa0c8bf6cf172b0a72ef")
         print("CANONICAL_FIXTURE", built["source_commit"], built["archive_sha256"])
         with zipfile.ZipFile(self.root/built["relative_archive"]) as archive:
             self.assertTrue(all(x.compress_type == zipfile.ZIP_STORED for x in archive.infolist()))

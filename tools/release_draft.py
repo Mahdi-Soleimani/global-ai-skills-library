@@ -20,7 +20,8 @@ from transaction_file_lock import is_redirected, require_windows_filename_safety
 SCHEMA = "gasl-private-release-draft-v1"
 CANONICAL_ENCODING = "zip-stored-fixed-metadata-v1"
 STATIC_FILES = frozenset({
-    "gasl", "README.md", "ATTRIBUTION.md", "THIRD_PARTY_NOTICES.md",
+    "gasl", "install.sh", "requirements-mcp.txt", "MCP_CONFIG.example.json",
+    "MCP_CONFIG.codex.example.toml", "README.md", "ATTRIBUTION.md", "THIRD_PARTY_NOTICES.md",
     "docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md",
     "docs/ROADMAP.md", "web/index.html",
     "registry/source-catalog.json", "registry/search-features.json",
@@ -237,7 +238,7 @@ def build_release_draft(root=ROOT):
                     data = _git(root, "show", commit + ":" + entry["path"])
                     if hashlib.sha256(data).hexdigest() != entry["sha256"]:
                         raise ValueError("Release source changed after manifest inspection")
-                    mode = 0o100755 if entry["path"] == "gasl" else 0o100644
+                    mode = 0o100755 if entry["path"] in ("gasl", "install.sh") else 0o100644
                     info, raw = _zip_entry(entry["path"], data, mode)
                     archive.writestr(info, raw)
                 info, raw = _zip_entry("RELEASE-MANIFEST.json", _json_bytes(manifest))
@@ -348,7 +349,7 @@ def verify_release_draft(root=ROOT):
 def _verify_and_encode_members(archive, rebuilt, items, infos, manifest, manifest_name):
     total = 0
     for item, info in zip(items, infos[:-1]):
-        expected_mode = 0o100755 if item["path"] == "gasl" else 0o100644
+        expected_mode = 0o100755 if item["path"] in ("gasl", "install.sh") else 0o100644
         if info.file_size != item["bytes"] or info.external_attr >> 16 != expected_mode:
             raise ValueError("Unexpected draft member size or type")
         actual = archive.read("gasl-mvp/"+item["path"])

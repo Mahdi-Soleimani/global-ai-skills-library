@@ -7,12 +7,14 @@ on:
       - tools/release_draft.py
       - tools/gasl.py
       - tests/test_release_draft.py
+      - tests/release_package_smoke.py
       - .github/workflows/gasl-release-draft.yml
   pull_request:
     paths:
       - tools/release_draft.py
       - tools/gasl.py
       - tests/test_release_draft.py
+      - tests/release_package_smoke.py
       - .github/workflows/gasl-release-draft.yml
   workflow_dispatch:
 
@@ -50,7 +52,22 @@ jobs:
           assert r['content_bound_to_commit_tree'] is True; assert r['third_party_skill_executed'] is False;
           assert r['host_paths_modified'] is False; print('PRIVATE_RELEASE_PUBLICATION_GATE=PASS')"
 
-      - name: Ensure CI did not write release artifacts
+      - name: Build and smoke-test the standalone private package (runner only)
+        run: |
+          python -m pip install -r requirements-mcp.txt
+          python tools/gasl.py release-draft --action build
+          python tests/release_package_smoke.py --mcp
+
+      - name: Remove only the runner-generated private draft
+        if: always()
+        run: >-
+          python -c "from pathlib import Path; import subprocess;
+          c=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()[:12];
+          p=Path('private/release-drafts')/('gasl-mvp-'+c+'.zip');
+          p.unlink(missing_ok=True); p.with_suffix('.zip.json').unlink(missing_ok=True);
+          p.parent.rmdir() if p.parent.exists() else None"
+
+      - name: Ensure CI did not retain release artifacts
         run: |
           python -c "from pathlib import Path; assert not Path('private/release-drafts').exists()"
           git diff --exit-code
