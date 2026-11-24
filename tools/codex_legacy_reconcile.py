@@ -124,8 +124,93 @@ def _snapshot(root, slug, selected_id):
     }
 
 
+def _portable_orphan_history(slug, selected_root):
+    """Bounded, read-only orphan inventory; no attestation or write binding."""
+    from codex_migration_audit import _directory, _record, _inventory_checked, _present, _nonempty
+    from transaction_file_lock import require_windows_filename_safety
+    from codex_project_install import SLUG
+    if not isinstance(slug, str) or not SLUG.fullmatch(slug):
+        raise ValueError('Exact safe Skill slug required')
+    require_windows_filename_safety(slug, portable=True)
+    if os.name == 'nt':
+        from windows_user_profile import assert_no_reparse_components
+        assert_no_reparse_components(selected_root)
+    root = _root(selected_root)
+    target, relative, state = _paths(root, slug)
+    for folder in (state, state/'receipts', state/'journals', state/'uninstalled',
+                   state/'stage', state/'backups', state/'backups'/slug):
+        _directory(folder)
+    if (_present(target) or any(_present(p) for p in (
+            _receipt(state, slug), _journal(state, slug), _marker_path(state, slug)))
+            or _nonempty(state/'stage')):
+        raise ValueError('Legacy orphan audit requires empty destination and no pending ownership state')
+    parent = state/'backups'/slug
+    if not parent.is_dir():
+        raise ValueError('No regular legacy backup directory exists')
+    dirs, manifests = set(), set()
+    for index, child in enumerate(parent.iterdir()):
+        if index >= 2000:
+            raise ValueError('Excessive legacy history')
+        if ID32.fullmatch(child.name):
+            _directory(child)
+            if not child.is_dir():
+                raise ValueError('Invalid legacy backup directory')
+            dirs.add(child.name)
+        elif child.name.endswith('.json') and ID32.fullmatch(child.name[:-5]):
+            manifests.add(child.name[:-5])
+        else:
+            raise ValueError('Unexpected legacy backup entry')
+    if not dirs or dirs != manifests or len(dirs) >= 1000:
+        raise ValueError('Unpaired or excessive legacy backup records')
+    entries = {}
+    digests = {}
+    for ident in sorted(dirs):
+        manifest, digest = _record(_backup_manifest(state, slug, ident))
+        _checked_backup(manifest, slug, ident)
+        folder = _backup_dir(state, slug, ident)
+        if _inventory_checked(folder) != manifest['files']:
+            raise ValueError('Changed legacy backup files')
+        _check_historical_skill_name(folder/ROOT_SKILL, slug)
+        prior = manifest['previous_receipt']
+        ancestors = prior.get('backup_ids', []) if prior else []
+        entries[ident] = {'manifest': manifest, 'ancestors': ancestors}
+        digests[ident] = digest
+    sequence = sorted(entries, key=lambda key: (len(entries[key]['ancestors']), key))
+    for index, ident in enumerate(sequence):
+        if entries[ident]['ancestors'] != sequence[:index]:
+            raise ValueError('Ambiguous or incomplete legacy backup ancestry')
+    return relative, sequence, entries, digests
+
+
+def audit_portable_legacy_backups(slug, selected_root):
+    first = _portable_orphan_history(slug, selected_root)
+    if first != _portable_orphan_history(slug, selected_root):
+        raise ValueError('Legacy audit state changed during inspection')
+    relative, sequence, entries, _ = first
+    return {
+        'status': 'legacy_backups_audited_read_only', 'host': 'codex',
+        'scope': 'project', 'slug': slug, 'relative_target': relative,
+        'backup_count': len(sequence),
+        'backups': [{
+            'backup_id': ident, 'file_count': len(entries[ident]['manifest']['files']),
+            'historical_receipt_present': entries[ident]['manifest']['previous_receipt'] is not None,
+            'upstream_plan_id_in_historical_receipt': (
+                entries[ident]['manifest']['previous_receipt']['plan_id']
+                if entries[ident]['manifest']['previous_receipt'] else None),
+            'backup_integrity_verified': True,
+            'historical_project_ownership_verified': False,
+        } for ident in sequence],
+        'ancestry_complete': True, 'historical_project_ownership_verified': False,
+        'manual_ownership_attestation_required': True,
+        'reconciliation_write_enabled': False, 'approval_granted': False,
+        'real_host_files_modified': False, 'third_party_skill_executed': False,
+    }
+
+
 def audit_legacy_backups(slug, selected_root):
     """Read-only discovery; does not infer project ownership."""
+    if os.name == "nt":
+        return audit_portable_legacy_backups(slug, selected_root)
     root = _root(selected_root)
     target, relative, state, sequence, entries = _legacy_history(root, slug)
     rows = []
@@ -154,6 +239,8 @@ def audit_legacy_backups(slug, selected_root):
 
 
 def preview_legacy_reinstall(slug, selected_root, backup_id):
+    if os.name == "nt":
+        raise ValueError("Legacy ownership reconciliation is not enabled on Windows")
     root = _root(selected_root)
     s = _snapshot(root, slug, backup_id)
     return {

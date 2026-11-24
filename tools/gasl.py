@@ -492,7 +492,43 @@ def cmd_host_format_review(args):
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+def _windows_codex_project_command(args):
+    """Route compatibility CLI names only; never enable legacy Windows writes."""
+    if args.action == 'audit-legacy-backups':
+        if not args.skill_name:
+            raise SystemExit('Legacy backup audit requires --skill-name')
+        from codex_legacy_reconcile import audit_legacy_backups
+        result = audit_legacy_backups(args.skill_name, args.selected_root)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+    if args.action in ('preview-legacy-reinstall', 'reinstall-legacy-backup'):
+        raise SystemExit('Legacy ownership reconciliation is not enabled on Windows; '
+                         'use audit-legacy-backups for read-only evidence.')
+    if args.action in ('list-backups', 'list-uninstalled-backups'):
+        if not args.skill_name:
+            raise SystemExit('Backup listing requires --skill-name')
+        from codex_native_review import review
+        result = review(args.skill_name, args.selected_root)
+        expected = 'installed' if args.action == 'list-backups' else 'uninstalled_owned'
+        if result['lifecycle'] != expected:
+            raise SystemExit('Requested native backup lifecycle does not match; use backup-review.')
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+    action = {'restore-backup': 'restore', 'reinstall-backup': 'reinstall'}.get(
+        args.action, args.action)
+    # In particular, Windows uninstall requires its own fresh preview binding.
+    # No translation of old POSIX authorization phrases or state bindings.
+    return cmd_host_project_install(argparse.Namespace(**{
+        **vars(args), 'host': 'codex', 'action': action,
+    }))
+
+
 def cmd_codex_project_install(args):
+    if os.name == 'nt':
+        return _windows_codex_project_command(args)
+    if args.action == 'preview-uninstall':
+        raise SystemExit('Legacy POSIX uninstall uses its existing exact local TTY confirmation.')
+
     from codex_project_install import (
         preview_install, install_fresh, preview_replace, replace_existing,
         list_backups, preview_restore, restore_backup, uninstall, recover)
@@ -1015,12 +1051,12 @@ def main():
                  'list-backups','preview-restore','restore-backup',
                  'list-uninstalled-backups','preview-reinstall','reinstall-backup',
                  'audit-legacy-backups','preview-legacy-reinstall','reinstall-legacy-backup',
-                 'uninstall','recover'))
+                 'preview-uninstall','uninstall','recover'))
     codex_project.add_argument('--selected-root', type=Path, required=True,
         help='Existing absolute Git project root, never real user HOME')
     codex_project.add_argument('--plan-id', help='Exact pinned private ZIP Plan ID for preview, fresh install or replacement')
     codex_project.add_argument('--state-binding-id',
-        help='Exact binding from read-only preview; required before install, replace or backup restore')
+        help='Exact preview binding; required before install, replace, restore or Windows uninstall')
     codex_project.add_argument('--skill-name', help='Exact managed Skill name for restore/reinstall/uninstall/recover')
     codex_project.add_argument('--backup-id',
         help='Exact backup ID for restore or archived reinstall')

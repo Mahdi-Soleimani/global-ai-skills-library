@@ -5,6 +5,7 @@ All real Agent writes remain in codex_project_install and need its own exact
 interactive TTY phrase. The browser gets only a user-copyable CLI command.
 """
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -21,6 +22,9 @@ PREPARE_SCHEMA = "gasl-codex-explorer-install-handoff-v1"
 
 def inspect_handoff(source_id, selected_root, *, root=ROOT, lookup=None):
     """Read-only project validation and source readiness. No project writes."""
+    if os.name == "nt":
+        from host_project_wizard import inspect_handoff as native_preview
+        return native_preview(source_id, selected_root, "codex", root=root, lookup=lookup)
     project = _root(selected_root)
     plan = plan_install(source_id, "codex", "project", root=root, lookup=lookup)
     local = plan["local_package"]
@@ -64,6 +68,11 @@ def install_from_explorer(
     Tests may inject input on disposable fixtures, but the production CLI must
     always have an actual local TTY before any private ZIP preparation/write.
     """
+    if os.name == "nt":
+        from host_project_wizard import install_from_explorer as native_wizard
+        return native_wizard(source_id, selected_root, "codex", action=action,
+                             root=root, lookup=lookup, reader=reader, printer=printer,
+                             download_if_missing=download_if_missing)
     if action not in ("install", "replace"):
         raise ValueError("Explicit action must be install or replace")
     # Refuse automation before any mutating operation, even if reader is injected.
