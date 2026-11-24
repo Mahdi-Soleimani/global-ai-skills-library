@@ -1,0 +1,18 @@
+# Phase 61 — portable local runtime setup and launch
+
+## Baseline and scope
+
+Phase 60 accepted at 085505d (see final acceptance in Phase 60 report). Existing install.sh depended on Bash, removed only PYTHONPATH for pip, did not check installed SDK provenance, and lacked native Windows documentation; gasl used isolated environment variables only when a venv existed. Phase 59 package smoke used the runner's existing SDK, not the actual shipped installation path. No real Host profile, machine configuration or Skill content is to be modified. Python 3.10+ is the stated minimum; actual local Python 3.13.9 and MCP SDK 2.3.0 metadata Requires-Python >=3.10 confirmed. Transitive dependencies are not fully locked, Python 3.10 runtime acceptance not yet tested.
+
+## Implementation
+
+- tools/runtime_setup.py: portable standard-library installer, creates only local .venv, supports read-only --check. Uses -I -B -X utf8 for subprocesses, removes Python path/home/startup injections in child environment only; validates environment layout and system site package exclusion, refuses redirected .venv/config/bin or Windows executable, checks actual sys.prefix and SDK version/import/distribution within the local environment. Normal POSIX interpreter symlinks supported. Installs pinned MCP SDK and dependencies using pip isolated/no-cache/no-input. Invalid existing environment refused rather than removed or cleared. This is not an adversarial local filesystem sandbox.
+- tools/runtime_launch.py: shared portable launcher chooses validated local interpreter if present, otherwise current interpreter for stdlib CLI, isolated child flags, POSIX execve and Windows subprocess exit forwarding. No installation or config mutation. gasl/install.sh are minimal POSIX wrappers; Windows direct Python commands and direct venv interpreter MCP client example documented in README. No new runtime dependencies beyond existing MCP SDK.
+- tests/test_runtime_setup.py: five tests for child environment isolation, invalid layout refusal, read-only check, preservation of incomplete environment, actual local venv prefix verification without network. First focused run exposed a fixture path spelling discrepancy (/var vs /private/var on macOS), corrected by resolving temporary root. Five tests now pass. Existing 18 release packaging tests passed, unchanged canonical fixture digest.
+- tests/release_package_smoke.py: extracted package path contains spaces; optional --setup creates fresh local venv using actual shipped setup (POSIX shell wrapper, Windows Python), deliberately invalid PYTHONHOME/PYTHONPATH, verifies --check and exercises portable launcher CLI and all six MCP tools via local interpreter. Dedicated release workflow now runs --mcp --setup and includes runtime, REST, Explorer and relevant canonical module path triggers. No public artifact uploaded.
+
+## Real local setup proof
+
+In a disposable temporary package with spaces, actual install.sh installed MCP 2.3.0 and dependencies, verified its location and version; --check and gasl --help succeeded under deliberately invalid Python environment variables. Exit 0 for each, total 50.63s, temporary fixture cleaned. No actual Agent directory written. This is a real installation of GASL's own runtime, not a third-party Skill. Full regression and full standalone archive smoke to be recorded when complete. Remote 10ff0f9 catalog-only update seven generated files observed; integrate without rewriting history.
+
+Full macOS regression after fixture correction: **901 passed, 40 skipped, 432 subtests passed**, 81.79s, zero failures. Fast-forwarded catalog-only update 10ff0f9. New clean-install archive smoke is the next acceptance check.

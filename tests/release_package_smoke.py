@@ -42,10 +42,10 @@ def extract_verified(source, output):
     return report
 
 
-def smoke(source=ROOT, *, mcp=False):
+def smoke(source=ROOT, *, mcp=False, setup_runtime=False):
     with tempfile.TemporaryDirectory(prefix="gasl-private-draft-smoke-") as temporary:
         base = Path(temporary).resolve()
-        package = base / "package"
+        package = base / "package with spaces"
         package.mkdir()
         report = extract_verified(source, package)
         home = base / "home"
@@ -55,15 +55,33 @@ def smoke(source=ROOT, *, mcp=False):
         env.update(HOME=str(home), USERPROFILE=str(home), APPDATA=str(home),
                    LOCALAPPDATA=str(home), TMPDIR=str(home), TEMP=str(home), TMP=str(home),
                    PYTHONUTF8="1", PYTHONIOENCODING="utf-8", GASL_HTTP_LOG="0")
+        python = sys.executable
+        if setup_runtime:
+            assert mcp, "Runtime setup smoke requires MCP checks"
+            # Use the actual shipped installer, not the runner's preinstalled SDK.
+            setup_env = dict(env)
+            setup_env["PYTHONPATH"] = str(base/"nonexistent-injected-pythonpath")
+            setup_env["PYTHONHOME"] = str(base/"nonexistent-injected-pythonhome")
+            setup_command = [sys.executable, "-I", "-B", "-X", "utf8",
+                             str(package/"tools/runtime_setup.py")]
+            if os.name == "posix":
+                # Shell wrapper uses python3; use the exact runner interpreter via PATH.
+                setup_env["PATH"] = str(Path(sys.executable).parent)+os.pathsep+env.get("PATH","")
+                setup_command = [str(package/"install.sh")]
+            subprocess.run(setup_command, cwd=base, env=setup_env, check=True,
+                           capture_output=True, timeout=240)
+            subprocess.run(setup_command+["--check"], cwd=base, env=setup_env, check=True,
+                           capture_output=True, timeout=60)
+            python = str(package/".venv"/("Scripts/python.exe" if os.name=="nt" else "bin/python"))
         def run(*args):
-            proc = subprocess.run([sys.executable, "-I", "-B", "-X", "utf8", *args], cwd=package,
+            proc = subprocess.run([python, "-I", "-B", "-X", "utf8", *args], cwd=package,
                                   env=env, check=True, capture_output=True,
                                   encoding="utf-8", timeout=120)
             return json.loads(proc.stdout)
-        search = run("tools/gasl.py", "search", "--query", "python security audit",
+        search = run("tools/runtime_launch.py", "search", "--query", "python security audit",
                      "--limit", "5", "--json")
         assert 0 < search["count"] <= 5
-        route = run("tools/gasl.py", "route", "--task", "بررسی امنیت API پایتون",
+        route = run("tools/runtime_launch.py", "route", "--task", "بررسی امنیت API پایتون",
                     "--top-k", "5", "--json")
         assert route["returned_count"] > 0
         assert route["installation_performed"] is False and route["execution_performed"] is False
@@ -123,7 +141,7 @@ from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 async def main():
     params = StdioServerParameters(command=sys.executable,
-        args=["-I","-B","-X","utf8",str(Path.cwd()/"tools"/"gasl.py"),"mcp"],
+        args=["-I","-B","-X","utf8",str(Path.cwd()/"tools"/"runtime_launch.py"),"mcp"],
         env=dict(os.environ),cwd=str(Path.cwd()))
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:
@@ -163,10 +181,15 @@ asyncio.run(main())
         assert not any((package / p).exists() for p in (
             ".git", ".agents", ".cursor", ".claude", "catalog", "public-catalog/packages",
             "private/install-bundles", "private/skill-cache"))
-        assert not any(home.iterdir())
+        if setup_runtime:
+            # venv/pip may use the disposable temporary directory; no real profile access.
+            assert not any((home / p).exists() for p in (".agents",".cursor",".claude",".codex"))
+        else:
+            assert not any(home.iterdir())
         return {"status": "private_draft_standalone_smoke_passed",
                 "source_commit": report["source_commit"], "archive_sha256": report["archive_sha256"],
                 "source_record_count": rest["source_record_count"], "cli_search_verified": True,
+                "shipped_runtime_setup_verified": setup_runtime,
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
                 "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
                 "third_party_skill_executed": False,
@@ -177,5 +200,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--mcp", action="store_true")
+    parser.add_argument("--setup", action="store_true", help="Install the pinned SDK in the extracted temporary package")
     args = parser.parse_args()
-    print(json.dumps(smoke(args.root, mcp=args.mcp), indent=2))
+    print(json.dumps(smoke(args.root, mcp=args.mcp, setup_runtime=args.setup), indent=2))

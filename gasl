@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-if [ -x "$ROOT/.venv/bin/python" ]; then
-  # Keep a fresh user install isolated from Python packages injected by other apps.
-  unset PYTHONPATH || true
-  export PYTHONNOUSERSITE=1
-  exec "$ROOT/.venv/bin/python" "$ROOT/tools/gasl.py" "$@"
-fi
-
-exec python3 "$ROOT/tools/gasl.py" "$@"
+exec python3 -I -B -X utf8 "$ROOT/tools/runtime_launch.py" "$@"

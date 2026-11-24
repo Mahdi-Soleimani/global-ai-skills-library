@@ -6,6 +6,16 @@ on:
     paths:
       - tools/release_draft.py
       - tools/gasl.py
+      - tools/runtime_setup.py
+      - tools/runtime_launch.py
+      - gasl
+      - install.sh
+      - requirements-mcp.txt
+      - tools/canonical_index.py
+      - tools/skill_compare.py
+      - tools/api_server.py
+      - web/index.html
+      - tests/test_runtime_setup.py
       - tests/test_release_draft.py
       - tests/release_package_smoke.py
       - .github/workflows/gasl-release-draft.yml
@@ -13,6 +23,16 @@ on:
     paths:
       - tools/release_draft.py
       - tools/gasl.py
+      - tools/runtime_setup.py
+      - tools/runtime_launch.py
+      - gasl
+      - install.sh
+      - requirements-mcp.txt
+      - tools/canonical_index.py
+      - tools/skill_compare.py
+      - tools/api_server.py
+      - web/index.html
+      - tests/test_runtime_setup.py
       - tests/test_release_draft.py
       - tests/release_package_smoke.py
       - .github/workflows/gasl-release-draft.yml
@@ -42,7 +62,7 @@ jobs:
       - name: Test tracked-only packaging and publication blockers
         run: |
           python -m compileall -q tools tests
-          python -m unittest tests.test_release_draft -v
+          python -m unittest tests.test_release_draft tests.test_runtime_setup -v
 
       - name: Audit real source tree without building or publishing
         run: >-
@@ -54,9 +74,8 @@ jobs:
 
       - name: Build and smoke-test the standalone private package (runner only)
         run: |
-          python -I -m pip install -r requirements-mcp.txt
           python tools/gasl.py release-draft --action build
-          python tests/release_package_smoke.py --mcp
+          python tests/release_package_smoke.py --mcp --setup
 
       - name: Remove only the runner-generated private draft
         if: always()

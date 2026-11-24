@@ -14,7 +14,7 @@ GASL indexes attributed Skill sources, searches them locally, ranks candidates f
 
 ## Quick start — two commands
 
-Python 3.10+ and Git are required.
+Python 3.10+ is required; Git is needed for a checkout and Git-based maintenance, not for running the standalone private package. The Bash examples below are for macOS/Linux.
 
 ~~~bash
 git clone https://github.com/Mahdi-Soleimani/global-ai-skills-library.git && cd global-ai-skills-library && ./install.sh
@@ -24,11 +24,22 @@ git clone https://github.com/Mahdi-Soleimani/global-ai-skills-library.git && cd 
 ./gasl mcp
 ~~~
 
-The first command creates a local .venv and installs only the optional MCP SDK. The second starts the MCP server over STDIO. In an MCP client, configure the absolute path to the repository's gasl launcher; see [MCP_CONFIG.example.json](MCP_CONFIG.example.json).
+The first command creates a local .venv and installs only the optional pinned MCP SDK and its dependencies. The second starts the MCP server over STDIO. Setup and launch use isolated Python mode, exclude system site-packages, and do not modify Agent settings. Existing invalid or redirected environments are refused rather than deleted.
+
+**Windows (PowerShell)** — no Bash required:
+
+~~~powershell
+git clone https://github.com/Mahdi-Soleimani/global-ai-skills-library.git
+cd global-ai-skills-library
+python -I -B -X utf8 tools/runtime_setup.py
+python -I -B -X utf8 tools/runtime_launch.py mcp
+~~~
+
+Use the same Python scripts on macOS/Linux (with python3) if preferred. Check an existing local runtime without installing using `python -I tools/runtime_setup.py --check` (or `./install.sh --check`). For an MCP client, configure the absolute local launcher path on POSIX; on Windows use the absolute path to `.venv/Scripts/python.exe` as command and arguments `["-I", "-B", "-X", "utf8", "C:/ABSOLUTE/PATH/tools/gasl.py", "mcp"]`, replacing the script path with your own. See [MCP_CONFIG.example.json](MCP_CONFIG.example.json). No Agent configuration is written automatically. Setup requires access to Python package distribution infrastructure; normal offline search does not.
 
 ### Use without MCP
 
-The search CLI and local Explorer do not require the MCP dependency:
+The search CLI and local Explorer do not require the MCP dependency. On Windows replace `./gasl` with `python -I -B -X utf8 tools/runtime_launch.py`:
 
 ~~~bash
 ./gasl search --query "review a Python API for security issues"
