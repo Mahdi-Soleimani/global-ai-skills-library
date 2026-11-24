@@ -52,6 +52,21 @@ class ReleaseDraftTests(unittest.TestCase):
                         "-c","user.email=test@example.invalid","commit","-qm","synthetic fixture"],
                        check=True,capture_output=True,env=env)
 
+    def test_packaged_document_links_detect_missing_and_escaping_targets(self):
+        from tests.release_package_smoke import check_packaged_document_links
+        package = self.root
+        doc = package / "README.md"
+        doc.write_text("[local](docs/ROADMAP.md) [external](https://example.invalid) [anchor](#local)", encoding="utf-8")
+        self.assertEqual(check_packaged_document_links(package), 1)
+        doc.write_text("[missing](docs/not-shipped.md)", encoding="utf-8")
+        with self.assertRaisesRegex(AssertionError, "Missing or escaping"):
+            check_packaged_document_links(package)
+        outside = package.parent / "outside.txt"
+        outside.write_text("inert fixture", encoding="utf-8")
+        doc.write_text("[outside](../outside.txt)", encoding="utf-8")
+        with self.assertRaisesRegex(AssertionError, "Missing or escaping"):
+            check_packaged_document_links(package)
+
     def test_canary_sources_required_when_runner_shipped(self):
         runner=self.root/"tools/sandbox_canary_runner.py"
         runner.write_bytes(b"# inert runner fixture")

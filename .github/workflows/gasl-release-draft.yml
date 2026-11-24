@@ -11,6 +11,11 @@ on:
       - gasl
       - install.sh
       - requirements-mcp.txt
+      - README.md
+      - docs/ROADMAP.md
+      - ATTRIBUTION.md
+      - THIRD_PARTY_NOTICES.md
+      - docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md
       - tools/canonical_index.py
       - tools/skill_compare.py
       - tools/api_server.py
@@ -38,6 +43,11 @@ on:
       - gasl
       - install.sh
       - requirements-mcp.txt
+      - README.md
+      - docs/ROADMAP.md
+      - ATTRIBUTION.md
+      - THIRD_PARTY_NOTICES.md
+      - docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md
       - tools/canonical_index.py
       - tools/skill_compare.py
       - tools/api_server.py

@@ -8,6 +8,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -42,12 +43,32 @@ def extract_verified(source, output):
     return report
 
 
+def check_packaged_document_links(package):
+    """Check simple inline local Markdown destinations in shipped Markdown files.
+
+    External URLs and same-page anchors are intentionally not fetched/validated.
+    This is not a general Markdown parser or an external link checker.
+    """
+    checked = 0
+    for doc in sorted(package.rglob("*.md")):
+        for target in re.findall(r"\]\(([^)]+)\)", doc.read_text(encoding="utf-8")):
+            if ":" in target or target.startswith("#"):
+                continue
+            relative = target.split("#", 1)[0]
+            destination = (doc.parent / relative).resolve()
+            if not destination.is_relative_to(package.resolve()) or not destination.exists():
+                raise AssertionError(f"Missing or escaping packaged documentation link: {doc.relative_to(package)} -> {target}")
+            checked += 1
+    return checked
+
+
 def smoke(source=ROOT, *, mcp=False, setup_runtime=False):
     with tempfile.TemporaryDirectory(prefix="gasl-private-draft-smoke-") as temporary:
         base = Path(temporary).resolve()
         package = base / "package with spaces"
         package.mkdir()
         report = extract_verified(source, package)
+        document_links_checked = check_packaged_document_links(package)
         home = base / "home"
         home.mkdir()
         env = {k: os.environ[k] for k in ("PATH", "SystemRoot", "WINDIR", "COMSPEC",
@@ -248,6 +269,7 @@ asyncio.run(main())
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
                 "root_scope_api_read_only_verified": rest["root_scope_api_read_only_verified"],
                 "optional_semantic_status_verified": True,
+                "packaged_local_document_links_checked": document_links_checked,
                 "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
                 "third_party_skill_executed": False,
                 "public_release_allowed": False}
