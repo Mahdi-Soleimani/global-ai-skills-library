@@ -103,8 +103,23 @@ const fetchMock = async (url, options = {}) => {
     ]};
   } else if (url === "/v1/skills/GASL-SRC-b2/relations") {
     data = {source_record_id:"GASL-SRC-b2",related_groups:[]};
+  } else if (url === "/v1/root-skill-review") {
+    assert.equal(options.method,"POST");
+    assert.deepEqual(JSON.parse(options.body),{id:"GASL-SRC-b2"});
+    data={source_record_id:"GASL-SRC-b2",review_sha256:"a".repeat(64),
+      candidate_files:[{path:"SKILL.md",bytes:10},{path:"<img onerror=alert(1)>",bytes:5}],
+      blocked_entries:[],excluded_entries:[]};
+  } else if (url === "/v1/root-skill-plan") {
+    const body=JSON.parse(options.body);
+    assert.equal(options.method,"POST");
+    assert.deepEqual(body,{id:"GASL-SRC-b2",review_sha256:"a".repeat(64),
+      files:["<img onerror=alert(1)>","SKILL.md"]});
+    data={plan:{source_record_id:body.id,review_sha256:body.review_sha256,files:body.files,bytes:15},
+      plan_sha256:"b".repeat(64),blob_contents_downloaded:false,package_complete:false,
+      installation_or_execution_approved:false};
   } else if (url === "/v1/skills/GASL-SRC-a1" || url === "/v1/skills/GASL-SRC-b2") {
-    data = candidates.find(x => url.endsWith(x.source_record_id));
+    data = {...candidates.find(x => url.endsWith(x.source_record_id)),
+      source_path:url.endsWith("b2")?"SKILL.md":"skills/a/SKILL.md",snapshot_status:"verified_commit_pinned"};
   } else if (url === "/v1/compare") {
     assert.equal(options.method, "POST");
     const body = JSON.parse(options.body);
@@ -228,6 +243,20 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
   await descendants(nodes.detailBody,n => n.tag === "button" &&
     n.textContent === "مشاهده روابط و نسخه‌ها")[0].listeners.click();
   assert(descendants(nodes.detailBody,n => n.textContent.includes("رابطه مستقیمی")).length);
+  assert.equal(calls.filter(c=>c.url.startsWith("/v1/root-skill")).length,0);
+  await descendants(nodes.detailBody,n=>n.tag==="button" &&
+    n.textContent==="بررسی آنلاین محدوده فایل‌های ریشه")[0].listeners.click();
+  assert.equal(calls.filter(c=>c.url==="/v1/root-skill-review").length,1);
+  const rootBoxes=descendants(nodes.detailBody,n=>n.tag==="input" && n.type==="checkbox");
+  assert.equal(rootBoxes.length,2);
+  assert(rootBoxes[0].disabled && rootBoxes[0].checked);
+  rootBoxes[1].checked=true;rootBoxes[1].listeners.change();
+  await descendants(nodes.detailBody,n=>n.tag==="button" &&
+    n.textContent==="پیش‌نمایش طرح دریافت")[0].listeners.click();
+  assert(descendants(nodes.detailBody,n=>n.textContent.includes("SHA-256: "+"b".repeat(64))).length);
+  assert.equal(calls.filter(c=>c.url==="/v1/root-skill-plan").length,1);
+  assert.equal(calls.filter(c=>c.url.includes("/download")).length,0);
+
   assert.equal(calls.filter(c => c.url.includes("/content")).length,0);
   nodes.closeDetail.listeners.click();
   assert.equal(nodes.detail.style.display,"none");

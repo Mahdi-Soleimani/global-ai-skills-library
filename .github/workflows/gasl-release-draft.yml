@@ -14,6 +14,10 @@ on:
       - tools/canonical_index.py
       - tools/skill_compare.py
       - tools/api_server.py
+      - tools/root_skill_review.py
+      - tools/root_skill_scope.py
+      - tests/test_root_skill_review.py
+      - tests/test_root_skill_scope.py
       - web/index.html
       - tests/test_runtime_setup.py
       - tests/test_release_draft.py
@@ -31,6 +35,10 @@ on:
       - tools/canonical_index.py
       - tools/skill_compare.py
       - tools/api_server.py
+      - tools/root_skill_review.py
+      - tools/root_skill_scope.py
+      - tests/test_root_skill_review.py
+      - tests/test_root_skill_scope.py
       - web/index.html
       - tests/test_runtime_setup.py
       - tests/test_release_draft.py

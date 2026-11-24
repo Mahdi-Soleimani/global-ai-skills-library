@@ -688,6 +688,104 @@
       }
     }
 
+    async function loadRootReview(id, target, revision) {
+      target.replaceChildren(el("p","status","در حال دریافت فراداده درخت Git…"));
+      try {
+        const data = await api("/v1/root-skill-review", {
+          method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id})
+        });
+        if (revision !== detailRevision) return;
+        if (data.source_record_id !== id || !Array.isArray(data.candidate_files) ||
+            !Array.isArray(data.blocked_entries) || !Array.isArray(data.excluded_entries) ||
+            !/^[0-9a-f]{64}$/.test(data.review_sha256)) throw new Error("شواهد محدوده معتبر نیست.");
+        const files = data.candidate_files;
+        const selected = new Set(["SKILL.md"]);
+        let selectionRevision = 0;
+        const result = el("div","");
+        const summary = el("p","status");
+        const filter = el("input","");
+        filter.type = "search";
+        filter.placeholder = "فیلتر مسیر فایل";
+        filter.setAttribute("aria-label","فیلتر مسیر فایل");
+        const list = el("div","");
+        const all = el("button","","انتخاب همه کاندیدهای مجاز");
+        all.type = "button";
+        all.disabled = data.blocked_entries.length > 0 || files.length > 300;
+        const planButton = el("button","","پیش‌نمایش طرح دریافت");
+        planButton.type = "button";
+        summary.setAttribute("aria-live","polite");
+        function updateSummary() {
+          summary.textContent = "انتخاب‌شده: " + selected.size + " از " + files.length +
+            " | موارد مستثنا: " + data.excluded_entries.length + " | موانع: " + data.blocked_entries.length;
+          planButton.disabled = selected.size > 300 || data.blocked_entries.some(x =>
+            x.reason !== "candidate_inventory_budget_exceeded");
+        }
+        function render() {
+          updateSummary();
+          const matching = files.filter(f => f.path.toLowerCase().includes(filter.value.toLowerCase()));
+          const rows = matching.slice(0,100).map(f => {
+            const label = el("label","compare-choice");
+            const box = el("input","");
+            box.type = "checkbox";
+            box.checked = selected.has(f.path);
+            box.disabled = f.path === "SKILL.md";
+            box.addEventListener("change",() => {
+              if (box.checked) selected.add(f.path); else selected.delete(f.path);
+              selectionRevision++;
+              result.replaceChildren();
+              updateSummary();
+            });
+            label.append(box,el("span","desc",f.path + " — " + f.bytes + " B"));
+            const row = el("div",""); row.append(label);
+            return row;
+          });
+          list.replaceChildren(...rows,el("p","status","نمایش " + Math.min(matching.length,100) +
+            " از " + matching.length + " مسیر منطبق؛ برای سایر مسیرها از فیلتر استفاده کنید."));
+        }
+        filter.addEventListener("input",render);
+        all.addEventListener("click",() => {
+          if (all.disabled) return;
+          for (const f of files) selected.add(f.path);
+          selectionRevision++;
+          result.replaceChildren();
+          render();
+        });
+        planButton.addEventListener("click",async () => {
+          const requestRevision = ++selectionRevision;
+          result.replaceChildren(el("p","status","در حال اعتبارسنجی مجدد طرح…"));
+          try {
+            const plan = await api("/v1/root-skill-plan", {
+              method:"POST", headers:{"Content-Type":"application/json"},
+              body:JSON.stringify({id,review_sha256:data.review_sha256,files:[...selected].sort()})
+            });
+            if (revision !== detailRevision || requestRevision !== selectionRevision) return;
+            if (plan.plan?.source_record_id !== id || plan.plan.review_sha256 !== data.review_sha256 ||
+                plan.blob_contents_downloaded !== false || plan.package_complete !== false ||
+                plan.installation_or_execution_approved !== false) throw new Error("پاسخ طرح معتبر نیست.");
+            const copy = el("button","","کپی JSON طرح");
+            copy.type = "button";
+            copy.addEventListener("click",async () => {
+              try { await navigator.clipboard.writeText(JSON.stringify(plan,null,2)); copy.textContent="کپی شد"; }
+              catch (_) { copy.textContent="کپی در دسترس نیست"; }
+            });
+            result.replaceChildren(el("p","status","طرح: " + plan.plan.files.length + " فایل | " + plan.plan.bytes + " B"),
+              el("p","status","SHA-256: " + plan.plan_sha256),
+              el("p","status warn","فقط پیش‌نمایش است. برای دریافت، از root-skill-scope در CLI با تأیید هش طرح استفاده کنید."),
+              copy,el("pre","",JSON.stringify(plan.plan,null,2)));
+          } catch(error) {
+            if (revision === detailRevision && requestRevision === selectionRevision)
+              result.replaceChildren(el("p","status warn",error.message));
+          }
+        });
+        render();
+        target.replaceChildren(el("p","status warn",
+          "بررسی آنلاین فقط فراداده؛ انتخاب فایل‌ها مجوز نصب یا اجرا نیست."),
+          summary,filter,all,list,planButton,result);
+      } catch(error) {
+        if (revision === detailRevision) target.replaceChildren(el("p","status warn",error.message));
+      }
+    }
+
     async function showDetails(id) {
       const revision = ++detailRevision;
       const panel = $("detail");
@@ -724,6 +822,19 @@
         relationButton.addEventListener("click", () => loadRelations(id, relationBody, revision));
         relationPanel.append(relationButton, relationBody);
         $("detailBody").replaceChildren(dl, relationPanel);
+        if (data.source_path === "SKILL.md" && data.snapshot_status === "verified_commit_pinned") {
+          const rootPanel = el("div","");
+          const review = el("button","","بررسی آنلاین محدوده فایل‌های ریشه");
+          review.type = "button";
+          const body = el("div","");
+          review.addEventListener("click",async () => {
+            if (review.disabled) return;
+            review.disabled = true;
+            try { await loadRootReview(id,body,revision); } finally { review.disabled = false; }
+          });
+          rootPanel.append(review,body);
+          $("detailBody").append(rootPanel);
+        }
       } catch (error) {
         if (revision === detailRevision) $("detailBody").append(el("p", "desc", error.message));
       }

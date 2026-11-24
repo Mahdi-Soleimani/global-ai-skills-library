@@ -194,6 +194,39 @@ class ApiServerTests(unittest.TestCase):
         self.assertEqual(status,503)
         self.assertEqual(json.loads(body)["detail"],"Canonical catalog evidence unavailable.")
 
+    def test_root_review_and_plan_require_explicit_read_only_request(self):
+        from root_skill_review import inspect_inventory
+        from tests.test_root_skill_review import fixture
+        from tests.test_canonical_package import blob
+        row,tree=fixture(blob("SKILL.md",b"# inert"),blob("LICENSE",b"terms"),blob("extra.txt",b"extra"))
+        review=inspect_inventory(row,tree)
+        sid=row["source_record_id"]
+        endpoint="/v1/root-skill-review"
+        plan_endpoint="/v1/root-skill-plan"
+        body={"id":sid,"review_sha256":review["review_sha256"],"files":["SKILL.md"]}
+        with patch("root_skill_review.inspect_root_skill",return_value=review) as inspect, \
+             patch("root_skill_scope._fetch",side_effect=AssertionError("No blob fetch")), \
+             patch("root_skill_scope.collect_scope",side_effect=AssertionError("No collection")):
+            self.assertEqual(self.request(endpoint,"POST",{"id":sid},auth=False)[0],401)
+            self.assertEqual(self.request(endpoint,"POST",{"id":sid,"execute":True})[0],400)
+            self.assertEqual(self.request(plan_endpoint,"POST",{**body,"execute":True})[0],400)
+            self.assertEqual(self.request(plan_endpoint,"POST",{**body,"files":["extra.txt"]})[0],400)
+            self.assertEqual(self.request(endpoint)[0],404)
+            inspect.assert_not_called()
+            status,raw=self.request(endpoint,"POST",{"id":sid})
+            self.assertEqual(status,200)
+            self.assertEqual(json.loads(raw)["review_sha256"],review["review_sha256"])
+            self.assertEqual(self.request(plan_endpoint,"POST",{**body,"review_sha256":"f"*64})[0],409)
+            status,raw=self.request(plan_endpoint,"POST",body)
+            self.assertEqual(status,200)
+            plan=json.loads(raw)
+            self.assertEqual([x["path"] for x in plan["plan"]["files"]],["LICENSE","SKILL.md"])
+            self.assertEqual(plan["candidate_coverage"]["missing_candidate_paths"],["extra.txt"])
+            self.assertFalse(plan["package_complete"])
+            self.assertFalse(plan["installation_or_execution_approved"])
+            self.assertFalse(plan["blob_contents_downloaded"])
+        self.assertEqual(list((self.root/"private").iterdir()),[])
+
     def test_unknown_skill_returns_404(self):
         status, _ = self.request("/v1/skills/missing")
         self.assertEqual(status, 404)

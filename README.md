@@ -94,6 +94,8 @@ Repeat with the exact plan digest and `--execute --acknowledge-plan-sha256 PLAN_
 ./gasl root-skill-scope --id YOUR_SOURCE_RECORD_ID --verify-coverage-plan-sha256 PLAN_SHA256
 ~~~
 
+Explorer also exposes an explicit online root review button on pinned repository-root Skill details. Filter and select exact paths, then preview the digest-bound plan (including license candidates) and copy its JSON. The REST endpoints `POST /v1/root-skill-review` (id) and `POST /v1/root-skill-plan` (id, review_sha256, files) perform metadata-only review and planning; they do not accept execution or collection options. Content retrieval remains an explicit CLI operation with the matching acknowledgement digest.
+
 This is an explicitly online metadata check, unlike the offline audit. Full candidate coverage is not proof of semantic package completeness or runtime dependency coverage and does not promote a private scope into the ordinary installable catalog. The all-candidates option refuses blocked or oversized inventories; explicit smaller scopes remain supported under the existing policy.
 
 For a previously downloaded, pinned Skill, repeat the **offline** integrity and static security scan without contacting upstream:

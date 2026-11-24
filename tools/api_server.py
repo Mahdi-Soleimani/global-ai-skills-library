@@ -4,6 +4,8 @@ import argparse
 import hmac
 import json
 import os
+import re
+import threading
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -23,6 +25,7 @@ MAX_BODY_BYTES = 64 * 1024
 
 def make_handler(root=ROOT, api_token=None):
     root = Path(root)
+    root_review_slots = threading.BoundedSemaphore(2)
 
     class Handler(BaseHTTPRequestHandler):
         server_version = "GASL-API/0.1"
@@ -174,7 +177,7 @@ def make_handler(root=ROOT, api_token=None):
                     extra_headers={"WWW-Authenticate": "Bearer"},
                 )
                 return
-            if path not in ("/v1/route", "/v1/compare"):
+            if path not in ("/v1/route", "/v1/compare", "/v1/root-skill-review", "/v1/root-skill-plan"):
                 self._json_error(404, "Endpoint not found.")
                 return
             try:
@@ -191,6 +194,44 @@ def make_handler(root=ROOT, api_token=None):
                     raise ValueError("JSON request body must be an object.")
                 if path == "/v1/compare":
                     self._send(200, compare_skills(body.get("ids"), root=root))
+                    return
+                if path in ("/v1/root-skill-review", "/v1/root-skill-plan"):
+                    from root_skill_review import inspect_root_skill, MAX_FILES
+                    from root_skill_scope import make_scope, _coverage, _digest
+                    plan_request = path.endswith("-plan")
+                    expected = {"id", "review_sha256", "files"} if plan_request else {"id"}
+                    if set(body) != expected:
+                        raise ValueError("Unexpected or missing root review request fields.")
+                    sid = body["id"]
+                    if not isinstance(sid, str) or not re.fullmatch(r"GASL-SRC-[0-9a-f]{20}", sid):
+                        raise ValueError("An exact immutable source record ID is required.")
+                    if plan_request:
+                        files = body["files"]
+                        digest = body["review_sha256"]
+                        if (not isinstance(digest,str) or not re.fullmatch(r"[0-9a-f]{64}",digest)
+                                or not isinstance(files,list) or not 1 <= len(files) <= MAX_FILES
+                                or any(not isinstance(f,str) or len(f)>4096 for f in files)
+                                or len(set(files))!=len(files) or "SKILL.md" not in files):
+                            raise ValueError("Invalid exact file selection or review digest.")
+                    if not root_review_slots.acquire(blocking=False):
+                        self._json_error(503, "Root metadata review is busy.")
+                        return
+                    try:
+                        review = inspect_root_skill(sid, root=root)
+                        if not plan_request:
+                            self._send(200, review)
+                            return
+                        if review["review_sha256"] != digest:
+                            self._json_error(409, "Root inventory changed; review it again.")
+                            return
+                        plan = make_scope(review,files)
+                        self._send(200, {"status":"planned","plan":plan,"plan_sha256":_digest(plan),
+                            "candidate_coverage":_coverage(review,plan),"blob_contents_downloaded":False,
+                            "package_complete":False,"installation_or_execution_approved":False})
+                    except (OSError,RuntimeError):
+                        self._json_error(502, "Pinned root metadata is unavailable.")
+                    finally:
+                        root_review_slots.release()
                     return
                 task = body.get("task")
                 if not isinstance(task, str) or not task.strip() or len(task) > 2000:

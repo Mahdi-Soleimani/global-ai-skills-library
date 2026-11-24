@@ -107,6 +107,7 @@ def skill_details(source_record_id, root=ROOT):
         "repository": record.get("repository"),
         "repository_owner": record.get("repository_owner"),
         "source_path": record.get("source_path"),
+        "snapshot_status": record.get("snapshot_status"),
         "source_url": record.get("source_url"),
         "commit_sha": record.get("commit_sha"),
         "license_spdx": record.get("license_spdx"),

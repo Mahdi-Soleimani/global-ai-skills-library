@@ -130,6 +130,24 @@ try:
     assert not relations["installation_or_execution_approved"]
     assert not relations["independent_content_verification_performed"]
 
+    # Both root-scope endpoints must ship, and must reject execution options
+    # before any upstream metadata lookup or writes.
+    from unittest.mock import patch
+    from root_skill_scope import make_scope
+    from root_skill_review import inspect_root_skill
+    with patch("root_skill_review.inspect_root_skill", side_effect=AssertionError("Network forbidden")):
+        for endpoint in ("/v1/root-skill-review", "/v1/root-skill-plan"):
+            req = urllib.request.Request(base+endpoint,
+                data=json.dumps({"id":ident,"execute":True}).encode("utf-8"),
+                headers={"Content-Type":"application/json"},method="POST")
+            try:
+                opener.open(req,timeout=10)
+            except urllib.error.HTTPError as exc:
+                assert exc.code == 400
+            else:
+                raise AssertionError("Root scope API accepted execution option")
+    assert not (Path.cwd()/"private/root-skill-scopes").exists()
+
     try:
         get("/v1/skills/"+ident+"/content?fetch_remote=false")
     except urllib.error.HTTPError as exc:
@@ -137,7 +155,7 @@ try:
         assert "not cached" in json.loads(exc.read())["detail"]
     else:
         raise AssertionError("Metadata-only archive unexpectedly has Skill content")
-    print(json.dumps({"source_record_count": health["source_record_count"], "rest_verified": True}))
+    print(json.dumps({"source_record_count": health["source_record_count"], "rest_verified": True, "root_scope_api_read_only_verified": True}))
 finally:
     server.shutdown()
     server.server_close()
@@ -223,6 +241,7 @@ asyncio.run(main())
                 "runtime_python_version": ".".join(map(str, version)),
                 "documented_entrypoints_verified": setup_runtime,
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
+                "root_scope_api_read_only_verified": rest["root_scope_api_read_only_verified"],
                 "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
                 "third_party_skill_executed": False,
                 "public_release_allowed": False}
