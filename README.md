@@ -10,7 +10,7 @@ GASL indexes attributed Skill sources, searches them locally, ranks candidates f
 - MCP uses local **STDIO**, so an Agent launches GASL directly.
 - Search and indexing run locally with Python's standard library and SQLite FTS5.
 - Full Skill instructions are retrieved on demand from the exact pinned upstream commit or the attributed public catalog. No separate private repository or hosted archive is required. Optional metadata enrichment fetches only pinned SKILL.md files into an ignored local cache.
-- Third-party Skill instructions are treated as untrusted data. GASL does not install or execute them.
+- Third-party Skill instructions are treated as untrusted data. Search, routing, MCP and REST do not install or execute them. Separate explicit CLI workflows support reviewed, consent-bound file installation; they do not authorize execution of third-party Skills.
 
 ## Quick start — two commands
 
@@ -697,17 +697,23 @@ The MCP adapter currently exposes:
 
 MCP is the primary Agent integration. The local REST API and Explorer are optional interfaces over the same core.
 
-## Current catalog status — 2026-11-20
+## Current MVP scope — 2026-11-24
+
+At catalog revision `1f161c0`, the public registry contains 57 repositories, 4,434 commit-pinned records and 4,429 distinct repository/path combinations; nine publicly mirrored packages are retained. See the generated [catalog summary](registry/source-catalog-summary.json) for the latest refresh rather than treating snapshot counts as live. The evaluation summary has zero behavioral evaluations, quality scores and install-approved records.
+
+Phase 65 development revision `235ecb2` passed ten GitHub Actions workflows, including three platform-eligible regression jobs and six standalone private package jobs. FTS5 remains the default; optional full-corpus E5 was tested on macOS and is not prebuilt or automatically downloaded. Canonical relations are evidence-only. Windows current-user production installation and legacy migration remain gated; fixture coverage is not real Host certification. Actual Cursor/Claude discovery, independent human evaluation and arbitrary third-party execution are not certified. Private ZIPs are exact-commit artifacts, not public releases; the project's LICENSE decision remains open. See [Phase 65 acceptance](docs/reports/PHASE-65-OPTIONAL-DENSE-RETRIEVAL-2026-11-24.md) and [MVP integration audit](docs/reports/PHASE-66-MVP-INTEGRATION-2026-11-24.md).
+
+## Historical catalog snapshot — 2026-11-20
 
 - Four independent research sources are maintained separately: EN-675, FA-234, AUX-FA-750PLUS, and AUX-FA-438.
 - The original row-level CSV/JSON/XLSX databases for the primary EN-675 and FA-234 datasets remain unavailable. No missing records have been reconstructed.
-- The live source universe contains 57 repositories, 4,478 observed SKILL.md paths, and 4,405 commit-pinned source records. These are repository/path records, not globally unique Skill totals.
+- The historical source universe contained 57 repositories, 4,478 observed SKILL.md paths, and 4,405 commit-pinned source records. These are repository/path records, not globally unique Skill totals.
 - The public GitHub catalog contains nine version-pinned packages (119 files; 664,466 bytes). The separate 63-package local pilot is not copied wholesale into the public repository.
-- The local SQLite FTS5 index covers all 4,405 attributed source records. It is generated on the user's computer and ignored by Git.
+- At this historical snapshot the local SQLite FTS5 index covered all 4,405 attributed source records. It is generated on the user's computer and ignored by Git.
 - Optional local metadata enrichment is incremental, defaults to 100 records per run, and is stored under ignored private/; it is never added to the public catalog automatically.
 - Metadata completeness and provenance are separate evidence fields. Behavioral quality remains unrated until reproducible benchmarks exist.
 - The router ranks by task relevance and reports query-term coverage plus matched/unmatched concept groups, so generic title matches do not silently outrank candidates matching the full request. Evidence and compatibility are shown separately; metadata completeness is not treated as Skill quality.
-- No third-party Skill has been installed or executed by GASL.
+- No third-party Skill had been installed or executed at this historical snapshot. Later isolated discovery-only file transactions do not constitute Skill execution or production approval.
 
 The successful public catalog refresh is recorded in [GitHub Actions](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/44747234619), with resulting commit [83c1031](https://github.com/Mahdi-Soleimani/global-ai-skills-library/commit/83c103114540687c5ebb76d90318d623b12b65c2).
 
