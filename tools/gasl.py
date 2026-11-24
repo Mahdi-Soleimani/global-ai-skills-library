@@ -1213,19 +1213,25 @@ def main():
     root_scope = sub.add_parser("root-skill-scope", help="Plan, collect or offline-audit explicit root Skill file scope")
     root_scope.add_argument("--id", required=True)
     root_scope.add_argument("--file", action="append", help="Exact candidate path; repeat, including SKILL.md")
+    root_scope.add_argument("--all-candidates", action="store_true", help="Explicitly review every bounded eligible candidate")
+    root_scope.add_argument("--verify-coverage-plan-sha256", help="Recheck stored scope against fresh pinned metadata")
     root_scope.add_argument("--execute", action="store_true")
     root_scope.add_argument("--acknowledge-plan-sha256")
     root_scope.add_argument("--audit-plan-sha256")
     def cmd_root_scope(args):
-        from root_skill_scope import collect_scope, audit_scope
+        from root_skill_scope import collect_scope, audit_scope, verify_coverage
         try:
-            if args.audit_plan_sha256:
-                if args.file or args.execute or args.acknowledge_plan_sha256:
-                    raise ValueError("Offline audit cannot be combined with collection options")
-                report = audit_scope(args.id, args.audit_plan_sha256, root=ROOT)
+            if args.audit_plan_sha256 or args.verify_coverage_plan_sha256:
+                if (args.file or args.all_candidates or args.execute or args.acknowledge_plan_sha256
+                        or (args.audit_plan_sha256 and args.verify_coverage_plan_sha256)):
+                    raise ValueError("Audit or coverage verification cannot be combined with other options")
+                if args.verify_coverage_plan_sha256:
+                    report = verify_coverage(args.id, args.verify_coverage_plan_sha256, root=ROOT)
+                else:
+                    report = audit_scope(args.id, args.audit_plan_sha256, root=ROOT)
             else:
                 report = collect_scope(args.id, args.file, root=ROOT, execute=args.execute,
-                                       acknowledge=args.acknowledge_plan_sha256)
+                                       acknowledge=args.acknowledge_plan_sha256, all_candidates=args.all_candidates)
         except (ValueError, OSError, RuntimeError) as exc:
             raise SystemExit(str(exc)) from None
         print(json.dumps(report, ensure_ascii=False, indent=2))

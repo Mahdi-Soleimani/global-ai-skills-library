@@ -82,6 +82,20 @@ Replace the example script path with a real candidate from the review. Repeat `-
 
 This never approves installation or redistribution, runs a Skill or resolves external dependencies. A large repository can be inspected and a smaller explicit subset reviewed without treating the whole repository as a single package.
 
+To explicitly preview all candidates in an unblocked bounded root inventory:
+
+~~~bash
+./gasl root-skill-scope --id YOUR_SOURCE_RECORD_ID --all-candidates
+~~~
+
+Repeat with the exact plan digest and `--execute --acknowledge-plan-sha256 PLAN_SHA256` to collect that scope. Preview and collection report selected and missing candidate paths/counts, excluded and blocked entry counts, and whether all eligible candidates are selected. A stored scope can be checked against fresh pinned upstream inventory without re-downloading file content:
+
+~~~bash
+./gasl root-skill-scope --id YOUR_SOURCE_RECORD_ID --verify-coverage-plan-sha256 PLAN_SHA256
+~~~
+
+This is an explicitly online metadata check, unlike the offline audit. Full candidate coverage is not proof of semantic package completeness or runtime dependency coverage and does not promote a private scope into the ordinary installable catalog. The all-candidates option refuses blocked or oversized inventories; explicit smaller scopes remain supported under the existing policy.
+
 For a previously downloaded, pinned Skill, repeat the **offline** integrity and static security scan without contacting upstream:
 
 ~~~bash

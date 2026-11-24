@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"tools"))
-from root_skill_scope import collect_scope, audit_scope, make_scope
+from root_skill_scope import collect_scope, audit_scope, make_scope, verify_coverage
 from root_skill_review import inspect_inventory
 from tests.test_root_skill_review import fixture
 from tests.test_canonical_package import blob, tree, directory
@@ -110,6 +110,40 @@ class RootSkillScopeTests(unittest.TestCase):
         alias.unlink()
         self.path.write_bytes(self.path.read_bytes()+b" ")
         with self.assertRaisesRegex(ValueError,"Catalog changed"):self.collect(p)
+
+    def test_all_candidates_preview_collect_and_fresh_coverage(self):
+        partial=self.plan()
+        self.assertEqual(partial["candidate_coverage"]["missing_candidate_paths"],["unrelated.txt"])
+        self.assertFalse(partial["candidate_coverage"]["all_eligible_candidates_selected"])
+        preview=collect_scope(self.sid,None,root=self.root,all_candidates=True)
+        self.assertTrue(preview["candidate_coverage"]["all_eligible_candidates_selected"])
+        self.assertFalse(preview["package_complete"])
+        self.fetch.assert_not_called()
+        actual=collect_scope(self.sid,None,root=self.root,all_candidates=True,
+            execute=True,acknowledge=preview["plan_sha256"])
+        self.assertEqual(self.fetch.call_count,4)
+        self.assertTrue(actual["candidate_coverage"]["all_eligible_candidates_selected"])
+        checked=verify_coverage(self.sid,preview["plan_sha256"],root=self.root)
+        self.assertTrue(checked["fresh_upstream_inventory_verified"])
+        self.assertFalse(checked["candidate_coverage"]["semantic_package_completeness_verified"])
+        self.assertFalse(checked["installation_or_execution_approved"])
+        self.assertEqual(self.fetch.call_count,4)
+
+    def test_all_candidates_refuses_blockers_and_mixed_paths(self):
+        with self.assertRaisesRegex(ValueError,"cannot be combined"):
+            collect_scope(self.sid,["SKILL.md"],root=self.root,all_candidates=True)
+        self.review["blocked_entries"]=[{"path":".","reason":"candidate_inventory_budget_exceeded"}]
+        with self.assertRaisesRegex(ValueError,"unblocked"):
+            collect_scope(self.sid,None,root=self.root,all_candidates=True)
+        self.fetch.assert_not_called()
+        self.assertFalse((self.root/"private").exists())
+
+    def test_coverage_rejects_changed_upstream_inventory(self):
+        preview=self.plan();self.collect(preview)
+        self.review["review_sha256"]="e"*64
+        with self.assertRaisesRegex(ValueError,"fresh pinned review"):
+            verify_coverage(self.sid,preview["plan_sha256"],root=self.root)
+        self.assertEqual(self.fetch.call_count,3)
 
     def test_plan_tamper_refused(self):
         p=self.plan();result=self.collect(p);folder=self.root/result["private_review_path"]

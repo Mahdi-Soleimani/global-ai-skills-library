@@ -234,21 +234,46 @@ def _result(plan,plan_sha,status,**extra):
             **extra}
 
 
-def collect_scope(source_id,requested,*,root=ROOT,execute=False,acknowledge=None):
+def _coverage(review, plan):
+    """Compare exact candidate entries; never infer semantic package completeness."""
+    if any(review[k] != plan[k] for k in ("source_record_id","repository","commit_sha","tree_sha","review_sha256")):
+        raise ValueError("Review and selected plan identity mismatch")
+    candidates = {x["path"]:x for x in review["candidate_files"]}
+    selected = {x["path"]:x for x in plan["files"]}
+    if any(candidates.get(path) != item for path,item in selected.items()):
+        raise ValueError("Selected inventory differs from verified candidates")
+    missing = sorted(set(candidates)-set(selected))
+    return {"candidate_count":len(candidates),"selected_count":len(selected),
+            "missing_candidate_count":len(missing),"missing_candidate_paths":missing,
+            "excluded_entry_count":len(review["excluded_entries"]),
+            "blocked_entry_count":len(review["blocked_entries"]),
+            "all_eligible_candidates_selected":not missing and not review["blocked_entries"],
+            "semantic_package_completeness_verified":False}
+
+
+def collect_scope(source_id,requested,*,root=ROOT,execute=False,acknowledge=None,all_candidates=False):
     root=Path(root).resolve()
     if execute and not _matches(SHA,acknowledge):
         raise ValueError("Execute requires the exact preview plan SHA-256")
     if not execute and acknowledge is not None:
         raise ValueError("Plan acknowledgement requires --execute")
-    if (not isinstance(requested,(list,tuple)) or not requested or len(requested)>MAX_FILES
+    if all_candidates:
+        if requested is not None:
+            raise ValueError("All-candidate review cannot be combined with explicit paths")
+    elif (not isinstance(requested,(list,tuple)) or not requested or len(requested)>MAX_FILES
             or any(not isinstance(p,str) for p in requested)
             or len(set(requested))!=len(requested) or "SKILL.md" not in requested):
         raise ValueError("Select exact unique paths, including SKILL.md")
     review=inspect_root_skill(source_id,root=root)
+    if all_candidates:
+        if review["blocked_entries"]:
+            raise ValueError("All-candidate review requires an unblocked bounded inventory")
+        requested=[x["path"] for x in review["candidate_files"]]
     plan=make_scope(review,requested)
+    coverage=_coverage(review,plan)
     plan_sha=_digest(plan)
     if not execute:
-        return _result(plan,plan_sha,"planned",blob_contents_downloaded=False)
+        return _result(plan,plan_sha,"planned",blob_contents_downloaded=False,candidate_coverage=coverage)
     if acknowledge!=plan_sha:
         raise ValueError("Selected plan changed or acknowledgement mismatch")
     dest=_destination(root,source_id,plan_sha)
@@ -259,7 +284,7 @@ def collect_scope(source_id,requested,*,root=ROOT,execute=False,acknowledge=None
             raise ValueError("Catalog changed before collection")
         if dest.exists():
             scan=_verify_scope(root,dest,plan,plan_sha)
-            return _result(plan,plan_sha,"already_verified",blob_contents_downloaded=False,
+            return _result(plan,plan_sha,"already_verified",blob_contents_downloaded=False,candidate_coverage=coverage,
                            private_review_path=dest.relative_to(root).as_posix(),**scan)
         with tempfile.TemporaryDirectory(prefix=".gasl-root-stage-",dir=base) as temporary:
             folder=Path(temporary)/"scope"
@@ -281,7 +306,7 @@ def collect_scope(source_id,requested,*,root=ROOT,execute=False,acknowledge=None
             if _read_raw(root)[1]!=review["catalog_sha256"] or dest.exists():
                 raise ValueError("Catalog or destination changed during collection")
             folder.rename(dest)
-    return _result(plan,plan_sha,"collected_private_review",blob_contents_downloaded=True,
+    return _result(plan,plan_sha,"collected_private_review",blob_contents_downloaded=True,candidate_coverage=coverage,
                    private_review_path=dest.relative_to(root).as_posix(),**scan)
 
 
@@ -300,3 +325,18 @@ def audit_scope(source_id,plan_sha,*,root=ROOT):
     scan=_verify_scope(root,folder,plan,plan_sha)
     return _result(plan,plan_sha,"offline_verified",blob_contents_downloaded=False,
                    private_review_path=folder.relative_to(root).as_posix(),**scan)
+
+def verify_coverage(source_id,plan_sha,*,root=ROOT):
+    """Recheck an existing scope against fresh pinned inventory, without blob retrieval."""
+    root=Path(root).resolve()
+    local=audit_scope(source_id,plan_sha,root=root)
+    review=inspect_root_skill(source_id,root=root)
+    plan=local["plan"]
+    # Rebuild the exact originally acknowledged selection, including notices.
+    if make_scope(review,plan["requested_paths"])!=plan:
+        raise ValueError("Stored scope differs from fresh pinned review")
+    coverage=_coverage(review,plan)
+    if _read_raw(root)[1]!=review["catalog_sha256"]:
+        raise ValueError("Catalog changed during coverage verification")
+    return {**local,"status":"coverage_verified","candidate_coverage":coverage,
+            "fresh_upstream_inventory_verified":True}
