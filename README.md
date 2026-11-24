@@ -62,7 +62,13 @@ Use the source record ID returned by search:
 ./gasl download --id YOUR_SOURCE_RECORD_ID --execute
 ~~~
 
-The first download command plans the complete package; the second retrieves verified regular files and applicable upstream notices to the ignored local catalog. It does not install or execute anything. Full-package download currently uses the macOS/Linux collector; Windows support remains to be tested. Root-level Skills and unsafe or oversized package layouts require separate handling.
+The first download command plans the complete package; the second retrieves verified regular files and applicable upstream notices to the ignored local catalog. It does not install or execute anything. Full-package download currently uses the macOS/Linux collector; Windows support remains to be tested. Root-level Skills and unsafe or oversized package layouts require separate handling. To inspect a repository-root `SKILL.md` without downloading any file content, use:
+
+~~~bash
+./gasl root-skill-review --id YOUR_SOURCE_RECORD_ID
+~~~
+
+This explicitly online metadata-only review reconstructs all Git tree hashes, reports candidate paths, nested Skill exclusions and unsafe/oversized entries, and binds the proposed inventory to a review SHA-256. It does not establish package completeness or approve download, installation, execution, or redistribution. Existing root-level download refusal remains in place.
 
 For a previously downloaded, pinned Skill, repeat the **offline** integrity and static security scan without contacting upstream:
 

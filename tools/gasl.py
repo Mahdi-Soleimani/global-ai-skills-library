@@ -1199,6 +1199,17 @@ def main():
     install_status.add_argument('--plan-id', required=True)
     install_status.set_defaults(func=cmd_install_status)
 
+    root_review = sub.add_parser("root-skill-review", help="Read-only pinned root Skill inventory review")
+    root_review.add_argument("--id", required=True)
+    def cmd_root_review(args):
+        from root_skill_review import inspect_root_skill
+        try:
+            report = inspect_root_skill(args.id, root=ROOT)
+        except (ValueError, OSError, RuntimeError) as exc:
+            raise SystemExit(str(exc)) from None
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    root_review.set_defaults(func=cmd_root_review)
+
     download = sub.add_parser("download", help="Plan one complete local Skill package; --execute downloads without installing")
     download.add_argument("--id", required=True)
     download.add_argument("--execute", action="store_true")
