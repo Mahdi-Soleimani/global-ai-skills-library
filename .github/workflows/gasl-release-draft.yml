@@ -17,6 +17,10 @@ on:
       - tools/root_skill_review.py
       - tools/root_skill_scope.py
       - tools/sandbox_canary_runner.py
+      - tools/semantic_index.py
+      - tools/semantic_experiment.py
+      - tests/test_semantic_index.py
+      - tests/test_semantic_experiment.py
       - tools/sandbox_canary/**
       - tests/test_root_skill_review.py
       - tests/test_root_skill_scope.py
@@ -40,6 +44,10 @@ on:
       - tools/root_skill_review.py
       - tools/root_skill_scope.py
       - tools/sandbox_canary_runner.py
+      - tools/semantic_index.py
+      - tools/semantic_experiment.py
+      - tests/test_semantic_index.py
+      - tests/test_semantic_experiment.py
       - tools/sandbox_canary/**
       - tests/test_root_skill_review.py
       - tests/test_root_skill_scope.py
@@ -75,7 +83,7 @@ jobs:
       - name: Test tracked-only packaging and publication blockers
         run: |
           python -m compileall -q tools tests
-          python -m unittest tests.test_release_draft tests.test_runtime_setup -v
+          python -m unittest tests.test_release_draft tests.test_runtime_setup tests.test_semantic_index tests.test_semantic_experiment -v
 
       - name: Audit real source tree without building or publishing
         run: >-

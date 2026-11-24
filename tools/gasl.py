@@ -927,6 +927,32 @@ def main():
     audit = sub.add_parser('audit', help='Offline static security audit of one previously downloaded pinned Skill')
     audit.add_argument('--id', required=True, help='Exact source_record_id; must already be downloaded')
     audit.set_defaults(func=cmd_audit)
+    dense = sub.add_parser("semantic", help="Optional offline E5 full-corpus public metadata search")
+    dense.add_argument("--action", choices=("status","build","search"), default="status")
+    dense.add_argument("--model", type=Path, help="Explicit directory containing pinned E5 model files")
+    dense.add_argument("--query")
+    dense.add_argument("--limit", type=int, default=10)
+    dense.add_argument("--threads", type=int, default=2)
+    dense.add_argument("--license", dest="license_spdx")
+    def cmd_semantic(args):
+        from semantic_index import status, build, search
+        try:
+            if args.action=="status":
+                if args.model is not None or args.query is not None or args.license_spdx is not None:
+                    raise ValueError("Status does not accept model, query or license options")
+                result=status(ROOT)
+            elif args.action=="build":
+                if args.query is not None or args.license_spdx is not None:
+                    raise ValueError("Build does not accept query or license options")
+                result=build(args.model,root=ROOT,threads=args.threads)
+            else:
+                result=search(args.query,args.model,root=ROOT,threads=args.threads,
+                              limit=args.limit,license_spdx=args.license_spdx)
+        except (ValueError,OSError,RuntimeError) as exc:
+            raise SystemExit(str(exc)) from None
+        print(json.dumps(result,ensure_ascii=False,indent=2))
+    dense.set_defaults(func=cmd_semantic)
+
     q = sub.add_parser("search", help="Search attributed Skill source records")
     q.add_argument("--query", required=True)
     q.add_argument("--limit", type=int, default=10)

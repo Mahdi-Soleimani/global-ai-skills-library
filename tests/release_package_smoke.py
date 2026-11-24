@@ -92,6 +92,11 @@ def smoke(source=ROOT, *, mcp=False, setup_runtime=False):
             proc = subprocess.run([*launcher, *args], cwd=base, env=setup_env,
                                   check=True, capture_output=True, encoding="utf-8", timeout=120)
             return json.loads(proc.stdout)
+        semantic = cli("semantic","--action","status")
+        assert semantic["status"] == "not_built"
+        assert semantic["index"]["record_count"] > 0
+        assert semantic["default_search_changed"] is False
+        assert not (package/"private/semantic-index-v1.bin").exists()
         search = cli("search", "--query", "python security audit", "--limit", "5", "--json")
         assert 0 < search["count"] <= 5
         route = cli("route", "--task", "بررسی امنیت API پایتون", "--top-k", "5", "--json")
@@ -242,6 +247,7 @@ asyncio.run(main())
                 "documented_entrypoints_verified": setup_runtime,
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
                 "root_scope_api_read_only_verified": rest["root_scope_api_read_only_verified"],
+                "optional_semantic_status_verified": True,
                 "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
                 "third_party_skill_executed": False,
                 "public_release_allowed": False}

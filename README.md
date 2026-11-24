@@ -116,6 +116,18 @@ This command checks only Docker CLI/daemon availability and prints the required 
 
 **Inert container isolation CI (Phase 19):** The separate [GASL sandbox canary workflow](.github/workflows/gasl-sandbox-canary.yml) builds a tiny self-authored static Go program in a `FROM scratch` Docker image **locally**, without downloading dependencies or executing downloaded Skill code. It uses a source-hash-labelled, immutable local Docker image ID and a restricted ephemeral Linux container to test network isolation, read-only mounts, an unprivileged identity, dropped capabilities, seccomp, memory/CPU/process limits, scratch-space limits, absent host secrets and symlink escapes. The Docker run uses `--network none`, `--read-only`, a read-only synthetic fixture and `--pull never`. The updated Phase 64 command is `./gasl sandbox --verify-canary` on Linux with local Go and Docker. It builds from GASL’s own tracked source and rejects externally supplied image IDs, uses a unique build tag, and verifies tag removal. No third-party Skill code or arbitrary command is accepted. The ephemeral Linux [canary run 45046458532](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/runs/45046458532) passed all **18** actual isolation checks. A passing canary is **not** certification of arbitrary-code safety, and no real Skill installation/execution path is enabled. The regular `./gasl sandbox` status command remains non-executing. See [Phase 19](docs/reports/PHASE-19-EPHEMERAL-INERT-SANDBOX-CANARY-2026-11-22.md).
 
+### Optional offline semantic retrieval (experimental)
+
+The normal search/Router remains SQLite FTS5 and needs no model. The separate `semantic` command can build and query a dense index over the full eligible attributed public metadata catalog, not only a lexical candidate subset. It does not download Skill bodies or use local private metadata. It requires an explicitly provided local directory with the exact pinned E5 artifacts described in `tools/semantic_experiment.py` (Xenova/multilingual-e5-small, revision `761b726dd34fb83930e26aab4e9ac3899aa1fa78`, `onnx/model_int8.onnx` saved as `model.onnx` and `tokenizer.json`), and optional NumPy, ONNX Runtime and tokenizers in your Python environment. No dependency or model is installed automatically.
+
+~~~bash
+./gasl semantic --action status
+./gasl semantic --action build --model /absolute/path/to/pinned-model --threads 2
+./gasl semantic --action search --model /absolute/path/to/pinned-model --query "بررسی امنیت API پایتون" --limit 5
+~~~
+
+Only the derived float32 vectors and their metadata header/digest are cached under ignored `private/semantic-index-v1.bin`. A stale or corrupt cache requires an explicit rebuild. Results are exploratory cosine similarities, not calibrated probabilities or security/installation approvals. The optional command is not used by MCP, REST, the default Router or Explorer. No independent relevance-quality claim is made.
+
 ### Phase 20: Preview a pinned Skill installation and simulate rollback (no actual install)
 
 Plan a specific already indexed Skill against an explicit **logical** Agent and scope, fully offline:

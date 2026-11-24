@@ -21,6 +21,7 @@ from skill_search import ROOT, search_skills, file_fingerprint
 
 MODEL_REPO = "Xenova/multilingual-e5-small"
 MODEL_REVISION = "761b726dd34fb83930e26aab4e9ac3899aa1fa78"
+MODEL_UPSTREAM_PATHS = {"model.onnx": "onnx/model_int8.onnx", "tokenizer.json": "tokenizer.json"}
 MODEL_FILES = {
     "model.onnx": (118054593, "4d24e2bc01a447951524466ef533e52944bf48509e6552810bcee1a2711cb02c"),
     "tokenizer.json": (17082730, "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"),
