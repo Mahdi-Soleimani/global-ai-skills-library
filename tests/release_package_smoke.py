@@ -94,6 +94,12 @@ try:
     ident = result["results"][0]["source_record_id"]
     details = json.loads(get("/v1/skills/"+ident))
     assert not details["installation_allowed"] and not details["execution_allowed"]
+    relations = json.loads(get("/v1/skills/"+ident+"/relations"))
+    assert relations["source_record_id"] == ident
+    assert isinstance(relations["related_groups"], list)
+    assert not relations["installation_or_execution_approved"]
+    assert not relations["independent_content_verification_performed"]
+
     try:
         get("/v1/skills/"+ident+"/content?fetch_remote=false")
     except urllib.error.HTTPError as exc:

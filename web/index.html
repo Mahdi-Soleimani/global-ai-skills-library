@@ -190,6 +190,7 @@
     let apiToken = "";
     let searchRevision = 0;
     let compareRevision = 0;
+    let detailRevision = 0;
     const selectedSkills = new Map();
     const headers = () => apiToken ? { Authorization: "Bearer " + apiToken } : {};
 
@@ -365,6 +366,7 @@
       }
       const request = ++searchRevision;
       resetComparison();
+      detailRevision++;
       $("detail").style.display = "none";
       setBusy(true);
       $("results").replaceChildren(el("div", "empty", "در حال پیدا کردن گزینه‌های مرتبط…"));
@@ -623,7 +625,51 @@
       panel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
+    async function loadRelations(id, target, revision) {
+      target.replaceChildren(el("p", "status", "در حال بررسی روابط ثبت‌شده…"));
+      try {
+        const data = await api("/v1/skills/" + encodeURIComponent(id) + "/relations");
+        if (revision !== detailRevision) return;
+        if (data.source_record_id !== id || !Array.isArray(data.related_groups)) {
+          throw new Error("پاسخ روابط با شناسه انتخاب‌شده مطابقت ندارد.");
+        }
+        const children = [el("p", "status warn",
+          "فقط شواهد محلی کاتالوگ؛ برابری فایل ثبت‌شده، اثبات برابری بسته، امنیت یا مجوز نصب نیست.")];
+        for (const group of data.related_groups) {
+          const title = group.relationship === "same_recorded_skill_md_blob" ?
+            "Git Blob ثبت‌شده یکسان" : group.relationship === "same_path_multiple_revisions" ?
+            "نسخه‌های مختلف یک مسیر" : "رابطه ثبت‌شده";
+          const section = el("div", "result");
+          section.append(el("h3", "", title));
+          if (group.blob_comparison) section.append(el("p", "status",
+            ({same_recorded_blob:"Blob یکسان", different_recorded_blobs:"Blob متفاوت",
+              incomplete_blob_evidence:"شواهد Blob ناقص"})[group.blob_comparison] || "شواهد نامشخص"));
+          const list = el("ul", "");
+          for (const member of group.members || []) {
+            if (member.source_record_id === id) continue;
+            const li = el("li", "");
+            li.append(el("div", "repo", member.repository + " / " + member.source_path));
+            li.append(el("div", "status", "Commit: " + member.commit_sha));
+            const button = el("button", "", "جزئیات این نسخه");
+            button.type = "button";
+            button.addEventListener("click", () => showDetails(member.source_record_id));
+            li.append(button);
+            list.append(li);
+          }
+          section.append(list);
+          children.push(section);
+        }
+        if (!data.related_groups.length) children.push(el("p", "desc",
+          "رابطه مستقیمی در کاتالوگ ثبت نشده است؛ این به معنای نبود رابطه در منابع اصلی نیست."));
+        target.replaceChildren(...children);
+      } catch (error) {
+        if (revision === detailRevision) target.replaceChildren(el("p", "status warn",
+          "شواهد روابط در دسترس نیست: " + error.message));
+      }
+    }
+
     async function showDetails(id) {
+      const revision = ++detailRevision;
       const panel = $("detail");
       panel.style.display = "block";
       $("detailTitle").textContent = "در حال دریافت جزئیات…";
@@ -631,6 +677,7 @@
       panel.scrollIntoView({ behavior: "smooth", block: "start" });
       try {
         const data = await api("/v1/skills/" + encodeURIComponent(id));
+        if (revision !== detailRevision) return;
         $("detailTitle").textContent = data.skill_name || "جزئیات اسکیل";
         const dl = document.createElement("dl");
         const fields = [
@@ -650,13 +697,20 @@
           dl.append(el("dt", "", label));
           dl.append(el("dd", "", value ?? "—"));
         }
-        $("detailBody").replaceChildren(dl);
+        const relationPanel = el("div", "");
+        const relationButton = el("button", "", "مشاهده روابط و نسخه‌ها");
+        relationButton.type = "button";
+        const relationBody = el("div", "");
+        relationButton.addEventListener("click", () => loadRelations(id, relationBody, revision));
+        relationPanel.append(relationButton, relationBody);
+        $("detailBody").replaceChildren(dl, relationPanel);
       } catch (error) {
-        $("detailBody").append(el("p", "desc", error.message));
+        if (revision === detailRevision) $("detailBody").append(el("p", "desc", error.message));
       }
     }
 
     async function showContent(id) {
+      const revision = ++detailRevision;
       const panel = $("detail");
       panel.style.display = "block";
       $("detailTitle").textContent = "در حال دریافت دستورالعمل…";
@@ -664,6 +718,7 @@
       panel.scrollIntoView({ behavior: "smooth", block: "start" });
       try {
         const data = await api("/v1/skills/" + encodeURIComponent(id) + "/content?max_chars=20000");
+        if (revision !== detailRevision) return;
         $("detailTitle").textContent = (data.skill_name || "Skill") + " — SKILL.md";
         const warning = el("p", "status warn", data.warning + " | منبع محتوا: " + data.content_source);
         const pre = el("pre", "", data.content || "");
@@ -675,14 +730,14 @@
         });
         $("detailBody").replaceChildren(warning, copy, pre);
       } catch (error) {
-        $("detailBody").append(el("p", "desc", error.message));
+        if (revision === detailRevision) $("detailBody").append(el("p", "desc", error.message));
       }
     }
 
     $("searchForm").addEventListener("submit", runSearch);
     $("recommendButton").addEventListener("click", runRecommendations);
     $("compareButton").addEventListener("click", compareSelected);
-    $("closeDetail").addEventListener("click", () => { $("detail").style.display = "none"; });
+    $("closeDetail").addEventListener("click", () => { detailRevision++; $("detail").style.display = "none"; });
     $("apiToken").addEventListener("input", (event) => { apiToken = event.target.value; });
     loadStatus();
     loadDomains();

@@ -7,6 +7,7 @@ import unittest
 import urllib.error
 import urllib.request
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
@@ -158,6 +159,40 @@ class ApiServerTests(unittest.TestCase):
             data={"task": "python security", "strict_agent": "false"})
         self.assertEqual(status, 400)
         self.assertIn("JSON boolean", json.loads(body)["detail"])
+
+    def test_canonical_relations_offline_authorized_and_exact(self):
+        path = self.root / "registry" / "source-catalog.json"
+        record = json.loads(path.read_text(encoding="utf-8"))["records"][0]
+        def pinned(row):
+            seed = "\0".join((row["repository"].casefold(),row["source_path"],row["commit_sha"]))
+            return dict(row, source_record_id="GASL-SRC-"+hashlib.sha256(seed.encode()).hexdigest()[:20])
+        first = pinned(record)
+        second = pinned(dict(record, repository="another/skills"))
+        third = pinned(dict(record, commit_sha="b"*40, skill_md_blob_sha=None))
+        raw = json.dumps({"schema_version":"1.0.0","records":[first,second,third]}).encode()
+        path.write_bytes(raw)
+        endpoint = "/v1/skills/"+first["source_record_id"]+"/relations"
+        with patch("safe_http.open_pinned_url", side_effect=AssertionError("Network forbidden")), \
+             patch("canonical_lineage._get", side_effect=AssertionError("Network forbidden")):
+            self.assertEqual(self.request(endpoint,auth=False)[0],401)
+            status,body = self.request(endpoint)
+            self.assertEqual(status,200)
+            report=json.loads(body)
+            self.assertEqual(report["source_record_id"],first["source_record_id"])
+            self.assertEqual(len(report["related_groups"]),2)
+            self.assertFalse(report["package_equivalence_established"])
+            self.assertFalse(report["installation_or_execution_approved"])
+            self.assertEqual(self.request(endpoint+"?verify_online=true")[0],400)
+            self.assertEqual(self.request("/v1/skills/GASL-SRC-"+"0"*20+"/relations")[0],404)
+            self.assertEqual(self.request("/v1/skills/invalid/relations")[0],400)
+        self.assertEqual(path.read_bytes(),raw)
+
+    def test_canonical_relations_fails_closed_for_invalid_catalog(self):
+        path = self.root / "registry" / "source-catalog.json"
+        path.write_text('{"schema_version":"1.0.0","records":[]}',encoding="utf-8")
+        status,body=self.request("/v1/skills/GASL-SRC-"+"0"*20+"/relations")
+        self.assertEqual(status,503)
+        self.assertEqual(json.loads(body)["detail"],"Canonical catalog evidence unavailable.")
 
     def test_unknown_skill_returns_404(self):
         status, _ = self.request("/v1/skills/missing")

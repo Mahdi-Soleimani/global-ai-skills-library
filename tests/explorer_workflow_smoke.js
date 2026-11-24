@@ -94,6 +94,17 @@ const fetchMock = async (url, options = {}) => {
     data = { results: candidates, returned_count: 3, routing_decision: "undetermined" };
   } else if (url.startsWith("/v1/search?")) {
     data = { results: candidates, count: 3, search_mode: "lexical" };
+  } else if (url === "/v1/skills/GASL-SRC-a1/relations") {
+    data = {source_record_id:"GASL-SRC-a1",related_groups:[
+      {relationship:"same_recorded_skill_md_blob",members:[
+        {...candidates[0],source_path:"skills/a/SKILL.md",commit_sha:"a".repeat(40)},
+        {...candidates[1],source_path:"<img onerror=alert(1)>",commit_sha:"b".repeat(40)}
+      ]}
+    ]};
+  } else if (url === "/v1/skills/GASL-SRC-b2/relations") {
+    data = {source_record_id:"GASL-SRC-b2",related_groups:[]};
+  } else if (url === "/v1/skills/GASL-SRC-a1" || url === "/v1/skills/GASL-SRC-b2") {
+    data = candidates.find(x => url.endsWith(x.source_record_id));
   } else if (url === "/v1/compare") {
     assert.equal(options.method, "POST");
     const body = JSON.parse(options.body);
@@ -195,6 +206,28 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
   assert.equal(calls.filter(c => c.url === "/v1/compare").length, 1);
   assert.equal(calls.filter(c => c.url.startsWith("/v1/install")).length, 0);
   assert.equal(descendants(nodes.results, n => n.tag === "a" && n.href?.startsWith("javascript:")).length, 0);
+
+  // Relations are explicitly requested, offline, and preserve exact record identity.
+  const detail = descendants(nodes.results, n => n.tag === "button" &&
+    n.textContent === "جزئیات و شواهد")[0];
+  await detail.listeners.click();
+  assert.equal(calls.filter(c => c.url.endsWith("/relations")).length, 0);
+  const relation = descendants(nodes.detailBody,n => n.tag === "button" &&
+    n.textContent === "مشاهده روابط و نسخه‌ها")[0];
+  await relation.listeners.click();
+  assert.equal(calls.filter(c => c.url.endsWith("/relations")).length, 1);
+  assert(descendants(nodes.detailBody,n => n.textContent.includes("<img onerror=alert(1)>")).length);
+  const related = descendants(nodes.detailBody,n => n.tag === "button" &&
+    n.textContent === "جزئیات این نسخه");
+  assert.equal(related.length,1);
+  await related[0].listeners.click();
+  assert.equal(nodes.detailTitle.textContent,"API defense");
+  await descendants(nodes.detailBody,n => n.tag === "button" &&
+    n.textContent === "مشاهده روابط و نسخه‌ها")[0].listeners.click();
+  assert(descendants(nodes.detailBody,n => n.textContent.includes("رابطه مستقیمی")).length);
+  assert.equal(calls.filter(c => c.url.includes("/content")).length,0);
+  nodes.closeDetail.listeners.click();
+  assert.equal(nodes.detail.style.display,"none");
 
   // A new search must clear the previous selection and comparison.
   await nodes.searchForm.listeners.submit({ preventDefault() {} });

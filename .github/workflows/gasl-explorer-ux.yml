@@ -7,6 +7,9 @@ on:
     paths:
       - web/index.html
       - tools/api_server.py
+      - tools/canonical_index.py
+      - tests/test_api_server.py
+      - tests/test_canonical_index.py
       - tools/skill_compare.py
       - tools/codex_explorer_handoff.py
       - tools/gasl.py
@@ -20,6 +23,9 @@ on:
     paths:
       - web/index.html
       - tools/api_server.py
+      - tools/canonical_index.py
+      - tests/test_api_server.py
+      - tests/test_canonical_index.py
       - tools/skill_compare.py
       - tools/codex_explorer_handoff.py
       - tools/gasl.py
@@ -53,7 +59,7 @@ jobs:
           node --check tests/explorer_workflow_smoke.js
 
       - name: Verify recommendation, comparison and API permissions
-        run: python3 -m unittest tests.test_skill_compare tests.test_api_server tests.test_gasl_service tests.test_codex_explorer_handoff -q
+        run: python3 -m unittest tests.test_skill_compare tests.test_api_server tests.test_canonical_index tests.test_gasl_service tests.test_codex_explorer_handoff -q
 
       - name: Exercise need to compare to selection browser flow
         run: node tests/explorer_workflow_smoke.js

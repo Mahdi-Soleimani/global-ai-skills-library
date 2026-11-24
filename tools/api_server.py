@@ -16,6 +16,7 @@ if str(TOOLS_DIR) not in sys.path:
 
 from gasl_service import domains, health, route, search, skill_content, skill_details
 from skill_compare import compare_skills
+from canonical_index import lookup as canonical_lookup
 
 MAX_BODY_BYTES = 64 * 1024
 
@@ -118,6 +119,27 @@ def make_handler(root=ROOT, api_token=None):
                 return
             if path.startswith("/v1/skills/"):
                 tail = path[len("/v1/skills/"):]
+                if tail.endswith("/relations"):
+                    source_record_id = unquote(tail[:-len("/relations")])
+                    # This endpoint is strictly offline; no client-controlled online mode.
+                    if parsed.query:
+                        self._json_error(400, "Relation lookup does not accept query parameters.")
+                        return
+                    import re
+                    if not re.fullmatch(r"GASL-SRC-[0-9a-f]{20}", source_record_id):
+                        self._json_error(400, "An exact immutable source record ID is required.")
+                        return
+                    try:
+                        result = canonical_lookup(source_record_id, root=root)
+                        self._send(200, result)
+                    except ValueError as exc:
+                        if str(exc) == "Unknown exact source record ID":
+                            self._json_error(404, "Source record not found.")
+                        else:
+                            self._json_error(503, "Canonical catalog evidence unavailable.")
+                    except OSError:
+                        self._json_error(503, "Canonical catalog evidence unavailable.")
+                    return
                 if tail.endswith("/content"):
                     source_record_id = unquote(tail[:-len("/content")].rstrip("/"))
                     params = parse_qs(parsed.query)
@@ -214,7 +236,7 @@ def main():
         parser.error("GASL_API_TOKEN must be set before binding the API to a non-localhost interface.")
     server = create_server(args.host, args.port)
     print("GASL Explorer/API: http://{}:{}/".format(args.host, server.server_address[1]), flush=True)
-    print("REST API: /v1/search, /v1/route, /v1/compare, /v1/skills/{id}, /v1/skills/{id}/content", flush=True)
+    print("REST API: /v1/search, /v1/route, /v1/compare, /v1/skills/{id}, /v1/skills/{id}/content, /v1/skills/{id}/relations", flush=True)
     server.serve_forever()
 
 
