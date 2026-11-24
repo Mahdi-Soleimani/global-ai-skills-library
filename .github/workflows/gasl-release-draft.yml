@@ -43,12 +43,13 @@ permissions:
 
 jobs:
   private-release-draft:
-    name: Private draft reproducibility / ${{ matrix.os }}
+    name: Private draft reproducibility / ${{ matrix.os }} / Python ${{ matrix.python }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.10", "3.13"]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -57,7 +58,7 @@ jobs:
       - name: Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: ${{ matrix.python }}
 
       - name: Test tracked-only packaging and publication blockers
         run: |

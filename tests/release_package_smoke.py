@@ -78,11 +78,23 @@ def smoke(source=ROOT, *, mcp=False, setup_runtime=False):
                                   env=env, check=True, capture_output=True,
                                   encoding="utf-8", timeout=120)
             return json.loads(proc.stdout)
-        search = run("tools/runtime_launch.py", "search", "--query", "python security audit",
-                     "--limit", "5", "--json")
+        version = run("-c", "import json,sys; print(json.dumps(list(sys.version_info[:3])))")
+        assert version[:2] == list(sys.version_info[:2]), "Unexpected installed Python version"
+        def cli(*args):
+            if not setup_runtime:
+                return run("tools/runtime_launch.py", *args)
+            # Test the documented command from outside the package, using the base
+            # Python (not the already-activated venv) and poisoned Python variables.
+            launcher = [sys.executable, "-I", "-B", "-X", "utf8",
+                        str(package/"tools/runtime_launch.py")]
+            if os.name == "posix":
+                launcher = [str(package/"gasl")]
+            proc = subprocess.run([*launcher, *args], cwd=base, env=setup_env,
+                                  check=True, capture_output=True, encoding="utf-8", timeout=120)
+            return json.loads(proc.stdout)
+        search = cli("search", "--query", "python security audit", "--limit", "5", "--json")
         assert 0 < search["count"] <= 5
-        route = run("tools/runtime_launch.py", "route", "--task", "بررسی امنیت API پایتون",
-                    "--top-k", "5", "--json")
+        route = cli("route", "--task", "بررسی امنیت API پایتون", "--top-k", "5", "--json")
         assert route["returned_count"] > 0
         assert route["installation_performed"] is False and route["execution_performed"] is False
         # Start the real packaged API, bind only loopback with an OS-assigned port,
@@ -140,9 +152,27 @@ from pathlib import Path
 from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 async def main():
-    params = StdioServerParameters(command=sys.executable,
-        args=["-I","-B","-X","utf8",str(Path.cwd()/"tools"/"runtime_launch.py"),"mcp"],
-        env=dict(os.environ),cwd=str(Path.cwd()))
+    package = Path.cwd()
+    if sys.argv[1] == "setup":
+        # Exercise the README MCP configuration: POSIX launcher or Windows
+        # absolute venv Python and exact CLI script.
+        if os.name == "posix":
+            command = str(package/"gasl")
+            args = ["mcp"]
+        else:
+            command = sys.executable
+            args = ["-I","-B","-X","utf8",str(package/"tools/gasl.py"),"mcp"]
+        child_env = dict(os.environ)
+        child_env["PATH"] = str(Path(sys.base_prefix)/("Scripts" if os.name=="nt" else "bin")) + os.pathsep + child_env.get("PATH","")
+        child_env["PYTHONHOME"] = str(package.parent/"invalid-home")
+        child_env["PYTHONPATH"] = str(package.parent/"invalid-path")
+        cwd = str(package.parent)
+    else:
+        command = sys.executable
+        args = ["-I","-B","-X","utf8",str(package/"tools/runtime_launch.py"),"mcp"]
+        child_env = dict(os.environ)
+        cwd = str(package)
+    params = StdioServerParameters(command=command,args=args,env=child_env,cwd=cwd)
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:
             await session.initialize()
@@ -175,7 +205,7 @@ async def main():
             assert not route["installation_performed"] and not route["execution_performed"]
             print(json.dumps({"mcp_verified":True,"mcp_tools_exercised":6}))
 asyncio.run(main())
-''')
+''', "setup" if setup_runtime else "existing")
             mcp_verified = result["mcp_verified"]
             mcp_tools_exercised = result["mcp_tools_exercised"]
         assert not any((package / p).exists() for p in (
@@ -190,6 +220,8 @@ asyncio.run(main())
                 "source_commit": report["source_commit"], "archive_sha256": report["archive_sha256"],
                 "source_record_count": rest["source_record_count"], "cli_search_verified": True,
                 "shipped_runtime_setup_verified": setup_runtime,
+                "runtime_python_version": ".".join(map(str, version)),
+                "documented_entrypoints_verified": setup_runtime,
                 "bilingual_route_verified": True, "rest_explorer_verified": rest["rest_verified"],
                 "mcp_stdio_verified": mcp_verified, "mcp_tools_exercised": mcp_tools_exercised,
                 "third_party_skill_executed": False,
