@@ -21,7 +21,12 @@ permissions:
 
 jobs:
   private-release-draft:
-    runs-on: ubuntu-latest
+    name: Private draft reproducibility / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -34,25 +39,19 @@ jobs:
 
       - name: Test tracked-only packaging and publication blockers
         run: |
-          python3 -m compileall -q tools tests
-          python3 -m unittest tests.test_release_draft -q
+          python -m compileall -q tools tests
+          python -m unittest tests.test_release_draft -v
 
       - name: Audit real source tree without building or publishing
-        run: |
-          ./gasl release-draft --action inspect > /tmp/gasl-readiness.json
-          python3 - <<'PY'
-          import json
-          r=json.load(open('/tmp/gasl-readiness.json'))
-          assert r['private_artifact_only'] is True
-          assert r['public_release_allowed'] is False
-          assert r['all_files_from_git_index'] is True
-          assert r['content_bound_to_commit_tree'] is True
-          assert r['third_party_skill_executed'] is False
-          assert r['host_paths_modified'] is False
-          print('PRIVATE_RELEASE_PUBLICATION_GATE=PASS')
-          PY
+        run: >-
+          python -c "import sys; sys.path.insert(0, 'tools'); from release_draft import inspect_release;
+          r=inspect_release(); assert r['private_artifact_only'] is True;
+          assert r['public_release_allowed'] is False; assert r['all_files_from_git_index'] is True;
+          assert r['content_bound_to_commit_tree'] is True; assert r['third_party_skill_executed'] is False;
+          assert r['host_paths_modified'] is False; print('PRIVATE_RELEASE_PUBLICATION_GATE=PASS')"
 
       - name: Ensure CI did not write release artifacts
         run: |
-          test ! -d private/release-drafts
+          python -c "from pathlib import Path; assert not Path('private/release-drafts').exists()"
+          git diff --exit-code
           git diff --check

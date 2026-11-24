@@ -5,6 +5,7 @@ No public GitHub Release, package registry upload, or license grant is made.
 Only a strict tracked-file allowlist enters an ignored local ZIP.
 """
 import hashlib
+import io
 import json
 import os
 import re
@@ -17,6 +18,7 @@ from skill_search import ROOT
 from transaction_file_lock import is_redirected, require_windows_filename_safety
 
 SCHEMA = "gasl-private-release-draft-v1"
+CANONICAL_ENCODING = "zip-stored-fixed-metadata-v1"
 STATIC_FILES = frozenset({
     "gasl", "README.md", "ATTRIBUTION.md", "THIRD_PARTY_NOTICES.md",
     "docs/ATTRIBUTION-AND-REDISTRIBUTION-POLICY.md",
@@ -189,7 +191,8 @@ def inspect_release(root=ROOT):
 
 def _zip_entry(name, data, mode=0o100644):
     info = zipfile.ZipInfo("gasl-mvp/" + name, date_time=ZIP_STAMP)
-    info.compress_type = zipfile.ZIP_DEFLATED
+    # Stored ZIP avoids platform-dependent zlib versions/compression choices.
+    info.compress_type = zipfile.ZIP_STORED
     info.external_attr = mode << 16
     info.create_system = 3
     return info, data
@@ -229,8 +232,7 @@ def build_release_draft(root=ROOT):
     try:
         with target.open("xb") as stream:
             created.append((target, os.fstat(stream.fileno())))
-            with zipfile.ZipFile(stream, mode="w", compression=zipfile.ZIP_DEFLATED,
-                                 compresslevel=8) as archive:
+            with zipfile.ZipFile(stream, mode="w", compression=zipfile.ZIP_STORED) as archive:
                 for entry in items:
                     data = _git(root, "show", commit + ":" + entry["path"])
                     if hashlib.sha256(data).hexdigest() != entry["sha256"]:
@@ -265,6 +267,7 @@ def build_release_draft(root=ROOT):
         "relative_archive": target.relative_to(root).as_posix(),
         "archive_sha256": digest, "source_commit": commit,
         "included_tracked_files": len(items),
+        "archive_encoding": CANONICAL_ENCODING,
         "public_release_allowed": False,
         "license_missing": not result["project_license_declared"],
         "host_paths_modified": False,
@@ -290,7 +293,6 @@ def verify_release_draft(root=ROOT):
     digest = hashlib.sha256(raw).hexdigest()
     if digest != meta.get("sha256") or not SHA.fullmatch(digest):
         raise ValueError("Private draft ZIP SHA-256 mismatch")
-    import io
     with zipfile.ZipFile(io.BytesIO(raw), "r") as archive:
         infos = archive.infolist()
         names = [x.filename for x in infos]
@@ -320,16 +322,13 @@ def verify_release_draft(root=ROOT):
             raise ValueError("Draft paths disagree with manifest")
         if infos[-1].external_attr >> 16 != 0o100644:
             raise ValueError("Unexpected draft manifest member type")
-        total = 0
-        for item, info in zip(items, infos[:-1]):
-            expected_mode = 0o100755 if item["path"] == "gasl" else 0o100644
-            if info.file_size != item["bytes"] or info.external_attr >> 16 != expected_mode:
-                raise ValueError("Unexpected draft member size or type")
-            actual = archive.read("gasl-mvp/"+item["path"])
-            total += len(actual)
-            if total > MAX_TOTAL_BYTES or len(actual) != item["bytes"] or \
-                    hashlib.sha256(actual).hexdigest() != item["sha256"]:
-                raise ValueError("Draft content/inventory altered")
+        # Independently recreate the fixed encoding from verified member bytes.
+        # Old compressed drafts can still be verified for content integrity,
+        # but must not be labelled byte-reproducible in the new format.
+        canonical = io.BytesIO()
+        with zipfile.ZipFile(canonical, "w", compression=zipfile.ZIP_STORED) as rebuilt:
+            _verify_and_encode_members(archive, rebuilt, items, infos, manifest, manifest_name)
+        canonical_match = hashlib.sha256(canonical.getbuffer()).hexdigest() == digest
     if _git(root, "rev-parse", "HEAD").decode().strip() != commit:
         raise ValueError("HEAD changed during draft verification")
     return {
@@ -338,7 +337,26 @@ def verify_release_draft(root=ROOT):
         "source_commit": commit,
         "verified_file_count": len(items),
         "content_bound_to_commit_tree": True,
+        "canonical_archive_encoding_verified": canonical_match,
+        "archive_encoding": CANONICAL_ENCODING if canonical_match else "noncanonical_content_verified",
         "public_release_allowed": False,
         "files_extracted": False,
         "third_party_skill_executed": False,
     }
+
+
+def _verify_and_encode_members(archive, rebuilt, items, infos, manifest, manifest_name):
+    total = 0
+    for item, info in zip(items, infos[:-1]):
+        expected_mode = 0o100755 if item["path"] == "gasl" else 0o100644
+        if info.file_size != item["bytes"] or info.external_attr >> 16 != expected_mode:
+            raise ValueError("Unexpected draft member size or type")
+        actual = archive.read("gasl-mvp/"+item["path"])
+        total += len(actual)
+        if (total > MAX_TOTAL_BYTES or len(actual) != item["bytes"]
+                or hashlib.sha256(actual).hexdigest() != item["sha256"]):
+            raise ValueError("Draft content/inventory altered")
+        encoded, content = _zip_entry(item["path"], actual, expected_mode)
+        rebuilt.writestr(encoded, content)
+    info, content = _zip_entry("RELEASE-MANIFEST.json", _json_bytes(manifest))
+    rebuilt.writestr(info, content)

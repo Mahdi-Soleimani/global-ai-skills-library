@@ -23,25 +23,34 @@ class ReleaseDraftTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)/"repository"
         self.root.mkdir()
-        subprocess.run(["git","init","-q",str(self.root)],check=True,capture_output=True)
+        subprocess.run(["git","init","-q","--object-format=sha1","--initial-branch=main",str(self.root)],
+                       check=True,capture_output=True)
+        for key, value in (("core.autocrlf", "false"), ("core.filemode", "false"),
+                           ("commit.gpgsign", "false")):
+            subprocess.run(["git","-C",str(self.root),"config",key,value],
+                           check=True,capture_output=True)
         for name in STATIC_FILES:
             path = self.root/name
             path.parent.mkdir(parents=True,exist_ok=True)
-            path.write_text("Fixture file " + name + "\n",encoding="utf-8")
+            path.write_bytes(("Fixture file " + name + "\n").encode("utf-8"))
         code=self.root/"tools"/"gasl.py"
         code.parent.mkdir(exist_ok=True)
-        code.write_text("print('INERT SOURCE - NOT EXECUTED')\n")
+        code.write_bytes(b"print('INERT SOURCE - NOT EXECUTED')\n")
         config=self.root/"config"/"taxonomy.json"
         config.parent.mkdir(exist_ok=True)
-        config.write_text('{"categories":[]}\n')
-        (self.root/".gitignore").write_text("private/\n")
+        config.write_bytes(b'{"categories":[]}\n')
+        (self.root/".gitignore").write_bytes(b"private/\n")
         subprocess.run(["git","-C",str(self.root),"add","-A"],check=True,capture_output=True)
         self.commit()
 
     def commit(self):
+        env = dict(os.environ, GIT_AUTHOR_DATE="2000-01-01T00:00:00+00:00",
+                   GIT_COMMITTER_DATE="2000-01-01T00:00:00+00:00",
+                   GIT_AUTHOR_NAME="GASL Test", GIT_AUTHOR_EMAIL="test@example.invalid",
+                   GIT_COMMITTER_NAME="GASL Test", GIT_COMMITTER_EMAIL="test@example.invalid")
         subprocess.run(["git","-C",str(self.root),"-c","user.name=GASL Test",
                         "-c","user.email=test@example.invalid","commit","-qm","synthetic fixture"],
-                       check=True,capture_output=True)
+                       check=True,capture_output=True,env=env)
 
     def test_inspect_is_readonly_and_public_release_blocked(self):
         report=inspect_release(self.root)
@@ -73,6 +82,27 @@ class ReleaseDraftTests(unittest.TestCase):
         (path.parent/(path.name+".json")).unlink()
         built_again=build_release_draft(self.root)
         self.assertEqual(built_again["archive_sha256"],built["archive_sha256"])
+
+    def test_cross_platform_canonical_golden_digest(self):
+        built = build_release_draft(self.root)
+        verified = verify_release_draft(self.root)
+        self.assertTrue(verified["canonical_archive_encoding_verified"])
+        self.assertEqual(built["source_commit"], "84af3b801f3e8140671f0bddad12d8849ab6350d")
+        self.assertEqual(built["archive_sha256"], "3ef32205ef59cc0994ef6412155279cf9f6eb0e6697bc92fa119a2f9eba8fd1b")
+        print("CANONICAL_FIXTURE", built["source_commit"], built["archive_sha256"])
+        with zipfile.ZipFile(self.root/built["relative_archive"]) as archive:
+            self.assertTrue(all(x.compress_type == zipfile.ZIP_STORED for x in archive.infolist()))
+
+    def test_legacy_compressed_archive_content_verified_but_not_canonical(self):
+        def change(entries):
+            for info, _ in entries:
+                info.compress_type = zipfile.ZIP_DEFLATED
+            return entries
+        self.forge(change)
+        report = verify_release_draft(self.root)
+        self.assertTrue(report["content_bound_to_commit_tree"])
+        self.assertFalse(report["canonical_archive_encoding_verified"])
+        self.assertEqual(report["archive_encoding"], "noncanonical_content_verified")
 
     def test_refuses_overwrite_existing_draft(self):
         build_release_draft(self.root)
