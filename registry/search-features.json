@@ -3976,19 +3976,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-0f75ef5e2c959af9868e": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "3f3cc21ffd4225ac9d1428388a3e56211f8d60fb",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/propose-security-hardening/SKILL.md",
-      "terms": [
-        "code",
-        "develop",
-        "security",
-        "use"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-0fa3ddc0c9412e322042": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "fa4f2f9965591d6d8a7ef4ad47e6ba4d5ac344d0",
@@ -4673,22 +4660,6 @@
         "user"
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
-    },
-    "GASL-SRC-12a59b315e402e43451f": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "0b6382872f5976d4ceb0f5ad074fe3404bd4dd45",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/fix-finding/SKILL.md",
-      "terms": [
-        "design",
-        "review",
-        "security",
-        "use",
-        "user",
-        "validation",
-        "vulnerability"
-      ],
-      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
     },
     "GASL-SRC-12bb7f54404f078f81f9": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -6327,6 +6298,22 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-1923c0e99e9c7e8c67d1": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "04e3923399131afc4e9d4ca9e5708fa8ace9e14c",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/check-skills/SKILL.md",
+      "terms": [
+        "agent",
+        "file",
+        "permissions",
+        "review",
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-19398e80872ad5a20677": {
       "commit_sha": "ecb659cc6fb4d0b13b6303f682966fc52b001d51",
       "git_blob_sha": "f534f60f335c9bc8afdbbf47e7ec06667b19db93",
@@ -6474,19 +6461,6 @@
         "use"
       ],
       "verified_at_commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
-    },
-    "GASL-SRC-19c71181280339647380": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "3c7c71514385a9d492daa4bb3c6fd7bfabe2a4fd",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/publish-findings/SKILL.md",
-      "terms": [
-        "aws",
-        "cloud",
-        "security",
-        "validation"
-      ],
-      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
     },
     "GASL-SRC-19ce589a985941004f3b": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -7162,6 +7136,20 @@
       ],
       "verified_at_commit": "a3f4098a2afd0e13f6a6f8c8760e275f75457ea9"
     },
+    "GASL-SRC-1c63ca72366eb6ca1137": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "091360319a8c4ab5712da4c14f857688a2dd80fe",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/triage-finding/SKILL.md",
+      "terms": [
+        "code",
+        "github",
+        "policy",
+        "security",
+        "use"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-1c7ea1d01cedfa31d4e3": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "c842e1d8dcf86fdfdf9ba7448600a7ecc1eb0c68",
@@ -7718,19 +7706,6 @@
         "use"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-1eef20b42a97655785fa": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "f58b53e2b9619b2ab4b67ae7a107c550cb991880",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/threat-model-visualize/SKILL.md",
-      "terms": [
-        "assessment",
-        "model",
-        "threat",
-        "visualize"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-1ef497596e19de97f907": {
       "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
@@ -9413,6 +9388,18 @@
         "user"
       ],
       "verified_at_commit": "5b2b400eec1e7e1cec76245a715d0b0d4fd2a9c1"
+    },
+    "GASL-SRC-25be4a2355993e22ceef": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "ffa2f8b8c48891346eab72d89cedd96a9a2e7cdf",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/track-findings/SKILL.md",
+      "terms": [
+        "github",
+        "security",
+        "use"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-25c959fa4e09efd332ad": {
       "commit_sha": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
@@ -11141,21 +11128,6 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
-    "GASL-SRC-2c618dc33c8abab29f6c": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "38323792b8a9ea3e7e3044c1d6cca1fe7734099d",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/cloud-findings/SKILL.md",
-      "terms": [
-        "cloud",
-        "data",
-        "read",
-        "security",
-        "use",
-        "verification"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-2c62b53499620cb4524c": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "29e4bbd3d7719c0d061b50621ad8692c491b7e8a",
@@ -12239,6 +12211,14 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
+    "GASL-SRC-30d1eba3679024d3888a": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "1044d9258a9f640e944ae25d5b60c52c8064727f",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/resolve-dependency-alert/SKILL.md",
+      "terms": [],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-30d88a9a86a4bdccb23f": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "1096b2e4c2703e70c0fc040d7efd7d55ae520c62",
@@ -12832,6 +12812,20 @@
         "use"
       ],
       "verified_at_commit": "1bb486909cc36ce608181c2af62c4716ba9cd7c7"
+    },
+    "GASL-SRC-33f5438ea03681bf8de0": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "55cdaa32249a172b91bcef7fbea2c945193a6ff1",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/vulnerability-writeup/SKILL.md",
+      "terms": [
+        "campaign",
+        "code",
+        "security",
+        "use",
+        "vulnerability"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-33f70fac268def1b4687": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
@@ -15025,6 +15019,20 @@
       ],
       "verified_at_commit": "5efd8435174798d1509d6b53e57a2918fc857b65"
     },
+    "GASL-SRC-3c20ecc84c94e222f28a": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "6c2d7e8ff8839c60c2d5e2760d95c1be811a7026",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/assess-patch-risk/SKILL.md",
+      "terms": [
+        "edit",
+        "files",
+        "read",
+        "tests",
+        "use"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-3c26e2403425efb54d34": {
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
       "git_blob_sha": "361acb4c514ea132f214165d8b96e9cdea969bab",
@@ -16713,19 +16721,6 @@
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
     },
-    "GASL-SRC-41e4cbe202d9fc49e93d": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "18ac4937b1ccacd0f2281b39f292155dbdfa188b",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/deep-security-scan/SKILL.md",
-      "terms": [
-        "audit",
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-41f09ac37f9b4d4d49ff": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "b1968eb6a8394808de0d5033bffaf2b9737d2029",
@@ -18214,18 +18209,6 @@
       ],
       "verified_at_commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
     },
-    "GASL-SRC-48c9403bb0505914902a": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "4b09771fb1295e86161b7f5d405fad585ce29467",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/security-diff-scan/SKILL.md",
-      "terms": [
-        "review",
-        "security",
-        "vulnerabilities"
-      ],
-      "verified_at_commit": "986fb81a7c854fe7ae61a5198df43bcdf4bce49c"
-    },
     "GASL-SRC-48d62d03925590b90ba1": {
       "commit_sha": "f10dc33c434e1daf5e001ec1c50594a6cde1bdbb",
       "git_blob_sha": "a2f78228d15caf3a953738e841da3d1916c0edbb",
@@ -19025,6 +19008,19 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
+    "GASL-SRC-4b847e50d84fd58a64bf": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "18ac4937b1ccacd0f2281b39f292155dbdfa188b",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/deep-security-scan/SKILL.md",
+      "terms": [
+        "audit",
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-4b8862f6036286cb6cff": {
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "git_blob_sha": "8549e745271e52eb7e03a2d71a124899f06d2999",
@@ -19774,6 +19770,19 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
+    "GASL-SRC-4e9e53e38177192ce85c": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "16ad8de3d1efefa64bf3a93f2c5e56442b9e74a0",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/attack-path-analysis/SKILL.md",
+      "terms": [
+        "analysis",
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
+    },
     "GASL-SRC-4ebd3908c2d8b6e8fdec": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "15b712c9b00276c6805810555519beeefe74a945",
@@ -20074,6 +20083,19 @@
         "user"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
+    },
+    "GASL-SRC-4fa341184376056308f9": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "002c3b3cd713f8584855b5510dc9e773ee1754df",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/publish-findings/SKILL.md",
+      "terms": [
+        "aws",
+        "cloud",
+        "security",
+        "validation"
+      ],
+      "verified_at_commit": "18d663081266b96abcc45ea71abfa926dc037846"
     },
     "GASL-SRC-4fa407a041cd95fa472f": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -20476,19 +20498,6 @@
         "write"
       ],
       "verified_at_commit": "5fb62c2cf7bc7eda841109c3470d132e87055e23"
-    },
-    "GASL-SRC-513aa93d587f3826c875": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "f5b29678e2cf7dde51509bc04e7832754d86b457",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/security-scan/SKILL.md",
-      "terms": [
-        "audit",
-        "security",
-        "use",
-        "vulnerabilities"
-      ],
-      "verified_at_commit": "986fb81a7c854fe7ae61a5198df43bcdf4bce49c"
     },
     "GASL-SRC-513fcf44466af703106c": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
@@ -21035,6 +21044,21 @@
         "user"
       ],
       "verified_at_commit": "4a6c651889c97cc9140580363c73e0eb17379c2b"
+    },
+    "GASL-SRC-5319659f2436c64996e8": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "d7b73cbd8ecd95d3bf9da9f2214be5ce5ded49c3",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/define-security-policy/SKILL.md",
+      "terms": [
+        "code",
+        "policy",
+        "review",
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-532663b5928160553878": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
@@ -22922,18 +22946,6 @@
         "video"
       ],
       "verified_at_commit": "981b02c0c44058b595f3b4180002c3ae3c806d40"
-    },
-    "GASL-SRC-5ad9c3eac1dc4b64296b": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "ffa2f8b8c48891346eab72d89cedd96a9a2e7cdf",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/track-findings/SKILL.md",
-      "terms": [
-        "github",
-        "security",
-        "use"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-5b009bb6f1371a591c91": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
@@ -26337,21 +26349,6 @@
       ],
       "verified_at_commit": "a4826bd6793a8522aab3f5f0410ef527b910cb7f"
     },
-    "GASL-SRC-679679307d676cffc0f2": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "7d40076528c951424a9a0070fb34ab16594fed9b",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/threat-model/SKILL.md",
-      "terms": [
-        "create",
-        "model",
-        "security",
-        "threat",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-6798cb304fe4c2143308": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "626c378e118bb81ad83fe08b5d17f2cc5a759ba1",
@@ -27704,22 +27701,6 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-6d34aa168987d0061183": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "04e3923399131afc4e9d4ca9e5708fa8ace9e14c",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/check-skills/SKILL.md",
-      "terms": [
-        "agent",
-        "file",
-        "permissions",
-        "review",
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-6d37482556113623e830": {
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "git_blob_sha": "428b2f3648500aede49730c5e233b7c5dd554ac5",
@@ -28999,14 +28980,6 @@
       ],
       "verified_at_commit": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef"
     },
-    "GASL-SRC-7233993d29c8009309f1": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "1044d9258a9f640e944ae25d5b60c52c8064727f",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/resolve-dependency-alert/SKILL.md",
-      "terms": [],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-7247a24352055d194e90": {
       "commit_sha": "089e3cccacf99547898bd513d78cf8efd28da9cf",
       "git_blob_sha": "e4745ce9a99d2cbb36b1bcbb0a17762ae199a1b2",
@@ -29794,23 +29767,6 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
-    },
-    "GASL-SRC-7533845340d7a5372c89": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "7f4d0c75897e73e6c861e5b0540e3bed89296513",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/verify-fix/SKILL.md",
-      "terms": [
-        "code",
-        "security",
-        "tests",
-        "use",
-        "user",
-        "validation",
-        "verification",
-        "vulnerability"
-      ],
-      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
     },
     "GASL-SRC-754dea9ae76a6b8290fa": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -31205,6 +31161,19 @@
         "user"
       ],
       "verified_at_commit": "49f948faa9258a0c61caceaf225e179651397431"
+    },
+    "GASL-SRC-7aa0911488dd421e2acc": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "678708aa1204e91cac4ec95bfba546c1a90807e3",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/finding-discovery/SKILL.md",
+      "terms": [
+        "code",
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-7aa40c429151b49accf4": {
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
@@ -33296,19 +33265,6 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
-    "GASL-SRC-82d2dec29d12c7833a6f": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "678708aa1204e91cac4ec95bfba546c1a90807e3",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/finding-discovery/SKILL.md",
-      "terms": [
-        "code",
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-830b917f078bfcd705d3": {
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "git_blob_sha": "fe82add0b6f1d0436320dfb6d2420495689e1545",
@@ -35117,6 +35073,19 @@
       "source_path": "skills/from-the-other-side-anitta/SKILL.md",
       "terms": [],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
+    },
+    "GASL-SRC-8b1dacaa180f81c3e761": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "3f3cc21ffd4225ac9d1428388a3e56211f8d60fb",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/propose-security-hardening/SKILL.md",
+      "terms": [
+        "code",
+        "develop",
+        "security",
+        "use"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-8b335011730744eea0a4": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
@@ -40901,6 +40870,19 @@
       ],
       "verified_at_commit": "119bc4a8de4eb4370db1f5838275bc9e7a0d8e4a"
     },
+    "GASL-SRC-a1eed7c619e099430b67": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "f58b53e2b9619b2ab4b67ae7a107c550cb991880",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/threat-model-visualize/SKILL.md",
+      "terms": [
+        "assessment",
+        "model",
+        "threat",
+        "visualize"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-a1f8108d6455c572b925": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
       "git_blob_sha": "2536e569c7b6494e6efc8c28c69a7f02bc090c97",
@@ -42467,6 +42449,23 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-a7be84511403ae9ea9bb": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "7f4d0c75897e73e6c861e5b0540e3bed89296513",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/verify-fix/SKILL.md",
+      "terms": [
+        "code",
+        "security",
+        "tests",
+        "use",
+        "user",
+        "validation",
+        "verification",
+        "vulnerability"
+      ],
+      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
+    },
     "GASL-SRC-a7bfb7c740094e31c79e": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "e7b7795253554383f75633c9b0133849e975662f",
@@ -42571,18 +42570,6 @@
         "workflows"
       ],
       "verified_at_commit": "ecb659cc6fb4d0b13b6303f682966fc52b001d51"
-    },
-    "GASL-SRC-a83e7411febda99e6cf1": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "b62821c78a212937e6c038185357f1f586ca066e",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/validation/SKILL.md",
-      "terms": [
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-a8469b3d8256b14179d8": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
@@ -45433,19 +45420,6 @@
       ],
       "verified_at_commit": "476ae12917b8e77609eb956bcc2203a4e4ec857d"
     },
-    "GASL-SRC-b305de82b433a348ee1b": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "16ad8de3d1efefa64bf3a93f2c5e56442b9e74a0",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/attack-path-analysis/SKILL.md",
-      "terms": [
-        "analysis",
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
-    },
     "GASL-SRC-b316f6607f587681d15d": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "ffdccdcafda566c67f1e82c5c5e1451e4198992f",
@@ -47378,6 +47352,21 @@
         "use"
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
+    },
+    "GASL-SRC-ba605d7a2579a523f681": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "7d40076528c951424a9a0070fb34ab16594fed9b",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/threat-model/SKILL.md",
+      "terms": [
+        "create",
+        "model",
+        "security",
+        "threat",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-ba62b0dadc605b4c7172": {
       "commit_sha": "ecb659cc6fb4d0b13b6303f682966fc52b001d51",
@@ -52968,6 +52957,21 @@
       ],
       "verified_at_commit": "ec59a29a03d5c40f73ab40878df04860bc00e876"
     },
+    "GASL-SRC-d1da523596029af1cff2": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "38323792b8a9ea3e7e3044c1d6cca1fe7734099d",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/cloud-findings/SKILL.md",
+      "terms": [
+        "cloud",
+        "data",
+        "read",
+        "security",
+        "use",
+        "verification"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-d1ec1d161d738066fa6c": {
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "git_blob_sha": "054a0b5627bc32de300db7d64995cd43c92463d4",
@@ -58085,6 +58089,18 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-e3f178498408320c20e9": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "4b09771fb1295e86161b7f5d405fad585ce29467",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/security-diff-scan/SKILL.md",
+      "terms": [
+        "review",
+        "security",
+        "vulnerabilities"
+      ],
+      "verified_at_commit": "986fb81a7c854fe7ae61a5198df43bcdf4bce49c"
+    },
     "GASL-SRC-e3f19d6930f00bbaac1c": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "8fef92a66c96092d5d6c9bc996e3e32e249cd910",
@@ -60268,20 +60284,6 @@
       ],
       "verified_at_commit": "6b75e9e3c9737a4985ab87462d2ecb02d5b2ada7"
     },
-    "GASL-SRC-ec0556023a7283234fe3": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "55cdaa32249a172b91bcef7fbea2c945193a6ff1",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/vulnerability-writeup/SKILL.md",
-      "terms": [
-        "campaign",
-        "code",
-        "security",
-        "use",
-        "vulnerability"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-ec4176376c6d1bcc7cc5": {
       "commit_sha": "ecb659cc6fb4d0b13b6303f682966fc52b001d51",
       "git_blob_sha": "8a47dc9f89da377626713329d401e839095cd4c8",
@@ -61492,6 +61494,19 @@
         "user"
       ],
       "verified_at_commit": "1008fd74c0912e2f4819d52324af8a2fac2b74c1"
+    },
+    "GASL-SRC-f0ab649f5b319134f89a": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "f5b29678e2cf7dde51509bc04e7832754d86b457",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/security-scan/SKILL.md",
+      "terms": [
+        "audit",
+        "security",
+        "use",
+        "vulnerabilities"
+      ],
+      "verified_at_commit": "986fb81a7c854fe7ae61a5198df43bcdf4bce49c"
     },
     "GASL-SRC-f0cfbd53242112e9fd79": {
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
@@ -63092,6 +63107,18 @@
       ],
       "verified_at_commit": "f8593c4941210a621a6629ce1da9e07897976d5f"
     },
+    "GASL-SRC-f78bfa1adeb63d6e933f": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "b62821c78a212937e6c038185357f1f586ca066e",
+      "repository": "openai/codex-security",
+      "source_path": "plugins/codex-security/skills/validation/SKILL.md",
+      "terms": [
+        "security",
+        "use",
+        "user"
+      ],
+      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+    },
     "GASL-SRC-f7a9ff9c558dce0cc722": {
       "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
       "git_blob_sha": "bd4880bf3b1412c83a0584d945f07bd976c48c58",
@@ -63898,20 +63925,6 @@
       ],
       "verified_at_commit": "2de1134dc4d1cfe112934611ae5803ae17a1bd7e"
     },
-    "GASL-SRC-fa7e23e9e921a08caf24": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "6c2d7e8ff8839c60c2d5e2760d95c1be811a7026",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/assess-patch-risk/SKILL.md",
-      "terms": [
-        "edit",
-        "files",
-        "read",
-        "tests",
-        "use"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
-    },
     "GASL-SRC-fa85c4ef7e0a7193162e": {
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "git_blob_sha": "273d56e9ac2e3366784f34768d61a5455f789dc7",
@@ -63986,21 +63999,6 @@
         "website"
       ],
       "verified_at_commit": "81ae6a3dfd576c07c51c345696dcbd69e5a7b702"
-    },
-    "GASL-SRC-faa19ae04f395d66b37a": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "d7b73cbd8ecd95d3bf9da9f2214be5ce5ded49c3",
-      "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/define-security-policy/SKILL.md",
-      "terms": [
-        "code",
-        "policy",
-        "review",
-        "security",
-        "use",
-        "user"
-      ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
     },
     "GASL-SRC-faa931ff5b3302ad1abd": {
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
@@ -65269,19 +65267,21 @@
       ],
       "verified_at_commit": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c"
     },
-    "GASL-SRC-ff5503193bc1570811e7": {
-      "commit_sha": "72d6f26113e511b2f8d6e9cf469bc29d1fb78e7e",
-      "git_blob_sha": "091360319a8c4ab5712da4c14f857688a2dd80fe",
+    "GASL-SRC-ff46a81ed41a2caab9b5": {
+      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
+      "git_blob_sha": "0b6382872f5976d4ceb0f5ad074fe3404bd4dd45",
       "repository": "openai/codex-security",
-      "source_path": "plugins/codex-security/skills/triage-finding/SKILL.md",
+      "source_path": "plugins/codex-security/skills/fix-finding/SKILL.md",
       "terms": [
-        "code",
-        "github",
-        "policy",
+        "design",
+        "review",
         "security",
-        "use"
+        "use",
+        "user",
+        "validation",
+        "vulnerability"
       ],
-      "verified_at_commit": "9b7b90c94c94b7eaec65018b0265b868f8b37e28"
+      "verified_at_commit": "6f586d8bbc2396f0f991c1756a1364896b9c3c04"
     },
     "GASL-SRC-ff5c0c13f5a4db59484f": {
       "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
