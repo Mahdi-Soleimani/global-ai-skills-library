@@ -1,5 +1,6 @@
 """Synthetic private MVP release packaging. Never publish a public Release."""
 import hashlib
+import os
 import json
 import subprocess
 import sys
@@ -123,6 +124,86 @@ class ReleaseDraftTests(unittest.TestCase):
         result=build_release_draft(self.root)
         with zipfile.ZipFile(self.root/result["relative_archive"]) as zf:
             self.assertIn("gasl-mvp/LICENSE",zf.namelist())
+
+    def forge(self, change):
+        built = build_release_draft(self.root)
+        path = self.root/built["relative_archive"]
+        sidecar = path.with_suffix(".zip.json")
+        with zipfile.ZipFile(path) as archive:
+            entries = [(item, archive.read(item)) for item in archive.infolist()]
+        entries = change(entries)
+        with zipfile.ZipFile(path, "w") as archive:
+            for info, data in entries:
+                archive.writestr(info, data)
+        meta = json.loads(sidecar.read_bytes())
+        meta["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        sidecar.write_text(json.dumps(meta), encoding="utf-8")
+        return path
+
+    def test_self_consistent_forged_zip_cannot_claim_original_commit(self):
+        def change(entries):
+            manifest = json.loads(entries[-1][1])
+            for index, (info, data) in enumerate(entries[:-1]):
+                if info.filename == "gasl-mvp/tools/gasl.py":
+                    altered = b"FORGED SOURCE NOT EXECUTED"
+                    entries[index] = (info, altered)
+                    row = next(x for x in manifest["files"] if x["path"] == "tools/gasl.py")
+                    row.update(bytes=len(altered), sha256=hashlib.sha256(altered).hexdigest())
+            entries[-1] = (entries[-1][0], json.dumps(manifest).encode())
+            return entries
+        path = self.forge(change)
+        original = path.read_bytes()
+        with self.assertRaisesRegex(ValueError, "committed source tree"):
+            verify_release_draft(self.root)
+        self.assertEqual(path.read_bytes(), original)
+
+    def test_index_hidden_worktree_change_never_enters_archive(self):
+        path = self.root/"tools/gasl.py"
+        committed = subprocess.check_output(["git", "-C", str(self.root), "show", "HEAD:tools/gasl.py"])
+        subprocess.run(["git", "-C", str(self.root), "update-index", "--assume-unchanged", "tools/gasl.py"],
+                       check=True, capture_output=True)
+        path.write_bytes(b"PRIVATE LOCAL EDIT")
+        result = build_release_draft(self.root)
+        with zipfile.ZipFile(self.root/result["relative_archive"]) as archive:
+            self.assertEqual(archive.read("gasl-mvp/tools/gasl.py"), committed)
+        self.assertTrue(verify_release_draft(self.root)["content_bound_to_commit_tree"])
+        self.assertEqual(path.read_bytes(), b"PRIVATE LOCAL EDIT")
+
+    def test_duplicate_sidecar_keys_refused(self):
+        result = build_release_draft(self.root)
+        path = self.root/result["relative_archive"]
+        sidecar = path.with_suffix(".zip.json")
+        raw = sidecar.read_text()
+        sidecar.write_text(raw.replace('"schema":', '"schema":"forged","schema":', 1))
+        with self.assertRaisesRegex(ValueError, "Duplicate release JSON"):
+            verify_release_draft(self.root)
+
+    def test_oversized_compressed_manifest_refused_before_decode(self):
+        from release_draft import MAX_MANIFEST_BYTES
+        path = self.forge(lambda entries: entries[:-1] + [
+            (entries[-1][0], b" " * (MAX_MANIFEST_BYTES + 1))])
+        with self.assertRaisesRegex(ValueError, "oversized draft archive member"):
+            verify_release_draft(self.root)
+        self.assertTrue(path.exists())
+
+    def test_hardlinked_draft_refused_without_modification(self):
+        built = build_release_draft(self.root)
+        path = self.root/built["relative_archive"]
+        alias = Path(self.tmp.name)/"alias.zip"
+        os.link(path, alias)
+        with self.assertRaisesRegex(ValueError, "Unsafe or oversized release record"):
+            verify_release_draft(self.root)
+        self.assertEqual(path.read_bytes(), alias.read_bytes())
+
+    def test_missing_manifest_entry_cannot_be_rehashed_as_valid_release(self):
+        def change(entries):
+            manifest = json.loads(entries[-1][1])
+            manifest["files"] = [x for x in manifest["files"] if x["path"] != "README.md"]
+            return [(i, d) for i, d in entries[:-1] if i.filename != "gasl-mvp/README.md"] + [
+                (entries[-1][0], json.dumps(manifest).encode())]
+        self.forge(change)
+        with self.assertRaisesRegex(ValueError, "committed source tree"):
+            verify_release_draft(self.root)
 
     def test_invalid_git_root_fails_before_read(self):
         folder=Path(self.tmp.name)/"not-git"

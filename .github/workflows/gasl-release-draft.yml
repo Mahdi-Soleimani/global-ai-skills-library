@@ -46,6 +46,7 @@ jobs:
           assert r['private_artifact_only'] is True
           assert r['public_release_allowed'] is False
           assert r['all_files_from_git_index'] is True
+          assert r['content_bound_to_commit_tree'] is True
           assert r['third_party_skill_executed'] is False
           assert r['host_paths_modified'] is False
           print('PRIVATE_RELEASE_PUBLICATION_GATE=PASS')
