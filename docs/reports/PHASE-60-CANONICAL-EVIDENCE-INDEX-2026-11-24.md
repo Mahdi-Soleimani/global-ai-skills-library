@@ -78,3 +78,29 @@ Published baseline 44bcc06b811631d4c25344f7b5a86e412ed1078c. Private release mat
 - Full regression pending at this observation. First Git fetch failed SSL_ERROR_SYSCALL, normal retry succeeded without settings changes; remote catalog-only update e73ba31 touches eight generated metadata files. No records merged, Skill installed or executed. Actual browser rendering is not claimed from DOM simulation.
 
 Full local regression after increment 6: **894 passed, 40 skipped, 432 subtests passed** in 77.87s, zero failures. Fast-forwarded catalog-only update e73ba31. Hold push until previous Windows broad CI completes.
+
+## Increment 7 — pairwise Explorer comparison and bounded exact-content cache
+
+Previous baseline 44bcc06 broad CI 45358581155 passed all three platforms. Published 4c129ff31f2316f4d559feca598b56cbb9fc3a92 successfully; Explorer CI 45360060634 passed; broad 45360060395 and private package 45360060553 still running at observation.
+
+- tools/canonical_index.py: single bounded in-memory snapshot for catalog files up to 16 MiB, thread-safe construction, SHA-256 of actual bytes read on every request (not mtime or size), direct ID-to-group mapping, deep copies of public results and selected records. Invalid or changed data is not served from an older cache. No disk cache or network. Batch comparison evidence from one validated snapshot for all 2–3 selected records; identity mismatch fails closed. Distinguishes missing, equal, and different recorded blobs and same repository/path; no package/ancestry or installation approval.
+- tools/skill_compare.py: additive relation_evidence field, explicitly unavailable when canonical catalog cannot validate the compared identities. Existing comparison remains available; no changes to ranking or selection.
+- web/index.html: pairwise recorded relations in comparison panel with clear limits. No online request or automatic installation.
+- tests/test_canonical_index.py: two additional methods verify cache isolation and same-size/same-mtime content change invalidation, invalid JSON refusal, three pairs and identity mismatch. 31 focused canonical tests and Explorer DOM simulation passed, including visible relation summary.
+
+Local actual catalog benchmark (8 sequential calls per operation, same Mac and selected Microsoft records): relation lookup median 78.42 ms before and 7.00 ms after; cold/worst observed 252.62 and 75.51 ms respectively. Approximate 11.2x improvement in measured warm-median lookup, not a universal performance claim. Comparison median 29.78 ms before vs 40.65 ms after including new evidence; initial baseline cold index build 4484.06 ms, post-change already warm max 48.49 ms, not directly comparable. Actual pair output same_recorded_blob, distinct paths; catalog SHA-256 b4ed46966b18c8397e865f86b70d528981f5366f74d07728213d0e0e751a7d39. No source modifications or merge. Full regression pending.
+
+## Increment 7 acceptance evidence and remaining roadmap boundaries
+
+Full macOS regression: **896 passed, 40 skipped, 432 subtests passed**, 86.12s, zero failures. Fast-forwarded catalog-only update 2775695 (seven generated metadata files). After refresh, 71 focused canonical/comparison tests and Explorer DOM flow passed. Actual authenticated loopback HTTP smoke on the refreshed 4,434-record catalog: 64 relation GET requests with 8 concurrent workers, all HTTP 200, correct exact record ID, matching catalog digest b3e3725eb7113a8e770b4f6ff7dca2b7500f046ed6a7f6133df46d393ffda687 and no installation approval; median 290.20 ms, maximum 419.59 ms under this particular concurrent local load. Actual POST /v1/compare passed and returned the same recorded blob evidence with the same digest. Server stopped after the test. These are local measurements, not throughput guarantees.
+
+Published predecessor 4c129ff: dedicated private package matrix 45360060553 passed all three OS; broad 45360060395 macOS and Ubuntu succeeded, Windows still running at observation. Exact final revision CI is required before closing Phase 60. No push cancellation or force push.
+
+### Remaining roadmap review (based on docs/ROADMAP.md and Phases 54–60)
+
+- Original research datasets: original row-level CSV/JSON/XLSX artifacts remain unavailable; four independent source manifests and original reports retained. Do not reconstruct or invent missing source rows.
+- Canonical evidence: implemented candidate index, direct lookup, pairwise comparison, optional pinned SKILL.md, repository/commit and tree evidence, filename-based license/manifest context and offline REST/Explorer. Acceptance is scoped to these evidence features, not global deduplication or all relations independently verified.
+- Search: lexical FTS5 default remains intentional. Full vector retrieval is optional research; no independently judged relevance or calibrated accuracy claim.
+- Validation: synthetic fixture and transactional tests are separate from real vendor-host compatibility, controlled third-party execution and independent behavioral evaluation. Do not run downloaded Skills on the real host; user-deferred actual vendor tests and human adjudication remain explicitly deferred.
+- Packaging: Phase 59 verified canonical private metadata-only ZIP and six MCP tools on three OS. Public release remains blocked by unselected project LICENSE and separate redistribution review. Do not publish a release or select a license on behalf of the owner.
+- After exact-revision Phase 60 CI: audit actual cross-platform launcher/setup and clean-install paths against the packaged runtime; prioritize actionable defects rather than adding unsupported features. Root-level or exceptional packages, independently verified external dependencies and production legacy migration remain distinct scope/approval gates.

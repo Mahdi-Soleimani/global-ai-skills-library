@@ -490,10 +490,30 @@
       body.append(chooseRow);
       table.append(body);
       container.append(table);
+      const relationSection = el("div", "");
+      relationSection.append(el("h3", "", "روابط ثبت‌شده میان انتخاب‌ها"));
+      const evidence = data.relation_evidence;
+      if (evidence?.status === "recorded_catalog_evidence_only") {
+        const names = new Map(data.items.map(item => [item.source_record_id, item.skill_name || item.source_record_id]));
+        const list = el("ul", "");
+        for (const pair of evidence.pairs || []) {
+          const labels = pair.source_record_ids.map(id => names.get(id) || id);
+          const blob = ({same_recorded_blob:"Git Blob ثبت‌شده یکسان",
+            different_recorded_blobs:"Git Blob ثبت‌شده متفاوت",
+            incomplete_blob_evidence:"شواهد Blob ناقص"})[pair.blob_comparison] || "نامشخص";
+          list.append(el("li", "", labels.join(" ↔ ") + " — " +
+            (pair.same_repository_path ? "نسخه‌های یک مسیر؛ " : "مسیرهای متفاوت؛ ") + blob));
+        }
+        relationSection.append(list);
+      } else {
+        relationSection.append(el("p", "desc", "شواهد روابط برای این مقایسه در دسترس نیست."));
+      }
+      relationSection.append(el("p", "status warn",
+        "این روابط صرفاً شواهد کاتالوگ هستند؛ برابری کامل بسته، ترتیب تاریخی و مجوز نصب تأیید نشده‌اند."));
       $("compareBody").replaceChildren(
         el("p", "status warn",
           "تفاوت‌ها در اطلاعات ثبت‌شده برجسته شده‌اند؛ این جدول برنده قطعی یا Skill امن را تعیین نمی‌کند."),
-        container
+        container, relationSection
       );
     }
 

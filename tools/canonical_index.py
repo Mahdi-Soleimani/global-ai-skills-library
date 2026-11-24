@@ -3,7 +3,9 @@
 Equal recorded Git blob IDs are not independent content verification, package
 equivalence, publisher identity, permission, or a basis for merging records.
 """
+import copy
 import hashlib
+import threading
 import json
 import urllib.error
 import urllib.request
@@ -16,6 +18,9 @@ SHA1 = re.compile(r"[0-9a-f]{40}\Z")
 REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
 MAX_CATALOG_BYTES = 64 * 1024 * 1024
 MAX_RECORDS = 100_000
+MAX_CACHED_CATALOG_BYTES = 16 * 1024 * 1024
+_snapshot_lock = threading.Lock()
+_snapshot_cache = None
 
 
 def _identity(row):
@@ -96,12 +101,16 @@ def build_index(records):
                             "No globally unique Skill count inferred. Missing blob evidence remains unknown."]}
 
 
-def _read_catalog(root):
+def _read_raw(root):
     path = Path(root) / "registry" / "source-catalog.json"
     with path.open("rb") as stream:
         raw = stream.read(MAX_CATALOG_BYTES + 1)
     if len(raw) > MAX_CATALOG_BYTES:
         raise ValueError("Catalog exceeds read limit")
+    return raw, hashlib.sha256(raw).hexdigest()
+
+
+def _parse_catalog(raw):
     def unique(pairs):
         result = {}
         for key, value in pairs:
@@ -112,33 +121,76 @@ def _read_catalog(root):
     data = json.loads(raw, object_pairs_hook=unique)
     if not isinstance(data, dict) or data.get("schema_version") != "1.0.0":
         raise ValueError("Unsupported catalog schema")
-    return data.get("records"), hashlib.sha256(raw).hexdigest()
+    return data.get("records")
+
+
+def _read_catalog(root):
+    raw, digest = _read_raw(root)
+    return _parse_catalog(raw), digest
+
+
+def _snapshot(root):
+    """One bounded in-memory snapshot, keyed by the exact bytes, never mtime."""
+    global _snapshot_cache
+    raw, digest = _read_raw(root)
+    with _snapshot_lock:
+        if _snapshot_cache is not None and _snapshot_cache[0] == digest:
+            return _snapshot_cache[1]
+        records = _parse_catalog(raw)
+        index = build_index(records)
+        by_id = {r["source_record_id"]: r for r in records}
+        related = defaultdict(list)
+        for field in ("recorded_blob_groups", "path_revision_groups"):
+            for group in index[field]:
+                for member in group["members"]:
+                    related[member["source_record_id"]].append(group)
+        result = (by_id, index, related, digest)
+        _snapshot_cache = (digest, result) if len(raw) <= MAX_CACHED_CATALOG_BYTES else None
+        return result
 
 
 def inspect(root=ROOT):
-    records, digest = _read_catalog(root)
-    result = build_index(records)
+    _, index, _, digest = _snapshot(root)
+    result = copy.deepcopy(index)
     result["catalog_sha256"] = digest
     return result
 
 
 def _selected(root, ids):
-    records, digest = _read_catalog(root)
-    index = build_index(records)
-    by_id = {r["source_record_id"]: r for r in records}
-    if len(by_id) != len(records):
-        raise ValueError("Duplicate source record ID")
+    by_id, index, _, digest = _snapshot(root)
     if any(sid not in by_id for sid in ids):
         raise ValueError("Unknown exact source record ID")
-    return [by_id[sid] for sid in ids], index, digest
+    return [copy.deepcopy(by_id[sid]) for sid in ids], copy.deepcopy(index), digest
+
+
+def comparison_evidence(items, *, root=ROOT):
+    """One exact catalog snapshot for all selected pairs, never network access."""
+    by_id, _, _, digest = _snapshot(root)
+    rows = []
+    for item in items:
+        row = by_id.get(item["source_record_id"])
+        if row is None or any(row.get(k) != item.get(k) for k in
+                              ("repository", "source_path", "commit_sha")):
+            raise ValueError("Comparison identity does not match canonical snapshot")
+        rows.append(_identity(row))
+    pairs = []
+    for i, (lk, lb, lid) in enumerate(rows):
+        for rk, rb, rid in rows[i+1:]:
+            pairs.append({"source_record_ids":[lid,rid], "same_repository_path":lk[:2]==rk[:2],
+                          "blob_comparison":("incomplete_blob_evidence" if None in (lb,rb) else
+                              "same_recorded_blob" if lb==rb else "different_recorded_blobs")})
+    return {"status":"recorded_catalog_evidence_only", "catalog_sha256":digest,
+            "pairs":pairs, "package_equivalence_established":False,
+            "ancestry_established":False, "installation_or_execution_approved":False}
 
 
 def lookup(source_id, *, root=ROOT):
-    selected, index, digest = _selected(root, [source_id])
-    row = selected[0]
+    by_id, _, groups, digest = _snapshot(root)
+    if source_id not in by_id:
+        raise ValueError("Unknown exact source record ID")
+    row = by_id[source_id]
     key, blob, sid = _identity(row)
-    related = [g for field in ("recorded_blob_groups", "path_revision_groups")
-               for g in index[field] if any(m["source_record_id"] == sid for m in g["members"])]
+    related = copy.deepcopy(groups.get(sid, []))
     return {"schema": "gasl-canonical-lookup-v1", "catalog_sha256": digest,
             "source_record_id": sid, "repository": row["repository"],
             "source_path": key[1], "commit_sha": key[2], "git_blob_sha": blob,

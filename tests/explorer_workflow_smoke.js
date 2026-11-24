@@ -117,6 +117,8 @@ const fetchMock = async (url, options = {}) => {
         license_assessment: "unknown", compatibility: "codex",
         commit_sha: "a".repeat(40)
       })),
+      relation_evidence: { status:"recorded_catalog_evidence_only",
+        pairs:[{source_record_ids:body.ids,same_repository_path:false,blob_comparison:"same_recorded_blob"}]},
       note: "No quality winner."
     };
   } else {
@@ -159,6 +161,7 @@ vm.runInNewContext(source, context, { filename: "explorer-inline.js" });
   await nodes.compareButton.listeners.click();
   const table = descendants(nodes.compareBody, n => n.tag === "table");
   assert.equal(table.length, 1);
+  assert(descendants(nodes.compareBody,n => n.textContent.includes("Git Blob ثبت‌شده یکسان")).length);
   const selections = descendants(nodes.compareBody, n => n.tag === "button" &&
     n.textContent === "بررسی این گزینه");
   assert.equal(selections.length, 2);

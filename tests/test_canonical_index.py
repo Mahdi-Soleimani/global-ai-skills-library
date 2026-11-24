@@ -8,7 +8,7 @@ from unittest.mock import patch, MagicMock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
-from canonical_index import build_index, inspect, lookup, compare
+from canonical_index import build_index, inspect, lookup, compare, comparison_evidence
 
 
 def record(repo="org/repo", path="skills/a/SKILL.md", commit="a"*40, blob="b"*40):
@@ -136,6 +136,46 @@ class CanonicalIndexTests(unittest.TestCase):
                 with patch("safe_http.open_pinned_url",side_effect=response), self.assertRaises((ValueError,RuntimeError)):
                     compare(ids,root=root,verify_online=True)
                 self.assertFalse((root/"private").exists())
+
+    def test_cache_exact_digest_and_copy_isolation(self):
+        import canonical_index
+        rows = [record(), record(repo="other/repo")]
+        root, path = self.pair_fixture(rows)
+        sid = rows[0]["source_record_id"]
+        with patch("canonical_index.build_index", wraps=canonical_index.build_index) as build:
+            # Force a fresh input digest independent of other fixtures.
+            path.write_bytes(path.read_bytes()+b"  ")
+            first = lookup(sid, root=root)
+            first["related_groups"][0]["members"].clear()
+            self.assertEqual(len(lookup(sid,root=root)["related_groups"][0]["members"]),2)
+            snapshot = inspect(root)
+            snapshot["recorded_blob_groups"].clear()
+            self.assertEqual(inspect(root)["recorded_blob_group_count"],1)
+            self.assertEqual(build.call_count,1)
+            import os
+            stat=path.stat()
+            raw=path.read_bytes()
+            changed=raw.replace(b"b"*40,b"c"*40,1)
+            self.assertEqual(len(raw),len(changed))
+            path.write_bytes(changed)
+            os.utime(path,ns=(stat.st_atime_ns,stat.st_mtime_ns))
+            self.assertEqual(lookup(sid,root=root)["related_groups"],[])
+            self.assertEqual(build.call_count,2)
+            path.write_bytes(b"invalid")
+            with self.assertRaises(ValueError):
+                lookup(sid,root=root)
+
+    def test_comparison_pairs_all_three_and_identity_mismatch(self):
+        rows=[record(),record(repo="other/repo"),record(commit="c"*40,blob=None)]
+        root,_=self.pair_fixture(rows)
+        result=comparison_evidence(rows,root=root)
+        self.assertEqual(len(result["pairs"]),3)
+        self.assertEqual([p["blob_comparison"] for p in result["pairs"]],
+                         ["same_recorded_blob","incomplete_blob_evidence","incomplete_blob_evidence"])
+        self.assertTrue(result["pairs"][1]["same_repository_path"])
+        self.assertFalse(result["package_equivalence_established"])
+        with self.assertRaises(ValueError):
+            comparison_evidence([dict(rows[0],commit_sha="d"*40),rows[1]],root=root)
 
     def test_readonly_exact_catalog_digest_and_duplicate_json_refusal(self):
         with tempfile.TemporaryDirectory() as t:

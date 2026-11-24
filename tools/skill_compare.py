@@ -49,7 +49,15 @@ def compare_skills(source_ids, *, root=ROOT):
         if len({json.dumps(item.get(key), sort_keys=True, ensure_ascii=False)
                 for item in entries}) > 1
     ]
+    from canonical_index import comparison_evidence
+    try:
+        relations = comparison_evidence(entries, root=root)
+    except (OSError, ValueError):
+        relations = {"status":"canonical_evidence_unavailable", "pairs":[],
+                     "package_equivalence_established":False, "ancestry_established":False,
+                     "installation_or_execution_approved":False}
     return {
+        "relation_evidence": relations,
         "schema_version": "gasl-skill-compare-v1",
         "source_record_ids": list(source_ids),
         "count": len(entries),
