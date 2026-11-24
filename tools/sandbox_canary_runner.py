@@ -53,9 +53,23 @@ def _client_environment():
             'DOCKER_CONFIG': '/nonexistent/docker-config'}
 
 
-def _run(argv, *, runner=subprocess.run, timeout=12):
+def _run(argv, *, runner=subprocess.run, timeout=12, client_env=None):
     return runner(argv, capture_output=True, text=True, timeout=timeout,
-                  check=False, env=_client_environment())
+                  check=False, env=_client_environment() if client_env is None else client_env)
+
+
+def _build_error_category(stderr):
+    """Report fixed diagnostic categories only, never arbitrary build output."""
+    detail = str(stderr or "").casefold()
+    categories = {
+        "buildx_unavailable": ("buildx component is missing", "buildx is not a docker command"),
+        "permission_or_config_path": ("permission denied", "read-only file system", "mkdir", "nonexistent"),
+        "daemon_unavailable": ("cannot connect to the docker daemon", "connection refused"),
+        "unsupported_option": ("unknown flag", "unknown shorthand flag"),
+        "build_context_error": ("failed to read dockerfile", "failed to solve", "failed to compute cache key"),
+    }
+    return next((name for name, markers in categories.items() if any(m in detail for m in markers)),
+                "unclassified_build_error")
 
 
 def _image_is_verified_local_canary(details, image_id, source_digest):
@@ -277,12 +291,21 @@ def run_benign_canary(image_id=None, *, docker_bin=None, system=None, runner=sub
             iid=folder/"image-id"
             # Unique tag and immutable ID from the same build; only our two
             # trusted files are in the context. No dependency download or pull.
+            # BuildKit/buildx needs writable client-side state even with no
+            # network or pulls. Use an empty disposable config, not host HOME
+            # or the deliberately nonexistent runtime diagnostic config.
+            client_home=folder/"docker-home"
+            client_home.mkdir(mode=0o700)
+            config=client_home/".docker"
+            config.mkdir(mode=0o700)
+            build_env={**_client_environment(),"HOME":str(client_home),"DOCKER_CONFIG":str(config)}
             build_attempted=True
             build=_run([docker_bin,"build","--pull=false","--network=none","--no-cache",
                         "--iidfile",str(iid),"--build-arg","CANARY_SOURCE_SHA="+source_digest,
-                        "-t",tag,str(context)],runner=runner,timeout=120)
+                        "-t",tag,str(context)],runner=runner,timeout=120,client_env=build_env)
             if build.returncode:
                 result=_empty_result("local_canary_image_build_failed")
+                result["build_error_category"]=_build_error_category(build.stderr)
             elif not iid.is_file() or iid.stat().st_size>128:
                 result=_empty_result("local_canary_image_id_missing")
             else:

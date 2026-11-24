@@ -65,6 +65,11 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
             if argv[1]=="build":
                 self.assertIn("--network=none",argv)
                 self.assertIn("--pull=false",argv)
+                config=Path(kw["env"]["DOCKER_CONFIG"])
+                self.assertTrue(config.is_dir())
+                self.assertEqual(list(config.iterdir()),[])
+                self.assertEqual(config.parent,Path(kw["env"]["HOME"]))
+                self.assertNotEqual(config,Path.home()/".docker")
                 self.assertEqual(set(x.name for x in Path(argv[-1]).iterdir()),{"Dockerfile","canary"})
                 Path(argv[argv.index("--iidfile")+1]).write_text(IMAGE_ID)
                 return subprocess.CompletedProcess(argv,0,"","")
@@ -90,6 +95,13 @@ class SandboxCanaryRunnerTests(unittest.TestCase):
         self.assertTrue(result["local_build_tag_removed"])
         self.assertFalse(result["external_image_accepted"])
         self.assertFalse(result["sandbox_execution_enabled"])
+
+    def test_build_error_only_reports_fixed_category(self):
+        from sandbox_canary_runner import _build_error_category
+        self.assertEqual(_build_error_category("mkdir /nonexistent: permission denied"),
+                         "permission_or_config_path")
+        self.assertEqual(_build_error_category("private incidental fixture text"),
+                         "unclassified_build_error")
 
     def test_every_required_check_is_registered_in_actual_go_entrypoint(self):
         source = SOURCE.read_text(encoding='utf-8')
