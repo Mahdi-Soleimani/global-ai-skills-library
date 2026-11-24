@@ -6,7 +6,8 @@ import json
 import os
 import shutil
 import stat
-import subprocess
+import urllib.request
+import urllib.error
 import tempfile
 import unicodedata
 from pathlib import Path
@@ -46,8 +47,16 @@ def no_symlink(root, path):
     current = root
     for part in relative.parts:
         current = current / part
-        if current.is_symlink() or (hasattr(current, "is_junction") and current.is_junction()):
+        try:
+            info = current.lstat()
+        except FileNotFoundError:
+            continue
+        if stat.S_ISLNK(info.st_mode) or getattr(info,"st_file_attributes",0)&0x400:
             raise ValueError("Symlink or junction in local destination")
+        if not (stat.S_ISREG(info.st_mode) or stat.S_ISDIR(info.st_mode)):
+            raise ValueError("Nonregular local destination")
+        if stat.S_ISREG(info.st_mode) and info.st_nlink != 1:
+            raise ValueError("Unsafe hard-linked local destination")
     return path
 
 
@@ -69,7 +78,7 @@ def checked_file(root, path, item):
 
 def make_plan(row, tree, policy):
     skill = safe_path(row["skill_path"])
-    require_windows_filename_safety(skill)
+    require_windows_filename_safety(skill, portable=True)
     if is_test_fixture_path(skill) or not skill.endswith("/SKILL.md"):
         raise ValueError("Fixture, root-level or noncanonical SKILL.md requires explicit review")
     if tree.get("sha") != row["tree_sha"] or tree.get("truncated") is not False:
@@ -82,7 +91,7 @@ def make_plan(row, tree, policy):
     def add_entry(e, relative):
         path = e["path"]
         safe_path(path)
-        require_windows_filename_safety(relative)
+        require_windows_filename_safety(relative, portable=True)
         key = collision_key(relative)
         if key in seen:
             raise ValueError("Case/Unicode collision in package")
@@ -96,7 +105,7 @@ def make_plan(row, tree, policy):
             spelling[folded] = prefix
         if (e.get("type") != "blob" or e.get("mode") not in ORDINARY_MODES or
             is_excluded_path(path) or any(part.casefold() in {"source.json", "source.json.tmp", ".gasl-download-checkpoint.json"} for part in relative.split("/")) or
-            not isinstance(e.get("size"), int) or e["size"] < 0 or e["size"] > policy["max_file_size_bytes"]):
+            type(e.get("size")) is not int or e["size"] < 0 or e["size"] > policy["max_file_size_bytes"]):
             blocked.append(path)
             return
         result.append({"path": path, "relative": relative, "size": e["size"], "sha": require_sha(e.get("sha"))})
@@ -172,18 +181,36 @@ def fetch_tree(row):
 
 
 def fetch_blob(plan, item):
-    url = "https://raw.githubusercontent.com/" + plan["repository"] + "/" + plan["commit_sha"] + "/" + quote(item["path"], safe="/")
-    r = subprocess.run(["curl","--fail","--silent","--show-error","--connect-timeout","5",
-                        "--max-time","20","--max-filesize",str(max(1,item["size"])),
-                        "--retry","1",url],capture_output=True,check=False)
-    if r.returncode:
-        raise RuntimeError(r.stderr.decode("utf-8","replace").strip()[:250])
-    return r.stdout
+    """Bounded pinned HTTPS transport, with no curl or redirect dependency."""
+    from canonical_lineage import NoRedirect
+    repo = plan["repository"]
+    if not REPO.fullmatch(repo) or any(p in {".",".."} for p in repo.split("/")):
+        raise ValueError("Invalid repository")
+    pin = require_sha(plan["commit_sha"])
+    path = safe_path(item["path"])
+    size = item["size"]
+    if type(size) is not int or not 0 <= size <= 10*1024*1024:
+        raise ValueError("Invalid pinned file size")
+    url = "https://raw.githubusercontent.com/" + repo + "/" + pin + "/" + quote(path,safe="/")
+    request = urllib.request.Request(url,headers={"User-Agent":"GASL/0.1","Accept":"application/octet-stream"})
+    try:
+        with urllib.request.build_opener(NoRedirect()).open(request,timeout=20) as response:
+            if response.geturl()!=url:
+                raise ValueError("Pinned raw endpoint changed")
+            data=response.read(size+1)
+    except (urllib.error.URLError,TimeoutError) as exc:
+        raise RuntimeError("Pinned raw content unavailable") from exc
+    if len(data)!=size or git_blob(data)!=require_sha(item["sha"]):
+        raise ValueError("Downloaded blob size/hash mismatch")
+    return data
 
 
 def package_location(root, plan):
     repo = "__".join(safe_name(p) for p in plan["repository"].split("/"))
-    leaf = safe_name(plan["skill_path"].split("/")[-2])
+    skill = safe_path(plan["skill_path"])
+    if "/" not in skill:
+        raise ValueError("Root-level Skill requires root-skill-scope review")
+    leaf = safe_name(skill.split("/")[-2])
     tag = hashlib.sha256(plan["skill_path"].encode()).hexdigest()[:8]
     return root / "catalog" / repo / (leaf+"__"+tag+"@"+plan["commit_sha"][:12])
 
@@ -206,27 +233,43 @@ def validate_inventory(root, folder, plan, metadata=False):
             raise ValueError("Package integrity failure")
 
 
+def _write_local_json(root,path,value):
+    """Exclusive temporary file; never truncate a fixed-name sidecar or alias."""
+    no_symlink(root,path)
+    path.parent.mkdir(parents=True,exist_ok=True)
+    fd,name=tempfile.mkstemp(prefix=".gasl-metadata-",suffix=".tmp",dir=path.parent)
+    temp=Path(name)
+    try:
+        with os.fdopen(fd,"w",encoding="utf-8",newline="\n") as stream:
+            json.dump(value,stream,ensure_ascii=False,indent=2)
+            stream.write("\n")
+        no_symlink(root,path)
+        temp.replace(path)
+    finally:
+        temp.unlink(missing_ok=True)
+
+
 def merge_manifest(root, plan, dest, manifest_path=None):
-    path = manifest_path if manifest_path is not None else root / "registry/download-manifest.json"
+    path = no_symlink(root, manifest_path if manifest_path is not None else root / "registry/download-manifest.json")
     manifest = read_json(path) if path.exists() else {"schema_version": "0.1.0", "downloads": []}
     entry = next((e for e in manifest["downloads"] if e["repository"].casefold()==plan["repository"].casefold() and e["commit_sha"]==plan["commit_sha"]),None)
     if entry is None:
         entry = {"repository":plan["repository"], "commit_sha":plan["commit_sha"], "downloaded_at":now(), "skill_packages":[]}
         manifest["downloads"].append(entry)
-    item = {"skill_path":plan["skill_path"], "package_path":str(dest.relative_to(root)),
+    item = {"skill_path":plan["skill_path"], "package_path":dest.relative_to(root).as_posix(),
             "file_count":len(plan["files"]), "bytes":plan["bytes"]}
     existing = next((e for e in entry["skill_packages"] if e["skill_path"]==plan["skill_path"]),None)
     if existing is not None:
-        if existing.get("package_path") != item["package_path"]:
+        if not isinstance(existing.get("package_path"),str) or existing["package_path"].replace("\\","/") != item["package_path"]:
             raise ValueError("Existing manifest package path conflicts for the same immutable source identity")
         # A later complete package plan may include upstream LICENSE/NOTICE files
         # that an older pilot omitted. Refresh its measured inventory after the
         # new package has passed full hash and directory validation.
         existing.update(item)
-        write_json(path,manifest)
+        _write_local_json(root,path,manifest)
         return
     entry["skill_packages"].append(item)
-    write_json(path,manifest)
+    _write_local_json(root,path,manifest)
 
 
 def ingest(root, plan, fetch=fetch_blob, manifest_path=None):
@@ -261,7 +304,13 @@ def ingest(root, plan, fetch=fetch_blob, manifest_path=None):
         with tempfile.NamedTemporaryFile(dir=temp_dir,delete=False) as stream:
             temp = Path(stream.name)
             stream.write(data)
-        temp.replace(target)
+        try:
+            no_symlink(root,target)
+            if target.exists():
+                raise ValueError("Checkpoint appeared during download")
+            temp.rename(target)
+        finally:
+            temp.unlink(missing_ok=True)
         new_files += 1
     # A crash after metadata generation can be resumed, but only with full verification.
     source = no_symlink(root,stage/"source.json")
@@ -306,7 +355,7 @@ def ingest(root, plan, fetch=fetch_blob, manifest_path=None):
             "completeness_scope":"regular files in skill directory excluding nested skill folders; external dependencies unverified",
             "nested_skill_dirs_excluded":plan["nested_skill_dirs_excluded"],
             "skipped_files":[],"security_status":"not_scanned","files":records}
-    write_json(source,meta)
+    _write_local_json(root,source,meta)
     dest.parent.mkdir(parents=True,exist_ok=True)
     if dest.exists():
         raise ValueError("Destination appeared during ingest")

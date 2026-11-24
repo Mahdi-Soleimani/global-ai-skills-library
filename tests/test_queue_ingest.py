@@ -1,5 +1,9 @@
 import hashlib
 import json
+import os
+import urllib.error
+import urllib.request
+from unittest.mock import patch, MagicMock
 import sys
 import tempfile
 import unittest
@@ -221,6 +225,80 @@ class QueueIngestTests(unittest.TestCase):
         ingest(self.root,plan,lambda p,i:FILES[i["path"]])
         (package_location(self.root,plan)/"extra").write_text("unexpected")
         with self.assertRaises(ValueError): ingest(self.root,plan,lambda *_:b"")
+
+    def test_pinned_transport_bounds_hash_and_redirect(self):
+        from queue_ingest import fetch_blob
+        from canonical_lineage import NoRedirect
+        plan={"repository":"Org/Repo","commit_sha":COMMIT}
+        data=b"fixture"
+        item={"path":"skills/demo/space name.md","size":len(data),"sha":git_blob(data)}
+        url="https://raw.githubusercontent.com/Org/Repo/"+COMMIT+"/skills/demo/space%20name.md"
+        response=MagicMock()
+        response.__enter__.return_value=response
+        response.geturl.return_value=url
+        response.read.return_value=data
+        with patch("queue_ingest.urllib.request.build_opener") as opener:
+            opener.return_value.open.return_value=response
+            self.assertEqual(fetch_blob(plan,item),data)
+            self.assertIsInstance(opener.call_args.args[0],NoRedirect)
+            self.assertEqual(opener.return_value.open.call_args.args[0].full_url,url)
+            response.read.assert_called_with(len(data)+1)
+            for bad in (b"changed",data+b"x",b""):
+                response.read.return_value=bad
+                with self.subTest(data=bad),self.assertRaisesRegex(ValueError,"size/hash"):
+                    fetch_blob(plan,item)
+            response.geturl.return_value=url+"/redirected"
+            with self.assertRaisesRegex(ValueError,"endpoint changed"):
+                fetch_blob(plan,item)
+            opener.return_value.open.side_effect=urllib.error.URLError("fixture failure")
+            with self.assertRaisesRegex(RuntimeError,"unavailable"):
+                fetch_blob(plan,item)
+        with self.assertRaises(urllib.error.HTTPError):
+            NoRedirect().redirect_request(urllib.request.Request(url),
+                None,302,"redirect",{},"https://raw.githubusercontent.com/elsewhere")
+
+    def test_portable_names_and_boolean_size_rejected(self):
+        for name in ("CON","NUL.txt","part:ADS","trailing.","trailing "):
+            row,tree=fixture();tree["tree"].append(entry("skills/demo/"+name,b"x"))
+            with self.subTest(name=name),self.assertRaises(ValueError):
+                make_plan(row,tree,POLICY)
+        row,tree=fixture();tree["tree"][0]["size"]=True
+        with self.assertRaises(ValueError):
+            make_plan(row,tree,POLICY)
+
+    def test_hardlinked_checkpoint_refused(self):
+        row,tree=fixture();plan=make_plan(row,tree,POLICY)
+        dest=package_location(self.root,plan)
+        stage=self.root/"quarantine/queue-ingest"/dest.parent.name/dest.name
+        stage.mkdir(parents=True)
+        alias=self.root/"sentinel"
+        alias.write_bytes(FILES["skills/demo/SKILL.md"])
+        os.link(alias,stage/"SKILL.md")
+        with self.assertRaisesRegex(ValueError,"hard-linked"):
+            ingest(self.root,plan,lambda *_:self.fail("No fetch"))
+        self.assertEqual(alias.read_bytes(),FILES["skills/demo/SKILL.md"])
+        self.assertFalse(dest.exists())
+
+    def test_atomic_metadata_does_not_touch_fixed_sidecar_or_hardlink(self):
+        row,tree=fixture();plan=make_plan(row,tree,POLICY)
+        manifest=self.root/"registry/download-manifest.json"
+        sentinel=self.root/"sentinel"
+        sentinel.write_bytes(b"inert")
+        fixed=manifest.with_suffix(".json.tmp")
+        os.link(sentinel,fixed)
+        merge_manifest(self.root,plan,package_location(self.root,plan))
+        self.assertEqual(sentinel.read_bytes(),b"inert")
+        self.assertEqual(fixed.read_bytes(),b"inert")
+        self.assertFalse(list(manifest.parent.glob(".gasl-metadata-*")))
+        manifest.unlink()
+        os.link(sentinel,manifest)
+        with self.assertRaisesRegex(ValueError,"hard-linked"):
+            merge_manifest(self.root,plan,package_location(self.root,plan))
+
+    def test_root_location_requires_explicit_review(self):
+        row,_=fixture()
+        with self.assertRaisesRegex(ValueError,"root-skill-scope"):
+            package_location(self.root,dict(row,skill_path="SKILL.md"))
 
     def test_local_symlink_fails(self):
         row,tree=fixture(); plan=make_plan(row,tree,POLICY)

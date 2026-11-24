@@ -68,6 +68,14 @@ class OnDemandTests(unittest.TestCase):
                 self.assertEqual(meta["license_spdx"],"NOASSERTION")
                 self.assertTrue(meta["package_complete"])
 
+    def test_root_record_rejected_before_network(self):
+        with patch("on_demand.get_skill_by_id",return_value={
+            "snapshot_status":"verified_commit_pinned","source_path":"SKILL.md"}), \
+             patch("queue_ingest.fetch_tree") as fetch:
+            with self.assertRaisesRegex(ValueError,"root-skill-scope"):
+                download_skill("root")
+            fetch.assert_not_called()
+
     def test_unpinned_record_rejected_before_network(self):
         with patch("on_demand.get_skill_by_id",return_value={"snapshot_status":"legacy_snapshot_unpinned"}), \
              patch("queue_ingest.fetch_tree") as fetch:

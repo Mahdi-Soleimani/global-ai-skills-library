@@ -6,8 +6,7 @@ from skill_search import ROOT, get_skill_by_id
 
 
 def download_skill(source_record_id, root=ROOT, execute=False):
-    # Keep the existing POSIX collector optional; basic search and SKILL.md
-    # retrieval remain platform independent.
+    # Import the portable collector only for explicit selected retrieval.
     from queue_ingest import (fetch_tree, make_plan, ingest, package_location,
                               no_symlink, read_json, ingestion_lock)
 
@@ -17,6 +16,8 @@ def download_skill(source_record_id, root=ROOT, execute=False):
         raise KeyError("Skill source record not found: " + source_record_id)
     if record.get("snapshot_status") != "verified_commit_pinned":
         raise ValueError("A verified commit-pinned source record is required.")
+    if "/" not in record["source_path"]:
+        raise ValueError("Root-level Skill requires root-skill-scope review")
     row = {**record, "skill_path": record["source_path"],
            "research_leads": record.get("research_leads") or []}
     policy = read_json(root / "config/policy.json")
