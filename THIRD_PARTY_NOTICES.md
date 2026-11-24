@@ -1,6 +1,6 @@
 # Third-party content and redistribution policy
 
-This repository intentionally excludes downloaded Skill package contents, original Deep Research reports, local security evidence, and quarantined packages. Those artifacts remain local-only.
+Original Deep Research reports, private downloads, local security evidence, and quarantined packages remain local-only. The public repository retains nine previously mirrored third-party packages under `public-catalog/packages/`, each with its own attribution and bundled upstream license evidence. The separate private MVP runtime ZIP includes the catalog index but excludes those mirrored package files. No new public mirror or distribution is authorized by this notice.
 
 Public source manifests, repository names, paths, commit identifiers, hashes, and aggregate counts are provenance metadata; their presence does not grant permission to redistribute the referenced Skill contents.
 
