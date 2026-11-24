@@ -457,6 +457,8 @@ def _preview_state(host,project,slug,action,selected_id=None):
             raise ValueError("Restore requires an existing owned backup identifier")
         chosen=_manifest_valid(_load(_manifest(state,slug,selected_id)),
                                host,slug,selected_id)
+        if chosen["files"] == receipt["files"]:
+            raise ValueError("Selected backup is identical to active Skill; no restore needed")
         selected_plan=chosen["previous_receipt"]["plan_id"]
     elif action=="uninstall":
         if receipt is None:

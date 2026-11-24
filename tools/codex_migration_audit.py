@@ -41,6 +41,9 @@ def _unique_object(pairs):
 def _record(path):
     if is_redirected(path):
         raise AuditBlocked('unsafe_record')
+    if os.name == 'nt':
+        from windows_user_profile import assert_no_reparse_components
+        assert_no_reparse_components(path)
     info = path.stat()
     if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size > 100_000:
         raise AuditBlocked('unsafe_record')
@@ -69,14 +72,36 @@ def _nonempty(path):
 
 def _inventory_checked(folder):
     _directory(folder)
+    # Reject redirected/hardlinked entries before hashing or descending.
+    # This is a bounded cooperative audit, not a hostile-filesystem lock.
+    from install_bundle import MAX_FILES, MAX_BYTES, MAX_ONE_FILE
+    pending, count, total = [folder], 0, 0
+    while pending:
+        current = pending.pop()
+        for item in current.iterdir():
+            count += 1
+            if count > MAX_FILES * 32:
+                raise AuditBlocked('excessive_inventory_entries')
+            if is_redirected(item):
+                raise AuditBlocked('unsafe_inventory_entry')
+            if os.name == 'nt':
+                from windows_user_profile import assert_no_reparse_components
+                assert_no_reparse_components(item)
+            require_windows_filename_safety(item.relative_to(folder).as_posix(), portable=True)
+            info = item.stat()
+            if stat.S_ISDIR(info.st_mode):
+                pending.append(item)
+            elif not stat.S_ISREG(info.st_mode):
+                raise AuditBlocked('unsafe_inventory_entry')
+            else:
+                if info.st_nlink != 1:
+                    raise AuditBlocked('hardlinked_inventory')
+                total += info.st_size
+                if info.st_size > MAX_ONE_FILE or total > MAX_BYTES:
+                    raise AuditBlocked('excessive_inventory_bytes')
     entries = _inventory(folder)
     if not any(row['path'] == 'SKILL.md' for row in entries):
         raise AuditBlocked('missing_root_skill')
-    for row in entries:
-        require_windows_filename_safety(row['path'], portable=True)
-        item = folder / row['path']
-        if item.stat().st_nlink != 1:
-            raise AuditBlocked('hardlinked_inventory')
     return entries
 
 

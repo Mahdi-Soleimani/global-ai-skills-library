@@ -97,6 +97,23 @@ class NativeReviewTests(unittest.TestCase):
         self.assertTrue(result['comparison']['same_local_file_inventory'])
         self.assertFalse(result['comparison']['proves_same_upstream_source'])
 
+    def test_identical_backup_restore_refused_by_review_and_transaction(self):
+        ident = self.replace()
+        preview = native.preview_restore('codex', self.root, 'demo', ident)
+        with patch('sys.stdin.isatty', return_value=True):
+            native.restore('codex', self.root, 'demo', ident, preview['state_binding_id'],
+                           reader=self.case.consent)
+        before = self.snapshot()
+        row = next(x for x in review.review('demo', self.root)['backups']
+                   if x['backup_id'] == ident)
+        self.assertFalse(row['eligible_for_recovery'])
+        with self.assertRaisesRegex(ValueError, 'identical'):
+            native.preview_restore('codex', self.root, 'demo', ident)
+        with self.assertRaisesRegex(ValueError, 'identical'):
+            native.restore('codex', self.root, 'demo', ident, preview['state_binding_id'],
+                           reader=lambda _: self.fail('Consent must not be requested'))
+        self.assertEqual(self.snapshot(), before)
+
     def test_archive_and_reinstall_review_preserve_local_only_claims(self):
         self.install()
         ident = self.remove()

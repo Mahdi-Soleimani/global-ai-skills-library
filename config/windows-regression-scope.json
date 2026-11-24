@@ -1,0 +1,44 @@
+{
+  "schema": "gasl-windows-regression-scope-v1",
+  "legacy_engine_policy": "retain_posix_only_no_automatic_adoption",
+  "production_legacy_migration_enabled": false,
+  "windows_legacy_write_enabled": false,
+  "excluded_test_modules": [
+    {
+      "path": "tests/test_codex_backup_review.py",
+      "test_methods": 23,
+      "replacement": ["tests/test_codex_native_review.py", "tests/test_codex_native_compatibility.py"],
+      "limitation": "Native review uses host-scoped records; legacy manual ownership and retained markers are not adopted."
+    },
+    {
+      "path": "tests/test_codex_legacy_reconcile.py",
+      "test_methods": 20,
+      "replacement": ["tests/test_codex_native_compatibility.py", "tests/test_codex_migration_audit.py", "tests/test_codex_state_boundary.py"],
+      "limitation": "Portable orphan audit is read-only; manual legacy reinstatement is deliberately disabled on Windows."
+    },
+    {
+      "path": "tests/test_codex_provenance_compare.py",
+      "test_methods": 20,
+      "replacement": ["tests/test_codex_native_review.py", "tests/test_codex_migration_audit.py"],
+      "limitation": "Native local receipt claims only; legacy manual attestation remains unverified and unsupported for conversion."
+    },
+    {
+      "path": "tests/test_codex_uninstalled_restore.py",
+      "test_methods": 18,
+      "replacement": ["tests/test_windows_project_transactions.py", "tests/test_host_project_install.py", "tests/test_codex_native_compatibility.py", "tests/test_codex_migration_fixture.py"],
+      "limitation": "Native archive/reinstall has its own schema; legacy path-bound historical marker migration is rehearsal-only."
+    },
+    {
+      "path": "tests/test_codex_project_install.py",
+      "test_methods": 52,
+      "replacement": ["tests/test_windows_project_transactions.py", "tests/test_host_project_install.py", "tests/test_codex_native_compatibility.py", "tests/test_codex_state_boundary.py"],
+      "limitation": "Native transactions refuse unmanaged replacement; legacy POSIX locking and write semantics are not portable."
+    },
+    {
+      "path": "tests/test_codex_explorer_handoff.py",
+      "test_methods": 15,
+      "replacement": ["tests/test_host_project_install.py", "tests/test_codex_native_compatibility.py"],
+      "limitation": "Native wizard uses separate Plan and TTY authorization; old POSIX result schema and approval phrases are not translated."
+    }
+  ]
+}

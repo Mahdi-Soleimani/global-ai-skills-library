@@ -67,6 +67,9 @@ jobs:
         if: runner.os != 'Windows'
         run: python -m pytest -q
 
+      - name: Verify documented Windows regression scope
+        run: python -m unittest tests.test_windows_regression_scope -v
+
       - name: Confirm excluded legacy modules still require POSIX
         if: runner.os == 'Windows'
         run: |
