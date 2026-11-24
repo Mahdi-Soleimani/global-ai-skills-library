@@ -185,6 +185,11 @@ class ReleaseDraftTests(unittest.TestCase):
         report=inspect_release(self.root)
         self.assertTrue(report["project_license_declared"])
         self.assertFalse(report["public_release_allowed"])
+        self.assertNotIn("project_license_not_selected", report["public_release_blockers"])
+        self.assertEqual(set(report["public_release_blockers"]), {
+            "host_scope_other_than_codex_project_unverified",
+            "public_redistribution_requires_independent_review",
+        })
         result=build_release_draft(self.root)
         with zipfile.ZipFile(self.root/result["relative_archive"]) as zf:
             self.assertIn("gasl-mvp/LICENSE",zf.namelist())

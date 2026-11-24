@@ -12,6 +12,7 @@ on:
       - install.sh
       - requirements-mcp.txt
       - README.md
+      - LICENSE
       - docs/ROADMAP.md
       - ATTRIBUTION.md
       - THIRD_PARTY_NOTICES.md
@@ -44,6 +45,7 @@ on:
       - install.sh
       - requirements-mcp.txt
       - README.md
+      - LICENSE
       - docs/ROADMAP.md
       - ATTRIBUTION.md
       - THIRD_PARTY_NOTICES.md
