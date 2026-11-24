@@ -68,7 +68,19 @@ The first download command plans the complete package; the second retrieves veri
 ./gasl root-skill-review --id YOUR_SOURCE_RECORD_ID
 ~~~
 
-This explicitly online metadata-only review reconstructs all Git tree hashes, reports candidate paths, nested Skill exclusions and unsafe/oversized entries, and binds the proposed inventory to a review SHA-256. It does not establish package completeness or approve download, installation, execution, or redistribution. Existing root-level download refusal remains in place.
+This explicitly online metadata-only review reconstructs all Git tree hashes, reports candidate paths, nested Skill exclusions and unsafe/oversized entries, and binds the proposed inventory to a review SHA-256. It does not establish package completeness or approve download, installation, execution, or redistribution. The ordinary complete-package downloader still refuses repository-root Skills. For an explicit private review of selected files, preview the exact scope first:
+
+~~~bash
+./gasl root-skill-scope --id YOUR_SOURCE_RECORD_ID --file SKILL.md --file scripts/example.py
+~~~
+
+Replace the example script path with a real candidate from the review. Repeat `--file` for every requested path, including SKILL.md. Relevant ordinary root/ancestor license-notice candidates are included in the preview. To collect only the reviewed scope, repeat the same command with `--execute --acknowledge-plan-sha256 PLAN_SHA256`. The plan is rebuilt against pinned upstream metadata before retrieval; mismatched acknowledgement, unsafe paths and changed file hashes fail closed. The collected selection is isolated under ignored `private/root-skill-scopes/`, not the installable catalog, and is explicitly incomplete. Re-audit stored bytes and static findings offline:
+
+~~~bash
+./gasl root-skill-scope --id YOUR_SOURCE_RECORD_ID --audit-plan-sha256 PLAN_SHA256
+~~~
+
+This never approves installation or redistribution, runs a Skill or resolves external dependencies. A large repository can be inspected and a smaller explicit subset reviewed without treating the whole repository as a single package.
 
 For a previously downloaded, pinned Skill, repeat the **offline** integrity and static security scan without contacting upstream:
 

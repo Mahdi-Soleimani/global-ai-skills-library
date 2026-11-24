@@ -1210,6 +1210,27 @@ def main():
         print(json.dumps(report, ensure_ascii=False, indent=2))
     root_review.set_defaults(func=cmd_root_review)
 
+    root_scope = sub.add_parser("root-skill-scope", help="Plan, collect or offline-audit explicit root Skill file scope")
+    root_scope.add_argument("--id", required=True)
+    root_scope.add_argument("--file", action="append", help="Exact candidate path; repeat, including SKILL.md")
+    root_scope.add_argument("--execute", action="store_true")
+    root_scope.add_argument("--acknowledge-plan-sha256")
+    root_scope.add_argument("--audit-plan-sha256")
+    def cmd_root_scope(args):
+        from root_skill_scope import collect_scope, audit_scope
+        try:
+            if args.audit_plan_sha256:
+                if args.file or args.execute or args.acknowledge_plan_sha256:
+                    raise ValueError("Offline audit cannot be combined with collection options")
+                report = audit_scope(args.id, args.audit_plan_sha256, root=ROOT)
+            else:
+                report = collect_scope(args.id, args.file, root=ROOT, execute=args.execute,
+                                       acknowledge=args.acknowledge_plan_sha256)
+        except (ValueError, OSError, RuntimeError) as exc:
+            raise SystemExit(str(exc)) from None
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    root_scope.set_defaults(func=cmd_root_scope)
+
     download = sub.add_parser("download", help="Plan one complete local Skill package; --execute downloads without installing")
     download.add_argument("--id", required=True)
     download.add_argument("--execute", action="store_true")
