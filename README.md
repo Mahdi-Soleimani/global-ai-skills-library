@@ -232,6 +232,17 @@ Windows User Profile uses the same staged transaction, backup, restore, archived
 
 **The production Windows User Profile path remains disabled until native Windows CI passes.** Only the dedicated disposable Windows workflow sets GASL_ENABLE_WINDOWS_USER_PROFILE_CI=1 to exercise fake temporary HOME roots and read-only current-profile inspection. The workflow now tests native token/SID, ACL, Everyone-write refusal, NTFS Junctions, hard-link aliases, impersonation refusal and the full fake-profile transaction lifecycle. No real Agent profile is written. See [Phase 54 report](docs/reports/PHASE-54-WINDOWS-USER-PROFILE-SID-ACL-2026-11-23.md).
 
+### Phase 60: Canonical Skill evidence (read-only)
+
+    python tools/gasl.py canonical-index --summary
+    python tools/gasl.py canonical-index --id EXACT_SOURCE_ID
+    python tools/gasl.py canonical-index --compare ID_A ID_B
+    python tools/gasl.py canonical-index --compare ID_A ID_B --verify-online
+    python tools/gasl.py canonical-index --lineage ID_A ID_B
+    python tools/gasl.py canonical-index --package-compare ID_A ID_B
+
+The summary, ID lookup and default pair comparison are offline. Explicit online operations inspect only pinned candidate pairs. File comparison verifies retrieved SKILL.md bytes; lineage reports public GitHub metadata; package comparison reconstructs Git tree object hashes and compares the entire containing directory, including nested Skills, without fetching blob contents. It also reports filename-based license/notice and dependency manifest candidates from ancestor directories and the Skill directory. Matching tree hashes do not establish license applicability, runtime dependency equivalence, full install bundle equivalence or security approval. Missing evidence remains unknown. No records are merged or removed. See [Phase 60 report](docs/reports/PHASE-60-CANONICAL-EVIDENCE-INDEX-2026-11-24.md).
+
 ### Phase 58: Read-only Codex ownership migration audit
 
 Existing legacy Codex project records and the host-scoped Windows records are deliberately separate. Check compatibility of a **single explicitly selected** legacy active Skill before considering migration:

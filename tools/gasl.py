@@ -882,6 +882,7 @@ def main():
     selection.add_argument("--summary", action="store_true", help="Omit member lists")
     selection.add_argument("--id", help="Show direct evidence for one exact source ID")
     selection.add_argument("--compare", nargs=2, metavar="ID", help="Compare two exact source IDs")
+    selection.add_argument("--package-compare", nargs=2, metavar="ID", help="Explicit pinned directory tree comparison; no blob downloads")
     selection.add_argument("--lineage", nargs=2, metavar="ID", help="Explicit public GitHub repository/commit metadata evidence")
     canonical.add_argument("--verify-online", action="store_true", help="Explicit pinned read-only SKILL.md verification for --compare")
     def cmd_canonical(args):
@@ -890,7 +891,9 @@ def main():
             canonical.error("--verify-online requires --compare")
         try:
             from canonical_lineage import inspect_lineage
-            report = (inspect_lineage(args.lineage, root=ROOT) if args.lineage else
+            from canonical_package import compare_packages
+            report = (compare_packages(args.package_compare, root=ROOT) if args.package_compare else
+                      inspect_lineage(args.lineage, root=ROOT) if args.lineage else
                       compare(args.compare, root=ROOT, verify_online=args.verify_online) if args.compare else
                       lookup(args.id, root=ROOT) if args.id else inspect(ROOT))
         except (ValueError, RuntimeError, OSError) as exc:
