@@ -28,6 +28,11 @@ STATIC_FILES = frozenset({
     "registry/skill-evaluations.json", "registry/source-catalog-summary.json",
     "public-catalog/index.json",
 })
+PRESENTATION_FILES = frozenset({
+    "README.fa.md", "README.zh-CN.md", "CONTRIBUTING.md", "SECURITY.md",
+    "CODE_OF_CONDUCT.md", "CITATION.cff", "docs/assets/social-preview.png",
+    "docs/assets/explorer.png", "docs/assets/architecture.svg",
+})
 CANARY_FILES = frozenset({"tools/sandbox_canary/main.go", "tools/sandbox_canary/Dockerfile"})
 MAX_FILES = 160
 MAX_TOTAL_BYTES = 55 * 1024 * 1024
@@ -56,7 +61,7 @@ def _tracked(root):
 
 
 def _included(path):
-    return (path in STATIC_FILES or path in CANARY_FILES
+    return (path in STATIC_FILES or path in CANARY_FILES or path in PRESENTATION_FILES
             or path in ("LICENSE", "LICENSE.md", "COPYING")
             or (path.startswith("tools/") and path.endswith(".py") and
                 len(Path(path).parts) == 2)

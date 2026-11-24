@@ -95,6 +95,24 @@ class ReleaseDraftTests(unittest.TestCase):
         self.assertGreater(report["tracked_package_files"],10)
         self.assertFalse((self.root/"private").exists())
 
+    def test_presentation_assets_are_exact_allowlist_not_general_docs(self):
+        from release_draft import PRESENTATION_FILES
+        for name in PRESENTATION_FILES:
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"inert documentation fixture")
+        extra = self.root / "docs/assets/private-test.txt"
+        extra.write_text("EXCLUDED", encoding="utf-8")
+        subprocess.run(["git", "-C", str(self.root), "add", "-A"],
+                       check=True, capture_output=True)
+        self.commit()
+        built = build_release_draft(self.root)
+        with zipfile.ZipFile(self.root/built["relative_archive"]) as archive:
+            for name in PRESENTATION_FILES:
+                self.assertIn("gasl-mvp/" + name, archive.namelist())
+            self.assertNotIn("gasl-mvp/docs/assets/private-test.txt", archive.namelist())
+        self.assertFalse(built["public_release_allowed"])
+
     def test_build_and_verify_private_deterministic_zip(self):
         (self.root/"personal-secret.env").write_text("DO_NOT_INCLUDE")
         built=build_release_draft(self.root)

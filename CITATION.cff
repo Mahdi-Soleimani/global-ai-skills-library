@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use GASL in your research, please cite the software."
+title: "Global AI Skills Library"
+type: software
+authors:
+  - family-names: Soleimani
+    given-names: Mahdi
+repository-code: "https://github.com/Mahdi-Soleimani/global-ai-skills-library"
+license: MIT
+keywords:
+  - agent skills
+  - skill discovery
+  - model context protocol
+  - information retrieval
+  - local-first

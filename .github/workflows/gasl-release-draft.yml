@@ -12,6 +12,13 @@ on:
       - install.sh
       - requirements-mcp.txt
       - README.md
+      - README.fa.md
+      - README.zh-CN.md
+      - CONTRIBUTING.md
+      - SECURITY.md
+      - CODE_OF_CONDUCT.md
+      - CITATION.cff
+      - docs/assets/**
       - LICENSE
       - docs/ROADMAP.md
       - ATTRIBUTION.md
@@ -45,6 +52,13 @@ on:
       - install.sh
       - requirements-mcp.txt
       - README.md
+      - README.fa.md
+      - README.zh-CN.md
+      - CONTRIBUTING.md
+      - SECURITY.md
+      - CODE_OF_CONDUCT.md
+      - CITATION.cff
+      - docs/assets/**
       - LICENSE
       - docs/ROADMAP.md
       - ATTRIBUTION.md
