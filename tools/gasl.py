@@ -877,6 +877,27 @@ def main():
         from reconcile import run
         print(json.dumps(run(), indent=2))
     r.set_defaults(func=cmd_reconcile)
+    canonical = sub.add_parser("canonical-index", help="Read-only recorded blob and revision evidence; no merges")
+    selection = canonical.add_mutually_exclusive_group()
+    selection.add_argument("--summary", action="store_true", help="Omit member lists")
+    selection.add_argument("--id", help="Show direct evidence for one exact source ID")
+    selection.add_argument("--compare", nargs=2, metavar="ID", help="Compare two exact source IDs")
+    canonical.add_argument("--verify-online", action="store_true", help="Explicit pinned read-only SKILL.md verification for --compare")
+    def cmd_canonical(args):
+        from canonical_index import inspect, lookup, compare
+        if args.verify_online and not args.compare:
+            canonical.error("--verify-online requires --compare")
+        try:
+            report = (compare(args.compare, root=ROOT, verify_online=args.verify_online) if args.compare else
+                      lookup(args.id, root=ROOT) if args.id else inspect(ROOT))
+        except (ValueError, RuntimeError, OSError) as exc:
+            raise SystemExit(str(exc)) from None
+        if args.summary:
+            report["missing_blob_evidence_count"] = len(report.pop("records_without_blob_evidence"))
+            report.pop("recorded_blob_groups")
+            report.pop("path_revision_groups")
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    canonical.set_defaults(func=cmd_canonical)
     domains = sub.add_parser("domains", help="List the domain taxonomy used by Skill search")
     domains.add_argument("--json", action="store_true")
     domains.set_defaults(func=cmd_domains)
