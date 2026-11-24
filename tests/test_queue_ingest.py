@@ -226,6 +226,39 @@ class QueueIngestTests(unittest.TestCase):
         (package_location(self.root,plan)/"extra").write_text("unexpected")
         with self.assertRaises(ValueError): ingest(self.root,plan,lambda *_:b"")
 
+    def test_fetch_tree_reconstructs_every_git_object_before_planning(self):
+        from queue_ingest import fetch_tree
+        from tests.test_canonical_package import blob, tree, directory
+        guide=tree(blob("guide.md",b"guide"))
+        package=tree(blob("SKILL.md",FILES["skills/demo/SKILL.md"]),directory("references",guide))
+        skills=tree(directory("demo",package))
+        top=tree(directory("skills",skills),blob("LICENSE",b"terms"))
+        entries=top["tree"]+[dict(x,path="skills/"+x["path"]) for x in skills["tree"]]+[
+            dict(x,path="skills/demo/"+x["path"]) for x in package["tree"]]+[
+            dict(x,path="skills/demo/references/"+x["path"]) for x in guide["tree"]]
+        raw=dict(top,tree=entries)
+        row,_=fixture();row["tree_sha"]=top["sha"]
+        repo={"id":1,"full_name":"Org/Repo"}
+        commit={"sha":COMMIT,"tree":{"sha":top["sha"]}}
+        with patch("queue_ingest.github_json",side_effect=[repo,commit,raw]) as get:
+            plan=make_plan(row,fetch_tree(row),POLICY)
+            self.assertEqual(len(plan["files"]),3)
+            self.assertEqual(get.call_count,3)
+        for bad in (dict(raw,truncated=True),dict(raw,tree=entries[:-1]),
+                    dict(raw,tree=entries+[entries[0]]),
+                    dict(raw,tree=[dict(x,sha="f"*40) if x["path"]=="LICENSE" else x for x in entries])):
+            with self.subTest(bad=bad),patch("queue_ingest.github_json",side_effect=[repo,commit,bad]):
+                with self.assertRaises(ValueError):
+                    fetch_tree(row)
+        with patch("queue_ingest.github_json",return_value={"id":1,"full_name":"other/repo"}) as get:
+            with self.assertRaisesRegex(ValueError,"identity mismatch"):
+                fetch_tree(row)
+            self.assertEqual(get.call_count,1)
+        with patch("queue_ingest.github_json",side_effect=[repo,dict(commit,tree=None)]) as get:
+            with self.assertRaisesRegex(ValueError,"Commit/tree"):
+                fetch_tree(row)
+            self.assertEqual(get.call_count,2)
+
     def test_pinned_transport_bounds_hash_and_redirect(self):
         from queue_ingest import fetch_blob
         from canonical_lineage import NoRedirect

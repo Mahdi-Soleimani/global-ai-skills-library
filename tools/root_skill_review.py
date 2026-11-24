@@ -19,18 +19,18 @@ MAX_BYTES = 50 * 1024 * 1024
 MAX_FILE_BYTES = 10 * 1024 * 1024
 
 
-def verify_recursive_tree(data, expected):
+def verify_recursive_tree(data, expected, *, max_entries=MAX_ENTRIES, max_depth=MAX_DEPTH):
     """Reconstruct every tree bottom-up from complete recursive metadata."""
     if (not isinstance(data, dict) or data.get("sha") != expected
             or data.get("truncated") is not False or not isinstance(data.get("tree"), list)
-            or len(data["tree"]) > MAX_ENTRIES):
+            or len(data["tree"]) > max_entries):
         raise ValueError("Incomplete or oversized recursive tree")
     entries, directories = {}, {"": []}
     for item in data["tree"]:
         if not isinstance(item, dict):
             raise ValueError("Invalid recursive tree entry")
         path = safe_path(item.get("path"))
-        if len(path.split("/")) > MAX_DEPTH or path in entries:
+        if len(path.split("/")) > max_depth or path in entries:
             raise ValueError("Duplicate or excessively deep tree path")
         entries[path] = item
         if item.get("type") == "tree":

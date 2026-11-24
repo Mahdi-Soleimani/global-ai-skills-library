@@ -62,7 +62,7 @@ Use the source record ID returned by search:
 ./gasl download --id YOUR_SOURCE_RECORD_ID --execute
 ~~~
 
-The first download command plans the complete package; the second retrieves verified regular files and applicable upstream notices to the ignored local catalog. It does not install or execute anything. The full-package collector uses portable local locking and Python standard-library pinned HTTPS retrieval, without a curl dependency. Native Windows acceptance of the hardened retrieval path is tracked in Phase 63. Root-level Skills and unsafe or oversized package layouts require separate handling. To inspect a repository-root `SKILL.md` without downloading any file content, use:
+The first download command plans the complete package; the second retrieves verified regular files and applicable upstream notices to the ignored local catalog. It does not install or execute anything. The full-package collector uses portable local locking and Python standard-library pinned HTTPS retrieval, without a curl dependency. The portable retrieval path passed the six OS/Python CI combinations on Windows, macOS and Linux in Phase 63. Ordinary collection now also reconstructs every recursive Git tree object against the recorded tree pin before planning; incomplete or mismatched tree metadata is refused. This is tree-object evidence, not independent commit reconstruction or proof of runtime dependencies. Root-level Skills and unsafe or oversized package layouts require separate handling. To inspect a repository-root `SKILL.md` without downloading any file content, use:
 
 ~~~bash
 ./gasl root-skill-review --id YOUR_SOURCE_RECORD_ID

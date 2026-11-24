@@ -174,10 +174,19 @@ def fetch_tree(row):
     if not REPO.fullmatch(repo) or any(p in {".", ".."} for p in repo.split("/")):
         raise ValueError("Invalid repository")
     commit_sha, tree_sha = require_sha(row["commit_sha"]), require_sha(row["tree_sha"])
+    from canonical_lineage import _repo_identity
+    from root_skill_review import verify_recursive_tree
+    _repo_identity(github_json("/repos/" + repo), repo)
     commit = github_json("/repos/" + repo + "/git/commits/" + commit_sha)
-    if commit.get("sha") != commit_sha or commit.get("tree",{}).get("sha") != tree_sha:
+    if (not isinstance(commit,dict) or commit.get("sha") != commit_sha
+            or not isinstance(commit.get("tree"),dict) or commit["tree"].get("sha") != tree_sha):
         raise ValueError("Commit/tree relationship mismatch")
-    return github_json("/repos/" + repo + "/git/trees/" + tree_sha + "?recursive=1")
+    tree = github_json("/repos/" + repo + "/git/trees/" + tree_sha + "?recursive=1")
+    # Existing discovery transport already bounds metadata to 20 MB. Verify
+    # all tree objects once per repository, including paths outside the selected
+    # Skill; reuse this snapshot for queue planning. Never downgrade on failure.
+    verify_recursive_tree(tree,tree_sha,max_entries=100_000,max_depth=128)
+    return tree
 
 
 def fetch_blob(plan, item):
