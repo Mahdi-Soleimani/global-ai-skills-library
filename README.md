@@ -5,6 +5,7 @@
 **[English](README.md) · [فارسی](README.fa.md) · [简体中文](README.zh-CN.md)**
 
 [![CI](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/workflows/gasl-cross-platform.yml/badge.svg)](https://github.com/Mahdi-Soleimani/global-ai-skills-library/actions/workflows/gasl-cross-platform.yml) [![MIT license](https://img.shields.io/badge/license-MIT-2ea44f)](LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776ab)](https://www.python.org/) [![MCP](https://img.shields.io/badge/MCP-STDIO-16877b)](MCP_CONFIG.example.json)
+[![M8ven Score](https://m8ven.ai/badge/mcp/mahdi-soleimani-global-ai-skills-library-9kfctw?v=217ddb8dc50417b41b1549661c7ad839)](https://m8ven.ai/mcp/mahdi-soleimani-global-ai-skills-library-9kfctw?s=readme)
 
 **Discover, search and route AI agent skills locally.** GASL is an open-source Python skill discovery engine and Model Context Protocol (MCP) server that helps developers find relevant agent skills, inspect their upstream provenance and retrieve selected files. No hosted GASL service, paid LLM API or Docker is required for ordinary use.
 
