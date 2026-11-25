@@ -1,31 +1,31 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-24T19:00:39+00:00",
+  "generated_at": "2026-11-25T18:06:02+00:00",
   "source_repository_count": 57,
-  "source_record_count": 4438,
-  "distinct_repository_path_count": 4433,
-  "immutable_revision_count": 4438,
-  "commit_pinned_record_count": 4438,
+  "source_record_count": 4586,
+  "distinct_repository_path_count": 4581,
+  "immutable_revision_count": 4586,
+  "commit_pinned_record_count": 4586,
   "legacy_unpinned_record_count": 0,
   "downloaded_record_count": 9,
   "private_collected_record_count": 0,
   "collection_status_counts": {
-    "not_collected": 4429,
+    "not_collected": 4577,
     "publicly_mirrored": 9
   },
   "collection_license_status_counts": {
-    "not_collected": 4438
+    "not_collected": 4586
   },
   "public_mirror_status_counts": {
     "published_publicly_with_attribution": 9,
     "reference_only_no_redistribution_permission_assumed": 1121,
-    "reference_only_until_file_level_rights_and_license_evidence_review": 3308
+    "reference_only_until_file_level_rights_and_license_evidence_review": 3456
   },
   "historical_package_metadata_only_count": 0,
   "publicly_mirrored_record_count": 9,
   "license_assessment_counts": {
     "no_license_identified": 1121,
-    "repository_license_metadata_only": 3317
+    "repository_license_metadata_only": 3465
   },
   "third_party_attribution_preserved": true,
   "exclusive_ownership_claimed": false,

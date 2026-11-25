@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-24T19:00:39.266440+00:00",
+  "updated_at": "2026-11-25T18:06:01.845060+00:00",
   "source": "commit_pinned_github_api_observations",
   "repositories": {
     "adobe/skills": {
@@ -9,9 +9,9 @@
       "publisher_account": "adobe",
       "repository_url": "https://github.com/adobe/skills",
       "default_branch": "main",
-      "commit_sha": "0069bc9ee41ae5a858ca4eea82be55b5e2b16e01",
-      "tree_sha": "abebd28c39a6f5b39784019c9fd9722f4444e3f0",
-      "checked_at": "2026-11-24T18:59:44.662516+00:00",
+      "commit_sha": "966d2fc1236fefce9efe421c96cee1954a7307be",
+      "tree_sha": "0d80690f307a75bb7245cb2e9f8bcf8d7516c2af",
+      "checked_at": "2026-11-25T18:04:59.720005+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -1002,7 +1002,7 @@
         {
           "path": "plugins/aem/edge-delivery-services/skills/migrate-header/SKILL.md",
           "mode": "100644",
-          "blob_sha": "992f9494b97c238ace74c29b8e4e86daa689ab2d",
+          "blob_sha": "a778dc07b4fe84a9b53a5553d23a71c4aa62438c",
           "size_bytes": 12308,
           "classification": "skill_path_candidate"
         },
@@ -1520,7 +1520,7 @@
         {
           "path": "plugins/stardust/skills/replica/SKILL.md",
           "mode": "100644",
-          "blob_sha": "382f4d9a4a7fbb28fb85b9589b253671268585a4",
+          "blob_sha": "a7306d4198014953c3c9b7455f59d34035109008",
           "size_bytes": 18856,
           "classification": "skill_path_candidate"
         },
@@ -1661,7 +1661,7 @@
       "default_branch": "main",
       "commit_sha": "ea7b5ab8da93bbba8880152d9ccb8c9979f12252",
       "tree_sha": "944cc6c38e33db40321aa3672a77e9d9d6b7e1b5",
-      "checked_at": "2026-11-24T18:59:45.633030+00:00",
+      "checked_at": "2026-11-25T18:05:00.682964+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -5765,7 +5765,7 @@
       "default_branch": "main",
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
       "tree_sha": "19d28f03edbc916e85ce68733993170952071b0d",
-      "checked_at": "2026-11-24T18:59:46.492116+00:00",
+      "checked_at": "2026-11-25T18:05:01.744351+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -7003,7 +7003,7 @@
       "default_branch": "main",
       "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
       "tree_sha": "d495c40fdd16cfe817a71aa05ecc1969ba98e925",
-      "checked_at": "2026-11-24T18:59:49.200356+00:00",
+      "checked_at": "2026-11-25T18:05:04.769160+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -7298,7 +7298,7 @@
       "default_branch": "main",
       "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
       "tree_sha": "ef2cb1172e86aa1eed92957812a96efa339b843c",
-      "checked_at": "2026-11-24T18:59:52.022525+00:00",
+      "checked_at": "2026-11-25T18:05:07.911473+00:00",
       "license_spdx": "MIT-0",
       "license_name": "MIT No Attribution",
       "license_key": "mit-0",
@@ -7673,7 +7673,7 @@
       "default_branch": "main",
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "tree_sha": "d502f8a7e5d1393eb3d684f108f9db35d477c157",
-      "checked_at": "2026-11-24T19:00:13.631136+00:00",
+      "checked_at": "2026-11-25T18:05:29.921750+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -9480,7 +9480,7 @@
       "default_branch": "main",
       "commit_sha": "0d6915c5bfff79282e40e424394e9691cafd488d",
       "tree_sha": "2b5ca42340c40c0329328449d8083001bc2799d5",
-      "checked_at": "2026-11-24T18:59:53.051979+00:00",
+      "checked_at": "2026-11-25T18:05:08.855529+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -9605,7 +9605,7 @@
       "default_branch": "main",
       "commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
       "tree_sha": "8cd03bb3941496e441d6248aaae2429a35b93cc3",
-      "checked_at": "2026-11-24T18:59:53.853866+00:00",
+      "checked_at": "2026-11-25T18:05:09.776270+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -9644,7 +9644,7 @@
       "default_branch": "main",
       "commit_sha": "ff191de7d903788eceaf516a514ae7d3b56b924a",
       "tree_sha": "6ef0f8300c951ab6baf032e7b64e21251b60d58d",
-      "checked_at": "2026-11-24T18:59:54.875551+00:00",
+      "checked_at": "2026-11-25T18:05:10.711320+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -9866,9 +9866,9 @@
       "publisher_account": "google",
       "repository_url": "https://github.com/google/skills",
       "default_branch": "main",
-      "commit_sha": "089e3cccacf99547898bd513d78cf8efd28da9cf",
-      "tree_sha": "b8a5828f746017b155e72b68ea46b95e4f050a05",
-      "checked_at": "2026-11-24T19:00:04.541255+00:00",
+      "commit_sha": "7f996a7743b7615912c607c79e803a68d941f8ce",
+      "tree_sha": "0749e59e7817709cc0b0411bfd2de55bfc200e2a",
+      "checked_at": "2026-11-25T18:05:21.198155+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -10430,15 +10430,15 @@
         {
           "path": "skills/cloud/apigee-agent-gateway-governance/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b3b3430523f324ca635772f526a6f04002ab3827",
-          "size_bytes": 26736,
+          "blob_sha": "3173a2af10618213c0cdcb10504332ad9e9a06cc",
+          "size_bytes": 26755,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/cloud/application-design-center-design-deploy/SKILL.md",
           "mode": "100644",
-          "blob_sha": "92788f8ab2ebd2d3d6b27879053d2beca79ab947",
-          "size_bytes": 18104,
+          "blob_sha": "ba990db46b6162c8a0c79b430789de47838526cb",
+          "size_bytes": 18110,
           "classification": "skill_path_candidate"
         },
         {
@@ -10549,8 +10549,8 @@
         {
           "path": "skills/cloud/bigquery-observability/SKILL.md",
           "mode": "100644",
-          "blob_sha": "1bfc88aa2b4509fcf5742a14245dc26798dacacf",
-          "size_bytes": 14520,
+          "blob_sha": "c0e1713d6201ea0e3102a0d5cf9b37a28a186d12",
+          "size_bytes": 17318,
           "classification": "skill_path_candidate"
         },
         {
@@ -10563,8 +10563,8 @@
         {
           "path": "skills/cloud/bigquery-troubleshooting/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0cba59f791d52490162cc58f95bb573f1a2b028b",
-          "size_bytes": 10586,
+          "blob_sha": "cba942ba91e1cd2d03b80a0d5c9928dd9cf93040",
+          "size_bytes": 11573,
           "classification": "skill_path_candidate"
         },
         {
@@ -10682,8 +10682,8 @@
         {
           "path": "skills/cloud/cloud-operator-setup/SKILL.md",
           "mode": "100644",
-          "blob_sha": "093cbcffc571c8dbe965e5bf91512b14f99bf05d",
-          "size_bytes": 8755,
+          "blob_sha": "3d43b77de7420d982aa9570fe6ac3ad0bc924d7e",
+          "size_bytes": 10025,
           "classification": "skill_path_candidate"
         },
         {
@@ -10696,8 +10696,8 @@
         {
           "path": "skills/cloud/cloud-operator/SKILL.md",
           "mode": "100644",
-          "blob_sha": "dd886cd3c0fc076268eaf395f26852064ce2b757",
-          "size_bytes": 22673,
+          "blob_sha": "93a22aa2ffcaca84350abf0154d4ecab2ed3eedb",
+          "size_bytes": 23625,
           "classification": "skill_path_candidate"
         },
         {
@@ -11214,8 +11214,8 @@
         {
           "path": "skills/cloud/google-agents-cli-onboarding/SKILL.md",
           "mode": "100644",
-          "blob_sha": "69726f27d04fb79b52bc3d6b18e9f9a22da312aa",
-          "size_bytes": 4498,
+          "blob_sha": "880df50f8f5289b6005cf05fcb1382854a4a769a",
+          "size_bytes": 6032,
           "classification": "skill_path_candidate"
         },
         {
@@ -11354,8 +11354,8 @@
         {
           "path": "skills/cloud/google-cloud-solution-agentic-ai-data-science-workflow/SKILL.md",
           "mode": "100644",
-          "blob_sha": "03f2919a33b3696c7e9ee3fbeeee41e23d9a8795",
-          "size_bytes": 11424,
+          "blob_sha": "4aed26bd2a63cc8c120ffc3ecf68854f38292a27",
+          "size_bytes": 814,
           "classification": "skill_path_candidate"
         },
         {
@@ -11445,7 +11445,7 @@
         {
           "path": "skills/cloud/google-cloud-storage-fuse/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3299ed1e07a9a117d43778533cabea49a2435c1a",
+          "blob_sha": "1e2fa46acaa67b0eba50eed7d955707a9692724d",
           "size_bytes": 6484,
           "classification": "skill_path_candidate"
         },
@@ -11698,7 +11698,7 @@
       "default_branch": "main",
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
       "tree_sha": "224b363928698e143876aef008232ed73d8e6f81",
-      "checked_at": "2026-11-24T19:00:21.111666+00:00",
+      "checked_at": "2026-11-25T18:05:37.451272+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -12350,9 +12350,9 @@
       "publisher_account": "stripe",
       "repository_url": "https://github.com/stripe/ai",
       "default_branch": "main",
-      "commit_sha": "f10dc33c434e1daf5e001ec1c50594a6cde1bdbb",
-      "tree_sha": "1162d9b428d558943c0f52108c5c0e57033905ff",
-      "checked_at": "2026-11-24T19:00:34.552602+00:00",
+      "commit_sha": "d4b19a989bf12bdbd4d42de1f9bfd3aec56fd9da",
+      "tree_sha": "634c6ddbe0f19d5cade49e029640d46b14446d6a",
+      "checked_at": "2026-11-25T18:05:57.127062+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -12483,8 +12483,8 @@
         {
           "path": "providers/agent-plugins/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12511,8 +12511,8 @@
         {
           "path": "providers/agent-plugins/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12546,8 +12546,8 @@
         {
           "path": "providers/agent-plugins/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12560,8 +12560,8 @@
         {
           "path": "providers/antigravity/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12588,8 +12588,8 @@
         {
           "path": "providers/antigravity/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12623,8 +12623,8 @@
         {
           "path": "providers/antigravity/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12637,8 +12637,8 @@
         {
           "path": "providers/claude/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12665,8 +12665,8 @@
         {
           "path": "providers/claude/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12700,8 +12700,8 @@
         {
           "path": "providers/claude/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12714,8 +12714,8 @@
         {
           "path": "providers/cursor/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12742,8 +12742,8 @@
         {
           "path": "providers/cursor/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12777,8 +12777,8 @@
         {
           "path": "providers/cursor/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12791,8 +12791,8 @@
         {
           "path": "providers/gemini/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12819,8 +12819,8 @@
         {
           "path": "providers/gemini/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12854,8 +12854,8 @@
         {
           "path": "providers/gemini/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12868,8 +12868,8 @@
         {
           "path": "providers/grok/plugin/skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12896,8 +12896,8 @@
         {
           "path": "providers/grok/plugin/skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -12931,8 +12931,8 @@
         {
           "path": "providers/grok/plugin/skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         },
         {
@@ -12945,8 +12945,8 @@
         {
           "path": "skills/connect-required-verification-information/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9d7d4261dcb9dbfe923fe215a20a97e3fff89e6c",
-          "size_bytes": 28235,
+          "blob_sha": "2f9c3270d5710e4ffb317f8a926c20d7c6695e87",
+          "size_bytes": 28860,
           "classification": "skill_path_candidate"
         },
         {
@@ -12973,8 +12973,8 @@
         {
           "path": "skills/stripe-bfcm-dashboard/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a8568049a797180d3f03d0ef8c9bda95cc56b46",
-          "size_bytes": 9955,
+          "blob_sha": "cd5bac4fad0e407695342e54e236815e2584a946",
+          "size_bytes": 9880,
           "classification": "skill_path_candidate"
         },
         {
@@ -13008,8 +13008,8 @@
         {
           "path": "skills/stripe-projects/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a9104f195d9401fb1406defb993324f9a061314f",
-          "size_bytes": 7064,
+          "blob_sha": "1f83d2037f51244e8fb7ef7fde1081f731ff3991",
+          "size_bytes": 8841,
           "classification": "skill_path_candidate"
         }
       ],
@@ -13023,7 +13023,7 @@
       "default_branch": "main",
       "commit_sha": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
       "tree_sha": "77010fc5aba378d5e2d9b07e6c00385b112b5dad",
-      "checked_at": "2026-11-24T19:00:38.226235+00:00",
+      "checked_at": "2026-11-25T18:06:00.724552+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -13120,7 +13120,7 @@
       "default_branch": "main",
       "commit_sha": "57217cf86ba38148a57af9e90d14a4c049558330",
       "tree_sha": "f062461f0d737d9cd8241a1137f3bd041a2e3346",
-      "checked_at": "2026-11-24T19:00:39.110032+00:00",
+      "checked_at": "2026-11-25T18:06:01.623860+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -13197,7 +13197,7 @@
       "default_branch": "main",
       "commit_sha": "ebd8654c2c627f721eb8f9c0d1bd4090a29f9e10",
       "tree_sha": "15542ab21601f457d973bd6510fd74812ec795ba",
-      "checked_at": "2026-11-24T18:59:59.132030+00:00",
+      "checked_at": "2026-11-25T18:05:15.229093+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -13323,7 +13323,7 @@
       "default_branch": "main",
       "commit_sha": "47c61be2d10a354f0c5cbe2b90959d24c06b16c6",
       "tree_sha": "2b24e1c57b9d0872fa8f1229bb9b034f4c7c3f39",
-      "checked_at": "2026-11-24T19:00:07.105072+00:00",
+      "checked_at": "2026-11-25T18:05:23.900099+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -13812,7 +13812,7 @@
       "default_branch": "main",
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "tree_sha": "31ebd978f00022ad335ab0a189bfabe014f909b3",
-      "checked_at": "2026-11-24T19:00:08.180531+00:00",
+      "checked_at": "2026-11-25T18:05:24.873698+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -15274,9 +15274,9 @@
       "publisher_account": "LinklyAI",
       "repository_url": "https://github.com/LinklyAI/best-skills",
       "default_branch": "main",
-      "commit_sha": "057ee6ee808a7cdb73625a7828467ca21dec4c5a",
-      "tree_sha": "c6370ec99a9f9469b98aef57952d09dc8d313b92",
-      "checked_at": "2026-11-24T19:00:09.812481+00:00",
+      "commit_sha": "e5697ec26df79b8ad5092d567364beb8c4b4ab4d",
+      "tree_sha": "8ab593331ac7d8feb2e0433630e9ed119cd1a0a9",
+      "checked_at": "2026-11-25T18:05:26.368167+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -15314,7 +15314,7 @@
       "default_branch": "main",
       "commit_sha": "8cefe4cc729cf388ba3591510faa080df89ede4f",
       "tree_sha": "096f836cca78133683d10a348c1eb7d955536316",
-      "checked_at": "2026-11-24T18:59:47.293027+00:00",
+      "checked_at": "2026-11-25T18:05:02.689063+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -15425,7 +15425,7 @@
       "default_branch": "main",
       "commit_sha": "b39023a486b5b8ae97a5aa4cc2913dd6d5a3951c",
       "tree_sha": "8c65d2cd5134a800b5d5dd3e8defe74df4d50f40",
-      "checked_at": "2026-11-24T18:59:48.332419+00:00",
+      "checked_at": "2026-11-25T18:05:03.688183+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -15503,9 +15503,9 @@
       "publisher_account": "github",
       "repository_url": "https://github.com/github/awesome-copilot",
       "default_branch": "main",
-      "commit_sha": "f10fdb8b2660ce85c98f220b2f1ca24653768a5c",
-      "tree_sha": "d2e09b71f98f707c30177fa05416fd336bcfd8bd",
-      "checked_at": "2026-11-24T19:00:02.667054+00:00",
+      "commit_sha": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf",
+      "tree_sha": "3e4c88eaa8a0854a80d380fefeb5dc3e8bc2d5ca",
+      "checked_at": "2026-11-25T18:05:19.378571+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -15661,7 +15661,6 @@
         "skills/agentic-eval/SKILL.md",
         "skills/ai-prompt-engineering-safety-review/SKILL.md",
         "skills/ai-ready/SKILL.md",
-        "skills/ai-team-orchestration/SKILL.md",
         "skills/anti-ui-slop/SKILL.md",
         "skills/api-breaking-change-detector/SKILL.md",
         "skills/appinsights-instrumentation/SKILL.md",
@@ -16257,13 +16256,6 @@
           "mode": "100644",
           "blob_sha": "839ea891c66e98cf1ea4a15315c16c0d732c28ce",
           "size_bytes": 1457,
-          "classification": "skill_path_candidate"
-        },
-        {
-          "path": "skills/ai-team-orchestration/SKILL.md",
-          "mode": "100644",
-          "blob_sha": "bdbf711aece38d17671a190abbbc7d0ba924ad85",
-          "size_bytes": 3965,
           "classification": "skill_path_candidate"
         },
         {
@@ -19509,9 +19501,9 @@
       "publisher_account": "huggingface",
       "repository_url": "https://github.com/huggingface/skills",
       "default_branch": "main",
-      "commit_sha": "d67b12054923df5bbfa07c5ff1331412deebdf4f",
-      "tree_sha": "34d82df5f9c9fbf27323aa9b8b70ba8af8a2dee3",
-      "checked_at": "2026-11-24T19:00:05.422826+00:00",
+      "commit_sha": "c158db6f839c65fe3234f0baa743f5e2c8d4ec13",
+      "tree_sha": "8e5eb93bd3e82bc4a91f238f9940f126aae16181",
+      "checked_at": "2026-11-25T18:05:22.014556+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -19530,7 +19522,6 @@
         "AUX-FA-438"
       ],
       "skill_paths": [
-        "hf-mcp/skills/hf-mcp/SKILL.md",
         "skills/hf-cli/SKILL.md",
         "skills/hf-cloud-aws-context-discovery/SKILL.md",
         "skills/hf-cloud-python-env-setup/SKILL.md",
@@ -19558,13 +19549,6 @@
         "skills/trl-training/SKILL.md"
       ],
       "paths": [
-        {
-          "path": "hf-mcp/skills/hf-mcp/SKILL.md",
-          "mode": "100644",
-          "blob_sha": "eb717f2c916d6a03f4322272b0a51fb10963b349",
-          "size_bytes": 4968,
-          "classification": "skill_path_candidate"
-        },
         {
           "path": "skills/hf-cli/SKILL.md",
           "mode": "100644",
@@ -19751,7 +19735,7 @@
       "default_branch": "main",
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "tree_sha": "b32371b9338b35a1cfebdb0f19c41b27e6fd39bd",
-      "checked_at": "2026-11-24T19:00:12.497081+00:00",
+      "checked_at": "2026-11-25T18:05:29.057015+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -20585,7 +20569,7 @@
       "default_branch": "main",
       "commit_sha": "626f50fdf2934116eea2c5469339e03d2d524e83",
       "tree_sha": "7b540a0daddeab872fafc0d0ca4e5cff52c80b3d",
-      "checked_at": "2026-11-24T19:00:14.503361+00:00",
+      "checked_at": "2026-11-25T18:05:30.749824+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -20734,9 +20718,9 @@
       "publisher_account": "openai",
       "repository_url": "https://github.com/openai/codex-security",
       "default_branch": "main",
-      "commit_sha": "18d663081266b96abcc45ea71abfa926dc037846",
-      "tree_sha": "8178d8067040c40998a664e38938334529092965",
-      "checked_at": "2026-11-24T19:00:19.017352+00:00",
+      "commit_sha": "256cddf5eb503a8e34b991c86265ec85776a9b07",
+      "tree_sha": "100881032ee09207b308169bec53593b8643bcb4",
+      "checked_at": "2026-11-25T18:05:35.668456+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -20822,15 +20806,15 @@
         {
           "path": "plugins/codex-security/skills/assess-patch-risk/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6c2d7e8ff8839c60c2d5e2760d95c1be811a7026",
-          "size_bytes": 8299,
+          "blob_sha": "2265f4d63d0d4e1532a7fa0b2b25ecd874edddd6",
+          "size_bytes": 7945,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/attack-path-analysis/SKILL.md",
           "mode": "100644",
-          "blob_sha": "16ad8de3d1efefa64bf3a93f2c5e56442b9e74a0",
-          "size_bytes": 5526,
+          "blob_sha": "c2578ea2fb500b76ed2a258a9240a3b8a3724ca0",
+          "size_bytes": 3981,
           "classification": "skill_path_candidate"
         },
         {
@@ -20850,29 +20834,29 @@
         {
           "path": "plugins/codex-security/skills/deep-security-scan/SKILL.md",
           "mode": "100644",
-          "blob_sha": "18ac4937b1ccacd0f2281b39f292155dbdfa188b",
-          "size_bytes": 3127,
+          "blob_sha": "e897ca622abad2b39c2f45ffb43f61ffe8b9ee60",
+          "size_bytes": 1886,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/define-security-policy/SKILL.md",
           "mode": "100644",
-          "blob_sha": "d7b73cbd8ecd95d3bf9da9f2214be5ce5ded49c3",
-          "size_bytes": 5982,
+          "blob_sha": "26ed635c143b5091f144932bfacdaa00129de7cd",
+          "size_bytes": 5682,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/finding-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "678708aa1204e91cac4ec95bfba546c1a90807e3",
-          "size_bytes": 5076,
+          "blob_sha": "fd865044cad0b4c7426a05be3a83741300ed5b6f",
+          "size_bytes": 4488,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/fix-finding/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0b6382872f5976d4ceb0f5ad074fe3404bd4dd45",
-          "size_bytes": 19132,
+          "blob_sha": "f63e3a464cd0ec77340226a896c84780d410c410",
+          "size_bytes": 6619,
           "classification": "skill_path_candidate"
         },
         {
@@ -20899,22 +20883,22 @@
         {
           "path": "plugins/codex-security/skills/security-diff-scan/SKILL.md",
           "mode": "100644",
-          "blob_sha": "4b09771fb1295e86161b7f5d405fad585ce29467",
-          "size_bytes": 5614,
+          "blob_sha": "5bfc64aa1e42b5c0afc70d5616160c4f8e499297",
+          "size_bytes": 3981,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/security-scan/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f5b29678e2cf7dde51509bc04e7832754d86b457",
-          "size_bytes": 3181,
+          "blob_sha": "05a6e8766e18a2b5bb89b469fa8d6a5a71ccbac1",
+          "size_bytes": 2435,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/threat-model-visualize/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f58b53e2b9619b2ab4b67ae7a107c550cb991880",
-          "size_bytes": 19102,
+          "blob_sha": "ff767a3408bb8dac744c4fb80e4d13138aa9fbde",
+          "size_bytes": 18622,
           "classification": "skill_path_candidate"
         },
         {
@@ -20927,8 +20911,8 @@
         {
           "path": "plugins/codex-security/skills/track-findings/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ffa2f8b8c48891346eab72d89cedd96a9a2e7cdf",
-          "size_bytes": 13459,
+          "blob_sha": "9118c23b3321faa1a0973a9630bd2cd5b16f4c19",
+          "size_bytes": 13278,
           "classification": "skill_path_candidate"
         },
         {
@@ -20941,15 +20925,15 @@
         {
           "path": "plugins/codex-security/skills/validation/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b62821c78a212937e6c038185357f1f586ca066e",
-          "size_bytes": 4619,
+          "blob_sha": "b3bb758ac9c0611e734877c86a2080f29b9d3d11",
+          "size_bytes": 2997,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/codex-security/skills/verify-fix/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7f4d0c75897e73e6c861e5b0540e3bed89296513",
-          "size_bytes": 4713,
+          "blob_sha": "39f625493ecb29be2a7ed1e8f5addcd104295542",
+          "size_bytes": 3675,
           "classification": "skill_path_candidate"
         },
         {
@@ -20970,7 +20954,7 @@
       "default_branch": "main",
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "tree_sha": "a7f3146f796196ee21d7477fe8cdcd096c1aadf5",
-      "checked_at": "2026-11-24T19:00:20.112122+00:00",
+      "checked_at": "2026-11-25T18:05:36.643357+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -25449,7 +25433,7 @@
       "default_branch": "main",
       "commit_sha": "34f93c1e409156958cc7c410ab1aa88ab512f10f",
       "tree_sha": "86a675008adf8327faf329df132c2d28536dc7e9",
-      "checked_at": "2026-11-24T19:00:10.589989+00:00",
+      "checked_at": "2026-11-25T18:05:27.195194+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -25485,9 +25469,9 @@
       "publisher_account": "NVIDIA",
       "repository_url": "https://github.com/NVIDIA/skills",
       "default_branch": "main",
-      "commit_sha": "23c0762b7b16d56fbd72cbf46d30082994ab4c2d",
-      "tree_sha": "c459cba5853c8124d4c7aca015b8b11f1b9c315d",
-      "checked_at": "2026-11-24T19:00:16.330726+00:00",
+      "commit_sha": "85ee81d66bcdcc6961f6db1d13dfff67025b3e43",
+      "tree_sha": "2ff86017f0a97cc8c6874547e3b3cee183f4f780",
+      "checked_at": "2026-11-25T18:05:33.022343+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -25503,6 +25487,30 @@
           "path": "LICENSE-CC-BY-4.0",
           "blob_sha": "b0de5b1eb94213e92ad03b131684bae483db2bd9",
           "size_bytes": 18731,
+          "mode": "100644"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/LICENSE",
+          "blob_sha": "f21e18da6baedde93d0ab099225f1da801b6623c",
+          "size_bytes": 31031,
+          "mode": "100644"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/LICENSE",
+          "blob_sha": "f13d24c3fa482d61605d600e5ac1248799bd4107",
+          "size_bytes": 11431,
+          "mode": "100644"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/LICENSE-CC-BY-4.0",
+          "blob_sha": "b20442685375f4dd187888288c53f98217268eef",
+          "size_bytes": 18730,
+          "mode": "100644"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/LICENSE",
+          "blob_sha": "001a3281169d6ade30cd1a44544029254ba490a8",
+          "size_bytes": 11432,
           "mode": "100644"
         },
         {
@@ -25584,7 +25592,151 @@
         "AUX-FA-438"
       ],
       "skill_paths": [
+        "plugins/nvidia-doca-plugin/skills/doca-aes-gcm/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-argp/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-argus/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-bare-metal-deployment/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-bench/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-bf3-deployment/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-bf4-deployment/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-caps/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-comch/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-comm-channel-admin/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-common/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-compress/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-container-deployment/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-debug/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-devemu/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-dma/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-dms/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-dpa/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-dpdk-bridge/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-dts/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-erasure-coding/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-eth/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-firefly/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-flow-tune/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-flow/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-gpunetio/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-hardware-safety/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-mgmt/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-ngauge/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-pcc-counters/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-pcc/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-perftest/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-pipeline-language-developer-tools/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-programming-guide/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-public-knowledge-map/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-rdma/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-rmax/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-setup/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-sha-offload-engine/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-sha/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-socket-relay/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-spcx-cc/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-sta/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-structured-tools-contract/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-telemetry-exporter/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-telemetry-traceback-application/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-telemetry-utils/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-telemetry/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-upgrade/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-urom-svc/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-urom/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-verbs/SKILL.md",
+        "plugins/nvidia-doca-plugin/skills/doca-version/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-autofl-report/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-autofl/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-convert-huggingface/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-convert-lightning/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-convert-pytorch/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-diagnose-job/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-fed-stats/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-orient/SKILL.md",
+        "plugins/nvidia-nvflare/skills/nvflare-shared/SKILL.md",
         "plugins/nvidia-skills/skills/nvidia-skill-finder/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/paidf-cosmos-predict/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-analyze-changenet-rca/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-analyze-detection-kpi/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-od-map/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-visual-changenet/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-vlm-bcq/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-artifacts/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-convert-dataset-format/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-data-io/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-anomalygennext/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-clip/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-cosmos-embed/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-cosmos-reason/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-huggingface-model/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-kumo-anomaly/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-kumo-forecast/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-finetune-video-clip/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-anomalies/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-image-embeddings/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-image-grounding/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-od-defects/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-referring-expressions/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-generate-video-reasoning-annotations/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-launch-workflow/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-list-capabilities/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-mine-aoi-images/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-mine-nearest-neighbors/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-mine-od-images/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-port-huggingface-model/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-prepare-anomalygennext-inputs/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-route-visual-changenet-samples/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-automl-deft-pipeline/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-automl/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-aoi-cosmos3/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-aoi/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-cr-its-mining/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-object-detection/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-od-aoi/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-deft-pas/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-dinov3-ssl-deft/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-inference-service/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-on-brev/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-on-docker/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-on-kubernetes/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-on-slurm/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-run-on-virtualenv/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-setup-nvidia-gpu-host/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-setup/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-token-efficient-execution/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-action-recognition/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-bevfusion/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-centerpose/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-codetr/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-deformable-detr/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-depth-anything-v2/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-dino/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-dinov3/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-fast-foundation-stereo/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-foundation-stereo/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-grounding-dino/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-image-classification/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-mask-auto-encoder/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-mask-auto-label/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-mask-grounding-dino/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-mask2former/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-metric-learning-recognition/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-nvdinov2/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-nvpanoptix3d/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-ocdnet/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-ocrnet/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-oneformer/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-optical-inspection/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-pointpillars/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-pose-classification/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-reid/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-rtdetr/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-segformer/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-single-step/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-sparse4d/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-train-visual-changenet/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-validate-dataset-format/SKILL.md",
+        "plugins/nvidia-tao-toolkit/skills/tao-validate-recipe-transfer/SKILL.md",
         "skills/accelerated-computing-cudf/SKILL.md",
         "skills/ambient-healthcare-agent-with-nemotron-voice-agent/SKILL.md",
         "skills/amc-run-rtsp-calibration/SKILL.md",
@@ -25633,6 +25785,7 @@
         "skills/bionemo-proteinmpnn-nim/SKILL.md",
         "skills/bionemo-rfd4-proteina-nim/SKILL.md",
         "skills/bionemo-rfdiffusion-nim/SKILL.md",
+        "skills/cccl/SKILL.md",
         "skills/cdf-anomalygen/SKILL.md",
         "skills/cdf-augmentation/SKILL.md",
         "skills/cdf-auto-labeling/SKILL.md",
@@ -25654,6 +25807,7 @@
         "skills/compileiq-search-space/SKILL.md",
         "skills/compileiq-validate-result/SKILL.md",
         "skills/compute-sanitizer-diagnose-cuda-bugs/SKILL.md",
+        "skills/cuda-python/SKILL.md",
         "skills/cudaq-guide/SKILL.md",
         "skills/cudaq-importing/SKILL.md",
         "skills/cudf-query-engine-builder/SKILL.md",
@@ -25662,6 +25816,7 @@
         "skills/cuml/SKILL.md",
         "skills/cuopt-multi-objective-exploration/SKILL.md",
         "skills/dali-dynamic-mode/SKILL.md",
+        "skills/daqiri-onboarding/SKILL.md",
         "skills/data-designer/SKILL.md",
         "skills/deepstream-dev/SKILL.md",
         "skills/deepstream-generate-pipeline/SKILL.md",
@@ -25854,6 +26009,7 @@
         "skills/nemo-fabric-build-adapter/SKILL.md",
         "skills/nemo-fabric-integrate/SKILL.md",
         "skills/nemo-gym-reward-profiling/SKILL.md",
+        "skills/nemo-gym-run-and-babysit-eval/SKILL.md",
         "skills/nemo-mbridge-mlm-bridge-training/SKILL.md",
         "skills/nemo-mbridge-multi-node-slurm/SKILL.md",
         "skills/nemo-mbridge-perf-activation-recompute/SKILL.md",
@@ -25968,6 +26124,7 @@
         "skills/runai-get-cluster-health-summary/SKILL.md",
         "skills/runai-get-utilization-overview/SKILL.md",
         "skills/runai-get-workload-health-summary/SKILL.md",
+        "skills/sdm-tabular-prediction/SKILL.md",
         "skills/skill-card-generator/SKILL.md",
         "skills/tao-analyze-changenet-rca/SKILL.md",
         "skills/tao-analyze-detection-kpi/SKILL.md",
@@ -26073,10 +26230,1018 @@
       ],
       "paths": [
         {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-aes-gcm/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1783e80324e889318a4404811915759dfb1a2791",
+          "size_bytes": 17466,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-argp/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "be0333d41d8245eeaaebc9bb36d9b2c0a014a709",
+          "size_bytes": 12971,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-argus/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9256b1360893e39dec74a4b0ff9d24b924963006",
+          "size_bytes": 17440,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-bare-metal-deployment/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2b3dd6078ecf5c7f7ff005d885714f2f81a0aafb",
+          "size_bytes": 11701,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-bench/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8f1edf2f3ea3c0407ed4fd8d361918cee4c7749d",
+          "size_bytes": 14244,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-bf3-deployment/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "6cd05d22f5ef45583eb389a22b65a064131b4e3b",
+          "size_bytes": 11073,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-bf4-deployment/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "18bf485641b28c39d437e8e1d73b10284a88261b",
+          "size_bytes": 12250,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-caps/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "5cf2f97fc76e8837bed906f1ea90d7a91b89a85e",
+          "size_bytes": 13563,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-comch/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "09e62a895f19cc46dc7a91a1a285bb46e5b31e71",
+          "size_bytes": 13187,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-comm-channel-admin/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4518b6a23cb1aff04003804613b7fa1cfd81bc3d",
+          "size_bytes": 12575,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-common/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0e30f41cf21954f85fd769142ab5768458922dbf",
+          "size_bytes": 16673,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-compress/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7c828f3fd13da5c1c7925746de161e4bf1ba496a",
+          "size_bytes": 15590,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-container-deployment/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "b1e5840a0aea64fcce935616fbd9f86945c58cd4",
+          "size_bytes": 11508,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-debug/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "66610cefb8dbb420144efaa2248a2a906cf783b0",
+          "size_bytes": 13183,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-devemu/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2e5eda89328a386d4a9c6fe5faaf43591b632877",
+          "size_bytes": 14332,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-dma/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "b8e2fb0cc8ffd00701b137bb470a182e957753f5",
+          "size_bytes": 13422,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-dms/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "752de0f8e393deb847c98c0a8bc0659e91c25286",
+          "size_bytes": 14877,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-dpa/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "888a714a23c317d316bf7052bf78441a00826441",
+          "size_bytes": 16339,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-dpdk-bridge/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "3833562a93dcee195bb70f58653844c6a961d666",
+          "size_bytes": 15812,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-dts/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "55c91851a46daabcab2f77d8904cb410535dca13",
+          "size_bytes": 16431,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-erasure-coding/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "fc6de95a00d4d46c3ca9154f4eafac58ad5ef1e1",
+          "size_bytes": 18147,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-eth/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a2a8f845d2d10e64e099380ee09b22a26359bb53",
+          "size_bytes": 15523,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-firefly/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "30afbd29c41435231496dae911831925d8f85001",
+          "size_bytes": 18245,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-flow-tune/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "034ef8f49c6fcdbfa2e345c2c775fb421a44997c",
+          "size_bytes": 16625,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-flow/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "25bfa616fff43cbeb7abefc685b23a96c7913929",
+          "size_bytes": 16679,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-gpunetio/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1d64394b2de01f6fc436b694fdaca751994716ba",
+          "size_bytes": 15329,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-hardware-safety/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1624bff9a27d1e1f583c9936a349c09dd1a2062e",
+          "size_bytes": 18860,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-mgmt/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4686784d17ac5e388e7a515cea7839e5c5a23bc2",
+          "size_bytes": 16096,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-ngauge/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "81b077ffc16485e4950e6fd5ecdd0f0cee3d68a3",
+          "size_bytes": 14016,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-pcc-counters/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9881830dd1e6e9ee0df8b606ff39831493e74a90",
+          "size_bytes": 13232,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-pcc/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "030521dc135b332d2f87910f530888af4eefb982",
+          "size_bytes": 17782,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-perftest/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1f3cab029a95438310858cc7f1ea99f7257aa5eb",
+          "size_bytes": 4699,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-pipeline-language-developer-tools/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c2181a50ae53202ec1a19f1c3c340dc3363f5d46",
+          "size_bytes": 15093,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-programming-guide/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7ec4a2f31d8c3a4688711c3e13a0ef929f329c02",
+          "size_bytes": 14743,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-public-knowledge-map/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0243c28426c70ba111ddac4fbf68c446f98415f2",
+          "size_bytes": 16868,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-rdma/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "5a8aadabf7d2ba73083e754288ec77f24323b7b5",
+          "size_bytes": 17034,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-rmax/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "276937dacc324a5faa075970390d058eb46a071e",
+          "size_bytes": 19287,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-setup/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "b9caecdb7716577eeb504c41ba4521cabe29eaf0",
+          "size_bytes": 17766,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-sha-offload-engine/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8f581b79d7f833c075ee16b866af57baf22847b2",
+          "size_bytes": 14460,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-sha/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2f56b5d9299c6c4c670a0b1c59e1c79fd524a1fd",
+          "size_bytes": 14743,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-socket-relay/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "e9bf3d7bd9cb9f582b11cfe3cb8f59edcec19701",
+          "size_bytes": 15702,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-spcx-cc/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "536c71fa4fa0d18723f42b2e54c42731f73165b9",
+          "size_bytes": 18154,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-sta/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "ed6220bcf57e50d316fc2650c4ec18822e306254",
+          "size_bytes": 16681,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-structured-tools-contract/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9199eda7cdad844dc5a1e81028a148f8d171a515",
+          "size_bytes": 16224,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-telemetry-exporter/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "471242a90945a320e6b448bcfea2f559adb35ca3",
+          "size_bytes": 16823,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-telemetry-traceback-application/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "416fada9f0863a5fd9e425123497c5e81be95523",
+          "size_bytes": 13097,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-telemetry-utils/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8f66d453a7932ad5070794e066e305babe88d967",
+          "size_bytes": 15627,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-telemetry/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "3cabb5018344ea566b0dd42c6d8801c2fa5ab9f4",
+          "size_bytes": 18364,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-upgrade/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0d3b959c21f1328b551caa2dee032508cc96e12c",
+          "size_bytes": 15922,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-urom-svc/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "462bb6e705666c09cd9f07579bc25edc9233dfca",
+          "size_bytes": 19159,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-urom/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "499b8c67a396b3dce2abab5b91092ae43cd60618",
+          "size_bytes": 17183,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-verbs/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "57ebc6bf2c95c21958881b21f9a481d1dac0bf89",
+          "size_bytes": 16168,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-doca-plugin/skills/doca-version/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "94e9a82ce9ef002807ca01b505a9e6eb2c3d470f",
+          "size_bytes": 12069,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-autofl-report/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c11be5febdba9a742a381b6553c284439ff46339",
+          "size_bytes": 10536,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-autofl/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "df0e0e16a04404e2c5a8feb0df6c74abc9baabfb",
+          "size_bytes": 15680,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-convert-huggingface/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1d5bda25de442098d19337ca612c5facdbe79cc3",
+          "size_bytes": 14003,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-convert-lightning/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "414585ba2436b244c2667e057d030219dc438091",
+          "size_bytes": 13214,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-convert-pytorch/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "ec24a663df8cc4ac633228722e1f406fe101d376",
+          "size_bytes": 10601,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-diagnose-job/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "45a6cd4ad0ed1d910097f98365018008bc5345c0",
+          "size_bytes": 4916,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-fed-stats/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "469397cdd9527aad03f89f04438cc8c0cde6d3ca",
+          "size_bytes": 12226,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-orient/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0f34230659001bcc522f37bbfbe29d5d4f13a1a1",
+          "size_bytes": 2999,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-nvflare/skills/nvflare-shared/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a0502d816cc9d9216a21a9d810319573619f5c23",
+          "size_bytes": 5179,
+          "classification": "skill_path_candidate"
+        },
+        {
           "path": "plugins/nvidia-skills/skills/nvidia-skill-finder/SKILL.md",
           "mode": "100644",
           "blob_sha": "3083c8e594708e0b1057cf1d45e3fab315bbe2c6",
           "size_bytes": 8928,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/paidf-cosmos-predict/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "5e364bf0a564b8a46adf1679abe3906376f6eaa9",
+          "size_bytes": 18299,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-analyze-changenet-rca/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9d7c4868e099160ab36dbc738ace9cf9cc00c3d8",
+          "size_bytes": 6528,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-analyze-detection-kpi/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a84f050b683da8fd70aee3f0311b2e02c1484bd9",
+          "size_bytes": 10593,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-od-map/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c9afa1ec5eacd401db41ca7098a3b18afd319f66",
+          "size_bytes": 7438,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-visual-changenet/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0780bd1b0f3bc1984b3fc3145424e2000c5ae841",
+          "size_bytes": 17440,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-analyze-gaps-vlm-bcq/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "aa7caa9f3621cd0163a7ac90d146b7286fd98597",
+          "size_bytes": 5256,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-artifacts/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2a959019bbd3cf704d192760e287be08d7c44346",
+          "size_bytes": 5424,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-convert-dataset-format/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a8af746f81da30b9e30b9f3034f15c6c5c1492e2",
+          "size_bytes": 5244,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-data-io/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "98447a737e71f5815f2e279da76ecc15ac385e7c",
+          "size_bytes": 5967,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-anomalygennext/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "979bf6864d7d54cb37e3da76e285a565708ea006",
+          "size_bytes": 5253,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-clip/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "da3a408ed2424c25c1fc2321e5504959d37811a8",
+          "size_bytes": 19896,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-cosmos-embed/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "34bd53ceb6194a830019a9430899f8ea7f1a0027",
+          "size_bytes": 17964,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-cosmos-reason/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "d02f151ac3ee172db95842511f4f718692f0157e",
+          "size_bytes": 19862,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-huggingface-model/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "977dd7d810ce6f585d3e055fa8485661e2e7f621",
+          "size_bytes": 19660,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-kumo-anomaly/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "ea09f3bb02d1088abea06c0b4fabbc770d5eb778",
+          "size_bytes": 13591,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-kumo-forecast/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4a9fe261a4310bc6eef285e39e299b4fba1dd501",
+          "size_bytes": 13825,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-finetune-video-clip/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "17cede84046377b4f35b928e1a63541b09b30f0e",
+          "size_bytes": 13925,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-anomalies/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "89fd232d2bcfdbc28d8d0672097a570cc0f1e720",
+          "size_bytes": 19584,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-image-embeddings/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7eb0e9e361a6d83c40ce918e1e9a3eed421033ac",
+          "size_bytes": 8867,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-image-grounding/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "23e533a1e933184bb74432f50b8c88318e3fd460",
+          "size_bytes": 8038,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-od-defects/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "54c3a2107a4eb17c5060aee428142d2580f04e56",
+          "size_bytes": 3857,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-referring-expressions/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "14738f14fb19eb217aed82336fe7ff1044b58b7d",
+          "size_bytes": 10400,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-generate-video-reasoning-annotations/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4f63e8c1ba1f66eed77a2187125b57d832aa1f1e",
+          "size_bytes": 11234,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-launch-workflow/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7a8e4a50e91e4d4bed184cd6c3d0194db4ba7e79",
+          "size_bytes": 19940,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-list-capabilities/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "dd67e8778738cffdb44a69df5676f1998ad5df85",
+          "size_bytes": 3897,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-mine-aoi-images/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8e7f1f0d81ce9bc39fa0bd795ec73f832d378782",
+          "size_bytes": 15340,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-mine-nearest-neighbors/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c77e268e31cb751800c23b22ba7b83b7206e4c9a",
+          "size_bytes": 6280,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-mine-od-images/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "ba8971f7b2fc85b186a4aeecb7be9c0a7e177e22",
+          "size_bytes": 8673,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-port-huggingface-model/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a6df4d95fc509570675e6f88e1c97cfc0b808a03",
+          "size_bytes": 18166,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-prepare-anomalygennext-inputs/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9b8c02aca0ed9da9f339dccb9493a8a6b61e2f1e",
+          "size_bytes": 6693,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-route-visual-changenet-samples/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1645d75a6f6cd1fc866998bd27af150e3f4e72ee",
+          "size_bytes": 12511,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-automl-deft-pipeline/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7bc31b1331c35a143f1e966b0fb2be2793cea863",
+          "size_bytes": 17492,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-automl/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "e8853c83ef40922dc4a03a2441c57e02f3d0a404",
+          "size_bytes": 19917,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-aoi-cosmos3/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "9f8e2f9573b3c535bf205f52225c538aa08010ac",
+          "size_bytes": 19830,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-aoi/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "d13037a556e47c13beb62e48cb7e1701d43e1f3c",
+          "size_bytes": 19925,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-cr-its-mining/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "142e31bc31bdc9ee52de010b14e2232b9978cb3a",
+          "size_bytes": 20133,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-object-detection/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8cfc813129916d0aa56ff94e17b51550953351af",
+          "size_bytes": 13999,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-od-aoi/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c9af4b5311260b0faf30c4f608e2c954f19eb53d",
+          "size_bytes": 17912,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-deft-pas/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "17a3fb897fae90d957cd1752e71b6a064ba9abd8",
+          "size_bytes": 19769,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-dinov3-ssl-deft/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "fc829faed27389d1a25791ff4e62b2314c5e91a3",
+          "size_bytes": 7383,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-inference-service/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "6fed9e8a24061b7fdea00139340310a1f68d8a63",
+          "size_bytes": 18618,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-on-brev/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c71dec53b011bfddb6a3167e53975f0ffc27c3d5",
+          "size_bytes": 10548,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-on-docker/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "63efe4e5488c6c3945cd2c578c9cbbef17fcf0f4",
+          "size_bytes": 19968,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-on-kubernetes/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a4cc4ed1470cfb0b865eff52b7083b224c9dffc9",
+          "size_bytes": 19787,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-on-slurm/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "a6525cc4c3c51e336378334f4ba4e1573a381dc1",
+          "size_bytes": 20060,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-run-on-virtualenv/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8842022ffe438fbe4a40c098ab9a71725a65878d",
+          "size_bytes": 6464,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-setup-nvidia-gpu-host/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "ab0996bdf20f1c47edbf8550cf23d11ef3f7da44",
+          "size_bytes": 13514,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-setup/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7831af721053bfd6b717404415c4ef1e5293091c",
+          "size_bytes": 12504,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-token-efficient-execution/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "98d5bab2827c0f6736acb1c60a6781ea6b25b213",
+          "size_bytes": 8337,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-action-recognition/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c2068d158fdc290792ed38f1eacdc41672a6e444",
+          "size_bytes": 11871,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-bevfusion/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "072ee41bf359890e5c1ea1d1fd9dd27e07991348",
+          "size_bytes": 13481,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-centerpose/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "c1a1cc6e0274b733e40ca01287bd185926170d26",
+          "size_bytes": 11440,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-codetr/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "e81a4f2d3d1377690e207370bda4714caa1d29c9",
+          "size_bytes": 19119,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-deformable-detr/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4962da421ec3c28fab635613492178b044108621",
+          "size_bytes": 15464,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-depth-anything-v2/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "f53c55ba9e94b93731bd0e9a62823ec597fe3167",
+          "size_bytes": 15673,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-dino/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "34f82e633bc68680a3e7b10a6ab51b8f71839495",
+          "size_bytes": 10445,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-dinov3/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "14c3a08e532a52187f4c104b73a7237ae44c5937",
+          "size_bytes": 9062,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-fast-foundation-stereo/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "14ca2c84cb0e0b366ef6e483d3e006662378e52e",
+          "size_bytes": 11863,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-foundation-stereo/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "dc1a370b4c32bef77fef32a633b3734fd2bf6be6",
+          "size_bytes": 12992,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-grounding-dino/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "e9aed65998730beb006ff6a1d321901d7c414d2c",
+          "size_bytes": 15529,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-image-classification/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1bc91af79cd91bdc3e8dc5710d4d436309d56844",
+          "size_bytes": 14217,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-mask-auto-encoder/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "0d9a410d0b05d68f1b7f85c7308adbb9cbce96a7",
+          "size_bytes": 11499,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-mask-auto-label/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "f45ef8d58da9e336a9e921faf71b2470acf883ab",
+          "size_bytes": 11354,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-mask-grounding-dino/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "30d87cf97740957b68b49961b55cd91a38db663f",
+          "size_bytes": 13983,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-mask2former/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2ee819cd59c6550e8d9d3187df390fa2cfbfc824",
+          "size_bytes": 19985,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-metric-learning-recognition/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "e41f9d10db8ab59918cf1a353eb0853f54cb7071",
+          "size_bytes": 11567,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-nvdinov2/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "cc354e31fb1cbe4864994394cef7f8f8895ce507",
+          "size_bytes": 12401,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-nvpanoptix3d/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "6d6b723aaed62a318c898a2d8c951a612be76580",
+          "size_bytes": 17037,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-ocdnet/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "d06c587457f3975b2e42d678e6038e2214ab8c0e",
+          "size_bytes": 14576,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-ocrnet/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "b14f4c0f6718472657fb360824e2357a3e51235c",
+          "size_bytes": 17563,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-oneformer/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "3826c66d3f3e8723a55a036f3497f1e9037ea4b4",
+          "size_bytes": 19949,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-optical-inspection/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "202d34e47eefaccee34c4d202789d080878b0bd2",
+          "size_bytes": 17457,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-pointpillars/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "3776d830e51b3f64e3289e2af14a9c7ff14a7a66",
+          "size_bytes": 15947,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-pose-classification/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "759bafe230994c3879e901685102cc0083755840",
+          "size_bytes": 15365,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-reid/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "347bd085a33c32f7c6a1b760f43c07e973558d49",
+          "size_bytes": 14441,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-rtdetr/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "2fee13a4581ba57d7dfebe5658b5b473b01cc396",
+          "size_bytes": 17868,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-segformer/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "8a761eb9bb6b234f39da96b18be24fca72334409",
+          "size_bytes": 14805,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-single-step/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "166a5b808bf8f2c3bb2d61ebe0d0f3b27f6b80e1",
+          "size_bytes": 4733,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-sparse4d/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "96abaebec453a669656593642184237cb9e3ccb2",
+          "size_bytes": 13416,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-train-visual-changenet/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "4691c40a01b55fc948f72ded8306c2c16d7f1f10",
+          "size_bytes": 18813,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-validate-dataset-format/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "730c61e0f146505b4b2f9eff9408589624586fa7",
+          "size_bytes": 5007,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "plugins/nvidia-tao-toolkit/skills/tao-validate-recipe-transfer/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "59750d41640098f4c468588f012c0e0d779fb15a",
+          "size_bytes": 16710,
           "classification": "skill_path_candidate"
         },
         {
@@ -26416,6 +27581,13 @@
           "classification": "skill_path_candidate"
         },
         {
+          "path": "skills/cccl/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "3da2261132ec152fb9c1375de2305ab8c347e4b4",
+          "size_bytes": 12037,
+          "classification": "skill_path_candidate"
+        },
+        {
           "path": "skills/cdf-anomalygen/SKILL.md",
           "mode": "100644",
           "blob_sha": "2cb00a10c7c3aa59e1036d5ebe2cf84247a66fcf",
@@ -26563,6 +27735,13 @@
           "classification": "skill_path_candidate"
         },
         {
+          "path": "skills/cuda-python/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "dda8df21d05c1686704927961110b4afd55eb492",
+          "size_bytes": 7328,
+          "classification": "skill_path_candidate"
+        },
+        {
           "path": "skills/cudaq-guide/SKILL.md",
           "mode": "100644",
           "blob_sha": "10504b5d473ed277355621012cb1633fef92f5c2",
@@ -26616,6 +27795,13 @@
           "mode": "100644",
           "blob_sha": "d3d73bb569b0001c8c13edc24de317824c46adb2",
           "size_bytes": 14921,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "skills/daqiri-onboarding/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "b6f052f95294e15b6054e6b2046f2448ec58a616",
+          "size_bytes": 3459,
           "classification": "skill_path_candidate"
         },
         {
@@ -26726,43 +27912,43 @@
         {
           "path": "skills/doca-aes-gcm/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0e99ec8ff645b8520a9fe05c603d1832b5a6635c",
-          "size_bytes": 17013,
+          "blob_sha": "1783e80324e889318a4404811915759dfb1a2791",
+          "size_bytes": 17466,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-argp/SKILL.md",
           "mode": "100644",
-          "blob_sha": "cd80a785db7ed65b472f3d2f403c7fb56463230c",
-          "size_bytes": 12518,
+          "blob_sha": "be0333d41d8245eeaaebc9bb36d9b2c0a014a709",
+          "size_bytes": 12971,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-argus/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f5c7dc9ef3498d398d6327382aa167dbe1f48dfc",
-          "size_bytes": 17012,
+          "blob_sha": "9256b1360893e39dec74a4b0ff9d24b924963006",
+          "size_bytes": 17440,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-bare-metal-deployment/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a39961fc11c901b14858589639bff14cfb6d08c4",
-          "size_bytes": 11273,
+          "blob_sha": "2b3dd6078ecf5c7f7ff005d885714f2f81a0aafb",
+          "size_bytes": 11701,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-bench/SKILL.md",
           "mode": "100644",
-          "blob_sha": "244797f71594ac94c63269c1252f687b63b6418c",
-          "size_bytes": 13816,
+          "blob_sha": "8f1edf2f3ea3c0407ed4fd8d361918cee4c7749d",
+          "size_bytes": 14244,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-bf3-deployment/SKILL.md",
           "mode": "100644",
-          "blob_sha": "c9ca500aa2aa46417f35e30526763a5d4b07558b",
-          "size_bytes": 10645,
+          "blob_sha": "6cd05d22f5ef45583eb389a22b65a064131b4e3b",
+          "size_bytes": 11073,
           "classification": "skill_path_candidate"
         },
         {
@@ -26775,148 +27961,148 @@
         {
           "path": "skills/doca-caps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2c5e8f3706c78b0e680271cd117841b32959874a",
-          "size_bytes": 13135,
+          "blob_sha": "5cf2f97fc76e8837bed906f1ea90d7a91b89a85e",
+          "size_bytes": 13563,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-comch/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ffdccdcafda566c67f1e82c5c5e1451e4198992f",
-          "size_bytes": 12734,
+          "blob_sha": "09e62a895f19cc46dc7a91a1a285bb46e5b31e71",
+          "size_bytes": 13187,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-comm-channel-admin/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2648f220bcc7f8f3637b189f8b3d5958d402889d",
-          "size_bytes": 12147,
+          "blob_sha": "4518b6a23cb1aff04003804613b7fa1cfd81bc3d",
+          "size_bytes": 12575,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-common/SKILL.md",
           "mode": "100644",
-          "blob_sha": "834ac9a99461711dd98a13ba14841cceef5cbcf4",
-          "size_bytes": 16245,
+          "blob_sha": "0e30f41cf21954f85fd769142ab5768458922dbf",
+          "size_bytes": 16673,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-compress/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2a75733c938eabe4f85b1008c00b9a543d3ef095",
-          "size_bytes": 15137,
+          "blob_sha": "7c828f3fd13da5c1c7925746de161e4bf1ba496a",
+          "size_bytes": 15590,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-container-deployment/SKILL.md",
           "mode": "100644",
-          "blob_sha": "54bcbc3b52fc0e978b000dfbee46d96cb99b26eb",
-          "size_bytes": 11080,
+          "blob_sha": "b1e5840a0aea64fcce935616fbd9f86945c58cd4",
+          "size_bytes": 11508,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-debug/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bd4459d00b7d81969551a8c71c112f8bf4597b6d",
-          "size_bytes": 12755,
+          "blob_sha": "66610cefb8dbb420144efaa2248a2a906cf783b0",
+          "size_bytes": 13183,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-devemu/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f2815b6626d230249ad34e09d55267667cffee1e",
-          "size_bytes": 13904,
+          "blob_sha": "2e5eda89328a386d4a9c6fe5faaf43591b632877",
+          "size_bytes": 14332,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-dma/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ae2fec1a07bcd736430f5bdde9badd4c387f4798",
-          "size_bytes": 12969,
+          "blob_sha": "b8e2fb0cc8ffd00701b137bb470a182e957753f5",
+          "size_bytes": 13422,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-dms/SKILL.md",
           "mode": "100644",
-          "blob_sha": "09df2f73e0f6d1a06edbe3102202b56eae29a0df",
-          "size_bytes": 14449,
+          "blob_sha": "752de0f8e393deb847c98c0a8bc0659e91c25286",
+          "size_bytes": 14877,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-dpa/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9ad8abc9258815239a5381f8ae9c2a05bab7ba54",
-          "size_bytes": 15911,
+          "blob_sha": "888a714a23c317d316bf7052bf78441a00826441",
+          "size_bytes": 16339,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-dpdk-bridge/SKILL.md",
           "mode": "100644",
-          "blob_sha": "d70851c75d554686f6ade8521b35262087b13eeb",
-          "size_bytes": 15359,
+          "blob_sha": "3833562a93dcee195bb70f58653844c6a961d666",
+          "size_bytes": 15812,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-dts/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9a450d1ec62d0b2fdead719b402f502b61b0887e",
-          "size_bytes": 16003,
+          "blob_sha": "55c91851a46daabcab2f77d8904cb410535dca13",
+          "size_bytes": 16431,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-erasure-coding/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6a6e6b9f56739521f6e564df620460e87bbe92bd",
-          "size_bytes": 17694,
+          "blob_sha": "fc6de95a00d4d46c3ca9154f4eafac58ad5ef1e1",
+          "size_bytes": 18147,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-eth/SKILL.md",
           "mode": "100644",
-          "blob_sha": "702ee6ebe298761e5758181a72333f6382f448b0",
-          "size_bytes": 15070,
+          "blob_sha": "a2a8f845d2d10e64e099380ee09b22a26359bb53",
+          "size_bytes": 15523,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-firefly/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0a47a4794e08b69e0a4341f165ab48add2837aef",
-          "size_bytes": 17817,
+          "blob_sha": "30afbd29c41435231496dae911831925d8f85001",
+          "size_bytes": 18245,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-flow-tune/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a4f1b7c9511ea2657ee4246184aaf7b6058b7071",
-          "size_bytes": 16172,
+          "blob_sha": "034ef8f49c6fcdbfa2e345c2c775fb421a44997c",
+          "size_bytes": 16625,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-flow/SKILL.md",
           "mode": "100644",
-          "blob_sha": "779feffbb87b11396430b2239378dc7a28c08bbf",
-          "size_bytes": 16226,
+          "blob_sha": "25bfa616fff43cbeb7abefc685b23a96c7913929",
+          "size_bytes": 16679,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-gpunetio/SKILL.md",
           "mode": "100644",
-          "blob_sha": "71b91ac5861af65d43f19b7f2982511c0551134d",
-          "size_bytes": 14876,
+          "blob_sha": "1d64394b2de01f6fc436b694fdaca751994716ba",
+          "size_bytes": 15329,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-hardware-safety/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a7d63c92910a425b5d623448f7485427a685299c",
-          "size_bytes": 18432,
+          "blob_sha": "1624bff9a27d1e1f583c9936a349c09dd1a2062e",
+          "size_bytes": 18860,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-mgmt/SKILL.md",
           "mode": "100644",
-          "blob_sha": "1f3568a40cd2923ebff2395b4234f102e31a388c",
-          "size_bytes": 15643,
+          "blob_sha": "4686784d17ac5e388e7a515cea7839e5c5a23bc2",
+          "size_bytes": 16096,
           "classification": "skill_path_candidate"
         },
         {
@@ -26929,15 +28115,15 @@
         {
           "path": "skills/doca-pcc-counters/SKILL.md",
           "mode": "100644",
-          "blob_sha": "e7b501df85801fe2eb3774f5d3b5ded64dcca782",
-          "size_bytes": 12804,
+          "blob_sha": "9881830dd1e6e9ee0df8b606ff39831493e74a90",
+          "size_bytes": 13232,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-pcc/SKILL.md",
           "mode": "100644",
-          "blob_sha": "85dfc361c58de1c8586687a277cbf22e5fa556ee",
-          "size_bytes": 17349,
+          "blob_sha": "030521dc135b332d2f87910f530888af4eefb982",
+          "size_bytes": 17782,
           "classification": "skill_path_candidate"
         },
         {
@@ -26957,141 +28143,141 @@
         {
           "path": "skills/doca-programming-guide/SKILL.md",
           "mode": "100644",
-          "blob_sha": "1552db9113bc8fc0721bd00fe7b8a7894c7a0a1c",
-          "size_bytes": 14315,
+          "blob_sha": "7ec4a2f31d8c3a4688711c3e13a0ef929f329c02",
+          "size_bytes": 14743,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-public-knowledge-map/SKILL.md",
           "mode": "100644",
-          "blob_sha": "730ebcc98a4a238caf4246393ebbea0154951bfe",
-          "size_bytes": 16440,
+          "blob_sha": "0243c28426c70ba111ddac4fbf68c446f98415f2",
+          "size_bytes": 16868,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-rdma/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0624b1e6fc2b0d6d7c31cdbcb06affad8d94c5c4",
-          "size_bytes": 16606,
+          "blob_sha": "5a8aadabf7d2ba73083e754288ec77f24323b7b5",
+          "size_bytes": 17034,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-rmax/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bc6715d60337a90e0a460c9f6309f84827bb8180",
-          "size_bytes": 18859,
+          "blob_sha": "276937dacc324a5faa075970390d058eb46a071e",
+          "size_bytes": 19287,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-setup/SKILL.md",
           "mode": "100644",
-          "blob_sha": "18e97d60a1ce4eba33f78a38c9f79880405c89e5",
-          "size_bytes": 17338,
+          "blob_sha": "b9caecdb7716577eeb504c41ba4521cabe29eaf0",
+          "size_bytes": 17766,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-sha-offload-engine/SKILL.md",
           "mode": "100644",
-          "blob_sha": "99763e61a36cee8f62035adaf179112f3738b99d",
-          "size_bytes": 14032,
+          "blob_sha": "8f581b79d7f833c075ee16b866af57baf22847b2",
+          "size_bytes": 14460,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-sha/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9aadb2d09de8d67c6cb548e6c7a420fad2e919fa",
-          "size_bytes": 14290,
+          "blob_sha": "2f56b5d9299c6c4c670a0b1c59e1c79fd524a1fd",
+          "size_bytes": 14743,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-socket-relay/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3fab740e9c63218057c21e00b8ee22bbb6698ad1",
-          "size_bytes": 15274,
+          "blob_sha": "e9bf3d7bd9cb9f582b11cfe3cb8f59edcec19701",
+          "size_bytes": 15702,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-spcx-cc/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b8cb38b5df8e009263182730dc5757d215488591",
-          "size_bytes": 17726,
+          "blob_sha": "536c71fa4fa0d18723f42b2e54c42731f73165b9",
+          "size_bytes": 18154,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-sta/SKILL.md",
           "mode": "100644",
-          "blob_sha": "58773c173bce7f9cb77b03774ed706cf2adca279",
-          "size_bytes": 16228,
+          "blob_sha": "ed6220bcf57e50d316fc2650c4ec18822e306254",
+          "size_bytes": 16681,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-structured-tools-contract/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ad6db4c0e4f4b6dba39e90f4af2e43281680a036",
-          "size_bytes": 15796,
+          "blob_sha": "9199eda7cdad844dc5a1e81028a148f8d171a515",
+          "size_bytes": 16224,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-telemetry-exporter/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bd4880bf3b1412c83a0584d945f07bd976c48c58",
-          "size_bytes": 16370,
+          "blob_sha": "471242a90945a320e6b448bcfea2f559adb35ca3",
+          "size_bytes": 16823,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-telemetry-traceback-application/SKILL.md",
           "mode": "100644",
-          "blob_sha": "605c5d87805b448e13d71c56c15dd23991497432",
-          "size_bytes": 12669,
+          "blob_sha": "416fada9f0863a5fd9e425123497c5e81be95523",
+          "size_bytes": 13097,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-telemetry-utils/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2bb8360d2f1e72403087a9a4b4faa180229d2f5b",
-          "size_bytes": 15199,
+          "blob_sha": "8f66d453a7932ad5070794e066e305babe88d967",
+          "size_bytes": 15627,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-telemetry/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2498f80a1551fb00d0b58a896eb5e4e16a8cd12b",
-          "size_bytes": 17911,
+          "blob_sha": "3cabb5018344ea566b0dd42c6d8801c2fa5ab9f4",
+          "size_bytes": 18364,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-upgrade/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ea87df43e79ee4b26c3920d3e5537e4e7425ac3b",
-          "size_bytes": 15494,
+          "blob_sha": "0d3b959c21f1328b551caa2dee032508cc96e12c",
+          "size_bytes": 15922,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-urom-svc/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2071c3fdebb9337082cbbeaeddb034a479983667",
-          "size_bytes": 18731,
+          "blob_sha": "462bb6e705666c09cd9f07579bc25edc9233dfca",
+          "size_bytes": 19159,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-urom/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bf7bb85ab8ef4b9ac689ea57d6e3d61dcaeae890",
-          "size_bytes": 16755,
+          "blob_sha": "499b8c67a396b3dce2abab5b91092ae43cd60618",
+          "size_bytes": 17183,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-verbs/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3323ba148d2572f21bc1b45c59777d9a8a455652",
-          "size_bytes": 15715,
+          "blob_sha": "57ebc6bf2c95c21958881b21f9a481d1dac0bf89",
+          "size_bytes": 16168,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/doca-version/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9fdfe418556c999dda87ba055137871eef10eb8a",
-          "size_bytes": 11641,
+          "blob_sha": "94e9a82ce9ef002807ca01b505a9e6eb2c3d470f",
+          "size_bytes": 12069,
           "classification": "skill_path_candidate"
         },
         {
@@ -27804,8 +28990,8 @@
         {
           "path": "skills/kumo-data-science/SKILL.md",
           "mode": "100644",
-          "blob_sha": "40fb76d168f2de3238690f983340fd50b51c207c",
-          "size_bytes": 22813,
+          "blob_sha": "6aae6b86b2a8c6ec7349e9fde29c374e0b265080",
+          "size_bytes": 22819,
           "classification": "skill_path_candidate"
         },
         {
@@ -27818,8 +29004,8 @@
         {
           "path": "skills/kumo-model-explanations/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f35fcbcbd9ef792127f6d799ff5f938556c6f931",
-          "size_bytes": 8141,
+          "blob_sha": "7c14d24f31e1b4776cd83a7f57177b5b3184a225",
+          "size_bytes": 8805,
           "classification": "skill_path_candidate"
         },
         {
@@ -27960,6 +29146,13 @@
           "mode": "100644",
           "blob_sha": "f5e4531062964c0a0604d4d6b45f24ad076aa7fb",
           "size_bytes": 16131,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "skills/nemo-gym-run-and-babysit-eval/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "7bf4a2a32f5ed64b7ce741e4ffbc0de8e5c8067a",
+          "size_bytes": 50169,
           "classification": "skill_path_candidate"
         },
         {
@@ -28371,64 +29564,64 @@
         {
           "path": "skills/nvflare-autofl-report/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b60239f5466d9b350b5ca6dd4c8e7d132e1b5978",
-          "size_bytes": 10522,
+          "blob_sha": "c11be5febdba9a742a381b6553c284439ff46339",
+          "size_bytes": 10536,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-autofl/SKILL.md",
           "mode": "100644",
-          "blob_sha": "36cd186c04ae6bf90c984ef9aa60aed754f7b301",
-          "size_bytes": 15666,
+          "blob_sha": "df0e0e16a04404e2c5a8feb0df6c74abc9baabfb",
+          "size_bytes": 15680,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-convert-huggingface/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ef9c1501be1b15334425db8f270763b061dd6553",
-          "size_bytes": 13989,
+          "blob_sha": "1d5bda25de442098d19337ca612c5facdbe79cc3",
+          "size_bytes": 14003,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-convert-lightning/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ecaf04010de3497c566762b192abeb0f268d43dd",
-          "size_bytes": 13200,
+          "blob_sha": "414585ba2436b244c2667e057d030219dc438091",
+          "size_bytes": 13214,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-convert-pytorch/SKILL.md",
           "mode": "100644",
-          "blob_sha": "1266b59e08b64b741c158f603eda9740e95c3c3f",
-          "size_bytes": 10587,
+          "blob_sha": "ec24a663df8cc4ac633228722e1f406fe101d376",
+          "size_bytes": 10601,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-diagnose-job/SKILL.md",
           "mode": "100644",
-          "blob_sha": "d110bd580dbf11433150aeef297d7f4264c05aec",
-          "size_bytes": 4902,
+          "blob_sha": "45a6cd4ad0ed1d910097f98365018008bc5345c0",
+          "size_bytes": 4916,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-fed-stats/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b32d0bd4efb5877e851f53663ae6dd97ebb1af4f",
-          "size_bytes": 12212,
+          "blob_sha": "469397cdd9527aad03f89f04438cc8c0cde6d3ca",
+          "size_bytes": 12226,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-orient/SKILL.md",
           "mode": "100644",
-          "blob_sha": "8902778d1ccc616784248362c7d57d8eb2b8c26a",
-          "size_bytes": 2985,
+          "blob_sha": "0f34230659001bcc522f37bbfbe29d5d4f13a1a1",
+          "size_bytes": 2999,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/nvflare-shared/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6adeb438f279ee6caabe44a45beccf95be437277",
-          "size_bytes": 5165,
+          "blob_sha": "a0502d816cc9d9216a21a9d810319573619f5c23",
+          "size_bytes": 5179,
           "classification": "skill_path_candidate"
         },
         {
@@ -28758,6 +29951,13 @@
           "mode": "100644",
           "blob_sha": "5b8fabd7e09f0f00fa4e6ff5c675f9a945d9f31c",
           "size_bytes": 19298,
+          "classification": "skill_path_candidate"
+        },
+        {
+          "path": "skills/sdm-tabular-prediction/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "fa7b6531ae39e7c95951240100110dca54269db7",
+          "size_bytes": 4613,
           "classification": "skill_path_candidate"
         },
         {
@@ -29483,9 +30683,9 @@
       "publisher_account": "OthmanAdi",
       "repository_url": "https://github.com/OthmanAdi/planning-with-files",
       "default_branch": "master",
-      "commit_sha": "aaa38bc62053f5f7c1bfbcb60f0405f7cf0ee228",
-      "tree_sha": "71ed196e05a9a0b566481b230ccdf7650a2a985a",
-      "checked_at": "2026-11-24T19:00:22.116193+00:00",
+      "commit_sha": "189fd09fecb246a4064f2cd0635153b5297f5369",
+      "tree_sha": "6431dc3f7ede95534bfb722482c478e067b1635e",
+      "checked_at": "2026-11-25T18:05:38.290112+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -29665,7 +30865,7 @@
       "default_branch": "main",
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
       "tree_sha": "d64441f0cae3c49cc1c0cc6ecdb3e26d369a7455",
-      "checked_at": "2026-11-24T19:00:33.605311+00:00",
+      "checked_at": "2026-11-25T18:05:56.145457+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -31663,7 +32863,7 @@
       "default_branch": "master",
       "commit_sha": "f5a195992d84c8fb075b0176d666967cd07d2081",
       "tree_sha": "9648c598ed36e00e878390cc6f8cefa53e35db9e",
-      "checked_at": "2026-11-24T18:59:49.975755+00:00",
+      "checked_at": "2026-11-25T18:05:05.654986+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -31701,7 +32901,7 @@
       "default_branch": "main",
       "commit_sha": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
       "tree_sha": "7bfa838de8b78874cdeea23f6a22a0ce5d1a4032",
-      "checked_at": "2026-11-24T18:59:55.646856+00:00",
+      "checked_at": "2026-11-25T18:05:11.537440+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -32154,9 +33354,9 @@
       "publisher_account": "expo",
       "repository_url": "https://github.com/expo/skills",
       "default_branch": "main",
-      "commit_sha": "e577fe1524106faa3b241430874cb3c495e6b9db",
-      "tree_sha": "773509aa152152a92ad703fe8000ff9fd5c53aeb",
-      "checked_at": "2026-11-24T18:59:59.958991+00:00",
+      "commit_sha": "c5e536273b6b4a7a3ad5dd9d74b6098c15138b21",
+      "tree_sha": "5eae091dd8799c9ee3543ec7a36eb089a8496309",
+      "checked_at": "2026-11-25T18:05:16.145922+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -32229,8 +33429,8 @@
         {
           "path": "plugins/expo/skills/eas-app-stores/SKILL.md",
           "mode": "100644",
-          "blob_sha": "74ce84a75d80af18a606411cef14d3bf7b8fb592",
-          "size_bytes": 13496,
+          "blob_sha": "0361e4cce56893b942fa3673adead07d80a3a339",
+          "size_bytes": 13430,
           "classification": "skill_path_candidate"
         },
         {
@@ -32250,29 +33450,29 @@
         {
           "path": "plugins/expo/skills/eas-simulator/SKILL.md",
           "mode": "100644",
-          "blob_sha": "d14e0a2cd11b114902e809f1324d01ff7eced1bd",
-          "size_bytes": 34694,
+          "blob_sha": "019d10fbd8770e78db0db21f76b6fbcf04e2ba5e",
+          "size_bytes": 34764,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/eas-update-insights/SKILL.md",
           "mode": "100644",
-          "blob_sha": "98cf9b4813375a86f8de1dd38d5f88345c3ac6fb",
-          "size_bytes": 13085,
+          "blob_sha": "c1a13d9ebb3252a6852bb5c9fe50ce800b91b8a3",
+          "size_bytes": 13148,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/eas-update/SKILL.md",
           "mode": "100644",
-          "blob_sha": "99fac1d57404a7ec2d45f39edbab2f2b91d238d6",
-          "size_bytes": 10109,
+          "blob_sha": "394f05050ea8666a8ee54042dff1db167b1686d0",
+          "size_bytes": 10728,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/eas-workflows/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a4f3e17ebcd2b4881a0e93231b0629ce6361251a",
-          "size_bytes": 5000,
+          "blob_sha": "520d85299beacc93ec2a59964bd2e8887996410e",
+          "size_bytes": 5041,
           "classification": "skill_path_candidate"
         },
         {
@@ -32285,15 +33485,15 @@
         {
           "path": "plugins/expo/skills/expo-app-clip/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9bfa34bf188c42e9967f500432825b2e9bb49d8f",
-          "size_bytes": 9872,
+          "blob_sha": "f34eca38d812bb8b55f6af54e92f40bfd754c229",
+          "size_bytes": 9982,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/expo-brownfield/SKILL.md",
           "mode": "100644",
-          "blob_sha": "53a1681f987cc674f580048a04a9d2349b3f6792",
-          "size_bytes": 6008,
+          "blob_sha": "5129d01e2701a6b01b9cee00af5fb887b63e57d9",
+          "size_bytes": 6032,
           "classification": "skill_path_candidate"
         },
         {
@@ -32313,8 +33513,8 @@
         {
           "path": "plugins/expo/skills/expo-dev-client/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6e73e303bbd4aee0b4fa6c76356e60ff4c749b5c",
-          "size_bytes": 5827,
+          "blob_sha": "7382db35efcf2d388a2d47ceae62dcddadb36921",
+          "size_bytes": 6391,
           "classification": "skill_path_candidate"
         },
         {
@@ -32327,8 +33527,8 @@
         {
           "path": "plugins/expo/skills/expo-examples/SKILL.md",
           "mode": "100644",
-          "blob_sha": "458b685498b6e9e7a74418f2b4450145b911479b",
-          "size_bytes": 6917,
+          "blob_sha": "652476cad4e96c95b4ddc0df54d9b6bd24c0c44c",
+          "size_bytes": 6902,
           "classification": "skill_path_candidate"
         },
         {
@@ -32341,15 +33541,15 @@
         {
           "path": "plugins/expo/skills/expo-native-ui/SKILL.md",
           "mode": "100644",
-          "blob_sha": "8d8ffb9925b563325b06723cf09113134f3b8a88",
-          "size_bytes": 12768,
+          "blob_sha": "8d18f89a9f9074f9c24809cb6f5d29ab6676f635",
+          "size_bytes": 13219,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/expo-overview/SKILL.md",
           "mode": "100644",
-          "blob_sha": "5a89b5abebbd5860b26419625d84d55e64a87371",
-          "size_bytes": 10543,
+          "blob_sha": "2f4a6b6b8fd454bbca77210fc5a9b6c37540ddf8",
+          "size_bytes": 11046,
           "classification": "skill_path_candidate"
         },
         {
@@ -32369,15 +33569,15 @@
         {
           "path": "plugins/expo/skills/expo-ui/SKILL.md",
           "mode": "100644",
-          "blob_sha": "68755c68b084a71e622ed7d406d64d3c5c892549",
-          "size_bytes": 7140,
+          "blob_sha": "b533c3b5cbe791b3523000e3b21bf7164853e6de",
+          "size_bytes": 7206,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/expo-upgrade/SKILL.md",
           "mode": "100644",
-          "blob_sha": "63f073c97b8acc1d59a3747a4b698b31d5ccb9c5",
-          "size_bytes": 7856,
+          "blob_sha": "bea523ecb8f86656ac1458052e0dc2b8e42165f2",
+          "size_bytes": 8048,
           "classification": "skill_path_candidate"
         },
         {
@@ -32398,7 +33598,7 @@
       "default_branch": "master",
       "commit_sha": "469868f4489cbdbe178c775a0af05bb6bef63689",
       "tree_sha": "2b7fcdce39a7657e727ae1b07672851855647fc5",
-      "checked_at": "2026-11-24T19:00:06.286295+00:00",
+      "checked_at": "2026-11-25T18:05:22.910802+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -32434,9 +33634,9 @@
       "publisher_account": "mattpocock",
       "repository_url": "https://github.com/mattpocock/skills",
       "default_branch": "main",
-      "commit_sha": "d65391149dbb5fe76478e76fa8d5122b2aa5a70e",
-      "tree_sha": "dcd16cee5b7bfab2001a33bbfaf98e2fdb71c4b1",
-      "checked_at": "2026-11-24T19:00:11.444457+00:00",
+      "commit_sha": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "tree_sha": "54981f8195880713ce8e965efeb8d520bf803133",
+      "checked_at": "2026-11-25T18:05:28.044059+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -32777,9 +33977,9 @@
       "publisher_account": "nextlevelbuilder",
       "repository_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "default_branch": "main",
-      "commit_sha": "cc7b20d85d64d8fa022292cfad731995d3cd4eeb",
-      "tree_sha": "1b8d4558346344ea01a91d27c0abcd351f6a3254",
-      "checked_at": "2026-11-24T19:00:15.269504+00:00",
+      "commit_sha": "8db36338810d0942567b97ce439affd1619fcf31",
+      "tree_sha": "79a9864d9443d2ae68b060fb54af123f08f51e1a",
+      "checked_at": "2026-11-25T18:05:31.660471+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -32925,7 +34125,7 @@
       "default_branch": "main",
       "commit_sha": "22f0b463e7a5e579904dd6211a520321035526f7",
       "tree_sha": "8fddc972a73e9af7501442df0e638d8e29842b6b",
-      "checked_at": "2026-11-24T19:00:17.199707+00:00",
+      "checked_at": "2026-11-25T18:05:33.909468+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33074,9 +34274,9 @@
       "publisher_account": "obsidianmd",
       "repository_url": "https://github.com/obsidianmd/obsidian-skills",
       "default_branch": "main",
-      "commit_sha": "b110b2f8e9eb1f287892f937050dfd40af862cbb",
-      "tree_sha": "13f7bbb192e22c5900045e66c481798fca28593d",
-      "checked_at": "2026-11-24T19:00:18.040779+00:00",
+      "commit_sha": "ba213967e94fcf0bff173d810f7a4465856b7eca",
+      "tree_sha": "e0827dd75c42767612539b1776b735cbf3003daf",
+      "checked_at": "2026-11-25T18:05:34.665543+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33112,8 +34312,8 @@
         {
           "path": "plugins/obsidian/skills/defuddle/SKILL.md",
           "mode": "100644",
-          "blob_sha": "81f6ee03344ae517c45055b9c789eae530d47c43",
-          "size_bytes": 961,
+          "blob_sha": "aa0f1300afeace31f6b81763a29fae8e3b70ba2b",
+          "size_bytes": 1103,
           "classification": "skill_path_candidate"
         },
         {
@@ -33147,8 +34347,8 @@
         {
           "path": "plugins/obsidian/skills/obsidian-headless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "e6ee4a6d0b148f651defe60b55cb117489fe03ce",
-          "size_bytes": 4512,
+          "blob_sha": "bd16dc7d98d7006e512aabb0c971ee63a9a2106c",
+          "size_bytes": 4610,
           "classification": "skill_path_candidate"
         },
         {
@@ -33167,9 +34367,9 @@
       "publisher_account": "pbakaus",
       "repository_url": "https://github.com/pbakaus/impeccable",
       "default_branch": "main",
-      "commit_sha": "b49177d32788f2dc585c42831d845dacf1ebed2c",
-      "tree_sha": "2bf5c40366be7a92dd382cf0fb1015558c5ae7a4",
-      "checked_at": "2026-11-24T19:00:23.047755+00:00",
+      "commit_sha": "9e460a87ef338ee9d12c7beed8fedc597a5af5f7",
+      "tree_sha": "db3f038aa2fda5a1c40aaf69f86a4b9a337d3d2a",
+      "checked_at": "2026-11-25T18:05:39.338994+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -33223,160 +34423,161 @@
         "tests/oracle/workspaces/ctx-pin/.agents/skills/impeccable/SKILL.md",
         "tests/oracle/workspaces/ctx-pin/.claude/skills/audit/SKILL.md",
         "tests/oracle/workspaces/ctx-pin/.claude/skills/impeccable/SKILL.md",
-        "tests/oracle/workspaces/ctx-pin/.cursor/skills/impeccable/SKILL.md"
+        "tests/oracle/workspaces/ctx-pin/.cursor/skills/impeccable/SKILL.md",
+        "workspace/custom-skills/impeccable/SKILL.md"
       ],
       "paths": [
         {
           "path": ".agent/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "d60e06e2e62408b234c6a290e7ca901731a8312c",
+          "blob_sha": "592399fd88859a6b2874c81793382ffe029df8b7",
           "size_bytes": 12933,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".agents/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "5d73eefdc64176306d54905f11d45c5ef7a4cb12",
+          "blob_sha": "75b4bd7fbcad5202627a11ef7fba704f642c9635",
           "size_bytes": 12833,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".claude/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "860e74965bbeea32c90cc1807e136e020b584653",
+          "blob_sha": "99c233af1a5dae8cf15d98f90e6605f7c1d447fe",
           "size_bytes": 12679,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".cursor/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a2bc89ac3283ddf84c8ba82c2ad7e2939fc6fd30",
+          "blob_sha": "d66e661a976975d0faed81c6973dfce4544319fe",
           "size_bytes": 12841,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".devin/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "504d224dd3a8ed710ceba96ef59a41ca2925beb6",
+          "blob_sha": "da5429f0fd721c0e749014e61ed0b81a57c2d87a",
           "size_bytes": 13053,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".dsh/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "8e892c0689b27e7f15d7c728018fbc5ca51875a7",
+          "blob_sha": "0de89f76a3047bff48816e407a2d0e98ae232bea",
           "size_bytes": 12844,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".gemini/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f603a21fa726c91e585dc5b4543435f39abb16c8",
+          "blob_sha": "c33fa28fbdfa0096d38b60e18157a021d47911c5",
           "size_bytes": 12821,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".github/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "788b43f9c248fa80aff617b6797961f4088b5564",
+          "blob_sha": "ea0133d2a7f2da3d29812bcc69680b759b807f52",
           "size_bytes": 13080,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".grok/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "65d0147a61b5cbe4eefc5b75b1fc47dd21b7fd5c",
+          "blob_sha": "c1268904fcb2293abe51dd6a1bce32146c76a5f4",
           "size_bytes": 13165,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".hermes/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "5203ce0af7a5a0f2d1907db375cc0511772038d4",
+          "blob_sha": "3fafd462951fa7a60fd28b85e3255a8f5a6fae9f",
           "size_bytes": 12841,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".kiro/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6612c8f0b0e8f9c18ce1ab1f0e577b91c2f78498",
+          "blob_sha": "b2bb1580d786a1b780106c7736ff7e068216dbe8",
           "size_bytes": 12829,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".omp/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7a46595fab2cf4981f9a7b9c05c8ec0a0d083bbb",
+          "blob_sha": "6961d2fcf2d6abd46cb7f5113bc5ccc2b878137a",
           "size_bytes": 12919,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".opencode/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "c685201a4d5e1ae6feac22141d69bdb78339d200",
+          "blob_sha": "3a0da03afc48678a08839fb082fa6c00cccca722",
           "size_bytes": 13193,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".pi/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "2f391d6e03e5bc59f561152d187e6f6e0e33505d",
+          "blob_sha": "7833a82313a9dbe33f8b80b1a2492078385e63a0",
           "size_bytes": 12912,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".qoder/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0638f338dbbccc64b57f969a2f871b255bbf383d",
+          "blob_sha": "c2e72321f1e16e77f19a149bee90eb5a50790622",
           "size_bytes": 13172,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".rovodev/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a0733302ca5c16594bf0ca0cb56507c867c30913",
+          "blob_sha": "5e4eb7082a8cc34a800eb7fc8825194d3194cdca",
           "size_bytes": 13186,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".trae-cn/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ac5194d9e7bb308486b3882f89d6dc0a98a94710",
+          "blob_sha": "5850d5eb90e1d43a26328a2d5cb1636e61134580",
           "size_bytes": 13086,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".trae/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7cf98723e7c9a98610806a1b04c000539dd058e4",
+          "blob_sha": "6e1372d70ddb3f2ff0b8c35b6297172dfe77f881",
           "size_bytes": 13068,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".veto/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "0a124ef5f51a2de58bb647ac302a4bfdfe38155e",
+          "blob_sha": "595da49c89aab52495ec85b4178ec723e19ea135",
           "size_bytes": 12829,
           "classification": "skill_path_candidate"
         },
         {
           "path": ".vibe/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "584d0bf294e970439a8dca75cdde665f8a0117d1",
+          "blob_sha": "751ca4c53f2d156f5419858eb1ed38439315843c",
           "size_bytes": 12947,
           "classification": "skill_path_candidate"
         },
         {
           "path": "cursor-plugin/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bf6d9563f0eaab4cd18801d8a1962e77d9695d65",
+          "blob_sha": "1596353286aa9411dab04a7b210547359f524681",
           "size_bytes": 12706,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugin/skills/impeccable/SKILL.md",
           "mode": "100644",
-          "blob_sha": "537d81c3013d524d2246505685bf23e4b9fde4a3",
+          "blob_sha": "acad15ee90b7d736403c9852caa6b04da58ba9f5",
           "size_bytes": 12704,
           "classification": "skill_path_candidate"
         },
@@ -33407,6 +34608,13 @@
           "blob_sha": "5502476132bbe0c55a7783ed716b2332ce33a148",
           "size_bytes": 46,
           "classification": "skill_path_candidate"
+        },
+        {
+          "path": "workspace/custom-skills/impeccable/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "63f1506690738d6797e81d2c8834fdf28b7a3f90",
+          "size_bytes": 12887,
+          "classification": "skill_path_candidate"
         }
       ],
       "discovery_status": "verified_commit_pinned"
@@ -33419,7 +34627,7 @@
       "default_branch": "main",
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
       "tree_sha": "b47f917213f9adbb1554a39834961ead25c2bff0",
-      "checked_at": "2026-11-24T19:00:23.826701+00:00",
+      "checked_at": "2026-11-25T18:05:40.244005+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34024,9 +35232,9 @@
       "publisher_account": "redhat-developer",
       "repository_url": "https://github.com/redhat-developer/agentic-skills",
       "default_branch": "main",
-      "commit_sha": "64bf127b53f0845acaafe09897ac255524c323c6",
-      "tree_sha": "3390b28e57d6ff537a10c61318d841b4aecd19ad",
-      "checked_at": "2026-11-24T19:00:26.650670+00:00",
+      "commit_sha": "21554f8b3c83876f6e5f2b2ad52b5c883f62b182",
+      "tree_sha": "4bc97eebc9260d852762206414cc9d692bb50a11",
+      "checked_at": "2026-11-25T18:05:42.805774+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34052,15 +35260,15 @@
         {
           "path": "skills/gitops/argo-cluster-debug/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ea7314135a59804eff8fa4900c60f50750fe663c",
-          "size_bytes": 18398,
+          "blob_sha": "405c43584ad35fe94fbed8fd9d6df12a8044b556",
+          "size_bytes": 12932,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/gitops/argo-knowledge/SKILL.md",
           "mode": "100644",
-          "blob_sha": "ebb742a5aa371897c6391f5791a2f8663aaa7949",
-          "size_bytes": 18499,
+          "blob_sha": "6f89db467fb8af70530d12287c99594886966666",
+          "size_bytes": 19308,
           "classification": "skill_path_candidate"
         },
         {
@@ -34088,7 +35296,7 @@
       "default_branch": "main",
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
       "tree_sha": "be05e626dc555ab37636c0027129a4f252fc2426",
-      "checked_at": "2026-11-24T19:00:27.534703+00:00",
+      "checked_at": "2026-11-25T18:05:43.966174+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34343,7 +35551,7 @@
       "default_branch": "main",
       "commit_sha": "a3f4098a2afd0e13f6a6f8c8760e275f75457ea9",
       "tree_sha": "0b9213d4be4f954ec939c0162d480ac65196e0b0",
-      "checked_at": "2026-11-24T19:00:28.388663+00:00",
+      "checked_at": "2026-11-25T18:05:44.829955+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -34478,7 +35686,7 @@
       "default_branch": "main",
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
       "tree_sha": "659f7bc4dc7d27cb2635f271aa55fa2d41360d2f",
-      "checked_at": "2026-11-24T19:00:30.261070+00:00",
+      "checked_at": "2026-11-25T18:05:46.688891+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -34835,7 +36043,7 @@
       "default_branch": "main",
       "commit_sha": "c9be0e931b7930f7d02126d04774d904c381e7d7",
       "tree_sha": "f0caa69c2816cd975288ca33797eb8cfbcec0a1c",
-      "checked_at": "2026-11-24T19:00:35.431792+00:00",
+      "checked_at": "2026-11-25T18:05:58.075749+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34882,7 +36090,7 @@
       "default_branch": "main",
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "tree_sha": "c5c5969f30963626f70c4a7cf2b1fe1f445e999c",
-      "checked_at": "2026-11-24T19:00:36.444731+00:00",
+      "checked_at": "2026-11-25T18:05:59.038722+00:00",
       "license_spdx": "CC-BY-SA-4.0",
       "license_name": "Creative Commons Attribution Share Alike 4.0 International",
       "license_key": "cc-by-sa-4.0",
@@ -35703,9 +36911,9 @@
       "publisher_account": "vercel-labs",
       "repository_url": "https://github.com/vercel-labs/agent-browser",
       "default_branch": "main",
-      "commit_sha": "0a923358ea989d7602f0d06507ad3447c62ffe9b",
-      "tree_sha": "93d408b396e3f189bd40ccee49282c5f641926c7",
-      "checked_at": "2026-11-24T19:00:37.421389+00:00",
+      "commit_sha": "f0a98351ec920bd826b22c98dacf8414f04b9832",
+      "tree_sha": "ced7a3b6016719467124d9264e9dda56d3d38dcf",
+      "checked_at": "2026-11-25T18:05:59.894205+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -35784,8 +36992,8 @@
         {
           "path": "skill-data/core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "65120d47a94fa33affabbf01e7dcf1b1db23fa30",
-          "size_bytes": 17614,
+          "blob_sha": "a35216cde79dfef6e0a338c99fbbe280d6ce7c33",
+          "size_bytes": 18292,
           "classification": "skill_path_candidate"
         },
         {
@@ -35862,7 +37070,7 @@
       "default_branch": "main",
       "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
       "tree_sha": "891bebfb6e023e5e5a5160caeed7ac859abf215c",
-      "checked_at": "2026-11-24T18:59:50.949207+00:00",
+      "checked_at": "2026-11-25T18:05:06.821083+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -36060,7 +37268,7 @@
       "default_branch": "main",
       "commit_sha": "ecdeca6f760b56bb1b11c0a7c961f11b69cb87d5",
       "tree_sha": "d9bd2a20f15d624d9bd1e7b610d11c2686f75a2b",
-      "checked_at": "2026-11-24T18:59:56.442318+00:00",
+      "checked_at": "2026-11-25T18:05:12.433478+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -36222,7 +37430,7 @@
       "default_branch": "main",
       "commit_sha": "ebc80490a67b566b30c4a22407acd9f569650958",
       "tree_sha": "bc95449696ee004d76d28d66f9249e21fa377cd2",
-      "checked_at": "2026-11-24T19:00:00.893421+00:00",
+      "checked_at": "2026-11-25T18:05:17.335257+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -36258,9 +37466,9 @@
       "publisher_account": "databricks",
       "repository_url": "https://github.com/databricks/databricks-agent-skills",
       "default_branch": "main",
-      "commit_sha": "ecb659cc6fb4d0b13b6303f682966fc52b001d51",
-      "tree_sha": "0fe388e9861f149e3c42b2b152298c41d917d255",
-      "checked_at": "2026-11-24T18:59:57.470763+00:00",
+      "commit_sha": "6863a489d3fc5f2c5e49e0b0ba871a372a3278b1",
+      "tree_sha": "08427662dcb5989db2067723bcae621c9d231d9f",
+      "checked_at": "2026-11-25T18:05:13.465462+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -36867,8 +38075,8 @@
         {
           "path": "plugins/databricks/antigravity/skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -37133,8 +38341,8 @@
         {
           "path": "plugins/databricks/claude/skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -37399,8 +38607,8 @@
         {
           "path": "plugins/databricks/codex/skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -37665,8 +38873,8 @@
         {
           "path": "plugins/databricks/copilot/skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -37931,8 +39139,8 @@
         {
           "path": "plugins/databricks/cursor/skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -38197,8 +39405,8 @@
         {
           "path": "skills/databricks-serverless/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3bf6b5aa8a183d4604748c7ebf88a477a08d639e",
-          "size_bytes": 10897,
+          "blob_sha": "7f9c60877ad0ddf60546b6a7513cabe9ac7c44eb",
+          "size_bytes": 11091,
           "classification": "skill_path_candidate"
         },
         {
@@ -38268,7 +39476,7 @@
       "default_branch": "main",
       "commit_sha": "a582c51ee29d0f35e6ac321340796f77d43da733",
       "tree_sha": "e908e2dbcdcde94ebd1e5c5dc73cd4c7c12a1104",
-      "checked_at": "2026-11-24T19:00:01.771274+00:00",
+      "checked_at": "2026-11-25T18:05:18.248943+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -38556,9 +39764,9 @@
       "publisher_account": "prisma",
       "repository_url": "https://github.com/prisma/orm",
       "default_branch": "main",
-      "commit_sha": "d5e1e4f5a81080eac5ba350087ba80aef81e76fe",
-      "tree_sha": "0b91828b63c35a52a22a7ac2f6252200899af056",
-      "checked_at": "2026-11-24T19:00:25.542777+00:00",
+      "commit_sha": "0b1b23915cc9c94bf2466d63a1e3ea0b0d17dcfd",
+      "tree_sha": "2a6cd39fbbd586b6d136912a2b8534a4c6d5446b",
+      "checked_at": "2026-11-25T18:05:41.871126+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -38747,8 +39955,8 @@
         {
           "path": "skills/prisma-8/SKILL.md",
           "mode": "100644",
-          "blob_sha": "abcd41f8f78193d8e268b4d99343be5eff7c45ee",
-          "size_bytes": 17360,
+          "blob_sha": "95ea1ba86d560ecc7930f9e6aba9aa318d8695de",
+          "size_bytes": 17385,
           "classification": "skill_path_candidate"
         }
       ],
@@ -38762,7 +39970,7 @@
       "default_branch": "main",
       "commit_sha": "2dcef7c62417bd2ec4671fce4621bb1e8cce48d0",
       "tree_sha": "62fbb5a320b133f5a8b52568f6af7b8354eab7cb",
-      "checked_at": "2026-11-24T19:00:29.293075+00:00",
+      "checked_at": "2026-11-25T18:05:45.668204+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -38816,7 +40024,7 @@
       "default_branch": "main",
       "commit_sha": "055aa6b7837b1808456a24beb4c97a677864aa82",
       "tree_sha": "ee8c8d850ef5d4827f8fdd25372a1fd3645e6c7a",
-      "checked_at": "2026-11-24T19:00:31.559626+00:00",
+      "checked_at": "2026-11-25T18:05:47.553894+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -38868,7 +40076,7 @@
       "default_branch": "main",
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "tree_sha": "09c4799abecd6cb89d219282356e27bcb2fbe7d6",
-      "checked_at": "2026-11-24T18:59:58.395512+00:00",
+      "checked_at": "2026-11-25T18:05:14.469131+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -40618,7 +41826,7 @@
       "default_branch": "main",
       "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
       "tree_sha": "f27f8525b016570287e99ba8b9fbd5725d8aca78",
-      "checked_at": "2026-11-24T19:00:03.545939+00:00",
+      "checked_at": "2026-11-25T18:05:20.298854+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
