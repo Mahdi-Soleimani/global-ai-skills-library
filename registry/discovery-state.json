@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-26T17:51:29.421801+00:00",
+  "updated_at": "2026-11-27T17:35:41.612628+00:00",
   "source": "commit_pinned_github_api_observations",
   "repositories": {
     "adobe/skills": {
@@ -9,9 +9,9 @@
       "publisher_account": "adobe",
       "repository_url": "https://github.com/adobe/skills",
       "default_branch": "main",
-      "commit_sha": "a26599dadd1818426bb7927740b49f36ad15bc9e",
-      "tree_sha": "e2456bc9d7cbcb7ffe4f77eb972e85ee6b14f1c4",
-      "checked_at": "2026-11-26T17:50:05.160995+00:00",
+      "commit_sha": "77f5f7bc6dfacdfb0fd4e6f926fc0b79e8f37f38",
+      "tree_sha": "79018e91aa4be0170f6de591e68d84f192f004cd",
+      "checked_at": "2026-11-27T17:34:25.040856+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -1520,15 +1520,15 @@
         {
           "path": "plugins/stardust/skills/replica/SKILL.md",
           "mode": "100644",
-          "blob_sha": "a7306d4198014953c3c9b7455f59d34035109008",
-          "size_bytes": 18856,
+          "blob_sha": "573a66ca6bbca21d756539447f07b4e31e6d27db",
+          "size_bytes": 18967,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/stardust/skills/reskin/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f0a929214e33938189946777d5be1ee26f608cb2",
-          "size_bytes": 24132,
+          "blob_sha": "dd11ed62f696fb6a2ea0f1caac0dbb4fb87acc02",
+          "size_bytes": 20100,
           "classification": "skill_path_candidate"
         },
         {
@@ -1548,7 +1548,7 @@
         {
           "path": "plugins/stardust/skills/stardust/SKILL.md",
           "mode": "100644",
-          "blob_sha": "be66f9910ee48467b480547dee1b197f2b85bac6",
+          "blob_sha": "f24eba626574cdb0a9a15a1bbf388addd3652a30",
           "size_bytes": 34075,
           "classification": "skill_path_candidate"
         },
@@ -1632,8 +1632,8 @@
         {
           "path": "plugins/web/skills/site-scan/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b312c6b1cbcabd2d01e7acedf8c5756c85e8a6c2",
-          "size_bytes": 5099,
+          "blob_sha": "7d3cb45c48fb098d8502f924e796e945518a17ab",
+          "size_bytes": 5158,
           "classification": "skill_path_candidate"
         },
         {
@@ -1659,9 +1659,9 @@
       "publisher_account": "alirezarezvani",
       "repository_url": "https://github.com/alirezarezvani/claude-skills",
       "default_branch": "main",
-      "commit_sha": "f565e664952b3d5b7ef2b1e6a50e2314b100e472",
-      "tree_sha": "8d7a602638602218a50ed7d5509770bb8e9adda6",
-      "checked_at": "2026-11-26T17:50:06.839925+00:00",
+      "commit_sha": "d3cc4c620288c571a95efc898edc91f522acaa7f",
+      "tree_sha": "eb83458dc707e703752a005013e66d3ce53f5ff1",
+      "checked_at": "2026-11-27T17:34:26.676578+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -4308,8 +4308,8 @@
         {
           "path": "engineering/skills/database-schema-designer/SKILL.md",
           "mode": "100644",
-          "blob_sha": "dac769e792601757f9e4bc116c9c482867c53fa9",
-          "size_bytes": 7520,
+          "blob_sha": "66b229c6568b1879a81e51171ff9b5b082d3838e",
+          "size_bytes": 7530,
           "classification": "skill_path_candidate"
         },
         {
@@ -5414,8 +5414,8 @@
         {
           "path": "ra-qm-team/compliance-team-eu-ai-act/skills/eu-ai-act-specialist/SKILL.md",
           "mode": "100644",
-          "blob_sha": "e3d90617b2951fe8ec4eaf825d412a8a3d45de38",
-          "size_bytes": 15161,
+          "blob_sha": "ba906e53c7992b9339e8c46dbe7dd05b4207f1e9",
+          "size_bytes": 15319,
           "classification": "skill_path_candidate"
         },
         {
@@ -5442,8 +5442,8 @@
         {
           "path": "ra-qm-team/medical-device-software/skills/medical-device-software/SKILL.md",
           "mode": "100644",
-          "blob_sha": "64149a87eb1f3c85ac7e818343f84d5c02426d09",
-          "size_bytes": 6612,
+          "blob_sha": "48051364cf10fd0feb6432aa1d331c8d9f75072a",
+          "size_bytes": 6692,
           "classification": "skill_path_candidate"
         },
         {
@@ -5498,8 +5498,8 @@
         {
           "path": "ra-qm-team/skills/eu-ai-act-specialist/SKILL.md",
           "mode": "100644",
-          "blob_sha": "e3d90617b2951fe8ec4eaf825d412a8a3d45de38",
-          "size_bytes": 15161,
+          "blob_sha": "ba906e53c7992b9339e8c46dbe7dd05b4207f1e9",
+          "size_bytes": 15319,
           "classification": "skill_path_candidate"
         },
         {
@@ -5547,8 +5547,8 @@
         {
           "path": "ra-qm-team/skills/medical-device-software/SKILL.md",
           "mode": "100644",
-          "blob_sha": "64149a87eb1f3c85ac7e818343f84d5c02426d09",
-          "size_bytes": 6612,
+          "blob_sha": "48051364cf10fd0feb6432aa1d331c8d9f75072a",
+          "size_bytes": 6692,
           "classification": "skill_path_candidate"
         },
         {
@@ -5765,7 +5765,7 @@
       "default_branch": "main",
       "commit_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
       "tree_sha": "19d28f03edbc916e85ce68733993170952071b0d",
-      "checked_at": "2026-11-26T17:50:08.267353+00:00",
+      "checked_at": "2026-11-27T17:34:27.891250+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -7003,7 +7003,7 @@
       "default_branch": "main",
       "commit_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
       "tree_sha": "d495c40fdd16cfe817a71aa05ecc1969ba98e925",
-      "checked_at": "2026-11-26T17:50:12.375207+00:00",
+      "checked_at": "2026-11-27T17:34:31.518219+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -7298,7 +7298,7 @@
       "default_branch": "main",
       "commit_sha": "336e2211c39e45fd15bbe8253776c7a1c306ef66",
       "tree_sha": "ef2cb1172e86aa1eed92957812a96efa339b843c",
-      "checked_at": "2026-11-26T17:50:16.847818+00:00",
+      "checked_at": "2026-11-27T17:34:35.301891+00:00",
       "license_spdx": "MIT-0",
       "license_name": "MIT No Attribution",
       "license_key": "mit-0",
@@ -7673,7 +7673,7 @@
       "default_branch": "main",
       "commit_sha": "47eb3888eb42aef074fcb617931bf6e5934e45d9",
       "tree_sha": "d502f8a7e5d1393eb3d684f108f9db35d477c157",
-      "checked_at": "2026-11-26T17:50:49.760048+00:00",
+      "checked_at": "2026-11-27T17:35:03.029495+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -9480,7 +9480,7 @@
       "default_branch": "main",
       "commit_sha": "0d6915c5bfff79282e40e424394e9691cafd488d",
       "tree_sha": "2b5ca42340c40c0329328449d8083001bc2799d5",
-      "checked_at": "2026-11-26T17:50:18.307127+00:00",
+      "checked_at": "2026-11-27T17:34:36.459852+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -9605,7 +9605,7 @@
       "default_branch": "main",
       "commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
       "tree_sha": "8cd03bb3941496e441d6248aaae2429a35b93cc3",
-      "checked_at": "2026-11-26T17:50:19.466155+00:00",
+      "checked_at": "2026-11-27T17:34:37.456481+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -9644,7 +9644,7 @@
       "default_branch": "main",
       "commit_sha": "ff191de7d903788eceaf516a514ae7d3b56b924a",
       "tree_sha": "6ef0f8300c951ab6baf032e7b64e21251b60d58d",
-      "checked_at": "2026-11-26T17:50:20.841654+00:00",
+      "checked_at": "2026-11-27T17:34:38.622396+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -9866,9 +9866,9 @@
       "publisher_account": "google",
       "repository_url": "https://github.com/google/skills",
       "default_branch": "main",
-      "commit_sha": "c75ad1a5563d870eca5ab7ed47fa88315d1a3c56",
-      "tree_sha": "026f58a1e1d2cfa511ab8a2e96991cf5b958d42a",
-      "checked_at": "2026-11-26T17:50:37.041385+00:00",
+      "commit_sha": "4d3b4526d54107f92c01ed4057220f249bb17e75",
+      "tree_sha": "ee69948da4c4820050093ea3959530494df86add",
+      "checked_at": "2026-11-27T17:34:51.887016+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -9967,6 +9967,7 @@
         "skills/cloud/cloud-monitoring-notification-channels-configuration/SKILL.md",
         "skills/cloud/cloud-monitoring-promql-query/SKILL.md",
         "skills/cloud/cloud-network-insights/SKILL.md",
+        "skills/cloud/cloud-operator-admin-setup/SKILL.md",
         "skills/cloud/cloud-operator-setup/SKILL.md",
         "skills/cloud/cloud-operator-share-context/SKILL.md",
         "skills/cloud/cloud-operator/SKILL.md",
@@ -10688,10 +10689,17 @@
           "classification": "skill_path_candidate"
         },
         {
+          "path": "skills/cloud/cloud-operator-admin-setup/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "1d00eeaeeda255e005bcdb078e4542271fe76518",
+          "size_bytes": 17922,
+          "classification": "skill_path_candidate"
+        },
+        {
           "path": "skills/cloud/cloud-operator-setup/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d43b77de7420d982aa9570fe6ac3ad0bc924d7e",
-          "size_bytes": 10025,
+          "blob_sha": "71ecd7210d19b9845ca842129454451b5f06f47b",
+          "size_bytes": 15708,
           "classification": "skill_path_candidate"
         },
         {
@@ -10704,8 +10712,8 @@
         {
           "path": "skills/cloud/cloud-operator/SKILL.md",
           "mode": "100644",
-          "blob_sha": "93a22aa2ffcaca84350abf0154d4ecab2ed3eedb",
-          "size_bytes": 23625,
+          "blob_sha": "62c3ff53ec1e3c7ef7d323d751d6be8058908946",
+          "size_bytes": 30559,
           "classification": "skill_path_candidate"
         },
         {
@@ -11706,7 +11714,7 @@
       "default_branch": "main",
       "commit_sha": "49f948faa9258a0c61caceaf225e179651397431",
       "tree_sha": "224b363928698e143876aef008232ed73d8e6f81",
-      "checked_at": "2026-11-26T17:51:01.960875+00:00",
+      "checked_at": "2026-11-27T17:35:12.989151+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -12360,7 +12368,7 @@
       "default_branch": "main",
       "commit_sha": "d4b19a989bf12bdbd4d42de1f9bfd3aec56fd9da",
       "tree_sha": "634c6ddbe0f19d5cade49e029640d46b14446d6a",
-      "checked_at": "2026-11-26T17:51:22.011896+00:00",
+      "checked_at": "2026-11-27T17:35:35.405307+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -13031,7 +13039,7 @@
       "default_branch": "main",
       "commit_sha": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
       "tree_sha": "77010fc5aba378d5e2d9b07e6c00385b112b5dad",
-      "checked_at": "2026-11-26T17:51:27.783779+00:00",
+      "checked_at": "2026-11-27T17:35:40.365540+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -13126,9 +13134,9 @@
       "publisher_account": "vercel-labs",
       "repository_url": "https://github.com/vercel-labs/skills",
       "default_branch": "main",
-      "commit_sha": "57217cf86ba38148a57af9e90d14a4c049558330",
-      "tree_sha": "f062461f0d737d9cd8241a1137f3bd041a2e3346",
-      "checked_at": "2026-11-26T17:51:29.146432+00:00",
+      "commit_sha": "e7fd0e9e52f029fe87729d8185cb8caf7049f678",
+      "tree_sha": "b772152fabc6251eb4221868568caeef65aa1a7c",
+      "checked_at": "2026-11-27T17:35:41.473328+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -13205,7 +13213,7 @@
       "default_branch": "main",
       "commit_sha": "ebd8654c2c627f721eb8f9c0d1bd4090a29f9e10",
       "tree_sha": "15542ab21601f457d973bd6510fd74812ec795ba",
-      "checked_at": "2026-11-26T17:50:28.151746+00:00",
+      "checked_at": "2026-11-27T17:34:44.847852+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -13331,7 +13339,7 @@
       "default_branch": "main",
       "commit_sha": "e74a11ccdb38b98d15c9f9545787c907dd15f0ab",
       "tree_sha": "e2bd6f48dc610560e4dded6b1f62a78e02004975",
-      "checked_at": "2026-11-26T17:50:41.236421+00:00",
+      "checked_at": "2026-11-27T17:34:55.299978+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -13820,7 +13828,7 @@
       "default_branch": "main",
       "commit_sha": "c21d13b3cc2894680229ba9959a53281acb9200e",
       "tree_sha": "31ebd978f00022ad335ab0a189bfabe014f909b3",
-      "checked_at": "2026-11-26T17:50:42.669007+00:00",
+      "checked_at": "2026-11-27T17:34:56.491093+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -15282,9 +15290,9 @@
       "publisher_account": "LinklyAI",
       "repository_url": "https://github.com/LinklyAI/best-skills",
       "default_branch": "main",
-      "commit_sha": "0f5b1395de2057f3cee024092053bc8571f97c30",
-      "tree_sha": "c9239ebe70d1b121240410176fa22e24fe9e100d",
-      "checked_at": "2026-11-26T17:50:44.156133+00:00",
+      "commit_sha": "521a96dfc5a1939610d0b44c052a18bc56439a3a",
+      "tree_sha": "2f42674679e69fa63848c981bb54003cfe2bbf1c",
+      "checked_at": "2026-11-27T17:34:58.217255+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -15322,7 +15330,7 @@
       "default_branch": "main",
       "commit_sha": "8cefe4cc729cf388ba3591510faa080df89ede4f",
       "tree_sha": "096f836cca78133683d10a348c1eb7d955536316",
-      "checked_at": "2026-11-26T17:50:09.631798+00:00",
+      "checked_at": "2026-11-27T17:34:28.992086+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -15433,7 +15441,7 @@
       "default_branch": "main",
       "commit_sha": "b39023a486b5b8ae97a5aa4cc2913dd6d5a3951c",
       "tree_sha": "8c65d2cd5134a800b5d5dd3e8defe74df4d50f40",
-      "checked_at": "2026-11-26T17:50:10.967287+00:00",
+      "checked_at": "2026-11-27T17:34:30.206513+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -15513,7 +15521,7 @@
       "default_branch": "main",
       "commit_sha": "93fc8b9ee3ef56b9b5e7261e6ce92d314cb2c1cf",
       "tree_sha": "3e4c88eaa8a0854a80d380fefeb5dc3e8bc2d5ca",
-      "checked_at": "2026-11-26T17:50:33.916790+00:00",
+      "checked_at": "2026-11-27T17:34:49.472671+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -19511,7 +19519,7 @@
       "default_branch": "main",
       "commit_sha": "aafb3adfb80951cc90836cc6fd17bb345aa49eef",
       "tree_sha": "f3ee49a093a7dd12bbb8302742c65d80d220d190",
-      "checked_at": "2026-11-26T17:50:38.727170+00:00",
+      "checked_at": "2026-11-27T17:34:53.192488+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -19703,7 +19711,7 @@
       "default_branch": "main",
       "commit_sha": "7847020998043c6231929b364c35393b7cdab270",
       "tree_sha": "b32371b9338b35a1cfebdb0f19c41b27e6fd39bd",
-      "checked_at": "2026-11-26T17:50:48.210590+00:00",
+      "checked_at": "2026-11-27T17:35:01.617623+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -20537,7 +20545,7 @@
       "default_branch": "main",
       "commit_sha": "626f50fdf2934116eea2c5469339e03d2d524e83",
       "tree_sha": "7b540a0daddeab872fafc0d0ca4e5cff52c80b3d",
-      "checked_at": "2026-11-26T17:50:51.012934+00:00",
+      "checked_at": "2026-11-27T17:35:04.097198+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -20688,7 +20696,7 @@
       "default_branch": "main",
       "commit_sha": "256cddf5eb503a8e34b991c86265ec85776a9b07",
       "tree_sha": "100881032ee09207b308169bec53593b8643bcb4",
-      "checked_at": "2026-11-26T17:50:58.877004+00:00",
+      "checked_at": "2026-11-27T17:35:10.482293+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -20922,7 +20930,7 @@
       "default_branch": "main",
       "commit_sha": "981b02c0c44058b595f3b4180002c3ae3c806d40",
       "tree_sha": "a7f3146f796196ee21d7477fe8cdcd096c1aadf5",
-      "checked_at": "2026-11-26T17:51:00.547660+00:00",
+      "checked_at": "2026-11-27T17:35:11.841739+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -25401,7 +25409,7 @@
       "default_branch": "main",
       "commit_sha": "34f93c1e409156958cc7c410ab1aa88ab512f10f",
       "tree_sha": "86a675008adf8327faf329df132c2d28536dc7e9",
-      "checked_at": "2026-11-26T17:50:45.356133+00:00",
+      "checked_at": "2026-11-27T17:34:59.189042+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -25439,7 +25447,7 @@
       "default_branch": "main",
       "commit_sha": "d90390a08ce6105c45938785fb07864ee6011af5",
       "tree_sha": "fa9a51c26312edfcc1cc9e61f1622567f2ba6484",
-      "checked_at": "2026-11-26T17:50:54.351344+00:00",
+      "checked_at": "2026-11-27T17:35:06.744966+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -30733,7 +30741,7 @@
       "default_branch": "master",
       "commit_sha": "189fd09fecb246a4064f2cd0635153b5297f5369",
       "tree_sha": "6431dc3f7ede95534bfb722482c478e067b1635e",
-      "checked_at": "2026-11-26T17:51:03.266378+00:00",
+      "checked_at": "2026-11-27T17:35:14.254210+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -30913,7 +30921,7 @@
       "default_branch": "main",
       "commit_sha": "6b9ed0552d5116ee33d0e211dfa6681f2f5bdffe",
       "tree_sha": "d64441f0cae3c49cc1c0cc6ecdb3e26d369a7455",
-      "checked_at": "2026-11-26T17:51:20.213482+00:00",
+      "checked_at": "2026-11-27T17:35:34.008838+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -32911,7 +32919,7 @@
       "default_branch": "master",
       "commit_sha": "f5a195992d84c8fb075b0176d666967cd07d2081",
       "tree_sha": "9648c598ed36e00e878390cc6f8cefa53e35db9e",
-      "checked_at": "2026-11-26T17:50:13.597127+00:00",
+      "checked_at": "2026-11-27T17:34:32.469185+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -32947,9 +32955,9 @@
       "publisher_account": "coreyhaines31",
       "repository_url": "https://github.com/coreyhaines31/marketingskills",
       "default_branch": "main",
-      "commit_sha": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9",
-      "tree_sha": "7bfa838de8b78874cdeea23f6a22a0ce5d1a4032",
-      "checked_at": "2026-11-26T17:50:22.287553+00:00",
+      "commit_sha": "2bf95edb4ebd37198ab7fd18b99ba95c2145ec64",
+      "tree_sha": "af758fd4980630494d84d96fbb13b6bd4b6207c1",
+      "checked_at": "2026-11-27T17:34:39.904678+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33402,9 +33410,9 @@
       "publisher_account": "expo",
       "repository_url": "https://github.com/expo/skills",
       "default_branch": "main",
-      "commit_sha": "6d0506afe7df9334b60ad4b1ceb35969836f01a0",
-      "tree_sha": "728e0ca75777fd0b089227aaf35ed53fb5ce5ac3",
-      "checked_at": "2026-11-26T17:50:29.568266+00:00",
+      "commit_sha": "8f2b6c0c65533e695243aa401eaa1cb6f1fe86c2",
+      "tree_sha": "b87eac4bbf97ab860ebaa8054912f2550f0f5852",
+      "checked_at": "2026-11-27T17:34:45.918689+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33499,15 +33507,15 @@
         {
           "path": "plugins/expo/skills/eas-observe/SKILL.md",
           "mode": "100644",
-          "blob_sha": "b7aa4b5fcb3e33db86b7b91e0f64a6a41b415cd6",
-          "size_bytes": 6021,
+          "blob_sha": "f3417971f7015988a8cf1f629b6bea0382f5d170",
+          "size_bytes": 6223,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/expo/skills/eas-simulator/SKILL.md",
           "mode": "100644",
-          "blob_sha": "019d10fbd8770e78db0db21f76b6fbcf04e2ba5e",
-          "size_bytes": 34764,
+          "blob_sha": "c9d7fd3a0c105420cdb9eabf79ef6597fb12e96c",
+          "size_bytes": 24782,
           "classification": "skill_path_candidate"
         },
         {
@@ -33654,7 +33662,7 @@
       "default_branch": "master",
       "commit_sha": "469868f4489cbdbe178c775a0af05bb6bef63689",
       "tree_sha": "2b7fcdce39a7657e727ae1b07672851855647fc5",
-      "checked_at": "2026-11-26T17:50:39.851166+00:00",
+      "checked_at": "2026-11-27T17:34:54.108316+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33690,9 +33698,9 @@
       "publisher_account": "mattpocock",
       "repository_url": "https://github.com/mattpocock/skills",
       "default_branch": "main",
-      "commit_sha": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
-      "tree_sha": "54981f8195880713ce8e965efeb8d520bf803133",
-      "checked_at": "2026-11-26T17:50:46.603477+00:00",
+      "commit_sha": "bbadaa631c37af594e5a05c9cefacd9956136b18",
+      "tree_sha": "35c89b525b28cea0e9781247565dbeacdcda54cd",
+      "checked_at": "2026-11-27T17:35:00.315132+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -33866,8 +33874,8 @@
         {
           "path": "skills/engineering/to-tickets/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9b77a01db9460c99c22d03c910c349f890f12c0e",
-          "size_bytes": 5812,
+          "blob_sha": "147b9df336c95e960ea8c3b579c778114e57ce42",
+          "size_bytes": 5764,
           "classification": "skill_path_candidate"
         },
         {
@@ -34033,9 +34041,9 @@
       "publisher_account": "nextlevelbuilder",
       "repository_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "default_branch": "main",
-      "commit_sha": "3442615dcc7dcb3f70a1c9f69d5c287f37db023e",
-      "tree_sha": "c591a5f266d5b42602b60087b1d65421bfcc48ad",
-      "checked_at": "2026-11-26T17:50:52.609988+00:00",
+      "commit_sha": "11ca2b3bdd555649f278ee348c32a9302b24dcf1",
+      "tree_sha": "42b095f7f8e24faed318b52aa909b0760f160c64",
+      "checked_at": "2026-11-27T17:35:05.299924+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34124,8 +34132,8 @@
         {
           "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
           "mode": "100644",
-          "blob_sha": "6da4287ff0e40bd7ce2ffa14fdc8a8e10fcc4036",
-          "size_bytes": 18640,
+          "blob_sha": "64366d50b96911a3d9f29d898371fa4b29d28c3e",
+          "size_bytes": 17960,
           "classification": "skill_path_candidate"
         },
         {
@@ -34181,7 +34189,7 @@
       "default_branch": "main",
       "commit_sha": "22f0b463e7a5e579904dd6211a520321035526f7",
       "tree_sha": "8fddc972a73e9af7501442df0e638d8e29842b6b",
-      "checked_at": "2026-11-26T17:50:55.880827+00:00",
+      "checked_at": "2026-11-27T17:35:08.005970+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34332,7 +34340,7 @@
       "default_branch": "main",
       "commit_sha": "9c9560a870fd490b0e1a847f2c8401a50e2d931d",
       "tree_sha": "116f491a4c7dd08be31686f7cb645a3936cf18d5",
-      "checked_at": "2026-11-26T17:50:57.102300+00:00",
+      "checked_at": "2026-11-27T17:35:08.962987+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -34425,7 +34433,7 @@
       "default_branch": "main",
       "commit_sha": "2fc5e1459efbbf06d92c7306517c286bf12490cf",
       "tree_sha": "f0eafb46a04038db13d7c5e5ac8a4d8a28022894",
-      "checked_at": "2026-11-26T17:51:05.168095+00:00",
+      "checked_at": "2026-11-27T17:35:15.708297+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -34683,7 +34691,7 @@
       "default_branch": "main",
       "commit_sha": "9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef",
       "tree_sha": "b47f917213f9adbb1554a39834961ead25c2bff0",
-      "checked_at": "2026-11-26T17:51:06.459273+00:00",
+      "checked_at": "2026-11-27T17:35:16.691298+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -35288,9 +35296,9 @@
       "publisher_account": "redhat-developer",
       "repository_url": "https://github.com/redhat-developer/agentic-skills",
       "default_branch": "main",
-      "commit_sha": "21554f8b3c83876f6e5f2b2ad52b5c883f62b182",
-      "tree_sha": "4bc97eebc9260d852762206414cc9d692bb50a11",
-      "checked_at": "2026-11-26T17:51:09.963695+00:00",
+      "commit_sha": "8173b9b9e4d6c0830972c3f420cc75d43991fc91",
+      "tree_sha": "4757c1ff5f080d86cc2137fcb29c49129ab2f830",
+      "checked_at": "2026-11-27T17:35:19.759234+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -35352,7 +35360,7 @@
       "default_branch": "main",
       "commit_sha": "74708dab4b3f81a9845803c3f642a4f7d443af69",
       "tree_sha": "be05e626dc555ab37636c0027129a4f252fc2426",
-      "checked_at": "2026-11-26T17:51:11.508135+00:00",
+      "checked_at": "2026-11-27T17:35:20.959378+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -35607,7 +35615,7 @@
       "default_branch": "main",
       "commit_sha": "a3f4098a2afd0e13f6a6f8c8760e275f75457ea9",
       "tree_sha": "0b9213d4be4f954ec939c0162d480ac65196e0b0",
-      "checked_at": "2026-11-26T17:51:12.859126+00:00",
+      "checked_at": "2026-11-27T17:35:22.151841+00:00",
       "license_spdx": null,
       "license_name": null,
       "license_key": null,
@@ -35742,7 +35750,7 @@
       "default_branch": "main",
       "commit_sha": "6b989d6490589647c4c164f7f55c2797cf322f04",
       "tree_sha": "659f7bc4dc7d27cb2635f271aa55fa2d41360d2f",
-      "checked_at": "2026-11-26T17:51:15.789818+00:00",
+      "checked_at": "2026-11-27T17:35:24.585940+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -36099,7 +36107,7 @@
       "default_branch": "main",
       "commit_sha": "c9be0e931b7930f7d02126d04774d904c381e7d7",
       "tree_sha": "f0caa69c2816cd975288ca33797eb8cfbcec0a1c",
-      "checked_at": "2026-11-26T17:51:23.225610+00:00",
+      "checked_at": "2026-11-27T17:35:36.443654+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -36146,7 +36154,7 @@
       "default_branch": "main",
       "commit_sha": "149d7b21f4067765b82e67029730b42d228ef4b4",
       "tree_sha": "c5c5969f30963626f70c4a7cf2b1fe1f445e999c",
-      "checked_at": "2026-11-26T17:51:24.925333+00:00",
+      "checked_at": "2026-11-27T17:35:37.876945+00:00",
       "license_spdx": "CC-BY-SA-4.0",
       "license_name": "Creative Commons Attribution Share Alike 4.0 International",
       "license_key": "cc-by-sa-4.0",
@@ -36967,9 +36975,9 @@
       "publisher_account": "vercel-labs",
       "repository_url": "https://github.com/vercel-labs/agent-browser",
       "default_branch": "main",
-      "commit_sha": "a67ba089fec5fbfec07346aebad11666463d9799",
-      "tree_sha": "185797934851de0b54d1b5bb751e80cc000a1278",
-      "checked_at": "2026-11-26T17:51:26.447716+00:00",
+      "commit_sha": "3f43a2affd9944298104b7bb39d5f241aef85e91",
+      "tree_sha": "ba316fcae2a6cd4a05cc6f2ac93c7ea30c2311ab",
+      "checked_at": "2026-11-27T17:35:39.248670+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -37126,7 +37134,7 @@
       "default_branch": "main",
       "commit_sha": "352a02b05189e2a958a973867cc6eca365cb8fc3",
       "tree_sha": "891bebfb6e023e5e5a5160caeed7ac859abf215c",
-      "checked_at": "2026-11-26T17:50:15.380904+00:00",
+      "checked_at": "2026-11-27T17:34:33.933301+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -37324,7 +37332,7 @@
       "default_branch": "main",
       "commit_sha": "ecdeca6f760b56bb1b11c0a7c961f11b69cb87d5",
       "tree_sha": "d9bd2a20f15d624d9bd1e7b610d11c2686f75a2b",
-      "checked_at": "2026-11-26T17:50:23.732390+00:00",
+      "checked_at": "2026-11-27T17:34:40.999692+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -37486,7 +37494,7 @@
       "default_branch": "main",
       "commit_sha": "ebc80490a67b566b30c4a22407acd9f569650958",
       "tree_sha": "bc95449696ee004d76d28d66f9249e21fa377cd2",
-      "checked_at": "2026-11-26T17:50:30.951480+00:00",
+      "checked_at": "2026-11-27T17:34:46.999568+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -37522,9 +37530,9 @@
       "publisher_account": "databricks",
       "repository_url": "https://github.com/databricks/databricks-agent-skills",
       "default_branch": "main",
-      "commit_sha": "6650c7ef6200c114de55c827242627440efa008a",
-      "tree_sha": "9fffd1ebf23e1f0aac358b47ebdc2baaf47412a4",
-      "checked_at": "2026-11-26T17:50:25.250545+00:00",
+      "commit_sha": "f46843188a9de60a29c8b8a52aba992c6c1e1133",
+      "tree_sha": "f749941d830a04b4e9cd3f7f7f8c22cd964f8775",
+      "checked_at": "2026-11-27T17:34:42.263460+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -37965,15 +37973,15 @@
         {
           "path": "plugins/databricks/antigravity/skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/databricks/antigravity/skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -37986,8 +37994,8 @@
         {
           "path": "plugins/databricks/antigravity/skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -38056,8 +38064,8 @@
         {
           "path": "plugins/databricks/antigravity/skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -38154,8 +38162,8 @@
         {
           "path": "plugins/databricks/antigravity/skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -38224,15 +38232,15 @@
         {
           "path": "plugins/databricks/claude/skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/databricks/claude/skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -38245,8 +38253,8 @@
         {
           "path": "plugins/databricks/claude/skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -38315,8 +38323,8 @@
         {
           "path": "plugins/databricks/claude/skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -38413,8 +38421,8 @@
         {
           "path": "plugins/databricks/claude/skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -38483,15 +38491,15 @@
         {
           "path": "plugins/databricks/codex/skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/databricks/codex/skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -38504,8 +38512,8 @@
         {
           "path": "plugins/databricks/codex/skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -38574,8 +38582,8 @@
         {
           "path": "plugins/databricks/codex/skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -38672,8 +38680,8 @@
         {
           "path": "plugins/databricks/codex/skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -38742,15 +38750,15 @@
         {
           "path": "plugins/databricks/copilot/skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/databricks/copilot/skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -38763,8 +38771,8 @@
         {
           "path": "plugins/databricks/copilot/skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -38833,8 +38841,8 @@
         {
           "path": "plugins/databricks/copilot/skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -38931,8 +38939,8 @@
         {
           "path": "plugins/databricks/copilot/skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -39001,15 +39009,15 @@
         {
           "path": "plugins/databricks/cursor/skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "plugins/databricks/cursor/skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -39022,8 +39030,8 @@
         {
           "path": "plugins/databricks/cursor/skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -39092,8 +39100,8 @@
         {
           "path": "plugins/databricks/cursor/skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -39190,8 +39198,8 @@
         {
           "path": "plugins/databricks/cursor/skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -39260,15 +39268,15 @@
         {
           "path": "skills/databricks-apps/SKILL.md",
           "mode": "100644",
-          "blob_sha": "3d6743f5a3f6891b92887eef134437eba6002289",
-          "size_bytes": 21686,
+          "blob_sha": "894d645936cdb344b60ee59b178a4255f2ce3385",
+          "size_bytes": 21897,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/databricks-core/SKILL.md",
           "mode": "100644",
-          "blob_sha": "bb79b6bdd18b3dfad1f46d8df52736a91a5d04ba",
-          "size_bytes": 9279,
+          "blob_sha": "fcfe860e053ebd096bc0e1cce4f8b7a5c4b2b2b7",
+          "size_bytes": 9566,
           "classification": "skill_path_candidate"
         },
         {
@@ -39281,8 +39289,8 @@
         {
           "path": "skills/databricks-data-discovery/SKILL.md",
           "mode": "100644",
-          "blob_sha": "784fa6ab20252410eef51fa53672f2917b0e8551",
-          "size_bytes": 8470,
+          "blob_sha": "e3de2dacdccc9401a24a85e8b91642d7a3de4de6",
+          "size_bytes": 8692,
           "classification": "skill_path_candidate"
         },
         {
@@ -39351,8 +39359,8 @@
         {
           "path": "skills/databricks-metric-views/SKILL.md",
           "mode": "100644",
-          "blob_sha": "9311d1fbe791b0fd6369f1dc24f0129509d00229",
-          "size_bytes": 7980,
+          "blob_sha": "354762fc6c75f7c61e921af73ecb5dec207ecf29",
+          "size_bytes": 8325,
           "classification": "skill_path_candidate"
         },
         {
@@ -39449,8 +39457,8 @@
         {
           "path": "skills/databricks-unity-catalog/SKILL.md",
           "mode": "100644",
-          "blob_sha": "7b71d377ecc0b918523b8fc5552bc6ee9e70f9f2",
-          "size_bytes": 13081,
+          "blob_sha": "43eebfc97964c1fe73f0aec96689ed7da49cebaa",
+          "size_bytes": 13125,
           "classification": "skill_path_candidate"
         },
         {
@@ -39492,7 +39500,7 @@
       "default_branch": "main",
       "commit_sha": "a582c51ee29d0f35e6ac321340796f77d43da733",
       "tree_sha": "e908e2dbcdcde94ebd1e5c5dc73cd4c7c12a1104",
-      "checked_at": "2026-11-26T17:50:32.234334+00:00",
+      "checked_at": "2026-11-27T17:34:48.097458+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -39780,9 +39788,9 @@
       "publisher_account": "prisma",
       "repository_url": "https://github.com/prisma/orm",
       "default_branch": "main",
-      "commit_sha": "372bc6dc8d81917e740498ab07a638d6411bae14",
-      "tree_sha": "a63383a4ccf877fe3840c62bdfcbdb0af1bd78cb",
-      "checked_at": "2026-11-26T17:51:08.509894+00:00",
+      "commit_sha": "ec46a09c989cc972442f6dd0f546294b8ff0b15d",
+      "tree_sha": "a42affd24d9e8a4997d5300681e7fc9623ec26a5",
+      "checked_at": "2026-11-27T17:35:18.358204+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
@@ -39810,6 +39818,7 @@
         "skills-contrib/bumping-biome/SKILL.md",
         "skills-contrib/contrib-pr/SKILL.md",
         "skills-contrib/create-pr/SKILL.md",
+        "skills-contrib/doc-review/SKILL.md",
         "skills-contrib/draft-release-notes/SKILL.md",
         "skills-contrib/github-review-iteration/SKILL.md",
         "skills-contrib/markdown-no-artificial-line-wraps/SKILL.md",
@@ -39831,8 +39840,8 @@
         {
           "path": "skills-contrib/adr-review/SKILL.md",
           "mode": "100644",
-          "blob_sha": "322ff645ae601939c5e693806ccc506e2387fd63",
-          "size_bytes": 2695,
+          "blob_sha": "dc0e9b2ba7d23eb8a7c9e883db3f5624c670f65f",
+          "size_bytes": 1852,
           "classification": "skill_path_candidate"
         },
         {
@@ -39864,10 +39873,17 @@
           "classification": "skill_path_candidate"
         },
         {
+          "path": "skills-contrib/doc-review/SKILL.md",
+          "mode": "100644",
+          "blob_sha": "6dea6319ad710fe9073ccd4112d42d0b4d94b170",
+          "size_bytes": 12331,
+          "classification": "skill_path_candidate"
+        },
+        {
           "path": "skills-contrib/draft-release-notes/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f4ee10e50ed4e3920ff6177e7b0a9b37a6ac3b64",
-          "size_bytes": 21177,
+          "blob_sha": "f222a37c95e52f9f4577f2ad7e48bfede2de6b5b",
+          "size_bytes": 21153,
           "classification": "skill_path_candidate"
         },
         {
@@ -39915,8 +39931,8 @@
         {
           "path": "skills-contrib/publish-npm-version/SKILL.md",
           "mode": "100644",
-          "blob_sha": "f1388a7bfef2463214738cab6ccfcc541efb9c91",
-          "size_bytes": 16091,
+          "blob_sha": "214840de28fdf086b13cb5b6472d72a40d477fa8",
+          "size_bytes": 16111,
           "classification": "skill_path_candidate"
         },
         {
@@ -39964,15 +39980,15 @@
         {
           "path": "skills-contrib/write-architecture-docs/SKILL.md",
           "mode": "100644",
-          "blob_sha": "4965e35bc909221944d20d3d1068ff339db6c3c4",
-          "size_bytes": 6343,
+          "blob_sha": "db23605806f9c624d092a735cc39db2bf14839d8",
+          "size_bytes": 6545,
           "classification": "skill_path_candidate"
         },
         {
           "path": "skills/prisma-8/SKILL.md",
           "mode": "100644",
-          "blob_sha": "95ea1ba86d560ecc7930f9e6aba9aa318d8695de",
-          "size_bytes": 17385,
+          "blob_sha": "9920480aa1f3418dbea309c93a125305086eb363",
+          "size_bytes": 17461,
           "classification": "skill_path_candidate"
         }
       ],
@@ -39986,7 +40002,7 @@
       "default_branch": "main",
       "commit_sha": "2dcef7c62417bd2ec4671fce4621bb1e8cce48d0",
       "tree_sha": "62fbb5a320b133f5a8b52568f6af7b8354eab7cb",
-      "checked_at": "2026-11-26T17:51:14.102256+00:00",
+      "checked_at": "2026-11-27T17:35:23.282068+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -40040,7 +40056,7 @@
       "default_branch": "main",
       "commit_sha": "0e5b2e621a9ee4cf6a604bbe6c5c0d5b70561eb4",
       "tree_sha": "5b66c789d9a3a704310b2cc8f7ec16df57b08b64",
-      "checked_at": "2026-11-26T17:51:17.529133+00:00",
+      "checked_at": "2026-11-27T17:35:25.903577+00:00",
       "license_spdx": "MIT",
       "license_name": "MIT License",
       "license_key": "mit",
@@ -40092,7 +40108,7 @@
       "default_branch": "main",
       "commit_sha": "476ae12917b8e77609eb956bcc2203a4e4ec857d",
       "tree_sha": "09c4799abecd6cb89d219282356e27bcb2fbe7d6",
-      "checked_at": "2026-11-26T17:50:26.871584+00:00",
+      "checked_at": "2026-11-27T17:34:43.634826+00:00",
       "license_spdx": "NOASSERTION",
       "license_name": "Other",
       "license_key": "other",
@@ -41842,7 +41858,7 @@
       "default_branch": "main",
       "commit_sha": "370f8f33e5bb27dffe8289ea9bdec436686613ce",
       "tree_sha": "f27f8525b016570287e99ba8b9fbd5725d8aca78",
-      "checked_at": "2026-11-26T17:50:35.332398+00:00",
+      "checked_at": "2026-11-27T17:34:50.657239+00:00",
       "license_spdx": "Apache-2.0",
       "license_name": "Apache License 2.0",
       "license_key": "apache-2.0",
